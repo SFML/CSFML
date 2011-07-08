@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.h>
+#include <SFML/Window/Types.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -60,15 +61,27 @@ CSFML_API sfBool sfMouse_IsButtonPressed(sfMouseButton button);
 /// \brief Get the current position of the mouse
 ///
 /// This function returns the current position of the mouse
-/// cursor.
-/// If the cursor is over a SFML window, the returned position
-/// is relative to this window. Otherwise, the returned position
-/// is in desktop coordinates.
+/// cursor relative to the given window, or desktop if NULL is passed.
 ///
-/// \return Current position of the mouse
+/// \param x          Variable to fill with the current X position of the mouse
+/// \param y          Variable to fill with the current Y position of the mouse
+/// \param relativeTo Reference window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfMouse_GetPosition(int* x, int* y);
+CSFML_API void sfMouse_GetPosition(int* x, int* y, const sfWindow* relativeTo);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the current position of the mouse
+///
+/// This function sets the current position of the mouse
+/// cursor relative to the given window, or desktop if NULL is passed.
+///
+/// \param x          New X position of the mouse
+/// \param y          New Y position of the mouse
+/// \param relativeTo Reference window
+///
+////////////////////////////////////////////////////////////
+CSFML_API void sfMouse_SetPosition(int x, int y, const sfWindow* relativeTo);
 
 
 #endif // SFML_MOUSE_H

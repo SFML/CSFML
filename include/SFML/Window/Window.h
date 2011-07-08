@@ -178,26 +178,6 @@ CSFML_API void sfWindow_EnableVerticalSync(sfWindow* window, sfBool enabled);
 CSFML_API void sfWindow_ShowMouseCursor(sfWindow* window, sfBool show);
 
 ////////////////////////////////////////////////////////////
-/// Change the position of the mouse cursor on a window
-///
-/// \param window : Window object
-/// \param left :   Left coordinate of the cursor, relative to the window
-/// \param top :    Top coordinate of the cursor, relative to the window
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfWindow_SetCursorPosition(sfWindow* window, unsigned int left, unsigned int top);
-
-////////////////////////////////////////////////////////////
-/// Get the position of the mouse cursor on a window
-///
-/// \param window : Window object
-/// \param left :   Left coordinate of the cursor, relative to the window
-/// \param top :    Top coordinate of the cursor, relative to the window
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfWindow_GetCursorPosition(sfWindow* window, int* left, int* top);
-
-////////////////////////////////////////////////////////////
 /// Change the position of a window on screen.
 /// Only works for top-level windows
 ///

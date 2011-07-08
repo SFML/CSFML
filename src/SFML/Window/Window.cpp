@@ -210,30 +210,6 @@ void sfWindow_ShowMouseCursor(sfWindow* window, sfBool show)
 
 
 ////////////////////////////////////////////////////////////
-/// Change the position of the mouse cursor on a window
-////////////////////////////////////////////////////////////
-void sfWindow_SetCursorPosition(sfWindow* window, unsigned int left, unsigned int top)
-{
-    CSFML_CALL(window, SetCursorPosition(left, top))
-}
-
-
-////////////////////////////////////////////////////////////
-/// Get the position of the mouse cursor on a window
-////////////////////////////////////////////////////////////
-void sfWindow_GetCursorPosition(sfWindow* window, int* left, int* top)
-{
-    CSFML_CHECK(window);
-    sf::Vector2i position = window->This.GetCursorPosition();
-
-    if (left)
-        *left = position.x;
-    if (top)
-        *top = position.y;
-}
-
-
-////////////////////////////////////////////////////////////
 /// Change the position of a window on screen.
 /// Only works for top-level windows
 ////////////////////////////////////////////////////////////

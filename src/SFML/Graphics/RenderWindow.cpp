@@ -218,15 +218,6 @@ void sfRenderWindow_ShowMouseCursor(sfRenderWindow* renderWindow, sfBool show)
 
 
 ////////////////////////////////////////////////////////////
-/// Change the position of the mouse cursor on a window
-////////////////////////////////////////////////////////////
-void sfRenderWindow_SetCursorPosition(sfRenderWindow* renderWindow, unsigned int left, unsigned int top)
-{
-    CSFML_CALL(renderWindow, SetCursorPosition(left, top));
-}
-
-
-////////////////////////////////////////////////////////////
 /// Change the position of a window on screen.
 /// Only works for top-level windows
 ////////////////////////////////////////////////////////////

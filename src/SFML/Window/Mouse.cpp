@@ -26,6 +26,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Mouse.h>
+#include <SFML/Window/WindowStruct.h>
 #include <SFML/Window/Mouse.hpp>
 #include <SFML/Internal.h>
 
@@ -42,12 +43,28 @@ sfBool sfMouse_IsButtonPressed(sfMouseButton button)
 ////////////////////////////////////////////////////////////
 /// Get the current position of the mouse
 ////////////////////////////////////////////////////////////
-void sfMouse_GetPosition(int* x, int* y)
+void sfMouse_GetPosition(int* x, int* y, const sfWindow* relativeTo)
 {
-    sf::Vector2i position = sf::Mouse::GetPosition();
+    sf::Vector2i position;
+    if (relativeTo)
+        position = sf::Mouse::GetPosition(relativeTo->This);
+    else
+        position = sf::Mouse::GetPosition();
 
     if (x)
         *x = position.x;
     if (y)
         *y = position.y;
+}
+
+
+////////////////////////////////////////////////////////////
+/// Get the current position of the mouse
+////////////////////////////////////////////////////////////
+void sfMouse_SetPosition(int x, int y, const sfWindow* relativeTo)
+{
+    if (relativeTo)
+        sf::Mouse::SetPosition(sf::Vector2i(x, y), relativeTo->This);
+    else
+        sf::Mouse::SetPosition(sf::Vector2i(x, y));
 }
