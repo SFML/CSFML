@@ -29,6 +29,7 @@
 #include <SFML/Graphics/ShaderStruct.h>
 #include <SFML/Graphics/ImageStruct.h>
 #include <SFML/Internal.h>
+#include <SFML/CallbackStream.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -56,6 +57,26 @@ sfShader* sfShader_CreateFromMemory(const char* effect)
     sfShader* shader = new sfShader;
 
     if (!shader->This.LoadFromMemory(effect))
+    {
+        delete shader;
+        shader = NULL;
+    }
+
+    return shader;
+}
+
+
+////////////////////////////////////////////////////////////
+/// Create a new shader from a custom stream
+////////////////////////////////////////////////////////////
+sfShader* sfShader_CreateFromStream(sfInputStream* stream)
+{
+    CSFML_CHECK_RETURN(stream, NULL);
+
+    sfShader* shader = new sfShader;
+
+    CallbackStream sfmlStream(stream);
+    if (!shader->This.LoadFromStream(sfmlStream))
     {
         delete shader;
         shader = NULL;

@@ -36,7 +36,6 @@
 sfMusic* sfMusic_CreateFromFile(const char* filename)
 {
     sfMusic* music = new sfMusic;
-
     if (!music->This.OpenFromFile(filename))
     {
         delete music;
@@ -53,8 +52,26 @@ sfMusic* sfMusic_CreateFromFile(const char* filename)
 sfMusic* sfMusic_CreateFromMemory(const void* data, size_t sizeInBytes)
 {
     sfMusic* music = new sfMusic;
-
     if (!music->This.OpenFromMemory(data, sizeInBytes))
+    {
+        delete music;
+        music = NULL;
+    }
+
+    return music;
+}
+
+
+////////////////////////////////////////////////////////////
+/// Create a new music and load it from a custom stream
+////////////////////////////////////////////////////////////
+sfMusic* sfMusic_CreateFromStream(sfInputStream* stream)
+{
+    CSFML_CHECK_RETURN(stream, NULL);
+
+    sfMusic* music = new sfMusic;
+    music->Stream = CallbackStream(stream);
+    if (!music->This.OpenFromStream(music->Stream))
     {
         delete music;
         music = NULL;

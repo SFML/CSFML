@@ -31,6 +31,7 @@
 #include <SFML/Config.h>
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
+#include <SFML/System/InputStream.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -53,6 +54,16 @@ CSFML_API sfMusic* sfMusic_CreateFromFile(const char* filename);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfMusic* sfMusic_CreateFromMemory(const void* data, size_t sizeInBytes);
+
+////////////////////////////////////////////////////////////
+/// Create a new music and load it from a custom stream
+///
+/// \param stream : Source stream to read from
+///
+/// \return A new sfMusic object (NULL if failed)
+///
+////////////////////////////////////////////////////////////
+CSFML_API sfMusic* sfMusic_CreateFromStream(sfInputStream* stream);
 
 ////////////////////////////////////////////////////////////
 /// Destroy an existing music

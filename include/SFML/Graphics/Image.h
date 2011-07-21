@@ -32,6 +32,7 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/System/InputStream.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -78,6 +79,16 @@ CSFML_API sfImage* sfImage_CreateFromFile(const char* filename);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfImage* sfImage_CreateFromMemory(const void* data, size_t sizeInBytes);
+
+////////////////////////////////////////////////////////////
+/// Create a new image from a custom stream
+///
+/// \param stream : Source stream to read from
+///
+/// \return A new sfImage object, or NULL if it failed
+///
+////////////////////////////////////////////////////////////
+CSFML_API sfImage* sfImage_CreateFromStream(sfInputStream* stream);
 
 ////////////////////////////////////////////////////////////
 /// Copy an existing image

@@ -28,6 +28,7 @@
 #include <SFML/Graphics/Font.h>
 #include <SFML/Graphics/FontStruct.h>
 #include <SFML/Internal.h>
+#include <SFML/CallbackStream.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -53,6 +54,25 @@ sfFont* sfFont_CreateFromMemory(const void* data, size_t sizeInBytes)
 {
     sfFont* font = new sfFont;
     if (!font->This.LoadFromMemory(data, sizeInBytes))
+    {
+        delete font;
+        font = NULL;
+    }
+
+    return font;
+}
+
+
+////////////////////////////////////////////////////////////
+/// Create a new font from a custom stream
+////////////////////////////////////////////////////////////
+sfFont* sfFont_CreateFromStream(sfInputStream* stream)
+{
+    CSFML_CHECK_RETURN(stream, NULL);
+
+    sfFont* font = new sfFont;
+    font->Stream = CallbackStream(stream);
+    if (!font->This.LoadFromStream(font->Stream))
     {
         delete font;
         font = NULL;

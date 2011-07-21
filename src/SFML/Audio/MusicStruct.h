@@ -29,6 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Audio/Music.hpp>
+#include <SFML/CallbackStream.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -37,6 +38,7 @@
 struct sfMusic
 {
     sf::Music This;
+    CallbackStream Stream;
 };
 
 

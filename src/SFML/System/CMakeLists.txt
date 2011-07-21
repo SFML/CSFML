@@ -7,6 +7,7 @@ set(SRC
     ${SRCROOT}/Clock.cpp
     ${SRCROOT}/ClockStruct.h
     ${INCROOT}/Clock.h
+    ${INCROOT}/InputStream.h
     ${SRCROOT}/Mutex.cpp
     ${SRCROOT}/MutexStruct.h
     ${INCROOT}/Mutex.h

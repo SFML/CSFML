@@ -29,6 +29,7 @@
 #include <SFML/Graphics/ImageStruct.h>
 #include <SFML/Graphics/RenderWindowStruct.h>
 #include <SFML/Internal.h>
+#include <SFML/CallbackStream.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -90,6 +91,26 @@ sfImage* sfImage_CreateFromMemory(const void* data, size_t sizeInBytes)
     sfImage* image = new sfImage;
 
     if (!image->This->LoadFromMemory(data, sizeInBytes))
+    {
+        delete image;
+        image = NULL;
+    }
+
+    return image;
+}
+
+
+////////////////////////////////////////////////////////////
+/// Create a new image from a custom stream
+////////////////////////////////////////////////////////////
+sfImage* sfImage_CreateFromStream(sfInputStream* stream)
+{
+    CSFML_CHECK_RETURN(stream, NULL);
+
+    sfImage* image = new sfImage;
+
+    CallbackStream sfmlStream(stream);
+    if (!image->This->LoadFromStream(sfmlStream))
     {
         delete image;
         image = NULL;

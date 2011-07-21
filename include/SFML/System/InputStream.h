@@ -22,27 +22,33 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_FONTSTRUCT_H
-#define SFML_FONTSTRUCT_H
+#ifndef SFML_INPUTSTREAM_H
+#define SFML_INPUTSTREAM_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Font.hpp>
-#include <SFML/Graphics/ImageStruct.h>
-#include <SFML/CallbackStream.h>
-#include <map>
+#include <SFML/Config.h>
+
+
+typedef sfInt64 (*sfInputStreamReadFunc)(char* data, sfInt64 size, void* userData);
+typedef sfInt64 (*sfInputStreamSeekFunc)(sfInt64 position, void* userData);
+typedef sfInt64 (*sfInputStreamTellFunc)(void* userData);
+typedef sfInt64 (*sfInputStreamGetSizeFunc)(void* userData);
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfFont
+/// \brief Set of callbacks that allow users to define custom file streams
+///
 ////////////////////////////////////////////////////////////
-struct sfFont
+typedef struct sfInputStream
 {
-    sf::Font This;
-    std::map<unsigned int, sfImage> Images;
-    CallbackStream Stream;
-};
+    sfInputStreamReadFunc    Read;     ///< Function to read data from the stream
+    sfInputStreamSeekFunc    Seek;     ///< Function to set the current read position
+    sfInputStreamTellFunc    Tell;     ///< Function to get the current read position
+    sfInputStreamGetSizeFunc GetSize;  ///< Function to get the total number of bytes in the stream
+    void*                    UserData; ///< User data that will be passed to the callbacks
+} sfInputStream;
 
 
-#endif // SFML_FONTSTRUCT_H
+#endif // SFML_INPUTSTREAM_H

@@ -105,45 +105,32 @@ typedef int sfBool;
 
 
 ////////////////////////////////////////////////////////////
-// Define portable types
+// Define portable fixed-size types
 ////////////////////////////////////////////////////////////
-#include <stdlib.h>
-#include <limits.h>
+
+// All "common" platforms use the same size for char, short and int
+// (basically there are 3 types for 3 sizes, so no other match is possible),
+// we can use them without doing any kind of check
 
 // 8 bits integer types
-#if UCHAR_MAX == 0xFF
-    typedef signed   char sfInt8;
-    typedef unsigned char sfUint8;
-#else
-    #error No 8 bits integer type for this platform
-#endif
+typedef signed   char sfInt8;
+typedef unsigned char sfUint8;
 
 // 16 bits integer types
-#if USHRT_MAX == 0xFFFF
-    typedef signed   short sfInt16;
-    typedef unsigned short sfUint16;
-#elif UINT_MAX == 0xFFFF
-    typedef signed   int sfInt16;
-    typedef unsigned int sfUint16;
-#elif ULONG_MAX == 0xFFFF
-    typedef signed   long sfInt16;
-    typedef unsigned long sfUint16;
-#else
-    #error No 16 bits integer type for this platform
-#endif
+typedef signed   short sfInt16;
+typedef unsigned short sfUint16;
 
 // 32 bits integer types
-#if USHRT_MAX == 0xFFFFFFFF
-    typedef signed   short sfInt32;
-    typedef unsigned short sfUint32;
-#elif UINT_MAX == 0xFFFFFFFF
-    typedef signed   int sfInt32;
-    typedef unsigned int sfUint32;
-#elif ULONG_MAX == 0xFFFFFFFF
-    typedef signed   long sfInt32;
-    typedef unsigned long sfUint32;
+typedef signed   int sfInt32;
+typedef unsigned int sfUint32;
+
+// 64 bits integer types
+#if defined(_MSC_VER)
+    typedef signed   __int64 sfInt64;
+    typedef unsigned __int64 sfUint64;
 #else
-    #error No 32 bits integer type for this platform
+    typedef signed   long long sfInt64;
+    typedef unsigned long long sfUint64;
 #endif
 
 
