@@ -32,6 +32,7 @@
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
 #include <SFML/System/InputStream.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////

@@ -33,6 +33,7 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////

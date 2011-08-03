@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Glyph.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/InputStream.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////

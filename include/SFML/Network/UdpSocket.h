@@ -32,6 +32,7 @@
 #include <SFML/Network/IpAddress.h>
 #include <SFML/Network/SocketStatus.h>
 #include <SFML/Network/Types.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
