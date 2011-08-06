@@ -145,19 +145,6 @@ CSFML_API void sfImage_CreateMaskFromColor(sfImage* image, sfColor colorKey, sfU
 CSFML_API void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect);
 
 ////////////////////////////////////////////////////////////
-/// Create the image from the current contents of the
-/// given window
-///
-/// \param image :      Destination image
-/// \param window :     Window to capture
-/// \param sourceRect : Sub-rectangle of the screen to copy (empty by default - entire image)
-///
-/// \return True if creation was successful
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfBool sfImage_CopyScreen(sfImage* image, sfRenderWindow* window, sfIntRect sourceRect);
-
-////////////////////////////////////////////////////////////
 /// Change the color of a pixel of an image
 ///
 /// \param image : Image to modify
@@ -193,38 +180,6 @@ CSFML_API sfColor sfImage_GetPixel(const sfImage* image, unsigned int x, unsigne
 CSFML_API const sfUint8* sfImage_GetPixelsPtr(const sfImage* image);
 
 ////////////////////////////////////////////////////////////
-/// Update a sub-rectangle of the image from an array of pixels
-///
-/// Warning: for performances reasons, this function doesn't
-/// perform any check; thus you're responsible of ensuring that
-/// \a rectangle does not exceed the image size, and that
-/// \a pixels contains enough elements.
-///
-/// \param image :     Image to update
-/// \param rectangle : Sub-rectangle of the image to update
-/// \param pixels :    Array of pixels to write to the image
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfImage_UpdatePixels(const sfImage* image, const sfUint8* pixels, sfIntRect rectangle);
-
-////////////////////////////////////////////////////////////
-/// Bind the image for rendering
-///
-/// \param image : Image to bind
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfImage_Bind(const sfImage* image);
-
-////////////////////////////////////////////////////////////
-/// Enable or disable image smooth filter
-///
-/// \param image :  Image to modify
-/// \param smooth : sfTrue to enable smoothing filter, false to disable it
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfImage_SetSmooth(sfImage* image, sfBool smooth);
-
-////////////////////////////////////////////////////////////
 /// Return the width of the image
 ///
 /// \param image : Image to read
@@ -245,14 +200,20 @@ CSFML_API unsigned int sfImage_GetWidth(const sfImage* image);
 CSFML_API unsigned int sfImage_GetHeight(const sfImage* image);
 
 ////////////////////////////////////////////////////////////
-/// Tells whether the smoothing filter is enabled or not on an image
+/// Flip an image horizontally (left <-> right)
 ///
-/// \param image :  Image to read
-///
-/// \return sfTrue if the smoothing filter is enabled
+/// \param image : Image to flip
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfImage_IsSmooth(const sfImage* image);
+CSFML_API void sfImage_FlipHorizontally(sfImage* image);
+
+////////////////////////////////////////////////////////////
+/// Flip an image vertically (top <-> bottom)
+///
+/// \param image : Image to flip
+///
+////////////////////////////////////////////////////////////
+CSFML_API void sfImage_FlipVertically(sfImage* image);
 
 
 #endif // SFML_IMAGE_H

@@ -37,12 +37,8 @@
 ////////////////////////////////////////////////////////////
 sfSprite* sfSprite_Create(void)
 {
-    sfSprite* sprite       = new sfSprite;
-    sprite->Image          = NULL;
-    sprite->SubRect.Left   = sprite->This.GetSubRect().Left;
-    sprite->SubRect.Top    = sprite->This.GetSubRect().Top;
-    sprite->SubRect.Width  = sprite->This.GetSubRect().Width;
-    sprite->SubRect.Height = sprite->This.GetSubRect().Height;
+    sfSprite* sprite = new sfSprite;
+    sprite->Texture = NULL;
 
     return sprite;
 }
@@ -302,14 +298,14 @@ void sfSprite_TransformToGlobal(const sfSprite* sprite, float pointX, float poin
 
 
 ////////////////////////////////////////////////////////////
-/// Change the image of a sprite
+/// Change the texture of a sprite
 ////////////////////////////////////////////////////////////
-void sfSprite_SetImage(sfSprite* sprite, const sfImage* image, sfBool adjustToNewSize)
+void sfSprite_SetTexture(sfSprite* sprite, const sfTexture* texture, sfBool adjustToNewSize)
 {
-    if (image)
+    if (texture && texture->This)
     {
-        CSFML_CALL(sprite, SetImage(*image->This, adjustToNewSize == sfTrue))
-        sprite->Image = image;
+        CSFML_CALL(sprite, SetTexture(*texture->This, adjustToNewSize == sfTrue))
+        sprite->Texture = texture;
     }
 }
 
@@ -320,7 +316,6 @@ void sfSprite_SetImage(sfSprite* sprite, const sfImage* image, sfBool adjustToNe
 void sfSprite_SetSubRect(sfSprite* sprite, sfIntRect rectangle)
 {
     CSFML_CALL(sprite, SetSubRect(sf::IntRect(rectangle.Left, rectangle.Top, rectangle.Width, rectangle.Height)))
-    sprite->SubRect = rectangle;
 }
 
 
@@ -352,13 +347,13 @@ void sfSprite_FlipY(sfSprite* sprite, sfBool flipped)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the source image of a sprite
+/// Get the source texture of a sprite
 ////////////////////////////////////////////////////////////
-const sfImage* sfSprite_GetImage(const sfSprite* sprite)
+const sfTexture* sfSprite_GetTexture(const sfSprite* sprite)
 {
     CSFML_CHECK_RETURN(sprite, NULL)
 
-    return sprite->Image;
+    return sprite->Texture;
 }
 
 
@@ -370,7 +365,14 @@ sfIntRect sfSprite_GetSubRect(const sfSprite* sprite)
     sfIntRect rect = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(sprite, rect)
 
-    return sprite->SubRect;
+    sf::IntRect sfmlRect = sprite->This.GetSubRect();
+
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
 }
 
 
@@ -389,17 +391,4 @@ float sfSprite_GetWidth(const sfSprite* sprite)
 float sfSprite_GetHeight(const sfSprite* sprite)
 {
     CSFML_CALL_RETURN(sprite, GetSize().y, 0.f)
-}
-
-
-////////////////////////////////////////////////////////////
-/// Get the color of a given pixel in a sprite
-////////////////////////////////////////////////////////////
-sfColor sfSprite_GetPixel(const sfSprite* sprite, unsigned int x, unsigned int y)
-{
-    sfColor color = {0, 0, 0, 0};
-    CSFML_CHECK_RETURN(sprite, color)
-
-    sf::Color SFMLColor = sprite->This.GetPixel(x, y);
-    return sfColor_FromRGBA(SFMLColor.r, SFMLColor.g, SFMLColor.b, SFMLColor.a);
 }

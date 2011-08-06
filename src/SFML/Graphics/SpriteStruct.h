@@ -29,8 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Sprite.hpp>
-#include <SFML/Graphics/ImageStruct.h>
-#include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/TextureStruct.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -38,9 +37,8 @@
 ////////////////////////////////////////////////////////////
 struct sfSprite
 {
-    sf::Sprite     This;
-    const sfImage* Image;
-    sfIntRect      SubRect;
+    sf::Sprite       This;
+    const sfTexture* Texture;
 };
 
 

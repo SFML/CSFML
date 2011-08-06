@@ -301,14 +301,14 @@ CSFML_API void sfSprite_TransformToLocal(const sfSprite* sprite, float pointX, f
 CSFML_API void sfSprite_TransformToGlobal(const sfSprite* sprite, float pointX, float pointY, float* x, float* y);
 
 ////////////////////////////////////////////////////////////
-/// Change the image of a sprite
+/// Change the texture of a sprite
 ///
 /// \param sprite :          Sprite to modify
-/// \param image :           New image
-/// \param adjustToNewSize : If true, the SubRect of the sprite will be adjusted to the size of the new image
+/// \param texture :         New texture
+/// \param adjustToNewSize : If true, the SubRect of the sprite will be adjusted to the size of the new texture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSprite_SetImage(sfSprite* sprite, const sfImage* image, sfBool adjustToNewSize);
+CSFML_API void sfSprite_SetTexture(sfSprite* sprite, const sfTexture* texture, sfBool adjustToNewSize);
 
 ////////////////////////////////////////////////////////////
 /// Set the sub-rectangle of a sprite inside the source image
@@ -348,14 +348,14 @@ CSFML_API void sfSprite_FlipX(sfSprite* sprite, sfBool flipped);
 CSFML_API void sfSprite_FlipY(sfSprite* sprite, sfBool flipped);
 
 ////////////////////////////////////////////////////////////
-/// Get the source image of a sprite
+/// Get the source texture of a sprite
 ///
 /// \param sprite : Sprite to read
 ///
-/// \return Pointer to the image (can be NULL)
+/// \return Pointer to the texture (can be NULL)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfImage* sfSprite_GetImage(const sfSprite* sprite);
+CSFML_API const sfTexture* sfSprite_GetTexture(const sfSprite* sprite);
 
 ////////////////////////////////////////////////////////////
 /// Get the sub-rectangle of a sprite inside the source image
@@ -386,18 +386,6 @@ CSFML_API float sfSprite_GetWidth(const sfSprite* sprite);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSprite_GetHeight(const sfSprite* sprite);
-
-////////////////////////////////////////////////////////////
-/// Get the color of a given pixel in a sprite
-///
-/// \param sprite : Sprite to read
-/// \param x :      X coordinate of the pixel to get
-/// \param y :      Y coordinate of the pixel to get
-///
-/// \return Color of pixel (X, Y)
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfColor sfSprite_GetPixel(const sfSprite* sprite, unsigned int x, unsigned int y);
 
 
 #endif // SFML_SPRITE_H

@@ -35,11 +35,12 @@
 #include <SFML/Graphics/Image.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/RenderImage.h>
+#include <SFML/Graphics/RenderTexture.h>
 #include <SFML/Graphics/Shader.h>
 #include <SFML/Graphics/Shape.h>
 #include <SFML/Graphics/Sprite.h>
 #include <SFML/Graphics/Text.h>
+#include <SFML/Graphics/Texture.h>
 #include <SFML/Graphics/View.h>
 
 

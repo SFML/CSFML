@@ -122,15 +122,15 @@ CSFML_API int sfFont_GetKerning(sfFont* font, sfUint32 first, sfUint32 second, u
 CSFML_API int sfFont_GetLineSpacing(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
-/// Get the image containing the glyphs of a given size in a font
+/// Get the texture containing the glyphs of a given size in a font
 ///
 /// \param font :          Source font
 /// \param characterSize : Character size, in pixels
 ///
-/// \return Read-only pointer to the image
+/// \return Read-only pointer to the texture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfImage* sfFont_GetImage(sfFont* font, unsigned int characterSize);
+CSFML_API const sfTexture* sfFont_GetTexture(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// Get the built-in default font (Arial)

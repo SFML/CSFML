@@ -126,10 +126,10 @@ CSFML_API void sfShader_SetParameter4(sfShader* shader, const char* name, float 
 ///
 /// \param shader :  Shader to modify
 /// \param name :    Texture name in the effect
-/// \param texture : Image to set
+/// \param texture : Texture to set
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfShader_SetTexture(sfShader* shader, const char* name, const sfImage* texture);
+CSFML_API void sfShader_SetTexture(sfShader* shader, const char* name, const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// Set the current texture parameter in a shader

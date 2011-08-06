@@ -29,11 +29,12 @@
 typedef struct sfFont sfFont;
 typedef struct sfImage sfImage;
 typedef struct sfShader sfShader;
-typedef struct sfRenderImage sfRenderImage;
+typedef struct sfRenderTexture sfRenderTexture;
 typedef struct sfRenderWindow sfRenderWindow;
 typedef struct sfShape sfShape;
 typedef struct sfSprite sfSprite;
 typedef struct sfText sfText;
+typedef struct sfTexture sfTexture;
 typedef struct sfView sfView;
 
 

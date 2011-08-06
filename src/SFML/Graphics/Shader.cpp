@@ -27,7 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Shader.h>
 #include <SFML/Graphics/ShaderStruct.h>
-#include <SFML/Graphics/ImageStruct.h>
+#include <SFML/Graphics/TextureStruct.h>
 #include <SFML/Internal.h>
 #include <SFML/CallbackStream.h>
 
@@ -145,7 +145,7 @@ void sfShader_SetParameter4(sfShader* shader, const char* name, float x, float y
 ////////////////////////////////////////////////////////////
 /// Set a texture parameter in a shader
 ////////////////////////////////////////////////////////////
-void sfShader_SetTexture(sfShader* shader, const char* name, const sfImage* texture)
+void sfShader_SetTexture(sfShader* shader, const char* name, const sfTexture* texture)
 {
     CSFML_CHECK(texture);
     CSFML_CALL(shader, SetTexture(name, *texture->This))

@@ -145,15 +145,15 @@ int sfFont_GetLineSpacing(sfFont* font, unsigned int characterSize)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the image containing the glyphs of a given size in a font
+/// Get the texture containing the glyphs of a given size in a font
 ////////////////////////////////////////////////////////////
-const sfImage* sfFont_GetImage(sfFont* font, unsigned int characterSize)
+const sfTexture* sfFont_GetTexture(sfFont* font, unsigned int characterSize)
 {
     CSFML_CHECK_RETURN(font, NULL);
 
-    *font->Images[characterSize].This = font->This.GetImage(characterSize);
+    *font->Textures[characterSize].This = font->This.GetTexture(characterSize);
 
-    return &font->Images[characterSize];
+    return &font->Textures[characterSize];
 }
 
 
@@ -162,7 +162,7 @@ const sfImage* sfFont_GetImage(sfFont* font, unsigned int characterSize)
 ////////////////////////////////////////////////////////////
 const sfFont* sfFont_GetDefaultFont(void)
 {
-    static sfFont defaultFont = {sf::Font::GetDefaultFont(), std::map<unsigned int, sfImage>()};
+    static sfFont defaultFont = {sf::Font::GetDefaultFont(), std::map<unsigned int, sfTexture>()};
 
     return &defaultFont;
 }

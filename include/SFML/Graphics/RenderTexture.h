@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RENDERIMAGE_H
-#define SFML_RENDERIMAGE_H
+#ifndef SFML_RENDERTEXTURE_H
+#define SFML_RENDERTEXTURE_H
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -35,53 +35,53 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new renderimage
+/// Construct a new rendertexture
 ///
-/// \param width :       Width of the renderimage
-/// \param height :      Height of the renderimage
-/// \param depthBuffer : Do you want a depth-buffer attached? (useful only if you're doing 3D OpenGL on the renderimage)
+/// \param width :       Width of the rendertexture
+/// \param height :      Height of the rendertexture
+/// \param depthBuffer : Do you want a depth-buffer attached? (useful only if you're doing 3D OpenGL on the rendertexture)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfRenderImage* sfRenderImage_Create(unsigned int width, unsigned int height, sfBool depthBuffer);
+CSFML_API sfRenderTexture* sfRenderTexture_Create(unsigned int width, unsigned int height, sfBool depthBuffer);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing renderimage
+/// Destroy an existing rendertexture
 ///
-/// \param renderImage : renderimage to destroy
+/// \param renderTexture : rendertexture to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_Destroy(sfRenderImage* renderImage);
+CSFML_API void sfRenderTexture_Destroy(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
-/// Get the width of the rendering region of a renderimage
+/// Get the width of the rendering region of a rendertexture
 ///
-/// \param renderImage : Renderimage object
+/// \param renderTexture : Rendertexture object
 ///
 /// \return Width in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfRenderImage_GetWidth(const sfRenderImage* renderImage);
+CSFML_API unsigned int sfRenderTexture_GetWidth(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
-/// Get the height of the rendering region of a renderimage
+/// Get the height of the rendering region of a rendertexture
 ///
-/// \param renderImage : Renderimage object
+/// \param renderTexture : Rendertexture object
 ///
 /// \return Height in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfRenderImage_GetHeight(const sfRenderImage* renderImage);
+CSFML_API unsigned int sfRenderTexture_GetHeight(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
-/// Activate or deactivate a renderimage as the current target for rendering
+/// Activate or deactivate a rendertexture as the current target for rendering
 ///
-/// \param renderImage : Renderimage object
+/// \param renderTexture : Rendertexture object
 /// \param active :      sfTrue to activate, sfFalse to deactivate
 ///
 /// \return True if operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfRenderImage_SetActive(sfRenderImage* renderImage, sfBool active);
+CSFML_API sfBool sfRenderTexture_SetActive(sfRenderTexture* renderTexture, sfBool active);
 
 ////////////////////////////////////////////////////////////
 /// Save the current OpenGL render states and matrices
@@ -89,7 +89,7 @@ CSFML_API sfBool sfRenderImage_SetActive(sfRenderImage* renderImage, sfBool acti
 /// \param renderWindow : Renderwindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_SaveGLStates(sfRenderImage* renderImage);
+CSFML_API void sfRenderTexture_SaveGLStates(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// Restore the previously saved OpenGL render states and matrices
@@ -97,110 +97,110 @@ CSFML_API void sfRenderImage_SaveGLStates(sfRenderImage* renderImage);
 /// \param renderWindow : Renderwindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_RestoreGLStates(sfRenderImage* renderImage);
+CSFML_API void sfRenderTexture_RestoreGLStates(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
-/// Update the contents of the target image
+/// Update the contents of the target texture
 ///
-/// \param renderImage : Renderimage object
+/// \param renderTexture : Rendertexture object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_Display(sfRenderImage* renderImage);
+CSFML_API void sfRenderTexture_Display(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
-/// Draw something on a renderimage
+/// Draw something on a rendertexture
 ///
-/// \param renderImage :           Renderimage to draw in
+/// \param renderTexture :           Rendertexture to draw in
 /// \param sprite / text / shape : Object to draw
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_DrawSprite(sfRenderImage* renderImage, const sfSprite* sprite);
-CSFML_API void sfRenderImage_DrawShape (sfRenderImage* renderImage, const sfShape*  shape);
-CSFML_API void sfRenderImage_DrawText  (sfRenderImage* renderImage, const sfText*   text);
+CSFML_API void sfRenderTexture_DrawSprite(sfRenderTexture* renderTexture, const sfSprite* sprite);
+CSFML_API void sfRenderTexture_DrawShape (sfRenderTexture* renderTexture, const sfShape*  shape);
+CSFML_API void sfRenderTexture_DrawText  (sfRenderTexture* renderTexture, const sfText*   text);
 
 ////////////////////////////////////////////////////////////
-/// Draw something on a renderimage with a shader
+/// Draw something on a rendertexture with a shader
 ///
-/// \param renderImage :           Renderimage to draw in
+/// \param renderTexture :           Rendertexture to draw in
 /// \param sprite / text / shape : Object to draw
 /// \param shader :                Shader to use
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_DrawSpriteWithShader(sfRenderImage* renderImage, const sfSprite* sprite, const sfShader* shader);
-CSFML_API void sfRenderImage_DrawShapeWithShader (sfRenderImage* renderImage, const sfShape*  shape,  const sfShader* shader);
-CSFML_API void sfRenderImage_DrawTextWithShader  (sfRenderImage* renderImage, const sfText*   text,   const sfShader* shader);
+CSFML_API void sfRenderTexture_DrawSpriteWithShader(sfRenderTexture* renderTexture, const sfSprite* sprite, const sfShader* shader);
+CSFML_API void sfRenderTexture_DrawShapeWithShader (sfRenderTexture* renderTexture, const sfShape*  shape,  const sfShader* shader);
+CSFML_API void sfRenderTexture_DrawTextWithShader  (sfRenderTexture* renderTexture, const sfText*   text,   const sfShader* shader);
 
 ////////////////////////////////////////////////////////////
-/// Clear the renderimage with the given color
+/// Clear the rendertexture with the given color
 ///
-/// \param renderImage : Renderimage to modify
+/// \param renderTexture : Rendertexture to modify
 /// \param color :       Fill color
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_Clear(sfRenderImage* renderImage, sfColor color);
+CSFML_API void sfRenderTexture_Clear(sfRenderTexture* renderTexture, sfColor color);
 
 ////////////////////////////////////////////////////////////
-/// Change the current active view of a renderimage
+/// Change the current active view of a rendertexture
 ///
-/// \param renderImage : Renderimage to modify
+/// \param renderTexture : Rendertexture to modify
 /// \param view :        Pointer to the new view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_SetView(sfRenderImage* renderImage, const sfView* view);
+CSFML_API void sfRenderTexture_SetView(sfRenderTexture* renderTexture, const sfView* view);
 
 ////////////////////////////////////////////////////////////
-/// Get the current active view of a renderimage
+/// Get the current active view of a rendertexture
 ///
-/// \param renderImage : Renderimage
+/// \param renderTexture : Rendertexture
 ///
 /// \return Current active view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfView* sfRenderImage_GetView(const sfRenderImage* renderImage);
+CSFML_API const sfView* sfRenderTexture_GetView(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
-/// Get the default view of a renderimage
+/// Get the default view of a rendertexture
 ///
-/// \param renderImage : Renderimage
+/// \param renderTexture : Rendertexture
 ///
-/// \return Default view of the renderimage
+/// \return Default view of the rendertexture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfView* sfRenderImage_GetDefaultView(const sfRenderImage* renderImage);
+CSFML_API const sfView* sfRenderTexture_GetDefaultView(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// Get the viewport of a view applied to this target
 ///
-/// \param renderImage : Renderimage object
+/// \param renderTexture : Rendertexture object
 /// \param view :        Target view
 ///
 /// \return Viewport rectangle, expressed in pixels in the current target
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIntRect sfRenderImage_GetViewport(const sfRenderImage* renderImage, const sfView* view);
+CSFML_API sfIntRect sfRenderTexture_GetViewport(const sfRenderTexture* renderTexture, const sfView* view);
 
 ////////////////////////////////////////////////////////////
-/// Convert a point in image coordinates into view coordinates
+/// Convert a point in texture coordinates into view coordinates
 ///
-/// \param renderImage : Renderimage object
-/// \param windowX :     X coordinate of the point to convert, relative to the image
-/// \param windowY :     Y coordinate of the point to convert, relative to the image
+/// \param renderTexture : Rendertexture object
+/// \param windowX :     X coordinate of the point to convert, relative to the texture
+/// \param windowY :     Y coordinate of the point to convert, relative to the texture
 /// \param viewX :       Pointer to fill with the X coordinate of the converted point
 /// \param viewY :       Pointer to fill with the Y coordinate of the converted point
 /// \param targetView :  Target view to convert the point to (pass NULL to use the current view)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderImage_ConvertCoords(const sfRenderImage* renderImage, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView);
+CSFML_API void sfRenderTexture_ConvertCoords(const sfRenderTexture* renderTexture, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView);
 
 ////////////////////////////////////////////////////////////
-/// Get the target image
+/// Get the target texture
 ///
-/// \param renderImage : Renderimage object
+/// \param renderTexture : Render-texture object
 ///
-/// \return Pointer to the target image
+/// \return Pointer to the target texture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfImage* sfRenderImage_GetImage(const sfRenderImage* renderImage);
+CSFML_API const sfTexture* sfRenderTexture_GetTexture(const sfRenderTexture* renderTexture);
 
 
-#endif // SFML_RENDERIMAGE_H
+#endif // SFML_RENDERTEXTURE_H

@@ -22,27 +22,47 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RENDERIMAGESTRUCT_H
-#define SFML_RENDERIMAGESTRUCT_H
+#ifndef SFML_TEXTURESTRUCT_H
+#define SFML_TEXTURESTRUCT_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/RenderImage.hpp>
-#include <SFML/Graphics/ImageStruct.h>
-#include <SFML/Graphics/ViewStruct.h>
+#include <SFML/Graphics/Texture.hpp>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfRenderWindow
+// Internal structure of sfTexture
 ////////////////////////////////////////////////////////////
-struct sfRenderImage
+struct sfTexture
 {
-    sf::RenderImage This;
-    const sfImage*  Target;
-    sfView          DefaultView;
-    sfView          CurrentView;
+    sfTexture()
+    {
+        This = new sf::Texture;
+        OwnInstance = true;
+    }
+
+    sfTexture(sf::Texture* texture)
+    {
+        This = texture;
+        OwnInstance = false;
+    }
+
+    sfTexture(const sfTexture& texture)
+    {
+        This = texture.This ? new sf::Texture(*texture.This) : NULL;
+        OwnInstance = true;
+    }
+
+    ~sfTexture()
+    {
+        if (OwnInstance)
+            delete This;
+    }
+
+    sf::Texture* This;
+    bool OwnInstance;
 };
 
 
-#endif // SFML_RENDERIMAGESTRUCT_H
+#endif // SFML_TEXTURESTRUCT_H

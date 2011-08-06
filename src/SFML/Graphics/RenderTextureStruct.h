@@ -22,22 +22,27 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_IMAGESTRUCT_H
-#define SFML_IMAGESTRUCT_H
+#ifndef SFML_RENDERTEXTURESTRUCT_H
+#define SFML_RENDERTEXTURESTRUCT_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Image.hpp>
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <SFML/Graphics/TextureStruct.h>
+#include <SFML/Graphics/ViewStruct.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfImage
+// Internal structure of sfRenderTexture
 ////////////////////////////////////////////////////////////
-struct sfImage
+struct sfRenderTexture
 {
-    sf::Image This;
+    sf::RenderTexture This;
+    const sfTexture*  Target;
+    sfView            DefaultView;
+    sfView            CurrentView;
 };
 
 
-#endif // SFML_IMAGESTRUCT_H
+#endif // SFML_RENDERTEXTURESTRUCT_H

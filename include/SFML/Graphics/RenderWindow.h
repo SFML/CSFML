@@ -371,5 +371,23 @@ CSFML_API sfIntRect sfRenderWindow_GetViewport(const sfRenderWindow* renderWindo
 ////////////////////////////////////////////////////////////
 CSFML_API void sfRenderWindow_ConvertCoords(const sfRenderWindow* renderWindow, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView);
 
+////////////////////////////////////////////////////////////
+/// Copy the current contents of a window to an image
+///
+/// This is a slow operation, whose main purpose is to make
+/// screenshots of the application. If you want to update an
+/// image with the contents of the window and then use it for
+/// drawing, you should rather use a sfTexture and its
+/// Update(sfWindow*) function.
+/// You can also draw things directly to a texture with the
+/// sfRenderTexture class.
+///
+/// \param renderWindow : Render window to capture
+///
+/// \return New image containing the captured contents
+///
+////////////////////////////////////////////////////////////
+sfImage* sfRenderWindow_Capture(const sfRenderWindow* renderWindow);
+
 
 #endif // SFML_RENDERWINDOW_H

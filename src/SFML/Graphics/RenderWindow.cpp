@@ -470,3 +470,17 @@ void sfRenderWindow_ConvertCoords(const sfRenderWindow* renderWindow, unsigned i
     if (viewX) *viewX = point.x;
     if (viewY) *viewY = point.y;
 }
+
+
+////////////////////////////////////////////////////////////
+/// Copy the current contents of a window to an image
+////////////////////////////////////////////////////////////
+sfImage* sfRenderWindow_Capture(const sfRenderWindow* renderWindow)
+{
+    CSFML_CHECK(renderWindow);
+
+    sfImage* image = new sfImage;
+    image->This = renderWindow->This.Capture();
+
+    return image;
+}
