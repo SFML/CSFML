@@ -20,7 +20,7 @@
 /// {
 ///     sfVideoMode mode = {800, 600, 32};
 ///     sfRenderWindow* window;
-///     sfImage* image;
+///     sfTexture* texture;
 ///     sfSprite* sprite;
 ///     sfFont* font;
 ///     sfText* text;
@@ -33,11 +33,11 @@
 ///         return EXIT_FAILURE;
 ///
 ///     /* Load a sprite to display */
-///     image = sfImage_CreateFromFile("cute_image.jpg");
-///     if (!image)
+///     texture = sfTexture_CreateFromFile("cute_image.jpg");
+///     if (!texture)
 ///         return EXIT_FAILURE;
 ///     sprite = sfSprite_Create();
-///     sfSprite_SetImage(sprite, image, sfTrue);
+///     sfSprite_SetTexture(sprite, texture, sfTrue);
 /// 
 ///     /* Create a graphical text to display */
 ///     font = sfFont_CreateFromFile("arial.ttf");
@@ -85,7 +85,7 @@
 ///     sfText_Destroy(text);
 ///     sfFont_Destroy(font);
 ///     sfSprite_Destroy(sprite);
-///     sfImage_Destroy(image);
+///     sfTexture_Destroy(texture);
 ///     sfRenderWindow_Destroy(window);
 /// 
 ///     return EXIT_SUCCESS;
