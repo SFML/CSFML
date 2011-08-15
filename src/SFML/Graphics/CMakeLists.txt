@@ -16,9 +16,9 @@ set(SRC
     ${INCROOT}/Image.h
     ${SRCROOT}/Rect.cpp
     ${INCROOT}/Rect.h
-    ${SRCROOT}/RenderImage.cpp
-    ${SRCROOT}/RenderImageStruct.h
-    ${INCROOT}/RenderImage.h
+    ${SRCROOT}/RenderTexture.cpp
+    ${SRCROOT}/RenderTextureStruct.h
+    ${INCROOT}/RenderTexture.h
     ${SRCROOT}/RenderWindow.cpp
     ${SRCROOT}/RenderWindowStruct.h
     ${INCROOT}/RenderWindow.h
@@ -34,6 +34,9 @@ set(SRC
     ${SRCROOT}/Text.cpp
     ${SRCROOT}/TextStruct.h
     ${INCROOT}/Text.h
+    ${SRCROOT}/Texture.cpp
+    ${SRCROOT}/TextureStruct.h
+    ${INCROOT}/Texture.h
     ${INCROOT}/Types.h
     ${SRCROOT}/View.cpp
     ${SRCROOT}/ViewStruct.h
