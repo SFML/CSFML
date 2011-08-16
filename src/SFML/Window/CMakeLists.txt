@@ -9,10 +9,10 @@ set(SRC
     ${INCROOT}/Context.h
     ${INCROOT}/Event.h
     ${SRCROOT}/Joystick.cpp
-    ${SRCROOT}/Keyboard.cpp
-    ${SRCROOT}/Mouse.cpp
     ${INCROOT}/Joystick.h
+    ${SRCROOT}/Keyboard.cpp
     ${INCROOT}/Keyboard.h
+    ${SRCROOT}/Mouse.cpp
     ${INCROOT}/Mouse.h
     ${INCROOT}/Types.h
     ${SRCROOT}/VideoMode.cpp
