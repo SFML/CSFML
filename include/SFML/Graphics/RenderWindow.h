@@ -387,7 +387,7 @@ CSFML_API void sfRenderWindow_ConvertCoords(const sfRenderWindow* renderWindow, 
 /// \return New image containing the captured contents
 ///
 ////////////////////////////////////////////////////////////
-sfImage* sfRenderWindow_Capture(const sfRenderWindow* renderWindow);
+CSFML_API sfImage* sfRenderWindow_Capture(const sfRenderWindow* renderWindow);
 
 
 #endif // SFML_RENDERWINDOW_H
