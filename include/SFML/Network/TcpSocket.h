@@ -36,45 +36,55 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new TCP socket
+/// \brief Create a new TCP socket
 ///
-/// \return Pointer to the new socket
+/// \return A new sfTcpSocket object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfTcpSocket* sfTcpSocket_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing TCP socket
+/// \brief Destroy a TCP socket
 ///
-/// \param socket : Socket to destroy
+/// \param socket TCP socket to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTcpSocket_Destroy(sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Change the blocking state of a TCP socket.
-/// The default behaviour of a socket is blocking
+/// \brief Set the blocking state of a TCP listener
 ///
-/// \param socket :   Socket to modify
-/// \param blocking : Pass sfTrue to set the socket as blocking, or false for non-blocking
+/// In blocking mode, calls will not return until they have
+/// completed their task. For example, a call to
+/// sfTcpSocket_Receive in blocking mode won't return until
+/// new data was actually received.
+/// In non-blocking mode, calls will always return immediately,
+/// using the return code to signal whether there was data
+/// available or not.
+/// By default, all sockets are blocking.
+///
+/// \param socket   TCP socket object
+/// \param blocking sfTrue to set the socket as blocking, sfFalse for non-blocking
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTcpSocket_SetBlocking(sfTcpSocket* socket, sfBool blocking);
 
 ////////////////////////////////////////////////////////////
-/// Get the blocking state of the socket
+/// \brief Tell whether a TCP socket is in blocking or non-blocking mode
 ///
-/// \param socket : Socket to read
+/// \param socket TCP socket object
 ///
-/// \Return sfTrue if the socket is blocking, sfFalse otherwise
+/// \return sfTrue if the socket is blocking, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfTcpSocket_IsBlocking(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Get the port to which a socket is bound locally
+/// \brief Get the port to which a TCP socket is bound locally
 ///
-/// \param socket : Socket to read
+/// If the socket is not connected, this function returns 0.
+///
+/// \param socket TCP socket object
 ///
 /// \return Port to which the socket is bound
 ///
@@ -82,9 +92,12 @@ CSFML_API sfBool sfTcpSocket_IsBlocking(const sfTcpSocket* socket);
 CSFML_API unsigned short sfTcpSocket_GetLocalPort(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Get the address of the connected peer of a socket
+/// \brief Get the address of the connected peer of a TCP socket
 ///
-/// \param socket : Socket to read
+/// It the socket is not connected, this function returns
+/// sfIpAddress_None().
+///
+/// \param socket TCP socket object
 ///
 /// \return Address of the remote peer
 ///
@@ -92,9 +105,12 @@ CSFML_API unsigned short sfTcpSocket_GetLocalPort(const sfTcpSocket* socket);
 CSFML_API sfIpAddress sfTcpSocket_GetRemoteAddress(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Get the port of the connected peer to which a socket is connected
+/// \brief Get the port of the connected peer to which
+///        a TCP socket is connected
 ///
-/// \param socket : Socket to read
+/// If the socket is not connected, this function returns 0.
+///
+/// \param socket TCP socket object
 ///
 /// \return Remote port to which the socket is connected
 ///
@@ -102,69 +118,89 @@ CSFML_API sfIpAddress sfTcpSocket_GetRemoteAddress(const sfTcpSocket* socket);
 CSFML_API unsigned short sfTcpSocket_GetRemotePort(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Connect a TCP socket to another computer on a specified port
+/// \brief Connect a TCP socket to a remote peer
 ///
-/// \param socket :  Socket to connect
-/// \param host :    IP Address of the host to connect to
-/// \param port :    Port to use for transfers (warning : ports < 1024 are reserved)
-/// \param timeout : Maximum time to wait, in milliseconds (0 to use no timeout)
+/// In blocking mode, this function may take a while, especially
+/// if the remote peer is not reachable. The last parameter allows
+/// you to stop trying to connect after a given timeout.
+/// If the socket was previously connected, it is first disconnected.
 ///
-/// \return sfTrue if operation has been successful
+/// \param socket        TCP socket object
+/// \param remoteAddress Address of the remote peer
+/// \param remotePort    Port of the remote peer
+/// \param timeout       Maximum time to wait, in milliseconds
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfUint32 timeout);
 
 ////////////////////////////////////////////////////////////
-/// Disconnect a connect from its remote peer
+/// \brief Disconnect a TCP socket from its remote peer
 ///
-/// \param socket : Socket to disconnect
+/// This function gracefully closes the connection. If the
+/// socket is not connected, this function has no effect.
+///
+/// \param socket TCP socket object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTcpSocket_Disconnect(sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Send an array of bytes to the host (must be connected first)
+/// \brief Send raw data to the remote peer of a TCP socket
 ///
-/// \param socket : Socket to use for sending
-/// \param data :   Pointer to the bytes to send
-/// \param size :   Number of bytes to send
+/// This function will fail if the socket is not connected.
 ///
-/// \return Socket status
+/// \param socket TCP socket object
+/// \param data   Pointer to the sequence of bytes to send
+/// \param size   Number of bytes to send
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfTcpSocket_Send(sfTcpSocket* socket, const char* data, size_t size);
 
 ////////////////////////////////////////////////////////////
-/// Receive an array of bytes from the host (must be connected first)
+/// \brief Receive raw data from the remote peer of a TCP socket
 ///
-/// \param socket :       Socket to use for receiving
-/// \param data :         Pointer to a byte array to fill (make sure it is big enough)
-/// \param maxSize :      Maximum number of bytes to read
-/// \param sizeReceived : Number of bytes received
+/// In blocking mode, this function will wait until some
+/// bytes are actually received.
+/// This function will fail if the socket is not connected.
 ///
-/// \return Socket status
+/// \param socket   TCP socket object
+/// \param data     Pointer to the array to fill with the received bytes
+/// \param size     Maximum number of bytes that can be received
+/// \param received This variable is filled with the actual number of bytes received
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfTcpSocket_Receive(sfTcpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived);
 
 ////////////////////////////////////////////////////////////
-/// Send a packet of data to the host (must be connected first)
+/// \brief Send a formatted packet of data to the remote peer of a TCP socket
 ///
-/// \param socket : Socket to use for sending
-/// \param packet : Packet to send
+/// This function will fail if the socket is not connected.
 ///
-/// \return Socket status
+/// \param socket TCP socket object
+/// \param packet Packet to send
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfTcpSocket_SendPacket(sfTcpSocket* socket, sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
-/// Receive a packet from the host (must be connected first)
+/// \brief Receive a formatted packet of data from the remote peer
 ///
-/// \param socket : Socket to use for receiving
-/// \param packet : Packet to fill with received data
+/// In blocking mode, this function will wait until the whole packet
+/// has been received.
+/// This function will fail if the socket is not connected.
 ///
-/// \return Socket status
+/// \param socket TCP socket object
+/// \param packet Packet to fill with the received data
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfTcpSocket_ReceivePacket(sfTcpSocket* socket, sfPacket* packet);

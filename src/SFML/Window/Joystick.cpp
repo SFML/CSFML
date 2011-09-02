@@ -31,16 +31,12 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Check if a joystick is connected
-////////////////////////////////////////////////////////////
 sfBool sfJoystick_IsConnected(unsigned int joystick)
 {
     return sf::Joystick::IsConnected(joystick) ? sfTrue : sfFalse;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Return the number of buttons supported by a joystick
 ////////////////////////////////////////////////////////////
 unsigned int sfJoystick_GetButtonCount(unsigned int joystick)
 {
@@ -49,16 +45,12 @@ unsigned int sfJoystick_GetButtonCount(unsigned int joystick)
 
 
 ////////////////////////////////////////////////////////////
-/// Check if a joystick supports a given axis
-////////////////////////////////////////////////////////////
 sfBool sfJoystick_HasAxis(unsigned int joystick, sfJoystickAxis axis)
 {
     return sf::Joystick::HasAxis(joystick, static_cast<sf::Joystick::Axis>(axis)) ? sfTrue : sfFalse;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Check if a joystick button is pressed
 ////////////////////////////////////////////////////////////
 sfBool sfJoystick_IsButtonPressed(unsigned int joystick, unsigned int button)
 {
@@ -67,16 +59,12 @@ sfBool sfJoystick_IsButtonPressed(unsigned int joystick, unsigned int button)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the current position of a joystick axis
-////////////////////////////////////////////////////////////
 float sfJoystick_GetAxisPosition(unsigned int joystick, sfJoystickAxis axis)
 {
     return sf::Joystick::GetAxisPosition(joystick, static_cast<sf::Joystick::Axis>(axis));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Update the states of all joysticks
 ////////////////////////////////////////////////////////////
 void sfJoystick_Update(void)
 {

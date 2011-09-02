@@ -39,13 +39,12 @@ typedef void   (*sfSoundRecorderStopCallback)(void*);                           
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new sound recorder with callback functions
-/// for processing captured samples
+/// \brief Construct a new sound recorder from callback functions
 ///
-/// \param onStart :   Callback function which will be called when a new capture starts (can be NULL)
-/// \param onProcess : Callback function which will be called each time there's audio data to process
-/// \param onStop :    Callback function which will be called when the current capture stops (can be NULL)
-/// \param userData :  Data to pass to the callback function (can be NULL)
+/// \param onStart   Callback function which will be called when a new capture starts (can be NULL)
+/// \param onProcess Callback function which will be called each time there's audio data to process
+/// \param onStop    Callback function which will be called when the current capture stops (can be NULL)
+/// \param userData  Data to pass to the callback function (can be NULL)
 ///
 /// \return A new sfSoundRecorder object (NULL if failed)
 ///
@@ -56,46 +55,59 @@ CSFML_API sfSoundRecorder* sfSoundRecorder_Create(sfSoundRecorderStartCallback  
                                                   void*                          userData);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing sound recorder
+/// \brief Destroy a sound recorder
 ///
-/// \param soundRecorder : Sound recorder to delete
+/// \param soundRecorder Sound recorder to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundRecorder_Destroy(sfSoundRecorder* soundRecorder);
 
 ////////////////////////////////////////////////////////////
-/// Start the capture.
-/// Warning : only one capture can happen at the same time
+/// \brief Start the capture of a sound recorder
 ///
-/// \param soundRecorder : Sound recorder to start
-/// \param sampleRate :    Sound frequency (the more samples, the higher the quality)
+/// The \a sampleRate parameter defines the number of audio samples
+/// captured per second. The higher, the better the quality
+/// (for example, 44100 samples/sec is CD quality).
+/// This function uses its own thread so that it doesn't block
+/// the rest of the program while the capture runs.
+/// Please note that only one capture can happen at the same time.
+///
+/// \param soundRecorder Sound recorder object
+/// \param sampleRate    Desired capture rate, in number of samples per second
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundRecorder_Start(sfSoundRecorder* soundRecorder, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
-/// Stop the capture
+/// \brief Stop the capture of a sound recorder
 ///
-/// \param soundRecorder : Sound recorder to stop
+/// \param soundRecorder Sound recorder object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundRecorder_Stop(sfSoundRecorder* soundRecorder);
 
 ////////////////////////////////////////////////////////////
-/// Get the sample rate of a sound recorder
+/// \brief Get the sample rate of a sound recorder
 ///
-/// \param soundRecorder : Sound recorder to get sample rate from
+/// The sample rate defines the number of audio samples
+/// captured per second. The higher, the better the quality
+/// (for example, 44100 samples/sec is CD quality).
 ///
-/// \return Frequency, in samples per second
+/// \param soundRecorder Sound recorder object
+///
+/// \return Sample rate, in samples per second
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API unsigned int sfSoundRecorder_GetSampleRate(const sfSoundRecorder* soundRecorder);
 
 ////////////////////////////////////////////////////////////
-/// Tell if the system supports sound capture.
-/// If not, this class won't be usable
+/// \brief Check if the system supports audio capture
 ///
-/// \return sfTrue if audio capture is supported
+/// This function should always be called before using
+/// the audio capture features. If it returns false, then
+/// any attempt to use sfSoundRecorder will fail.
+///
+/// \return sfTrue if audio capture is supported, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfSoundRecorder_IsAvailable(void);

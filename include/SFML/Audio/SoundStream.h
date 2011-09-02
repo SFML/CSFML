@@ -34,8 +34,8 @@
 
 
 ////////////////////////////////////////////////////////////
-/// sfSoundStreamChunk defines the data to fill by the
-/// OnGetData callback
+/// \brief defines the data to fill by the OnGetData callback
+///
 ////////////////////////////////////////////////////////////
 typedef struct
 {
@@ -48,15 +48,15 @@ typedef void   (*sfSoundStreamSeekCallback)(sfUint32, void*);               ///<
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new sound stream
+/// \brief Create a new sound stream
 ///
-/// \param onGetData :     Function called when the stream needs more data (can't be NULL)
-/// \param onSeek :        Function called when the stream seeks (can't be NULL)
-/// \param channelsCount : Number of channels to use (1 = mono, 2 = stereo)
-/// \param sampleRate :    Sample rate of the sound (44100 = CD quality)
-/// \param userData :      Data to pass to the callback functions
+/// \param onGetData     Function called when the stream needs more data (can't be NULL)
+/// \param onSeek        Function called when the stream seeks (can't be NULL)
+/// \param channelsCount Number of channels to use (1 = mono, 2 = stereo)
+/// \param sampleRate    Sample rate of the sound (44100 = CD quality)
+/// \param userData      Data to pass to the callback functions
 ///
-/// \return A new sfSoundStream object (NULL if failed)
+/// \return A new sfSoundStream object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSoundStream* sfSoundStream_Create(sfSoundStreamGetDataCallback onGetData,
@@ -66,52 +66,66 @@ CSFML_API sfSoundStream* sfSoundStream_Create(sfSoundStreamGetDataCallback onGet
                                               void*                        userData);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing sound stream
+/// \brief Destroy a sound stream
 ///
-/// \param soundStream : Sound stream to delete
+/// \param soundStream Sound stream to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_Destroy(sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Start playing a sound stream
+/// \brief Start or resume playing a sound stream
 ///
-/// \param soundStream : Sound stream to play
+/// This function starts the stream if it was stopped, resumes
+/// it if it was paused, and restarts it from beginning if it
+/// was it already playing.
+/// This function uses its own thread so that it doesn't block
+/// the rest of the program while the music is played.
+///
+/// \param soundStream Sound stream object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_Play(sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Pause a sound stream
+/// \brief Pause a sound stream
 ///
-/// \param soundStream : Sound stream to pause
+/// This function pauses the stream if it was playing,
+/// otherwise (stream already paused or stopped) it has no effect.
+///
+/// \param soundStream Sound stream object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_Pause(sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Stop playing a sound stream
+/// \brief Stop playing a sound stream
 ///
-/// \param soundStream : Sound stream to stop
+/// This function stops the stream if it was playing or paused,
+/// and does nothing if it was already stopped.
+/// It also resets the playing position (unlike sfSoundStream_Pause).
+///
+/// \param soundStream Sound stream object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_Stop(sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Get the status of a sound stream (stopped, paused, playing)
+/// \brief Get the current status of a sound stream (stopped, paused, playing)
 ///
-/// \param soundStream : Sound stream to get the status from
+/// \param soundStream Sound stream object
 ///
-/// \return Current status of the sound stream
+/// \return Current status
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSoundStatus sfSoundStream_GetStatus(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Return the number of channels of a sound stream
-/// (1 = mono, 2 = stereo)
+/// \brief Return the number of channels of a sound stream
 ///
-/// \param soundStream : Sound stream to get the channels count from
+/// 1 channel means a mono sound, 2 means stereo, etc.
+///
+/// \param soundStream Sound stream object
 ///
 /// \return Number of channels
 ///
@@ -119,131 +133,171 @@ CSFML_API sfSoundStatus sfSoundStream_GetStatus(const sfSoundStream* soundStream
 CSFML_API unsigned int sfSoundStream_GetChannelsCount(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Get the sample rate of a sound stream
+/// \brief Get the sample rate of a sound stream
 ///
-/// \param soundStream : Sound stream to get the sample rate from
+/// The sample rate is the number of audio samples played per
+/// second. The higher, the better the quality.
 ///
-/// \return Stream frequency (number of samples per second)
+/// \param soundStream Sound stream object
+///
+/// \return Sample rate, in number of samples per second
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API unsigned int sfSoundStream_GetSampleRate(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Set the pitch of a sound stream
+/// \brief Set the pitch of a sound stream
 ///
-/// \param soundStream : Sound stream to modify
-/// \param pitch :       New pitch
+/// The pitch represents the perceived fundamental frequency
+/// of a sound; thus you can make a stream more acute or grave
+/// by changing its pitch. A side effect of changing the pitch
+/// is to modify the playing speed of the stream as well.
+/// The default value for the pitch is 1.
+///
+/// \param soundStream Sound stream object
+/// \param pitch       New pitch to apply to the stream
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_SetPitch(sfSoundStream* soundStream, float pitch);
 
 ////////////////////////////////////////////////////////////
-/// Set the volume of a sound stream
+/// \brief Set the volume of a sound stream
 ///
-/// \param soundStream : Sound stream to modify
-/// \param volume :      Volume (in range [0, 100])
+/// The volume is a value between 0 (mute) and 100 (full volume).
+/// The default value for the volume is 100.
+///
+/// \param soundStream Sound stream object
+/// \param volume      Volume of the stream
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_SetVolume(sfSoundStream* soundStream, float volume);
 
 ////////////////////////////////////////////////////////////
-/// Set the position of a sound stream
+/// \brief Set the 3D position of a sound stream in the audio scene
 ///
-/// \param soundStream : Sound stream to modify
-/// \param x :           X position of the sound stream in the world
-/// \param y :           Y position of the sound stream in the world
-/// \param z :           Z position of the sound stream in the world
+/// Only streams with one channel (mono streams) can be
+/// spatialized.
+/// The default position of a stream is (0, 0, 0).
+///
+/// \param soundStream Sound stream object
+/// \param x           X coordinate of the position of the stream in the scene
+/// \param y           Y coordinate of the position of the stream in the scene
+/// \param z           Z coordinate of the position of the stream in the scene
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_SetPosition(sfSoundStream* soundStream, float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
-/// Make the sound stream's position relative to the listener's
-/// position, or absolute.
-/// The default value is false (absolute)
+/// \brief Make a sound stream's position relative to the listener or absolute
 ///
-/// \param soundStream : Sound stream to modify
-/// \param relative :    True to set the position relative, false to set it absolute
+/// Making a stream relative to the listener will ensure that it will always
+/// be played the same way regardless the position of the listener.
+/// This can be useful for non-spatialized streams, streams that are
+/// produced by the listener, or streams attached to it.
+/// The default value is false (position is absolute).
+///
+/// \param soundStream Sound stream object
+/// \param relative    sfTrue to set the position relative, sfFalse to set it absolute
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_SetRelativeToListener(sfSoundStream* soundStream, sfBool relative);
 
 ////////////////////////////////////////////////////////////
-/// Set the minimum distance - closer than this distance,
-/// the listener will hear the sound stream at its maximum volume.
-/// The default minimum distance is 1.0
+/// \brief Set the minimum distance of a sound stream
 ///
-/// \param soundStream : Sound stream to modify
-/// \param distance :    New minimum distance for the sound stream
+/// The "minimum distance" of a stream is the maximum
+/// distance at which it is heard at its maximum volume. Further
+/// than the minimum distance, it will start to fade out according
+/// to its attenuation factor. A value of 0 ("inside the head
+/// of the listener") is an invalid value and is forbidden.
+/// The default value of the minimum distance is 1.
+///
+/// \param soundStream Sound stream object
+/// \param distance    New minimum distance of the stream
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_SetMinDistance(sfSoundStream* soundStream, float distance);
 
 ////////////////////////////////////////////////////////////
-/// Set the attenuation factor - the higher the attenuation, the
-/// more the sound stream will be attenuated with distance from listener.
-/// The default attenuation factor 1.0
+/// \brief Set the attenuation factor of a sound stream
 ///
-/// \param soundStream : Sound stream to modify
-/// \param attenuation : New attenuation factor for the sound stream
+/// The attenuation is a multiplicative factor which makes
+/// the stream more or less loud according to its distance
+/// from the listener. An attenuation of 0 will produce a
+/// non-attenuated stream, i.e. its volume will always be the same
+/// whether it is heard from near or from far. On the other hand,
+/// an attenuation value such as 100 will make the stream fade out
+/// very quickly as it gets further from the listener.
+/// The default value of the attenuation is 1.
+///
+/// \param soundStream Sound stream object
+/// \param attenuation New attenuation factor of the stream
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_SetAttenuation(sfSoundStream* soundStream, float attenuation);
 
 ////////////////////////////////////////////////////////////
-/// Set the current playing position of a stream
+/// \brief Change the current playing position of a sound stream
 ///
-/// \param soundStream : Sound stream to modify
-/// \param timeOffset :  New playing position, in milliseconds
+/// The playing position can be changed when the stream is
+/// either paused or playing.
+///
+/// \param soundStream Sound stream object
+/// \param timeOffset  New playing position, in milliseconds
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_SetPlayingOffset(sfSoundStream* soundStream, sfUint32 timeOffset);
 
 ////////////////////////////////////////////////////////////
-/// Set a stream loop state
+/// \brief Set whether or not a sound stream should loop after reaching the end
 ///
-/// \param soundStream : Stream to set the loop state
-/// \param loop :        sfTrue to play in loop, sfFalse to play once
+/// If set, the stream will restart from beginning after
+/// reaching the end and so on, until it is stopped or
+/// sfSoundStream_SetLoop(stream, sfFalse) is called.
+/// The default looping state for sound streams is false.
+///
+/// \param soundStream Sound stream object
+/// \param loop        sfTrue to play in loop, sfFalse to play once
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_SetLoop(sfSoundStream* soundStream, sfBool loop);
 
 ////////////////////////////////////////////////////////////
-/// Get the pitch of a sound stream
+/// \brief Get the pitch of a sound stream
 ///
-/// \param soundStream : Sound stream to get the pitch from
+/// \param soundStream Sound stream object
 ///
-/// \return Pitch value
+/// \return Pitch of the stream
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSoundStream_GetPitch(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Get the volume of a sound stream
+/// \brief Get the volume of a sound stream
 ///
-/// \param soundStream : Sound stream to get the volume from
+/// \param soundStream Sound stream object
 ///
-/// \return Volume value (in range [1, 100])
+/// \return Volume of the stream, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSoundStream_GetVolume(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Get the position of a sound stream
+/// \brief Get the 3D position of a sound stream in the audio scene
 ///
-/// \param soundStream : Sound stream to get the position from
-/// \param x :           X position of the sound stream in the world
-/// \param y :           Y position of the sound stream in the world
-/// \param z :           Z position of the sound stream in the world
+/// \param soundStream Sound stream object
+/// \param x           X position of the stream in the world
+/// \param y           Y position of the stream in the world
+/// \param z           Z position of the stream in the world
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundStream_GetPosition(const sfSoundStream* soundStream, float* x, float* y, float* z);
 
 ////////////////////////////////////////////////////////////
-/// Tell if the sound stream's position is relative to the listener's
-/// position, or if it's absolute
+/// \brief Tell whether a sound stream's position is relative to the
+///        listener or is absolute
 ///
-/// \param soundStream : Sound stream to check
+/// \param soundStream Sound stream object
 ///
 /// \return sfTrue if the position is relative, sfFalse if it's absolute
 ///
@@ -251,39 +305,39 @@ CSFML_API void sfSoundStream_GetPosition(const sfSoundStream* soundStream, float
 CSFML_API sfBool sfSoundStream_IsRelativeToListener(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Get the minimum distance of a sound stream
+/// \brief Get the minimum distance of a sound stream
 ///
-/// \param soundStream : Sound stream to get the minimum distance from
+/// \param soundStream Sound stream object
 ///
-/// \return Minimum distance for the sound stream
+/// \return Minimum distance of the stream
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSoundStream_GetMinDistance(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Get the attenuation factor of a sound stream
+/// \brief Get the attenuation factor of a sound stream
 ///
-/// \param soundStream : Sound stream to get the attenuation factor from
+/// \param soundStream Sound stream object
 ///
-/// \return Attenuation factor for the sound stream
+/// \return Attenuation factor of the stream
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSoundStream_GetAttenuation(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Tell whether or not a stream is looping
+/// \brief Tell whether or not a sound stream is in loop mode
 ///
-/// \param soundStream : Soundstream to get the loop state from
+/// \param soundStream Sound stream object
 ///
-/// \return sfTrue if the stream is looping, sfFalse otherwise
+/// \return sfTrue if the music is looping, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfSoundStream_GetLoop(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
-/// Get the current playing position of a sound stream
+/// \brief Get the current playing position of a sound stream
 ///
-/// \param soundStream : Sound stream to get the position from
+/// \param soundStream Sound stream object
 ///
 /// \return Current playing position, in milliseconds
 ///

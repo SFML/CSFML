@@ -36,9 +36,15 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new music and load it from a file
+/// \brief Create a new music and load it from a file
 ///
-/// \param filename : Path of the music file to open
+/// This function doesn't start playing the music (call
+/// sfMusic_Play to do so).
+/// Here is a complete list of all the supported audio formats:
+/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
+///
+/// \param filename Path of the music file to open
 ///
 /// \return A new sfMusic object (NULL if failed)
 ///
@@ -46,10 +52,16 @@
 CSFML_API sfMusic* sfMusic_CreateFromFile(const char* filename);
 
 ////////////////////////////////////////////////////////////
-/// Create a new music and load it from a file in memory
+/// \brief Create a new music and load it from a file in memory
 ///
-/// \param data :        Pointer to the file data in memory
-/// \param sizeInBytes : Size of the data to load, in bytes
+/// This function doesn't start playing the music (call
+/// sfMusic_Play to do so).
+/// Here is a complete list of all the supported audio formats:
+/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
+///
+/// \param data        Pointer to the file data in memory
+/// \param sizeInBytes Size of the data to load, in bytes
 ///
 /// \return A new sfMusic object (NULL if failed)
 ///
@@ -57,9 +69,15 @@ CSFML_API sfMusic* sfMusic_CreateFromFile(const char* filename);
 CSFML_API sfMusic* sfMusic_CreateFromMemory(const void* data, size_t sizeInBytes);
 
 ////////////////////////////////////////////////////////////
-/// Create a new music and load it from a custom stream
+/// \brief Create a new music and load it from a custom stream
 ///
-/// \param stream : Source stream to read from
+/// This function doesn't start playing the music (call
+/// sfMusic_Play to do so).
+/// Here is a complete list of all the supported audio formats:
+/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
+///
+/// \param stream Source stream to read from
 ///
 /// \return A new sfMusic object (NULL if failed)
 ///
@@ -67,26 +85,31 @@ CSFML_API sfMusic* sfMusic_CreateFromMemory(const void* data, size_t sizeInBytes
 CSFML_API sfMusic* sfMusic_CreateFromStream(sfInputStream* stream);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing music
+/// \brief Destroy a music
 ///
-/// \param music : Music to delete
+/// \param music Music to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_Destroy(sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Set a music loop state
+/// \brief Set whether or not a music should loop after reaching the end
 ///
-/// \param music : Music to set the loop state
-/// \param loop :  sfTrue to play in loop, sfFalse to play once
+/// If set, the music will restart from beginning after
+/// reaching the end and so on, until it is stopped or
+/// sfMusic_SetLoop(music, sfFalse) is called.
+/// The default looping state for musics is false.
+///
+/// \param music Music object
+/// \param loop  sfTrue to play in loop, sfFalse to play once
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_SetLoop(sfMusic* music, sfBool loop);
 
 ////////////////////////////////////////////////////////////
-/// Tell whether or not a music is looping
+/// \brief Tell whether or not a music is in loop mode
 ///
-/// \param music : Music to get the loop state from
+/// \param music Music object
 ///
 /// \return sfTrue if the music is looping, sfFalse otherwise
 ///
@@ -94,9 +117,9 @@ CSFML_API void sfMusic_SetLoop(sfMusic* music, sfBool loop);
 CSFML_API sfBool sfMusic_GetLoop(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Get a music duration
+/// \brief Get the total duration of a music
 ///
-/// \param music : Music to get the duration from
+/// \param music Music object
 ///
 /// \return Music duration, in milliseconds
 ///
@@ -104,33 +127,48 @@ CSFML_API sfBool sfMusic_GetLoop(const sfMusic* music);
 CSFML_API sfUint32 sfMusic_GetDuration(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Start playing a music
+/// \brief Start or resume playing a music
 ///
-/// \param music : Music to play
+/// This function starts the music if it was stopped, resumes
+/// it if it was paused, and restarts it from beginning if it
+/// was it already playing.
+/// This function uses its own thread so that it doesn't block
+/// the rest of the program while the music is played.
+///
+/// \param music Music object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_Play(sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Pause a music
+/// \brief Pause a music
 ///
-/// \param music : Music to pause
+/// This function pauses the music if it was playing,
+/// otherwise (music already paused or stopped) it has no effect.
+///
+/// \param music Music object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_Pause(sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Stop playing a music
+/// \brief Stop playing a music
 ///
-/// \param music : Music to stop
+/// This function stops the music if it was playing or paused,
+/// and does nothing if it was already stopped.
+/// It also resets the playing position (unlike sfMusic_Pause).
+///
+/// \param music Music object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_Stop(sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Return the number of channels of a music (1 = mono, 2 = stereo)
+/// \brief Return the number of channels of a music
 ///
-/// \param music : Music to get the channels count from
+/// 1 channel means a mono sound, 2 means stereo, etc.
+///
+/// \param music Music object
 ///
 /// \return Number of channels
 ///
@@ -138,29 +176,32 @@ CSFML_API void sfMusic_Stop(sfMusic* music);
 CSFML_API unsigned int sfMusic_GetChannelsCount(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Get the stream sample rate of a music
+/// \brief Get the sample rate of a music
 ///
-/// \param music : Music to get the sample rate from
+/// The sample rate is the number of audio samples played per
+/// second. The higher, the better the quality.
 ///
-/// \return Stream frequency (number of samples per second)
+/// \param music Music object
+///
+/// \return Sample rate, in number of samples per second
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API unsigned int sfMusic_GetSampleRate(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Get the status of a music (stopped, paused, playing)
+/// \brief Get the current status of a music (stopped, paused, playing)
 ///
-/// \param music : Music to get the status from
+/// \param music Music object
 ///
-/// \return Current status of the sound
+/// \return Current status
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSoundStatus sfMusic_GetStatus(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Get the current playing position of a music
+/// \brief Get the current playing position of a music
 ///
-/// \param music : Music to get the position from
+/// \param music Music object
 ///
 /// \return Current playing position, in milliseconds
 ///
@@ -168,112 +209,144 @@ CSFML_API sfSoundStatus sfMusic_GetStatus(const sfMusic* music);
 CSFML_API sfUint32 sfMusic_GetPlayingOffset(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Set the pitch of a music
+/// \brief Set the pitch of a music
 ///
-/// \param music : Music to modify
-/// \param pitch : New pitch
+/// The pitch represents the perceived fundamental frequency
+/// of a sound; thus you can make a music more acute or grave
+/// by changing its pitch. A side effect of changing the pitch
+/// is to modify the playing speed of the music as well.
+/// The default value for the pitch is 1.
+///
+/// \param music Music object
+/// \param pitch New pitch to apply to the music
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_SetPitch(sfMusic* music, float pitch);
 
 ////////////////////////////////////////////////////////////
-/// Set the volume of a music
+/// \brief Set the volume of a music
 ///
-/// \param music :  Music to modify
-/// \param volume : Volume (in range [0, 100])
+/// The volume is a value between 0 (mute) and 100 (full volume).
+/// The default value for the volume is 100.
+///
+/// \param music  Music object
+/// \param volume Volume of the music
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_SetVolume(sfMusic* music, float volume);
 
 ////////////////////////////////////////////////////////////
-/// Set the position of a music
+/// \brief Set the 3D position of a music in the audio scene
 ///
-/// \param music : Music to modify
-/// \param x :     X position of the sound in the world
-/// \param y :     Y position of the sound in the world
-/// \param z :     Z position of the sound in the world
+/// Only musics with one channel (mono musics) can be
+/// spatialized.
+/// The default position of a music is (0, 0, 0).
+///
+/// \param music Music object
+/// \param x     X coordinate of the position of the music in the scene
+/// \param y     Y coordinate of the position of the music in the scene
+/// \param z     Z coordinate of the position of the music in the scene
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_SetPosition(sfMusic* music, float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
-/// Make the music's position relative to the listener's
-/// position, or absolute.
-/// The default value is false (absolute)
+/// \brief Make a musics's position relative to the listener or absolute
 ///
-/// \param music :    Music to modify
-/// \param relative : True to set the position relative, false to set it absolute
+/// Making a music relative to the listener will ensure that it will always
+/// be played the same way regardless the position of the listener.
+/// This can be useful for non-spatialized musics, musics that are
+/// produced by the listener, or musics attached to it.
+/// The default value is false (position is absolute).
+///
+/// \param music    Music object
+/// \param relative sfTrue to set the position relative, sfFalse to set it absolute
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_SetRelativeToListener(sfMusic* music, sfBool relative);
 
 ////////////////////////////////////////////////////////////
-/// Set the minimum distance - closer than this distance,
-/// the listener will hear the music at its maximum volume.
-/// The default minimum distance is 1.0
+/// \brief Set the minimum distance of a music
 ///
-/// \param music :    Music to modify
-/// \param distance : New minimum distance for the music
+/// The "minimum distance" of a music is the maximum
+/// distance at which it is heard at its maximum volume. Further
+/// than the minimum distance, it will start to fade out according
+/// to its attenuation factor. A value of 0 ("inside the head
+/// of the listener") is an invalid value and is forbidden.
+/// The default value of the minimum distance is 1.
+///
+/// \param music    Music object
+/// \param distance New minimum distance of the music
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_SetMinDistance(sfMusic* music, float distance);
 
 ////////////////////////////////////////////////////////////
-/// Set the attenuation factor - the higher the attenuation, the
-/// more the sound will be attenuated with distance from listener.
-/// The default attenuation factor 1.0
+/// \brief Set the attenuation factor of a music
 ///
-/// \param music :       Music to modify
-/// \param attenuation : New attenuation factor for the sound
+/// The attenuation is a multiplicative factor which makes
+/// the music more or less loud according to its distance
+/// from the listener. An attenuation of 0 will produce a
+/// non-attenuated music, i.e. its volume will always be the same
+/// whether it is heard from near or from far. On the other hand,
+/// an attenuation value such as 100 will make the music fade out
+/// very quickly as it gets further from the listener.
+/// The default value of the attenuation is 1.
+///
+/// \param music       Music object
+/// \param attenuation New attenuation factor of the music
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_SetAttenuation(sfMusic* music, float attenuation);
 
 ////////////////////////////////////////////////////////////
-/// Set the current playing position of a music
+/// \brief Change the current playing position of a music
 ///
-/// \param music :      Music to modify
-/// \param timeOffset : New playing position, in milliseconds
+/// The playing position can be changed when the music is
+/// either paused or playing.
+///
+/// \param music      Music object
+/// \param timeOffset New playing position, in milliseconds
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_SetPlayingOffset(sfMusic* music, sfUint32 timeOffset);
 
 ////////////////////////////////////////////////////////////
-/// Get the pitch of a music
+/// \brief Get the pitch of a music
 ///
-/// \param music : Music to get the pitch from
+/// \param music Music object
 ///
-/// \return Pitch value
+/// \return Pitch of the music
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfMusic_GetPitch(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Get the volume of a music
+/// \brief Get the volume of a music
 ///
-/// \param music : Music to get the volume from
+/// \param music Music object
 ///
-/// \return Volume value (in range [1, 100])
+/// \return Volume of the music, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfMusic_GetVolume(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Get the position of a music
+/// \brief Get the 3D position of a music in the audio scene
 ///
-/// \param music : Music to get the position from
-/// \param x :     X position of the sound in the world
-/// \param y :     Y position of the sound in the world
-/// \param z :     Z position of the sound in the world
+/// \param music Music object
+/// \param x     X position of the music in the world
+/// \param y     Y position of the music in the world
+/// \param z     Z position of the music in the world
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfMusic_GetPosition(const sfMusic* music, float* x, float* y, float* z);
 
 ////////////////////////////////////////////////////////////
-/// Tell if the music's position is relative to the listener's
-/// position, or if it's absolute
+/// \brief Tell whether a music's position is relative to the
+///        listener or is absolute
 ///
-/// \param music : Music to check
+/// \param music Music object
 ///
 /// \return sfTrue if the position is relative, sfFalse if it's absolute
 ///
@@ -281,21 +354,21 @@ CSFML_API void sfMusic_GetPosition(const sfMusic* music, float* x, float* y, flo
 CSFML_API sfBool sfMusic_IsRelativeToListener(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Get the minimum distance of a music
+/// \brief Get the minimum distance of a music
 ///
-/// \param music : Music to get the minimum distance from
+/// \param music Music object
 ///
-/// \return Minimum distance for the music
+/// \return Minimum distance of the music
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfMusic_GetMinDistance(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// Get the attenuation factor of a music
+/// \brief Get the attenuation factor of a music
 ///
-/// \param music : Music to get the attenuation factor from
+/// \param music Music object
 ///
-/// \return Attenuation factor for the a music
+/// \return Attenuation factor of the music
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfMusic_GetAttenuation(const sfMusic* music);

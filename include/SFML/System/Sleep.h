@@ -32,9 +32,12 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Make the current thread sleep for a given duration
+/// \brief Make the current thread sleep for a given duration
 ///
-/// \param duration : Time to sleep, in milliseconds
+/// sfSleep is the best way to block a program or one of its
+/// threads, as it doesn't consume any CPU power.
+///
+/// \param duration Time to sleep, in milliseconds
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSleep(sfUint32 duration);

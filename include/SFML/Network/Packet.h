@@ -34,7 +34,7 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new empty packet
+/// \brief Create a new packet
 ///
 /// \return A new sfPacket object
 ///
@@ -42,47 +42,52 @@
 CSFML_API sfPacket* sfPacket_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing packet
+/// \brief Create a new packet by copying an existing one
 ///
-/// \param packet : Packet to copy
+/// \param packet Packet to copy
 ///
-/// \return Copied object
+/// \return A new sfPacket object which is a copy of \a packet
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfPacket* sfPacket_Copy(sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing packet
+/// \brief Destroy a packet
 ///
-/// \param packet : Packet to delete
+/// \param packet Packet to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfPacket_Destroy(sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
-/// Append data to the end of a packet
+/// \brief Append data to the end of a packet
 ///
-/// \param packet :      Packet to fill
-/// \param data :        Pointer to the bytes to append
-/// \param sizeInBytes : Number of bytes to append
+/// \param packet      Packet object
+/// \param data        Pointer to the sequence of bytes to append
+/// \param sizeInBytes Number of bytes to append
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfPacket_Append(sfPacket* packet, const void* data, size_t sizeInBytes);
 
 ////////////////////////////////////////////////////////////
-/// Clear all the data of a packet
+/// \brief Clear a packet
 ///
-/// \param packet : Packet to clear
+/// After calling Clear, the packet is empty.
+///
+/// \param packet Packet object
 ///
 ///////////////////////////////////////////////////////////
 CSFML_API void sfPacket_Clear(sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
-/// Get a pointer to the data contained in a packet
-/// Warning : the returned pointer may be invalid after you
-/// append data to the packet
+/// \brief Get a pointer to the data contained in a packet
 ///
-/// \param packet : Packet to get data from
+/// Warning: the returned pointer may become invalid after
+/// you append data to the packet, therefore it should never
+/// be stored.
+/// The return pointer is NULL if the packet is empty.
+///
+/// \param packet Packet object
 ///
 /// \return Pointer to the data
 ///
@@ -90,9 +95,12 @@ CSFML_API void sfPacket_Clear(sfPacket* packet);
 CSFML_API const char* sfPacket_GetData(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
-/// Get the size of the data contained in a packet
+/// \brief Get the size of the data contained in a packet
 ///
-/// \param packet : Packet to get data size from
+/// This function returns the number of bytes pointed to by
+/// what sfPacket_GetData returns.
+///
+/// \param packet Packet object
 ///
 /// \return Data size, in bytes
 ///
@@ -100,19 +108,29 @@ CSFML_API const char* sfPacket_GetData(const sfPacket* packet);
 CSFML_API size_t sfPacket_GetDataSize(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
-/// Tell if the reading position has reached the end of the packet
+/// \brief Tell if the reading position has reached the
+///        end of a packet
 ///
-/// \param packet : Packet to check
+/// This function is useful to know if there is some data
+/// left to be read, without actually reading it.
 ///
-/// \return sfTrue if all data have been read into the packet
+/// \param packet Packet object
+///
+/// \return sfTrue if all data was read, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfPacket_EndOfPacket(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
-/// Return the validity of packet
+/// \brief Test the validity of a packet, for reading
 ///
-/// \param packet : Packet to check
+/// This function allows to test the packet, to check if
+/// a reading operation was successful.
+///
+/// A packet will be in an invalid state if it has no more
+/// data to read.
+///
+/// \param packet Packet object
 ///
 /// \return sfTrue if last data extraction from packet was successful
 ///
@@ -120,9 +138,9 @@ CSFML_API sfBool sfPacket_EndOfPacket(const sfPacket* packet);
 CSFML_API sfBool sfPacket_CanRead(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
-/// Functions to extract data from a packet
+/// \brief Functions to extract data from a packet
 ///
-/// \param packet : Packet to read
+/// \param packet Packet object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool   sfPacket_ReadBool(sfPacket* packet);
@@ -138,9 +156,9 @@ CSFML_API void     sfPacket_ReadString(sfPacket* packet, char* string);
 CSFML_API void     sfPacket_ReadWideString(sfPacket* packet, wchar_t* string);
 
 ////////////////////////////////////////////////////////////
-/// Functions to insert data into a packet
+/// \brief Functions to insert data into a packet
 ///
-/// \param packet : Packet to write
+/// \param packet Packet object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfPacket_WriteBool(sfPacket* packet, sfBool);

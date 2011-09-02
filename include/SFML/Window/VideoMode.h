@@ -32,9 +32,10 @@
 
 
 ////////////////////////////////////////////////////////////
-/// sfVideoMode defines a video mode (width, height, bpp, frequency)
-/// and provides functions for getting modes supported
-/// by the display device
+/// \brief sfVideoMode defines a video mode (width, height, bpp, frequency)
+///        and provides functions for getting modes supported
+///        by the display device
+///
 ////////////////////////////////////////////////////////////
 typedef struct
 {
@@ -45,7 +46,7 @@ typedef struct
 
 
 ////////////////////////////////////////////////////////////
-/// Get the current desktop video mode
+/// \brief Get the current desktop video mode
 ///
 /// \return Current desktop video mode
 ///
@@ -53,23 +54,33 @@ typedef struct
 CSFML_API sfVideoMode sfVideoMode_GetDesktopMode(void);
 
 ////////////////////////////////////////////////////////////
-/// Get all the supported video modes for fullscreen mode.
-/// Modes are sorted from best to worst.
+/// \brief Retrieve all the video modes supported in fullscreen mode
 ///
-/// \param Count : Variable that will be filled with the number of modes
+/// When creating a fullscreen window, the video mode is restricted
+/// to be compatible with what the graphics driver and monitor
+/// support. This function returns the complete list of all video
+/// modes that can be used in fullscreen mode.
+/// The returned array is sorted from best to worst, so that
+/// the first element will always give the best mode (higher
+/// width, height and bits-per-pixel).
 ///
-/// \return Pointer to an array of \a count video modes
+/// \param count Pointer to a variable that will be filled with the number of modes in the array
+///
+/// \return Pointer to an array containing all the supported fullscreen modes
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API const sfVideoMode* sfVideoMode_GetFullscreenModes(size_t* Count);
 
 ////////////////////////////////////////////////////////////
-/// Tell whether or not a video mode is supported
+/// \brief Tell whether or not a video mode is valid
 ///
-/// \param mode : Video mode to check
+/// The validity of video modes is only relevant when using
+/// fullscreen windows; otherwise any video mode can be used
+/// with no restriction.
 ///
+/// \param mode Video mode
 ///
-/// \return True if video mode is supported, false otherwise
+/// \return sfTrue if the video mode is valid for fullscreen mode
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfVideoMode_IsValid(sfVideoMode mode);

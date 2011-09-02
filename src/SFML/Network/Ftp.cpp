@@ -32,8 +32,6 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Ftp directory response
-////////////////////////////////////////////////////////////
 void sfFtpListingResponse_Destroy(sfFtpListingResponse* ftpListingResponse)
 {
     delete ftpListingResponse;
@@ -41,17 +39,12 @@ void sfFtpListingResponse_Destroy(sfFtpListingResponse* ftpListingResponse)
 
 
 ////////////////////////////////////////////////////////////
-/// Convenience function to check if the response status code
-/// means a success
-////////////////////////////////////////////////////////////
 sfBool sfFtpListingResponse_IsOk(const sfFtpListingResponse* ftpListingResponse)
 {
     CSFML_CALL_RETURN(ftpListingResponse, IsOk(), sfFalse);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the response status code
 ////////////////////////////////////////////////////////////
 sfFtpStatus sfFtpListingResponse_GetStatus(const sfFtpListingResponse* ftpListingResponse)
 {
@@ -62,8 +55,6 @@ sfFtpStatus sfFtpListingResponse_GetStatus(const sfFtpListingResponse* ftpListin
 
 
 ////////////////////////////////////////////////////////////
-/// Get the full message contained in the response
-////////////////////////////////////////////////////////////
 const char* sfFtpListingResponse_GetMessage(const sfFtpListingResponse* ftpListingResponse)
 {
     CSFML_CHECK_RETURN(ftpListingResponse, NULL);
@@ -72,8 +63,6 @@ const char* sfFtpListingResponse_GetMessage(const sfFtpListingResponse* ftpListi
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the number of filenames in the listing
 ////////////////////////////////////////////////////////////
 size_t sfFtpListingResponse_GetCount(const sfFtpListingResponse* ftpListingResponse)
 {
@@ -84,8 +73,6 @@ size_t sfFtpListingResponse_GetCount(const sfFtpListingResponse* ftpListingRespo
 
 
 ////////////////////////////////////////////////////////////
-/// Get the Index-th filename in the directory
-////////////////////////////////////////////////////////////
 const char* sfFtpListingResponse_GetFilename(const sfFtpListingResponse* ftpListingResponse, size_t index)
 {
     CSFML_CHECK_RETURN(ftpListingResponse, NULL);
@@ -95,8 +82,6 @@ const char* sfFtpListingResponse_GetFilename(const sfFtpListingResponse* ftpList
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Ftp directory response
-////////////////////////////////////////////////////////////
 void sfFtpDirectoryResponse_Destroy(sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
     delete ftpDirectoryResponse;
@@ -104,17 +89,12 @@ void sfFtpDirectoryResponse_Destroy(sfFtpDirectoryResponse* ftpDirectoryResponse
 
 
 ////////////////////////////////////////////////////////////
-/// Convenience function to check if the response status code
-/// means a success
-////////////////////////////////////////////////////////////
 sfBool sfFtpDirectoryResponse_IsOk(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
     CSFML_CALL_RETURN(ftpDirectoryResponse, IsOk(), sfFalse);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the response status code
 ////////////////////////////////////////////////////////////
 sfFtpStatus sfFtpDirectoryResponse_GetStatus(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
@@ -125,8 +105,6 @@ sfFtpStatus sfFtpDirectoryResponse_GetStatus(const sfFtpDirectoryResponse* ftpDi
 
 
 ////////////////////////////////////////////////////////////
-/// Get the full message contained in the response
-////////////////////////////////////////////////////////////
 const char* sfFtpDirectoryResponse_GetMessage(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
     CSFML_CHECK_RETURN(ftpDirectoryResponse, NULL);
@@ -135,8 +113,6 @@ const char* sfFtpDirectoryResponse_GetMessage(const sfFtpDirectoryResponse* ftpD
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the directory returned in the response
 ////////////////////////////////////////////////////////////
 const char* sfFtpDirectoryResponse_GetDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
@@ -147,8 +123,6 @@ const char* sfFtpDirectoryResponse_GetDirectory(const sfFtpDirectoryResponse* ft
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Ftp response
-////////////////////////////////////////////////////////////
 void sfFtpResponse_Destroy(sfFtpResponse* ftpResponse)
 {
     delete ftpResponse;
@@ -156,17 +130,12 @@ void sfFtpResponse_Destroy(sfFtpResponse* ftpResponse)
 
 
 ////////////////////////////////////////////////////////////
-/// Convenience function to check if the response status code
-/// means a success
-////////////////////////////////////////////////////////////
 sfBool sfFtpResponse_IsOk(const sfFtpResponse* ftpResponse)
 {
     CSFML_CALL_RETURN(ftpResponse, IsOk(), sfFalse);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the response status code
 ////////////////////////////////////////////////////////////
 sfFtpStatus sfFtpResponse_GetStatus(const sfFtpResponse* ftpResponse)
 {
@@ -177,8 +146,6 @@ sfFtpStatus sfFtpResponse_GetStatus(const sfFtpResponse* ftpResponse)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the full message contained in the response
-////////////////////////////////////////////////////////////
 const char* sfFtpResponse_GetMessage(const sfFtpResponse* ftpResponse)
 {
     CSFML_CHECK_RETURN(ftpResponse, NULL);
@@ -188,8 +155,6 @@ const char* sfFtpResponse_GetMessage(const sfFtpResponse* ftpResponse)
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new Ftp
-////////////////////////////////////////////////////////////
 sfFtp* sfFtp_Create(void)
 {
     return new sfFtp;
@@ -197,16 +162,12 @@ sfFtp* sfFtp_Create(void)
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Ftp
-////////////////////////////////////////////////////////////
 void sfFtp_Destroy(sfFtp* ftp)
 {
     delete ftp;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Connect to the specified FTP server
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_Connect(sfFtp* ftp, sfIpAddress server, unsigned short port, sfUint32 timeout)
 {
@@ -219,8 +180,6 @@ sfFtpResponse* sfFtp_Connect(sfFtp* ftp, sfIpAddress server, unsigned short port
 
 
 ////////////////////////////////////////////////////////////
-/// Log in using anonymous account
-////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_LoginAnonymous(sfFtp* ftp)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
@@ -229,8 +188,6 @@ sfFtpResponse* sfFtp_LoginAnonymous(sfFtp* ftp)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Log in using a username and a password
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_Login(sfFtp* ftp, const char* userName, const char* password)
 {
@@ -241,8 +198,6 @@ sfFtpResponse* sfFtp_Login(sfFtp* ftp, const char* userName, const char* passwor
 
 
 ////////////////////////////////////////////////////////////
-/// Close the connection with FTP server
-////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_Disconnect(sfFtp* ftp)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
@@ -251,8 +206,6 @@ sfFtpResponse* sfFtp_Disconnect(sfFtp* ftp)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Send a null command just to prevent from being disconnected
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_KeepAlive(sfFtp* ftp)
 {
@@ -263,8 +216,6 @@ sfFtpResponse* sfFtp_KeepAlive(sfFtp* ftp)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the current working directory
-////////////////////////////////////////////////////////////
 sfFtpDirectoryResponse* sfFtp_GetWorkingDirectory(sfFtp* ftp)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
@@ -273,9 +224,6 @@ sfFtpDirectoryResponse* sfFtp_GetWorkingDirectory(sfFtp* ftp)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the contents of the given directory
-/// (subdirectories and files)
 ////////////////////////////////////////////////////////////
 sfFtpListingResponse* sfFtp_GetDirectoryListing(sfFtp* ftp, const char* directory)
 {
@@ -286,8 +234,6 @@ sfFtpListingResponse* sfFtp_GetDirectoryListing(sfFtp* ftp, const char* director
 
 
 ////////////////////////////////////////////////////////////
-/// Change the current working directory
-////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_ChangeDirectory(sfFtp* ftp, const char* directory)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
@@ -296,8 +242,6 @@ sfFtpResponse* sfFtp_ChangeDirectory(sfFtp* ftp, const char* directory)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Go to the parent directory of the current one
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_ParentDirectory(sfFtp* ftp)
 {
@@ -308,8 +252,6 @@ sfFtpResponse* sfFtp_ParentDirectory(sfFtp* ftp)
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new directory
-////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_CreateDirectory(sfFtp* ftp, const char* name)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
@@ -318,8 +260,6 @@ sfFtpResponse* sfFtp_CreateDirectory(sfFtp* ftp, const char* name)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Remove an existing directory
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_DeleteDirectory(sfFtp* ftp, const char* name)
 {
@@ -330,8 +270,6 @@ sfFtpResponse* sfFtp_DeleteDirectory(sfFtp* ftp, const char* name)
 
 
 ////////////////////////////////////////////////////////////
-/// Rename a file
-////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_RenameFile(sfFtp* ftp, const char* file, const char* newName)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
@@ -341,8 +279,6 @@ sfFtpResponse* sfFtp_RenameFile(sfFtp* ftp, const char* file, const char* newNam
 
 
 ////////////////////////////////////////////////////////////
-/// Remove an existing file
-////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_DeleteFile(sfFtp* ftp, const char* name)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
@@ -351,8 +287,6 @@ sfFtpResponse* sfFtp_DeleteFile(sfFtp* ftp, const char* name)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Download a file from the server
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_Download(sfFtp* ftp, const char* distantFile, const char* destPath, sfFtpTransferMode mode)
 {
@@ -364,8 +298,6 @@ sfFtpResponse* sfFtp_Download(sfFtp* ftp, const char* distantFile, const char* d
 }
 
 
-////////////////////////////////////////////////////////////
-/// Upload a file to the server
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_Upload(sfFtp* ftp, const char* localFile, const char* destPath, sfFtpTransferMode mode)
 {

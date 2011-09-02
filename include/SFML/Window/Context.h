@@ -33,26 +33,28 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new context
+/// \brief Create a new context
 ///
-/// \return New context
+/// This function activates the new context.
+///
+/// \return New sfContext object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfContext* sfContext_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing context
+/// \brief Destroy a context
 ///
-/// \param context : Context to destroy
+/// \param context Context to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfContext_Destroy(sfContext* context);
 
 ////////////////////////////////////////////////////////////
-/// Activate or deactivate a context
+/// \brief Activate or deactivate explicitely a context
 ///
-/// \param context : Context to activate or deactivate
-/// \param active :  sfTrue to activate, sfFalse to deactivate
+/// \param context Context object
+/// \param active  sfTrue to activate, sfFalse to deactivate
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfContext_SetActive(sfContext* context, sfBool active);

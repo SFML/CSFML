@@ -34,16 +34,12 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new UDP socket
-////////////////////////////////////////////////////////////
 sfUdpSocket* sfUdpSocket_Create(void)
 {
     return new sfUdpSocket;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Destroy an existing UDP socket
 ////////////////////////////////////////////////////////////
 void sfUdpSocket_Destroy(sfUdpSocket* socket)
 {
@@ -52,16 +48,11 @@ void sfUdpSocket_Destroy(sfUdpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-/// Change the blocking state of a UDP socket.
-/// The default behaviour of a socket is blocking
-////////////////////////////////////////////////////////////
 void sfUdpSocket_SetBlocking(sfUdpSocket* socket, sfBool blocking)
 {
     CSFML_CALL(socket, SetBlocking(blocking == sfTrue));
 }
 
-////////////////////////////////////////////////////////////
-/// Get the blocking state of the socket
 ////////////////////////////////////////////////////////////
 sfBool sfUdpSocket_IsBlocking(const sfUdpSocket* socket)
 {
@@ -70,16 +61,12 @@ sfBool sfUdpSocket_IsBlocking(const sfUdpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the port to which the socket is bound locally
-////////////////////////////////////////////////////////////
 unsigned short sfUdpSocket_GetLocalPort(const sfUdpSocket* socket)
 {
     CSFML_CALL_RETURN(socket, GetLocalPort(), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Bind a socket to a specific port
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_Bind(sfUdpSocket* socket, unsigned short port)
 {
@@ -90,16 +77,12 @@ sfSocketStatus sfUdpSocket_Bind(sfUdpSocket* socket, unsigned short port)
 
 
 ////////////////////////////////////////////////////////////
-/// Unbind a socket from its previous port, if any
-////////////////////////////////////////////////////////////
 void sfUdpSocket_Unbind(sfUdpSocket* socket)
 {
     CSFML_CALL(socket, Unbind());
 }
 
 
-////////////////////////////////////////////////////////////
-/// Send an array of bytes
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_Send(sfUdpSocket* socket, const char* data, size_t size, sfIpAddress address, unsigned short port)
 {
@@ -112,10 +95,6 @@ sfSocketStatus sfUdpSocket_Send(sfUdpSocket* socket, const char* data, size_t si
 }
 
 
-////////////////////////////////////////////////////////////
-/// Receive an array of bytes.
-/// This function is blocking, ie. it won't return before some
-/// bytes have been received
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_Receive(sfUdpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port)
 {
@@ -144,8 +123,6 @@ sfSocketStatus sfUdpSocket_Receive(sfUdpSocket* socket, char* data, size_t maxSi
 
 
 ////////////////////////////////////////////////////////////
-/// Send a packet of data
-////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_SendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress address, unsigned short port)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
@@ -158,10 +135,6 @@ sfSocketStatus sfUdpSocket_SendPacket(sfUdpSocket* socket, sfPacket* packet, sfI
 }
 
 
-////////////////////////////////////////////////////////////
-/// Receive a packet.
-/// This function is blocking, ie. it won't return before a
-/// packet is received
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_ReceivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* address, unsigned short* port)
 {
@@ -181,4 +154,11 @@ sfSocketStatus sfUdpSocket_ReceivePacket(sfUdpSocket* socket, sfPacket* packet, 
         *port = senderPort;
 
     return sfSocketDone;
+}
+
+
+////////////////////////////////////////////////////////////
+unsigned int sfUdpSocket_MaxDatagramSize()
+{
+    return sf::UdpSocket::MaxDatagramSize;
 }

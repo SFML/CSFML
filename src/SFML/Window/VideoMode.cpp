@@ -31,8 +31,6 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Get the current desktop video mode
-////////////////////////////////////////////////////////////
 sfVideoMode sfVideoMode_GetDesktopMode(void)
 {
     sf::VideoMode desktop = sf::VideoMode::GetDesktopMode();
@@ -46,10 +44,7 @@ sfVideoMode sfVideoMode_GetDesktopMode(void)
 
 
 ////////////////////////////////////////////////////////////
-/// Get all the supported video modes for fullscreen mode.
-/// Modes are sorted from best to worst.
-////////////////////////////////////////////////////////////
-const sfVideoMode* sfVideoMode_GetFullscreenModes(size_t* Count)
+const sfVideoMode* sfVideoMode_GetFullscreenModes(size_t* count)
 {
     static std::vector<sfVideoMode> modes;
 
@@ -67,15 +62,13 @@ const sfVideoMode* sfVideoMode_GetFullscreenModes(size_t* Count)
         }
     }
 
-    if (Count)
-        *Count = modes.size();
+    if (count)
+        *count = modes.size();
 
     return !modes.empty() ? &modes[0] : NULL;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Tell whether or not a video mode is supported
 ////////////////////////////////////////////////////////////
 sfBool sfVideoMode_IsValid(sfVideoMode mode)
 {

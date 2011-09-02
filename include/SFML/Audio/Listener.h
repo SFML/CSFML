@@ -32,15 +32,19 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Change the global volume of all the sounds
+/// \brief Change the global volume of all the sounds and musics
 ///
-/// \param volume : New global volume, in the range [0, 100]
+/// The volume is a number between 0 and 100; it is combined with
+/// the individual volume of each sound / music.
+/// The default value for the volume is 100 (maximum).
+///
+/// \param volume New global volume, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfListener_SetGlobalVolume(float volume);
 
 ////////////////////////////////////////////////////////////
-/// Get the current value of the global volume of all the sounds
+/// \brief Get the current value of the global volume
 ///
 /// \return Current global volume, in the range [0, 100]
 ///
@@ -48,41 +52,48 @@ CSFML_API void sfListener_SetGlobalVolume(float volume);
 CSFML_API float sfListener_GetGlobalVolume(void);
 
 ////////////////////////////////////////////////////////////
-/// Change the position of the listener
+/// \brief Set the position of the listener in the scene
 ///
-/// \param x : X position of the listener in the world
-/// \param y : Y position of the listener in the world
-/// \param z : Z position of the listener in the world
+/// The default listener's position is (0, 0, 0).
+///
+/// \param x X coordinate of the listener's position
+/// \param y Y coordinate of the listener's position
+/// \param z Z coordinate of the listener's position
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfListener_SetPosition(float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
-/// Get the current position of the listener
+/// \brief Get the current position of the listener in the scene
 ///
-/// \param x : X position of the listener in the world
-/// \param y : Y position of the listener in the world
-/// \param z : Z position of the listener in the world
+/// \param x X coordinate of the listener's position
+/// \param y Y coordinate of the listener's position
+/// \param z Z coordinate of the listener's position
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfListener_GetPosition(float* x, float* y, float* z);
 
 ////////////////////////////////////////////////////////////
-/// Change the orientation of the listener
+/// \brief Set the orientation of the listener in the scene
 ///
-/// \param x : X component of the listener's direction
-/// \param y : Y component of the listener's direction
-/// \param z : Z component of the listener's direction
+/// The orientation defines the 3D axes of the listener
+/// (left, up, front) in the scene. The orientation vector
+/// doesn't have to be normalized.
+/// The default listener's orientation is (0, 0, -1).
+///
+/// \param x X coordinate of the listener's orientation
+/// \param y Y coordinate of the listener's orientation
+/// \param z Z coordinate of the listener's orientation
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfListener_SetDirection(float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
-/// Get the current orientation of the listener
+/// \brief Get the current orientation of the listener in the scene
 ///
-/// \param x : X component of the listener's direction
-/// \param y : Y component of the listener's direction
-/// \param z : Z component of the listener's direction
+/// \param x X coordinate of the listener's orientation
+/// \param y Y coordinate of the listener's orientation
+/// \param z Z coordinate of the listener's orientation
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfListener_GetDirection(float* x, float* y, float* z);

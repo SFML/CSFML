@@ -32,16 +32,12 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Check if a mouse button is pressed
-////////////////////////////////////////////////////////////
 sfBool sfMouse_IsButtonPressed(sfMouseButton button)
 {
     return sf::Mouse::IsButtonPressed(static_cast<sf::Mouse::Button>(button)) ? sfTrue : sfFalse;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the current position of the mouse
 ////////////////////////////////////////////////////////////
 void sfMouse_GetPosition(int* x, int* y, const sfWindow* relativeTo)
 {
@@ -58,8 +54,6 @@ void sfMouse_GetPosition(int* x, int* y, const sfWindow* relativeTo)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the current position of the mouse
 ////////////////////////////////////////////////////////////
 void sfMouse_SetPosition(int x, int y, const sfWindow* relativeTo)
 {

@@ -36,45 +36,56 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new UDP socket
+/// \brief Create a new UDP socket
 ///
-/// \return Pointer to the new socket
+/// \return A new sfUdpSocket object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfUdpSocket* sfUdpSocket_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing UDP socket
+/// \brief Destroy a UDP socket
 ///
-/// \param socket : Socket to destroy
+/// \param socket UDP socket to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfUdpSocket_Destroy(sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Change the blocking state of a UDP socket.
-/// The default behaviour of a socket is blocking
+/// \brief Set the blocking state of a UDP listener
 ///
-/// \param socket :   Socket to modify
-/// \param blocking : Pass sfTrue to set the socket as blocking, or false for non-blocking
+/// In blocking mode, calls will not return until they have
+/// completed their task. For example, a call to
+/// sfUDPSocket_Receive in blocking mode won't return until
+/// new data was actually received.
+/// In non-blocking mode, calls will always return immediately,
+/// using the return code to signal whether there was data
+/// available or not.
+/// By default, all sockets are blocking.
+///
+/// \param socket   UDP socket object
+/// \param blocking sfTrue to set the socket as blocking, sfFalse for non-blocking
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfUdpSocket_SetBlocking(sfUdpSocket* socket, sfBool blocking);
 
 ////////////////////////////////////////////////////////////
-/// Get the blocking state of the socket
+/// \brief Tell whether a UDP socket is in blocking or non-blocking mode
 ///
-/// \param socket : Socket to read
+/// \param socket UDP socket object
 ///
-/// \Return sfTrue if the socket is blocking, sfFalse otherwise
+/// \return sfTrue if the socket is blocking, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfUdpSocket_IsBlocking(const sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Get the port to which a socket is bound locally
+/// \brief Get the port to which a UDP socket is bound locally
 ///
-/// \param socket : Socket to read
+/// If the socket is not bound to a port, this function
+/// returns 0.
+///
+/// \param socket UDP socket object
 ///
 /// \return Port to which the socket is bound
 ///
@@ -82,82 +93,116 @@ CSFML_API sfBool sfUdpSocket_IsBlocking(const sfUdpSocket* socket);
 CSFML_API unsigned short sfUdpSocket_GetLocalPort(const sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Bind a socket to a specific port
+/// \brief Bind a UDP socket to a specific port
 ///
-/// \param socket : Socket to bind
-/// \param port :   Port to bind the socket to
+/// Binding the socket to a port is necessary for being
+/// able to receive data on that port.
+/// You can use the special value 0 to tell the
+/// system to automatically pick an available port, and then
+/// call sfUdpSocket_GetLocalPort to retrieve the chosen port.
 ///
-/// \return Socket status
+/// \param socket UDP socket object
+/// \param port   Port to bind the socket to
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfUdpSocket_Bind(sfUdpSocket* socket, unsigned short port);
 
 ////////////////////////////////////////////////////////////
-/// Unbind a socket from its previous port, if any
+/// \brief Unbind a UDP socket from the local port to which it is bound
 ///
-/// \param socket : Socket to unbind
+/// The port that the socket was previously using is immediately
+/// available after this function is called. If the
+/// socket is not bound to a port, this function has no effect.
+///
+/// \param socket UDP socket object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfUdpSocket_Unbind(sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Send an array of bytes
+/// \brief Send raw data to a remote peer with a UDP socket
 ///
-/// \param socket :  Socket to use for sending
-/// \param data :    Pointer to the bytes to send
-/// \param size :    Number of bytes to send
-/// \param address : Address of the computer to send the packet to
-/// \param port :    Port to use for communication
+/// Make sure that \a size is not greater than
+/// sfUdpSocket_MaxDatagramSize(), otherwise this function will
+/// fail and no data will be sent.
 ///
-/// \return Socket status
+/// \param socket        UDP socket object
+/// \param data          Pointer to the sequence of bytes to send
+/// \param size          Number of bytes to send
+/// \param remoteAddress Address of the receiver
+/// \param remotePort    Port of the receiver to send the data to
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfUdpSocket_Send(sfUdpSocket* socket, const char* data, size_t size, sfIpAddress address, unsigned short port);
 
 ////////////////////////////////////////////////////////////
-/// Receive an array of bytes.
-/// This function is blocking, ie. it won't return before some
-/// bytes have been received
+/// \brief Receive raw data from a remote peer with a UDP socket
 ///
-/// \param socket :       Socket to use for receiving
-/// \param data :         Pointer to a byte array to fill (make sure it is big enough)
-/// \param maxSize :      Maximum number of bytes to read
-/// \param sizeReceived : Number of bytes received
-/// \param address :      Address of the computer which sent the data
-/// \param port :         Port on which the remote computer sent the data
+/// In blocking mode, this function will wait until some
+/// bytes are actually received.
+/// Be careful to use a buffer which is large enough for
+/// the data that you intend to receive, if it is too small
+/// then an error will be returned and *all* the data will
+/// be lost.
 ///
-/// \return Socket status
+/// \param socket        UDP socket object
+/// \param data          Pointer to the array to fill with the received bytes
+/// \param size          Maximum number of bytes that can be received
+/// \param received      This variable is filled with the actual number of bytes received
+/// \param remoteAddress Address of the peer that sent the data
+/// \param remotePort    Port of the peer that sent the data
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfUdpSocket_Receive(sfUdpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port);
 
 ////////////////////////////////////////////////////////////
-/// Send a packet of data
+/// \brief Send a formatted packet of data to a remote peer with a UDP socket
 ///
-/// \param socket :  Socket to use for sending
-/// \param packet :  Packet to send
-/// \param address : Address of the computer to send the packet to
-/// \param port :    Port to use for communication
+/// Make sure that the packet size is not greater than
+/// sfUdpSocket_MaxDatagramSize(), otherwise this function will
+/// fail and no data will be sent.
 ///
-/// \return Socket status
+/// \param socket        UDP socket object
+/// \param packet        Packet to send
+/// \param remoteAddress Address of the receiver
+/// \param remotePort    Port of the receiver to send the data to
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfUdpSocket_SendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress address, unsigned short port);
 
 ////////////////////////////////////////////////////////////
-/// Receive a packet.
-/// This function is blocking, ie. it won't return before a
-/// packet is received
+/// \brief Receive a formatted packet of data from a remote peer with a UDP socket
 ///
-/// \param socket :  Socket to use for receiving
-/// \param packet :  Packet to fill with received data
-/// \param address : Address of the computer which sent the packet
-/// \param port :    Port on which the remote computer sent the data
+/// In blocking mode, this function will wait until the whole packet
+/// has been received.
+/// Warning: this functon doesn't properly handle mixed data
+/// received from multiple peers.
 ///
-/// \return Socket status
+/// \param packet        Packet to fill with the received data
+/// \param remoteAddress Address of the peer that sent the data
+/// \param remotePort    Port of the peer that sent the data
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketStatus sfUdpSocket_ReceivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* address, unsigned short* port);
+
+////////////////////////////////////////////////////////////
+/// \brief Return the maximum number of bytes that can be
+///        sent in a single UDP datagram
+///
+/// \return The maximum size of a UDP datagram (message)
+///
+////////////////////////////////////////////////////////////
+CSFML_API unsigned int sfUdpSocket_MaxDatagramSize();
 
 
 #endif // SFML_UDPSOCKET_H

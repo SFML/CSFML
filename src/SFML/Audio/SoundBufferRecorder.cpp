@@ -31,16 +31,12 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new sound buffer recorder
-////////////////////////////////////////////////////////////
 sfSoundBufferRecorder* sfSoundBufferRecorder_Create(void)
 {
     return new sfSoundBufferRecorder;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Destroy an existing sound buffer recorder
 ////////////////////////////////////////////////////////////
 void sfSoundBufferRecorder_Destroy(sfSoundBufferRecorder* soundBufferRecorder)
 {
@@ -49,17 +45,12 @@ void sfSoundBufferRecorder_Destroy(sfSoundBufferRecorder* soundBufferRecorder)
 
 
 ////////////////////////////////////////////////////////////
-/// Start the capture.
-/// Warning : only one capture can happen at the same time
-////////////////////////////////////////////////////////////
 void sfSoundBufferRecorder_Start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate)
 {
     CSFML_CALL(soundBufferRecorder, Start(sampleRate));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Stop the capture
 ////////////////////////////////////////////////////////////
 void sfSoundBufferRecorder_Stop(sfSoundBufferRecorder* soundBufferRecorder)
 {
@@ -68,17 +59,12 @@ void sfSoundBufferRecorder_Stop(sfSoundBufferRecorder* soundBufferRecorder)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the sample rate of a sound buffer recorder
-////////////////////////////////////////////////////////////
 unsigned int sfSoundBufferRecorder_GetSampleRate(const sfSoundBufferRecorder* soundBufferRecorder)
 {
     CSFML_CALL_RETURN(soundBufferRecorder, GetSampleRate(), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the sound buffer containing the captured audio data
-/// of a sound buffer recorder
 ////////////////////////////////////////////////////////////
 const sfSoundBuffer* sfSoundBufferRecorder_GetBuffer(const sfSoundBufferRecorder* soundBufferRecorder)
 {

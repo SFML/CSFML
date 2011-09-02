@@ -34,87 +34,109 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new sound
+/// \brief Create a new sound
 ///
-/// \return A new sfSound object (NULL if failed)
+/// \return A new sfSound object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSound* sfSound_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing sound
+/// \brief Create a new sound by copying an existing one
 ///
-/// \param sound : Sound to copy
+/// \param sound Sound to copy
 ///
-/// \return Copied object
+/// \return A new sfSound object which is a copy of \a sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSound* sfSound_Copy(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing sound
+/// \brief Destroy a sound
 ///
-/// \param sound : Sound to delete
+/// \param sound Sound to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_Destroy(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Start playing a sound
+/// \brief Start or resume playing a sound
 ///
-/// \param sound : Sound to play
+/// This function starts the sound if it was stopped, resumes
+/// it if it was paused, and restarts it from beginning if it
+/// was it already playing.
+/// This function uses its own thread so that it doesn't block
+/// the rest of the program while the sound is played.
+///
+/// \param sound Sound object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_Play(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Pause a sound
+/// \brief Pause a sound
 ///
-/// \param sound : Sound to pause
+/// This function pauses the sound if it was playing,
+/// otherwise (sound already paused or stopped) it has no effect.
+///
+/// \param sound Sound object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_Pause(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Stop playing a sound
+/// \brief Stop playing a sound
 ///
-/// \param sound : Sound to stop
+/// This function stops the sound if it was playing or paused,
+/// and does nothing if it was already stopped.
+/// It also resets the playing position (unlike sfSound_Pause).
+///
+/// \param sound Sound object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_Stop(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Bind a sound buffer to a sound
+/// \brief Set the source buffer containing the audio data to play
 ///
-/// \param sound :  Sound to set the loop state
-/// \param buffer : Buffer to bind
+/// It is important to note that the sound buffer is not copied,
+/// thus the sfSoundBuffer object must remain alive as long
+/// as it is attached to the sound.
+///
+/// \param sound  Sound object
+/// \param buffer Sound buffer to attach to the sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetBuffer(sfSound* sound, const sfSoundBuffer* buffer);
 
 ////////////////////////////////////////////////////////////
-/// Get the sound buffer bound to a sound
+/// \brief Get the audio buffer attached to a sound
 ///
-/// \param sound : Sound to get the buffer from
+/// \param sound Sound object
 ///
-/// \return Pointer to the sound's buffer
+/// \return Sound buffer attached to the sound (can be NULL)
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API const sfSoundBuffer* sfSound_GetBuffer(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Set a sound loop state
+/// \brief Set whether or not a sound should loop after reaching the end
 ///
-/// \param sound : Sound to set the loop state
-/// \param loop :  sfTrue to play in loop, sfFalse to play once
+/// If set, the sound will restart from beginning after
+/// reaching the end and so on, until it is stopped or
+/// sfSound_SetLoop(sound, sfFalse) is called.
+/// The default looping state for sounds is false.
+///
+/// \param sound Sound object
+/// \param loop  sfTrue to play in loop, sfFalse to play once
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetLoop(sfSound* sound, sfBool loop);
 
 ////////////////////////////////////////////////////////////
-/// Tell whether or not a sound is looping
+/// \brief Tell whether or not a soud is in loop mode
 ///
-/// \param sound : Sound to get the loop state from
+/// \param sound Sound object
 ///
 /// \return sfTrue if the sound is looping, sfFalse otherwise
 ///
@@ -122,122 +144,154 @@ CSFML_API void sfSound_SetLoop(sfSound* sound, sfBool loop);
 CSFML_API sfBool sfSound_GetLoop(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Get the status of a sound (stopped, paused, playing)
+/// \brief Get the current status of a sound (stopped, paused, playing)
 ///
-/// \param sound : Sound to get the status from
+/// \param sound Sound object
 ///
-/// \return Current status of the sound
+/// \return Current status
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSoundStatus sfSound_GetStatus(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Set the pitch of a sound
+/// \brief Set the pitch of a sound
 ///
-/// \param sound : Sound to modify
-/// \param pitch : New pitch
+/// The pitch represents the perceived fundamental frequency
+/// of a sound; thus you can make a sound more acute or grave
+/// by changing its pitch. A side effect of changing the pitch
+/// is to modify the playing speed of the sound as well.
+/// The default value for the pitch is 1.
+///
+/// \param sound Sound object
+/// \param pitch New pitch to apply to the sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetPitch(sfSound* sound, float pitch);
 
 ////////////////////////////////////////////////////////////
-/// Set the volume of a sound
+/// \brief Set the volume of a sound
 ///
-/// \param sound :  Sound to modify
-/// \param volume : Volume (in range [0, 100])
+/// The volume is a value between 0 (mute) and 100 (full volume).
+/// The default value for the volume is 100.
+///
+/// \param sound  Sound object
+/// \param volume Volume of the sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetVolume(sfSound* sound, float volume);
 
 ////////////////////////////////////////////////////////////
-/// Set the position of a sound
+/// \brief Set the 3D position of a sound in the audio scene
 ///
-/// \param sound : Sound to modify
-/// \param x :     X position of the sound in the world
-/// \param y :     Y position of the sound in the world
-/// \param z :     Z position of the sound in the world
+/// Only sounds with one channel (mono sounds) can be
+/// spatialized.
+/// The default position of a sound is (0, 0, 0).
+///
+/// \param sound Sound object
+/// \param x     X coordinate of the position of the sound in the scene
+/// \param y     Y coordinate of the position of the sound in the scene
+/// \param z     Z coordinate of the position of the sound in the scene
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetPosition(sfSound* sound, float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
-/// Make the sound's position relative to the listener's
-/// position, or absolute.
-/// The default value is false (absolute)
+/// \brief Make the sound's position relative to the listener or absolute
 ///
-/// \param sound :    Sound to modify
-/// \param relative : True to set the position relative, false to set it absolute
+/// Making a sound relative to the listener will ensure that it will always
+/// be played the same way regardless the position of the listener.
+/// This can be useful for non-spatialized sounds, sounds that are
+/// produced by the listener, or sounds attached to it.
+/// The default value is false (position is absolute).
+///
+/// \param sound    Sound object
+/// \param relative sfTrue to set the position relative, sfFalse to set it absolute
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetRelativeToListener(sfSound* sound, sfBool relative);
 
 ////////////////////////////////////////////////////////////
-/// Set the minimum distance - closer than this distance,
-/// the listener will hear the sound at its maximum volume.
-/// The default minimum distance is 1.0
+/// \brief Set the minimum distance of a sound
 ///
-/// \param sound :    Sound to modify
-/// \param distance : New minimum distance for the sound
+/// The "minimum distance" of a sound is the maximum
+/// distance at which it is heard at its maximum volume. Further
+/// than the minimum distance, it will start to fade out according
+/// to its attenuation factor. A value of 0 ("inside the head
+/// of the listener") is an invalid value and is forbidden.
+/// The default value of the minimum distance is 1.
+///
+/// \param sound    Sound object
+/// \param distance New minimum distance of the sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetMinDistance(sfSound* sound, float distance);
 
 ////////////////////////////////////////////////////////////
-/// Set the attenuation factor - the higher the attenuation, the
-/// more the sound will be attenuated with distance from listener.
-/// The default attenuation factor is 1.0
+/// \brief Set the attenuation factor of a sound
 ///
-/// \param sound :       Sound to modify
-/// \param attenuation : New attenuation factor for the sound
+/// The attenuation is a multiplicative factor which makes
+/// the sound more or less loud according to its distance
+/// from the listener. An attenuation of 0 will produce a
+/// non-attenuated sound, i.e. its volume will always be the same
+/// whether it is heard from near or from far. On the other hand,
+/// an attenuation value such as 100 will make the sound fade out
+/// very quickly as it gets further from the listener.
+/// The default value of the attenuation is 1.
+///
+/// \param sound       Sound object
+/// \param attenuation New attenuation factor of the sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetAttenuation(sfSound* sound, float attenuation);
 
 ////////////////////////////////////////////////////////////
-/// Set the current playing position of a sound
+/// \brief Change the current playing position of a sound
 ///
-/// \param sound :      Sound to modify
-/// \param timeOffset : New playing position, in milliseconds
+/// The playing position can be changed when the sound is
+/// either paused or playing.
+///
+/// \param sound      Sound object
+/// \param timeOffset New playing position, in milliseconds
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_SetPlayingOffset(sfSound* sound, sfUint32 timeOffset);
 
 ////////////////////////////////////////////////////////////
-/// Get the pitch of a sound
+/// \brief Get the pitch of a sound
 ///
-/// \param sound : Sound to get the pitch from
+/// \param sound Sound object
 ///
-/// \return Pitch value
+/// \return Pitch of the sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSound_GetPitch(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Get the volume of a sound
+/// \brief Get the volume of a sound
 ///
-/// \param sound : Sound to get the volume from
+/// \param sound Sound object
 ///
-/// \return Volume value (in range [1, 100])
+/// \return Volume of the sound, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSound_GetVolume(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Get the position of a sound
+/// \brief Get the 3D position of a sound in the audio scene
 ///
-/// \param sound : Sound to get the position from
-/// \param x :     X position of the sound in the world
-/// \param y :     Y position of the sound in the world
-/// \param z :     Z position of the sound in the world
+/// \param sound Sound object
+/// \param x     X position of the sound in the world
+/// \param y     Y position of the sound in the world
+/// \param z     Z position of the sound in the world
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSound_GetPosition(const sfSound* sound, float* x, float* y, float* z);
 
 ////////////////////////////////////////////////////////////
-/// Tell if the sound's position is relative to the listener's
-/// position, or if it's absolute
+/// \brief Tell whether a sound's position is relative to the
+///        listener or is absolute
 ///
-/// \param sound : Sound to check
+/// \param sound Sound object
 ///
 /// \return sfTrue if the position is relative, sfFalse if it's absolute
 ///
@@ -245,29 +299,29 @@ CSFML_API void sfSound_GetPosition(const sfSound* sound, float* x, float* y, flo
 CSFML_API sfBool sfSound_IsRelativeToListener(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Get the minimum distance of a sound
+/// \brief Get the minimum distance of a sound
 ///
-/// \param sound : Sound to get the minimum distance from
+/// \param sound Sound object
 ///
-/// \return Minimum distance for the sound
+/// \return Minimum distance of the sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSound_GetMinDistance(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Get the attenuation factor of a sound
+/// \brief Get the attenuation factor of a sound
 ///
-/// \param sound : Sound to get the attenuation factor from
+/// \param sound Sound object
 ///
-/// \return Attenuation factor for the sound
+/// \return Attenuation factor of the sound
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API float sfSound_GetAttenuation(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
-/// Get the current playing position of a sound
+/// \brief Get the current playing position of a sound
 ///
-/// \param sound : Sound to get the position from
+/// \param sound Sound object
 ///
 /// \return Current playing position, in milliseconds
 ///

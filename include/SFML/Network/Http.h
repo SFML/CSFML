@@ -33,7 +33,8 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Enumerate the available HTTP methods for a request
+/// \brief Enumerate the available HTTP methods for a request
+///
 ////////////////////////////////////////////////////////////
 enum sfHttpMethod
 {
@@ -44,8 +45,8 @@ enum sfHttpMethod
 
 
 ////////////////////////////////////////////////////////////
-/// Enumerate all the valid status codes returned in
-/// a HTTP response
+/// \brief Enumerate all the valid status codes for a response
+///
 ////////////////////////////////////////////////////////////
 enum sfHttpStatus
 {
@@ -80,175 +81,213 @@ enum sfHttpStatus
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new Http request
+/// \brief Create a new HTTP request
 ///
-/// \return Pointer to the new Http request
+/// \return A new sfHttpRequest object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfHttpRequest* sfHttpRequest_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Http request
+/// \brief Destroy a HTTP request
 ///
-/// \param httpRequest : Http request to destroy
+/// \param httpRequest HTTP request to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttpRequest_Destroy(sfHttpRequest* httpRequest);
 
 ////////////////////////////////////////////////////////////
-/// Set the value of a field; the field is added if it doesn't exist
+/// \brief Set the value of a header field of a HTTP request
 ///
-/// \param httpRequest : Http request to modify
-/// \param field :       Name of the field to set (case-insensitive)
-/// \param value :       Value of the field
+/// The field is created if it doesn't exist. The name of
+/// the field is case insensitive.
+/// By default, a request doesn't contain any field (but the
+/// mandatory fields are added later by the HTTP client when
+/// sending the request).
+///
+/// \param httpRequest HTTP request
+/// \param field       Name of the field to set
+/// \param value       Value of the field
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttpRequest_SetField(sfHttpRequest* httpRequest, const char* field, const char* value);
 
 ////////////////////////////////////////////////////////////
-/// Set the request method.
-/// This parameter is sfHttpGet by default
+/// \brief Set a HTTP request method
 ///
-/// \param httpRequest : Http request to modify
-/// \param method :      Method to use for the request
+/// See the sfHttpMethod enumeration for a complete list of all
+/// the availale methods.
+/// The method is sfHttpGet by default.
+///
+/// \param httpRequest HTTP request
+/// \param method      Method to use for the request
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttpRequest_SetMethod(sfHttpRequest* httpRequest, sfHttpMethod method);
 
 ////////////////////////////////////////////////////////////
-/// Set the target URI of the request.
-/// This parameter is "/" by default
+/// \brief Set a HTTP request URI
 ///
-/// \param httpRequest : Http request to modify
-/// \param URI :         URI to request, local to the host
+/// The URI is the resource (usually a web page or a file)
+/// that you want to get or post.
+/// The URI is "/" (the root page) by default.
+///
+/// \param httpRequest HTTP request
+/// \param uri         URI to request, relative to the host
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttpRequest_SetUri(sfHttpRequest* httpRequest, const char* uri);
 
 ////////////////////////////////////////////////////////////
-/// Set the HTTP version of the request.
-/// This parameter is 1.0 by default
+/// \brief Set the HTTP version of a HTTP request
 ///
-/// \param httpRequest : Http request to modify
-/// \param major :       Major version number
-/// \param minor :       Minor version number
+/// The HTTP version is 1.0 by default.
+///
+/// \param httpRequest HTTP request
+/// \param major       Major HTTP version number
+/// \param minor       Minor HTTP version number
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttpRequest_SetHttpVersion(sfHttpRequest* httpRequest, unsigned int major, unsigned int minor);
 
 ////////////////////////////////////////////////////////////
-/// Set the body of the request. This parameter is optional and
-/// makes sense only for POST requests.
-/// This parameter is empty by default
+/// \brief Set the body of a HTTP request
 ///
-/// \param httpRequest : Http request to modify
-/// \param body :        Content of the request body
+/// The body of a request is optional and only makes sense
+/// for POST requests. It is ignored for all other methods.
+/// The body is empty by default.
+///
+/// \param httpRequest HTTP request
+/// \param body        Content of the body
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttpRequest_SetBody(sfHttpRequest* httpRequest, const char* body);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Http response
+/// \brief Destroy a HTTP response
 ///
-/// \param httpResponse : Http response to destroy
+/// \param httpResponse HTTP response to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttpResponse_Destroy(sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the value of a field; returns NULL if the field doesn't exist
+/// \brief Get the value of a field of a HTTP response
 ///
-/// \param httpResponse : Http response
-/// \param field :        Field to get
+/// If the field \a field is not found in the response header,
+/// the empty string is returned. This function uses
+/// case-insensitive comparisons.
 ///
-/// \return Value of the field (NULL if it doesn't exist)
+/// \param httpResponse HTTP response
+/// \param field        Name of the field to get
+///
+/// \return Value of the field, or empty string if not found
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API const char* sfHttpResponse_GetField(const sfHttpResponse* httpResponse, const char* field);
 
 ////////////////////////////////////////////////////////////
-/// Get the status of a response
+/// \brief Get the status code of a HTTP reponse
 ///
-/// \param httpResponse : Http response
+/// The status code should be the first thing to be checked
+/// after receiving a response, it defines whether it is a
+/// success, a failure or anything else (see the sfHttpStatus
+/// enumeration).
 ///
-/// \return Status of the response
+/// \param httpResponse HTTP response
+///
+/// \return Status code of the response
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfHttpStatus sfHttpResponse_GetStatus(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the major HTTP version of a response
+/// \brief Get the major HTTP version number of a HTTP response
 ///
-/// \param httpResponse : Http response
+/// \param httpResponse HTTP response
 ///
-/// \return HTTP major version of the response
+/// \return Major HTTP version number
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API unsigned int sfHttpResponse_GetMajorVersion(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the minor HTTP version of a response
+/// \brief Get the minor HTTP version number of a HTTP response
 ///
-/// \param httpResponse : Http response
+/// \param httpResponse HTTP response
 ///
-/// \return HTTP minor version of the response
+/// \return Minor HTTP version number
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API unsigned int sfHttpResponse_GetMinorVersion(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the body of the response. The body can contain :
-/// - the requested page (for GET requests)
-/// - a response from the server (for POST requests)
-/// - nothing (for HEAD requests)
-/// - an error message (in case of an error)
+/// \brief Get the body of a HTTP response
 ///
-/// \param httpResponse : Http response
+/// The body of a response may contain:
+/// \li the requested page (for GET requests)
+/// \li a response from the server (for POST requests)
+/// \li nothing (for HEAD requests)
+/// \li an error message (in case of an error)
 ///
-/// \return Body of the response (empty string if no body)
+/// \param httpResponse HTTP response
+///
+/// \return The response body
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API const char* sfHttpResponse_GetBody(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Construct a new Http object
+/// \brief Create a new Http object
 ///
-/// \return Pointer to the new Http
+/// \return A new sfHttp object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfHttp* sfHttp_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Http object
+/// \brief Destroy a Http object
 ///
-/// \param Http : Http to destroy
+/// \param http Http object to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttp_Destroy(sfHttp* http);
 
 ////////////////////////////////////////////////////////////
-/// Set the target host of a Http server
+/// \brief Set the target host of a HTTP object
 ///
-/// \param http : Http object
-/// \param host : Web server to connect to
-/// \param port : Port to use for connection (0 to use the standard port of the protocol used)
+/// This function just stores the host address and port, it
+/// doesn't actually connect to it until you send a request.
+/// If the port is 0, it means that the HTTP client will use
+/// the right port according to the protocol used
+/// (80 for HTTP, 443 for HTTPS). You should
+/// leave it like this unless you really need a port other
+/// than the standard one, or use an unknown protocol.
+///
+/// \param http Http object
+/// \param host Web server to connect to
+/// \param port Port to use for connection
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfHttp_SetHost(sfHttp* http, const char* host, unsigned short port);
 
 ////////////////////////////////////////////////////////////
-/// Send a HTTP request and return the server's response.
-/// You must be connected to a host before sending requests.
-/// Any missing mandatory header field will be added with an appropriate value.
-/// Warning : this function waits for the server's response and may
+/// \brief Send a HTTP request and return the server's response.
+///
+/// You must have a valid host before sending a request (see sfHttp_SetHost).
+/// Any missing mandatory header field in the request will be added
+/// with an appropriate value.
+/// Warning: this function waits for the server's response and may
 /// not return instantly; use a thread if you don't want to block your
-/// application.
+/// application, or use a timeout to limit the time to wait. A value
+/// of 0 means that the client will use the system defaut timeout
+/// (which is usually pretty long).
 ///
-/// \param http :    Http object
-/// \param request : Request to send
-/// \param timeout : Maximum time to wait, in milliseconds (0 to use no timeout)
+/// \param http    Http object
+/// \param request Request to send
+/// \param timeout Maximum time to wait, in milliseconds
 ///
-/// \return Server's response, or NULL if request is invalid
+/// \return Server's response
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfHttpResponse* sfHttp_SendRequest(sfHttp* http, const sfHttpRequest* request, sfUint32 timeout);

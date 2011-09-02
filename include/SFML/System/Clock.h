@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new clock and start it
+/// \brief Create a new clock and start it
 ///
 /// \return A new sfClock object
 ///
@@ -41,37 +41,43 @@
 CSFML_API sfClock* sfClock_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing clock
+/// \brief Create a new clock by copying an existing one
 ///
-/// \param clock : Clock to copy
+/// \param clock Clock to copy
 ///
-/// \return Copied object
+/// \return A new sfClock object which is a copy of \a clock
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfClock* sfClock_Copy(sfClock* clock);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing clock
+/// \brief Destroy a clock
 ///
-/// \param clock : Clock to delete
+/// \param clock Clock to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfClock_Destroy(sfClock* clock);
 
 ////////////////////////////////////////////////////////////
-/// Get the time elapsed for a clock
+/// \brief Get the time elapsed in a clock
 ///
-/// \param clock : Clock to get time from
+/// This function returns the time elapsed since the last call
+/// to sfClock_Reset (or the construction of the object if
+/// sfClock_Reset has not been called).
 ///
-/// \return Elapsed time, in milliseconds
+/// \param clock Clock object
+///
+/// \return Time elapsed, in milliseconds
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfUint32 sfClock_GetTime(const sfClock* clock);
 
 ////////////////////////////////////////////////////////////
-/// Restart a clock
+/// \brief Restart a clock
 ///
-/// \param clock : Clock to restart
+/// This function puts the time counter back to zero.
+///
+/// \param clock Clock object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfClock_Reset(sfClock* clock);

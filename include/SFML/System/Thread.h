@@ -33,45 +33,68 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new thread from a function pointer
+/// \brief Create a new thread from a function pointer
 ///
-/// \param function : Entry point of the thread
-/// \param userData : Data to pass to the thread function
+/// Note: this does *not* run the thread, use sfThread_Launch.
+///
+/// \param function Entry point of the thread
+/// \param userData Custom data to pass to the thread function
+///
+/// \return A new sfThread object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfThread* sfThread_Create(void (*function)(void*), void* userData);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing thread
+/// \brief Destroy a thread
 ///
-/// \param thread : Thread to delete
+/// This function calls sfThread_Wait, so that the internal thread
+/// cannot survive after the sfThread object is destroyed.
+///
+/// \param thread Thread to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfThread_Destroy(sfThread* thread);
 
 ////////////////////////////////////////////////////////////
-/// Run a thread
+/// \brief Run a thread
 ///
-/// \param thread : Thread to launch
+/// This function starts the entry point passed to the
+/// thread's constructor, and returns immediately.
+/// After this function returns, the thread's function is
+/// running in parallel to the calling code.
+///
+/// \param thread Thread object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfThread_Launch(sfThread* thread);
 
 ////////////////////////////////////////////////////////////
-/// Wait until a thread finishes
+/// \brief Wait until a thread finishes
 ///
-/// \param thread : Thread to wait for
+/// This function will block the execution until the
+/// thread's function ends.
+/// Warning: if the thread function never ends, the calling
+/// thread will block forever.
+/// If this function is called from its owner thread, it
+/// returns without doing anything.
+///
+/// \param thread Thread object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfThread_Wait(sfThread* thread);
 
 ////////////////////////////////////////////////////////////
-/// Terminate a thread
-/// Terminating a thread with this function is not safe,
-/// you should rather try to make the thread function
-/// terminate by itself
+/// \brief Terminate a thread
 ///
-/// \param thread : Thread to terminate
+/// This function immediately stops the thread, without waiting
+/// for its function to finish.
+/// Terminating a thread with this function is not safe,
+/// and can lead to local variables not being destroyed
+/// on some operating systems. You should rather try to make
+/// the thread function terminate by itself.
+///
+/// \param thread Thread object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfThread_Terminate(sfThread* thread);

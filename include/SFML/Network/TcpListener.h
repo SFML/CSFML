@@ -34,64 +34,91 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new TCP socket
+/// \brief Create a new TCP listener
 ///
-/// \return Pointer to the new socket
+/// \return A new sfTcpListener object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfTcpListener* sfTcpListener_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing TCP socket
+/// \brief Destroy a TCP listener
 ///
-/// \param socket : Socket to destroy
+/// \param listener TCP listener to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfTcpListener_Destroy(sfTcpListener* socket);
+CSFML_API void sfTcpListener_Destroy(sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
-/// Change the blocking state of a TCP socket.
-/// The default behaviour of a socket is blocking
+/// \brief Set the blocking state of a TCP listener
 ///
-/// \param socket :   Socket to modify
-/// \param blocking : Pass sfTrue to set the socket as blocking, or sfFalse for non-blocking
+/// In blocking mode, calls will not return until they have
+/// completed their task. For example, a call to
+/// sfTcpListener_Accept in blocking mode won't return until
+/// a new connection was actually received.
+/// In non-blocking mode, calls will always return immediately,
+/// using the return code to signal whether there was data
+/// available or not.
+/// By default, all sockets are blocking.
+///
+/// \param listener TCP listener object
+/// \param blocking sfTrue to set the socket as blocking, sfFalse for non-blocking
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfTcpListener_SetBlocking(sfTcpListener* socket, sfBool blocking);
+CSFML_API void sfTcpListener_SetBlocking(sfTcpListener* listener, sfBool blocking);
 
 ////////////////////////////////////////////////////////////
-/// Get the blocking state of the socket
+/// \brief Tell whether a TCP listener is in blocking or non-blocking mode
 ///
-/// \param socket : Socket to read
+/// \param listener TCP listener object
 ///
-/// \Return sfTrue if the socket is blocking, sfFalse otherwise
+/// \return sfTrue if the socket is blocking, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfTcpListener_IsBlocking(const sfTcpListener* socket);
+CSFML_API sfBool sfTcpListener_IsBlocking(const sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
-/// Listen to a specified port for incoming data or connections
+/// \brief Get the port to which a TCP listener is bound locally
 ///
-/// \param socket : Socket to use for listening
-/// \param port :   Port to listen to
+/// If the socket is not listening to a port, this function
+/// returns 0.
 ///
-/// \return Socket status
+/// \param listener TCP listener object
+///
+/// \return Port to which the TCP listener is bound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSocketStatus sfTcpListener_Listen(sfTcpListener* socket, unsigned short port);
+CSFML_API unsigned short sfTcpListener_GetLocalPort(const sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
-/// Wait for a connection (must be listening to a port).
-/// This function is blocking, ie. it won't return before
-/// a connection has been accepted
+/// \brief Start listening for connections
 ///
-/// \param socket :    Socket to use for accepting
-/// \param connected : Pointer to a socket pointer that will be filled with the connected client
+/// This functions makes the socket listen to the specified
+/// port, waiting for new connections.
+/// If the socket was previously listening to another port,
+/// it will be stopped first and bound to the new port.
 ///
-/// \return Socket status
+/// \param listener TCP listener object
+/// \param port     Port to listen for new connections
+///
+/// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSocketStatus sfTcpListener_Accept(sfTcpListener* socket, sfTcpSocket** connected);
+CSFML_API sfSocketStatus sfTcpListener_Listen(sfTcpListener* listener, unsigned short port);
+
+////////////////////////////////////////////////////////////
+/// \brief Accept a new connection
+///
+/// If the socket is in blocking mode, this function will
+/// not return until a connection is actually received.
+///
+/// \param listener  TCP listener object
+/// \param connected Socket that will hold the new connection
+///
+/// \return Status code
+///
+////////////////////////////////////////////////////////////
+CSFML_API sfSocketStatus sfTcpListener_Accept(sfTcpListener* listener, sfTcpSocket** connected);
 
 
 #endif // SFML_TCPLISTENER_H

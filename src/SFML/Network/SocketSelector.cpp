@@ -34,16 +34,12 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new selector
-////////////////////////////////////////////////////////////
 sfSocketSelector* sfSocketSelector_Create(void)
 {
     return new sfSocketSelector;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Copy an existing selector
 ////////////////////////////////////////////////////////////
 sfSocketSelector* sfSocketSelector_Copy(sfSocketSelector* selector)
 {
@@ -54,16 +50,12 @@ sfSocketSelector* sfSocketSelector_Copy(sfSocketSelector* selector)
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing selector
-////////////////////////////////////////////////////////////
 void sfSocketSelector_Destroy(sfSocketSelector* selector)
 {
     delete selector;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Add a socket to watch to a selector
 ////////////////////////////////////////////////////////////
 void sfSocketSelector_AddTcpListener(sfSocketSelector* selector, sfTcpListener* socket)
 {
@@ -83,8 +75,6 @@ void sfSocketSelector_AddUdpSocket(sfSocketSelector* selector, sfUdpSocket* sock
 
 
 ////////////////////////////////////////////////////////////
-/// Remove a socket from a selector
-////////////////////////////////////////////////////////////
 void sfSocketSelector_RemoveTcpListener(sfSocketSelector* selector, sfTcpListener* socket)
 {
     CSFML_CHECK(socket);
@@ -103,8 +93,6 @@ void sfSocketSelector_RemoveUdpSocket(sfSocketSelector* selector, sfUdpSocket* s
 
 
 ////////////////////////////////////////////////////////////
-/// Remove all sockets from a selector
-////////////////////////////////////////////////////////////
 void sfSocketSelector_Clear(sfSocketSelector* selector)
 {
     CSFML_CALL(selector, Clear());
@@ -112,18 +100,12 @@ void sfSocketSelector_Clear(sfSocketSelector* selector)
 
 
 ////////////////////////////////////////////////////////////
-/// Wait and collect sockets which are ready for reading.
-/// This functions will return either when at least one socket
-/// is ready, or when the given timeout is over
-////////////////////////////////////////////////////////////
 sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfUint32 timeout)
 {
     CSFML_CALL_RETURN(selector, Wait(timeout), sfFalse);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Test a socket to know if it is ready to receive data
 ////////////////////////////////////////////////////////////
 sfBool sfSocketSelector_IsTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket)
 {

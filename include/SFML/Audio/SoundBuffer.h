@@ -30,13 +30,18 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.h>
 #include <SFML/Audio/Types.h>
+#include <SFML/System/InputStream.h>
 #include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new sound buffer and load it from a file
+/// \brief Create a new sound buffer and load it from a file
 ///
-/// \param filename : Path of the music file to open
+/// Here is a complete list of all the supported audio formats:
+/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
+///
+/// \param filename Path of the sound file to load
 ///
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
@@ -44,10 +49,14 @@
 CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromFile(const char* filename);
 
 ////////////////////////////////////////////////////////////
-/// Create a new sound buffer and load it from a file in memory
+/// \brief Create a new sound buffer and load it from a file in memory
 ///
-/// \param data :        Pointer to the file data in memory
-/// \param sizeInBytes : Size of the data to load, in bytes
+/// Here is a complete list of all the supported audio formats:
+/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
+///
+/// \param data        Pointer to the file data in memory
+/// \param sizeInBytes Size of the data to load, in bytes
 ///
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
@@ -55,14 +64,29 @@ CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromFile(const char* filename);
 CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromMemory(const void* data, size_t sizeInBytes);
 
 ////////////////////////////////////////////////////////////
-/// Create a new sound buffer and load it from an array of
-/// samples in memory - assumed format for samples is
-/// 16 bits signed integer
+/// \brief Create a new sound buffer and load it from a custom stream
 ///
-/// \param samples :       Pointer to the samples in memory
-/// \param samplesCount :  Number of samples pointed by Samples
-/// \param channelsCount : Number of channels (1 = mono, 2 = stereo, ...)
-/// \param sampleRate :    Frequency (number of samples to play per second)
+/// Here is a complete list of all the supported audio formats:
+/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
+///
+/// \param stream Source stream to read from
+///
+/// \return A new sfSoundBuffer object (NULL if failed)
+///
+////////////////////////////////////////////////////////////
+CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromStream(sfInputStream* stream);
+
+////////////////////////////////////////////////////////////
+/// \brief Create a new sound buffer and load it from an array of samples in memory
+///
+/// The assumed format of the audio samples is 16 bits signed integer
+/// (sfInt16).
+///
+/// \param samples       Pointer to the array of samples in memory
+/// \param samplesCount  Number of samples in the array
+/// \param channelsCount Number of channels (1 = mono, 2 = stereo, ...)
+/// \param sampleRate    Sample rate (number of samples to play per second)
 ///
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
@@ -70,48 +94,59 @@ CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromMemory(const void* data, size_t
 CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromSamples(const sfInt16* samples, size_t samplesCount, unsigned int channelsCount, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing sound buffer
+/// \brief Create a new sound buffer by copying an existing one
 ///
-/// \param soundBuffer : Sound buffer to copy
+/// \param soundBuffer Sound buffer to copy
 ///
-/// \return Copied object
+/// \return A new sfSoundBuffer object which is a copy of \a soundBuffer
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSoundBuffer* sfSoundBuffer_Copy(sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing sound buffer
+/// \brief Destroy a sound buffer
 ///
-/// \param soundBuffer : Sound buffer to delete
+/// \param soundBuffer Sound buffer to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSoundBuffer_Destroy(sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
-/// Save a sound buffer to a file
+/// \brief Save a sound buffer to an audio file
 ///
-/// \param soundBuffer : Sound buffer to save
-/// \param filename :    Path of the sound file to write
+/// Here is a complete list of all the supported audio formats:
+/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
 ///
-/// \return sfTrue if saving has been successful
+/// \param soundBuffer Sound buffer object
+/// \param filename    Path of the sound file to write
+///
+/// \return sfTrue if saving succeeded, sfFalse if it failed
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfSoundBuffer_SaveToFile(const sfSoundBuffer* soundBuffer, const char* filename);
 
 ////////////////////////////////////////////////////////////
-/// Return the samples contained in a sound buffer
+/// \brief Get the array of audio samples stored in a sound buffer
 ///
-/// \param soundBuffer : Sound buffer to get samples from
+/// The format of the returned samples is 16 bits signed integer
+/// (sfInt16). The total number of samples in this array
+/// is given by the sfSoundBuffer_GetSamplesCount function.
 ///
-/// \return Pointer to the array of sound samples, in 16 bits signed integer format
+/// \param soundBuffer Sound buffer object
+///
+/// \return Read-only pointer to the array of sound samples
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API const sfInt16* sfSoundBuffer_GetSamples(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
-/// Return the number of samples contained in a sound buffer
+/// \brief Get the number of samples stored in a sound buffer
 ///
-/// \param soundBuffer : Sound buffer to get samples count from
+/// The array of samples can be accessed with the
+/// sfSoundBuffer_GetSamples function.
+///
+/// \param soundBuffer Sound buffer object
 ///
 /// \return Number of samples
 ///
@@ -119,19 +154,26 @@ CSFML_API const sfInt16* sfSoundBuffer_GetSamples(const sfSoundBuffer* soundBuff
 CSFML_API size_t sfSoundBuffer_GetSamplesCount(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
-/// Get the sample rate of a sound buffer
+/// \brief Get the sample rate of a sound buffer
 ///
-/// \param soundBuffer : Sound buffer to get sample rate from
+/// The sample rate is the number of samples played per second.
+/// The higher, the better the quality (for example, 44100
+/// samples/s is CD quality).
 ///
-/// \return Sound frequency (number of samples per second)
+/// \param soundBuffer Sound buffer object
+///
+/// \return Sample rate (number of samples per second)
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API unsigned int sfSoundBuffer_GetSampleRate(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
-/// Return the number of channels of a sound buffer (1 = mono, 2 = stereo, ...)
+/// \brief Get the number of channels used by a sound buffer
 ///
-/// \param soundBuffer : Sound buffer to get channels count from
+/// If the sound is mono then the number of channels will
+/// be 1, 2 for stereo, etc.
+///
+/// \param soundBuffer Sound buffer object
 ///
 /// \return Number of channels
 ///
@@ -139,9 +181,9 @@ CSFML_API unsigned int sfSoundBuffer_GetSampleRate(const sfSoundBuffer* soundBuf
 CSFML_API unsigned int sfSoundBuffer_GetChannelsCount(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
-/// Get the duration of a sound buffer
+/// \brief Get the total duration of a sound buffer
 ///
-/// \param soundBuffer : Sound buffer to get duration from
+/// \param soundBuffer Sound buffer object
 ///
 /// \return Sound duration, in milliseconds
 ///

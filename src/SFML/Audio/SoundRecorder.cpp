@@ -31,9 +31,6 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new sound recorder with callback functions
-/// for processing captured samples
-////////////////////////////////////////////////////////////
 sfSoundRecorder* sfSoundRecorder_Create(sfSoundRecorderStartCallback   onStart,
                                         sfSoundRecorderProcessCallback onProcess,
                                         sfSoundRecorderStopCallback    onStop,
@@ -44,17 +41,12 @@ sfSoundRecorder* sfSoundRecorder_Create(sfSoundRecorderStartCallback   onStart,
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing sound recorder
-////////////////////////////////////////////////////////////
 void sfSoundRecorder_Destroy(sfSoundRecorder* soundRecorder)
 {
     delete soundRecorder;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Start the capture.
-/// Warning : only one capture can happen at the same time
 ////////////////////////////////////////////////////////////
 void sfSoundRecorder_Start(sfSoundRecorder* soundRecorder, unsigned int sampleRate)
 {
@@ -63,8 +55,6 @@ void sfSoundRecorder_Start(sfSoundRecorder* soundRecorder, unsigned int sampleRa
 
 
 ////////////////////////////////////////////////////////////
-/// Stop the capture
-////////////////////////////////////////////////////////////
 void sfSoundRecorder_Stop(sfSoundRecorder* soundRecorder)
 {
     CSFML_CALL(soundRecorder, Stop());
@@ -72,17 +62,12 @@ void sfSoundRecorder_Stop(sfSoundRecorder* soundRecorder)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the sample rate of a sound recorder
-////////////////////////////////////////////////////////////
 unsigned int sfSoundRecorder_GetSampleRate(const sfSoundRecorder* soundRecorder)
 {
     CSFML_CALL_RETURN(soundRecorder, GetSampleRate(), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Tell if the system supports sound capture.
-/// If not, this class won't be usable
 ////////////////////////////////////////////////////////////
 sfBool sfSoundRecorder_IsAvailable(void)
 {

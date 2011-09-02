@@ -34,16 +34,12 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new TCP socket
-////////////////////////////////////////////////////////////
 sfTcpSocket* sfTcpSocket_Create(void)
 {
     return new sfTcpSocket;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Destroy an existing TCP socket
 ////////////////////////////////////////////////////////////
 void sfTcpSocket_Destroy(sfTcpSocket* socket)
 {
@@ -52,17 +48,12 @@ void sfTcpSocket_Destroy(sfTcpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-/// Change the blocking state of a TCP socket.
-/// The default behaviour of a socket is blocking
-////////////////////////////////////////////////////////////
 void sfTcpSocket_SetBlocking(sfTcpSocket* socket, sfBool blocking)
 {
     CSFML_CALL(socket, SetBlocking(blocking == sfTrue));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the blocking state of the socket
 ////////////////////////////////////////////////////////////
 sfBool sfTcpSocket_IsBlocking(const sfTcpSocket* socket)
 {
@@ -71,16 +62,12 @@ sfBool sfTcpSocket_IsBlocking(const sfTcpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the port to which a socket is bound locally
-////////////////////////////////////////////////////////////
 unsigned short sfTcpSocket_GetLocalPort(const sfTcpSocket* socket)
 {
     CSFML_CALL_RETURN(socket, GetLocalPort(), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the address of the connected peer of a socket
 ////////////////////////////////////////////////////////////
 sfIpAddress sfTcpSocket_GetRemoteAddress(const sfTcpSocket* socket)
 {
@@ -95,16 +82,12 @@ sfIpAddress sfTcpSocket_GetRemoteAddress(const sfTcpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the port of the connected peer to which a socket is connected
-////////////////////////////////////////////////////////////
 unsigned short sfTcpSocket_GetRemotePort(const sfTcpSocket* socket)
 {
     CSFML_CALL_RETURN(socket, GetRemotePort(), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Connect a TCP socket to another computer on a specified port
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfUint32 timeout)
 {
@@ -117,16 +100,12 @@ sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsign
 
 
 ////////////////////////////////////////////////////////////
-/// Disconnect a connect from its remote peer
-////////////////////////////////////////////////////////////
 void sfTcpSocket_Disconnect(sfTcpSocket* socket)
 {
     CSFML_CALL(socket, Disconnect());
 }
 
 
-////////////////////////////////////////////////////////////
-/// Send an array of bytes to the host (must be connected first)
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_Send(sfTcpSocket* socket, const char* data, size_t size)
 {
@@ -136,8 +115,6 @@ sfSocketStatus sfTcpSocket_Send(sfTcpSocket* socket, const char* data, size_t si
 }
 
 
-////////////////////////////////////////////////////////////
-/// Receive an array of bytes from the host (must be connected first)
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_Receive(sfTcpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived)
 {
@@ -156,8 +133,6 @@ sfSocketStatus sfTcpSocket_Receive(sfTcpSocket* socket, char* data, size_t maxSi
 
 
 ////////////////////////////////////////////////////////////
-/// Send a packet of data to the host (must be connected first)
-////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_SendPacket(sfTcpSocket* socket, sfPacket* packet)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
@@ -167,8 +142,6 @@ sfSocketStatus sfTcpSocket_SendPacket(sfTcpSocket* socket, sfPacket* packet)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Receive a packet from the host (must be connected first)
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_ReceivePacket(sfTcpSocket* socket, sfPacket* packet)
 {

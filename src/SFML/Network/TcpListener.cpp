@@ -32,8 +32,6 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a new TCP socket
-////////////////////////////////////////////////////////////
 sfTcpListener* sfTcpListener_Create(void)
 {
     return new sfTcpListener;
@@ -41,54 +39,48 @@ sfTcpListener* sfTcpListener_Create(void)
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing TCP socket
-////////////////////////////////////////////////////////////
-void sfTcpListener_Destroy(sfTcpListener* socket)
+void sfTcpListener_Destroy(sfTcpListener* listener)
 {
-    delete socket;
+    delete listener;
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Change the blocking state of a TCP socket.
-/// The default behaviour of a socket is blocking
-////////////////////////////////////////////////////////////
-void sfTcpListener_SetBlocking(sfTcpListener* socket, sfBool blocking)
+void sfTcpListener_SetBlocking(sfTcpListener* listener, sfBool blocking)
 {
-    CSFML_CALL(socket, SetBlocking(blocking == sfTrue));
+    CSFML_CALL(listener, SetBlocking(blocking == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Get the blocking state of the socket
-////////////////////////////////////////////////////////////
-sfBool sfTcpListener_IsBlocking(const sfTcpListener* socket)
+sfBool sfTcpListener_IsBlocking(const sfTcpListener* listener)
 {
-    CSFML_CALL_RETURN(socket, IsBlocking(), sfFalse);
+    CSFML_CALL_RETURN(listener, IsBlocking(), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Listen to a specified port for incoming data or connections
-////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpListener_Listen(sfTcpListener* socket, unsigned short port)
+unsigned short sfTcpListener_GetLocalPort(const sfTcpListener* listener)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
-
-    return static_cast<sfSocketStatus>(socket->This.Listen(port));
+    CSFML_CALL_RETURN(listener, GetLocalPort(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Wait for a connection (must be listening to a port).
-/// This function is blocking, ie. it won't return before
-/// a connection has been accepted
-////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpListener_Accept(sfTcpListener* socket, sfTcpSocket** connected)
+sfSocketStatus sfTcpListener_Listen(sfTcpListener* listener, unsigned short port)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
+    CSFML_CHECK_RETURN(listener, sfSocketError);
+
+    return static_cast<sfSocketStatus>(listener->This.Listen(port));
+}
+
+
+////////////////////////////////////////////////////////////
+sfSocketStatus sfTcpListener_Accept(sfTcpListener* listener, sfTcpSocket** connected)
+{
+    CSFML_CHECK_RETURN(listener, sfSocketError);
     CSFML_CHECK_RETURN(connected, sfSocketError);
 
     *connected = new sfTcpSocket;
-    return static_cast<sfSocketStatus>(socket->This.Accept((*connected)->This));
+    return static_cast<sfSocketStatus>(listener->This.Accept((*connected)->This));
 }

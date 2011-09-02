@@ -32,9 +32,7 @@
 
 namespace
 {
-    ////////////////////////////////////////////////////////////
-    /// Helper function to read a variable from a packet
-    ////////////////////////////////////////////////////////////
+    // Helper function to read a variable from a packet
     template <typename T>
     T PacketRead(sfPacket* packet)
     {
@@ -45,9 +43,7 @@ namespace
         return value;
     }
 
-    ////////////////////////////////////////////////////////////
-    /// Helper function to write a variable to a packet
-    ////////////////////////////////////////////////////////////
+    // Helper function to write a variable to a packet
     template <typename T>
     void PacketWrite(sfPacket* packet, T value)
     {
@@ -59,16 +55,12 @@ namespace
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new empty packet
-////////////////////////////////////////////////////////////
 sfPacket* sfPacket_Create(void)
 {
     return new sfPacket;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Copy an existing packet
 ////////////////////////////////////////////////////////////
 sfPacket* sfPacket_Copy(sfPacket* packet)
 {
@@ -79,16 +71,12 @@ sfPacket* sfPacket_Copy(sfPacket* packet)
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing packet
-////////////////////////////////////////////////////////////
 void sfPacket_Destroy(sfPacket* packet)
 {
     delete packet;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Append data to the end of a packet
 ////////////////////////////////////////////////////////////
 void sfPacket_Append(sfPacket* packet, const void* data, size_t sizeInBytes)
 {
@@ -97,18 +85,12 @@ void sfPacket_Append(sfPacket* packet, const void* data, size_t sizeInBytes)
 
 
 ////////////////////////////////////////////////////////////
-/// Clear all the data of a packet
-///////////////////////////////////////////////////////////
 void sfPacket_Clear(sfPacket* packet)
 {
     CSFML_CALL(packet, Clear());
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get a pointer to the data contained in a packet
-/// Warning : the returned pointer may be invalid after you
-/// append data to the packet
 ////////////////////////////////////////////////////////////
 const char* sfPacket_GetData(const sfPacket* packet)
 {
@@ -117,16 +99,12 @@ const char* sfPacket_GetData(const sfPacket* packet)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the size of the data contained in a packet
-////////////////////////////////////////////////////////////
 size_t sfPacket_GetDataSize(const sfPacket* packet)
 {
     CSFML_CALL_RETURN(packet, GetDataSize(), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Tell if the reading position has reached the end of the packet
 ////////////////////////////////////////////////////////////
 sfBool sfPacket_EndOfPacket(const sfPacket* packet)
 {
@@ -135,8 +113,6 @@ sfBool sfPacket_EndOfPacket(const sfPacket* packet)
 
 
 ////////////////////////////////////////////////////////////
-/// Check if a packet is in a valid reading state
-////////////////////////////////////////////////////////////
 sfBool sfPacket_CanRead(const sfPacket* packet)
 {
     CSFML_CHECK_RETURN(packet, sfFalse);
@@ -144,11 +120,6 @@ sfBool sfPacket_CanRead(const sfPacket* packet)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Functions to extract data from a packet
-///
-/// \param Packet : Packet to read
-///
 ////////////////////////////////////////////////////////////
 sfBool   sfPacket_ReadBool(sfPacket* packet)   {return PacketRead<sfUint8>(packet);}
 sfInt8   sfPacket_ReadInt8(sfPacket* packet)   {return PacketRead<sfInt8>(packet);}
@@ -177,11 +148,6 @@ void sfPacket_ReadWideString(sfPacket* packet, wchar_t* string)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Functions to insert data into a packet
-///
-/// \param Packet : Packet to write
-///
 ////////////////////////////////////////////////////////////
 void sfPacket_WriteBool(sfPacket* packet,   sfBool value)      {PacketWrite(packet, static_cast<sfUint8>(value));}
 void sfPacket_WriteInt8(sfPacket* packet,   sfInt8 value)      {PacketWrite(packet, value);}

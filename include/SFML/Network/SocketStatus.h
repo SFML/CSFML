@@ -27,15 +27,15 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Define the status that can be returned by the socket
-/// functions
+/// \brief Define the status that can be returned by the socket functions
+///
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfSocketDone,
-    sfSocketNotReady,
-    sfSocketDisconnected,
-    sfSocketError
+    sfSocketDone,         ///< The socket has sent / received the data
+    sfSocketNotReady,     ///< The socket is not ready to send / receive data yet
+    sfSocketDisconnected, ///< The TCP socket has been disconnected
+    sfSocketError         ///< An unexpected error happened
 
 } sfSocketStatus;
 

@@ -33,36 +33,40 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new selector
+/// \brief Create a new selector
 ///
-/// \return A new sfSelector object
+/// \return A new sfSocketSelector object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketSelector* sfSocketSelector_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing selector
+/// \brief Create a new socket selector by copying an existing one
 ///
-/// \param selector : Selector to copy
+/// \param selector Socket selector to copy
 ///
-/// \return Copied object
+/// \return A new sfSocketSelector object which is a copy of \a selector
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSocketSelector* sfSocketSelector_Copy(sfSocketSelector* selector);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing selector
+/// \brief Destroy a socket selector
 ///
-/// \param selector : Selector to delete
+/// \param selector Socket selector to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSocketSelector_Destroy(sfSocketSelector* selector);
 
 ////////////////////////////////////////////////////////////
-/// Add a socket to watch to a selector
+/// \brief Add a new socket to a socket selector
 ///
-/// \param selector : Selector to add the socket to
-/// \param socket :   Socket to add
+/// This function keeps a weak pointer to the socket,
+/// so you have to make sure that the socket is not destroyed
+/// while it is stored in the selector.
+///
+/// \param selector Socket selector object
+/// \param socket   Pointer to the socket to add
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSocketSelector_AddTcpListener(sfSocketSelector* selector, sfTcpListener* socket);
@@ -70,10 +74,13 @@ CSFML_API void sfSocketSelector_AddTcpSocket(sfSocketSelector* selector, sfTcpSo
 CSFML_API void sfSocketSelector_AddUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Remove a socket from a selector
+/// \brief Remove a socket from a socket selector
 ///
-/// \param selector : Selector to remove the socket from
-/// \param socket :   Socket to remove
+/// This function doesn't destroy the socket, it simply
+/// removes the pointer that the selector has to it.
+///
+/// \param selector Socket selector object
+/// \param socket   POointer to the socket to remove
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSocketSelector_RemoveTcpListener(sfSocketSelector* selector, sfTcpListener* socket);
@@ -81,20 +88,28 @@ CSFML_API void sfSocketSelector_RemoveTcpSocket(sfSocketSelector* selector, sfTc
 CSFML_API void sfSocketSelector_RemoveUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
-/// Remove all sockets from a selector
+/// \brief Remove all the sockets stored in a selector
 ///
-/// \param selector : Selector to remove the socket from
+/// This function doesn't destroy any instance, it simply
+/// removes all the pointers that the selector has to
+/// external sockets.
+///
+/// \param selector Socket selector object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfSocketSelector_Clear(sfSocketSelector* selector);
 
 ////////////////////////////////////////////////////////////
-/// Wait and collect sockets which are ready for reading.
-/// This functions will return either when at least one socket
-/// is ready, or when the given timeout is over
+/// \brief Wait until one or more sockets are ready to receive
 ///
-/// \param selector : Selector to check
-/// \param timeout :  Maximum time to wait, in milliseconds (0 to disable timeout)
+/// This function returns as soon as at least one socket has
+/// some data available to be received. To know which sockets are
+/// ready, use the sfSocketSelector_IsXxxReady functions.
+/// If you use a timeout and no socket is ready before the timeout
+/// is over, the function returns sfFalse.
+///
+/// \param selector Socket selector object
+/// \param timeout  Maximum time to wait, in milliseconds (use 0 for infinity)
 ///
 /// \return sfTrue if there are sockets ready, sfFalse otherwise
 ///
@@ -102,12 +117,19 @@ CSFML_API void sfSocketSelector_Clear(sfSocketSelector* selector);
 CSFML_API sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfUint32 timeout);
 
 ////////////////////////////////////////////////////////////
-/// Test a socket to know if it is ready to receive data
+/// \brief Test a socket to know if it is ready to receive data
 ///
-/// \param selector : Selector to check
-/// \param socket :   Socket to test
+/// This function must be used after a call to
+/// sfSocketSelector_Wait, to know which sockets are ready to
+/// receive data. If a socket is ready, a call to Receive will
+/// never block because we know that there is data available to read.
+/// Note that if this function returns sfTrue for a sfTcpListener,
+/// this means that it is ready to accept a new connection.
 ///
-/// \return sfTrue if the socket is ready to receive data
+/// \param selector Socket selector object
+/// \param socket   Socket to test
+///
+/// \return sfTrue if the socket is ready to read, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfSocketSelector_IsTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket);

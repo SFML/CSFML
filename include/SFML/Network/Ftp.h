@@ -35,7 +35,8 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Enumerate all the FTP file transfer modes
+/// \brief Enumeration of transfer modes
+///
 ////////////////////////////////////////////////////////////
 enum sfFtpTransferMode
 {
@@ -46,8 +47,8 @@ enum sfFtpTransferMode
 
 
 ////////////////////////////////////////////////////////////
-/// Enumerate all the valid status codes returned in
-/// a FTP response
+/// \brief Status codes possibly returned by a FTP response
+///
 ////////////////////////////////////////////////////////////
 enum sfFtpStatus
 {
@@ -113,28 +114,30 @@ enum sfFtpStatus
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Ftp listing response
+/// \brief Destroy a FTP listing response
 ///
-/// \param ftpListingResponse : Ftp listing response to destroy
+/// \param ftpListingResponse Ftp listing response to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfFtpListingResponse_Destroy(sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
-/// Convenience function to check if the response status code
-/// means a success
+/// \brief Check if a FTP listing response status code means a success
 ///
-/// \param ftpListingResponse : Ftp listing response
+/// This function is defined for convenience, it is
+/// equivalent to testing if the status code is < 400.
 ///
-/// \return sfTrue if status is success (code < 400)
+/// \param ftpListingResponse Ftp listing response
+///
+/// \return sfTrue if the status is a success, sfFalse if it is a failure
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfFtpListingResponse_IsOk(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the response status code
+/// \brief Get the status code of a FTP listing response
 ///
-/// \param ftpListingResponse : Ftp listing response
+/// \param ftpListingResponse Ftp listing response
 ///
 /// \return Status code
 ///
@@ -142,9 +145,9 @@ CSFML_API sfBool sfFtpListingResponse_IsOk(const sfFtpListingResponse* ftpListin
 CSFML_API sfFtpStatus sfFtpListingResponse_GetStatus(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the full message contained in the response
+/// \brief Get the full message contained in a FTP listing response
 ///
-/// \param ftpListingResponse : Ftp listing response
+/// \param ftpListingResponse Ftp listing response
 ///
 /// \return The response message
 ///
@@ -152,49 +155,51 @@ CSFML_API sfFtpStatus sfFtpListingResponse_GetStatus(const sfFtpListingResponse*
 CSFML_API const char* sfFtpListingResponse_GetMessage(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the number of filenames in the listing
+/// \brief Return the number of filenames contained in a FTP listing response
 ///
-/// \param ftpListingResponse : Ftp listing response
+/// \param ftpListingResponse Ftp listing response
 ///
-/// \return Total number of filenames
+/// \return Total number of filenames available
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API size_t sfFtpListingResponse_GetCount(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the Index-th filename in the directory
+/// \brief Return a filename contained in a FTP listing response
 ///
-/// \param ftpListingResponse : Ftp listing response
-/// \param index :              Index of the filename to get
+/// \param ftpListingResponse Ftp listing response
+/// \param index              Index of the filename to get (in range [0 .. GetCount])
 ///
-/// \return Index-th filename
+/// \return Array containing the requested filenames
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API const char* sfFtpListingResponse_GetFilename(const sfFtpListingResponse* ftpListingResponse, size_t index);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Ftp directory response
+/// \brief Destroy a FTP directory response
 ///
-/// \param ftpDirectoryResponse : Ftp directory response to destroy
+/// \param ftpDirectoryResponse Ftp directory response to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfFtpDirectoryResponse_Destroy(sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
-/// Convenience function to check if the response status code
-/// means a success
+/// \brief Check if a FTP directory response status code means a success
 ///
-/// \param ftpDirectoryResponse : Ftp directory response
+/// This function is defined for convenience, it is
+/// equivalent to testing if the status code is < 400.
 ///
-/// \return sfTrue if status is success (code < 400)
+/// \param ftpDirectoryResponse Ftp directory response
+///
+/// \return sfTrue if the status is a success, sfFalse if it is a failure
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfFtpDirectoryResponse_IsOk(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the response status code
+/// \brief Get the status code of a FTP directory response
 ///
-/// \param ftpDirectoryResponse : Ftp directory response
+/// \param ftpDirectoryResponse Ftp directory response
 ///
 /// \return Status code
 ///
@@ -202,9 +207,9 @@ CSFML_API sfBool sfFtpDirectoryResponse_IsOk(const sfFtpDirectoryResponse* ftpDi
 CSFML_API sfFtpStatus sfFtpDirectoryResponse_GetStatus(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the full message contained in the response
+/// \brief Get the full message contained in a FTP directory response
 ///
-/// \param ftpDirectoryResponse : Ftp directory response
+/// \param ftpDirectoryResponse Ftp directory response
 ///
 /// \return The response message
 ///
@@ -212,9 +217,9 @@ CSFML_API sfFtpStatus sfFtpDirectoryResponse_GetStatus(const sfFtpDirectoryRespo
 CSFML_API const char* sfFtpDirectoryResponse_GetMessage(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the directory returned in the response
+/// \brief Get the directory returned in a FTP directory response
 ///
-/// \param ftpDirectoryResponse : Ftp directory response
+/// \param ftpDirectoryResponse Ftp directory response
 ///
 /// \return Directory name
 ///
@@ -223,28 +228,30 @@ CSFML_API const char* sfFtpDirectoryResponse_GetDirectory(const sfFtpDirectoryRe
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Ftp response
+/// \brief Destroy a FTP response
 ///
-/// \param ftpResponse : Ftp response to destroy
+/// \param ftpResponse Ftp response to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfFtpResponse_Destroy(sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Convenience function to check if the response status code
-/// means a success
+/// \brief Check if a FTP response status code means a success
 ///
-/// \param ftpResponse : Ftp response
+/// This function is defined for convenience, it is
+/// equivalent to testing if the status code is < 400.
 ///
-/// \return sfTrue if status is success (code < 400)
+/// \param ftpResponse Ftp response object
+///
+/// \return sfTrue if the status is a success, sfFalse if it is a failure
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfFtpResponse_IsOk(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the response status code
+/// \brief Get the status code of a FTP response
 ///
-/// \param ftpResponse : Ftp response
+/// \param ftpResponse Ftp response object
 ///
 /// \return Status code
 ///
@@ -252,9 +259,9 @@ CSFML_API sfBool sfFtpResponse_IsOk(const sfFtpResponse* ftpResponse);
 CSFML_API sfFtpStatus sfFtpResponse_GetStatus(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Get the full message contained in the response
+/// \brief Get the full message contained in a FTP response
 ///
-/// \param ftpResponse : Ftp response
+/// \param ftpResponse Ftp response object
 ///
 /// \return The response message
 ///
@@ -262,28 +269,37 @@ CSFML_API sfFtpStatus sfFtpResponse_GetStatus(const sfFtpResponse* ftpResponse);
 CSFML_API const char* sfFtpResponse_GetMessage(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
-/// Construct a new Ftp
+/// \brief Create a new Ftp object
 ///
-/// \return Pointer to the new Ftp
+/// \return A new sfFtp object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfFtp* sfFtp_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing Ftp
+/// \brief Destroy a Ftp object
 ///
-/// \param ftp : Ftp to destroy
+/// \param ftp Ftp object to destroy
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfFtp_Destroy(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
-/// Connect to the specified FTP server
+/// \brief Connect to the specified FTP server
 ///
-/// \param ftp :     Ftp instance
-/// \param server :  FTP server to connect to
-/// \param port :    Port used for connection (21 by default, standard FTP port)
-/// \param timeout : Maximum time to wait, in milliseconds (0 to use no timeout)
+/// The port should be 21, which is the standard
+/// port used by the FTP protocol. You shouldn't use a different
+/// value, unless you really know what you do.
+/// This function tries to connect to the server so it may take
+/// a while to complete, especially if the server is not
+/// reachable. To avoid blocking your application for too long,
+/// you can use a timeout. Using 0 means that the
+/// system timeout will be used (which is usually pretty long).
+///
+/// \param ftp     Ftp object
+/// \param server  Name or address of the FTP server to connect to
+/// \param port    Port used for the connection
+/// \param timeout Maximum time to wait, in milliseconds
 ///
 /// \return Server response to the request
 ///
@@ -291,9 +307,12 @@ CSFML_API void sfFtp_Destroy(sfFtp* ftp);
 CSFML_API sfFtpResponse* sfFtp_Connect(sfFtp* ftp, sfIpAddress server, unsigned short port, sfUint32 timeout);
 
 ////////////////////////////////////////////////////////////
-/// Log in using anonymous account
+/// \brief Log in using an anonymous account
 ///
-/// \param ftp : Ftp instance
+/// Logging in is mandatory after connecting to the server.
+/// Users that are not logged in cannot perform any operation.
+///
+/// \param ftp Ftp object
 ///
 /// \return Server response to the request
 ///
@@ -301,11 +320,14 @@ CSFML_API sfFtpResponse* sfFtp_Connect(sfFtp* ftp, sfIpAddress server, unsigned 
 CSFML_API sfFtpResponse* sfFtp_LoginAnonymous(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
-/// Log in using a username and a password
+/// \brief Log in using a username and a password
 ///
-/// \param ftp :      Ftp instance
-/// \param userName : User name
-/// \param password : Password
+/// Logging in is mandatory after connecting to the server.
+/// Users that are not logged in cannot perform any operation.
+///
+/// \param ftp      Ftp object
+/// \param name     User name
+/// \param password Password
 ///
 /// \return Server response to the request
 ///
@@ -313,9 +335,9 @@ CSFML_API sfFtpResponse* sfFtp_LoginAnonymous(sfFtp* ftp);
 CSFML_API sfFtpResponse* sfFtp_Login(sfFtp* ftp, const char* userName, const char* password);
 
 ////////////////////////////////////////////////////////////
-/// Close the connection with FTP server
+/// \brief Close the connection with the server
 ///
-/// \param ftp : Ftp instance
+/// \param ftp Ftp object
 ///
 /// \return Server response to the request
 ///
@@ -323,9 +345,12 @@ CSFML_API sfFtpResponse* sfFtp_Login(sfFtp* ftp, const char* userName, const cha
 CSFML_API sfFtpResponse* sfFtp_Disconnect(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
-/// Send a null command just to prevent from being disconnected
+/// \brief Send a null command to keep the connection alive
 ///
-/// \param ftp : Ftp instance
+/// This command is useful because the server may close the
+/// connection automatically if no command is sent.
+///
+/// \param ftp Ftp object
 ///
 /// \return Server response to the request
 ///
@@ -333,9 +358,12 @@ CSFML_API sfFtpResponse* sfFtp_Disconnect(sfFtp* ftp);
 CSFML_API sfFtpResponse* sfFtp_KeepAlive(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
-/// Get the current working directory
+/// \brief Get the current working directory
 ///
-/// \param ftp : Ftp instance
+/// The working directory is the root path for subsequent
+/// operations involving directories and/or filenames.
+///
+/// \param ftp Ftp object
 ///
 /// \return Server response to the request
 ///
@@ -343,11 +371,15 @@ CSFML_API sfFtpResponse* sfFtp_KeepAlive(sfFtp* ftp);
 CSFML_API sfFtpDirectoryResponse* sfFtp_GetWorkingDirectory(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
-/// Get the contents of the given directory
-/// (subdirectories and files)
+/// \brief Get the contents of the given directory
 ///
-/// \param ftp :       Ftp instance
-/// \param directory : Directory to list ("" by default, the current one)
+/// This function retrieves the sub-directories and files
+/// contained in the given directory. It is not recursive.
+/// The \a directory parameter is relative to the current
+/// working directory.
+///
+/// \param ftp       Ftp object
+/// \param directory Directory to list
 ///
 /// \return Server response to the request
 ///
@@ -355,10 +387,12 @@ CSFML_API sfFtpDirectoryResponse* sfFtp_GetWorkingDirectory(sfFtp* ftp);
 CSFML_API sfFtpListingResponse* sfFtp_GetDirectoryListing(sfFtp* ftp, const char* directory);
 
 ////////////////////////////////////////////////////////////
-/// Change the current working directory
+/// \brief Change the current working directory
 ///
-/// \param ftp :       Ftp instance
-/// \param directory : New directory, relative to the current one
+/// The new directory must be relative to the current one.
+///
+/// \param ftp       Ftp object
+/// \param directory New working directory
 ///
 /// \return Server response to the request
 ///
@@ -366,9 +400,9 @@ CSFML_API sfFtpListingResponse* sfFtp_GetDirectoryListing(sfFtp* ftp, const char
 CSFML_API sfFtpResponse* sfFtp_ChangeDirectory(sfFtp* ftp, const char* directory);
 
 ////////////////////////////////////////////////////////////
-/// Go to the parent directory of the current one
+/// \brief Go to the parent directory of the current one
 ///
-/// \param ftp : Ftp instance
+/// \param ftp Ftp object
 ///
 /// \return Server response to the request
 ///
@@ -376,10 +410,13 @@ CSFML_API sfFtpResponse* sfFtp_ChangeDirectory(sfFtp* ftp, const char* directory
 CSFML_API sfFtpResponse* sfFtp_ParentDirectory(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
-/// Create a new directory
+/// \brief Create a new directory
 ///
-/// \param ftp :  Ftp instance
-/// \param name : Name of the directory to create
+/// The new directory is created as a child of the current
+/// working directory.
+///
+/// \param ftp  Ftp object
+/// \param name Name of the directory to create
 ///
 /// \return Server response to the request
 ///
@@ -387,10 +424,15 @@ CSFML_API sfFtpResponse* sfFtp_ParentDirectory(sfFtp* ftp);
 CSFML_API sfFtpResponse* sfFtp_CreateDirectory(sfFtp* ftp, const char* name);
 
 ////////////////////////////////////////////////////////////
-/// Remove an existing directory
+/// \brief Remove an existing directory
 ///
-/// \param ftp :  Ftp instance
-/// \param name : Name of the directory to remove
+/// The directory to remove must be relative to the
+/// current working directory.
+/// Use this function with caution, the directory will
+/// be removed permanently!
+///
+/// \param ftp  Ftp object
+/// \param name Name of the directory to remove
 ///
 /// \return Server response to the request
 ///
@@ -398,11 +440,14 @@ CSFML_API sfFtpResponse* sfFtp_CreateDirectory(sfFtp* ftp, const char* name);
 CSFML_API sfFtpResponse* sfFtp_DeleteDirectory(sfFtp* ftp, const char* name);
 
 ////////////////////////////////////////////////////////////
-/// Rename a file
+/// \brief Rename an existing file
 ///
-/// \param ftp :     Ftp instance
-/// \param file :    File to rename
-/// \param newName : New name
+/// The filenames must be relative to the current working
+/// directory.
+///
+/// \param ftp     Ftp object
+/// \param file    File to rename
+/// \param newName New name of the file
 ///
 /// \return Server response to the request
 ///
@@ -410,10 +455,15 @@ CSFML_API sfFtpResponse* sfFtp_DeleteDirectory(sfFtp* ftp, const char* name);
 CSFML_API sfFtpResponse* sfFtp_RenameFile(sfFtp* ftp, const char* file, const char* newName);
 
 ////////////////////////////////////////////////////////////
-/// Remove an existing file
+/// \brief Remove an existing file
 ///
-/// \param ftp :  Ftp instance
-/// \param name : File to remove
+/// The file name must be relative to the current working
+/// directory.
+/// Use this function with caution, the file will be
+/// removed permanently!
+///
+/// \param ftp  Ftp object
+/// \param name File to remove
 ///
 /// \return Server response to the request
 ///
@@ -421,12 +471,17 @@ CSFML_API sfFtpResponse* sfFtp_RenameFile(sfFtp* ftp, const char* file, const ch
 CSFML_API sfFtpResponse* sfFtp_DeleteFile(sfFtp* ftp, const char* name);
 
 ////////////////////////////////////////////////////////////
-/// Download a file from the server
+/// \brief Download a file from a FTP server
 ///
-/// \param ftp :         Ftp instance
-/// \param distantFile : Path of the distant file to download
-/// \param destPath :    Where to put to file on the local computer
-/// \param mode :        Transfer mode (binary by default)
+/// The filename of the distant file is relative to the
+/// current working directory of the server, and the local
+/// destination path is relative to the current directory
+/// of your application.
+///
+/// \param ftp        Ftp object
+/// \param remoteFile Filename of the distant file to download
+/// \param localPath  Where to put to file on the local computer
+/// \param mode       Transfer mode
 ///
 /// \return Server response to the request
 ///
@@ -434,12 +489,17 @@ CSFML_API sfFtpResponse* sfFtp_DeleteFile(sfFtp* ftp, const char* name);
 CSFML_API sfFtpResponse* sfFtp_Download(sfFtp* ftp, const char* distantFile, const char* destPath, sfFtpTransferMode mode);
 
 ////////////////////////////////////////////////////////////
-/// Upload a file to the server
+/// \brief Upload a file to a FTP server
 ///
-/// \param ftp :       Ftp instance
-/// \param localFile : Path of the local file to upload
-/// \param destPath :  Where to put to file on the server
-/// \param mode :      Transfer mode (binary by default)
+/// The name of the local file is relative to the current
+/// working directory of your application, and the
+/// remote path is relative to the current directory of the
+/// FTP server.
+///
+/// \param ftp        Ftp object
+/// \param localFile  Path of the local file to upload
+/// \param remotePath Where to put to file on the server
+/// \param mode       Transfer mode
 ///
 /// \return Server response to the request
 ///
