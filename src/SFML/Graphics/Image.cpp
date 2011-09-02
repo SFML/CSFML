@@ -153,11 +153,11 @@ void sfImage_CreateMaskFromColor(sfImage* image, sfColor colorKey, sfUint8 alpha
 /// This function does a slow pixel copy and should only
 /// be used at initialization time
 ////////////////////////////////////////////////////////////
-void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect)
+void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha)
 {
     CSFML_CHECK(source);
     sf::IntRect SFMLRect(sourceRect.Left, sourceRect.Top, sourceRect.Width, sourceRect.Height);
-    CSFML_CALL(image, Copy(source->This, destX, destY, SFMLRect));
+    CSFML_CALL(image, Copy(source->This, destX, destY, SFMLRect, applyAlpha == sfTrue));
 }
 
 

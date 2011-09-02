@@ -140,9 +140,10 @@ CSFML_API void sfImage_CreateMaskFromColor(sfImage* image, sfColor colorKey, sfU
 /// \param destX :      X coordinate of the destination position
 /// \param destY :      Y coordinate of the destination position
 /// \param sourceRect : Sub-rectangle of the source image to copy
+/// \param applyAlpha : Should the copy take in account the source transparency?
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect);
+CSFML_API void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha);
 
 ////////////////////////////////////////////////////////////
 /// Change the color of a pixel of an image
