@@ -342,7 +342,7 @@ void sfRenderWindow_SetJoystickThreshold(sfRenderWindow* renderWindow, float thr
 ////////////////////////////////////////////////////////////
 sfWindowHandle sfRenderWindow_GetSystemHandle(const sfRenderWindow* renderWindow)
 {
-    CSFML_CHECK_RETURN(renderWindow, NULL);
+    CSFML_CHECK_RETURN(renderWindow, 0);
 
     return (sfWindowHandle)renderWindow->This.GetSystemHandle();
 }
@@ -477,7 +477,7 @@ void sfRenderWindow_ConvertCoords(const sfRenderWindow* renderWindow, unsigned i
 ////////////////////////////////////////////////////////////
 sfImage* sfRenderWindow_Capture(const sfRenderWindow* renderWindow)
 {
-    CSFML_CHECK(renderWindow);
+    CSFML_CHECK_RETURN(renderWindow, NULL);
 
     sfImage* image = new sfImage;
     image->This = renderWindow->This.Capture();
