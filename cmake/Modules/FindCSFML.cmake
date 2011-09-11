@@ -28,7 +28,7 @@ if(CSFML_STATIC_LIBRARIES)
 endif()
 
 # find the CSFML include directory
-find_path(CSFML_INCLUDE_DIR CSFML/Config.h
+find_path(CSFML_INCLUDE_DIR SFML/Config.h
           PATH_SUFFIXES include
           PATHS
           ~/Library/Frameworks
