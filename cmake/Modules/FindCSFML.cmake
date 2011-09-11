@@ -8,7 +8,7 @@
 #   - CSFML_XXX_FOUND, true if either the debug or release library of the xxx module is found
 # - CSFML_LIBRARIES, the list of all libraries corresponding to the required modules
 # - CSFML_FOUND, true if all the required modules are found
-# - CSFML_INCLUDE_DIR, the path where CSFML headers are located (the directory containing the CSFML/Config.hpp file)
+# - CSFML_INCLUDE_DIR, the path where CSFML headers are located (the directory containing the SFML/Config.h file)
 #
 # By default, the dynamic libraries of CSFML will be found. To find the static ones instead,
 # you must set the CSFML_STATIC_LIBRARIES variable to TRUE before calling find_package(CSFML ...).
@@ -45,11 +45,11 @@ find_path(CSFML_INCLUDE_DIR SFML/Config.h
 # check the version number
 set(CSFML_VERSION_OK TRUE)
 if(CSFML_FIND_VERSION AND CSFML_INCLUDE_DIR)
-    # extract the major and minor version numbers from CSFML/Config.hpp
-    FILE(READ "${CSFML_INCLUDE_DIR}/CSFML/Config.hpp" CSFML_CONFIG_HPP_CONTENTS)
-    STRING(REGEX MATCH ".*#define CSFML_VERSION_MAJOR ([0-9]+).*#define CSFML_VERSION_MINOR ([0-9]+).*" CSFML_CONFIG_HPP_CONTENTS "${CSFML_CONFIG_HPP_CONTENTS}")
-    STRING(REGEX REPLACE ".*#define CSFML_VERSION_MAJOR ([0-9]+).*" "\\1" CSFML_VERSION_MAJOR "${CSFML_CONFIG_HPP_CONTENTS}")
-    STRING(REGEX REPLACE ".*#define CSFML_VERSION_MINOR ([0-9]+).*" "\\1" CSFML_VERSION_MINOR "${CSFML_CONFIG_HPP_CONTENTS}")
+    # extract the major and minor version numbers from SFML/Config.h
+    FILE(READ "${CSFML_INCLUDE_DIR}/SFML/Config.h" CSFML_CONFIG_H_CONTENTS)
+    STRING(REGEX MATCH ".*#define CSFML_VERSION_MAJOR ([0-9]+).*#define CSFML_VERSION_MINOR ([0-9]+).*" CSFML_CONFIG_H_CONTENTS "${CSFML_CONFIG_H_CONTENTS}")
+    STRING(REGEX REPLACE ".*#define CSFML_VERSION_MAJOR ([0-9]+).*" "\\1" CSFML_VERSION_MAJOR "${CSFML_CONFIG_H_CONTENTS}")
+    STRING(REGEX REPLACE ".*#define CSFML_VERSION_MINOR ([0-9]+).*" "\\1" CSFML_VERSION_MINOR "${CSFML_CONFIG_H_CONTENTS}")
     math(EXPR CSFML_REQUESTED_VERSION "${CSFML_FIND_VERSION_MAJOR} * 10 + ${CSFML_FIND_VERSION_MINOR}")
 
     # if we could extract them, compare with the requested version number
@@ -86,11 +86,11 @@ set(FIND_CSFML_LIB_PATHS ~/Library/Frameworks
 foreach(FIND_CSFML_COMPONENT ${CSFML_FIND_COMPONENTS})
     string(TOLOWER ${FIND_CSFML_COMPONENT} FIND_CSFML_COMPONENT_LOWER)
     string(TOUPPER ${FIND_CSFML_COMPONENT} FIND_CSFML_COMPONENT_UPPER)
-    set(FIND_CSFML_COMPONENT_NAME CSFML-${FIND_CSFML_COMPONENT_LOWER}${FIND_CSFML_LIB_SUFFIX})
+    set(FIND_CSFML_COMPONENT_NAME csfml-${FIND_CSFML_COMPONENT_LOWER}${FIND_CSFML_LIB_SUFFIX})
 
-    # no suffix for CSFML-main, it is always a static library
+    # no suffix for csfml-main, it is always a static library
     if(FIND_CSFML_COMPONENT_LOWER STREQUAL "main")
-        set(FIND_CSFML_COMPONENT_NAME CSFML-${FIND_CSFML_COMPONENT_LOWER})
+        set(FIND_CSFML_COMPONENT_NAME csfml-${FIND_CSFML_COMPONENT_LOWER})
     endif()
 
     # debug library
