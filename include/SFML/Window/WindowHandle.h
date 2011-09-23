@@ -39,7 +39,7 @@
 
     // Window handle is HWND (HWND__*) on Windows
     struct HWND__;
-    typedef HWND__* sfWindowHandle;
+    typedef struct HWND__* sfWindowHandle;
 
 #elif defined(CSFML_SYSTEM_LINUX) || defined(CSFML_SYSTEM_FREEBSD)
 
