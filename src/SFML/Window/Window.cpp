@@ -32,7 +32,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_Create(sfVideoMode mode, const char* title, unsigned long style, const sfContextSettings* settings)
+sfWindow* sfWindow_Create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings)
 {
     // Convert video mode
     sf::VideoMode videoMode(mode.Width, mode.Height, mode.BitsPerPixel);

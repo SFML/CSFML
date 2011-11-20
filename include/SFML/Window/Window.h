@@ -85,7 +85,7 @@ typedef struct
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfWindow* sfWindow_Create(sfVideoMode mode, const char* title, unsigned long style, const sfContextSettings* settings);
+CSFML_API sfWindow* sfWindow_Create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control

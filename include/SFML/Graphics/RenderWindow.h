@@ -47,7 +47,7 @@
 /// \param settings : Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfRenderWindow* sfRenderWindow_Create(sfVideoMode mode, const char* title, unsigned long style, const sfContextSettings* settings);
+CSFML_API sfRenderWindow* sfRenderWindow_Create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// Construct a renderwindow from an existing control

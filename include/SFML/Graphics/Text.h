@@ -356,7 +356,7 @@ CSFML_API void sfText_SetCharacterSize(sfText* text, unsigned int size);
 /// \param style : New style (see sfTextStyle enum)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetStyle(sfText* text, unsigned long style);
+CSFML_API void sfText_SetStyle(sfText* text, sfUint32 style);
 
 ////////////////////////////////////////////////////////////
 /// Get the string of a text (returns a unicode string)
@@ -406,7 +406,7 @@ CSFML_API unsigned int sfText_GetCharacterSize(const sfText* text);
 /// \return Current string style (see sfTextStyle enum)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned long sfText_GetStyle(const sfText* text);
+CSFML_API sfUint32 sfText_GetStyle(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// Return the visual position of the Index-th character of the text,

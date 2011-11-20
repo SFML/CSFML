@@ -340,7 +340,7 @@ void sfText_SetCharacterSize(sfText* text, unsigned int size)
 ////////////////////////////////////////////////////////////
 /// Set the style of a string
 ////////////////////////////////////////////////////////////
-void sfText_SetStyle(sfText* text, unsigned long style)
+void sfText_SetStyle(sfText* text, sfUint32 style)
 {
     CSFML_CALL(text, SetStyle(style))
 }
@@ -393,7 +393,7 @@ unsigned int sfText_GetCharacterSize(const sfText* text)
 ////////////////////////////////////////////////////////////
 /// Get the style of a text
 ////////////////////////////////////////////////////////////
-unsigned long sfText_GetStyle(const sfText* text)
+sfUint32 sfText_GetStyle(const sfText* text)
 {
     CSFML_CALL_RETURN(text, GetStyle(), 0)
 }
