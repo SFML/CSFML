@@ -100,13 +100,21 @@ sfIpAddress sfIpAddress_GetPublicAddress(sfUint32 timeout)
 
 
 ////////////////////////////////////////////////////////////
+sfIpAddress sfIpAddress_None(void)
+{
+    return FromSFMLAddress(sf::IpAddress::None);
+}
+
+
+////////////////////////////////////////////////////////////
 sfIpAddress sfIpAddress_LocalHost(void)
 {
     return FromSFMLAddress(sf::IpAddress::LocalHost);
 }
 
+
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_None(void)
+sfIpAddress sfIpAddress_Broadcast(void)
 {
-    return FromSFMLAddress(sf::IpAddress::None);
+    return FromSFMLAddress(sf::IpAddress::Broadcast);
 }

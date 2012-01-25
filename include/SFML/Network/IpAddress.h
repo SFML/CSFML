@@ -154,6 +154,14 @@ CSFML_API sfIpAddress sfIpAddress_GetLocalAddress(void);
 CSFML_API sfIpAddress sfIpAddress_GetPublicAddress(sfUint32 timeout);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the empty/invalid address
+///
+/// \return Empty object that represents invalid addresses
+///
+////////////////////////////////////////////////////////////
+CSFML_API sfIpAddress sfIpAddress_None(void);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the computer's loopback address
 ///
 /// \return Local host IP address (127.0.0.1, or "localhost")
@@ -162,12 +170,12 @@ CSFML_API sfIpAddress sfIpAddress_GetPublicAddress(sfUint32 timeout);
 CSFML_API sfIpAddress sfIpAddress_LocalHost(void);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the empty/invalid address
+/// \brief Get the UDP broadcast address
 ///
-/// \return Empty object that represents invalid addresses
+/// \return Broadcast IP address (255.255.255.255)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_None(void);
+CSFML_API sfIpAddress sfIpAddress_Broadcast(void);
 
 
 #endif // SFML_IPADDRESS_H
