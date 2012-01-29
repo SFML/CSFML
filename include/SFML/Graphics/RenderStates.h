@@ -22,30 +22,27 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTSTRUCT_H
-#define SFML_TEXTSTRUCT_H
+#ifndef SFML_RENDERSTATES_H
+#define SFML_RENDERSTATES_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/FontStruct.h>
-#include <SFML/Graphics/Rect.h>
-#include <SFML/Graphics/TransformStruct.h>
-#include <string>
+#include <SFML/Graphics/BlendMode.h>
+#include <SFML/Graphics/Types.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfText
+/// \brief Define the states used for drawing to a RenderTarget
+///
 ////////////////////////////////////////////////////////////
-struct sfText
+typedef struct
 {
-    sf::Text            This;
-    const sfFont*       Font;
-    mutable std::string String;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
-};
+    sfBlendMode      BlendMode; ///< Blending mode
+    sfTransform*     Transform; ///< Transform
+    const sfTexture* Texture;   ///< Texture
+    const sfShader*  Shader;    ///< Shader
+} sfRenderStates;
 
 
-#endif // SFML_TEXTSTRUCT_H
+#endif // SFML_RENDERSTATES_H

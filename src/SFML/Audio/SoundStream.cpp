@@ -33,11 +33,11 @@
 ////////////////////////////////////////////////////////////
 sfSoundStream* sfSoundStream_Create(sfSoundStreamGetDataCallback onGetData,
                                     sfSoundStreamSeekCallback    onSeek,
-                                    unsigned int                 channelsCount,
+                                    unsigned int                 channelCount,
                                     unsigned int                 sampleRate,
                                     void*                        userData)
 {
-    return new sfSoundStream(onGetData, onSeek, channelsCount, sampleRate, userData);
+    return new sfSoundStream(onGetData, onSeek, channelCount, sampleRate, userData);
 }
 
 
@@ -79,9 +79,9 @@ sfSoundStatus sfSoundStream_GetStatus(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfSoundStream_GetChannelsCount(const sfSoundStream* soundStream)
+unsigned int sfSoundStream_GetChannelCount(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, GetChannelsCount(), 0);
+    CSFML_CALL_RETURN(soundStream, GetChannelCount(), 0);
 }
 
 

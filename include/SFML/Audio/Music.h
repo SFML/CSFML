@@ -173,7 +173,7 @@ CSFML_API void sfMusic_Stop(sfMusic* music);
 /// \return Number of channels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfMusic_GetChannelsCount(const sfMusic* music);
+CSFML_API unsigned int sfMusic_GetChannelCount(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the sample rate of a music

@@ -22,30 +22,27 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTSTRUCT_H
-#define SFML_TEXTSTRUCT_H
+#ifndef SFML_CONVEXSHAPESTRUCT_H
+#define SFML_CONVEXSHAPESTRUCT_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/FontStruct.h>
-#include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/ConvexShape.hpp>
+#include <SFML/Graphics/TextureStruct.h>
 #include <SFML/Graphics/TransformStruct.h>
-#include <string>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfText
+// Internal structure of sfConvexShape
 ////////////////////////////////////////////////////////////
-struct sfText
+struct sfConvexShape
 {
-    sf::Text            This;
-    const sfFont*       Font;
-    mutable std::string String;
+    sf::ConvexShape     This;
+    const sfTexture*    Texture;
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;
 };
 
 
-#endif // SFML_TEXTSTRUCT_H
+#endif // SFML_CONVEXSHAPESTRUCT_H

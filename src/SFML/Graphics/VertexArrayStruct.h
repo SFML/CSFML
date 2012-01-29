@@ -22,22 +22,22 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SHAPESTRUCT_H
-#define SFML_SHAPESTRUCT_H
+#ifndef SFML_VERTEXARRAYSTRUCT_H
+#define SFML_VERTEXARRAYSTRUCT_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Shape.hpp>
+#include <SFML/Graphics/VertexArray.hpp>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfShape
+// Internal structure of sfVertexArray
 ////////////////////////////////////////////////////////////
-struct sfShape
+struct sfVertexArray
 {
-    sf::Shape This;
+    sf::VertexArray This;
 };
 
 
-#endif // SFML_SHAPESTRUCT_H
+#endif // SFML_VERTEXARRAYSTRUCT_H

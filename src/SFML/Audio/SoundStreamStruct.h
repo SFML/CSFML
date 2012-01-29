@@ -39,35 +39,35 @@ class sfSoundStreamImpl : public sf::SoundStream
 {
 public :
 
-    sfSoundStreamImpl(sfSoundStreamGetDataCallback OnGetData,
-                      sfSoundStreamSeekCallback    OnSeek,
-                      unsigned int                 ChannelsCount,
-                      unsigned int                 SampleRate,
-                      void*                        UserData) :
-    myGetDataCallback(OnGetData),
-    mySeekCallback   (OnSeek),
-    myUserData       (UserData)
+    sfSoundStreamImpl(sfSoundStreamGetDataCallback onGetData,
+                      sfSoundStreamSeekCallback    onSeek,
+                      unsigned int                 channelCount,
+                      unsigned int                 sampleRate,
+                      void*                        userData) :
+    myGetDataCallback(onGetData),
+    mySeekCallback   (onSeek),
+    myUserData       (userData)
     {
-        Initialize(ChannelsCount, SampleRate);
+        Initialize(channelCount, sampleRate);
     }
 
 private :
 
-    virtual bool OnGetData(Chunk& Data)
+    virtual bool OnGetData(Chunk& data)
     {
-        sfSoundStreamChunk Chunk = {NULL, 0};
-        bool Continue = (myGetDataCallback(&Chunk, myUserData) == sfTrue);
+        sfSoundStreamChunk chunk = {NULL, 0};
+        bool ok = (myGetDataCallback(&chunk, myUserData) == sfTrue);
 
-        Data.Samples   = Chunk.Samples;
-        Data.NbSamples = Chunk.NbSamples;
+        data.Samples     = chunk.Samples;
+        data.SampleCount = chunk.SampleCount;
 
-        return Continue;
+        return ok;
     }
 
-    virtual void OnSeek(sfUint32 TimeOffset)
+    virtual void OnSeek(sfUint32 timeOffset)
     {
         if (mySeekCallback)
-            mySeekCallback(TimeOffset, myUserData);
+            mySeekCallback(timeOffset, myUserData);
     }
 
     sfSoundStreamGetDataCallback myGetDataCallback;
@@ -81,12 +81,12 @@ private :
 ////////////////////////////////////////////////////////////
 struct sfSoundStream
 {
-    sfSoundStream(sfSoundStreamGetDataCallback OnGetData,
-                  sfSoundStreamSeekCallback    OnSeek,
-                  unsigned int                 ChannelsCount,
-                  unsigned int                 SampleRate,
-                  void*                        UserData) :
-    This(OnGetData, OnSeek, ChannelsCount, SampleRate, UserData)
+    sfSoundStream(sfSoundStreamGetDataCallback onGetData,
+                  sfSoundStreamSeekCallback    onSeek,
+                  unsigned int                 channelCount,
+                  unsigned int                 sampleRate,
+                  void*                        userData) :
+    This(onGetData, onSeek, channelCount, sampleRate, userData)
     {
     }
 

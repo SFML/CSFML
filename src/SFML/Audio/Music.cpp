@@ -125,9 +125,9 @@ void sfMusic_Stop(sfMusic* music)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfMusic_GetChannelsCount(const sfMusic* music)
+unsigned int sfMusic_GetChannelCount(const sfMusic* music)
 {
-    CSFML_CALL_RETURN(music, GetChannelsCount(), 0);
+    CSFML_CALL_RETURN(music, GetChannelCount(), 0);
 }
 
 

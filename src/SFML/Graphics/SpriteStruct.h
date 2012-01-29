@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Sprite.hpp>
 #include <SFML/Graphics/TextureStruct.h>
+#include <SFML/Graphics/TransformStruct.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -37,8 +38,10 @@
 ////////////////////////////////////////////////////////////
 struct sfSprite
 {
-    sf::Sprite       This;
-    const sfTexture* Texture;
+    sf::Sprite          This;
+    const sfTexture*    Texture;
+    mutable sfTransform Transform;
+    mutable sfTransform InverseTransform;
 };
 
 

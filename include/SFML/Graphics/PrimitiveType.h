@@ -22,30 +22,33 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTSTRUCT_H
-#define SFML_TEXTSTRUCT_H
+#ifndef SFML_PRIMITIVETYPE_H
+#define SFML_PRIMITIVETYPE_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/FontStruct.h>
-#include <SFML/Graphics/Rect.h>
-#include <SFML/Graphics/TransformStruct.h>
-#include <string>
+#include <SFML/Config.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfText
+/// \brief Types of primitives that a sf::VertexArray can render
+///
+/// Points and lines have no area, therefore their thickness
+/// will always be 1 pixel, regarldess the current transform
+/// and view.
+///
 ////////////////////////////////////////////////////////////
-struct sfText
+typedef enum 
 {
-    sf::Text            This;
-    const sfFont*       Font;
-    mutable std::string String;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
-};
+    sfPoints,         ///< List of individual points
+    sfLines,          ///< List of individual lines
+    sfLinesStrip,     ///< List of connected lines, a point uses the previous point to form a line
+    sfTriangles,      ///< List of individual triangles
+    sfTrianglesStrip, ///< List of connected triangles, a point uses the two previous points to form a triangle
+    sfTrianglesFan,   ///< List of connected triangles, a point uses the common center and the previous point to form a triangle
+    sfQuads           ///< List of individual quads
+} sfPrimitiveType;
 
 
-#endif // SFML_TEXTSTRUCT_H
+#endif // SFML_BLENDMODE_H

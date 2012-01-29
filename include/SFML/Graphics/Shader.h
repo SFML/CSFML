@@ -29,137 +29,315 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.h>
+#include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/InputStream.h>
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new shader from a file
+/// \brief Load both the vertex and fragment shaders from files
 ///
-/// \param filename : File to load
+/// This function can load both the vertex and the fragment
+/// shaders, or only one of them: pass NULL if you don't want to load
+/// either the vertex shader or the fragment shader.
+/// The sources must be text files containing valid shaders
+/// in GLSL language. GLSL is a C-like language dedicated to
+/// OpenGL shaders; you'll probably need to read a good documentation
+/// for it before writing your own shaders.
 ///
-/// \return A new sfShader object, or NULL if it failed
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfShader* sfShader_CreateFromFile(const char* filename);
-
-////////////////////////////////////////////////////////////
-/// Create a new shader from an effect source code
-///
-/// \param effect : Source code of the effect
-///
-/// \return A new sfShader object, or NULL if it failed
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfShader* sfShader_CreateFromMemory(const char* effect);
-
-////////////////////////////////////////////////////////////
-/// Create a new shader from a custom stream
-///
-/// \param stream : Source stream to read from
+/// \param vertexShaderFilename   Path of the vertex shader file to load, or NULL to skip this shader
+/// \param fragmentShaderFilename Path of the fragment shader file to load, or NULL to skip this shader
 ///
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfShader* sfShader_CreateFromStream(sfInputStream* stream);
+CSFML_API sfShader* sfShader_CreateFromFile(const char* vertexShaderFilename, const char* fragmentShaderFilename);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing shader
+/// \brief Load both the vertex and fragment shaders from source codes in memory
 ///
-/// \param shader : Shader to copy
+/// This function can load both the vertex and the fragment
+/// shaders, or only one of them: pass NULL if you don't want to load
+/// either the vertex shader or the fragment shader.
+/// The sources must be valid shaders in GLSL language. GLSL is
+/// a C-like language dedicated to OpenGL shaders; you'll
+/// probably need to read a good documentation for it before
+/// writing your own shaders.
 ///
-/// \return Copied object
+/// \param vertexShader   String containing the source code of the vertex shader, or NULL to skip this shader
+/// \param fragmentShader String containing the source code of the fragment shader, or NULL to skip this shader
+///
+/// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfShader* sfShader_Copy(sfShader* shader);
+CSFML_API sfShader* sfShader_CreateFromMemory(const char* vertexShader, const char* fragmentShader);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing shader
+/// \brief Load both the vertex and fragment shaders from custom streams
 ///
-/// \param shader : Shader to delete
+/// This function can load both the vertex and the fragment
+/// shaders, or only one of them: pass NULL if you don't want to load
+/// either the vertex shader or the fragment shader.
+/// The source codes must be valid shaders in GLSL language.
+/// GLSL is a C-like language dedicated to OpenGL shaders;
+/// you'll probably need to read a good documentation for
+/// it before writing your own shaders.
+///
+/// \param vertexShaderStream   Source stream to read the vertex shader from, or NULL to skip this shader
+/// \param fragmentShaderStream Source stream to read the fragment shader from, or NULL to skip this shader
+///
+/// \return A new sfShader object, or NULL if it failed
+///
+////////////////////////////////////////////////////////////
+CSFML_API sfShader* sfShader_CreateFromStream(sfInputStream* vertexShaderStream, sfInputStream* fragmentShaderStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Destroy an existing shader
+///
+/// \param shader Shader to delete
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfShader_Destroy(sfShader* shader);
 
 ////////////////////////////////////////////////////////////
-/// Change a parameter of a shader (1 float)
+/// \brief Change a float parameter of a shader
 ///
-/// \param shader : Shader to modify
-/// \param name :   Parameter name in the effect
-/// \param x :      Value to assign
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a float
+/// (float GLSL type).
+///
+/// Example:
+/// \code
+/// uniform float myparam; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfShader_SetFloatParameter(shader, "myparam", 5.2f);
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the parameter in the shader
+/// \param x      Value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfShader_SetParameter1(sfShader* shader, const char* name, float x);
+CSFML_API void sfShader_SetFloatParameter(sfShader* shader, const char* name, float x);
 
 ////////////////////////////////////////////////////////////
-/// Change a parameter of a shader (2 floats)
+/// \brief Change a 2-components vector parameter of a shader
 ///
-/// \param shader : Shader to modify
-/// \param name :   Parameter name in the effect
-/// \param x, y :   Values to assign
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 2x1 vector
+/// (vec2 GLSL type).
+///
+/// Example:
+/// \code
+/// uniform vec2 myparam; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfShader_SetFloat2Parameter(shader, "myparam", 5.2f, 6.0f);
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the parameter in the shader
+/// \param x      First component of the value to assign
+/// \param y      Second component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfShader_SetParameter2(sfShader* shader, const char* name, float x, float y);
+CSFML_API void sfShader_SetFloat2Parameter(sfShader* shader, const char* name, float x, float y);
 
 ////////////////////////////////////////////////////////////
-/// Change a parameter of a shader (3 floats)
+/// \brief Change a 3-components vector parameter of a shader
 ///
-/// \param shader :  Shader to modify
-/// \param name :    Parameter name in the effect
-/// \param x, y, z : Values to assign
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 3x1 vector
+/// (vec3 GLSL type).
+///
+/// Example:
+/// \code
+/// uniform vec3 myparam; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfShader_SetFloat3Parameter(shader, "myparam", 5.2f, 6.0f, -8.1f);
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the parameter in the shader
+/// \param x      First component of the value to assign
+/// \param y      Second component of the value to assign
+/// \param z      Third component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfShader_SetParameter3(sfShader* shader, const char* name, float x, float y, float z);
+CSFML_API void sfShader_SetFloat3Parameter(sfShader* shader, const char* name, float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
-/// Change a parameter of a shader (4 floats)
+/// \brief Change a 4-components vector parameter of a shader
 ///
-/// \param shader :     Shader to modify
-/// \param name :       Parameter name in the effect
-/// \param x, y, z, w : Values to assign
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 4x1 vector
+/// (vec4 GLSL type).
+///
+/// Example:
+/// \code
+/// uniform vec4 myparam; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfShader_SetFloat4Parameter(shader, "myparam", 5.2f, 6.0f, -8.1f, 0.4f);
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the parameter in the shader
+/// \param x      First component of the value to assign
+/// \param y      Second component of the value to assign
+/// \param z      Third component of the value to assign
+/// \param w      Fourth component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfShader_SetParameter4(sfShader* shader, const char* name, float x, float y, float z, float w);
+CSFML_API void sfShader_SetFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w);
 
 ////////////////////////////////////////////////////////////
-/// Set a texture parameter in a shader
+/// \brief Change a color parameter of a shader
 ///
-/// \param shader :  Shader to modify
-/// \param name :    Texture name in the effect
-/// \param texture : Texture to set
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 4x1 vector
+/// (vec4 GLSL type).
+///
+/// It is important to note that the components of the color are
+/// normalized before being passed to the shader. Therefore,
+/// they are converted from range [0 .. 255] to range [0 .. 1].
+/// For example, a sf::Color(255, 125, 0, 255) will be transformed
+/// to a vec4(1.0, 0.5, 0.0, 1.0) in the shader.
+///
+/// Example:
+/// \code
+/// uniform vec4 color; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfShader_SetColorParameter(shader, "color", sfColor_FromRGB(255, 128, 0));
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the parameter in the shader
+/// \param color  Color to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfShader_SetTexture(sfShader* shader, const char* name, const sfTexture* texture);
+CSFML_API void sfShader_SetColorParameter(sfShader* shader, const char* name, sfColor color);
 
 ////////////////////////////////////////////////////////////
-/// Set the current texture parameter in a shader
+/// \brief Change a matrix parameter of a shader
 ///
-/// \param shader : Shader to modify
-/// \param name :   Texture name in the effect
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 4x4 matrix
+/// (mat4 GLSL type).
+///
+/// Example:
+/// \code
+/// uniform mat4 matrix; // this is the variable in the shader
+/// \endcode
+/// \code
+/// @todo
+/// sfShader_SetTransformParameter(shader, "matrix", transform);
+/// \endcode
+///
+/// \param shader    Shader object
+/// \param name      Name of the parameter in the shader
+/// \param transform Transform to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfShader_SetCurrentTexture(sfShader* shader, const char* name);
+CSFML_API void sfShader_SetTransformParameter(sfShader* shader, const char* name, const sfTransform* transform);
 
 ////////////////////////////////////////////////////////////
-/// Bind a shader for rendering
+/// \brief Change a texture parameter of a shader
 ///
-/// \param shader : Shader to bind
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 2D texture
+/// (sampler2D GLSL type).
+///
+/// Example:
+/// \code
+/// uniform sampler2D the_texture; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sf::Texture texture;
+/// ...
+/// sfShader_SetTextureParameter(shader, "the_texture", texture);
+/// \endcode
+/// It is important to note that \a texture must remain alive as long
+/// as the shader uses it, no copy is made internally.
+///
+/// To use the texture of the object being draw, which cannot be
+/// known in advance, you can use the special function
+/// sfShader_SetCurrentTextureParameter:
+/// \code
+/// sfShader_SetCurrentTextureParameter(shader, "the_texture").
+/// \endcode
+///
+/// \param shader  Shader object
+/// \param name    Name of the texture in the shader
+/// \param texture Texture to assign
+///
+////////////////////////////////////////////////////////////
+CSFML_API void sfShader_SetTextureParameter(sfShader* shader, const char* name, const sfTexture* texture);
+
+////////////////////////////////////////////////////////////
+/// \brief Change a texture parameter of a shader
+///
+/// This function maps a shader texture variable to the
+/// texture of the object being drawn, which cannot be
+/// known in advance.
+/// The corresponding parameter in the shader must be a 2D texture
+/// (sampler2D GLSL type).
+///
+/// Example:
+/// \code
+/// uniform sampler2D current; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfShader_SetCurrentTextureParameter(shader, "current");
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the texture in the shader
+///
+////////////////////////////////////////////////////////////
+CSFML_API void sfShader_SetCurrentTextureParameter(sfShader* shader, const char* name);
+
+////////////////////////////////////////////////////////////
+/// \brief Bind a shader for rendering (activate it)
+///
+/// This function is normally for internal use only, unless
+/// you want to use the shader with a custom OpenGL rendering
+/// instead of a SFML drawable.
+/// \code
+/// sfWindow_SetActive(window, sfTrue);
+/// sfShader_Bind(shader);
+/// ... render OpenGL geometry ...
+/// sfShader_Unbind(shader);
+/// \endcode
+///
+/// \param shader Shader to bind
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfShader_Bind(const sfShader* shader);
 
 ////////////////////////////////////////////////////////////
-/// Unbind a shader
+/// \brief Unbind a shader (deactivate it)
 ///
-/// \param shader : Shader to unbind
+/// This function is normally for internal use only, unless
+/// you want to use the shader with a custom OpenGL rendering
+/// instead of a SFML drawable.
+///
+/// \param shader Shader to unbind
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfShader_Unbind(const sfShader* shader);
 
 ////////////////////////////////////////////////////////////
-/// Tell whether or not the system supports shaders
+/// \brief Tell whether or not the system supports shaders
 ///
-/// \return sfTrue if the system can use shaders
+/// This function should always be called before using
+/// the shader features. If it returns false, then
+/// any attempt to use sfShader will fail.
+///
+/// \return sfTrue if the system can use shaders, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfBool sfShader_IsAvailable(void);

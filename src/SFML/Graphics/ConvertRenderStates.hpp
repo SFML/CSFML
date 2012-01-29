@@ -22,30 +22,39 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTSTRUCT_H
-#define SFML_TEXTSTRUCT_H
+#ifndef SFML_CONVERTRENDERSTATES_H
+#define SFML_CONVERTRENDERSTATES_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/FontStruct.h>
-#include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/RenderStates.h>
+#include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/TransformStruct.h>
-#include <string>
+#include <SFML/Graphics/TextureStruct.h>
+#include <SFML/Graphics/ShaderStruct.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfText
+// Convert sfRenderStates* to sf::RenderStates
 ////////////////////////////////////////////////////////////
-struct sfText
+inline sf::RenderStates ConvertRenderStates(const sfRenderStates* states)
 {
-    sf::Text            This;
-    const sfFont*       Font;
-    mutable std::string String;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
-};
+    if (!states)
+    {
+        return sf::RenderStates::Default;
+    }
+    else
+    {
+        sf::RenderStates sfmlStates;
+        sfmlStates.BlendMode = static_cast<sf::BlendMode>(states->BlendMode);
+        sfmlStates.Transform = states->Transform ? states->Transform->This : sf::Transform::Identity;
+        sfmlStates.Texture = states->Texture ? states->Texture->This : NULL;
+        sfmlStates.Shader = states->Shader ? &states->Shader->This : NULL;
+
+        return sfmlStates;
+    }
+}
 
 
-#endif // SFML_TEXTSTRUCT_H
+#endif // SFML_CONVERTRENDERSTATES_H

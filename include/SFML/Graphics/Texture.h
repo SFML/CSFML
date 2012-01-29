@@ -37,10 +37,10 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new texture
+/// \brief Create a new texture
 ///
-/// \param width :  Texture width
-/// \param height : Texture height
+/// \param width  Texture width
+/// \param height Texture height
 ///
 /// \return A new sfTexture object, or NULL if it failed
 ///
@@ -48,10 +48,10 @@
 CSFML_API sfTexture* sfTexture_Create(unsigned int width, unsigned int height);
 
 ////////////////////////////////////////////////////////////
-/// Create a new texture from a file
+/// \brief Create a new texture from a file
 ///
-/// \param filename : Path of the image file to load
-/// \param area : Area of the source image to load (NULL to load the entire image)
+/// \param filename Path of the image file to load
+/// \param area     Area of the source image to load (NULL to load the entire image)
 ///
 /// \return A new sfTexture object, or NULL if it failed
 ///
@@ -59,11 +59,11 @@ CSFML_API sfTexture* sfTexture_Create(unsigned int width, unsigned int height);
 CSFML_API sfTexture* sfTexture_CreateFromFile(const char* filename, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
-/// Create a new texture from a file in memory
+/// \brief Create a new texture from a file in memory
 ///
-/// \param data :        Pointer to the file data in memory
-/// \param sizeInBytes : Size of the data to load, in bytes
-/// \param area : Area of the source image to load (NULL to load the entire image)
+/// \param data        Pointer to the file data in memory
+/// \param sizeInBytes Size of the data to load, in bytes
+/// \param area        Area of the source image to load (NULL to load the entire image)
 ///
 /// \return A new sfTexture object, or NULL if it failed
 ///
@@ -71,10 +71,10 @@ CSFML_API sfTexture* sfTexture_CreateFromFile(const char* filename, const sfIntR
 CSFML_API sfTexture* sfTexture_CreateFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
-/// Create a new texture from a custom stream
+/// \brief Create a new texture from a custom stream
 ///
-/// \param stream : Source stream to read from
-/// \param area : Area of the source image to load (NULL to load the entire image)
+/// \param stream Source stream to read from
+/// \param area   Area of the source image to load (NULL to load the entire image)
 ///
 /// \return A new sfTexture object, or NULL if it failed
 ///
@@ -82,10 +82,10 @@ CSFML_API sfTexture* sfTexture_CreateFromMemory(const void* data, size_t sizeInB
 CSFML_API sfTexture* sfTexture_CreateFromStream(sfInputStream* stream, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
-/// Create a new texture from an image
+/// \brief Create a new texture from an image
 ///
-/// \param image : Image to upload to the texture
-/// \param area : Area of the source image to load (NULL to load the entire image)
+/// \param image Image to upload to the texture
+/// \param area  Area of the source image to load (NULL to load the entire image)
 ///
 /// \return A new sfTexture object, or NULL if it failed
 ///
@@ -93,9 +93,9 @@ CSFML_API sfTexture* sfTexture_CreateFromStream(sfInputStream* stream, const sfI
 CSFML_API sfTexture* sfTexture_CreateFromImage(const sfImage* image, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing texture
+/// \brief Copy an existing texture
 ///
-/// \param texture : Texture to copy
+/// \param texture Texture to copy
 ///
 /// \return Copied object
 ///
@@ -103,17 +103,17 @@ CSFML_API sfTexture* sfTexture_CreateFromImage(const sfImage* image, const sfInt
 CSFML_API sfTexture* sfTexture_Copy(sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing texture
+/// \brief Destroy an existing texture
 ///
-/// \param texture : Texture to delete
+/// \param texture Texture to delete
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTexture_Destroy(sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// Return the width of the texture
+/// \brief Return the width of the texture
 ///
-/// \param texture : Texture to read
+/// \param texture Texture to read
 ///
 /// \return Width in pixels
 ///
@@ -121,9 +121,9 @@ CSFML_API void sfTexture_Destroy(sfTexture* texture);
 CSFML_API unsigned int sfTexture_GetWidth(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// Return the height of the texture
+/// \brief Return the height of the texture
 ///
-/// \param texture : Texture to read
+/// \param texture Texture to read
 ///
 /// \return Height in pixels
 ///
@@ -131,9 +131,9 @@ CSFML_API unsigned int sfTexture_GetWidth(const sfTexture* texture);
 CSFML_API unsigned int sfTexture_GetHeight(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// Copy a texture's pixels to an image
+/// \brief Copy a texture's pixels to an image
 ///
-/// \param texture : Texture to copy
+/// \param texture Texture to copy
 ///
 /// \return Image containing the texture's pixels
 ///
@@ -141,72 +141,72 @@ CSFML_API unsigned int sfTexture_GetHeight(const sfTexture* texture);
 CSFML_API sfImage* sfTexture_CopyToImage(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// Update a texture from an array of pixels
+/// \brief Update a texture from an array of pixels
 ///
-/// \param texture : Texture to update
-/// \param pixels : Array of pixels to copy to the texture
-/// \param width : Width of the pixel region contained in \a pixels
-/// \param height : Height of the pixel region contained in \a pixels
-/// \param x : X offset in the texture where to copy the source pixels
-/// \param y : Y offset in the texture where to copy the source pixels
+/// \param texture Texture to update
+/// \param pixels  Array of pixels to copy to the texture
+/// \param width   Width of the pixel region contained in \a pixels
+/// \param height  Height of the pixel region contained in \a pixels
+/// \param x       X offset in the texture where to copy the source pixels
+/// \param y       Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTexture_UpdateFromPixels(sfTexture* texture, const sfUint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
-/// Update a texture from an image
+/// \brief Update a texture from an image
 ///
-/// \param texture : Texture to update
-/// \param image : Image to copy to the texture
-/// \param x : X offset in the texture where to copy the source pixels
-/// \param y : Y offset in the texture where to copy the source pixels
+/// \param texture Texture to update
+/// \param image   Image to copy to the texture
+/// \param x       X offset in the texture where to copy the source pixels
+/// \param y       Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTexture_UpdateFromImage(sfTexture* texture, const sfImage* image, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
-/// Update a texture from the contents of a window
+/// \brief Update a texture from the contents of a window
 ///
-/// \param texture : Texture to update
-/// \param window : Window to copy to the texture
-/// \param x : X offset in the texture where to copy the source pixels
-/// \param y : Y offset in the texture where to copy the source pixels
+/// \param texture Texture to update
+/// \param window  Window to copy to the texture
+/// \param x       X offset in the texture where to copy the source pixels
+/// \param y       Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTexture_UpdateFromWindow(sfTexture* texture, const sfWindow* window, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
-/// Update a texture from the contents of a render-window
+/// \brief Update a texture from the contents of a render-window
 ///
-/// \param texture : Texture to update
-/// \param renderWindow : Render-window to copy to the texture
-/// \param x : X offset in the texture where to copy the source pixels
-/// \param y : Y offset in the texture where to copy the source pixels
+/// \param texture      Texture to update
+/// \param renderWindow Render-window to copy to the texture
+/// \param x            X offset in the texture where to copy the source pixels
+/// \param y            Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTexture_UpdateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
-/// Activate a texture for rendering
+/// \brief Activate a texture for rendering
 ///
-/// \param texture : Texture to bind
+/// \param texture Texture to bind
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTexture_Bind(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// Enable or disable the smooth filter on a texture
+/// \brief Enable or disable the smooth filter on a texture
 ///
-/// \param texture : The texture object
-/// \param smooth : sfTrue to enable smoothing, sfFalse to disable it
+/// \param texture The texture object
+/// \param smooth  sfTrue to enable smoothing, sfFalse to disable it
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfTexture_SetSmooth(sfTexture* texture, sfBool smooth);
 
 ////////////////////////////////////////////////////////////
-/// Tell whether the smooth filter is enabled or not for a texture
+/// \brief Tell whether the smooth filter is enabled or not for a texture
 ///
-/// \param texture : The texture object
+/// \param texture The texture object
 ///
 /// \return sfTrue if smoothing is enabled, sfFalse if it is disabled
 ///
@@ -214,10 +214,43 @@ CSFML_API void sfTexture_SetSmooth(sfTexture* texture, sfBool smooth);
 CSFML_API sfBool sfTexture_IsSmooth(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// Convert a rectangle of pixels into texture coordinates
+/// \brief Enable or disable repeating for a texture
 ///
-/// \param texture : Texture to use for conversion
-/// \param rectangle : Rectangle to convert
+/// Repeating is involved when using texture coordinates
+/// outside the texture rectangle [0, 0, width, height].
+/// In this case, if repeat mode is enabled, the whole texture
+/// will be repeated as many times as needed to reach the
+/// coordinate (for example, if the X texture coordinate is
+/// 3 * width, the texture will be repeated 3 times).
+/// If repeat mode is disabled, the "extra space" will instead
+/// be filled with border pixels.
+/// Warning: on very old graphics cards, white pixels may appear
+/// when the texture is repeated. With such cards, repeat mode
+/// can be used reliably only if the texture has power-of-two
+/// dimensions (such as 256x128).
+/// Repeating is disabled by default.
+///
+/// \param texture  The texture object
+/// \param repeated True to repeat the texture, false to disable repeating
+///
+////////////////////////////////////////////////////////////
+CSFML_API void sfTexture_SetRepeated(sfTexture* texture, sfBool repeated);
+
+////////////////////////////////////////////////////////////
+/// \brief Tell whether a texture is repeated or not
+///
+/// \param texture The texture object
+///
+/// \return sfTrue if repeat mode is enabled, sfFalse if it is disabled
+///
+////////////////////////////////////////////////////////////
+CSFML_API sfBool sfTexture_IsRepeated(const sfTexture* texture);
+
+////////////////////////////////////////////////////////////
+/// \brief Convert a rectangle of pixels into texture coordinates
+///
+/// \param texture   Texture to use for conversion
+/// \param rectangle Rectangle to convert
 ///
 /// \return Texture coordinates corresponding to \a rectangle
 ///
@@ -225,7 +258,7 @@ CSFML_API sfBool sfTexture_IsSmooth(const sfTexture* texture);
 CSFML_API sfFloatRect sfTexture_GetTexCoords(const sfTexture* texture, sfIntRect rectangle);
 
 ////////////////////////////////////////////////////////////
-/// Get the maximum texture size allowed
+/// \brief Get the maximum texture size allowed
 ///
 /// \return Maximum size allowed for textures, in pixels
 ///

@@ -28,18 +28,36 @@
 #include <SFML/Graphics/Shader.h>
 #include <SFML/Graphics/ShaderStruct.h>
 #include <SFML/Graphics/TextureStruct.h>
+#include <SFML/Graphics/TransformStruct.h>
 #include <SFML/Internal.h>
 #include <SFML/CallbackStream.h>
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new shader from a file
-////////////////////////////////////////////////////////////
-sfShader* sfShader_CreateFromFile(const char* filename)
+sfShader* sfShader_CreateFromFile(const char* vertexShaderFilename, const char* fragmentShaderFilename)
 {
+    bool success = false;
     sfShader* shader = new sfShader;
+    if (vertexShaderFilename || fragmentShaderFilename)
+    {
+        if (!vertexShaderFilename)
+        {
+            // fragment shader only
+            success = shader->This.LoadFromFile(fragmentShaderFilename, sf::Shader::Fragment);
+        }
+        else if (!fragmentShaderFilename)
+        {
+            // vertex shader only
+            success = shader->This.LoadFromFile(vertexShaderFilename, sf::Shader::Vertex);
+        }
+        else
+        {
+            // vertex + fragment shaders
+            success = shader->This.LoadFromFile(vertexShaderFilename, fragmentShaderFilename);
+        }
+    }
 
-    if (!shader->This.LoadFromFile(filename))
+    if (!success)
     {
         delete shader;
         shader = NULL;
@@ -50,13 +68,30 @@ sfShader* sfShader_CreateFromFile(const char* filename)
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new shader from an effect source code
-////////////////////////////////////////////////////////////
-sfShader* sfShader_CreateFromMemory(const char* effect)
+sfShader* sfShader_CreateFromMemory(const char* vertexShader, const char* fragmentShader)
 {
+    bool success = false;
     sfShader* shader = new sfShader;
+    if (vertexShader || fragmentShader)
+    {
+        if (!vertexShader)
+        {
+            // fragment shader only
+            success = shader->This.LoadFromMemory(fragmentShader, sf::Shader::Fragment);
+        }
+        else if (!fragmentShader)
+        {
+            // vertex shader only
+            success = shader->This.LoadFromMemory(vertexShader, sf::Shader::Vertex);
+        }
+        else
+        {
+            // vertex + fragment shaders
+            success = shader->This.LoadFromMemory(vertexShader, fragmentShader);
+        }
+    }
 
-    if (!shader->This.LoadFromMemory(effect))
+    if (!success)
     {
         delete shader;
         shader = NULL;
@@ -67,16 +102,34 @@ sfShader* sfShader_CreateFromMemory(const char* effect)
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new shader from a custom stream
-////////////////////////////////////////////////////////////
-sfShader* sfShader_CreateFromStream(sfInputStream* stream)
+sfShader* sfShader_CreateFromStream(sfInputStream* vertexShaderStream, sfInputStream* fragmentShaderStream)
 {
-    CSFML_CHECK_RETURN(stream, NULL);
-
+    bool success = false;
     sfShader* shader = new sfShader;
+    if (vertexShaderStream || fragmentShaderStream)
+    {
+        if (!vertexShaderStream)
+        {
+            // fragment shader only
+            CallbackStream stream(fragmentShaderStream);
+            success = shader->This.LoadFromStream(stream, sf::Shader::Fragment);
+        }
+        else if (!fragmentShaderStream)
+        {
+            // vertex shader only
+            CallbackStream stream(vertexShaderStream);
+            success = shader->This.LoadFromStream(stream, sf::Shader::Vertex);
+        }
+        else
+        {
+            // vertex + fragment shaders
+            CallbackStream vertexStream(vertexShaderStream);
+            CallbackStream fragmentStream(fragmentShaderStream);
+            success = shader->This.LoadFromStream(vertexStream, fragmentStream);
+        }
+    }
 
-    CallbackStream sfmlStream(stream);
-    if (!shader->This.LoadFromStream(sfmlStream))
+    if (!success)
     {
         delete shader;
         shader = NULL;
@@ -86,19 +139,6 @@ sfShader* sfShader_CreateFromStream(sfInputStream* stream)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Copy an existing clock
-////////////////////////////////////////////////////////////
-sfShader* sfShader_Copy(sfShader* shader)
-{
-    CSFML_CHECK_RETURN(shader, NULL);
-
-    return new sfShader(*shader);
-}
-
-
-////////////////////////////////////////////////////////////
-/// Destroy an existing shader
 ////////////////////////////////////////////////////////////
 void sfShader_Destroy(sfShader* shader)
 {
@@ -107,62 +147,62 @@ void sfShader_Destroy(sfShader* shader)
 
 
 ////////////////////////////////////////////////////////////
-/// Change a parameter of a shader (1 float)
-////////////////////////////////////////////////////////////
-void sfShader_SetParameter1(sfShader* shader, const char* name, float x)
+void sfShader_SetFloatParameter(sfShader* shader, const char* name, float x)
 {
     CSFML_CALL(shader, SetParameter(name, x))
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Change a parameter of a shader (2 floats)
-////////////////////////////////////////////////////////////
-void sfShader_SetParameter2(sfShader* shader, const char* name, float x, float y)
+void sfShader_SetFloat2Parameter(sfShader* shader, const char* name, float x, float y)
 {
     CSFML_CALL(shader, SetParameter(name, x, y))
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Change a parameter of a shader (3 floats)
-////////////////////////////////////////////////////////////
-void sfShader_SetParameter3(sfShader* shader, const char* name, float x, float y, float z)
+void sfShader_SetFloat3Parameter(sfShader* shader, const char* name, float x, float y, float z)
 {
     CSFML_CALL(shader, SetParameter(name, x, y, z))
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Change a parameter of a shader (4 floats)
-////////////////////////////////////////////////////////////
-void sfShader_SetParameter4(sfShader* shader, const char* name, float x, float y, float z, float w)
+void sfShader_SetFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w)
 {
     CSFML_CALL(shader, SetParameter(name, x, y, z, w))
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Set a texture parameter in a shader
+void sfShader_SetColorParameter(sfShader* shader, const char* name, sfColor color)
+{
+    CSFML_CALL(shader, SetParameter(name, sf::Color(color.r, color.g, color.b, color.a)))
+}
+
+
 ////////////////////////////////////////////////////////////
-void sfShader_SetTexture(sfShader* shader, const char* name, const sfTexture* texture)
+void sfShader_SetTransformParameter(sfShader* shader, const char* name, const sfTransform* transform)
+{
+    CSFML_CALL(shader, SetParameter(name, transform ? transform->This : sf::Transform::Identity))
+}
+
+
+////////////////////////////////////////////////////////////
+void sfShader_SetTextureParameter(sfShader* shader, const char* name, const sfTexture* texture)
 {
     CSFML_CHECK(texture);
-    CSFML_CALL(shader, SetTexture(name, *texture->This))
+    CSFML_CALL(shader, SetParameter(name, *texture->This))
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Set the current texture parameter in a shader
-////////////////////////////////////////////////////////////
-void sfShader_SetCurrentTexture(sfShader* shader, const char* name)
+void sfShader_SetCurrentTextureParameter(sfShader* shader, const char* name)
 {
-    CSFML_CALL(shader, SetCurrentTexture(name))
+    CSFML_CALL(shader, SetParameter(name, sf::Shader::CurrentTexture))
 }
 
 
-////////////////////////////////////////////////////////////
-/// Bind a shader for rendering
 ////////////////////////////////////////////////////////////
 void sfShader_Bind(const sfShader* shader)
 {
@@ -171,16 +211,12 @@ void sfShader_Bind(const sfShader* shader)
 
 
 ////////////////////////////////////////////////////////////
-/// Unbind a shader
-////////////////////////////////////////////////////////////
 void sfShader_Unbind(const sfShader* shader)
 {
     CSFML_CALL(shader, Unbind())
 }
 
 
-////////////////////////////////////////////////////////////
-/// Tell whether or not the system supports shaders
 ////////////////////////////////////////////////////////////
 sfBool sfShader_IsAvailable(void)
 {

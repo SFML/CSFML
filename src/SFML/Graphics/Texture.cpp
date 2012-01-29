@@ -35,8 +35,6 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new texture
-////////////////////////////////////////////////////////////
 sfTexture* sfTexture_Create(unsigned int width, unsigned int height)
 {
     sfTexture* texture = new sfTexture;
@@ -51,8 +49,6 @@ sfTexture* sfTexture_Create(unsigned int width, unsigned int height)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Create a new texture from a file
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_CreateFromFile(const char* filename, const sfIntRect* area)
 {
@@ -73,8 +69,6 @@ sfTexture* sfTexture_CreateFromFile(const char* filename, const sfIntRect* area)
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new texture from a file in memory
-////////////////////////////////////////////////////////////
 sfTexture* sfTexture_CreateFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
 {
     sfTexture* texture = new sfTexture;
@@ -93,8 +87,6 @@ sfTexture* sfTexture_CreateFromMemory(const void* data, size_t sizeInBytes, cons
 }
 
 
-////////////////////////////////////////////////////////////
-/// Create a new texture from a custom stream
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_CreateFromStream(sfInputStream* stream, const sfIntRect* area)
 {
@@ -118,8 +110,6 @@ sfTexture* sfTexture_CreateFromStream(sfInputStream* stream, const sfIntRect* ar
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new texture from an image
-////////////////////////////////////////////////////////////
 sfTexture* sfTexture_CreateFromImage(const sfImage* image, const sfIntRect* area)
 {
     CSFML_CHECK_RETURN(image, NULL);
@@ -141,8 +131,6 @@ sfTexture* sfTexture_CreateFromImage(const sfImage* image, const sfIntRect* area
 
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing texture
-////////////////////////////////////////////////////////////
 sfTexture* sfTexture_Copy(sfTexture* texture)
 {
     CSFML_CHECK_RETURN(texture, NULL);
@@ -152,16 +140,12 @@ sfTexture* sfTexture_Copy(sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing texture
-////////////////////////////////////////////////////////////
 void sfTexture_Destroy(sfTexture* texture)
 {
     delete texture;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Return the width of the texture
 ////////////////////////////////////////////////////////////
 unsigned int sfTexture_GetWidth(const sfTexture* texture)
 {
@@ -170,16 +154,12 @@ unsigned int sfTexture_GetWidth(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-/// Return the height of the texture
-////////////////////////////////////////////////////////////
 unsigned int sfTexture_GetHeight(const sfTexture* texture)
 {
     CSFML_CALL_PTR_RETURN(texture, GetHeight(), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Copy a texture's pixels to an image
 ////////////////////////////////////////////////////////////
 sfImage* sfTexture_CopyToImage(const sfTexture* texture)
 {
@@ -194,16 +174,12 @@ sfImage* sfTexture_CopyToImage(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-/// Update a texture from an array of pixels
-////////////////////////////////////////////////////////////
 void sfTexture_UpdateFromPixels(sfTexture* texture, const sfUint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y)
 {
     CSFML_CALL_PTR(texture, Update(pixels, width, height, x, y));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Update a texture from an image
 ////////////////////////////////////////////////////////////
 void sfTexture_UpdateFromImage(sfTexture* texture, const sfImage* image, unsigned int x, unsigned int y)
 {
@@ -214,8 +190,6 @@ void sfTexture_UpdateFromImage(sfTexture* texture, const sfImage* image, unsigne
 
 
 ////////////////////////////////////////////////////////////
-/// Update a texture from the contents of a window
-////////////////////////////////////////////////////////////
 void sfTexture_UpdateFromWindow(sfTexture* texture, const sfWindow* window, unsigned int x, unsigned int y)
 {
     CSFML_CHECK(window);
@@ -224,8 +198,6 @@ void sfTexture_UpdateFromWindow(sfTexture* texture, const sfWindow* window, unsi
 }
 
 
-////////////////////////////////////////////////////////////
-/// Update a texture from the contents of a render-window
 ////////////////////////////////////////////////////////////
 void sfTexture_UpdateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, unsigned int x, unsigned int y)
 {
@@ -236,8 +208,6 @@ void sfTexture_UpdateFromRenderWindow(sfTexture* texture, const sfRenderWindow* 
 
 
 ////////////////////////////////////////////////////////////
-/// Activate a texture for rendering
-////////////////////////////////////////////////////////////
 void sfTexture_Bind(const sfTexture* texture)
 {
     CSFML_CALL_PTR(texture, Bind());
@@ -245,16 +215,12 @@ void sfTexture_Bind(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-/// Enable or disable the smooth filter on a texture
-////////////////////////////////////////////////////////////
 void sfTexture_SetSmooth(sfTexture* texture, sfBool smooth)
 {
     CSFML_CALL_PTR(texture, SetSmooth(smooth == sfTrue));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Tell whether the smooth filter is enabled or not for a texture
 ////////////////////////////////////////////////////////////
 sfBool sfTexture_IsSmooth(const sfTexture* texture)
 {
@@ -266,7 +232,22 @@ sfBool sfTexture_IsSmooth(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-/// Convert a rectangle of pixels into texture coordinates
+void sfTexture_SetRepeated(sfTexture* texture, sfBool repeated)
+{
+    CSFML_CALL_PTR(texture, SetRepeated(repeated == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfTexture_IsRepeated(const sfTexture* texture)
+{
+    CSFML_CHECK_RETURN(texture, sfFalse);
+    CSFML_CHECK_RETURN(texture->This, sfFalse);
+
+    return texture->This->IsRepeated();
+}
+
+
 ////////////////////////////////////////////////////////////
 sfFloatRect sfTexture_GetTexCoords(const sfTexture* texture, sfIntRect rectangle)
 {
@@ -286,8 +267,6 @@ sfFloatRect sfTexture_GetTexCoords(const sfTexture* texture, sfIntRect rectangle
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the maximum texture size allowed
 ////////////////////////////////////////////////////////////
 unsigned int sfTexture_GetMaximumSize()
 {

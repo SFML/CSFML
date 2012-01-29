@@ -92,9 +92,9 @@ void sfWindow_Close(sfWindow* window)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_IsOpened(const sfWindow* window)
+sfBool sfWindow_IsOpen(const sfWindow* window)
 {
-    CSFML_CALL_RETURN(window, IsOpened(), sfFalse);
+    CSFML_CALL_RETURN(window, IsOpen(), sfFalse);
 }
 
 
@@ -245,13 +245,6 @@ void sfWindow_Display(sfWindow* window)
 void sfWindow_SetFramerateLimit(sfWindow* window, unsigned int limit)
 {
     CSFML_CALL(window, SetFramerateLimit(limit))
-}
-
-
-////////////////////////////////////////////////////////////
-sfUint32 sfWindow_GetFrameTime(const sfWindow* window)
-{
-    CSFML_CALL_RETURN(window, GetFrameTime(), 0)
 }
 
 

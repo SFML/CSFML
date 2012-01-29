@@ -40,14 +40,14 @@ class sfSoundRecorderImpl : public sf::SoundRecorder
 {
 public :
 
-    sfSoundRecorderImpl(sfSoundRecorderStartCallback   OnStart,
-                        sfSoundRecorderProcessCallback OnProcess,
-                        sfSoundRecorderStopCallback    OnStop,
-                        void*                          UserData) :
-    myStartCallback  (OnStart),
-    myProcessCallback(OnProcess),
-    myStopCallback   (OnStop),
-    myUserData       (UserData)
+    sfSoundRecorderImpl(sfSoundRecorderStartCallback   onStart,
+                        sfSoundRecorderProcessCallback onProcess,
+                        sfSoundRecorderStopCallback    onStop,
+                        void*                          userData) :
+    myStartCallback  (onStart),
+    myProcessCallback(onProcess),
+    myStopCallback   (onStop),
+    myUserData       (userData)
     {
     }
 
@@ -61,10 +61,10 @@ private :
             return true;
     }
 
-    virtual bool OnProcessSamples(const sf::Int16* Samples, std::size_t SamplesCount)
+    virtual bool OnProcessSamples(const sf::Int16* samples, std::size_t sampleCount)
     {
         if (myProcessCallback)
-            return myProcessCallback(Samples, SamplesCount, myUserData) == sfTrue;
+            return myProcessCallback(samples, sampleCount, myUserData) == sfTrue;
         else
             return true;
     }
@@ -87,11 +87,11 @@ private :
 ////////////////////////////////////////////////////////////
 struct sfSoundRecorder
 {
-    sfSoundRecorder(sfSoundRecorderStartCallback   OnStart,
-                    sfSoundRecorderProcessCallback OnProcess,
-                    sfSoundRecorderStopCallback    OnStop,
-                    void*                          UserData) :
-    This(OnStart, OnProcess, OnStop, UserData)
+    sfSoundRecorder(sfSoundRecorderStartCallback   onStart,
+                    sfSoundRecorderProcessCallback onProcess,
+                    sfSoundRecorderStopCallback    onStop,
+                    void*                          userData) :
+    This(onStart, onProcess, onStop, userData)
     {
     }
 

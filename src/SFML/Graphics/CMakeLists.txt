@@ -5,8 +5,15 @@ set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/Graphics)
 # all source files
 set(SRC
     ${INCROOT}/BlendMode.h
+    ${SRCROOT}/CircleShape.cpp
+    ${SRCROOT}/CircleShapeStruct.h
+    ${INCROOT}/CircleShape.h
     ${SRCROOT}/Color.cpp
     ${INCROOT}/Color.h
+    ${SRCROOT}/ConvertRenderStates.hpp
+    ${SRCROOT}/ConvexShape.cpp
+    ${SRCROOT}/ConvexShapeStruct.h
+    ${INCROOT}/ConvexShape.h
     ${SRCROOT}/Font.cpp
     ${SRCROOT}/FontStruct.h
     ${INCROOT}/Font.h
@@ -16,6 +23,9 @@ set(SRC
     ${INCROOT}/Image.h
     ${SRCROOT}/Rect.cpp
     ${INCROOT}/Rect.h
+    ${SRCROOT}/RectangleShape.cpp
+    ${SRCROOT}/RectangleShapeStruct.h
+    ${INCROOT}/RectangleShape.h
     ${SRCROOT}/RenderTexture.cpp
     ${SRCROOT}/RenderTextureStruct.h
     ${INCROOT}/RenderTexture.h
@@ -25,9 +35,6 @@ set(SRC
     ${SRCROOT}/Shader.cpp
     ${SRCROOT}/ShaderStruct.h
     ${INCROOT}/Shader.h
-    ${SRCROOT}/Shape.cpp
-    ${SRCROOT}/ShapeStruct.h
-    ${INCROOT}/Shape.h
     ${SRCROOT}/Sprite.cpp
     ${SRCROOT}/SpriteStruct.h
     ${INCROOT}/Sprite.h
@@ -37,7 +44,14 @@ set(SRC
     ${SRCROOT}/Texture.cpp
     ${SRCROOT}/TextureStruct.h
     ${INCROOT}/Texture.h
+    ${SRCROOT}/Transform.cpp
+    ${SRCROOT}/TransformStruct.h
+    ${INCROOT}/Transform.h
     ${INCROOT}/Types.h
+    ${INCROOT}/Vertex.h
+    ${SRCROOT}/VertexArray.cpp
+    ${SRCROOT}/VertexArrayStruct.h
+    ${INCROOT}/VertexArray.h
     ${SRCROOT}/View.cpp
     ${SRCROOT}/ViewStruct.h
     ${INCROOT}/View.h

@@ -22,30 +22,26 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTSTRUCT_H
-#define SFML_TEXTSTRUCT_H
+#ifndef SFML_VERTEX_H
+#define SFML_VERTEX_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/FontStruct.h>
-#include <SFML/Graphics/Rect.h>
-#include <SFML/Graphics/TransformStruct.h>
-#include <string>
+#include <SFML/Graphics/Color.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfText
+/// Define a point with color and texture coordinates
 ////////////////////////////////////////////////////////////
-struct sfText
+typedef struct
 {
-    sf::Text            This;
-    const sfFont*       Font;
-    mutable std::string String;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
-};
+    float   X;         ///< X coordinate of the position of the vertex
+    float   Y;         ///< Y coordinate of the position of the vertex
+    sfColor Color;     ///< Color of the vertex
+    float   TexCoordX; ///< X coordinate of the texture's pixel to map to the vertex
+    float   TexCoordY; ///< Y coordinate of the texture's pixel to map to the vertex
+} sfVertex;
 
 
-#endif // SFML_TEXTSTRUCT_H
+#endif // SFML_VERTEX_H

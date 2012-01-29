@@ -26,15 +26,20 @@
 #define SFML_GRAPHICS_TYPES_H
 
 
+typedef struct sfCircleShape sfCircleShape;
+typedef struct sfConvexShape sfConvexShape;
 typedef struct sfFont sfFont;
 typedef struct sfImage sfImage;
 typedef struct sfShader sfShader;
+typedef struct sfRectangleShape sfRectangleShape;
 typedef struct sfRenderTexture sfRenderTexture;
 typedef struct sfRenderWindow sfRenderWindow;
 typedef struct sfShape sfShape;
 typedef struct sfSprite sfSprite;
 typedef struct sfText sfText;
 typedef struct sfTexture sfTexture;
+typedef struct sfTransform sfTransform;
+typedef struct sfVertexArray sfVertexArray;
 typedef struct sfView sfView;
 
 

@@ -57,7 +57,7 @@
 ///     sfMusic_Play(music);
 /// 
 ///     /* Start the game loop */
-///     while (sfRenderWindow_IsOpened(window))
+///     while (sfRenderWindow_IsOpen(window))
 ///     {
 ///         /* Process events */
 ///         while (sfRenderWindow_GetEvent(window, &event))

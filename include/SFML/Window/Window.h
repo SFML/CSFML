@@ -119,7 +119,7 @@ CSFML_API void sfWindow_Destroy(sfWindow* window);
 /// After calling this function, the sfWindow object remains
 /// valid, you must call sfWindow_Destroy to actually delete it.
 /// All other functions such as sfWindow_PollEvent or sfWindow_Display
-/// will still work (i.e. you don't have to test sfWindow_IsOpened
+/// will still work (i.e. you don't have to test sfWindow_IsOpen
 /// every time), and will have no effect on closed windows.
 ///
 /// \param window Window object
@@ -139,7 +139,7 @@ CSFML_API void sfWindow_Close(sfWindow* window);
 /// \return sfTrue if the window is opened, sfFalse if it has been closed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfWindow_IsOpened(const sfWindow* window);
+CSFML_API sfBool sfWindow_IsOpen(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the width of the rendering region of a window
@@ -355,21 +355,6 @@ CSFML_API void sfWindow_Display(sfWindow* window);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfWindow_SetFramerateLimit(sfWindow* window, unsigned int limit);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the duration of the last frame
-///
-/// This function returns the time elapsed between the last
-/// two calls to sfWindow_Display.
-/// This can be useful for calculating the framerate, or for
-/// updating the application's objects.
-///
-/// \param window Window object
-///
-/// \return Time elapsed in last frame, in milliseconds
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfUint32 sfWindow_GetFrameTime(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the joystick threshold

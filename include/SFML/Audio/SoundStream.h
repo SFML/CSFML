@@ -39,8 +39,8 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    sfInt16*     Samples;   ///< Pointer to the audio samples
-    unsigned int NbSamples; ///< Number of samples pointed by Samples
+    sfInt16*     Samples;     ///< Pointer to the audio samples
+    unsigned int SampleCount; ///< Number of samples pointed by Samples
 } sfSoundStreamChunk;
 
 typedef sfBool (*sfSoundStreamGetDataCallback)(sfSoundStreamChunk*, void*); ///< Type of the callback used to get a sound stream data
@@ -50,18 +50,18 @@ typedef void   (*sfSoundStreamSeekCallback)(sfUint32, void*);               ///<
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound stream
 ///
-/// \param onGetData     Function called when the stream needs more data (can't be NULL)
-/// \param onSeek        Function called when the stream seeks (can't be NULL)
-/// \param channelsCount Number of channels to use (1 = mono, 2 = stereo)
-/// \param sampleRate    Sample rate of the sound (44100 = CD quality)
-/// \param userData      Data to pass to the callback functions
+/// \param onGetData    Function called when the stream needs more data (can't be NULL)
+/// \param onSeek       Function called when the stream seeks (can't be NULL)
+/// \param channelCount Number of channels to use (1 = mono, 2 = stereo)
+/// \param sampleRate   Sample rate of the sound (44100 = CD quality)
+/// \param userData     Data to pass to the callback functions
 ///
 /// \return A new sfSoundStream object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API sfSoundStream* sfSoundStream_Create(sfSoundStreamGetDataCallback onGetData,
                                               sfSoundStreamSeekCallback    onSeek,
-                                              unsigned int                 channelsCount,
+                                              unsigned int                 channelCount,
                                               unsigned int                 sampleRate,
                                               void*                        userData);
 
@@ -130,7 +130,7 @@ CSFML_API sfSoundStatus sfSoundStream_GetStatus(const sfSoundStream* soundStream
 /// \return Number of channels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfSoundStream_GetChannelsCount(const sfSoundStream* soundStream);
+CSFML_API unsigned int sfSoundStream_GetChannelCount(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the sample rate of a sound stream

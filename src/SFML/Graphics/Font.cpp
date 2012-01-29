@@ -112,15 +112,15 @@ sfGlyph sfFont_GetGlyph(sfFont* font, sfUint32 codePoint, unsigned int character
 
     sf::Glyph SFMLGlyph = font->This.GetGlyph(codePoint, characterSize, bold == sfTrue);
 
-    glyph.Advance        = SFMLGlyph.Advance;
-    glyph.Bounds.Left    = SFMLGlyph.Bounds.Left;
-    glyph.Bounds.Top     = SFMLGlyph.Bounds.Top;
-    glyph.Bounds.Width   = SFMLGlyph.Bounds.Width;
-    glyph.Bounds.Height  = SFMLGlyph.Bounds.Height;
-    glyph.SubRect.Left   = SFMLGlyph.SubRect.Left;
-    glyph.SubRect.Top    = SFMLGlyph.SubRect.Top;
-    glyph.SubRect.Width  = SFMLGlyph.SubRect.Width;
-    glyph.SubRect.Height = SFMLGlyph.SubRect.Height;
+    glyph.Advance            = SFMLGlyph.Advance;
+    glyph.Bounds.Left        = SFMLGlyph.Bounds.Left;
+    glyph.Bounds.Top         = SFMLGlyph.Bounds.Top;
+    glyph.Bounds.Width       = SFMLGlyph.Bounds.Width;
+    glyph.Bounds.Height      = SFMLGlyph.Bounds.Height;
+    glyph.TextureRect.Left   = SFMLGlyph.TextureRect.Left;
+    glyph.TextureRect.Top    = SFMLGlyph.TextureRect.Top;
+    glyph.TextureRect.Width  = SFMLGlyph.TextureRect.Width;
+    glyph.TextureRect.Height = SFMLGlyph.TextureRect.Height;
 
     return glyph;
 }

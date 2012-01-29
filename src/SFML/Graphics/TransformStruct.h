@@ -22,30 +22,22 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTSTRUCT_H
-#define SFML_TEXTSTRUCT_H
+#ifndef SFML_TRANSFORMSTRUCT_H
+#define SFML_TRANSFORMSTRUCT_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/FontStruct.h>
-#include <SFML/Graphics/Rect.h>
-#include <SFML/Graphics/TransformStruct.h>
-#include <string>
+#include <SFML/Graphics/Transform.hpp>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfText
+// Internal structure of sfTransform
 ////////////////////////////////////////////////////////////
-struct sfText
+struct sfTransform
 {
-    sf::Text            This;
-    const sfFont*       Font;
-    mutable std::string String;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
+    sf::Transform This;
 };
 
 
-#endif // SFML_TEXTSTRUCT_H
+#endif // SFML_TRANSFORMSTRUCT_H

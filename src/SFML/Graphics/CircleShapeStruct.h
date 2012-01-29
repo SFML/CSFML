@@ -22,30 +22,27 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTSTRUCT_H
-#define SFML_TEXTSTRUCT_H
+#ifndef SFML_CIRCLESHAPESTRUCT_H
+#define SFML_CIRCLESHAPESTRUCT_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
-#include <SFML/Graphics/FontStruct.h>
-#include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/CircleShape.hpp>
+#include <SFML/Graphics/TextureStruct.h>
 #include <SFML/Graphics/TransformStruct.h>
-#include <string>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfText
+// Internal structure of sfCircleShape
 ////////////////////////////////////////////////////////////
-struct sfText
+struct sfCircleShape
 {
-    sf::Text            This;
-    const sfFont*       Font;
-    mutable std::string String;
+    sf::CircleShape     This;
+    const sfTexture*    Texture;
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;
 };
 
 
-#endif // SFML_TEXTSTRUCT_H
+#endif // SFML_CIRCLESHAPESTRUCT_H

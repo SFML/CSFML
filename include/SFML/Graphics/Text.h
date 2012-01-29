@@ -29,7 +29,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.h>
-#include <SFML/Graphics/BlendMode.h>
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
@@ -49,7 +48,7 @@ typedef enum
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new text
+/// \brief Create a new text
 ///
 /// \return A new sfText object, or NULL if it failed
 ///
@@ -57,9 +56,9 @@ typedef enum
 CSFML_API sfText* sfText_Create(void);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing text
+/// \brief Copy an existing text
 ///
-/// \param text : Text to copy
+/// \param text Text to copy
 ///
 /// \return Copied object
 ///
@@ -67,151 +66,87 @@ CSFML_API sfText* sfText_Create(void);
 CSFML_API sfText* sfText_Copy(sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing text
+/// \brief Destroy an existing text
 ///
-/// \param text : Text to delete
+/// \param text Text to delete
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_Destroy(sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Set the X position of a text
+/// \brief Set the position of a text
 ///
-/// \param text : String to modify
-/// \param x :    New X coordinate
+/// This function completely overwrites the previous position.
+/// See sfText_Move to apply an offset based on the previous position instead.
+/// The default position of a text object is (0, 0).
 ///
-////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetX(sfText* text, float x);
-
-////////////////////////////////////////////////////////////
-/// Set the Y position of a text
-///
-/// \param text : String to modify
-/// \param y :    New Y coordinate
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetY(sfText* text, float y);
-
-////////////////////////////////////////////////////////////
-/// Set the position of a text
-///
-/// \param text : String to modify
-/// \param x :    New X coordinate
-/// \param y :    New Y coordinate
+/// \param text Text object
+/// \param x    X coordinate of the new position
+/// \param y    Y coordinate of the new position
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_SetPosition(sfText* text, float x, float y);
 
 ////////////////////////////////////////////////////////////
-/// Set the horizontal scale of a text
+/// \brief Set the orientation of a text
 ///
-/// \param text :  String to modify
-/// \param scale : New scale (must be strictly positive)
+/// This function completely overwrites the previous rotation.
+/// See sfText_Rotate to add an angle based on the previous rotation instead.
+/// The default rotation of a text object is 0.
+///
+/// \param text  Text object
+/// \param angle New rotation, in degrees
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetScaleX(sfText* text, float scale);
+CSFML_API void sfText_SetRotation(sfText* text, float angle);
 
 ////////////////////////////////////////////////////////////
-/// Set the vertical scale of a text
+/// \brief Set the scale factors of a text
 ///
-/// \param text :  String to modify
-/// \param scale : New scale (must be strictly positive)
+/// This function completely overwrites the previous scale.
+/// See sfText_Scale to add a factor based on the previous scale instead.
+/// The default scale of a text object is (1, 1).
+///
+/// \param text    Text object
+/// \param factorX New horizontal scale factor
+/// \param factorY New vertical scale factor
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetScaleY(sfText* text, float scale);
+CSFML_API void sfText_SetScale(sfText* text, float factorX, float factorY);
 
 ////////////////////////////////////////////////////////////
-/// Set the scale of a text
+/// \brief Set the local origin of a text
 ///
-/// \param text :   String to modify
-/// \param scaleX : New horizontal scale (must be strictly positive)
-/// \param scaleY : New vertical scale (must be strictly positive)
+/// The origin of an object defines the center point for
+/// all transformations (position, scale, rotation).
+/// The coordinates of this point must be relative to the
+/// top-left corner of the object, and ignore all
+/// transformations (position, scale, rotation).
+/// The default origin of a text object is (0, 0).
 ///
-////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetScale(sfText* text, float scaleX, float scaleY);
-
-////////////////////////////////////////////////////////////
-/// Set the orientation of a text
-///
-/// \param text :     String to modify
-/// \param rotation : Angle of rotation, in degrees
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetRotation(sfText* text, float rotation);
-
-////////////////////////////////////////////////////////////
-/// Set the local origin of a text, in coordinates
-/// relative to its left-top corner
-///
-/// \param text : String to modify
-/// \param x :    X coordinate of the origin
-/// \param y :    Y coordinate of the origin
+/// \param text Text object
+/// \param x    X coordinate of the new origin
+/// \param y    Y coordinate of the new origin
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_SetOrigin(sfText* text, float x, float y);
 
 ////////////////////////////////////////////////////////////
-/// Set the color of a text
+/// \brief Get the position of a text
 ///
-/// \param text :  String to modify
-/// \param color : New color
+/// \param text Text object
+///
+/// \return Current position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetColor(sfText* text, sfColor color);
+CSFML_API void sfText_GetPosition(const sfText* text, float* x, float* y);
 
 ////////////////////////////////////////////////////////////
-/// Set the blending mode for a text
+/// \brief Get the orientation of a text
 ///
-/// \param text : String to modify
-/// \param mode : New blending mode
+/// The rotation is always in the range [0, 360].
 ///
-////////////////////////////////////////////////////////////
-CSFML_API void sfText_SetBlendMode(sfText* text, sfBlendMode mode);
-
-////////////////////////////////////////////////////////////
-/// Get the X position of a text
-///
-/// \param text : String to read
-///
-/// \return Current X position
-///
-////////////////////////////////////////////////////////////
-CSFML_API float sfText_GetX(const sfText* text);
-
-////////////////////////////////////////////////////////////
-/// Get the top Y of a text
-///
-/// \param text : String to read
-///
-/// \return Current Y position
-///
-////////////////////////////////////////////////////////////
-CSFML_API float sfText_GetY(const sfText* text);
-
-////////////////////////////////////////////////////////////
-/// Get the horizontal scale of a text
-///
-/// \param text : String to read
-///
-/// \return Current X scale factor (always positive)
-///
-////////////////////////////////////////////////////////////
-CSFML_API float sfText_GetScaleX(const sfText* text);
-
-////////////////////////////////////////////////////////////
-/// Get the vertical scale of a text
-///
-/// \param text : String to read
-///
-/// \return Current Y scale factor (always positive)
-///
-////////////////////////////////////////////////////////////
-CSFML_API float sfText_GetScaleY(const sfText* text);
-
-////////////////////////////////////////////////////////////
-/// Get the orientation of a text
-///
-/// \param text : String to read
+/// \param text Text object
 ///
 /// \return Current rotation, in degrees
 ///
@@ -219,159 +154,160 @@ CSFML_API float sfText_GetScaleY(const sfText* text);
 CSFML_API float sfText_GetRotation(const sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Get the X position of the origin a text
+/// \brief Get the current scale of a text
 ///
-/// \param text : String to read
+/// \param text Text object
 ///
-/// \return Current X origin position
+/// \return Current scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API float sfText_GetOriginX(const sfText* text);
+CSFML_API void sfText_GetScale(const sfText* text, float* x, float* y);
 
 ////////////////////////////////////////////////////////////
-/// Get the top Y of the origin of a text
+/// \brief Get the local origin of a text
 ///
-/// \param text : String to read
+/// \param text Text object
 ///
-/// \return Current Y origin position
+/// \return Current origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API float sfText_GetOriginY(const sfText* text);
+CSFML_API void sfText_GetOrigin(const sfText* text, float* x, float* y);
 
 ////////////////////////////////////////////////////////////
-/// Get the color of a text
+/// \brief Move a text by a given offset
 ///
-/// \param text : String to read
+/// This function adds to the current position of the object,
+/// unlike sfText_SetPosition which overwrites it.
 ///
-/// \return Current color
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfColor sfText_GetColor(const sfText* text);
-
-////////////////////////////////////////////////////////////
-/// Get the current blending mode of a text
-///
-/// \param text : String to read
-///
-/// \return Current blending mode
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfBlendMode sfText_GetBlendMode(const sfText* text);
-
-////////////////////////////////////////////////////////////
-/// Move a text
-///
-/// \param text :    String to modify
-/// \param offsetX : Offset on the X axis
-/// \param offsetY : Offset on the Y axis
+/// \param text    Text object
+/// \param offsetX X offset
+/// \param offsetY Y offset
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_Move(sfText* text, float offsetX, float offsetY);
 
 ////////////////////////////////////////////////////////////
-/// Scale a text
+/// \brief Rotate a text
 ///
-/// \param text :    String to modify
-/// \param factorX : Horizontal scaling factor (must be strictly positive)
-/// \param factorY : Vertical scaling factor (must be strictly positive)
+/// This function adds to the current rotation of the object,
+/// unlike sfText_SetRotation which overwrites it.
 ///
-////////////////////////////////////////////////////////////
-CSFML_API void sfText_Scale(sfText* text, float factorX, float factorY);
-
-////////////////////////////////////////////////////////////
-/// Rotate a text
-///
-/// \param text :  String to modify
-/// \param angle : Angle of rotation, in degrees
+/// \param text  Text object
+/// \param angle Angle of rotation, in degrees
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_Rotate(sfText* text, float angle);
 
 ////////////////////////////////////////////////////////////
-/// Transform a point from global coordinates into the string's local coordinates
-/// (ie it applies the inverse of object's origin, translation, rotation and scale to the point)
+/// \brief Scale a text
 ///
-/// \param text :   String object
-/// \param pointX : X coordinate of the point to transform
-/// \param pointY : Y coordinate of the point to transform
-/// \param x :      Value to fill with the X coordinate of the converted point
-/// \param y :      Value to fill with the y coordinate of the converted point
+/// This function multiplies the current scale of the object,
+/// unlike sfText_SetScale which overwrites it.
+///
+/// \param text    Text object
+/// \param factorX Horizontal scale factor
+/// \param factorY Vertical scale factor
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfText_TransformToLocal(const sfText* text, float pointX, float pointY, float* x, float* y);
+CSFML_API void sfText_Scale(sfText* text, float factorX, float factorY);
 
 ////////////////////////////////////////////////////////////
-/// Transform a point from the string's local coordinates into global coordinates
-/// (ie it applies the object's origin, translation, rotation and scale to the point)
+/// \brief Get the combined transform of a text
 ///
-/// \param text :   String object
-/// \param pointX : X coordinate of the point to transform
-/// \param pointY : Y coordinate of the point to transform
-/// \param x :      Value to fill with the X coordinate of the converted point
-/// \param y :      Value to fill with the y coordinate of the converted point
+/// \param text Text object
+///
+/// \return Transform combining the position/rotation/scale/origin of the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfText_TransformToGlobal(const sfText* text, float pointX, float pointY, float* X, float* y);
+CSFML_API const sfTransform* sfText_GetTransform(const sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Set the string of a text (from a multibyte string)
+/// \brief Get the inverse of the combined transform of a text
 ///
-/// \param text :   Text to modify
-/// \param string : New string
+/// \param text Text object
+///
+/// \return Inverse of the combined transformations applied to the object
+///
+////////////////////////////////////////////////////////////
+CSFML_API const sfTransform* sfText_GetInverseTransform(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the string of a text (from an ANSI string)
+///
+/// A text's string is empty by default.
+///
+/// \param text   Text object
+/// \param string New string
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_SetString(sfText* text, const char* string);
 
 ////////////////////////////////////////////////////////////
-/// Set the string of a text (from a unicode string)
+/// \brief Set the string of a text (from a unicode string)
 ///
-/// \param text :   Text to modify
-/// \param string : New string
+/// \param text   Text object
+/// \param string New string
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_SetUnicodeString(sfText* text, const sfUint32* string);
 
 ////////////////////////////////////////////////////////////
-/// Set the font of a text
+/// \brief Set the font of a text
 ///
-/// \param text : String to modify
-/// \param font : Font to use
+/// The \a font argument refers to a texture that must
+/// exist as long as the text uses it. Indeed, the text
+/// doesn't store its own copy of the font, but rather keeps
+/// a pointer to the one that you passed to this function.
+/// If the font is destroyed and the text tries to
+/// use it, the behaviour is undefined.
+/// Texts have a valid font by default, which the built-in
+/// sfFont_GetDefaultFont().
+///
+/// \param text Text object
+/// \param font New font
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_SetFont(sfText* text, const sfFont* font);
 
 ////////////////////////////////////////////////////////////
-/// Set the size of a text
+/// \brief Set the character size of a text
 ///
-/// \param text : String to modify
-/// \param size : New size, in pixels
+/// The default size is 30.
+///
+/// \param text Text object
+/// \param size New character size, in pixels
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_SetCharacterSize(sfText* text, unsigned int size);
 
 ////////////////////////////////////////////////////////////
-/// Set the style of a text
+/// \brief Set the style of a text
 ///
-/// \param text :  String to modify
-/// \param style : New style (see sfTextStyle enum)
+/// You can pass a combination of one or more styles, for
+/// example sfTextBold | sfTextItalic.
+/// The default style is sfTextRegular.
+///
+/// \param text  Text object
+/// \param style New style
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfText_SetStyle(sfText* text, sfUint32 style);
 
 ////////////////////////////////////////////////////////////
-/// Get the string of a text (returns a unicode string)
+/// \brief Set the global color of a text
 ///
-/// \param text : String to read
+/// By default, the text's color is opaque white.
 ///
-/// \return String as UTF-32
+/// \param text  Text object
+/// \param color New color of the text
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfUint32* sfText_GetUnicodeString(const sfText* text);
+CSFML_API void sfText_SetColor(sfText* text, sfColor color);
 
 ////////////////////////////////////////////////////////////
-/// Get the text of a text (returns an ANSI string)
+/// \brief Get the text of a text (returns an ANSI string)
 ///
-/// \param text : String to read
+/// \param text Text object
 ///
 /// \return String an a locale-dependant ANSI string
 ///
@@ -379,9 +315,19 @@ CSFML_API const sfUint32* sfText_GetUnicodeString(const sfText* text);
 CSFML_API const char* sfText_GetString(const sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Get the font used by a text
+/// \brief Get the string of a text (returns a unicode string)
 ///
-/// \param text : String to read
+/// \param text Text object
+///
+/// \return String as UTF-32
+///
+////////////////////////////////////////////////////////////
+CSFML_API const sfUint32* sfText_GetUnicodeString(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the font used by a text
+///
+/// \param text Text object
 ///
 /// \return Pointer to the font
 ///
@@ -389,9 +335,9 @@ CSFML_API const char* sfText_GetString(const sfText* text);
 CSFML_API const sfFont* sfText_GetFont(const sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Get the size of the characters of a text
+/// \brief Get the size of the characters of a text
 ///
-/// \param text : String to read
+/// \param text Text object
 ///
 /// \return Size of the characters
 ///
@@ -399,9 +345,9 @@ CSFML_API const sfFont* sfText_GetFont(const sfText* text);
 CSFML_API unsigned int sfText_GetCharacterSize(const sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Get the style of a text
+/// \brief Get the style of a text
 ///
-/// \param text : String to read
+/// \param text Text object
 ///
 /// \return Current string style (see sfTextStyle enum)
 ///
@@ -409,27 +355,32 @@ CSFML_API unsigned int sfText_GetCharacterSize(const sfText* text);
 CSFML_API sfUint32 sfText_GetStyle(const sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Return the visual position of the Index-th character of the text,
-/// in coordinates relative to the string
-/// (note : translation, origin, rotation and scale are not applied)
+/// \brief Get the global color of a text
 ///
-/// \param text :  String to read
-/// \param index : Index of the character
-/// \param x :     Value to fill with the X coordinate of the position
-/// \param y :     Value to fill with the y coordinate of the position
+/// \param text Text object
+///
+/// \return Global color of the text
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfText_GetCharacterPos(const sfText* text, size_t index, float* x, float* y);
+CSFML_API sfColor sfText_GetColor(const sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// Get the bounding rectangle of a text on screen
+/// \brief Return the position of the \a index-th character in a text
 ///
-/// \param text : String to read
+/// This function computes the visual position of a character
+/// from its index in the string. The returned position is
+/// in global coordinates (translation, rotation, scale and
+/// origin are applied).
+/// If \a index is out of range, the position of the end of
+/// the string is returned.
 ///
-/// \return Rectangle contaning the string in screen coordinates
+/// \param text  Text object
+/// \param index Index of the character
+/// \param x     The returned x position of the character
+/// \param y     The returned y position of the character
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfFloatRect sfText_GetRect(const sfText* text);
+CSFML_API void sfText_FindCharacterPos(const sfText* text, size_t index, float* x, float* y);
 
 
 #endif // SFML_TEXT_H
