@@ -52,11 +52,11 @@ typedef struct
 } sfIntRect;
 
 ////////////////////////////////////////////////////////////
-/// Check if a point is inside a rectangle's area
+/// \brief Check if a point is inside a rectangle's area
 ///
-/// \param rect : Rectangle to test
-/// \param x :    X coordinate of the point to test
-/// \param y :    Y coordinate of the point to test
+/// \param rect Rectangle to test
+/// \param x    X coordinate of the point to test
+/// \param y    Y coordinate of the point to test
 ///
 /// \return sfTrue if the point is inside
 ///
@@ -65,11 +65,11 @@ CSFML_API sfBool sfFloatRect_Contains(const sfFloatRect* rect, float x, float y)
 CSFML_API sfBool sfIntRect_Contains(const sfIntRect* rect, int x, int y);
 
 ////////////////////////////////////////////////////////////
-/// Check intersection between two rectangles
+/// \brief Check intersection between two rectangles
 ///
-/// \param rect1 :        First rectangle to test
-/// \param rect2 :        Second rectangle to test
-/// \param intersection : Rectangle to be filled with overlapping rect (can be NULL)
+/// \param rect1        First rectangle to test
+/// \param rect2        Second rectangle to test
+/// \param intersection Rectangle to be filled with overlapping rect (can be NULL)
 ///
 /// \return sfTrue if rectangles overlap
 ///

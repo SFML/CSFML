@@ -35,9 +35,9 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new font from a file
+/// \brief Create a new font from a file
 ///
-/// \param filename : Path of the font file to load
+/// \param filename Path of the font file to load
 ///
 /// \return A new sfFont object, or NULL if it failed
 ///
@@ -45,10 +45,10 @@
 CSFML_API sfFont* sfFont_CreateFromFile(const char* filename);
 
 ////////////////////////////////////////////////////////////
-/// Create a new image font a file in memory
+/// \brief Create a new image font a file in memory
 ///
-/// \param data :        Pointer to the file data in memory
-/// \param sizeInBytes : Size of the data to load, in bytes
+/// \param data        Pointer to the file data in memory
+/// \param sizeInBytes Size of the data to load, in bytes
 ///
 /// \return A new sfFont object, or NULL if it failed
 ///
@@ -56,9 +56,9 @@ CSFML_API sfFont* sfFont_CreateFromFile(const char* filename);
 CSFML_API sfFont* sfFont_CreateFromMemory(const void* data, size_t sizeInBytes);
 
 ////////////////////////////////////////////////////////////
-/// Create a new image font a custom stream
+/// \brief Create a new image font a custom stream
 ///
-/// \param stream : Source stream to read from
+/// \param stream Source stream to read from
 ///
 /// \return A new sfFont object, or NULL if it failed
 ///
@@ -66,9 +66,9 @@ CSFML_API sfFont* sfFont_CreateFromMemory(const void* data, size_t sizeInBytes);
 CSFML_API sfFont* sfFont_CreateFromStream(sfInputStream* stream);
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing font
+/// \brief Copy an existing font
 ///
-/// \param font : Font to copy
+/// \param font Font to copy
 ///
 /// \return Copied object
 ///
@@ -76,20 +76,20 @@ CSFML_API sfFont* sfFont_CreateFromStream(sfInputStream* stream);
 CSFML_API sfFont* sfFont_Copy(sfFont* font);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing font
+/// \brief Destroy an existing font
 ///
-/// \param font : Font to delete
+/// \param font Font to delete
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfFont_Destroy(sfFont* font);
 
 ////////////////////////////////////////////////////////////
-/// Get a glyph in a font
+/// \brief Get a glyph in a font
 ///
-/// \param font :          Source font
-/// \param codePoint :     Unicode code point of the character to get
-/// \param characterSize : Character size, in pixels
-/// \param bold            Retrieve the bold version or the regular one?
+/// \param font          Source font
+/// \param codePoint     Unicode code point of the character to get
+/// \param characterSize Character size, in pixels
+/// \param bold          Retrieve the bold version or the regular one?
 ///
 /// \return The corresponding glyph
 ///
@@ -97,12 +97,12 @@ CSFML_API void sfFont_Destroy(sfFont* font);
 CSFML_API sfGlyph sfFont_GetGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold);
 
 ////////////////////////////////////////////////////////////
-/// Get the kerning value corresponding to a given pair of characters in a font
+/// \brief Get the kerning value corresponding to a given pair of characters in a font
 ///
-/// \param font :          Source font
-/// \param first :         Unicode code point of the first character
-/// \param second :        Unicode code point of the second character
-/// \param characterSize : Character size, in pixels
+/// \param font          Source font
+/// \param first         Unicode code point of the first character
+/// \param second        Unicode code point of the second character
+/// \param characterSize Character size, in pixels
 ///
 /// \return Kerning offset, in pixels
 ///
@@ -110,11 +110,11 @@ CSFML_API sfGlyph sfFont_GetGlyph(sfFont* font, sfUint32 codePoint, unsigned int
 CSFML_API int sfFont_GetKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
-/// Get the line spacing value
+/// \brief Get the line spacing value
 ///
-/// \param font :          Source font
-/// \param codePoint :     Unicode code point of the character to get
-/// \param characterSize : Character size, in pixels
+/// \param font          Source font
+/// \param codePoint     Unicode code point of the character to get
+/// \param characterSize Character size, in pixels
 ///
 /// \return Line spacing, in pixels
 ///
@@ -122,10 +122,10 @@ CSFML_API int sfFont_GetKerning(sfFont* font, sfUint32 first, sfUint32 second, u
 CSFML_API int sfFont_GetLineSpacing(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
-/// Get the texture containing the glyphs of a given size in a font
+/// \brief Get the texture containing the glyphs of a given size in a font
 ///
-/// \param font :          Source font
-/// \param characterSize : Character size, in pixels
+/// \param font          Source font
+/// \param characterSize Character size, in pixels
 ///
 /// \return Read-only pointer to the texture
 ///
@@ -133,7 +133,7 @@ CSFML_API int sfFont_GetLineSpacing(sfFont* font, unsigned int characterSize);
 CSFML_API const sfTexture* sfFont_GetTexture(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
-/// Get the built-in default font (Arial)
+/// \brief Get the built-in default font (Arial)
 ///
 /// \return Pointer to the default font
 ///

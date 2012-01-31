@@ -32,7 +32,8 @@
 
 
 ////////////////////////////////////////////////////////////
-/// sfColor is an utility class for manipulating colors
+/// \brief Utility class for manpulating RGBA colors
+///
 ////////////////////////////////////////////////////////////
 typedef struct
 {
@@ -43,25 +44,23 @@ typedef struct
 } sfColor;
 
 
-////////////////////////////////////////////////////////////
-/// Define some common colors
-////////////////////////////////////////////////////////////
-CSFML_API sfColor sfBlack;
-CSFML_API sfColor sfWhite;
-CSFML_API sfColor sfRed;
-CSFML_API sfColor sfGreen;
-CSFML_API sfColor sfBlue;
-CSFML_API sfColor sfYellow;
-CSFML_API sfColor sfMagenta;
-CSFML_API sfColor sfCyan;
+CSFML_API sfColor sfBlack;       ///< Black predefined color
+CSFML_API sfColor sfWhite;       ///< White predefined color
+CSFML_API sfColor sfRed;         ///< Red predefined color
+CSFML_API sfColor sfGreen;       ///< Green predefined color
+CSFML_API sfColor sfBlue;        ///< Blue predefined color
+CSFML_API sfColor sfYellow;      ///< Yellow predefined color
+CSFML_API sfColor sfMagenta;     ///< Magenta predefined color
+CSFML_API sfColor sfCyan;        ///< Cyan predefined color
+CSFML_API sfColor sfTransparent; ///< Transparent (black) predefined color
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a color from its 3 RGB components
+/// \brief Construct a color from its 3 RGB components
 ///
-/// \param red :   Red component   (0 .. 255)
-/// \param green : Green component (0 .. 255)
-/// \param blue :  Blue component  (0 .. 255)
+/// \param red   Red component   (0 .. 255)
+/// \param green Green component (0 .. 255)
+/// \param blue  Blue component  (0 .. 255)
 ///
 /// \return sfColor constructed from the components
 ///
@@ -69,12 +68,12 @@ CSFML_API sfColor sfCyan;
 CSFML_API sfColor sfColor_FromRGB(sfUint8 red, sfUint8 green, sfUint8 blue);
 
 ////////////////////////////////////////////////////////////
-/// Construct a color from its 4 RGBA components
+/// \brief Construct a color from its 4 RGBA components
 ///
-/// \param red :   Red component   (0 .. 255)
-/// \param green : Green component (0 .. 255)
-/// \param blue :  Blue component  (0 .. 255)
-/// \param alpha : Alpha component (0 .. 255)
+/// \param red   Red component   (0 .. 255)
+/// \param green Green component (0 .. 255)
+/// \param blue  Blue component  (0 .. 255)
+/// \param alpha Alpha component (0 .. 255)
 ///
 /// \return sfColor constructed from the components
 ///
@@ -82,10 +81,10 @@ CSFML_API sfColor sfColor_FromRGB(sfUint8 red, sfUint8 green, sfUint8 blue);
 CSFML_API sfColor sfColor_FromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha);
 
 ////////////////////////////////////////////////////////////
-/// Add two colors
+/// \brief Add two colors
 ///
-/// \param color1 : First color
-/// \param color2 : Second color
+/// \param color1 First color
+/// \param color2 Second color
 ///
 /// \return Component-wise saturated addition of the two colors
 ///
@@ -93,10 +92,10 @@ CSFML_API sfColor sfColor_FromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfU
 CSFML_API sfColor sfColor_Add(sfColor color1, sfColor color2);
 
 ////////////////////////////////////////////////////////////
-/// Modulate two colors
+/// \brief Modulate two colors
 ///
-/// \param color1 : First color
-/// \param color2 : Second color
+/// \param color1 First color
+/// \param color2 Second color
 ///
 /// \return Component-wise multiplication of the two colors
 ///

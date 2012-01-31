@@ -31,20 +31,17 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Define some common colors
-////////////////////////////////////////////////////////////
-sfColor sfBlack   = sfColor_FromRGB(  0,   0,   0);
-sfColor sfWhite   = sfColor_FromRGB(255, 255, 255);
-sfColor sfRed     = sfColor_FromRGB(255,   0,   0);
-sfColor sfGreen   = sfColor_FromRGB(  0, 255,   0);
-sfColor sfBlue    = sfColor_FromRGB(  0,   0, 255);
-sfColor sfYellow  = sfColor_FromRGB(255, 255,   0);
-sfColor sfMagenta = sfColor_FromRGB(255,   0, 255);
-sfColor sfCyan    = sfColor_FromRGB(  0, 255, 255);
+sfColor sfBlack       = sfColor_FromRGB(  0,   0,   0);
+sfColor sfWhite       = sfColor_FromRGB(255, 255, 255);
+sfColor sfRed         = sfColor_FromRGB(255,   0,   0);
+sfColor sfGreen       = sfColor_FromRGB(  0, 255,   0);
+sfColor sfBlue        = sfColor_FromRGB(  0,   0, 255);
+sfColor sfYellow      = sfColor_FromRGB(255, 255,   0);
+sfColor sfMagenta     = sfColor_FromRGB(255,   0, 255);
+sfColor sfCyan        = sfColor_FromRGB(  0, 255, 255);
+sfColor sfTransparent = sfColor_FromRGBA( 0,   0,   0, 0);
 
 
-////////////////////////////////////////////////////////////
-/// Construct a color from its 3 RGB components
 ////////////////////////////////////////////////////////////
 sfColor sfColor_FromRGB(sfUint8 red, sfUint8 green, sfUint8 blue)
 {
@@ -52,8 +49,6 @@ sfColor sfColor_FromRGB(sfUint8 red, sfUint8 green, sfUint8 blue)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Construct a color from its 4 RGBA components
 ////////////////////////////////////////////////////////////
 sfColor sfColor_FromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha)
 {
@@ -69,8 +64,6 @@ sfColor sfColor_FromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha
 
 
 ////////////////////////////////////////////////////////////
-/// Add two colors
-////////////////////////////////////////////////////////////
 sfColor sfColor_Add(sfColor color1, sfColor color2)
 {
     int red   = std::min(color1.r + color2.r, 255);
@@ -85,8 +78,6 @@ sfColor sfColor_Add(sfColor color1, sfColor color2)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Modulate two colors
 ////////////////////////////////////////////////////////////
 sfColor sfColor_Modulate(sfColor color1, sfColor color2)
 {

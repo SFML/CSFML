@@ -31,16 +31,12 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Construct a default view (1000x1000)
-////////////////////////////////////////////////////////////
 sfView* sfView_Create(void)
 {
     return new sfView;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Construct a view from a rectangle
 ////////////////////////////////////////////////////////////
 sfView* sfView_CreateFromRect(sfFloatRect rectangle)
 {
@@ -52,8 +48,6 @@ sfView* sfView_CreateFromRect(sfFloatRect rectangle)
 
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing view
-////////////////////////////////////////////////////////////
 sfView* sfView_Copy(sfView* view)
 {
     CSFML_CHECK_RETURN(view, NULL);
@@ -63,16 +57,12 @@ sfView* sfView_Copy(sfView* view)
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing view
-////////////////////////////////////////////////////////////
 void sfView_Destroy(sfView* view)
 {
     delete view;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Change the center of a view
 ////////////////////////////////////////////////////////////
 void sfView_SetCenter(sfView* view, float x, float y)
 {
@@ -81,16 +71,12 @@ void sfView_SetCenter(sfView* view, float x, float y)
 
 
 ////////////////////////////////////////////////////////////
-/// Change the size of a view
-////////////////////////////////////////////////////////////
 void sfView_SetSize(sfView* view, float width, float height)
 {
     CSFML_CALL(view, SetSize(width, height));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Set the angle of rotation of a view
 ////////////////////////////////////////////////////////////
 void sfView_SetRotation(sfView* view, float angle)
 {
@@ -99,17 +85,12 @@ void sfView_SetRotation(sfView* view, float angle)
 
 
 ////////////////////////////////////////////////////////////
-/// Set the target viewport of a view
-////////////////////////////////////////////////////////////
 void sfView_SetViewport(sfView* view, sfFloatRect viewport)
 {
     CSFML_CALL(view, SetViewport(sf::FloatRect(viewport.Left, viewport.Top, viewport.Width, viewport.Height)));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Reset a view to the given rectangle.
-/// Note: this function resets the rotation angle to 0.
 ////////////////////////////////////////////////////////////
 void sfView_Reset(sfView* view, sfFloatRect rectangle)
 {
@@ -118,51 +99,31 @@ void sfView_Reset(sfView* view, sfFloatRect rectangle)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the X coordinate of the center of a view
-////////////////////////////////////////////////////////////
-float sfView_GetCenterX(const sfView* view)
+void sfView_GetCenter(const sfView* view, float* x, float* y)
 {
-    CSFML_CHECK_RETURN(view, 0.f);
+    CSFML_CHECK(view);
 
-    return view->This.GetCenter().x;
+    sf::Vector2f center = view->This.GetCenter();
+    if (x)
+        *x = center.x;
+    if (y)
+        *y = center.y;
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Get the Y coordinate of the center of a view
-////////////////////////////////////////////////////////////
-float sfView_GetCenterY(const sfView* view)
+void sfView_GetSize(const sfView* view, float* width, float* height)
 {
-    CSFML_CHECK_RETURN(view, 0.f);
+    CSFML_CHECK(view);
 
-    return view->This.GetCenter().y;
+    sf::Vector2f size = view->This.GetSize();
+    if (width)
+        *width = size.x;
+    if (height)
+        *height = size.y;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the width of the view
-////////////////////////////////////////////////////////////
-float sfView_GetWidth(const sfView* view)
-{
-    CSFML_CHECK_RETURN(view, 0.f);
-
-    return view->This.GetSize().x;
-}
-
-
-////////////////////////////////////////////////////////////
-/// Get the height of the view
-////////////////////////////////////////////////////////////
-float sfView_GetHeight(const sfView* view)
-{
-    CSFML_CHECK_RETURN(view, 0.f);
-
-    return view->This.GetSize().y;
-}
-
-
-////////////////////////////////////////////////////////////
-/// Get the current rotation of a view
 ////////////////////////////////////////////////////////////
 float sfView_GetRotation(const sfView* view)
 {
@@ -170,8 +131,6 @@ float sfView_GetRotation(const sfView* view)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the target viewport of a view
 ////////////////////////////////////////////////////////////
 sfFloatRect sfView_GetViewport(const sfView* view)
 {
@@ -189,8 +148,6 @@ sfFloatRect sfView_GetViewport(const sfView* view)
 
 
 ////////////////////////////////////////////////////////////
-/// Move a view
-////////////////////////////////////////////////////////////
 void sfView_Move(sfView* view, float offsetX, float offsetY)
 {
     CSFML_CALL(view, Move(offsetX, offsetY));
@@ -198,16 +155,12 @@ void sfView_Move(sfView* view, float offsetX, float offsetY)
 
 
 ////////////////////////////////////////////////////////////
-/// Rotate a view
-////////////////////////////////////////////////////////////
 void sfView_Rotate(sfView* view, float angle)
 {
     CSFML_CALL(view, Rotate(angle));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Resize a view rectangle to simulate a zoom / unzoom effect
 ////////////////////////////////////////////////////////////
 void sfView_Zoom(sfView* view, float factor)
 {

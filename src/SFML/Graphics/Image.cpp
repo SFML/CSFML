@@ -30,9 +30,16 @@
 #include <SFML/Internal.h>
 #include <SFML/CallbackStream.h>
 
-
 ////////////////////////////////////////////////////////////
-/// Create a new image filled with a color
+sfImage* sfImage_Create(unsigned int width, unsigned int height)
+{
+    sfImage* image = new sfImage;
+    image->This.Create(width, height);
+
+    return image;
+}
+
+
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_CreateFromColor(unsigned int width, unsigned int height, sfColor color)
 {
@@ -44,8 +51,6 @@ sfImage* sfImage_CreateFromColor(unsigned int width, unsigned int height, sfColo
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new image from an array of pixels in memory
-////////////////////////////////////////////////////////////
 sfImage* sfImage_CreateFromPixels(unsigned int width, unsigned int height, const sfUint8* data)
 {
     sfImage* image = new sfImage;
@@ -55,8 +60,6 @@ sfImage* sfImage_CreateFromPixels(unsigned int width, unsigned int height, const
 }
 
 
-////////////////////////////////////////////////////////////
-/// Create a new image from a file
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_CreateFromFile(const char* filename)
 {
@@ -73,8 +76,6 @@ sfImage* sfImage_CreateFromFile(const char* filename)
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new image from a file in memory
-////////////////////////////////////////////////////////////
 sfImage* sfImage_CreateFromMemory(const void* data, size_t sizeInBytes)
 {
     sfImage* image = new sfImage;
@@ -89,8 +90,6 @@ sfImage* sfImage_CreateFromMemory(const void* data, size_t sizeInBytes)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Create a new image from a custom stream
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_CreateFromStream(sfInputStream* stream)
 {
@@ -110,8 +109,6 @@ sfImage* sfImage_CreateFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing image
-////////////////////////////////////////////////////////////
 sfImage* sfImage_Copy(sfImage* image)
 {
     CSFML_CHECK_RETURN(image, NULL);
@@ -121,16 +118,12 @@ sfImage* sfImage_Copy(sfImage* image)
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing image
-////////////////////////////////////////////////////////////
 void sfImage_Destroy(sfImage* image)
 {
     delete image;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Save the content of an image to a file
 ////////////////////////////////////////////////////////////
 sfBool sfImage_SaveToFile(const sfImage* image, const char* filename)
 {
@@ -139,57 +132,40 @@ sfBool sfImage_SaveToFile(const sfImage* image, const char* filename)
 
 
 ////////////////////////////////////////////////////////////
-/// Create a transparency mask for an image from a specified colorkey
-////////////////////////////////////////////////////////////
 void sfImage_CreateMaskFromColor(sfImage* image, sfColor colorKey, sfUint8 alpha)
 {
-    sf::Color SFMLColor(colorKey.r, colorKey.g, colorKey.b, colorKey.a);
-    CSFML_CALL(image, CreateMaskFromColor(SFMLColor, alpha));
+    CSFML_CALL(image, CreateMaskFromColor(sf::Color(colorKey.r, colorKey.g, colorKey.b, colorKey.a), alpha));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Copy pixels from another image onto this one.
-/// This function does a slow pixel copy and should only
-/// be used at initialization time
 ////////////////////////////////////////////////////////////
 void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha)
 {
     CSFML_CHECK(source);
-    sf::IntRect SFMLRect(sourceRect.Left, sourceRect.Top, sourceRect.Width, sourceRect.Height);
-    CSFML_CALL(image, Copy(source->This, destX, destY, SFMLRect, applyAlpha == sfTrue));
+    sf::IntRect sfmlRect(sourceRect.Left, sourceRect.Top, sourceRect.Width, sourceRect.Height);
+    CSFML_CALL(image, Copy(source->This, destX, destY, sfmlRect, applyAlpha == sfTrue));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Change the color of a pixel of an image
-/// Don't forget to call Update when you end modifying pixels
 ////////////////////////////////////////////////////////////
 void sfImage_SetPixel(sfImage* image, unsigned int x, unsigned int y, sfColor color)
 {
-    sf::Color SFMLColor(color.r, color.g, color.b, color.a);
-    CSFML_CALL(image, SetPixel(x, y, SFMLColor));
+    CSFML_CALL(image, SetPixel(x, y, sf::Color(color.r, color.g, color.b, color.a)));
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get a pixel from an image
 ////////////////////////////////////////////////////////////
 sfColor sfImage_GetPixel(const sfImage* image, unsigned int x, unsigned int y)
 {
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(image, color);
 
-    sf::Color SFMLColor = image->This.GetPixel(x, y);
+    sf::Color sfmlColor = image->This.GetPixel(x, y);
 
-    return sfColor_FromRGBA(SFMLColor.r, SFMLColor.g, SFMLColor.b, SFMLColor.a);
+    return sfColor_FromRGBA(sfmlColor.r, sfmlColor.g, sfmlColor.b, sfmlColor.a);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get a read-only pointer to the array of pixels of an image (8 bits integers RGBA)
-/// Array size is sfImage_GetWidth() x sfImage_GetHeight() x 4
-/// This pointer becomes invalid if you reload or resize the image
 ////////////////////////////////////////////////////////////
 const sfUint8* sfImage_GetPixelsPtr(const sfImage* image)
 {
@@ -198,16 +174,12 @@ const sfUint8* sfImage_GetPixelsPtr(const sfImage* image)
 
 
 ////////////////////////////////////////////////////////////
-/// Return the width of the image
-////////////////////////////////////////////////////////////
 unsigned int sfImage_GetWidth(const sfImage* image)
 {
     CSFML_CALL_RETURN(image, GetWidth(), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Return the height of the image
 ////////////////////////////////////////////////////////////
 unsigned int sfImage_GetHeight(const sfImage* image)
 {
@@ -216,16 +188,12 @@ unsigned int sfImage_GetHeight(const sfImage* image)
 
 
 ////////////////////////////////////////////////////////////
-/// Flip an image horizontally (left <-> right)
-////////////////////////////////////////////////////////////
 void sfImage_FlipHorizontally(sfImage* image)
 {
     CSFML_CALL(image, FlipHorizontally());
 }
 
 
-////////////////////////////////////////////////////////////
-/// Flip an image vertically (top <-> bottom)
 ////////////////////////////////////////////////////////////
 void sfImage_FlipVertically(sfImage* image)
 {

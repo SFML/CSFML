@@ -37,64 +37,97 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new image filled with a color
+/// \brief Create an image
 ///
-/// \param width :  Image width
-/// \param height : Image height
-/// \param color :  Image color
+/// This image is filled with black pixels.
+///
+/// \param width  Width of the image
+/// \param height Height of the image
+///
+/// \return A new sfImage object
+///
+////////////////////////////////////////////////////////////
+sfImage* sfImage_Create(unsigned int width, unsigned int height);
+
+////////////////////////////////////////////////////////////
+/// \brief Create an image and fill it with a unique color
+///
+/// \param width  Width of the image
+/// \param height Height of the image
+/// \param color  Fill color
+///
+/// \return A new sfImage object
+///
+////////////////////////////////////////////////////////////
+sfImage* sfImage_CreateFromColor(unsigned int width, unsigned int height, sfColor color);
+
+////////////////////////////////////////////////////////////
+/// \brief Create an image from an array of pixels
+///
+/// The \a pixel array is assumed to contain 32-bits RGBA pixels,
+/// and have the given \a width and \a height. If not, this is
+/// an undefined behaviour.
+/// If \a pixels is null, an empty image is created.
+///
+/// \param width  Width of the image
+/// \param height Height of the image
+/// \param pixels Array of pixels to copy to the image
+///
+/// \return A new sfImage object
+///
+////////////////////////////////////////////////////////////
+sfImage* sfImage_CreateFromPixels(unsigned int width, unsigned int height, const sfUint8* pixels);
+
+////////////////////////////////////////////////////////////
+/// \brief Create an image from a file on disk
+///
+/// The supported image formats are bmp, png, tga, jpg, gif,
+/// psd, hdr and pic. Some format options are not supported,
+/// like progressive jpeg.
+/// If this function fails, the image is left unchanged.
+///
+/// \param filename Path of the image file to load
 ///
 /// \return A new sfImage object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfImage* sfImage_CreateFromColor(unsigned int width, unsigned int height, sfColor color);
+sfImage* sfImage_CreateFromFile(const char* filename);
 
 ////////////////////////////////////////////////////////////
-/// Create a new image from an array of pixels in memory
+/// \brief Create an image from a file in memory
 ///
-/// \param width :  Image width
-/// \param height : Image height
-/// \param data :   Pointer to the pixels in memory (assumed format is RGBA)
+/// The supported image formats are bmp, png, tga, jpg, gif,
+/// psd, hdr and pic. Some format options are not supported,
+/// like progressive jpeg.
+/// If this function fails, the image is left unchanged.
+///
+/// \param data Pointer to the file data in memory
+/// \param size Size of the data to load, in bytes
 ///
 /// \return A new sfImage object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfImage* sfImage_CreateFromPixels(unsigned int width, unsigned int height, const sfUint8* data);
+sfImage* sfImage_CreateFromMemory(const void* data, size_t size);
 
 ////////////////////////////////////////////////////////////
-/// Create a new image from a file
+/// \brief Create an image from a custom stream
 ///
-/// \param filename : Path of the image file to load
+/// The supported image formats are bmp, png, tga, jpg, gif,
+/// psd, hdr and pic. Some format options are not supported,
+/// like progressive jpeg.
+/// If this function fails, the image is left unchanged.
+///
+/// \param stream Source stream to read from
 ///
 /// \return A new sfImage object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfImage* sfImage_CreateFromFile(const char* filename);
+sfImage* sfImage_CreateFromStream(sfInputStream* stream);
 
 ////////////////////////////////////////////////////////////
-/// Create a new image from a file in memory
+/// \brief Copy an existing image
 ///
-/// \param data :        Pointer to the file data in memory
-/// \param sizeInBytes : Size of the data to load, in bytes
-///
-/// \return A new sfImage object, or NULL if it failed
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfImage* sfImage_CreateFromMemory(const void* data, size_t sizeInBytes);
-
-////////////////////////////////////////////////////////////
-/// Create a new image from a custom stream
-///
-/// \param stream : Source stream to read from
-///
-/// \return A new sfImage object, or NULL if it failed
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfImage* sfImage_CreateFromStream(sfInputStream* stream);
-
-////////////////////////////////////////////////////////////
-/// Copy an existing image
-///
-/// \param image : Image to copy
+/// \param image Image to copy
 ///
 /// \return Copied object
 ///
@@ -102,119 +135,149 @@ CSFML_API sfImage* sfImage_CreateFromStream(sfInputStream* stream);
 CSFML_API sfImage* sfImage_Copy(sfImage* image);
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing image
+/// \brief Destroy an existing image
 ///
-/// \param image : Image to delete
+/// \param image Image to delete
 ///
 ////////////////////////////////////////////////////////////
 CSFML_API void sfImage_Destroy(sfImage* image);
 
 ////////////////////////////////////////////////////////////
-/// Save the content of an image to a file
+/// \brief Save an image to a file on disk
 ///
-/// \param image :    Image to save
-/// \param filename : Path of the file to save (overwritten if already exist)
+/// The format of the image is automatically deduced from
+/// the extension. The supported image formats are bmp, png,
+/// tga and jpg. The destination file is overwritten
+/// if it already exists. This function fails if the image is empty.
+///
+/// \param image    Image object
+/// \param filename Path of the file to save
 ///
 /// \return sfTrue if saving was successful
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfImage_SaveToFile(const sfImage* image, const char* filename);
+sfBool sfImage_SaveToFile(const sfImage* image, const char* filename);
 
 ////////////////////////////////////////////////////////////
-/// Create a transparency mask for an image from a specified colorkey
+/// \brief Return the width of an image
 ///
-/// \param image :    Image to modify
-/// \param colorKey : Color to become transparent
-/// \param alpha :    Alpha value to use for transparent pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfImage_CreateMaskFromColor(sfImage* image, sfColor colorKey, sfUint8 alpha);
-
-////////////////////////////////////////////////////////////
-/// Copy pixels from another image onto this one.
-/// This function does a slow pixel copy and should only
-/// be used at initialization time
-///
-/// \param image :      Destination image
-/// \param source :     Source image to copy
-/// \param destX :      X coordinate of the destination position
-/// \param destY :      Y coordinate of the destination position
-/// \param sourceRect : Sub-rectangle of the source image to copy
-/// \param applyAlpha : Should the copy take in account the source transparency?
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha);
-
-////////////////////////////////////////////////////////////
-/// Change the color of a pixel of an image
-///
-/// \param image : Image to modify
-/// \param x :     X coordinate of pixel in the image
-/// \param y :     Y coordinate of pixel in the image
-/// \param color : New color for pixel (X, Y)
-///
-////////////////////////////////////////////////////////////
-CSFML_API void sfImage_SetPixel(sfImage* image, unsigned int x, unsigned int y, sfColor color);
-
-////////////////////////////////////////////////////////////
-/// Get a pixel from an image
-///
-/// \param image : Image to read
-/// \param x :     X coordinate of pixel in the image
-/// \param y :     Y coordinate of pixel in the image
-///
-/// \return Color of pixel (x, y)
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfColor sfImage_GetPixel(const sfImage* image, unsigned int x, unsigned int y);
-
-////////////////////////////////////////////////////////////
-/// Get a read-only pointer to the array of pixels of an image (8 bits integers RGBA)
-/// Array size is sfImage_GetWidth(img) x sfImage_GetHeight(img) x 4
-/// This pointer becomes invalid if you reload or resize the image
-///
-/// \param image : Image to read
-///
-/// \return Pointer to the array of pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_API const sfUint8* sfImage_GetPixelsPtr(const sfImage* image);
-
-////////////////////////////////////////////////////////////
-/// Return the width of the image
-///
-/// \param image : Image to read
+/// \param image Image object
 ///
 /// \return Width in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfImage_GetWidth(const sfImage* image);
+unsigned int sfImage_GetWidth(const sfImage* image);
 
 ////////////////////////////////////////////////////////////
-/// Return the height of the image
+/// \brief Return the height of an image
 ///
-/// \param image : Image to read
+/// \param image Image object
 ///
 /// \return Height in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfImage_GetHeight(const sfImage* image);
+unsigned int sfImage_GetHeight(const sfImage* image);
 
 ////////////////////////////////////////////////////////////
-/// Flip an image horizontally (left <-> right)
+/// \brief Create a transparency mask from a specified color-key
 ///
-/// \param image : Image to flip
+/// This function sets the alpha value of every pixel matching
+/// the given color to \a alpha (0 by default), so that they
+/// become transparent.
+///
+/// \param image Image object
+/// \param color Color to make transparent
+/// \param alpha Alpha value to assign to transparent pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfImage_FlipHorizontally(sfImage* image);
+void sfImage_CreateMaskFromColor(sfColor color, sfUint8 alpha);
 
 ////////////////////////////////////////////////////////////
-/// Flip an image vertically (top <-> bottom)
+/// \brief Copy pixels from an image onto another
 ///
-/// \param image : Image to flip
+/// This function does a slow pixel copy and should not be
+/// used intensively. It can be used to prepare a complex
+/// static image from several others, but if you need this
+/// kind of feature in real-time you'd better use sfRenderTexture.
+///
+/// If \a sourceRect is empty, the whole image is copied.
+/// If \a applyAlpha is set to true, the transparency of
+/// source pixels is applied. If it is false, the pixels are
+/// copied unchanged with their alpha value.
+///
+/// \param image      Image object
+/// \param source     Source image to copy
+/// \param destX      X coordinate of the destination position
+/// \param destY      Y coordinate of the destination position
+/// \param sourceRect Sub-rectangle of the source image to copy
+/// \param applyAlpha Should the copy take in account the source transparency?
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfImage_FlipVertically(sfImage* image);
+void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha);
+
+////////////////////////////////////////////////////////////
+/// \brief Change the color of a pixel in an image
+///
+/// This function doesn't check the validity of the pixel
+/// coordinates, using out-of-range values will result in
+/// an undefined behaviour.
+///
+/// \param image Image object
+/// \param x     X coordinate of pixel to change
+/// \param y     Y coordinate of pixel to change
+/// \param color New color of the pixel
+///
+////////////////////////////////////////////////////////////
+void sfImage_SetPixel(sfImage* image, unsigned int x, unsigned int y, sfColor color);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the color of a pixel in an image
+///
+/// This function doesn't check the validity of the pixel
+/// coordinates, using out-of-range values will result in
+/// an undefined behaviour.
+///
+/// \param image Image object
+/// \param x     X coordinate of pixel to get
+/// \param y     Y coordinate of pixel to get
+///
+/// \return Color of the pixel at coordinates (x, y)
+///
+////////////////////////////////////////////////////////////
+sfColor sfImage_GetPixel(const sfImage* image, unsigned int x, unsigned int y);
+
+////////////////////////////////////////////////////////////
+/// \brief Get a read-only pointer to the array of pixels of an image
+///
+/// The returned value points to an array of RGBA pixels made of
+/// 8 bits integers components. The size of the array is
+/// GetWidth() * GetHeight() * 4.
+/// Warning: the returned pointer may become invalid if you
+/// modify the image, so you should never store it for too long.
+/// If the image is empty, a null pointer is returned.
+///
+/// \param image Image object
+///
+/// \return Read-only pointer to the array of pixels
+///
+////////////////////////////////////////////////////////////
+const sfUint8* sfImage_GetPixelsPtr(const sfImage* image);
+
+////////////////////////////////////////////////////////////
+/// \brief Flip an image horizontally (left <-> right)
+///
+/// \param image Image object
+///
+////////////////////////////////////////////////////////////
+void sfImage_FlipHorizontally(sfImage* image);
+
+////////////////////////////////////////////////////////////
+/// \brief Flip an image vertically (top <-> bottom)
+///
+/// \param image Image object
+///
+////////////////////////////////////////////////////////////
+void sfImage_FlipVertically(sfImage* image);
 
 
 #endif // SFML_IMAGE_H
