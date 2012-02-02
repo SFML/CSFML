@@ -63,7 +63,7 @@ sfSoundBuffer* sfSoundBuffer_CreateFromMemory(const void* data, size_t sizeInByt
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromStream(sfInputStream* stream)
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_CreateFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, NULL);
 
@@ -148,8 +148,9 @@ unsigned int sfSoundBuffer_GetChannelCount(const sfSoundBuffer* soundBuffer)
 ////////////////////////////////////////////////////////////
 sfTime sfSoundBuffer_GetDuration(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CHECK_RETURN(soundBuffer, sfTimeZero)
+    sfTime time = {0};
+    CSFML_CHECK_RETURN(soundBuffer, time);
 
-    sf::Time duration = soundBuffer->This.GetDuration();
-    return sfMicroseconds(duration.AsMicroseconds());
+    time.Microseconds = soundBuffer->This.GetDuration().AsMicroseconds();
+    return time;
 }

@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/PrimitiveType.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
@@ -41,7 +41,7 @@
 /// \return A new sfVertexArray object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfVertexArray* sfVertexArray_Create(void);
+CSFML_GRAPHICS_API sfVertexArray* sfVertexArray_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing vertex array
@@ -51,7 +51,7 @@ CSFML_API sfVertexArray* sfVertexArray_Create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfVertexArray* sfTransform_Copy(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API sfVertexArray* sfTransform_Copy(sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing vertex array
@@ -59,7 +59,7 @@ CSFML_API sfVertexArray* sfTransform_Copy(sfVertexArray* vertexArray);
 /// \param vertexArray Vertex array to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfVertexArray_Destroy(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API void sfVertexArray_Destroy(sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the vertex count of a vertex array
@@ -69,7 +69,7 @@ CSFML_API void sfVertexArray_Destroy(sfVertexArray* vertexArray);
 /// \return Number of vertices in the array
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfVertexArray_GetVertexCount(const sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API unsigned int sfVertexArray_GetVertexCount(const sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get access to a vertex by its index
@@ -84,7 +84,7 @@ CSFML_API unsigned int sfVertexArray_GetVertexCount(const sfVertexArray* vertexA
 /// \return Pointer to the index-th vertex
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfVertex* sfVertexArray_At(sfVertexArray* vertexArray, unsigned int index);
+CSFML_GRAPHICS_API sfVertex* sfVertexArray_At(sfVertexArray* vertexArray, unsigned int index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Clear a vertex array
@@ -97,7 +97,7 @@ CSFML_API sfVertex* sfVertexArray_At(sfVertexArray* vertexArray, unsigned int in
 /// \param vertexArray Vertex array object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfVertexArray_Clear(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API void sfVertexArray_Clear(sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Resize the vertex array
@@ -112,7 +112,7 @@ CSFML_API void sfVertexArray_Clear(sfVertexArray* vertexArray);
 /// \param vertexCount New size of the array (number of vertices)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfVertexArray_Resize(sfVertexArray* vertexArray, unsigned int vertexCount);
+CSFML_GRAPHICS_API void sfVertexArray_Resize(sfVertexArray* vertexArray, unsigned int vertexCount);
 
 ////////////////////////////////////////////////////////////
 /// \brief Add a vertex to a vertex array array
@@ -121,7 +121,7 @@ CSFML_API void sfVertexArray_Resize(sfVertexArray* vertexArray, unsigned int ver
 /// \param vertex      Vertex to add
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfVertexArray_Append(sfVertexArray* vertexArray, sfVertex vertex);
+CSFML_GRAPHICS_API void sfVertexArray_Append(sfVertexArray* vertexArray, sfVertex vertex);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the type of primitives of a vertex array
@@ -138,7 +138,7 @@ CSFML_API void sfVertexArray_Append(sfVertexArray* vertexArray, sfVertex vertex)
 /// \param type        Type of primitive
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfVertexArray_SetPrimitiveType(sfVertexArray* vertexArray, sfPrimitiveType type);
+CSFML_GRAPHICS_API void sfVertexArray_SetPrimitiveType(sfVertexArray* vertexArray, sfPrimitiveType type);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the type of primitives drawn by a vertex array
@@ -148,7 +148,7 @@ CSFML_API void sfVertexArray_SetPrimitiveType(sfVertexArray* vertexArray, sfPrim
 /// \return Primitive type
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfPrimitiveType sfVertexArray_GetPrimitiveType(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API sfPrimitiveType sfVertexArray_GetPrimitiveType(sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Compute the bounding rectangle of a vertex array
@@ -161,7 +161,7 @@ CSFML_API sfPrimitiveType sfVertexArray_GetPrimitiveType(sfVertexArray* vertexAr
 /// \return Bounding rectangle of the vertex array
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfFloatRect sfVertexArray_GetBounds(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API sfFloatRect sfVertexArray_GetBounds(sfVertexArray* vertexArray);
 
 
 #endif // SFML_VERTEXARRAY_H

@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Audio/Export.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -41,7 +41,7 @@
 /// \param volume New global volume, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfListener_SetGlobalVolume(float volume);
+CSFML_AUDIO_API void sfListener_SetGlobalVolume(float volume);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current value of the global volume
@@ -49,7 +49,7 @@ CSFML_API void sfListener_SetGlobalVolume(float volume);
 /// \return Current global volume, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API float sfListener_GetGlobalVolume(void);
+CSFML_AUDIO_API float sfListener_GetGlobalVolume(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of the listener in the scene
@@ -61,7 +61,7 @@ CSFML_API float sfListener_GetGlobalVolume(void);
 /// \param z Z coordinate of the listener's position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfListener_SetPosition(float x, float y, float z);
+CSFML_AUDIO_API void sfListener_SetPosition(float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of the listener in the scene
@@ -71,7 +71,7 @@ CSFML_API void sfListener_SetPosition(float x, float y, float z);
 /// \param z Z coordinate of the listener's position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfListener_GetPosition(float* x, float* y, float* z);
+CSFML_AUDIO_API void sfListener_GetPosition(float* x, float* y, float* z);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of the listener in the scene
@@ -86,7 +86,7 @@ CSFML_API void sfListener_GetPosition(float* x, float* y, float* z);
 /// \param z Z coordinate of the listener's orientation
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfListener_SetDirection(float x, float y, float z);
+CSFML_AUDIO_API void sfListener_SetDirection(float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current orientation of the listener in the scene
@@ -96,7 +96,7 @@ CSFML_API void sfListener_SetDirection(float x, float y, float z);
 /// \param z Z coordinate of the listener's orientation
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfListener_GetDirection(float* x, float* y, float* z);
+CSFML_AUDIO_API void sfListener_GetDirection(float* x, float* y, float* z);
 
 
 #endif // SFML_LISTENER_H

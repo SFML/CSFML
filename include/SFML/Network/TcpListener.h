@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Network/Export.h>
 #include <SFML/Network/SocketStatus.h>
 #include <SFML/Network/Types.h>
 
@@ -39,7 +39,7 @@
 /// \return A new sfTcpListener object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTcpListener* sfTcpListener_Create(void);
+CSFML_NETWORK_API sfTcpListener* sfTcpListener_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a TCP listener
@@ -47,7 +47,7 @@ CSFML_API sfTcpListener* sfTcpListener_Create(void);
 /// \param listener TCP listener to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfTcpListener_Destroy(sfTcpListener* listener);
+CSFML_NETWORK_API void sfTcpListener_Destroy(sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the blocking state of a TCP listener
@@ -65,7 +65,7 @@ CSFML_API void sfTcpListener_Destroy(sfTcpListener* listener);
 /// \param blocking sfTrue to set the socket as blocking, sfFalse for non-blocking
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfTcpListener_SetBlocking(sfTcpListener* listener, sfBool blocking);
+CSFML_NETWORK_API void sfTcpListener_SetBlocking(sfTcpListener* listener, sfBool blocking);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a TCP listener is in blocking or non-blocking mode
@@ -75,7 +75,7 @@ CSFML_API void sfTcpListener_SetBlocking(sfTcpListener* listener, sfBool blockin
 /// \return sfTrue if the socket is blocking, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfTcpListener_IsBlocking(const sfTcpListener* listener);
+CSFML_NETWORK_API sfBool sfTcpListener_IsBlocking(const sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the port to which a TCP listener is bound locally
@@ -88,7 +88,7 @@ CSFML_API sfBool sfTcpListener_IsBlocking(const sfTcpListener* listener);
 /// \return Port to which the TCP listener is bound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned short sfTcpListener_GetLocalPort(const sfTcpListener* listener);
+CSFML_NETWORK_API unsigned short sfTcpListener_GetLocalPort(const sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start listening for connections
@@ -104,7 +104,7 @@ CSFML_API unsigned short sfTcpListener_GetLocalPort(const sfTcpListener* listene
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSocketStatus sfTcpListener_Listen(sfTcpListener* listener, unsigned short port);
+CSFML_NETWORK_API sfSocketStatus sfTcpListener_Listen(sfTcpListener* listener, unsigned short port);
 
 ////////////////////////////////////////////////////////////
 /// \brief Accept a new connection
@@ -118,7 +118,7 @@ CSFML_API sfSocketStatus sfTcpListener_Listen(sfTcpListener* listener, unsigned 
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSocketStatus sfTcpListener_Accept(sfTcpListener* listener, sfTcpSocket** connected);
+CSFML_NETWORK_API sfSocketStatus sfTcpListener_Accept(sfTcpListener* listener, sfTcpSocket** connected);
 
 
 #endif // SFML_TCPLISTENER_H

@@ -22,27 +22,27 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VERTEX_H
-#define SFML_VERTEX_H
+#ifndef SFML_SYSTEM_EXPORT_H
+#define SFML_SYSTEM_EXPORT_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Export.h>
-#include <SFML/Graphics/Color.h>
+#include <SFML/Config.h>
 
 
 ////////////////////////////////////////////////////////////
-/// Define a point with color and texture coordinates
+// Define portable import / export macros
 ////////////////////////////////////////////////////////////
-typedef struct
-{
-    float   X;         ///< X coordinate of the position of the vertex
-    float   Y;         ///< Y coordinate of the position of the vertex
-    sfColor Color;     ///< Color of the vertex
-    float   TexCoordX; ///< X coordinate of the texture's pixel to map to the vertex
-    float   TexCoordY; ///< Y coordinate of the texture's pixel to map to the vertex
-} sfVertex;
+#if defined(CSFML_SYSTEM_EXPORTS)
+
+    #define CSFML_SYSTEM_API CSFML_API_EXPORT
+
+#else
+
+    #define CSFML_SYSTEM_API CSFML_API_IMPORT
+
+#endif
 
 
-#endif // SFML_VERTEX_H
+#endif // SFML_SYSTEM_EXPORT_H

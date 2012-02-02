@@ -28,6 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Glyph.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/InputStream.h>
@@ -42,7 +43,7 @@
 /// \return A new sfFont object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfFont* sfFont_CreateFromFile(const char* filename);
+CSFML_GRAPHICS_API sfFont* sfFont_CreateFromFile(const char* filename);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new image font a file in memory
@@ -53,7 +54,7 @@ CSFML_API sfFont* sfFont_CreateFromFile(const char* filename);
 /// \return A new sfFont object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfFont* sfFont_CreateFromMemory(const void* data, size_t sizeInBytes);
+CSFML_GRAPHICS_API sfFont* sfFont_CreateFromMemory(const void* data, size_t sizeInBytes);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new image font a custom stream
@@ -63,7 +64,7 @@ CSFML_API sfFont* sfFont_CreateFromMemory(const void* data, size_t sizeInBytes);
 /// \return A new sfFont object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfFont* sfFont_CreateFromStream(sfInputStream* stream);
+CSFML_GRAPHICS_API sfFont* sfFont_CreateFromStream(sfInputStream* stream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing font
@@ -73,7 +74,7 @@ CSFML_API sfFont* sfFont_CreateFromStream(sfInputStream* stream);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfFont* sfFont_Copy(sfFont* font);
+CSFML_GRAPHICS_API sfFont* sfFont_Copy(sfFont* font);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing font
@@ -81,7 +82,7 @@ CSFML_API sfFont* sfFont_Copy(sfFont* font);
 /// \param font Font to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfFont_Destroy(sfFont* font);
+CSFML_GRAPHICS_API void sfFont_Destroy(sfFont* font);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a glyph in a font
@@ -94,7 +95,7 @@ CSFML_API void sfFont_Destroy(sfFont* font);
 /// \return The corresponding glyph
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfGlyph sfFont_GetGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold);
+CSFML_GRAPHICS_API sfGlyph sfFont_GetGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the kerning value corresponding to a given pair of characters in a font
@@ -107,7 +108,7 @@ CSFML_API sfGlyph sfFont_GetGlyph(sfFont* font, sfUint32 codePoint, unsigned int
 /// \return Kerning offset, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API int sfFont_GetKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
+CSFML_GRAPHICS_API int sfFont_GetKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the line spacing value
@@ -119,7 +120,7 @@ CSFML_API int sfFont_GetKerning(sfFont* font, sfUint32 first, sfUint32 second, u
 /// \return Line spacing, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API int sfFont_GetLineSpacing(sfFont* font, unsigned int characterSize);
+CSFML_GRAPHICS_API int sfFont_GetLineSpacing(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the texture containing the glyphs of a given size in a font
@@ -130,7 +131,7 @@ CSFML_API int sfFont_GetLineSpacing(sfFont* font, unsigned int characterSize);
 /// \return Read-only pointer to the texture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfTexture* sfFont_GetTexture(sfFont* font, unsigned int characterSize);
+CSFML_GRAPHICS_API const sfTexture* sfFont_GetTexture(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the built-in default font (Arial)
@@ -138,7 +139,7 @@ CSFML_API const sfTexture* sfFont_GetTexture(sfFont* font, unsigned int characte
 /// \return Pointer to the default font
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfFont* sfFont_GetDefaultFont(void);
+CSFML_GRAPHICS_API const sfFont* sfFont_GetDefaultFont(void);
 
 
 #endif // SFML_IMAGE_H

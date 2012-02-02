@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/System/Export.h>
 #include <SFML/System/Time.h>
 
 
@@ -41,7 +41,7 @@
 /// \param duration Time to sleep
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSleep(sfTime duration);
+CSFML_SYSTEM_API void sfSleep(sfTime duration);
 
 
 #endif // SFML_SLEEP_H

@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/System/Export.h>
 #include <SFML/System/Time.h>
 #include <SFML/System/Types.h>
 
@@ -39,7 +39,7 @@
 /// \return A new sfClock object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfClock* sfClock_Create(void);
+CSFML_SYSTEM_API sfClock* sfClock_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new clock by copying an existing one
@@ -49,7 +49,7 @@ CSFML_API sfClock* sfClock_Create(void);
 /// \return A new sfClock object which is a copy of \a clock
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfClock* sfClock_Copy(sfClock* clock);
+CSFML_SYSTEM_API sfClock* sfClock_Copy(sfClock* clock);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a clock
@@ -57,7 +57,7 @@ CSFML_API sfClock* sfClock_Copy(sfClock* clock);
 /// \param clock Clock to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfClock_Destroy(sfClock* clock);
+CSFML_SYSTEM_API void sfClock_Destroy(sfClock* clock);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the time elapsed in a clock
@@ -71,7 +71,7 @@ CSFML_API void sfClock_Destroy(sfClock* clock);
 /// \return Time elapsed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTime sfClock_GetElapsedTime(const sfClock* clock);
+CSFML_SYSTEM_API sfTime sfClock_GetElapsedTime(const sfClock* clock);
 
 ////////////////////////////////////////////////////////////
 /// \brief Restart a clock
@@ -84,7 +84,7 @@ CSFML_API sfTime sfClock_GetElapsedTime(const sfClock* clock);
 /// \return Time elapsed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTime sfClock_Restart(sfClock* clock);
+CSFML_SYSTEM_API sfTime sfClock_Restart(sfClock* clock);
 
 
 #endif // SFML_CLOCK_H

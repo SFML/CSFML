@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Audio/Export.h>
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
 #include <SFML/System/Time.h>
@@ -40,7 +40,7 @@
 /// \return A new sfSound object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSound* sfSound_Create(void);
+CSFML_AUDIO_API sfSound* sfSound_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound by copying an existing one
@@ -50,7 +50,7 @@ CSFML_API sfSound* sfSound_Create(void);
 /// \return A new sfSound object which is a copy of \a sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSound* sfSound_Copy(sfSound* sound);
+CSFML_AUDIO_API sfSound* sfSound_Copy(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a sound
@@ -58,7 +58,7 @@ CSFML_API sfSound* sfSound_Copy(sfSound* sound);
 /// \param sound Sound to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_Destroy(sfSound* sound);
+CSFML_AUDIO_API void sfSound_Destroy(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start or resume playing a sound
@@ -72,7 +72,7 @@ CSFML_API void sfSound_Destroy(sfSound* sound);
 /// \param sound Sound object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_Play(sfSound* sound);
+CSFML_AUDIO_API void sfSound_Play(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Pause a sound
@@ -83,7 +83,7 @@ CSFML_API void sfSound_Play(sfSound* sound);
 /// \param sound Sound object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_Pause(sfSound* sound);
+CSFML_AUDIO_API void sfSound_Pause(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Stop playing a sound
@@ -95,7 +95,7 @@ CSFML_API void sfSound_Pause(sfSound* sound);
 /// \param sound Sound object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_Stop(sfSound* sound);
+CSFML_AUDIO_API void sfSound_Stop(sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the source buffer containing the audio data to play
@@ -108,7 +108,7 @@ CSFML_API void sfSound_Stop(sfSound* sound);
 /// \param buffer Sound buffer to attach to the sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetBuffer(sfSound* sound, const sfSoundBuffer* buffer);
+CSFML_AUDIO_API void sfSound_SetBuffer(sfSound* sound, const sfSoundBuffer* buffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the audio buffer attached to a sound
@@ -118,7 +118,7 @@ CSFML_API void sfSound_SetBuffer(sfSound* sound, const sfSoundBuffer* buffer);
 /// \return Sound buffer attached to the sound (can be NULL)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfSoundBuffer* sfSound_GetBuffer(const sfSound* sound);
+CSFML_AUDIO_API const sfSoundBuffer* sfSound_GetBuffer(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set whether or not a sound should loop after reaching the end
@@ -132,7 +132,7 @@ CSFML_API const sfSoundBuffer* sfSound_GetBuffer(const sfSound* sound);
 /// \param loop  sfTrue to play in loop, sfFalse to play once
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetLoop(sfSound* sound, sfBool loop);
+CSFML_AUDIO_API void sfSound_SetLoop(sfSound* sound, sfBool loop);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a soud is in loop mode
@@ -142,7 +142,7 @@ CSFML_API void sfSound_SetLoop(sfSound* sound, sfBool loop);
 /// \return sfTrue if the sound is looping, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfSound_GetLoop(const sfSound* sound);
+CSFML_AUDIO_API sfBool sfSound_GetLoop(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current status of a sound (stopped, paused, playing)
@@ -152,7 +152,7 @@ CSFML_API sfBool sfSound_GetLoop(const sfSound* sound);
 /// \return Current status
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSoundStatus sfSound_GetStatus(const sfSound* sound);
+CSFML_AUDIO_API sfSoundStatus sfSound_GetStatus(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the pitch of a sound
@@ -167,7 +167,7 @@ CSFML_API sfSoundStatus sfSound_GetStatus(const sfSound* sound);
 /// \param pitch New pitch to apply to the sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetPitch(sfSound* sound, float pitch);
+CSFML_AUDIO_API void sfSound_SetPitch(sfSound* sound, float pitch);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the volume of a sound
@@ -179,7 +179,7 @@ CSFML_API void sfSound_SetPitch(sfSound* sound, float pitch);
 /// \param volume Volume of the sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetVolume(sfSound* sound, float volume);
+CSFML_AUDIO_API void sfSound_SetVolume(sfSound* sound, float volume);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the 3D position of a sound in the audio scene
@@ -194,7 +194,7 @@ CSFML_API void sfSound_SetVolume(sfSound* sound, float volume);
 /// \param z     Z coordinate of the position of the sound in the scene
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetPosition(sfSound* sound, float x, float y, float z);
+CSFML_AUDIO_API void sfSound_SetPosition(sfSound* sound, float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
 /// \brief Make the sound's position relative to the listener or absolute
@@ -209,7 +209,7 @@ CSFML_API void sfSound_SetPosition(sfSound* sound, float x, float y, float z);
 /// \param relative sfTrue to set the position relative, sfFalse to set it absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetRelativeToListener(sfSound* sound, sfBool relative);
+CSFML_AUDIO_API void sfSound_SetRelativeToListener(sfSound* sound, sfBool relative);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the minimum distance of a sound
@@ -225,7 +225,7 @@ CSFML_API void sfSound_SetRelativeToListener(sfSound* sound, sfBool relative);
 /// \param distance New minimum distance of the sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetMinDistance(sfSound* sound, float distance);
+CSFML_AUDIO_API void sfSound_SetMinDistance(sfSound* sound, float distance);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the attenuation factor of a sound
@@ -243,7 +243,7 @@ CSFML_API void sfSound_SetMinDistance(sfSound* sound, float distance);
 /// \param attenuation New attenuation factor of the sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetAttenuation(sfSound* sound, float attenuation);
+CSFML_AUDIO_API void sfSound_SetAttenuation(sfSound* sound, float attenuation);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the current playing position of a sound
@@ -255,7 +255,7 @@ CSFML_API void sfSound_SetAttenuation(sfSound* sound, float attenuation);
 /// \param timeOffset New playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetPlayingOffset(sfSound* sound, sfTime timeOffset);
+CSFML_AUDIO_API void sfSound_SetPlayingOffset(sfSound* sound, sfTime timeOffset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the pitch of a sound
@@ -265,7 +265,7 @@ CSFML_API void sfSound_SetPlayingOffset(sfSound* sound, sfTime timeOffset);
 /// \return Pitch of the sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API float sfSound_GetPitch(const sfSound* sound);
+CSFML_AUDIO_API float sfSound_GetPitch(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the volume of a sound
@@ -275,7 +275,7 @@ CSFML_API float sfSound_GetPitch(const sfSound* sound);
 /// \return Volume of the sound, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API float sfSound_GetVolume(const sfSound* sound);
+CSFML_AUDIO_API float sfSound_GetVolume(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the 3D position of a sound in the audio scene
@@ -286,7 +286,7 @@ CSFML_API float sfSound_GetVolume(const sfSound* sound);
 /// \param z     Z position of the sound in the world
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_GetPosition(const sfSound* sound, float* x, float* y, float* z);
+CSFML_AUDIO_API void sfSound_GetPosition(const sfSound* sound, float* x, float* y, float* z);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a sound's position is relative to the
@@ -297,7 +297,7 @@ CSFML_API void sfSound_GetPosition(const sfSound* sound, float* x, float* y, flo
 /// \return sfTrue if the position is relative, sfFalse if it's absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfSound_IsRelativeToListener(const sfSound* sound);
+CSFML_AUDIO_API sfBool sfSound_IsRelativeToListener(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the minimum distance of a sound
@@ -307,7 +307,7 @@ CSFML_API sfBool sfSound_IsRelativeToListener(const sfSound* sound);
 /// \return Minimum distance of the sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API float sfSound_GetMinDistance(const sfSound* sound);
+CSFML_AUDIO_API float sfSound_GetMinDistance(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the attenuation factor of a sound
@@ -317,7 +317,7 @@ CSFML_API float sfSound_GetMinDistance(const sfSound* sound);
 /// \return Attenuation factor of the sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API float sfSound_GetAttenuation(const sfSound* sound);
+CSFML_AUDIO_API float sfSound_GetAttenuation(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current playing position of a sound
@@ -327,7 +327,7 @@ CSFML_API float sfSound_GetAttenuation(const sfSound* sound);
 /// \return Current playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTime sfSound_GetPlayingOffset(const sfSound* sound);
+CSFML_AUDIO_API sfTime sfSound_GetPlayingOffset(const sfSound* sound);
 
 
 #endif // SFML_SOUND_H

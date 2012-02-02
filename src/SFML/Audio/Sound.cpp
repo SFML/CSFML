@@ -193,7 +193,7 @@ void sfSound_GetPosition(const sfSound* sound, float* x, float* y, float* z)
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfSound_IsRelativeToListener(const sfSound* sound)
+CSFML_AUDIO_API sfBool sfSound_IsRelativeToListener(const sfSound* sound)
 {
     CSFML_CALL_RETURN(sound, IsRelativeToListener(), sfFalse);
 }
@@ -216,8 +216,9 @@ float sfSound_GetAttenuation(const sfSound* sound)
 ////////////////////////////////////////////////////////////
 sfTime sfSound_GetPlayingOffset(const sfSound* sound)
 {
-    CSFML_CHECK_RETURN(sound, sfTimeZero)
+    sfTime time = {0};
+    CSFML_CHECK_RETURN(sound, time);
 
-    sf::Time time = sound->This.GetPlayingOffset();
-    return sfMicroseconds(time.AsMicroseconds());
+    time.Microseconds = sound->This.GetPlayingOffset().AsMicroseconds();
+    return time;
 }

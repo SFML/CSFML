@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
@@ -132,7 +132,7 @@ sfImage* sfImage_CreateFromStream(sfInputStream* stream);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfImage* sfImage_Copy(sfImage* image);
+CSFML_GRAPHICS_API sfImage* sfImage_Copy(sfImage* image);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing image
@@ -140,7 +140,7 @@ CSFML_API sfImage* sfImage_Copy(sfImage* image);
 /// \param image Image to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfImage_Destroy(sfImage* image);
+CSFML_GRAPHICS_API void sfImage_Destroy(sfImage* image);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save an image to a file on disk

@@ -4,6 +4,7 @@ set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/Network)
 
 # all source files
 set(SRC
+    ${INCROOT}/Export.h
     ${SRCROOT}/Ftp.cpp
     ${SRCROOT}/FtpStruct.h
     ${INCROOT}/Ftp.h

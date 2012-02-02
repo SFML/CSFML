@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Network/Export.h>
 #include <SFML/Network/Types.h>
 #include <SFML/System/Time.h>
 
@@ -87,7 +87,7 @@ enum sfHttpStatus
 /// \return A new sfHttpRequest object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfHttpRequest* sfHttpRequest_Create(void);
+CSFML_NETWORK_API sfHttpRequest* sfHttpRequest_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a HTTP request
@@ -95,7 +95,7 @@ CSFML_API sfHttpRequest* sfHttpRequest_Create(void);
 /// \param httpRequest HTTP request to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttpRequest_Destroy(sfHttpRequest* httpRequest);
+CSFML_NETWORK_API void sfHttpRequest_Destroy(sfHttpRequest* httpRequest);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the value of a header field of a HTTP request
@@ -111,7 +111,7 @@ CSFML_API void sfHttpRequest_Destroy(sfHttpRequest* httpRequest);
 /// \param value       Value of the field
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttpRequest_SetField(sfHttpRequest* httpRequest, const char* field, const char* value);
+CSFML_NETWORK_API void sfHttpRequest_SetField(sfHttpRequest* httpRequest, const char* field, const char* value);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set a HTTP request method
@@ -124,7 +124,7 @@ CSFML_API void sfHttpRequest_SetField(sfHttpRequest* httpRequest, const char* fi
 /// \param method      Method to use for the request
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttpRequest_SetMethod(sfHttpRequest* httpRequest, sfHttpMethod method);
+CSFML_NETWORK_API void sfHttpRequest_SetMethod(sfHttpRequest* httpRequest, sfHttpMethod method);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set a HTTP request URI
@@ -137,7 +137,7 @@ CSFML_API void sfHttpRequest_SetMethod(sfHttpRequest* httpRequest, sfHttpMethod 
 /// \param uri         URI to request, relative to the host
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttpRequest_SetUri(sfHttpRequest* httpRequest, const char* uri);
+CSFML_NETWORK_API void sfHttpRequest_SetUri(sfHttpRequest* httpRequest, const char* uri);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the HTTP version of a HTTP request
@@ -149,7 +149,7 @@ CSFML_API void sfHttpRequest_SetUri(sfHttpRequest* httpRequest, const char* uri)
 /// \param minor       Minor HTTP version number
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttpRequest_SetHttpVersion(sfHttpRequest* httpRequest, unsigned int major, unsigned int minor);
+CSFML_NETWORK_API void sfHttpRequest_SetHttpVersion(sfHttpRequest* httpRequest, unsigned int major, unsigned int minor);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the body of a HTTP request
@@ -162,7 +162,7 @@ CSFML_API void sfHttpRequest_SetHttpVersion(sfHttpRequest* httpRequest, unsigned
 /// \param body        Content of the body
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttpRequest_SetBody(sfHttpRequest* httpRequest, const char* body);
+CSFML_NETWORK_API void sfHttpRequest_SetBody(sfHttpRequest* httpRequest, const char* body);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a HTTP response
@@ -170,7 +170,7 @@ CSFML_API void sfHttpRequest_SetBody(sfHttpRequest* httpRequest, const char* bod
 /// \param httpResponse HTTP response to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttpResponse_Destroy(sfHttpResponse* httpResponse);
+CSFML_NETWORK_API void sfHttpResponse_Destroy(sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the value of a field of a HTTP response
@@ -185,7 +185,7 @@ CSFML_API void sfHttpResponse_Destroy(sfHttpResponse* httpResponse);
 /// \return Value of the field, or empty string if not found
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const char* sfHttpResponse_GetField(const sfHttpResponse* httpResponse, const char* field);
+CSFML_NETWORK_API const char* sfHttpResponse_GetField(const sfHttpResponse* httpResponse, const char* field);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the status code of a HTTP reponse
@@ -200,7 +200,7 @@ CSFML_API const char* sfHttpResponse_GetField(const sfHttpResponse* httpResponse
 /// \return Status code of the response
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfHttpStatus sfHttpResponse_GetStatus(const sfHttpResponse* httpResponse);
+CSFML_NETWORK_API sfHttpStatus sfHttpResponse_GetStatus(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the major HTTP version number of a HTTP response
@@ -210,7 +210,7 @@ CSFML_API sfHttpStatus sfHttpResponse_GetStatus(const sfHttpResponse* httpRespon
 /// \return Major HTTP version number
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfHttpResponse_GetMajorVersion(const sfHttpResponse* httpResponse);
+CSFML_NETWORK_API unsigned int sfHttpResponse_GetMajorVersion(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the minor HTTP version number of a HTTP response
@@ -220,7 +220,7 @@ CSFML_API unsigned int sfHttpResponse_GetMajorVersion(const sfHttpResponse* http
 /// \return Minor HTTP version number
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfHttpResponse_GetMinorVersion(const sfHttpResponse* httpResponse);
+CSFML_NETWORK_API unsigned int sfHttpResponse_GetMinorVersion(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the body of a HTTP response
@@ -236,7 +236,7 @@ CSFML_API unsigned int sfHttpResponse_GetMinorVersion(const sfHttpResponse* http
 /// \return The response body
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const char* sfHttpResponse_GetBody(const sfHttpResponse* httpResponse);
+CSFML_NETWORK_API const char* sfHttpResponse_GetBody(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new Http object
@@ -244,7 +244,7 @@ CSFML_API const char* sfHttpResponse_GetBody(const sfHttpResponse* httpResponse)
 /// \return A new sfHttp object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfHttp* sfHttp_Create(void);
+CSFML_NETWORK_API sfHttp* sfHttp_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a Http object
@@ -252,7 +252,7 @@ CSFML_API sfHttp* sfHttp_Create(void);
 /// \param http Http object to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttp_Destroy(sfHttp* http);
+CSFML_NETWORK_API void sfHttp_Destroy(sfHttp* http);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the target host of a HTTP object
@@ -270,7 +270,7 @@ CSFML_API void sfHttp_Destroy(sfHttp* http);
 /// \param port Port to use for connection
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfHttp_SetHost(sfHttp* http, const char* host, unsigned short port);
+CSFML_NETWORK_API void sfHttp_SetHost(sfHttp* http, const char* host, unsigned short port);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a HTTP request and return the server's response.
@@ -291,7 +291,7 @@ CSFML_API void sfHttp_SetHost(sfHttp* http, const char* host, unsigned short por
 /// \return Server's response
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfHttpResponse* sfHttp_SendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout);
+CSFML_NETWORK_API sfHttpResponse* sfHttp_SendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout);
 
 
 #endif // SFML_HTTP_H

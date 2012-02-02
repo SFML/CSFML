@@ -65,31 +65,35 @@
 
 
 ////////////////////////////////////////////////////////////
-// Define portable import / export macros
+// Define helpers to create portable import / export macros for each module
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_SYSTEM_WINDOWS)
 
-    #ifdef CSFML_EXPORTS
+    // Windows compilers need specific (and different) keywords for export and import
+    #define CSFML_API_EXPORT extern "C" __declspec(dllexport)
+    #define CSFML_API_IMPORT extern __declspec(dllimport)
 
-        // From DLL side, we must export
-        #define CSFML_API extern "C" __declspec(dllexport)
+    // For Visual C++ compilers, we also need to turn off this annoying C4251 warning
+    #ifdef _MSC_VER
 
-    #else
-
-        // From client application side, we must import
-        #define CSFML_API extern __declspec(dllimport)
+        #pragma warning(disable : 4251)
 
     #endif
 
-#else
+#else // Linux, FreeBSD, Mac OS X
 
-    #ifdef CSFML_EXPORTS
+    #if __GNUC__ >= 4
 
-        #define CSFML_API extern "C"
+        // GCC 4 has special keywords for showing/hidding symbols,
+        // the same keyword is used for both importing and exporting
+        #define CSFML_API_EXPORT extern "C" __attribute__ ((__visibility__ ("default")))
+        #define CSFML_API_IMPORT extern __attribute__ ((__visibility__ ("default")))
 
     #else
 
-        #define CSFML_API extern
+        // GCC < 4 has no mechanism to explicitely hide symbols, everything's exported
+        #define CSFML_API_EXPORT extern "C"
+        #define CSFML_API_IMPORT extern
 
     #endif
 

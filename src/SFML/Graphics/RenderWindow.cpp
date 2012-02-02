@@ -378,7 +378,7 @@ void sfRenderWindow_DrawVertexArray(sfRenderWindow* renderWindow, const sfVertex
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderWindow_DrawPrimitives(sfRenderWindow* renderWindow,
+CSFML_GRAPHICS_API void sfRenderWindow_DrawPrimitives(sfRenderWindow* renderWindow,
                                              const sfVertex* vertices, unsigned int vertexCount,
                                              sfPrimitiveType type, const sfRenderStates* states)
 {
@@ -388,21 +388,21 @@ CSFML_API void sfRenderWindow_DrawPrimitives(sfRenderWindow* renderWindow,
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderWindow_PushGLStates(sfRenderWindow* renderWindow)
+CSFML_GRAPHICS_API void sfRenderWindow_PushGLStates(sfRenderWindow* renderWindow)
 {
     CSFML_CALL(renderWindow, PushGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderWindow_PopGLStates(sfRenderWindow* renderWindow)
+CSFML_GRAPHICS_API void sfRenderWindow_PopGLStates(sfRenderWindow* renderWindow)
 {
     CSFML_CALL(renderWindow, PopGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderWindow_ResetGLStates(sfRenderWindow* renderWindow)
+CSFML_GRAPHICS_API void sfRenderWindow_ResetGLStates(sfRenderWindow* renderWindow)
 {
     CSFML_CALL(renderWindow, ResetGLStates());
 }

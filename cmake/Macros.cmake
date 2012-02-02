@@ -46,7 +46,7 @@ macro(csfml_parse_arguments prefix arg_names option_names)
 endmacro()
 
 # add a new target which is a CSFML library
-# ex: csfml_add_library(sfml-graphics
+# ex: csfml_add_library(csfml-graphics
 #                       SOURCES sprite.cpp image.cpp ...
 #                       DEPENDS sfml-window sfml-system)
 macro(csfml_add_library target)
@@ -56,6 +56,11 @@ macro(csfml_add_library target)
 
     # create the target
     add_library(${target} ${THIS_SOURCES})
+
+    # define the export symbol of the module
+    string(REPLACE "-" "_" NAME_UPPER "${target}")
+    string(TOUPPER "${NAME_UPPER}" NAME_UPPER)
+    set_target_properties(${target} PROPERTIES DEFINE_SYMBOL ${NAME_UPPER}_EXPORTS)
 
     # adjust the output file prefix/suffix to match our conventions
     if(WINDOWS)
@@ -76,11 +81,17 @@ macro(csfml_add_library target)
     set_target_properties(${target} PROPERTIES SOVERSION ${VERSION_MAJOR})
     set_target_properties(${target} PROPERTIES VERSION ${VERSION_MAJOR}.${VERSION_MINOR})
 
-    # for gcc 4.x on Windows, apply the STATIC_STD_LIBS option if it is enabled
+    # for gcc >= 4.0 on Windows, apply the STATIC_STD_LIBS option if it is enabled
     if(WINDOWS AND COMPILER_GCC AND STATIC_STD_LIBS)
-        if(${GCC_VERSION} MATCHES "4\\..*")
+        if(NOT GCC_VERSION VERSION_LESS "4")
             set_target_properties(${target} PROPERTIES LINK_FLAGS "-static-libgcc -static-libstdc++")
         endif()
+    endif()
+
+    # If using gcc >= 4.0 or clang >= 3.0 on a non-Windows platform, we must hide public symbols by default
+    # (exported ones are explicitely marked)
+    if(NOT WINDOWS AND ((COMPILER_GCC AND NOT GCC_VERSION VERSION_LESS "4") OR (COMPILER_CLANG AND NOT CLANG_VERSION VERSION_LESS "3")))
+        set_target_properties(${target} PROPERTIES COMPILE_FLAGS -fvisibility=hidden)
     endif()
 
     # link the target to its external dependencies (C++ SFML libraries)

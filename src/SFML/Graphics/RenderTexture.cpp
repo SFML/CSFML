@@ -189,7 +189,7 @@ void sfRenderTexture_DrawVertexArray(sfRenderTexture* renderTexture, const sfVer
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderTexture_DrawPrimitives(sfRenderTexture* renderTexture,
+CSFML_GRAPHICS_API void sfRenderTexture_DrawPrimitives(sfRenderTexture* renderTexture,
                                               const sfVertex* vertices, unsigned int vertexCount,
                                               sfPrimitiveType type, const sfRenderStates* states)
 {
@@ -199,21 +199,21 @@ CSFML_API void sfRenderTexture_DrawPrimitives(sfRenderTexture* renderTexture,
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderTexture_PushGLStates(sfRenderTexture* renderTexture)
+CSFML_GRAPHICS_API void sfRenderTexture_PushGLStates(sfRenderTexture* renderTexture)
 {
     CSFML_CALL(renderTexture, PushGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderTexture_PopGLStates(sfRenderTexture* renderTexture)
+CSFML_GRAPHICS_API void sfRenderTexture_PopGLStates(sfRenderTexture* renderTexture)
 {
     CSFML_CALL(renderTexture, PopGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API void sfRenderTexture_ResetGLStates(sfRenderTexture* renderTexture)
+CSFML_GRAPHICS_API void sfRenderTexture_ResetGLStates(sfRenderTexture* renderTexture)
 {
     CSFML_CALL(renderTexture, ResetGLStates());
 }

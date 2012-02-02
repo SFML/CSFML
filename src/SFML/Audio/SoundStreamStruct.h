@@ -67,7 +67,10 @@ private :
     virtual void OnSeek(sf::Time timeOffset)
     {
         if (mySeekCallback)
-            mySeekCallback(sfMicroseconds(timeOffset.AsMicroseconds()), myUserData);
+        {
+            sfTime time = {timeOffset.AsMicroseconds()};
+            mySeekCallback(time, myUserData);
+        }
     }
 
     sfSoundStreamGetDataCallback myGetDataCallback;

@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Network/Export.h>
 #include <SFML/System/Time.h>
 
 
@@ -53,7 +53,7 @@ typedef struct
 /// \return Resulting address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_FromString(const char* address);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_FromString(const char* address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an address from 4 bytes
@@ -71,7 +71,7 @@ CSFML_API sfIpAddress sfIpAddress_FromString(const char* address);
 /// \return Resulting address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_FromBytes(sfUint8 byte0, sfUint8 byte1, sfUint8 byte2, sfUint8 byte3);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_FromBytes(sfUint8 byte0, sfUint8 byte1, sfUint8 byte2, sfUint8 byte3);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct an address from a 32-bits integer
@@ -86,7 +86,7 @@ CSFML_API sfIpAddress sfIpAddress_FromBytes(sfUint8 byte0, sfUint8 byte1, sfUint
 /// \return Resulting address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_FromInteger(sfUint32 address);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_FromInteger(sfUint32 address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a string representation of an address
@@ -100,7 +100,7 @@ CSFML_API sfIpAddress sfIpAddress_FromInteger(sfUint32 address);
 /// \return String representation of the address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfIpAddress_ToString(sfIpAddress address, char* string);
+CSFML_NETWORK_API void sfIpAddress_ToString(sfIpAddress address, char* string);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get an integer representation of the address
@@ -116,7 +116,7 @@ CSFML_API void sfIpAddress_ToString(sfIpAddress address, char* string);
 /// \return 32-bits unsigned integer representation of the address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfUint32 sfIpAddress_ToInteger(sfIpAddress address);
+CSFML_NETWORK_API sfUint32 sfIpAddress_ToInteger(sfIpAddress address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the computer's local address
@@ -130,7 +130,7 @@ CSFML_API sfUint32 sfIpAddress_ToInteger(sfIpAddress address);
 /// \return Local IP address of the computer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_GetLocalAddress(void);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_GetLocalAddress(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the computer's public address
@@ -152,7 +152,7 @@ CSFML_API sfIpAddress sfIpAddress_GetLocalAddress(void);
 /// \return Public IP address of the computer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_GetPublicAddress(sfTime timeout);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_GetPublicAddress(sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the empty/invalid address
@@ -160,7 +160,7 @@ CSFML_API sfIpAddress sfIpAddress_GetPublicAddress(sfTime timeout);
 /// \return Empty object that represents invalid addresses
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_None(void);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_None(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the computer's loopback address
@@ -168,7 +168,7 @@ CSFML_API sfIpAddress sfIpAddress_None(void);
 /// \return Local host IP address (127.0.0.1, or "localhost")
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_LocalHost(void);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_LocalHost(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the UDP broadcast address
@@ -176,7 +176,7 @@ CSFML_API sfIpAddress sfIpAddress_LocalHost(void);
 /// \return Broadcast IP address (255.255.255.255)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_Broadcast(void);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_Broadcast(void);
 
 
 #endif // SFML_IPADDRESS_H

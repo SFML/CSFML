@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Audio/Export.h>
 #include <SFML/Audio/Types.h>
 #include <SFML/System/InputStream.h>
 #include <SFML/System/Time.h>
@@ -47,7 +47,7 @@
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromFile(const char* filename);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_CreateFromFile(const char* filename);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound buffer and load it from a file in memory
@@ -62,7 +62,7 @@ CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromFile(const char* filename);
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromMemory(const void* data, size_t sizeInBytes);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_CreateFromMemory(const void* data, size_t sizeInBytes);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound buffer and load it from a custom stream
@@ -76,7 +76,7 @@ CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromMemory(const void* data, size_t
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromStream(sfInputStream* stream);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_CreateFromStream(sfInputStream* stream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound buffer and load it from an array of samples in memory
@@ -92,7 +92,7 @@ CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromStream(sfInputStream* stream);
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromSamples(const sfInt16* samples, size_t sampleCount, unsigned int channelsCount, unsigned int sampleRate);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_CreateFromSamples(const sfInt16* samples, size_t sampleCount, unsigned int channelsCount, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound buffer by copying an existing one
@@ -102,7 +102,7 @@ CSFML_API sfSoundBuffer* sfSoundBuffer_CreateFromSamples(const sfInt16* samples,
 /// \return A new sfSoundBuffer object which is a copy of \a soundBuffer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSoundBuffer* sfSoundBuffer_Copy(sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_Copy(sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a sound buffer
@@ -110,7 +110,7 @@ CSFML_API sfSoundBuffer* sfSoundBuffer_Copy(sfSoundBuffer* soundBuffer);
 /// \param soundBuffer Sound buffer to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSoundBuffer_Destroy(sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API void sfSoundBuffer_Destroy(sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save a sound buffer to an audio file
@@ -125,7 +125,7 @@ CSFML_API void sfSoundBuffer_Destroy(sfSoundBuffer* soundBuffer);
 /// \return sfTrue if saving succeeded, sfFalse if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfSoundBuffer_SaveToFile(const sfSoundBuffer* soundBuffer, const char* filename);
+CSFML_AUDIO_API sfBool sfSoundBuffer_SaveToFile(const sfSoundBuffer* soundBuffer, const char* filename);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the array of audio samples stored in a sound buffer
@@ -139,7 +139,7 @@ CSFML_API sfBool sfSoundBuffer_SaveToFile(const sfSoundBuffer* soundBuffer, cons
 /// \return Read-only pointer to the array of sound samples
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const sfInt16* sfSoundBuffer_GetSamples(const sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API const sfInt16* sfSoundBuffer_GetSamples(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the number of samples stored in a sound buffer
@@ -152,7 +152,7 @@ CSFML_API const sfInt16* sfSoundBuffer_GetSamples(const sfSoundBuffer* soundBuff
 /// \return Number of samples
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API size_t sfSoundBuffer_GetSampleCount(const sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API size_t sfSoundBuffer_GetSampleCount(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the sample rate of a sound buffer
@@ -166,7 +166,7 @@ CSFML_API size_t sfSoundBuffer_GetSampleCount(const sfSoundBuffer* soundBuffer);
 /// \return Sample rate (number of samples per second)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfSoundBuffer_GetSampleRate(const sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API unsigned int sfSoundBuffer_GetSampleRate(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the number of channels used by a sound buffer
@@ -179,7 +179,7 @@ CSFML_API unsigned int sfSoundBuffer_GetSampleRate(const sfSoundBuffer* soundBuf
 /// \return Number of channels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API unsigned int sfSoundBuffer_GetChannelCount(const sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API unsigned int sfSoundBuffer_GetChannelCount(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the total duration of a sound buffer
@@ -189,7 +189,7 @@ CSFML_API unsigned int sfSoundBuffer_GetChannelCount(const sfSoundBuffer* soundB
 /// \return Sound duration
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTime sfSoundBuffer_GetDuration(const sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API sfTime sfSoundBuffer_GetDuration(const sfSoundBuffer* soundBuffer);
 
 
 #endif // SFML_SOUNDBUFFER_H

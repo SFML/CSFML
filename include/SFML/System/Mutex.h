@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/System/Export.h>
 #include <SFML/System/Types.h>
 
 
@@ -38,7 +38,7 @@
 /// \return A new sfMutex object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfMutex* sfMutex_Create(void);
+CSFML_SYSTEM_API sfMutex* sfMutex_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a mutex
@@ -46,7 +46,7 @@ CSFML_API sfMutex* sfMutex_Create(void);
 /// \param mutex Mutex to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfMutex_Destroy(sfMutex* mutex);
+CSFML_SYSTEM_API void sfMutex_Destroy(sfMutex* mutex);
 
 ////////////////////////////////////////////////////////////
 /// \brief Lock a mutex
@@ -54,7 +54,7 @@ CSFML_API void sfMutex_Destroy(sfMutex* mutex);
 /// \param mutex Mutex object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfMutex_Lock(sfMutex* mutex);
+CSFML_SYSTEM_API void sfMutex_Lock(sfMutex* mutex);
 
 ////////////////////////////////////////////////////////////
 /// \brief Unlock a mutex
@@ -62,7 +62,7 @@ CSFML_API void sfMutex_Lock(sfMutex* mutex);
 /// \param mutex Mutex object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfMutex_Unlock(sfMutex* mutex);
+CSFML_SYSTEM_API void sfMutex_Unlock(sfMutex* mutex);
 
 
 #endif // SFML_MUTEX_H

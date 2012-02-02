@@ -27,7 +27,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Window/Export.h>
 #include <SFML/Window/Types.h>
 
 
@@ -55,7 +55,7 @@ typedef enum
 /// \return sfTrue if the button is pressed, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfMouse_IsButtonPressed(sfMouseButton button);
+CSFML_WINDOW_API sfBool sfMouse_IsButtonPressed(sfMouseButton button);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of the mouse
@@ -68,7 +68,7 @@ CSFML_API sfBool sfMouse_IsButtonPressed(sfMouseButton button);
 /// \param relativeTo Reference window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfMouse_GetPosition(int* x, int* y, const sfWindow* relativeTo);
+CSFML_WINDOW_API void sfMouse_GetPosition(int* x, int* y, const sfWindow* relativeTo);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the current position of the mouse
@@ -81,7 +81,7 @@ CSFML_API void sfMouse_GetPosition(int* x, int* y, const sfWindow* relativeTo);
 /// \param relativeTo Reference window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfMouse_SetPosition(int x, int y, const sfWindow* relativeTo);
+CSFML_WINDOW_API void sfMouse_SetPosition(int x, int y, const sfWindow* relativeTo);
 
 
 #endif // SFML_MOUSE_H

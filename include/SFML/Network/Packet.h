@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Network/Export.h>
 #include <SFML/Network/Types.h>
 #include <stddef.h>
 
@@ -39,7 +39,7 @@
 /// \return A new sfPacket object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfPacket* sfPacket_Create(void);
+CSFML_NETWORK_API sfPacket* sfPacket_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new packet by copying an existing one
@@ -49,7 +49,7 @@ CSFML_API sfPacket* sfPacket_Create(void);
 /// \return A new sfPacket object which is a copy of \a packet
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfPacket* sfPacket_Copy(sfPacket* packet);
+CSFML_NETWORK_API sfPacket* sfPacket_Copy(sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a packet
@@ -57,7 +57,7 @@ CSFML_API sfPacket* sfPacket_Copy(sfPacket* packet);
 /// \param packet Packet to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfPacket_Destroy(sfPacket* packet);
+CSFML_NETWORK_API void sfPacket_Destroy(sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Append data to the end of a packet
@@ -67,7 +67,7 @@ CSFML_API void sfPacket_Destroy(sfPacket* packet);
 /// \param sizeInBytes Number of bytes to append
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfPacket_Append(sfPacket* packet, const void* data, size_t sizeInBytes);
+CSFML_NETWORK_API void sfPacket_Append(sfPacket* packet, const void* data, size_t sizeInBytes);
 
 ////////////////////////////////////////////////////////////
 /// \brief Clear a packet
@@ -77,7 +77,7 @@ CSFML_API void sfPacket_Append(sfPacket* packet, const void* data, size_t sizeIn
 /// \param packet Packet object
 ///
 ///////////////////////////////////////////////////////////
-CSFML_API void sfPacket_Clear(sfPacket* packet);
+CSFML_NETWORK_API void sfPacket_Clear(sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a pointer to the data contained in a packet
@@ -92,7 +92,7 @@ CSFML_API void sfPacket_Clear(sfPacket* packet);
 /// \return Pointer to the data
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API const char* sfPacket_GetData(const sfPacket* packet);
+CSFML_NETWORK_API const char* sfPacket_GetData(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the size of the data contained in a packet
@@ -105,7 +105,7 @@ CSFML_API const char* sfPacket_GetData(const sfPacket* packet);
 /// \return Data size, in bytes
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API size_t sfPacket_GetDataSize(const sfPacket* packet);
+CSFML_NETWORK_API size_t sfPacket_GetDataSize(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell if the reading position has reached the
@@ -119,7 +119,7 @@ CSFML_API size_t sfPacket_GetDataSize(const sfPacket* packet);
 /// \return sfTrue if all data was read, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfPacket_EndOfPacket(const sfPacket* packet);
+CSFML_NETWORK_API sfBool sfPacket_EndOfPacket(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Test the validity of a packet, for reading
@@ -135,7 +135,7 @@ CSFML_API sfBool sfPacket_EndOfPacket(const sfPacket* packet);
 /// \return sfTrue if last data extraction from packet was successful
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfPacket_CanRead(const sfPacket* packet);
+CSFML_NETWORK_API sfBool sfPacket_CanRead(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Functions to extract data from a packet
@@ -143,17 +143,17 @@ CSFML_API sfBool sfPacket_CanRead(const sfPacket* packet);
 /// \param packet Packet object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool   sfPacket_ReadBool(sfPacket* packet);
-CSFML_API sfInt8   sfPacket_ReadInt8(sfPacket* packet);
-CSFML_API sfUint8  sfPacket_ReadUint8(sfPacket* packet);
-CSFML_API sfInt16  sfPacket_ReadInt16(sfPacket* packet);
-CSFML_API sfUint16 sfPacket_ReadUint16(sfPacket* packet);
-CSFML_API sfInt32  sfPacket_ReadInt32(sfPacket* packet);
-CSFML_API sfUint32 sfPacket_ReadUint32(sfPacket* packet);
-CSFML_API float    sfPacket_ReadFloat(sfPacket* packet);
-CSFML_API double   sfPacket_ReadDouble(sfPacket* packet);
-CSFML_API void     sfPacket_ReadString(sfPacket* packet, char* string);
-CSFML_API void     sfPacket_ReadWideString(sfPacket* packet, wchar_t* string);
+CSFML_NETWORK_API sfBool   sfPacket_ReadBool(sfPacket* packet);
+CSFML_NETWORK_API sfInt8   sfPacket_ReadInt8(sfPacket* packet);
+CSFML_NETWORK_API sfUint8  sfPacket_ReadUint8(sfPacket* packet);
+CSFML_NETWORK_API sfInt16  sfPacket_ReadInt16(sfPacket* packet);
+CSFML_NETWORK_API sfUint16 sfPacket_ReadUint16(sfPacket* packet);
+CSFML_NETWORK_API sfInt32  sfPacket_ReadInt32(sfPacket* packet);
+CSFML_NETWORK_API sfUint32 sfPacket_ReadUint32(sfPacket* packet);
+CSFML_NETWORK_API float    sfPacket_ReadFloat(sfPacket* packet);
+CSFML_NETWORK_API double   sfPacket_ReadDouble(sfPacket* packet);
+CSFML_NETWORK_API void     sfPacket_ReadString(sfPacket* packet, char* string);
+CSFML_NETWORK_API void     sfPacket_ReadWideString(sfPacket* packet, wchar_t* string);
 
 ////////////////////////////////////////////////////////////
 /// \brief Functions to insert data into a packet
@@ -161,17 +161,17 @@ CSFML_API void     sfPacket_ReadWideString(sfPacket* packet, wchar_t* string);
 /// \param packet Packet object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfPacket_WriteBool(sfPacket* packet, sfBool);
-CSFML_API void sfPacket_WriteInt8(sfPacket* packet, sfInt8);
-CSFML_API void sfPacket_WriteUint8(sfPacket* packet, sfUint8);
-CSFML_API void sfPacket_WriteInt16(sfPacket* packet, sfInt16);
-CSFML_API void sfPacket_WriteUint16(sfPacket* packet, sfUint16);
-CSFML_API void sfPacket_WriteInt32(sfPacket* packet, sfInt32);
-CSFML_API void sfPacket_WriteUint32(sfPacket* packet, sfUint32);
-CSFML_API void sfPacket_WriteFloat(sfPacket* packet, float);
-CSFML_API void sfPacket_WriteDouble(sfPacket* packet, double);
-CSFML_API void sfPacket_WriteString(sfPacket* packet, const char* string);
-CSFML_API void sfPacket_WriteWideString(sfPacket* packet, const wchar_t* string);
+CSFML_NETWORK_API void sfPacket_WriteBool(sfPacket* packet, sfBool);
+CSFML_NETWORK_API void sfPacket_WriteInt8(sfPacket* packet, sfInt8);
+CSFML_NETWORK_API void sfPacket_WriteUint8(sfPacket* packet, sfUint8);
+CSFML_NETWORK_API void sfPacket_WriteInt16(sfPacket* packet, sfInt16);
+CSFML_NETWORK_API void sfPacket_WriteUint16(sfPacket* packet, sfUint16);
+CSFML_NETWORK_API void sfPacket_WriteInt32(sfPacket* packet, sfInt32);
+CSFML_NETWORK_API void sfPacket_WriteUint32(sfPacket* packet, sfUint32);
+CSFML_NETWORK_API void sfPacket_WriteFloat(sfPacket* packet, float);
+CSFML_NETWORK_API void sfPacket_WriteDouble(sfPacket* packet, double);
+CSFML_NETWORK_API void sfPacket_WriteString(sfPacket* packet, const char* string);
+CSFML_NETWORK_API void sfPacket_WriteWideString(sfPacket* packet, const wchar_t* string);
 
 
 #endif // SFML_PACKET_H

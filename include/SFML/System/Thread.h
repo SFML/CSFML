@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/System/Export.h>
 #include <SFML/System/Types.h>
 
 
@@ -43,7 +43,7 @@
 /// \return A new sfThread object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfThread* sfThread_Create(void (*function)(void*), void* userData);
+CSFML_SYSTEM_API sfThread* sfThread_Create(void (*function)(void*), void* userData);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a thread
@@ -54,7 +54,7 @@ CSFML_API sfThread* sfThread_Create(void (*function)(void*), void* userData);
 /// \param thread Thread to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfThread_Destroy(sfThread* thread);
+CSFML_SYSTEM_API void sfThread_Destroy(sfThread* thread);
 
 ////////////////////////////////////////////////////////////
 /// \brief Run a thread
@@ -67,7 +67,7 @@ CSFML_API void sfThread_Destroy(sfThread* thread);
 /// \param thread Thread object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfThread_Launch(sfThread* thread);
+CSFML_SYSTEM_API void sfThread_Launch(sfThread* thread);
 
 ////////////////////////////////////////////////////////////
 /// \brief Wait until a thread finishes
@@ -82,7 +82,7 @@ CSFML_API void sfThread_Launch(sfThread* thread);
 /// \param thread Thread object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfThread_Wait(sfThread* thread);
+CSFML_SYSTEM_API void sfThread_Wait(sfThread* thread);
 
 ////////////////////////////////////////////////////////////
 /// \brief Terminate a thread
@@ -97,7 +97,7 @@ CSFML_API void sfThread_Wait(sfThread* thread);
 /// \param thread Thread object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfThread_Terminate(sfThread* thread);
+CSFML_SYSTEM_API void sfThread_Terminate(sfThread* thread);
 
 
 #endif // SFML_THREAD_H

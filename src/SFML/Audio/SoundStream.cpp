@@ -175,7 +175,7 @@ void sfSoundStream_GetPosition(const sfSoundStream* soundStream, float* x, float
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfSoundStream_IsRelativeToListener(const sfSoundStream* soundStream)
+CSFML_AUDIO_API sfBool sfSoundStream_IsRelativeToListener(const sfSoundStream* soundStream)
 {
     CSFML_CALL_RETURN(soundStream, IsRelativeToListener(), sfFalse);
 }
@@ -205,8 +205,9 @@ sfBool sfSoundStream_GetLoop(const sfSoundStream* soundStream)
 ////////////////////////////////////////////////////////////
 sfTime sfSoundStream_GetPlayingOffset(const sfSoundStream* soundStream)
 {
-    CSFML_CHECK_RETURN(soundStream, sfTimeZero);
+    sfTime time = {0};
+    CSFML_CHECK_RETURN(soundStream, time);
 
-    sf::Time offset = soundStream->This.GetPlayingOffset();
-    return sfMicroseconds(offset.AsMicroseconds());
+    time.Microseconds = soundStream->This.GetPlayingOffset().AsMicroseconds();
+    return time;
 }

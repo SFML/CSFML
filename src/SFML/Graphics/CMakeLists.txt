@@ -4,6 +4,7 @@ set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/Graphics)
 
 # all source files
 set(SRC
+    ${INCROOT}/Export.h
     ${INCROOT}/BlendMode.h
     ${SRCROOT}/CircleShape.cpp
     ${SRCROOT}/CircleShapeStruct.h

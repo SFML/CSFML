@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/System/Export.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -44,7 +44,7 @@ typedef struct
 /// \brief Predefined "zero" time value 
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTime sfTimeZero;
+CSFML_SYSTEM_API sfTime sfTimeZero;
 
 ////////////////////////////////////////////////////////////
 /// \brief Return a time value as a number of seconds
@@ -54,7 +54,7 @@ CSFML_API sfTime sfTimeZero;
 /// \return Time in seconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API float sfTime_AsSeconds(sfTime time);
+CSFML_SYSTEM_API float sfTime_AsSeconds(sfTime time);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return a time value as a number of milliseconds
@@ -64,7 +64,7 @@ CSFML_API float sfTime_AsSeconds(sfTime time);
 /// \return Time in milliseconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfInt32 sfTime_AsMilliseconds(sfTime time);
+CSFML_SYSTEM_API sfInt32 sfTime_AsMilliseconds(sfTime time);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return a time value as a number of microseconds
@@ -74,7 +74,7 @@ CSFML_API sfInt32 sfTime_AsMilliseconds(sfTime time);
 /// \return Time in microseconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfInt64 sfTime_AsMicroseconds(sfTime time);
+CSFML_SYSTEM_API sfInt64 sfTime_AsMicroseconds(sfTime time);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a time value from a number of seconds
@@ -84,7 +84,7 @@ CSFML_API sfInt64 sfTime_AsMicroseconds(sfTime time);
 /// \return Time value constructed from the amount of seconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTime sfSeconds(float amount);
+CSFML_SYSTEM_API sfTime sfSeconds(float amount);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a time value from a number of milliseconds
@@ -94,7 +94,7 @@ CSFML_API sfTime sfSeconds(float amount);
 /// \return Time value constructed from the amount of milliseconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTime sfMilliseconds(sfInt32 amount);
+CSFML_SYSTEM_API sfTime sfMilliseconds(sfInt32 amount);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a time value from a number of microseconds
@@ -104,7 +104,7 @@ CSFML_API sfTime sfMilliseconds(sfInt32 amount);
 /// \return Time value constructed from the amount of microseconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfTime sfMicroseconds(sfInt64 amount);
+CSFML_SYSTEM_API sfTime sfMicroseconds(sfInt64 amount);
 
 
 #endif // SFML_TIME_H

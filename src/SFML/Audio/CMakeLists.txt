@@ -4,6 +4,7 @@ set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/Audio)
 
 # all source files
 set(SRC
+    ${INCROOT}/Export.h
     ${SRCROOT}/Listener.cpp
     ${INCROOT}/Listener.h
     ${SRCROOT}/Music.cpp

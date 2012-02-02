@@ -99,10 +99,11 @@ sfBool sfMusic_GetLoop(const sfMusic* music)
 ////////////////////////////////////////////////////////////
 sfTime sfMusic_GetDuration(const sfMusic* music)
 {
-    CSFML_CHECK_RETURN(music, sfTimeZero);
+    sfTime time = {0};
+    CSFML_CHECK_RETURN(music, time);
 
-    sf::Time time = music->This.GetDuration();
-    return sfMicroseconds(time.AsMicroseconds());
+    time.Microseconds = music->This.GetDuration().AsMicroseconds();
+    return time;
 }
 
 
@@ -153,10 +154,11 @@ sfSoundStatus sfMusic_GetStatus(const sfMusic* music)
 ////////////////////////////////////////////////////////////
 sfTime sfMusic_GetPlayingOffset(const sfMusic* music)
 {
-    CSFML_CHECK_RETURN(music, sfTimeZero);
+    sfTime time = {0};
+    CSFML_CHECK_RETURN(music, time);
 
-    sf::Time time = music->This.GetPlayingOffset();
-    return sfMicroseconds(time.AsMicroseconds());
+    time.Microseconds = music->This.GetPlayingOffset().AsMicroseconds();
+    return time;
 }
 
 
@@ -239,7 +241,7 @@ void sfMusic_GetPosition(const sfMusic* music, float* x, float* y, float* z)
 
 
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfMusic_IsRelativeToListener(const sfMusic* music)
+CSFML_AUDIO_API sfBool sfMusic_IsRelativeToListener(const sfMusic* music)
 {
     CSFML_CALL_RETURN(music, IsRelativeToListener(), sfFalse);
 }

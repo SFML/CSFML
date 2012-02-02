@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Config.h>
+#include <SFML/Network/Export.h>
 #include <SFML/Network/Types.h>
 #include <SFML/System/Time.h>
 
@@ -39,7 +39,7 @@
 /// \return A new sfSocketSelector object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSocketSelector* sfSocketSelector_Create(void);
+CSFML_NETWORK_API sfSocketSelector* sfSocketSelector_Create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new socket selector by copying an existing one
@@ -49,7 +49,7 @@ CSFML_API sfSocketSelector* sfSocketSelector_Create(void);
 /// \return A new sfSocketSelector object which is a copy of \a selector
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSocketSelector* sfSocketSelector_Copy(sfSocketSelector* selector);
+CSFML_NETWORK_API sfSocketSelector* sfSocketSelector_Copy(sfSocketSelector* selector);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a socket selector
@@ -57,7 +57,7 @@ CSFML_API sfSocketSelector* sfSocketSelector_Copy(sfSocketSelector* selector);
 /// \param selector Socket selector to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSocketSelector_Destroy(sfSocketSelector* selector);
+CSFML_NETWORK_API void sfSocketSelector_Destroy(sfSocketSelector* selector);
 
 ////////////////////////////////////////////////////////////
 /// \brief Add a new socket to a socket selector
@@ -70,9 +70,9 @@ CSFML_API void sfSocketSelector_Destroy(sfSocketSelector* selector);
 /// \param socket   Pointer to the socket to add
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSocketSelector_AddTcpListener(sfSocketSelector* selector, sfTcpListener* socket);
-CSFML_API void sfSocketSelector_AddTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket);
-CSFML_API void sfSocketSelector_AddUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket);
+CSFML_NETWORK_API void sfSocketSelector_AddTcpListener(sfSocketSelector* selector, sfTcpListener* socket);
+CSFML_NETWORK_API void sfSocketSelector_AddTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket);
+CSFML_NETWORK_API void sfSocketSelector_AddUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Remove a socket from a socket selector
@@ -84,9 +84,9 @@ CSFML_API void sfSocketSelector_AddUdpSocket(sfSocketSelector* selector, sfUdpSo
 /// \param socket   POointer to the socket to remove
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSocketSelector_RemoveTcpListener(sfSocketSelector* selector, sfTcpListener* socket);
-CSFML_API void sfSocketSelector_RemoveTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket);
-CSFML_API void sfSocketSelector_RemoveUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket);
+CSFML_NETWORK_API void sfSocketSelector_RemoveTcpListener(sfSocketSelector* selector, sfTcpListener* socket);
+CSFML_NETWORK_API void sfSocketSelector_RemoveTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket);
+CSFML_NETWORK_API void sfSocketSelector_RemoveUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Remove all the sockets stored in a selector
@@ -98,7 +98,7 @@ CSFML_API void sfSocketSelector_RemoveUdpSocket(sfSocketSelector* selector, sfUd
 /// \param selector Socket selector object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSocketSelector_Clear(sfSocketSelector* selector);
+CSFML_NETWORK_API void sfSocketSelector_Clear(sfSocketSelector* selector);
 
 ////////////////////////////////////////////////////////////
 /// \brief Wait until one or more sockets are ready to receive
@@ -115,7 +115,7 @@ CSFML_API void sfSocketSelector_Clear(sfSocketSelector* selector);
 /// \return sfTrue if there are sockets ready, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfTime timeout);
+CSFML_NETWORK_API sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Test a socket to know if it is ready to receive data
@@ -133,9 +133,9 @@ CSFML_API sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfTime timeou
 /// \return sfTrue if the socket is ready to read, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfSocketSelector_IsTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket);
-CSFML_API sfBool sfSocketSelector_IsTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket);
-CSFML_API sfBool sfSocketSelector_IsUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket);
+CSFML_NETWORK_API sfBool sfSocketSelector_IsTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket);
+CSFML_NETWORK_API sfBool sfSocketSelector_IsTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket);
+CSFML_NETWORK_API sfBool sfSocketSelector_IsUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket);
 
 
 #endif // SFML_SOCKETSELECTOR_H
