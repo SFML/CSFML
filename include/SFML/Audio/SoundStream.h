@@ -31,6 +31,7 @@
 #include <SFML/Config.h>
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
+#include <SFML/System/Time.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -44,7 +45,7 @@ typedef struct
 } sfSoundStreamChunk;
 
 typedef sfBool (*sfSoundStreamGetDataCallback)(sfSoundStreamChunk*, void*); ///< Type of the callback used to get a sound stream data
-typedef void   (*sfSoundStreamSeekCallback)(sfUint32, void*);               ///< Type of the callback used to seek in a sound stream
+typedef void   (*sfSoundStreamSeekCallback)(sfTime, void*);                 ///< Type of the callback used to seek in a sound stream
 
 
 ////////////////////////////////////////////////////////////
@@ -243,10 +244,10 @@ CSFML_API void sfSoundStream_SetAttenuation(sfSoundStream* soundStream, float at
 /// either paused or playing.
 ///
 /// \param soundStream Sound stream object
-/// \param timeOffset  New playing position, in milliseconds
+/// \param timeOffset  New playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSoundStream_SetPlayingOffset(sfSoundStream* soundStream, sfUint32 timeOffset);
+CSFML_API void sfSoundStream_SetPlayingOffset(sfSoundStream* soundStream, sfTime timeOffset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set whether or not a sound stream should loop after reaching the end
@@ -339,10 +340,10 @@ CSFML_API sfBool sfSoundStream_GetLoop(const sfSoundStream* soundStream);
 ///
 /// \param soundStream Sound stream object
 ///
-/// \return Current playing position, in milliseconds
+/// \return Current playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfUint32 sfSoundStream_GetPlayingOffset(const sfSoundStream* soundStream);
+CSFML_API sfTime sfSoundStream_GetPlayingOffset(const sfSoundStream* soundStream);
 
 
 #endif // SFML_SOUNDSTREAM_H

@@ -29,6 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.h>
+#include <SFML/System/Time.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -146,12 +147,12 @@ CSFML_API sfIpAddress sfIpAddress_GetLocalAddress(void);
 /// to be possibly stuck waiting in case there is a problem; use
 /// 0 to deactivate this limit.
 ///
-/// \param timeout Maximum time to wait, in milliseconds
+/// \param timeout Maximum time to wait
 ///
 /// \return Public IP address of the computer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfIpAddress sfIpAddress_GetPublicAddress(sfUint32 timeout);
+CSFML_API sfIpAddress sfIpAddress_GetPublicAddress(sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the empty/invalid address

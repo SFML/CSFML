@@ -16,6 +16,8 @@ set(SRC
     ${SRCROOT}/Thread.cpp
     ${SRCROOT}/ThreadStruct.h
     ${INCROOT}/Thread.h
+    ${SRCROOT}/Time.cpp
+    ${INCROOT}/Time.h
     ${INCROOT}/Types.h
 )
 

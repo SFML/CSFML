@@ -29,6 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.h>
+#include <SFML/System/Time.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -37,10 +38,10 @@
 /// sfSleep is the best way to block a program or one of its
 /// threads, as it doesn't consume any CPU power.
 ///
-/// \param duration Time to sleep, in milliseconds
+/// \param duration Time to sleep
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSleep(sfUint32 duration);
+CSFML_API void sfSleep(sfTime duration);
 
 
 #endif // SFML_SLEEP_H

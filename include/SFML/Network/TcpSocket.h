@@ -32,6 +32,7 @@
 #include <SFML/Network/IpAddress.h>
 #include <SFML/Network/SocketStatus.h>
 #include <SFML/Network/Types.h>
+#include <SFML/System/Time.h>
 #include <stddef.h>
 
 
@@ -128,12 +129,12 @@ CSFML_API unsigned short sfTcpSocket_GetRemotePort(const sfTcpSocket* socket);
 /// \param socket        TCP socket object
 /// \param remoteAddress Address of the remote peer
 /// \param remotePort    Port of the remote peer
-/// \param timeout       Maximum time to wait, in milliseconds
+/// \param timeout       Maximum time to wait
 ///
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfUint32 timeout);
+CSFML_API sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Disconnect a TCP socket from its remote peer

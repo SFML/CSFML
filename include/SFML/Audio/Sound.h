@@ -31,6 +31,7 @@
 #include <SFML/Config.h>
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
+#include <SFML/System/Time.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -251,10 +252,10 @@ CSFML_API void sfSound_SetAttenuation(sfSound* sound, float attenuation);
 /// either paused or playing.
 ///
 /// \param sound      Sound object
-/// \param timeOffset New playing position, in milliseconds
+/// \param timeOffset New playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API void sfSound_SetPlayingOffset(sfSound* sound, sfUint32 timeOffset);
+CSFML_API void sfSound_SetPlayingOffset(sfSound* sound, sfTime timeOffset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the pitch of a sound
@@ -323,10 +324,10 @@ CSFML_API float sfSound_GetAttenuation(const sfSound* sound);
 ///
 /// \param sound Sound object
 ///
-/// \return Current playing position, in milliseconds
+/// \return Current playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfUint32 sfSound_GetPlayingOffset(const sfSound* sound);
+CSFML_API sfTime sfSound_GetPlayingOffset(const sfSound* sound);
 
 
 #endif // SFML_SOUND_H

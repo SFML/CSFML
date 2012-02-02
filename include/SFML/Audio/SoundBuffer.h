@@ -31,6 +31,7 @@
 #include <SFML/Config.h>
 #include <SFML/Audio/Types.h>
 #include <SFML/System/InputStream.h>
+#include <SFML/System/Time.h>
 #include <stddef.h>
 
 
@@ -185,10 +186,10 @@ CSFML_API unsigned int sfSoundBuffer_GetChannelCount(const sfSoundBuffer* soundB
 ///
 /// \param soundBuffer Sound buffer object
 ///
-/// \return Sound duration, in milliseconds
+/// \return Sound duration
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfUint32 sfSoundBuffer_GetDuration(const sfSoundBuffer* soundBuffer);
+CSFML_API sfTime sfSoundBuffer_GetDuration(const sfSoundBuffer* soundBuffer);
 
 
 #endif // SFML_SOUNDBUFFER_H

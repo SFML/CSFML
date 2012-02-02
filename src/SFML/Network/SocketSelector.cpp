@@ -100,9 +100,9 @@ void sfSocketSelector_Clear(sfSocketSelector* selector)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfUint32 timeout)
+sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfTime timeout)
 {
-    CSFML_CALL_RETURN(selector, Wait(timeout), sfFalse);
+    CSFML_CALL_RETURN(selector, Wait(sf::Microseconds(timeout.Microseconds)), sfFalse);
 }
 
 

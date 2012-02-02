@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.h>
 #include <SFML/Network/Types.h>
+#include <SFML/System/Time.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -285,12 +286,12 @@ CSFML_API void sfHttp_SetHost(sfHttp* http, const char* host, unsigned short por
 ///
 /// \param http    Http object
 /// \param request Request to send
-/// \param timeout Maximum time to wait, in milliseconds
+/// \param timeout Maximum time to wait
 ///
 /// \return Server's response
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfHttpResponse* sfHttp_SendRequest(sfHttp* http, const sfHttpRequest* request, sfUint32 timeout);
+CSFML_API sfHttpResponse* sfHttp_SendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout);
 
 
 #endif // SFML_HTTP_H

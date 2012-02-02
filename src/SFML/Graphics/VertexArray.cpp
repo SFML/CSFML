@@ -38,7 +38,7 @@ sfVertexArray* sfVertexArray_Create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfVertexArray* sfTransform_Copy(sfVertexArray* vertexArray)
+sfVertexArray* sfVertexArray_Copy(sfVertexArray* vertexArray)
 {
     CSFML_CHECK_RETURN(vertexArray, NULL);
 
@@ -118,4 +118,6 @@ sfFloatRect sfVertexArray_GetBounds(sfVertexArray* vertexArray)
     rect.Top = sfmlRect.Top;
     rect.Width = sfmlRect.Width;
     rect.Height = sfmlRect.Height;
+
+    return rect;
 }

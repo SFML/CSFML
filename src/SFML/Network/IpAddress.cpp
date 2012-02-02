@@ -93,9 +93,9 @@ sfIpAddress sfIpAddress_GetLocalAddress(void)
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_GetPublicAddress(sfUint32 timeout)
+sfIpAddress sfIpAddress_GetPublicAddress(sfTime timeout)
 {
-    return FromSFMLAddress(sf::IpAddress::GetPublicAddress(timeout));
+    return FromSFMLAddress(sf::IpAddress::GetPublicAddress(sf::Microseconds(timeout.Microseconds)));
 }
 
 

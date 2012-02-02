@@ -146,7 +146,10 @@ unsigned int sfSoundBuffer_GetChannelCount(const sfSoundBuffer* soundBuffer)
 
 
 ////////////////////////////////////////////////////////////
-sfUint32 sfSoundBuffer_GetDuration(const sfSoundBuffer* soundBuffer)
+sfTime sfSoundBuffer_GetDuration(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetDuration(), 0)
+    CSFML_CHECK_RETURN(soundBuffer, sfTimeZero)
+
+    sf::Time duration = soundBuffer->This.GetDuration();
+    return sfMicroseconds(duration.AsMicroseconds());
 }

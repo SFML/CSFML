@@ -97,9 +97,12 @@ sfBool sfMusic_GetLoop(const sfMusic* music)
 
 
 ////////////////////////////////////////////////////////////
-sfUint32 sfMusic_GetDuration(const sfMusic* music)
+sfTime sfMusic_GetDuration(const sfMusic* music)
 {
-    CSFML_CALL_RETURN(music, GetDuration(), 0);
+    CSFML_CHECK_RETURN(music, sfTimeZero);
+
+    sf::Time time = music->This.GetDuration();
+    return sfMicroseconds(time.AsMicroseconds());
 }
 
 
@@ -148,9 +151,12 @@ sfSoundStatus sfMusic_GetStatus(const sfMusic* music)
 
 
 ////////////////////////////////////////////////////////////
-sfUint32 sfMusic_GetPlayingOffset(const sfMusic* music)
+sfTime sfMusic_GetPlayingOffset(const sfMusic* music)
 {
-    CSFML_CALL_RETURN(music, GetPlayingOffset(), 0);
+    CSFML_CHECK_RETURN(music, sfTimeZero);
+
+    sf::Time time = music->This.GetPlayingOffset();
+    return sfMicroseconds(time.AsMicroseconds());
 }
 
 
@@ -197,9 +203,9 @@ void sfMusic_SetAttenuation(sfMusic* music, float attenuation)
 
 
 ////////////////////////////////////////////////////////////
-void sfMusic_SetPlayingOffset(sfMusic* music, sfUint32 timeOffset)
+void sfMusic_SetPlayingOffset(sfMusic* music, sfTime timeOffset)
 {
-    CSFML_CALL(music, SetPlayingOffset(timeOffset));
+    CSFML_CALL(music, SetPlayingOffset(sf::Microseconds(timeOffset.Microseconds)));
 }
 
 

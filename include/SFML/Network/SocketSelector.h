@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Config.h>
 #include <SFML/Network/Types.h>
+#include <SFML/System/Time.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -109,12 +110,12 @@ CSFML_API void sfSocketSelector_Clear(sfSocketSelector* selector);
 /// is over, the function returns sfFalse.
 ///
 /// \param selector Socket selector object
-/// \param timeout  Maximum time to wait, in milliseconds (use 0 for infinity)
+/// \param timeout  Maximum time to wait (use sfTimeZero for infinity)
 ///
 /// \return sfTrue if there are sockets ready, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfUint32 timeout);
+CSFML_API sfBool sfSocketSelector_Wait(sfSocketSelector* selector, sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Test a socket to know if it is ready to receive data

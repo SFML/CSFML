@@ -160,9 +160,9 @@ void sfSound_SetAttenuation(sfSound* sound, float attenuation)
 
 
 ////////////////////////////////////////////////////////////
-void sfSound_SetPlayingOffset(sfSound* sound, sfUint32 timeOffset)
+void sfSound_SetPlayingOffset(sfSound* sound, sfTime timeOffset)
 {
-    CSFML_CALL(sound, SetPlayingOffset(timeOffset));
+    CSFML_CALL(sound, SetPlayingOffset(sf::Microseconds(timeOffset.Microseconds)));
 }
 
 
@@ -214,7 +214,10 @@ float sfSound_GetAttenuation(const sfSound* sound)
 
 
 ////////////////////////////////////////////////////////////
-sfUint32 sfSound_GetPlayingOffset(const sfSound* sound)
+sfTime sfSound_GetPlayingOffset(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, GetPlayingOffset(), 0)
+    CSFML_CHECK_RETURN(sound, sfTimeZero)
+
+    sf::Time time = sound->This.GetPlayingOffset();
+    return sfMicroseconds(time.AsMicroseconds());
 }

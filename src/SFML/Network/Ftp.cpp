@@ -169,13 +169,13 @@ void sfFtp_Destroy(sfFtp* ftp)
 
 
 ////////////////////////////////////////////////////////////
-sfFtpResponse* sfFtp_Connect(sfFtp* ftp, sfIpAddress server, unsigned short port, sfUint32 timeout)
+sfFtpResponse* sfFtp_Connect(sfFtp* ftp, sfIpAddress server, unsigned short port, sfTime timeout)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
 
     sf::IpAddress SFMLServer(server.Address);
 
-    return new sfFtpResponse(ftp->This.Connect(SFMLServer, port, timeout));
+    return new sfFtpResponse(ftp->This.Connect(SFMLServer, port, sf::Microseconds(timeout.Microseconds)));
 }
 
 

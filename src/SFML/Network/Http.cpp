@@ -153,13 +153,13 @@ void sfHttp_SetHost(sfHttp* http, const char* host, unsigned short port)
 
 
 ////////////////////////////////////////////////////////////
-sfHttpResponse* sfHttp_SendRequest(sfHttp* http, const sfHttpRequest* request, sfUint32 timeout)
+sfHttpResponse* sfHttp_SendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout)
 {
     CSFML_CHECK_RETURN(http,    NULL);
     CSFML_CHECK_RETURN(request, NULL);
 
     sfHttpResponse* response = new sfHttpResponse;
-    response->This = http->This.SendRequest(request->This, timeout);
+    response->This = http->This.SendRequest(request->This, sf::Microseconds(timeout.Microseconds));
 
     return response;
 }

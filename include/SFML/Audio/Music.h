@@ -32,6 +32,7 @@
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
 #include <SFML/System/InputStream.h>
+#include <SFML/System/Time.h>
 #include <stddef.h>
 
 
@@ -121,10 +122,10 @@ CSFML_API sfBool sfMusic_GetLoop(const sfMusic* music);
 ///
 /// \param music Music object
 ///
-/// \return Music duration, in milliseconds
+/// \return Music duration
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfUint32 sfMusic_GetDuration(const sfMusic* music);
+CSFML_API sfTime sfMusic_GetDuration(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start or resume playing a music
@@ -203,10 +204,10 @@ CSFML_API sfSoundStatus sfMusic_GetStatus(const sfMusic* music);
 ///
 /// \param music Music object
 ///
-/// \return Current playing position, in milliseconds
+/// \return Current playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_API sfUint32 sfMusic_GetPlayingOffset(const sfMusic* music);
+CSFML_API sfTime sfMusic_GetPlayingOffset(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the pitch of a music

@@ -89,13 +89,13 @@ unsigned short sfTcpSocket_GetRemotePort(const sfTcpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfUint32 timeout)
+sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfTime timeout)
 {
     sf::IpAddress address(host.Address);
 
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.Connect(address, port, timeout));
+    return static_cast<sfSocketStatus>(socket->This.Connect(address, port, sf::Microseconds(timeout.Microseconds)));
 }
 
 

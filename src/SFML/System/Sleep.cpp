@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-void sfSleep(sfUint32 Duration)
+void sfSleep(sfTime duration)
 {
-    sf::Sleep(Duration);
+    sf::Sleep(sf::Microseconds(duration.Microseconds));
 }

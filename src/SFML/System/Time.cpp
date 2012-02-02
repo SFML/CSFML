@@ -25,49 +25,56 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/System/Clock.h>
-#include <SFML/System/ClockStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/System/Time.h>
 
 
 ////////////////////////////////////////////////////////////
-sfClock* sfClock_Create(void)
+sfTime sfTimeZero = {0};
+
+
+////////////////////////////////////////////////////////////
+float sfTime_AsSeconds(sfTime time)
 {
-    return new sfClock;
+    return time.Microseconds / 1000000.f;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfClock* sfClock_Copy(sfClock* clock)
+sfInt32 sfTime_AsMilliseconds(sfTime time)
 {
-    CSFML_CHECK_RETURN(clock, NULL);
-
-    return new sfClock(*clock);
+    return static_cast<sfUint32>(time.Microseconds / 1000);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfClock_Destroy(sfClock* clock)
+sfInt64 sfTime_AsMicroseconds(sfTime time)
 {
-    delete clock;
+    return time.Microseconds;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTime sfClock_GetElapsedTime(const sfClock* clock)
+sfTime sfSeconds(float amount)
 {
-    CSFML_CHECK_RETURN(clock, sfTimeZero);
-
-    sf::Time time = clock->This.GetElapsedTime();
-    return sfMicroseconds(time.AsMicroseconds());
+    sfTime time;
+    time.Microseconds = static_cast<sfUint64>(amount * 1000000);
+    return time;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTime sfClock_Restart(sfClock* clock)
+sfTime sfMilliseconds(sfInt32 amount)
 {
-    CSFML_CHECK_RETURN(clock, sfTimeZero);
+    sfTime time;
+    time.Microseconds = static_cast<sfUint64>(amount) * 1000;
+    return time;
+}
 
-    sf::Time time = clock->This.Restart();
-    return sfMicroseconds(time.AsMicroseconds());
+
+////////////////////////////////////////////////////////////
+sfTime sfMicroseconds(sfInt64 amount)
+{
+    sfTime time;
+    time.Microseconds = amount;
+    return time;
 }

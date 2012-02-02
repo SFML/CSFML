@@ -249,25 +249,6 @@ sfBool sfTexture_IsRepeated(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-sfFloatRect sfTexture_GetTexCoords(const sfTexture* texture, sfIntRect rectangle)
-{
-    sfFloatRect result = {0, 0, 0, 0};
-    CSFML_CHECK_RETURN(texture, result);
-    CSFML_CHECK_RETURN(texture->This, result);
-
-    sf::IntRect rect(rectangle.Left, rectangle.Top, rectangle.Width, rectangle.Height);
-    sf::FloatRect sfmlResult = texture->This->GetTexCoords(rect);
-
-    result.Left = sfmlResult.Left;
-    result.Top = sfmlResult.Top;
-    result.Width = sfmlResult.Width;
-    result.Height = sfmlResult.Height;
-
-    return result;
-}
-
-
-////////////////////////////////////////////////////////////
 unsigned int sfTexture_GetMaximumSize()
 {
     return sf::Texture::GetMaximumSize();

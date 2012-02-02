@@ -247,17 +247,6 @@ CSFML_API void sfTexture_SetRepeated(sfTexture* texture, sfBool repeated);
 CSFML_API sfBool sfTexture_IsRepeated(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// \brief Convert a rectangle of pixels into texture coordinates
-///
-/// \param texture   Texture to use for conversion
-/// \param rectangle Rectangle to convert
-///
-/// \return Texture coordinates corresponding to \a rectangle
-///
-////////////////////////////////////////////////////////////
-CSFML_API sfFloatRect sfTexture_GetTexCoords(const sfTexture* texture, sfIntRect rectangle);
-
-////////////////////////////////////////////////////////////
 /// \brief Get the maximum texture size allowed
 ///
 /// \return Maximum size allowed for textures, in pixels
