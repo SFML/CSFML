@@ -56,21 +56,21 @@ void sfSound_Destroy(sfSound* sound)
 ////////////////////////////////////////////////////////////
 void sfSound_Play(sfSound* sound)
 {
-    CSFML_CALL(sound, Play())
+    CSFML_CALL(sound, Play());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_Pause(sfSound* sound)
 {
-    CSFML_CALL(sound, Pause())
+    CSFML_CALL(sound, Pause());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_Stop(sfSound* sound)
 {
-    CSFML_CALL(sound, Stop())
+    CSFML_CALL(sound, Stop());
 }
 
 
@@ -79,7 +79,7 @@ void sfSound_SetBuffer(sfSound* sound, const sfSoundBuffer* buffer)
 {
     if (buffer)
     {
-        CSFML_CALL(sound, SetBuffer(buffer->This))
+        CSFML_CALL(sound, SetBuffer(buffer->This));
         sound->Buffer = buffer;
     }
 }
@@ -88,7 +88,7 @@ void sfSound_SetBuffer(sfSound* sound, const sfSoundBuffer* buffer)
 ////////////////////////////////////////////////////////////
 const sfSoundBuffer* sfSound_GetBuffer(const sfSound* sound)
 {
-    CSFML_CHECK_RETURN(sound, NULL)
+    CSFML_CHECK_RETURN(sound, NULL);
 
     return sound->Buffer;
 }
@@ -97,14 +97,14 @@ const sfSoundBuffer* sfSound_GetBuffer(const sfSound* sound)
 ////////////////////////////////////////////////////////////
 void sfSound_SetLoop(sfSound* sound, sfBool loop)
 {
-    CSFML_CALL(sound, SetLoop(loop == sfTrue))
+    CSFML_CALL(sound, SetLoop(loop == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfBool sfSound_GetLoop(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, GetLoop(), sfFalse)
+    CSFML_CALL_RETURN(sound, GetLoop(), sfFalse);
 }
 
 
@@ -120,21 +120,21 @@ sfSoundStatus sfSound_GetStatus(const sfSound* sound)
 ////////////////////////////////////////////////////////////
 void sfSound_SetPitch(sfSound* sound, float pitch)
 {
-    CSFML_CALL(sound, SetPitch(pitch))
+    CSFML_CALL(sound, SetPitch(pitch));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_SetVolume(sfSound* sound, float volume)
 {
-    CSFML_CALL(sound, SetVolume(volume))
+    CSFML_CALL(sound, SetVolume(volume));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_SetPosition(sfSound* sound, float x, float y, float z)
 {
-    CSFML_CALL(sound, SetPosition(sf::Vector3f(x, y, z)))
+    CSFML_CALL(sound, SetPosition(sf::Vector3f(x, y, z)));
 }
 
 
@@ -169,14 +169,14 @@ void sfSound_SetPlayingOffset(sfSound* sound, sfTime timeOffset)
 ////////////////////////////////////////////////////////////
 float sfSound_GetPitch(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, GetPitch(), 0.f)
+    CSFML_CALL_RETURN(sound, GetPitch(), 0.f);
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfSound_GetVolume(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, GetVolume(), 0.f)
+    CSFML_CALL_RETURN(sound, GetVolume(), 0.f);
 }
 
 

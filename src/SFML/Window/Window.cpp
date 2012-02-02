@@ -101,14 +101,14 @@ sfBool sfWindow_IsOpen(const sfWindow* window)
 ////////////////////////////////////////////////////////////
 unsigned int sfWindow_GetWidth(const sfWindow* window)
 {
-    CSFML_CALL_RETURN(window, GetWidth(), 0)
+    CSFML_CALL_RETURN(window, GetWidth(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfWindow_GetHeight(const sfWindow* window)
 {
-    CSFML_CALL_RETURN(window, GetHeight(), 0)
+    CSFML_CALL_RETURN(window, GetHeight(), 0);
 }
 
 
@@ -174,84 +174,84 @@ sfBool sfWindow_WaitEvent(sfWindow* window, sfEvent* event)
 ////////////////////////////////////////////////////////////
 void sfWindow_EnableVerticalSync(sfWindow* window, sfBool enabled)
 {
-    CSFML_CALL(window, EnableVerticalSync(enabled == sfTrue))
+    CSFML_CALL(window, EnableVerticalSync(enabled == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_ShowMouseCursor(sfWindow* window, sfBool show)
 {
-    CSFML_CALL(window, ShowMouseCursor(show == sfTrue))
+    CSFML_CALL(window, ShowMouseCursor(show == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_SetPosition(sfWindow* window, int left, int top)
 {
-    CSFML_CALL(window, SetPosition(left, top))
+    CSFML_CALL(window, SetPosition(left, top));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_SetSize(sfWindow* window, unsigned int width, unsigned int height)
 {
-    CSFML_CALL(window, SetSize(width, height))
+    CSFML_CALL(window, SetSize(width, height));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_SetTitle(sfWindow* window, const char* title)
 {
-    CSFML_CALL(window, SetTitle(title))
+    CSFML_CALL(window, SetTitle(title));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_Show(sfWindow* window, sfBool show)
 {
-    CSFML_CALL(window, Show(show == sfTrue))
+    CSFML_CALL(window, Show(show == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_EnableKeyRepeat(sfWindow* window, sfBool enabled)
 {
-    CSFML_CALL(window, EnableKeyRepeat(enabled == sfTrue))
+    CSFML_CALL(window, EnableKeyRepeat(enabled == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_SetIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels)
 {
-    CSFML_CALL(window, SetIcon(width, height, pixels))
+    CSFML_CALL(window, SetIcon(width, height, pixels));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfBool sfWindow_SetActive(sfWindow* window, sfBool active)
 {
-    CSFML_CALL_RETURN(window, SetActive(active == sfTrue), sfFalse)
+    CSFML_CALL_RETURN(window, SetActive(active == sfTrue), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_Display(sfWindow* window)
 {
-    CSFML_CALL(window, Display())
+    CSFML_CALL(window, Display());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_SetFramerateLimit(sfWindow* window, unsigned int limit)
 {
-    CSFML_CALL(window, SetFramerateLimit(limit))
+    CSFML_CALL(window, SetFramerateLimit(limit));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_SetJoystickThreshold(sfWindow* window, float threshold)
 {
-    CSFML_CALL(window, SetJoystickThreshold(threshold))
+    CSFML_CALL(window, SetJoystickThreshold(threshold));
 }
 
 

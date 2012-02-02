@@ -71,7 +71,7 @@ unsigned short sfTcpSocket_GetLocalPort(const sfTcpSocket* socket)
 ////////////////////////////////////////////////////////////
 sfIpAddress sfTcpSocket_GetRemoteAddress(const sfTcpSocket* socket)
 {
-    sfIpAddress result;
+    sfIpAddress result = sfIpAddress_None();
     CSFML_CHECK_RETURN(socket, result);
 
     sf::IpAddress address = socket->This.GetRemoteAddress();

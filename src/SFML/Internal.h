@@ -26,82 +26,111 @@
 #define SFML_INTERNAL_H
 
 ////////////////////////////////////////////////////////////
-// Define macros to check the validity of CSFML objects
-// in debug run
+// Define macros to check the validity of CSFML objects in debug run
 ////////////////////////////////////////////////////////////
 #include <stdio.h>
 
+// this macro avoids the C4127 warning on VC++ ("conditional expression is constant")
+#define ASSERT_FALSE (__LINE__ == -1)
+
 #ifndef NDEBUG
 
-    #define CSFML_CHECK(Object) \
-                if (Object == NULL) \
-                { \
-                    fprintf(stderr, "SFML warning : trying to use a null " #Object " object\n"); \
-                    return; \
-                }
+    #define CSFML_CHECK(object_) \
+        do \
+        { \
+            if (object_ == NULL) \
+            { \
+                fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+                return; \
+            } \
+        } \
+        while (ASSERT_FALSE)
 
-    #define CSFML_CALL(Object, Function) \
-                if (Object) \
-                { \
-                    (Object->This.Function); \
-                } \
-                else \
-                { \
-                    fprintf(stderr, "SFML warning : trying to use a null " #Object " object\n"); \
-                } \
+    #define CSFML_CALL(object_, function_) \
+        do \
+        { \
+            if (object_) \
+            { \
+                (object_->This.function_); \
+            } \
+            else \
+            { \
+                fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+            } \
+        } \
+        while (ASSERT_FALSE)
 
-    #define CSFML_CALL_PTR(Object, Function) \
-                if (Object) \
-                { \
-                    (Object->This->Function); \
-                } \
-                else \
-                { \
-                    fprintf(stderr, "SFML warning : trying to use a null " #Object " object\n"); \
-                } \
+    #define CSFML_CALL_PTR(object_, function_) \
+        do \
+        { \
+            if (object_) \
+            { \
+                (object_->This->function_); \
+            } \
+            else \
+            { \
+                fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+            } \
+        } \
+        while (ASSERT_FALSE)
 
-    #define CSFML_CHECK_RETURN(Object, Default) \
-                if (Object == NULL) \
-                { \
-                    fprintf(stderr, "SFML warning : trying to use a null " #Object " object\n"); \
-                    return Default; \
-                }
+    #define CSFML_CHECK_RETURN(object_, default_) \
+        do \
+        { \
+            if (object_ == NULL) \
+            { \
+                fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+                return default_; \
+            } \
+        } \
+        while (ASSERT_FALSE)
 
-    #define CSFML_CALL_RETURN(Object, Function, Default) \
-                if (Object) \
-                { \
-                    return (Object->This.Function); \
-                } \
-                else \
-                { \
-                    fprintf(stderr, "SFML warning : trying to use a null " #Object " object\n"); \
-                    return Default; \
-                } \
+    #define CSFML_CALL_RETURN(object_, function_, default_) \
+        if (object_) \
+        { \
+            return (object_->This.function_); \
+        } \
+        else \
+        { \
+            fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+            return default_; \
+        }
 
-    #define CSFML_CALL_PTR_RETURN(Object, Function, Default) \
-                if (Object) \
-                { \
-                    return (Object->This->Function); \
-                } \
-                else \
-                { \
-                    fprintf(stderr, "SFML warning : trying to use a null " #Object " object\n"); \
-                    return Default; \
-                } \
+    #define CSFML_CALL_PTR_RETURN(object_, function_, default_) \
+        if (object_) \
+        { \
+            return (object_->This->function_); \
+        } \
+        else \
+        { \
+            fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+            return default_; \
+        }
 
 #else
 
-    #define CSFML_CHECK(Object)
+    #define CSFML_CHECK(object_)
 
-    #define CSFML_CALL(Object, Function) (Object->This.Function);
+    #define CSFML_CALL(object_, function_) \
+        (object_->This.function_)
 
-    #define CSFML_CALL_PTR(Object, Function) (Object->This->Function);
+    #define CSFML_CALL_PTR(object_, function_) \
+        (object_->This->function_)
 
-    #define CSFML_CHECK_RETURN(Object, Default) (void)Default;
+    #define CSFML_CHECK_RETURN(object_, default_) \
+        (void)default_;
 
-    #define CSFML_CALL_RETURN(Object, Function, Default) (void)Default; return (Object->This.Function);
+    #define CSFML_CALL_RETURN(object_, function_, default_) \
+        { \
+            (void)default_; \
+            return (object_->This.function_); \
+        }
 
-    #define CSFML_CALL_PTR_RETURN(Object, Function, Default) (void)Default; return (Object->This->Function);
+    #define CSFML_CALL_PTR_RETURN(object_, function_, default_) \
+        { \
+            (void)default_; \
+            return (object_->This->function_); \
+        }
 
 #endif
 

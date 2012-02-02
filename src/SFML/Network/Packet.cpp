@@ -30,30 +30,6 @@
 #include <SFML/Internal.h>
 
 
-namespace
-{
-    // Helper function to read a variable from a packet
-    template <typename T>
-    T PacketRead(sfPacket* packet)
-    {
-        CSFML_CHECK_RETURN(packet, 0);
-
-        T value;
-        packet->This >> value;
-        return value;
-    }
-
-    // Helper function to write a variable to a packet
-    template <typename T>
-    void PacketWrite(sfPacket* packet, T value)
-    {
-        CSFML_CHECK(packet);
-
-        packet->This << value;
-    }
-}
-
-
 ////////////////////////////////////////////////////////////
 sfPacket* sfPacket_Create(void)
 {
@@ -121,44 +97,125 @@ sfBool sfPacket_CanRead(const sfPacket* packet)
 
 
 ////////////////////////////////////////////////////////////
-sfBool   sfPacket_ReadBool(sfPacket* packet)   {return PacketRead<sfUint8>(packet);}
-sfInt8   sfPacket_ReadInt8(sfPacket* packet)   {return PacketRead<sfInt8>(packet);}
-sfUint8  sfPacket_ReadUint8(sfPacket* packet)  {return PacketRead<sfUint8>(packet);}
-sfInt16  sfPacket_ReadInt16(sfPacket* packet)  {return PacketRead<sfInt16>(packet);}
-sfUint16 sfPacket_ReadUint16(sfPacket* packet) {return PacketRead<sfUint16>(packet);}
-sfInt32  sfPacket_ReadInt32(sfPacket* packet)  {return PacketRead<sfInt32>(packet);}
-sfUint32 sfPacket_ReadUint32(sfPacket* packet) {return PacketRead<sfUint32>(packet);}
-float    sfPacket_ReadFloat(sfPacket* packet)  {return PacketRead<float>(packet);}
-double   sfPacket_ReadDouble(sfPacket* packet) {return PacketRead<double>(packet);}
-
+sfBool sfPacket_ReadBool(sfPacket* packet)
+{
+    return sfPacket_ReadUint8(packet);
+}
+sfInt8 sfPacket_ReadInt8(sfPacket* packet)
+{
+    CSFML_CHECK_RETURN(packet, sfFalse);
+    sfInt8 value;
+    packet->This >> value;
+    return value;
+}
+sfUint8 sfPacket_ReadUint8(sfPacket* packet)
+{
+    CSFML_CHECK_RETURN(packet, sfFalse);
+    sfUint8 value;
+    packet->This >> value;
+    return value;
+}
+sfInt16 sfPacket_ReadInt16(sfPacket* packet)
+{
+    CSFML_CHECK_RETURN(packet, sfFalse);
+    sfInt16 value;
+    packet->This >> value;
+    return value;
+}
+sfUint16 sfPacket_ReadUint16(sfPacket* packet)
+{
+    CSFML_CHECK_RETURN(packet, sfFalse);
+    sfUint16 value;
+    packet->This >> value;
+    return value;
+}
+sfInt32 sfPacket_ReadInt32(sfPacket* packet)
+{
+    CSFML_CHECK_RETURN(packet, sfFalse);
+    sfInt32 value;
+    packet->This >> value;
+    return value;
+}
+sfUint32 sfPacket_ReadUint32(sfPacket* packet)
+{
+    CSFML_CHECK_RETURN(packet, sfFalse);
+    sfUint32 value;
+    packet->This >> value;
+    return value;
+}
+float sfPacket_ReadFloat(sfPacket* packet)
+{
+    CSFML_CHECK_RETURN(packet, sfFalse);
+    float value;
+    packet->This >> value;
+    return value;
+}
+double sfPacket_ReadDouble(sfPacket* packet)
+{
+    CSFML_CHECK_RETURN(packet, sfFalse);
+    double value;
+    packet->This >> value;
+    return value;
+}
 void sfPacket_ReadString(sfPacket* packet, char* string)
 {
     CSFML_CHECK(packet);
-
     if (string)
         packet->This >> string;
 }
-
 void sfPacket_ReadWideString(sfPacket* packet, wchar_t* string)
 {
     CSFML_CHECK(packet);
-
     if (string)
         packet->This >> string;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfPacket_WriteBool(sfPacket* packet,   sfBool value)      {PacketWrite(packet, static_cast<sfUint8>(value));}
-void sfPacket_WriteInt8(sfPacket* packet,   sfInt8 value)      {PacketWrite(packet, value);}
-void sfPacket_WriteUint8(sfPacket* packet,  sfUint8 value)     {PacketWrite(packet, value);}
-void sfPacket_WriteInt16(sfPacket* packet,  sfInt16 value)     {PacketWrite(packet, value);}
-void sfPacket_WriteUint16(sfPacket* packet, sfUint16 value)    {PacketWrite(packet, value);}
-void sfPacket_WriteInt32(sfPacket* packet,  sfInt32 value)     {PacketWrite(packet, value);}
-void sfPacket_WriteUint32(sfPacket* packet, sfUint32 value)    {PacketWrite(packet, value);}
-void sfPacket_WriteFloat(sfPacket* packet,  float value)       {PacketWrite(packet, value);}
-void sfPacket_WriteDouble(sfPacket* packet, double value)      {PacketWrite(packet, value);}
-
+void sfPacket_WriteBool(sfPacket* packet, sfBool value)
+{
+    sfPacket_WriteUint8(packet, value ? 1 : 0);
+}
+void sfPacket_WriteInt8(sfPacket* packet, sfInt8 value)
+{
+    CSFML_CHECK(packet);
+    packet->This << value;
+}
+void sfPacket_WriteUint8(sfPacket* packet, sfUint8 value)
+{
+    CSFML_CHECK(packet);
+    packet->This << value;
+}
+void sfPacket_WriteInt16(sfPacket* packet, sfInt16 value)
+{
+    CSFML_CHECK(packet);
+    packet->This << value;
+}
+void sfPacket_WriteUint16(sfPacket* packet, sfUint16 value)
+{
+    CSFML_CHECK(packet);
+    packet->This << value;
+}
+void sfPacket_WriteInt32(sfPacket* packet, sfInt32 value)
+{
+    CSFML_CHECK(packet);
+    packet->This << value;
+}
+void sfPacket_WriteUint32(sfPacket* packet, sfUint32 value)
+{
+    CSFML_CHECK(packet);
+    packet->This << value;
+}
+void sfPacket_WriteFloat(sfPacket* packet, float value)
+{
+    CSFML_CHECK(packet);
+    packet->This << value;
+}
+void sfPacket_WriteDouble(sfPacket* packet, double value)
+{
+    CSFML_CHECK(packet);
+    packet->This << value;
+}
 void sfPacket_WriteString(sfPacket* packet, const char* string)
 {
     CSFML_CHECK(packet);
@@ -166,7 +223,6 @@ void sfPacket_WriteString(sfPacket* packet, const char* string)
     if (string)
         packet->This << string;
 }
-
 void sfPacket_WriteWideString(sfPacket* packet, const wchar_t* string)
 {
     CSFML_CHECK(packet);

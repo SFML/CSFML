@@ -175,7 +175,7 @@ const sfTransform* sfRectangleShape_GetInverseTransform(const sfRectangleShape* 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_SetTexture(sfRectangleShape* shape, const sfTexture* texture, sfBool resetRect)
 {
-    CSFML_CALL(shape, SetTexture(texture ? texture->This : NULL, resetRect == sfTrue))
+    CSFML_CALL(shape, SetTexture(texture ? texture->This : NULL, resetRect == sfTrue));
     shape->Texture = texture;
 }
 
@@ -183,7 +183,7 @@ void sfRectangleShape_SetTexture(sfRectangleShape* shape, const sfTexture* textu
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_SetTextureRect(sfRectangleShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, SetTextureRect(sf::IntRect(rect.Left, rect.Top, rect.Width, rect.Height)))
+    CSFML_CALL(shape, SetTextureRect(sf::IntRect(rect.Left, rect.Top, rect.Width, rect.Height)));
 }
 
 
@@ -211,7 +211,7 @@ void sfRectangleShape_SetOutlineThickness(sfRectangleShape* shape, float thickne
 ////////////////////////////////////////////////////////////
 const sfTexture* sfRectangleShape_GetTexture(const sfRectangleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL)
+    CSFML_CHECK_RETURN(shape, NULL);
 
     return shape->Texture;
 }
@@ -221,7 +221,7 @@ const sfTexture* sfRectangleShape_GetTexture(const sfRectangleShape* shape)
 sfIntRect sfRectangleShape_GetTextureRect(const sfRectangleShape* shape)
 {
     sfIntRect rect = {0, 0, 0, 0};
-    CSFML_CHECK_RETURN(sprite, rect)
+    CSFML_CHECK_RETURN(shape, rect);
 
     sf::IntRect sfmlRect = shape->This.GetTextureRect();
     rect.Left = sfmlRect.Left;

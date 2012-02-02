@@ -35,12 +35,12 @@
 ////////////////////////////////////////////////////////////
 sfBool sfFloatRect_Contains(const sfFloatRect* rect, float x, float y)
 {
-    CSFML_CHECK_RETURN(rect, sfFalse)
+    CSFML_CHECK_RETURN(rect, sfFalse);
     return sf::FloatRect(rect->Left, rect->Top, rect->Width, rect->Height).Contains(x, y);
 }
 sfBool sfIntRect_Contains(const sfIntRect* rect, int x, int y)
 {
-    CSFML_CHECK_RETURN(rect, sfFalse)
+    CSFML_CHECK_RETURN(rect, sfFalse);
     return sf::IntRect(rect->Left, rect->Top, rect->Width, rect->Height).Contains(x, y);
 }
 
@@ -50,8 +50,8 @@ sfBool sfIntRect_Contains(const sfIntRect* rect, int x, int y)
 ////////////////////////////////////////////////////////////
 sfBool sfFloatRect_Intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, sfFloatRect* intersection)
 {
-    CSFML_CHECK_RETURN(rect1, sfFalse)
-    CSFML_CHECK_RETURN(rect2, sfFalse)
+    CSFML_CHECK_RETURN(rect1, sfFalse);
+    CSFML_CHECK_RETURN(rect2, sfFalse);
 
     sf::FloatRect SFMLRect1(rect1->Left, rect1->Top, rect1->Width, rect1->Height);
     sf::FloatRect SFMLRect2(rect2->Left, rect2->Top, rect2->Width, rect2->Height);
@@ -75,8 +75,8 @@ sfBool sfFloatRect_Intersects(const sfFloatRect* rect1, const sfFloatRect* rect2
 }
 sfBool sfIntRect_Intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection)
 {
-    CSFML_CHECK_RETURN(rect1, sfFalse)
-    CSFML_CHECK_RETURN(rect2, sfFalse)
+    CSFML_CHECK_RETURN(rect1, sfFalse);
+    CSFML_CHECK_RETURN(rect2, sfFalse);
 
     sf::IntRect SFMLRect1(rect1->Left, rect1->Top, rect1->Width, rect1->Height);
     sf::IntRect SFMLRect2(rect2->Left, rect2->Top, rect2->Width, rect2->Height);

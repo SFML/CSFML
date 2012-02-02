@@ -206,14 +206,14 @@ void sfRenderWindow_SetPosition(sfRenderWindow* renderWindow, int left, int top)
 ////////////////////////////////////////////////////////////
 void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, unsigned int width, unsigned int height)
 {
-    CSFML_CALL(renderWindow, SetSize(width, height))
+    CSFML_CALL(renderWindow, SetSize(width, height));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRenderWindow_SetTitle(sfRenderWindow* renderWindow, const char* title)
 {
-    CSFML_CALL(renderWindow, SetTitle(title))
+    CSFML_CALL(renderWindow, SetTitle(title));
 }
 
 
@@ -234,14 +234,14 @@ void sfRenderWindow_EnableKeyRepeat(sfRenderWindow* renderWindow, sfBool enabled
 ////////////////////////////////////////////////////////////
 void sfRenderWindow_SetIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels)
 {
-    CSFML_CALL(renderWindow, SetIcon(width, height, pixels))
+    CSFML_CALL(renderWindow, SetIcon(width, height, pixels));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfBool sfRenderWindow_SetActive(sfRenderWindow* renderWindow, sfBool active)
 {
-    CSFML_CALL_RETURN(renderWindow, SetActive(active == sfTrue), sfFalse)
+    CSFML_CALL_RETURN(renderWindow, SetActive(active == sfTrue), sfFalse);
 }
 
 

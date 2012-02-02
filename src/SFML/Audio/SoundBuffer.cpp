@@ -113,35 +113,35 @@ void sfSoundBuffer_Destroy(sfSoundBuffer* soundBuffer)
 ////////////////////////////////////////////////////////////
 sfBool sfSoundBuffer_SaveToFile(const sfSoundBuffer* soundBuffer, const char* filename)
 {
-    CSFML_CALL_RETURN(soundBuffer, SaveToFile(filename), sfFalse)
+    CSFML_CALL_RETURN(soundBuffer, SaveToFile(filename), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
 const sfInt16* sfSoundBuffer_GetSamples(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetSamples(), NULL)
+    CSFML_CALL_RETURN(soundBuffer, GetSamples(), NULL);
 }
 
 
 ////////////////////////////////////////////////////////////
 size_t sfSoundBuffer_GetSampleCount(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetSampleCount(), 0)
+    CSFML_CALL_RETURN(soundBuffer, GetSampleCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfSoundBuffer_GetSampleRate(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetSampleRate(), 0)
+    CSFML_CALL_RETURN(soundBuffer, GetSampleRate(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfSoundBuffer_GetChannelCount(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetChannelCount(), 0)
+    CSFML_CALL_RETURN(soundBuffer, GetChannelCount(), 0);
 }
 
 

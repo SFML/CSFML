@@ -149,42 +149,42 @@ void sfShader_Destroy(sfShader* shader)
 ////////////////////////////////////////////////////////////
 void sfShader_SetFloatParameter(sfShader* shader, const char* name, float x)
 {
-    CSFML_CALL(shader, SetParameter(name, x))
+    CSFML_CALL(shader, SetParameter(name, x));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_SetFloat2Parameter(sfShader* shader, const char* name, float x, float y)
 {
-    CSFML_CALL(shader, SetParameter(name, x, y))
+    CSFML_CALL(shader, SetParameter(name, x, y));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_SetFloat3Parameter(sfShader* shader, const char* name, float x, float y, float z)
 {
-    CSFML_CALL(shader, SetParameter(name, x, y, z))
+    CSFML_CALL(shader, SetParameter(name, x, y, z));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_SetFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w)
 {
-    CSFML_CALL(shader, SetParameter(name, x, y, z, w))
+    CSFML_CALL(shader, SetParameter(name, x, y, z, w));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_SetColorParameter(sfShader* shader, const char* name, sfColor color)
 {
-    CSFML_CALL(shader, SetParameter(name, sf::Color(color.r, color.g, color.b, color.a)))
+    CSFML_CALL(shader, SetParameter(name, sf::Color(color.r, color.g, color.b, color.a)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_SetTransformParameter(sfShader* shader, const char* name, const sfTransform* transform)
 {
-    CSFML_CALL(shader, SetParameter(name, transform ? transform->This : sf::Transform::Identity))
+    CSFML_CALL(shader, SetParameter(name, transform ? transform->This : sf::Transform::Identity));
 }
 
 
@@ -192,28 +192,28 @@ void sfShader_SetTransformParameter(sfShader* shader, const char* name, const sf
 void sfShader_SetTextureParameter(sfShader* shader, const char* name, const sfTexture* texture)
 {
     CSFML_CHECK(texture);
-    CSFML_CALL(shader, SetParameter(name, *texture->This))
+    CSFML_CALL(shader, SetParameter(name, *texture->This));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_SetCurrentTextureParameter(sfShader* shader, const char* name)
 {
-    CSFML_CALL(shader, SetParameter(name, sf::Shader::CurrentTexture))
+    CSFML_CALL(shader, SetParameter(name, sf::Shader::CurrentTexture));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_Bind(const sfShader* shader)
 {
-    CSFML_CALL(shader, Bind())
+    CSFML_CALL(shader, Bind());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_Unbind(const sfShader* shader)
 {
-    CSFML_CALL(shader, Unbind())
+    CSFML_CALL(shader, Unbind());
 }
 
 

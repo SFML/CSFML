@@ -86,7 +86,7 @@ void sfUdpSocket_Unbind(sfUdpSocket* socket)
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_Send(sfUdpSocket* socket, const char* data, size_t size, sfIpAddress address, unsigned short port)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError)
+    CSFML_CHECK_RETURN(socket, sfSocketError);
 
     // Convert the address
     sf::IpAddress receiver(address.Address);

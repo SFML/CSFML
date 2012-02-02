@@ -179,7 +179,7 @@ const sfTransform* sfText_GetInverseTransform(const sfText* text)
 ////////////////////////////////////////////////////////////
 void sfText_SetString(sfText* text, const char* string)
 {
-    CSFML_CALL(text, SetString(string))
+    CSFML_CALL(text, SetString(string));
 }
 
 
@@ -187,7 +187,7 @@ void sfText_SetString(sfText* text, const char* string)
 void sfText_SetUnicodeString(sfText* text, const sfUint32* string)
 {
     sf::String UTF32Text = string;
-    CSFML_CALL(text, SetString(UTF32Text))
+    CSFML_CALL(text, SetString(UTF32Text));
 }
 
 
@@ -196,7 +196,7 @@ void sfText_SetFont(sfText* text, const sfFont* font)
 {
     CSFML_CHECK(font);
 
-    CSFML_CALL(text, SetFont(font->This))
+    CSFML_CALL(text, SetFont(font->This));
     text->Font = font;
 }
 
@@ -204,21 +204,21 @@ void sfText_SetFont(sfText* text, const sfFont* font)
 ////////////////////////////////////////////////////////////
 void sfText_SetCharacterSize(sfText* text, unsigned int size)
 {
-    CSFML_CALL(text, SetCharacterSize(size))
+    CSFML_CALL(text, SetCharacterSize(size));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_SetStyle(sfText* text, sfUint32 style)
 {
-    CSFML_CALL(text, SetStyle(style))
+    CSFML_CALL(text, SetStyle(style));
 }
 
 
 ////////////////////////////////////////////////////////////
 const char* sfText_GetString(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL)
+    CSFML_CHECK_RETURN(text, NULL);
 
     text->String = text->This.GetString().ToAnsiString();
 
@@ -229,7 +229,7 @@ const char* sfText_GetString(const sfText* text)
 ////////////////////////////////////////////////////////////
 const sfUint32* sfText_GetUnicodeString(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL)
+    CSFML_CHECK_RETURN(text, NULL);
 
     return text->This.GetString().GetData();
 }
@@ -238,7 +238,7 @@ const sfUint32* sfText_GetUnicodeString(const sfText* text)
 ////////////////////////////////////////////////////////////
 const sfFont* sfText_GetFont(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL)
+    CSFML_CHECK_RETURN(text, NULL);
 
     return text->Font;
 }
@@ -247,14 +247,14 @@ const sfFont* sfText_GetFont(const sfText* text)
 ////////////////////////////////////////////////////////////
 unsigned int sfText_GetCharacterSize(const sfText* text)
 {
-    CSFML_CALL_RETURN(text, GetCharacterSize(), 0)
+    CSFML_CALL_RETURN(text, GetCharacterSize(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
 sfUint32 sfText_GetStyle(const sfText* text)
 {
-    CSFML_CALL_RETURN(text, GetStyle(), 0)
+    CSFML_CALL_RETURN(text, GetStyle(), 0);
 }
 
 

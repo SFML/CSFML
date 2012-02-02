@@ -75,14 +75,14 @@ unsigned int sfRenderTexture_GetHeight(const sfRenderTexture* renderTexture)
 ////////////////////////////////////////////////////////////
 sfBool sfRenderTexture_SetActive(sfRenderTexture* renderTexture, sfBool active)
 {
-    CSFML_CALL_RETURN(renderTexture, SetActive(active == sfTrue), sfFalse)
+    CSFML_CALL_RETURN(renderTexture, SetActive(active == sfTrue), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRenderTexture_Display(sfRenderTexture* renderTexture)
 {
-    CSFML_CALL(renderTexture, Display())
+    CSFML_CALL(renderTexture, Display());
 }
 
 

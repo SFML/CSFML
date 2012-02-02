@@ -181,7 +181,7 @@ void sfSprite_SetTexture(sfSprite* sprite, const sfTexture* texture, sfBool rese
 {
     if (texture && texture->This)
     {
-        CSFML_CALL(sprite, SetTexture(*texture->This, resetRect == sfTrue))
+        CSFML_CALL(sprite, SetTexture(*texture->This, resetRect == sfTrue));
         sprite->Texture = texture;
     }
 }
@@ -190,7 +190,7 @@ void sfSprite_SetTexture(sfSprite* sprite, const sfTexture* texture, sfBool rese
 ////////////////////////////////////////////////////////////
 void sfSprite_SetTextureRect(sfSprite* sprite, sfIntRect rectangle)
 {
-    CSFML_CALL(sprite, SetTextureRect(sf::IntRect(rectangle.Left, rectangle.Top, rectangle.Width, rectangle.Height)))
+    CSFML_CALL(sprite, SetTextureRect(sf::IntRect(rectangle.Left, rectangle.Top, rectangle.Width, rectangle.Height)));
 }
 
 
@@ -204,7 +204,7 @@ void sfSprite_SetColor(sfSprite* sprite, sfColor color)
 ////////////////////////////////////////////////////////////
 const sfTexture* sfSprite_GetTexture(const sfSprite* sprite)
 {
-    CSFML_CHECK_RETURN(sprite, NULL)
+    CSFML_CHECK_RETURN(sprite, NULL);
 
     return sprite->Texture;
 }
@@ -214,7 +214,7 @@ const sfTexture* sfSprite_GetTexture(const sfSprite* sprite)
 sfIntRect sfSprite_GetTextureRect(const sfSprite* sprite)
 {
     sfIntRect rect = {0, 0, 0, 0};
-    CSFML_CHECK_RETURN(sprite, rect)
+    CSFML_CHECK_RETURN(sprite, rect);
 
     sf::IntRect sfmlRect = sprite->This.GetTextureRect();
     rect.Left = sfmlRect.Left;

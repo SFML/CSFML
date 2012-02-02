@@ -175,7 +175,7 @@ const sfTransform* sfConvexShape_GetInverseTransform(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_SetTexture(sfConvexShape* shape, const sfTexture* texture, sfBool resetRect)
 {
-    CSFML_CALL(shape, SetTexture(texture ? texture->This : NULL, resetRect == sfTrue))
+    CSFML_CALL(shape, SetTexture(texture ? texture->This : NULL, resetRect == sfTrue));
     shape->Texture = texture;
 }
 
@@ -183,7 +183,7 @@ void sfConvexShape_SetTexture(sfConvexShape* shape, const sfTexture* texture, sf
 ////////////////////////////////////////////////////////////
 void sfConvexShape_SetTextureRect(sfConvexShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, SetTextureRect(sf::IntRect(rect.Left, rect.Top, rect.Width, rect.Height)))
+    CSFML_CALL(shape, SetTextureRect(sf::IntRect(rect.Left, rect.Top, rect.Width, rect.Height)));
 }
 
 
@@ -211,7 +211,7 @@ void sfConvexShape_SetOutlineThickness(sfConvexShape* shape, float thickness)
 ////////////////////////////////////////////////////////////
 const sfTexture* sfConvexShape_GetTexture(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL)
+    CSFML_CHECK_RETURN(shape, NULL);
 
     return shape->Texture;
 }
@@ -221,7 +221,7 @@ const sfTexture* sfConvexShape_GetTexture(const sfConvexShape* shape)
 sfIntRect sfConvexShape_GetTextureRect(const sfConvexShape* shape)
 {
     sfIntRect rect = {0, 0, 0, 0};
-    CSFML_CHECK_RETURN(sprite, rect)
+    CSFML_CHECK_RETURN(shape, rect);
 
     sf::IntRect sfmlRect = shape->This.GetTextureRect();
     rect.Left = sfmlRect.Left;

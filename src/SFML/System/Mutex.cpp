@@ -47,12 +47,12 @@ void sfMutex_Destroy(sfMutex* mutex)
 ////////////////////////////////////////////////////////////
 void sfMutex_Lock(sfMutex* mutex)
 {
-    CSFML_CALL(mutex, Lock())
+    CSFML_CALL(mutex, Lock());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfMutex_Unlock(sfMutex* mutex)
 {
-    CSFML_CALL(mutex, Unlock())
+    CSFML_CALL(mutex, Unlock());
 }
