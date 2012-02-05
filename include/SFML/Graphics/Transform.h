@@ -107,11 +107,10 @@ CSFML_GRAPHICS_API const float* sfTransform_GetMatrix(const sfTransform* transfo
 /// is returned.
 ///
 /// \param transform Transform object
-///
-/// \return A new transform which is the inverse of self
+/// \param result Returned inverse matrix
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform* sfTransform_GetInverse(const sfTransform* transform);
+CSFML_GRAPHICS_API void sfTransform_GetInverse(const sfTransform* transform, sfTransform* result);
 
 ////////////////////////////////////////////////////////////
 /// \brief Apply a transform to a 2D point
