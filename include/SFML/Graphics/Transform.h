@@ -46,7 +46,6 @@ CSFML_GRAPHICS_API sfTransform* sfTransform_Create(void);
 ////////////////////////////////////////////////////////////
 /// \brief Create a new transform from a matrix
 ///
-///
 /// \param a00 Element (0, 0) of the matrix
 /// \param a01 Element (0, 1) of the matrix
 /// \param a02 Element (0, 2) of the matrix
@@ -99,7 +98,7 @@ CSFML_GRAPHICS_API void sfTransform_Destroy(sfTransform* transform);
 /// \return Pointer to a 4x4 matrix
 ///
 ////////////////////////////////////////////////////////////
-const float* sfTransform_GetMatrix(const sfTransform* transform);
+CSFML_GRAPHICS_API const float* sfTransform_GetMatrix(const sfTransform* transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the inverse of a transform
@@ -112,7 +111,7 @@ const float* sfTransform_GetMatrix(const sfTransform* transform);
 /// \return A new transform which is the inverse of self
 ///
 ////////////////////////////////////////////////////////////
-sfTransform* sfTransform_GetInverse(const sfTransform* transform);
+CSFML_GRAPHICS_API sfTransform* sfTransform_GetInverse(const sfTransform* transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Apply a transform to a 2D point
@@ -124,7 +123,7 @@ sfTransform* sfTransform_GetInverse(const sfTransform* transform);
 /// \param transformedY Y coordinate of the transformed point
 ///
 ////////////////////////////////////////////////////////////
-void sfTransform_TransformPoint(const sfTransform* transform, float x, float y, float* transformedX, float* transformedY);
+CSFML_GRAPHICS_API void sfTransform_TransformPoint(const sfTransform* transform, float x, float y, float* transformedX, float* transformedY);
 
 ////////////////////////////////////////////////////////////
 /// \brief Apply a transform to a rectangle
@@ -140,7 +139,7 @@ void sfTransform_TransformPoint(const sfTransform* transform, float x, float y, 
 /// \param transformedRectangle Transformed rectangle
 ///
 ////////////////////////////////////////////////////////////
-void sfTransform_TransformRect(const sfTransform* transform, sfFloatRect rectangle, sfFloatRect* transformedRectangle);
+CSFML_GRAPHICS_API void sfTransform_TransformRect(const sfTransform* transform, sfFloatRect rectangle, sfFloatRect* transformedRectangle);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine two transforms
@@ -154,7 +153,7 @@ void sfTransform_TransformRect(const sfTransform* transform, sfFloatRect rectang
 /// \param result Result of the operation (must point to a valid sfTransform instance)
 ///
 ////////////////////////////////////////////////////////////
-void sfTransform_Combine(const sfTransform* left, const sfTransform* right, sfTransform* result);
+CSFML_GRAPHICS_API void sfTransform_Combine(const sfTransform* left, const sfTransform* right, sfTransform* result);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine a transform with a translation
