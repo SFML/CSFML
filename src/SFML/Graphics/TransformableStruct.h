@@ -22,26 +22,25 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_GRAPHICS_TYPES_H
-#define SFML_GRAPHICS_TYPES_H
+#ifndef SFML_TRANSFORMABLESTRUCT_H
+#define SFML_TRANSFORMABLESTRUCT_H
+
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+#include <SFML/Graphics/Transformable.hpp>
+#include <SFML/Graphics/TransformStruct.h>
 
 
-typedef struct sfCircleShape sfCircleShape;
-typedef struct sfConvexShape sfConvexShape;
-typedef struct sfFont sfFont;
-typedef struct sfImage sfImage;
-typedef struct sfShader sfShader;
-typedef struct sfRectangleShape sfRectangleShape;
-typedef struct sfRenderTexture sfRenderTexture;
-typedef struct sfRenderWindow sfRenderWindow;
-typedef struct sfShape sfShape;
-typedef struct sfSprite sfSprite;
-typedef struct sfText sfText;
-typedef struct sfTexture sfTexture;
-typedef struct sfTransform sfTransform;
-typedef struct sfTransformable sfTransformable;
-typedef struct sfVertexArray sfVertexArray;
-typedef struct sfView sfView;
+////////////////////////////////////////////////////////////
+// Internal structure of sfTransformable
+////////////////////////////////////////////////////////////
+struct sfTransformable
+{
+    sf::Transformable   This;
+    mutable sfTransform Transform;
+    mutable sfTransform InverseTransform;
+};
 
 
-#endif // SFML_GRAPHICS_TYPES_H
+#endif // SFML_TRANSFORMABLESTRUCT_H

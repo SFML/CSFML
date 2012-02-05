@@ -217,4 +217,4 @@ CSFML_GRAPHICS_API void sfTransform_Scale(sfTransform* transform, float scaleX, 
 CSFML_GRAPHICS_API void sfTransform_ScaleWithCenter(sfTransform* transform, float scaleX, float scaleY, float centerX, float centerY);
 
 
-#endif // SFML_TEXTURE_H
+#endif // SFML_TRANSFORM_H

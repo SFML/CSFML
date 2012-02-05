@@ -48,6 +48,9 @@ set(SRC
     ${SRCROOT}/Transform.cpp
     ${SRCROOT}/TransformStruct.h
     ${INCROOT}/Transform.h
+    ${SRCROOT}/Transformable.cpp
+    ${SRCROOT}/TransformableStruct.h
+    ${INCROOT}/Transformable.h
     ${INCROOT}/Types.h
     ${INCROOT}/Vertex.h
     ${SRCROOT}/VertexArray.cpp
