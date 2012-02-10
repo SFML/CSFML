@@ -269,3 +269,35 @@ void sfText_FindCharacterPos(const sfText* text, size_t index, float* x, float* 
     if (y)
         *y = pos.y;
 }
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfText_GetLocalBounds(const sfText* text)
+{
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(text, rect);
+
+    sf::FloatRect sfmlRect = text->This.GetLocalBounds();
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
+}
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfText_GetGlobalBounds(const sfText* text)
+{
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(text, rect);
+
+    sf::FloatRect sfmlRect = text->This.GetGlobalBounds();
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
+}

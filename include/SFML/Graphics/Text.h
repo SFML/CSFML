@@ -382,5 +382,37 @@ CSFML_GRAPHICS_API sfColor sfText_GetColor(const sfText* text);
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfText_FindCharacterPos(const sfText* text, size_t index, float* x, float* y);
 
+////////////////////////////////////////////////////////////
+/// \brief Get the local bounding rectangle of a text
+///
+/// The returned rectangle is in local coordinates, which means
+/// that it ignores the transformations (translation, rotation,
+/// scale, ...) that are applied to the entity.
+/// In other words, this function returns the bounds of the
+/// entity in the entity's coordinate system.
+///
+/// \param text Text object
+///
+/// \return Local bounding rectangle of the entity
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfFloatRect sfText_GetLocalBounds(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the global bounding rectangle of a text
+///
+/// The returned rectangle is in global coordinates, which means
+/// that it takes in account the transformations (translation,
+/// rotation, scale, ...) that are applied to the entity.
+/// In other words, this function returns the bounds of the
+/// sprite in the global 2D world's coordinate system.
+///
+/// \param text Text object
+///
+/// \return Global bounding rectangle of the entity
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfFloatRect sfText_GetGlobalBounds(const sfText* text);
+
 
 #endif // SFML_TEXT_H

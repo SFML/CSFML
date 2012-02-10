@@ -304,3 +304,35 @@ void sfConvexShape_SetPoint(sfConvexShape* shape, unsigned int index, float x, f
 {
     CSFML_CALL(shape, SetPoint(index, sf::Vector2f(x, y)));
 }
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfConvexShape_GetLocalBounds(const sfConvexShape* shape)
+{
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(shape, rect);
+
+    sf::FloatRect sfmlRect = shape->This.GetLocalBounds();
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
+}
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfConvexShape_GetGlobalBounds(const sfConvexShape* shape)
+{
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(shape, rect);
+
+    sf::FloatRect sfmlRect = shape->This.GetGlobalBounds();
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
+}

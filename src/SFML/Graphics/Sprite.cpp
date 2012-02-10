@@ -240,3 +240,35 @@ sfColor sfSprite_GetColor(const sfSprite* sprite)
 
     return color;
 }
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfSprite_GetLocalBounds(const sfSprite* sprite)
+{
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(sprite, rect);
+
+    sf::FloatRect sfmlRect = sprite->This.GetLocalBounds();
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
+}
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfSprite_GetGlobalBounds(const sfSprite* sprite)
+{
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(sprite, rect);
+
+    sf::FloatRect sfmlRect = sprite->This.GetGlobalBounds();
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
+}

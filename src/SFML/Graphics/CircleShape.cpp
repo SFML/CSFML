@@ -314,3 +314,35 @@ void sfCircleShape_SetPointCount(sfCircleShape* shape, unsigned int count)
 {
     CSFML_CALL(shape, SetPointCount(count));
 }
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfCircleShape_GetLocalBounds(const sfCircleShape* shape)
+{
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(shape, rect);
+
+    sf::FloatRect sfmlRect = shape->This.GetLocalBounds();
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
+}
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfCircleShape_GetGlobalBounds(const sfCircleShape* shape)
+{
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(shape, rect);
+
+    sf::FloatRect sfmlRect = shape->This.GetGlobalBounds();
+    rect.Left = sfmlRect.Left;
+    rect.Top = sfmlRect.Top;
+    rect.Width = sfmlRect.Width;
+    rect.Height = sfmlRect.Height;
+
+    return rect;
+}

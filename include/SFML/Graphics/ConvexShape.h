@@ -398,5 +398,37 @@ CSFML_GRAPHICS_API void sfConvexShape_SetPointCount(sfConvexShape* shape, unsign
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfConvexShape_SetPoint(sfConvexShape* shape, unsigned int index, float x, float y);
 
+////////////////////////////////////////////////////////////
+/// \brief Get the local bounding rectangle of a convex shape
+///
+/// The returned rectangle is in local coordinates, which means
+/// that it ignores the transformations (translation, rotation,
+/// scale, ...) that are applied to the entity.
+/// In other words, this function returns the bounds of the
+/// entity in the entity's coordinate system.
+///
+/// \param shape Shape object
+///
+/// \return Local bounding rectangle of the entity
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfFloatRect sfConvexShape_GetLocalBounds(const sfConvexShape* shape);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the global bounding rectangle of a convex shape
+///
+/// The returned rectangle is in global coordinates, which means
+/// that it takes in account the transformations (translation,
+/// rotation, scale, ...) that are applied to the entity.
+/// In other words, this function returns the bounds of the
+/// sprite in the global 2D world's coordinate system.
+///
+/// \param shape Shape object
+///
+/// \return Global bounding rectangle of the entity
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfFloatRect sfConvexShape_GetGlobalBounds(const sfConvexShape* shape);
+
 
 #endif // SFML_CONVEXSHAPE_H

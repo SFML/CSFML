@@ -300,5 +300,37 @@ CSFML_GRAPHICS_API sfIntRect sfSprite_GetTextureRect(const sfSprite* sprite);
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfColor sfSprite_GetColor(const sfSprite* sprite);
 
+////////////////////////////////////////////////////////////
+/// \brief Get the local bounding rectangle of a sprite
+///
+/// The returned rectangle is in local coordinates, which means
+/// that it ignores the transformations (translation, rotation,
+/// scale, ...) that are applied to the entity.
+/// In other words, this function returns the bounds of the
+/// entity in the entity's coordinate system.
+///
+/// \param sprite Sprite object
+///
+/// \return Local bounding rectangle of the entity
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfFloatRect sfSprite_GetLocalBounds(const sfSprite* sprite);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the global bounding rectangle of a sprite
+///
+/// The returned rectangle is in global coordinates, which means
+/// that it takes in account the transformations (translation,
+/// rotation, scale, ...) that are applied to the entity.
+/// In other words, this function returns the bounds of the
+/// sprite in the global 2D world's coordinate system.
+///
+/// \param sprite Sprite object
+///
+/// \return Global bounding rectangle of the entity
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfFloatRect sfSprite_GetGlobalBounds(const sfSprite* sprite);
+
 
 #endif // SFML_SPRITE_H
