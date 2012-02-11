@@ -60,7 +60,7 @@
 ///     while (sfRenderWindow_IsOpen(window))
 ///     {
 ///         /* Process events */
-///         while (sfRenderWindow_GetEvent(window, &event))
+///         while (sfRenderWindow_PollEvent(window, &event))
 ///         {
 ///             /* Close window : exit */
 ///             if (event.Type == sfEvtClosed)
@@ -71,10 +71,10 @@
 ///         sfRenderWindow_Clear(window, sfBlack);
 /// 
 ///         /* Draw the sprite */
-///         sfRenderWindow_DrawSprite(window, sprite);
+///         sfRenderWindow_DrawSprite(window, sprite, NULL);
 /// 
 ///         /* Draw the text */
-///         sfRenderWindow_DrawText(window, text);
+///         sfRenderWindow_DrawText(window, text, NULL);
 /// 
 ///         /* Update the window */
 ///         sfRenderWindow_Display(window);
