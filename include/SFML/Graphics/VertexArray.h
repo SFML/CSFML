@@ -84,7 +84,7 @@ CSFML_GRAPHICS_API unsigned int sfVertexArray_GetVertexCount(const sfVertexArray
 /// \return Pointer to the index-th vertex
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVertex* sfVertexArray_At(sfVertexArray* vertexArray, unsigned int index);
+CSFML_GRAPHICS_API sfVertex* sfVertexArray_GetVertex(sfVertexArray* vertexArray, unsigned int index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Clear a vertex array

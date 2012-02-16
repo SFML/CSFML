@@ -61,7 +61,7 @@ unsigned int sfVertexArray_GetVertexCount(const sfVertexArray* vertexArray)
 
 
 ////////////////////////////////////////////////////////////
-sfVertex* sfVertexArray_At(sfVertexArray* vertexArray, unsigned int index)
+sfVertex* sfVertexArray_GetVertex(sfVertexArray* vertexArray, unsigned int index)
 {
     CSFML_CHECK_RETURN(vertexArray, NULL);
 
