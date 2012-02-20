@@ -216,6 +216,13 @@ void sfText_SetStyle(sfText* text, sfUint32 style)
 
 
 ////////////////////////////////////////////////////////////
+void sfText_SetColor(sfText* text, sfColor color)
+{
+    CSFML_CALL(text, SetColor(sf::Color(color.r, color.g, color.b, color.a)));
+}
+
+
+////////////////////////////////////////////////////////////
 const char* sfText_GetString(const sfText* text)
 {
     CSFML_CHECK_RETURN(text, NULL);
@@ -255,6 +262,22 @@ unsigned int sfText_GetCharacterSize(const sfText* text)
 sfUint32 sfText_GetStyle(const sfText* text)
 {
     CSFML_CALL_RETURN(text, GetStyle(), 0);
+}
+
+
+////////////////////////////////////////////////////////////
+sfColor sfText_GetColor(const sfText* text)
+{
+    sfColor color = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(text, color);
+
+    sf::Color sfmlColor = text->This.GetColor();
+    color.r = sfmlColor.r;
+    color.g = sfmlColor.g;
+    color.b = sfmlColor.b;
+    color.a = sfmlColor.a;
+
+    return color;
 }
 
 
