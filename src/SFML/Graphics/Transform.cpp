@@ -113,13 +113,11 @@ void sfTransform_TransformRect(const sfTransform* transform, sfFloatRect rectang
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_Combine(const sfTransform* left, const sfTransform* right, sfTransform* result)
+void sfTransform_Combine(sfTransform* transform, const sfTransform* other)
 {
-    CSFML_CHECK(left);
-    CSFML_CHECK(right);
+    CSFML_CHECK(other);
 
-    if (result)
-        result->This = left->This.Combine(right->This);
+    CSFML_CALL(transform, Combine(other->This));
 }
 
 

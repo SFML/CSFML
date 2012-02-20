@@ -144,15 +144,14 @@ CSFML_GRAPHICS_API void sfTransform_TransformRect(const sfTransform* transform, 
 /// \brief Combine two transforms
 ///
 /// The result is a transform that is equivalent to applying
-/// \a left followed by \a right. Mathematically, it is
+/// \a transform followed by \a other. Mathematically, it is
 /// equivalent to a matrix multiplication.
 ///
-/// \param left   First transform to combine
-/// \param right  Second transform to combine
-/// \param result Result of the operation (must point to a valid sfTransform instance)
+/// \param transform Transform object
+/// \param right     Transform to combine to \a transform
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_Combine(const sfTransform* left, const sfTransform* right, sfTransform* result);
+CSFML_GRAPHICS_API void sfTransform_Combine(sfTransform* transform, const sfTransform* other);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine a transform with a translation
