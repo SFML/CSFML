@@ -58,7 +58,7 @@ sfTexture* sfTexture_CreateFromFile(const char* filename, const sfIntRect* area)
     if (area)
         rect = sf::IntRect(area->Left, area->Top, area->Width, area->Height);
 
-    if (!texture->This->LoadFromFile(filename))
+    if (!texture->This->LoadFromFile(filename, rect))
     {
         delete texture;
         texture = NULL;
@@ -77,7 +77,7 @@ sfTexture* sfTexture_CreateFromMemory(const void* data, size_t sizeInBytes, cons
     if (area)
         rect = sf::IntRect(area->Left, area->Top, area->Width, area->Height);
 
-    if (!texture->This->LoadFromMemory(data, sizeInBytes))
+    if (!texture->This->LoadFromMemory(data, sizeInBytes, rect))
     {
         delete texture;
         texture = NULL;
@@ -99,7 +99,7 @@ sfTexture* sfTexture_CreateFromStream(sfInputStream* stream, const sfIntRect* ar
         rect = sf::IntRect(area->Left, area->Top, area->Width, area->Height);
 
     CallbackStream sfmlStream(stream);
-    if (!texture->This->LoadFromStream(sfmlStream))
+    if (!texture->This->LoadFromStream(sfmlStream, rect))
     {
         delete texture;
         texture = NULL;
