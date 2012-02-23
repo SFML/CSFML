@@ -226,3 +226,20 @@ const sfTexture* sfRenderTexture_GetTexture(const sfRenderTexture* renderTexture
 
     return renderTexture->Target;
 }
+
+
+////////////////////////////////////////////////////////////
+void sfRenderTexture_SetSmooth(sfRenderTexture* renderTexture, sfBool smooth)
+{
+    CSFML_CALL(renderTexture, SetSmooth(smooth == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfRenderTexture_IsSmooth(const sfRenderTexture* renderTexture)
+{
+    CSFML_CHECK_RETURN(renderTexture, sfFalse);
+    CSFML_CHECK_RETURN(renderTexture->This, sfFalse);
+
+    return renderTexture->This.IsSmooth();
+}

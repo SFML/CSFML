@@ -245,5 +245,24 @@ CSFML_GRAPHICS_API void sfRenderTexture_ResetGLStates(sfRenderTexture* renderTex
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API const sfTexture* sfRenderTexture_GetTexture(const sfRenderTexture* renderTexture);
 
+////////////////////////////////////////////////////////////
+/// \brief Enable or disable the smooth filter on a render texture
+///
+/// \param renderTexture Render texture object
+/// \param smooth        sfTrue to enable smoothing, sfFalse to disable it
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderTexture_SetSmooth(sfRenderTexture* renderTexture, sfBool smooth);
+
+////////////////////////////////////////////////////////////
+/// \brief Tell whether the smooth filter is enabled or not for a render texture
+///
+/// \param renderTexture Render texture object
+///
+/// \return sfTrue if smoothing is enabled, sfFalse if it is disabled
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfRenderTexture_IsSmooth(const sfRenderTexture* renderTexture);
+
 
 #endif // SFML_RENDERTEXTURE_H
