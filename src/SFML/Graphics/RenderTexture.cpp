@@ -238,8 +238,5 @@ void sfRenderTexture_SetSmooth(sfRenderTexture* renderTexture, sfBool smooth)
 ////////////////////////////////////////////////////////////
 sfBool sfRenderTexture_IsSmooth(const sfRenderTexture* renderTexture)
 {
-    CSFML_CHECK_RETURN(renderTexture, sfFalse);
-    CSFML_CHECK_RETURN(renderTexture->This, sfFalse);
-
-    return renderTexture->This.IsSmooth();
+    CSFML_CALL_RETURN(renderTexture, IsSmooth(), sfFalse);
 }
