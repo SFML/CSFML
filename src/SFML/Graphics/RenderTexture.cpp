@@ -29,6 +29,7 @@
 #include <SFML/Graphics/RenderTextureStruct.h>
 #include <SFML/Graphics/SpriteStruct.h>
 #include <SFML/Graphics/TextStruct.h>
+#include <SFML/Graphics/ShapeStruct.h>
 #include <SFML/Graphics/CircleShapeStruct.h>
 #include <SFML/Graphics/ConvexShapeStruct.h>
 #include <SFML/Graphics/RectangleShapeStruct.h>
@@ -162,6 +163,11 @@ void sfRenderTexture_DrawSprite(sfRenderTexture* renderTexture, const sfSprite* 
     CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
 }
 void sfRenderTexture_DrawText(sfRenderTexture* renderTexture, const sfText* object, const sfRenderStates* states)
+{
+    CSFML_CHECK(object);
+    CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
+}
+void sfRenderTexture_DrawShape(sfRenderTexture* renderTexture, const sfShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
     CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));

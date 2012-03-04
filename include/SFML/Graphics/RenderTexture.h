@@ -168,6 +168,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_ConvertCoords(const sfRenderTexture* ren
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderTexture_DrawSprite(sfRenderTexture* renderTexture, const sfSprite* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderTexture_DrawText(sfRenderTexture* renderTexture, const sfText* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_DrawShape(sfRenderTexture* renderTexture, const sfShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderTexture_DrawCircleShape(sfRenderTexture* renderTexture, const sfCircleShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderTexture_DrawConvexShape(sfRenderTexture* renderTexture, const sfConvexShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderTexture_DrawRectangleShape(sfRenderTexture* renderTexture, const sfRectangleShape* object, const sfRenderStates* states);

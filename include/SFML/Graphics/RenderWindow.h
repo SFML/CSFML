@@ -336,6 +336,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_ConvertCoords(const sfRenderWindow* rende
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderWindow_DrawSprite(sfRenderWindow* renderWindow, const sfSprite* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_DrawText(sfRenderWindow* renderWindow, const sfText* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_DrawShape(sfRenderWindow* renderWindow, const sfShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_DrawCircleShape(sfRenderWindow* renderWindow, const sfCircleShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_DrawConvexShape(sfRenderWindow* renderWindow, const sfConvexShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_DrawRectangleShape(sfRenderWindow* renderWindow, const sfRectangleShape* object, const sfRenderStates* states);

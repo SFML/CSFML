@@ -36,6 +36,9 @@ set(SRC
     ${SRCROOT}/Shader.cpp
     ${SRCROOT}/ShaderStruct.h
     ${INCROOT}/Shader.h
+    ${SRCROOT}/Shape.cpp
+    ${SRCROOT}/ShapeStruct.h
+    ${INCROOT}/Shape.h
     ${SRCROOT}/Sprite.cpp
     ${SRCROOT}/SpriteStruct.h
     ${INCROOT}/Sprite.h

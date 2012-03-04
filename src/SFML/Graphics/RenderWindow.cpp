@@ -30,6 +30,7 @@
 #include <SFML/Graphics/ImageStruct.h>
 #include <SFML/Graphics/SpriteStruct.h>
 #include <SFML/Graphics/TextStruct.h>
+#include <SFML/Graphics/ShapeStruct.h>
 #include <SFML/Graphics/CircleShapeStruct.h>
 #include <SFML/Graphics/ConvexShapeStruct.h>
 #include <SFML/Graphics/RectangleShapeStruct.h>
@@ -351,6 +352,11 @@ void sfRenderWindow_DrawSprite(sfRenderWindow* renderWindow, const sfSprite* obj
     CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
 }
 void sfRenderWindow_DrawText(sfRenderWindow* renderWindow, const sfText* object, const sfRenderStates* states)
+{
+    CSFML_CHECK(object);
+    CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
+}
+void sfRenderWindow_DrawShape(sfRenderWindow* renderWindow, const sfShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
     CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
