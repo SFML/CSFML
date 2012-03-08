@@ -39,6 +39,7 @@
 #include <SFML/Window/VideoMode.h>
 #include <SFML/Window/WindowHandle.h>
 #include <SFML/Window/Window.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -86,26 +87,6 @@ CSFML_GRAPHICS_API void sfRenderWindow_Close(sfRenderWindow* renderWindow);
 CSFML_GRAPHICS_API sfBool sfRenderWindow_IsOpen(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the width of the rendering region of a render window
-///
-/// \param renderWindow Render window object
-///
-/// \return Width in pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfRenderWindow_GetWidth(const sfRenderWindow* renderWindow);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the height of the rendering region of a render window
-///
-/// \param renderWindow Render window object
-///
-/// \return Height in pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfRenderWindow_GetHeight(const sfRenderWindow* renderWindow);
-
-////////////////////////////////////////////////////////////
 /// \brief Get the creation settings of a render window
 ///
 /// \param renderWindow Render window object
@@ -138,22 +119,14 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_PollEvent(sfRenderWindow* renderWindow,
 CSFML_GRAPHICS_API sfBool sfRenderWindow_WaitEvent(sfRenderWindow* renderWindow, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
-/// \brief Enable / disable vertical synchronization on a render window
+/// \brief Get the position of a render window
 ///
 /// \param renderWindow Render window object
-/// \param enabled      sfTrue to enable v-sync, sfFalse to deactivate
+///
+/// \return Position in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_EnableVerticalSync(sfRenderWindow* renderWindow, sfBool enabled);
-
-////////////////////////////////////////////////////////////
-/// \brief Show or hide the mouse cursor on a render window
-///
-/// \param renderWindow Render window object
-/// \param show         sfTrue to show, sfFalse to hide
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_ShowMouseCursor(sfRenderWindow* renderWindow, sfBool show);
+CSFML_GRAPHICS_API sfVector2i sfRenderWindow_GetPosition(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the position of a render window on screen
@@ -161,21 +134,29 @@ CSFML_GRAPHICS_API void sfRenderWindow_ShowMouseCursor(sfRenderWindow* renderWin
 /// Only works for top-level windows
 ///
 /// \param renderWindow Render window object
-/// \param left         Left position
-/// \param top          Top position
+/// \param position     New position, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetPosition(sfRenderWindow* renderWindow, int left, int top);
+CSFML_GRAPHICS_API void sfRenderWindow_SetPosition(sfRenderWindow* renderWindow, sfVector2i position);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the size of the rendering region of a render window
+///
+/// \param renderWindow Render window object
+///
+/// \return Size in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVector2u sfRenderWindow_GetSize(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the size of the rendering region of a render window
 ///
 /// \param renderWindow Render window object
-/// \param width        New Width
-/// \param height       New Height
+/// \param size         New size, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, unsigned int width, unsigned int height);
+CSFML_GRAPHICS_API void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, sfVector2u size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the title of a render window
@@ -187,13 +168,42 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, uns
 CSFML_GRAPHICS_API void sfRenderWindow_SetTitle(sfRenderWindow* renderWindow, const char* title);
 
 ////////////////////////////////////////////////////////////
+/// \brief Change a render window's icon
+///
+/// \param renderWindow Renderw indow object
+/// \param width        Icon's width, in pixels
+/// \param height       Icon's height, in pixels
+/// \param pixels       Pointer to the pixels in memory, format must be RGBA 32 bits
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_SetIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels);
+
+////////////////////////////////////////////////////////////
 /// \brief Show or hide a render window
+///
+/// \param renderWindow Render window object
+/// \param visible      sfTrue to show the window, sfFalse to hide it
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_SetVisible(sfRenderWindow* renderWindow, sfBool visible);
+
+////////////////////////////////////////////////////////////
+/// \brief Show or hide the mouse cursor on a render window
 ///
 /// \param renderWindow Render window object
 /// \param show         sfTrue to show, sfFalse to hide
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_Show(sfRenderWindow* renderWindow, sfBool show);
+CSFML_GRAPHICS_API void sfRenderWindow_SetMouseCursorVisible(sfRenderWindow* renderWindow, sfBool show);
+
+////////////////////////////////////////////////////////////
+/// \brief Enable / disable vertical synchronization on a render window
+///
+/// \param renderWindow Render window object
+/// \param enabled      sfTrue to enable v-sync, sfFalse to deactivate
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_SetVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable automatic key-repeat for keydown events
@@ -204,18 +214,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_Show(sfRenderWindow* renderWindow, sfBool
 /// \param enabled      sfTrue to enable, sfFalse to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_EnableKeyRepeat(sfRenderWindow* renderWindow, sfBool enabled);
-
-////////////////////////////////////////////////////////////
-/// \brief Change a render window's icon
-///
-/// \param renderWindow Renderw indow object
-/// \param width        Icon's width, in pixels
-/// \param height       Icon's height, in pixels
-/// \param pixels       Pointer to the pixels in memory, format must be RGBA 32 bits
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels);
+CSFML_GRAPHICS_API void sfRenderWindow_SetKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a render window as the current target for rendering

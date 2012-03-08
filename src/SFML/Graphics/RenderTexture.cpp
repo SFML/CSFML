@@ -60,16 +60,16 @@ void sfRenderTexture_Destroy(sfRenderTexture* renderTexture)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfRenderTexture_GetWidth(const sfRenderTexture* renderTexture)
+sfVector2u sfRenderTexture_GetSize(const sfRenderTexture* renderTexture)
 {
-    CSFML_CALL_RETURN(renderTexture, GetWidth(), 0);
-}
+    sfVector2u size = {0, 0};
+    CSFML_CHECK_RETURN(renderTexture, size);
 
+    sf::Vector2u sfmlSize = renderTexture->This.GetSize();
+    size.x = sfmlSize.x;
+    size.y = sfmlSize.y;
 
-////////////////////////////////////////////////////////////
-unsigned int sfRenderTexture_GetHeight(const sfRenderTexture* renderTexture)
-{
-    CSFML_CALL_RETURN(renderTexture, GetHeight(), 0);
+    return size;
 }
 
 

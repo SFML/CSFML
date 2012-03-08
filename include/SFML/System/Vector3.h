@@ -22,21 +22,25 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SYSTEM_H
-#define SFML_SYSTEM_H
+#ifndef SFML_VECTOR3_H
+#define SFML_VECTOR3_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-
-#include <SFML/Config.h>
-#include <SFML/System/Clock.h>
-#include <SFML/System/InputStream.h>
-#include <SFML/System/Mutex.h>
-#include <SFML/System/Sleep.h>
-#include <SFML/System/Thread.h>
-#include <SFML/System/Vector2.h>
-#include <SFML/System/Vector3.h>
+#include <SFML/System/Export.h>
 
 
-#endif // SFML_SYSTEM_H
+////////////////////////////////////////////////////////////
+/// \brief 3-component vector of floats
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    float x;
+    float y;
+    float z;
+} sfVector3f;
+
+
+#endif // SFML_VECTOR3_H

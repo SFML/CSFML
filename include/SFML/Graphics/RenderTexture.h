@@ -35,6 +35,7 @@
 #include <SFML/Graphics/PrimitiveType.h>
 #include <SFML/Graphics/RenderStates.h>
 #include <SFML/Graphics/Vertex.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -58,24 +59,14 @@ CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_Create(unsigned int width, u
 CSFML_GRAPHICS_API void sfRenderTexture_Destroy(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the width of the rendering region of a render texture
+/// \brief Get the size of the rendering region of a render texture
 ///
 /// \param renderTexture Render texture object
 ///
-/// \return Width in pixels
+/// \return Size in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfRenderTexture_GetWidth(const sfRenderTexture* renderTexture);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the height of the rendering region of a render texture
-///
-/// \param renderTexture Render texture object
-///
-/// \return Height in pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfRenderTexture_GetHeight(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API sfVector2u sfRenderTexture_GetSize(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a render texture as the current target for rendering

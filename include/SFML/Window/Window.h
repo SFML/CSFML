@@ -33,6 +33,7 @@
 #include <SFML/Window/VideoMode.h>
 #include <SFML/Window/WindowHandle.h>
 #include <SFML/Window/Types.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -142,32 +143,6 @@ CSFML_WINDOW_API void sfWindow_Close(sfWindow* window);
 CSFML_WINDOW_API sfBool sfWindow_IsOpen(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the width of the rendering region of a window
-///
-/// The width doesn't include the titlebar and borders
-/// of the window.
-///
-/// \param window Window object
-///
-/// \return Width in pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API unsigned int sfWindow_GetWidth(const sfWindow* window);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the height of the rendering region of a window
-///
-/// The height doesn't include the titlebar and borders
-/// of the window.
-///
-/// \param window Window object
-///
-/// \return Height in pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API unsigned int sfWindow_GetHeight(const sfWindow* window);
-
-////////////////////////////////////////////////////////////
 /// \brief Get the settings of the OpenGL context of a window
 ///
 /// Note that these settings may be different from what was
@@ -219,27 +194,14 @@ CSFML_WINDOW_API sfBool sfWindow_PollEvent(sfWindow* window, sfEvent* event);
 CSFML_WINDOW_API sfBool sfWindow_WaitEvent(sfWindow* window, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
-/// \brief Enable or disable vertical synchronization
-///
-/// Activating vertical synchronization will limit the number
-/// of frames displayed to the refresh rate of the monitor.
-/// This can avoid some visual artifacts, and limit the framerate
-/// to a good value (but not constant across different computers).
-///
-/// \param window  Window object
-/// \param enabled sfTrue to enable v-sync, sfFalse to deactivate
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_EnableVerticalSync(sfWindow* window, sfBool enabled);
-
-////////////////////////////////////////////////////////////
-/// \brief Show or hide the mouse cursor
+/// \brief Get the position of a window
 ///
 /// \param window Window object
-/// \param show   sfTrue to show, sfFalse to hide
+///
+/// \return Position in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_ShowMouseCursor(sfWindow* window, sfBool show);
+CSFML_WINDOW_API sfVector2i sfWindow_GetPosition(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the position of a window on screen
@@ -248,22 +210,33 @@ CSFML_WINDOW_API void sfWindow_ShowMouseCursor(sfWindow* window, sfBool show);
 /// (i.e. it will be ignored for windows created from
 /// the handle of a child window/control).
 ///
-/// \param window Window object
-/// \param x      Left position
-/// \param y      Top position
+/// \param window   Window object
+/// \param position New position of the window, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_SetPosition(sfWindow* window, int left, int top);
+CSFML_WINDOW_API void sfWindow_SetPosition(sfWindow* window, sfVector2i position);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the size of the rendering region of a window
+///
+/// The size doesn't include the titlebar and borders
+/// of the window.
+///
+/// \param window Window object
+///
+/// \return Size in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API sfVector2u sfWindow_GetSize(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the size of the rendering region of a window
 ///
 /// \param window Window object
-/// \param width  New width, in pixels
-/// \param height New height, in pixels
+/// \param size   New size, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_SetSize(sfWindow* window, unsigned int width, unsigned int height);
+CSFML_WINDOW_API void sfWindow_SetSize(sfWindow* window, sfVector2u size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the title of a window
@@ -273,30 +246,6 @@ CSFML_WINDOW_API void sfWindow_SetSize(sfWindow* window, unsigned int width, uns
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfWindow_SetTitle(sfWindow* window, const char* title);
-
-////////////////////////////////////////////////////////////
-/// \brief Show or hide a window
-///
-/// \param window Window object
-/// \param show   sfTrue to show, sfFalse to hide
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_Show(sfWindow* window, sfBool show);
-
-////////////////////////////////////////////////////////////
-/// \brief Enable or disable automatic key-repeat
-///
-/// If key repeat is enabled, you will receive repeated
-/// KeyPress events while keeping a key pressed. If it is disabled,
-/// you will only get a single event when the key is pressed.
-///
-/// Key repeat is enabled by default.
-///
-/// \param window  Window object
-/// \param enabled sfTrue to enable, sfFalse to disable
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_EnableKeyRepeat(sfWindow* window, sfBool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a window's icon
@@ -311,6 +260,53 @@ CSFML_WINDOW_API void sfWindow_EnableKeyRepeat(sfWindow* window, sfBool enabled)
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfWindow_SetIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels);
+
+////////////////////////////////////////////////////////////
+/// \brief Show or hide a window
+///
+/// \param window  Window object
+/// \param visible sfTrue to show the window, sfFalse to hide it
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_SetVisible(sfWindow* window, sfBool visible);
+
+////////////////////////////////////////////////////////////
+/// \brief Show or hide the mouse cursor
+///
+/// \param window  Window object
+/// \param visible sfTrue to show, sfFalse to hide
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_SetMouseCursorVisible(sfWindow* window, sfBool visible);
+
+////////////////////////////////////////////////////////////
+/// \brief Enable or disable vertical synchronization
+///
+/// Activating vertical synchronization will limit the number
+/// of frames displayed to the refresh rate of the monitor.
+/// This can avoid some visual artifacts, and limit the framerate
+/// to a good value (but not constant across different computers).
+///
+/// \param window  Window object
+/// \param enabled sfTrue to enable v-sync, sfFalse to deactivate
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_SetVerticalSyncEnabled(sfWindow* window, sfBool enabled);
+
+////////////////////////////////////////////////////////////
+/// \brief Enable or disable automatic key-repeat
+///
+/// If key repeat is enabled, you will receive repeated
+/// KeyPress events while keeping a key pressed. If it is disabled,
+/// you will only get a single event when the key is pressed.
+///
+/// Key repeat is enabled by default.
+///
+/// \param window  Window object
+/// \param enabled sfTrue to enable, sfFalse to disable
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_SetKeyRepeatEnabled(sfWindow* window, sfBool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a window as the current target

@@ -20,6 +20,8 @@ set(SRC
     ${SRCROOT}/Time.cpp
     ${INCROOT}/Time.h
     ${INCROOT}/Types.h
+    ${INCROOT}/Vector2.h
+    ${INCROOT}/Vector3.h
 )
 
 # define the csfml-system target

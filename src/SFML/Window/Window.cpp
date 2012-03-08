@@ -99,20 +99,6 @@ sfBool sfWindow_IsOpen(const sfWindow* window)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfWindow_GetWidth(const sfWindow* window)
-{
-    CSFML_CALL_RETURN(window, GetWidth(), 0);
-}
-
-
-////////////////////////////////////////////////////////////
-unsigned int sfWindow_GetHeight(const sfWindow* window)
-{
-    CSFML_CALL_RETURN(window, GetHeight(), 0);
-}
-
-
-////////////////////////////////////////////////////////////
 sfContextSettings sfWindow_GetSettings(const sfWindow* window)
 {
     sfContextSettings settings = {0, 0, 0, 0, 0};
@@ -172,30 +158,44 @@ sfBool sfWindow_WaitEvent(sfWindow* window, sfEvent* event)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_EnableVerticalSync(sfWindow* window, sfBool enabled)
+sfVector2i sfWindow_GetPosition(const sfWindow* window)
 {
-    CSFML_CALL(window, EnableVerticalSync(enabled == sfTrue));
+    sfVector2i position = {0, 0};
+    CSFML_CHECK_RETURN(window, position);
+
+    sf::Vector2i sfmlPos = window->This.GetPosition();
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
+
+    return position;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_ShowMouseCursor(sfWindow* window, sfBool show)
+void sfWindow_SetPosition(sfWindow* window, sfVector2i position)
 {
-    CSFML_CALL(window, ShowMouseCursor(show == sfTrue));
+    CSFML_CALL(window, SetPosition(sf::Vector2i(position.x, position.y)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetPosition(sfWindow* window, int left, int top)
+sfVector2u sfWindow_GetSize(const sfWindow* window)
 {
-    CSFML_CALL(window, SetPosition(left, top));
+    sfVector2u size = {0, 0};
+    CSFML_CHECK_RETURN(window, size);
+
+    sf::Vector2u sfmlSize = window->This.GetSize();
+    size.x = sfmlSize.x;
+    size.y = sfmlSize.y;
+
+    return size;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetSize(sfWindow* window, unsigned int width, unsigned int height)
+void sfWindow_SetSize(sfWindow* window, sfVector2u size)
 {
-    CSFML_CALL(window, SetSize(width, height));
+    CSFML_CALL(window, SetSize(sf::Vector2u(size.x, size.y)));
 }
 
 
@@ -207,23 +207,37 @@ void sfWindow_SetTitle(sfWindow* window, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_Show(sfWindow* window, sfBool show)
-{
-    CSFML_CALL(window, Show(show == sfTrue));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfWindow_EnableKeyRepeat(sfWindow* window, sfBool enabled)
-{
-    CSFML_CALL(window, EnableKeyRepeat(enabled == sfTrue));
-}
-
-
-////////////////////////////////////////////////////////////
 void sfWindow_SetIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels)
 {
     CSFML_CALL(window, SetIcon(width, height, pixels));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfWindow_SetVisible(sfWindow* window, sfBool visible)
+{
+    CSFML_CALL(window, SetVisible(visible == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfWindow_SetMouseCursorVisible(sfWindow* window, sfBool visible)
+{
+    CSFML_CALL(window, SetMouseCursorVisible(visible == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfWindow_SetVerticalSyncEnabled(sfWindow* window, sfBool enabled)
+{
+    CSFML_CALL(window, SetVerticalSyncEnabled(enabled == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfWindow_SetKeyRepeatEnabled(sfWindow* window, sfBool enabled)
+{
+    CSFML_CALL(window, SetKeyRepeatEnabled(enabled == sfTrue));
 }
 
 

@@ -113,20 +113,6 @@ sfBool sfRenderWindow_IsOpen(const sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfRenderWindow_GetWidth(const sfRenderWindow* renderWindow)
-{
-    CSFML_CALL_RETURN(renderWindow, GetWidth(), 0);
-}
-
-
-////////////////////////////////////////////////////////////
-unsigned int sfRenderWindow_GetHeight(const sfRenderWindow* renderWindow)
-{
-    CSFML_CALL_RETURN(renderWindow, GetHeight(), 0);
-}
-
-
-////////////////////////////////////////////////////////////
 sfContextSettings sfRenderWindow_GetSettings(const sfRenderWindow* renderWindow)
 {
     sfContextSettings settings = {0, 0, 0, 2, 0};
@@ -184,30 +170,44 @@ sfBool sfRenderWindow_WaitEvent(sfRenderWindow* renderWindow, sfEvent* event)
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_EnableVerticalSync(sfRenderWindow* renderWindow, sfBool enabled)
+sfVector2i sfRenderWindow_GetPosition(const sfRenderWindow* renderWindow)
 {
-    CSFML_CALL(renderWindow, EnableVerticalSync(enabled == sfTrue));
+    sfVector2i position = {0, 0};
+    CSFML_CHECK_RETURN(renderWindow, position);
+
+    sf::Vector2i sfmlPos = renderWindow->This.GetPosition();
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
+
+    return position;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_ShowMouseCursor(sfRenderWindow* renderWindow, sfBool show)
+void sfRenderWindow_SetPosition(sfRenderWindow* renderWindow, sfVector2i position)
 {
-    CSFML_CALL(renderWindow, ShowMouseCursor(show == sfTrue));
+    CSFML_CALL(renderWindow, SetPosition(sf::Vector2i(position.x, position.y)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetPosition(sfRenderWindow* renderWindow, int left, int top)
+sfVector2u sfRenderWindow_GetSize(const sfRenderWindow* renderWindow)
 {
-    CSFML_CALL(renderWindow, SetPosition(left, top));
+    sfVector2u size = {0, 0};
+    CSFML_CHECK_RETURN(renderWindow, size);
+
+    sf::Vector2u sfmlSize = renderWindow->This.GetSize();
+    size.x = sfmlSize.x;
+    size.y = sfmlSize.y;
+
+    return size;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, unsigned int width, unsigned int height)
+void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, sfVector2u size)
 {
-    CSFML_CALL(renderWindow, SetSize(width, height));
+    CSFML_CALL(renderWindow, SetSize(sf::Vector2u(size.x, size.y)));
 }
 
 
@@ -219,23 +219,37 @@ void sfRenderWindow_SetTitle(sfRenderWindow* renderWindow, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_Show(sfRenderWindow* renderWindow, sfBool show)
-{
-    CSFML_CALL(renderWindow, Show(show == sfTrue));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfRenderWindow_EnableKeyRepeat(sfRenderWindow* renderWindow, sfBool enabled)
-{
-    CSFML_CALL(renderWindow, EnableKeyRepeat(enabled == sfTrue));
-}
-
-
-////////////////////////////////////////////////////////////
 void sfRenderWindow_SetIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels)
 {
     CSFML_CALL(renderWindow, SetIcon(width, height, pixels));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfRenderWindow_SetVisible(sfRenderWindow* renderWindow, sfBool visible)
+{
+    CSFML_CALL(renderWindow, SetVisible(visible == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfRenderWindow_SetMouseCursorVisible(sfRenderWindow* renderWindow, sfBool visible)
+{
+    CSFML_CALL(renderWindow, SetMouseCursorVisible(visible == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfRenderWindow_SetVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled)
+{
+    CSFML_CALL(renderWindow, SetVerticalSyncEnabled(enabled == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfRenderWindow_SetKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled)
+{
+    CSFML_CALL(renderWindow, SetKeyRepeatEnabled(enabled == sfTrue));
 }
 
 

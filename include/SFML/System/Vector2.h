@@ -22,21 +22,46 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SYSTEM_H
-#define SFML_SYSTEM_H
+#ifndef SFML_VECTOR2_H
+#define SFML_VECTOR2_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-
-#include <SFML/Config.h>
-#include <SFML/System/Clock.h>
-#include <SFML/System/InputStream.h>
-#include <SFML/System/Mutex.h>
-#include <SFML/System/Sleep.h>
-#include <SFML/System/Thread.h>
-#include <SFML/System/Vector2.h>
-#include <SFML/System/Vector3.h>
+#include <SFML/System/Export.h>
 
 
-#endif // SFML_SYSTEM_H
+////////////////////////////////////////////////////////////
+/// \brief 2-component vector of integers
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    int x;
+    int y;
+} sfVector2i;
+
+
+////////////////////////////////////////////////////////////
+/// \brief 2-component vector of unsigned integers
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    unsigned int x;
+    unsigned int y;
+} sfVector2u;
+
+
+////////////////////////////////////////////////////////////
+/// \brief 2-component vector of floats
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    float x;
+    float y;
+} sfVector2f;
+
+
+#endif // SFML_VECTOR2_H
