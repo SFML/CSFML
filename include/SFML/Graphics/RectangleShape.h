@@ -32,6 +32,7 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -65,21 +66,20 @@ CSFML_GRAPHICS_API void sfRectangleShape_Destroy(sfRectangleShape* shape);
 ///
 /// This function completely overwrites the previous position.
 /// See sfRectangleShape_Move to apply an offset based on the previous position instead.
-/// The default position of a rectangle shape object is (0, 0).
+/// The default position of a circle Shape object is (0, 0).
 ///
-/// \param shape Shape object
-/// \param x     X coordinate of the new position
-/// \param y     Y coordinate of the new position
+/// \param shape    Shape object
+/// \param position New position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetPosition(sfRectangleShape* shape, float x, float y);
+CSFML_GRAPHICS_API void sfRectangleShape_SetPosition(sfRectangleShape* shape, sfVector2f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of a rectangle shape
 ///
 /// This function completely overwrites the previous rotation.
 /// See sfRectangleShape_Rotate to add an angle based on the previous rotation instead.
-/// The default rotation of a rectangle shape object is 0.
+/// The default rotation of a circle Shape object is 0.
 ///
 /// \param shape Shape object
 /// \param angle New rotation, in degrees
@@ -92,14 +92,13 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetRotation(sfRectangleShape* shape, fl
 ///
 /// This function completely overwrites the previous scale.
 /// See sfRectangleShape_Scale to add a factor based on the previous scale instead.
-/// The default scale of a rectangle shape object is (1, 1).
+/// The default scale of a circle Shape object is (1, 1).
 ///
-/// \param shape   Shape object
-/// \param factorX New horizontal scale factor
-/// \param factorY New vertical scale factor
+/// \param shape Shape object
+/// \param scale New scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetScale(sfRectangleShape* shape, float factorX, float factorY);
+CSFML_GRAPHICS_API void sfRectangleShape_SetScale(sfRectangleShape* shape, sfVector2f scale);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the local origin of a rectangle shape
@@ -109,14 +108,13 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetScale(sfRectangleShape* shape, float
 /// The coordinates of this point must be relative to the
 /// top-left corner of the object, and ignore all
 /// transformations (position, scale, rotation).
-/// The default origin of a rectangle shape object is (0, 0).
+/// The default origin of a circle Shape object is (0, 0).
 ///
-/// \param shape Shape object
-/// \param x     X coordinate of the new origin
-/// \param y     Y coordinate of the new origin
+/// \param shape  Shape object
+/// \param origin New origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetOrigin(sfRectangleShape* shape, float x, float y);
+CSFML_GRAPHICS_API void sfRectangleShape_SetOrigin(sfRectangleShape* shape, sfVector2f origin);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a rectangle shape
@@ -126,7 +124,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetOrigin(sfRectangleShape* shape, floa
 /// \return Current position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_GetPosition(const sfRectangleShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetPosition(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the orientation of a rectangle shape
@@ -148,7 +146,7 @@ CSFML_GRAPHICS_API float sfRectangleShape_GetRotation(const sfRectangleShape* sh
 /// \return Current scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_GetScale(const sfRectangleShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetScale(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local origin of a rectangle shape
@@ -158,7 +156,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_GetScale(const sfRectangleShape* shape,
 /// \return Current origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_GetOrigin(const sfRectangleShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetOrigin(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Move a rectangle shape by a given offset
@@ -166,12 +164,11 @@ CSFML_GRAPHICS_API void sfRectangleShape_GetOrigin(const sfRectangleShape* shape
 /// This function adds to the current position of the object,
 /// unlike sfRectangleShape_SetPosition which overwrites it.
 ///
-/// \param shape   Shape object
-/// \param offsetX X offset
-/// \param offsetY Y offset
+/// \param shape  Shape object
+/// \param offset Offset
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_Move(sfRectangleShape* shape, float offsetX, float offsetY);
+CSFML_GRAPHICS_API void sfRectangleShape_Move(sfRectangleShape* shape, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Rotate a rectangle shape
@@ -192,11 +189,10 @@ CSFML_GRAPHICS_API void sfRectangleShape_Rotate(sfRectangleShape* shape, float a
 /// unlike sfRectangleShape_SetScale which overwrites it.
 ///
 /// \param shape   Shape object
-/// \param factorX Horizontal scale factor
-/// \param factorY Vertical scale factor
+/// \param factors Scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_Scale(sfRectangleShape* shape, float factorX, float factorY);
+CSFML_GRAPHICS_API void sfRectangleShape_Scale(sfRectangleShape* shape, sfVector2f factors);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the combined transform of a rectangle shape
@@ -368,27 +364,26 @@ CSFML_GRAPHICS_API unsigned int sfRectangleShape_GetPointCount(const sfRectangle
 /// \return Index-th point of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_GetPoint(const sfRectangleShape* shape, unsigned int index, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetPoint(const sfRectangleShape* shape, unsigned int index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the size of a rectangle shape
 ///
-/// \param shape  Shape object
-/// \param width  New width of the rectangle
-/// \param height New height of the rectangle
+/// \param shape Shape object
+/// \param size  New size of the rectangle
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetSize(sfRectangleShape* shape, float width, float height);
+CSFML_GRAPHICS_API void sfRectangleShape_SetSize(sfRectangleShape* shape, sfVector2f size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the size of a rectangle shape
 ///
-/// \param shape  Shape object
-/// \param width  Returned width of the rectangle
-/// \param height Returned height of the rectangle
+/// \param shape Shape object
+//
+/// \return height Size of the rectangle
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_GetSize(const sfRectangleShape* shape, float* width, float* height);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetSize(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a rectangle shape

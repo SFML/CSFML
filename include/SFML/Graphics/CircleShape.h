@@ -32,6 +32,7 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -67,12 +68,11 @@ CSFML_GRAPHICS_API void sfCircleShape_Destroy(sfCircleShape* shape);
 /// See sfCircleShape_Move to apply an offset based on the previous position instead.
 /// The default position of a circle Shape object is (0, 0).
 ///
-/// \param shape Shape object
-/// \param x     X coordinate of the new position
-/// \param y     Y coordinate of the new position
+/// \param shape    Shape object
+/// \param position New position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_SetPosition(sfCircleShape* shape, float x, float y);
+CSFML_GRAPHICS_API void sfCircleShape_SetPosition(sfCircleShape* shape, sfVector2f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of a circle shape
@@ -94,12 +94,11 @@ CSFML_GRAPHICS_API void sfCircleShape_SetRotation(sfCircleShape* shape, float an
 /// See sfCircleShape_Scale to add a factor based on the previous scale instead.
 /// The default scale of a circle Shape object is (1, 1).
 ///
-/// \param shape   Shape object
-/// \param factorX New horizontal scale factor
-/// \param factorY New vertical scale factor
+/// \param shape Shape object
+/// \param scale New scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_SetScale(sfCircleShape* shape, float factorX, float factorY);
+CSFML_GRAPHICS_API void sfCircleShape_SetScale(sfCircleShape* shape, sfVector2f scale);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the local origin of a circle shape
@@ -111,12 +110,11 @@ CSFML_GRAPHICS_API void sfCircleShape_SetScale(sfCircleShape* shape, float facto
 /// transformations (position, scale, rotation).
 /// The default origin of a circle Shape object is (0, 0).
 ///
-/// \param shape Shape object
-/// \param x     X coordinate of the new origin
-/// \param y     Y coordinate of the new origin
+/// \param shape  Shape object
+/// \param origin New origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_SetOrigin(sfCircleShape* shape, float x, float y);
+CSFML_GRAPHICS_API void sfCircleShape_SetOrigin(sfCircleShape* shape, sfVector2f origin);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a circle shape
@@ -126,7 +124,7 @@ CSFML_GRAPHICS_API void sfCircleShape_SetOrigin(sfCircleShape* shape, float x, f
 /// \return Current position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_GetPosition(const sfCircleShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfCircleShape_GetPosition(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the orientation of a circle shape
@@ -148,7 +146,7 @@ CSFML_GRAPHICS_API float sfCircleShape_GetRotation(const sfCircleShape* shape);
 /// \return Current scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_GetScale(const sfCircleShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfCircleShape_GetScale(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local origin of a circle shape
@@ -158,7 +156,7 @@ CSFML_GRAPHICS_API void sfCircleShape_GetScale(const sfCircleShape* shape, float
 /// \return Current origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_GetOrigin(const sfCircleShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfCircleShape_GetOrigin(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Move a circle shape by a given offset
@@ -166,12 +164,11 @@ CSFML_GRAPHICS_API void sfCircleShape_GetOrigin(const sfCircleShape* shape, floa
 /// This function adds to the current position of the object,
 /// unlike sfCircleShape_SetPosition which overwrites it.
 ///
-/// \param shape   Shape object
-/// \param offsetX X offset
-/// \param offsetY Y offset
+/// \param shape  Shape object
+/// \param offset Offset
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_Move(sfCircleShape* shape, float offsetX, float offsetY);
+CSFML_GRAPHICS_API void sfCircleShape_Move(sfCircleShape* shape, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Rotate a circle shape
@@ -192,11 +189,10 @@ CSFML_GRAPHICS_API void sfCircleShape_Rotate(sfCircleShape* shape, float angle);
 /// unlike sfCircleShape_SetScale which overwrites it.
 ///
 /// \param shape   Shape object
-/// \param factorX Horizontal scale factor
-/// \param factorY Vertical scale factor
+/// \param factors Scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_Scale(sfCircleShape* shape, float factorX, float factorY);
+CSFML_GRAPHICS_API void sfCircleShape_Scale(sfCircleShape* shape, sfVector2f factors);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the combined transform of a circle shape
@@ -368,7 +364,7 @@ CSFML_GRAPHICS_API unsigned int sfCircleShape_GetPointCount(const sfCircleShape*
 /// \return Index-th point of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_GetPoint(const sfCircleShape* shape, unsigned int index, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfCircleShape_GetPoint(const sfCircleShape* shape, unsigned int index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the radius of a circle

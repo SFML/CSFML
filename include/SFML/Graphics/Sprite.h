@@ -33,6 +33,7 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -66,21 +67,20 @@ CSFML_GRAPHICS_API void sfSprite_Destroy(sfSprite* sprite);
 ///
 /// This function completely overwrites the previous position.
 /// See sfSprite_Move to apply an offset based on the previous position instead.
-/// The default position of a sprite object is (0, 0).
+/// The default position of a sprite Sprite object is (0, 0).
 ///
-/// \param sprite Sprite object
-/// \param x      X coordinate of the new position
-/// \param y      Y coordinate of the new position
+/// \param sprite   Sprite object
+/// \param position New position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_SetPosition(sfSprite* sprite, float x, float y);
+CSFML_GRAPHICS_API void sfSprite_SetPosition(sfSprite* sprite, sfVector2f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of a sprite
 ///
 /// This function completely overwrites the previous rotation.
 /// See sfSprite_Rotate to add an angle based on the previous rotation instead.
-/// The default rotation of a sprite object is 0.
+/// The default rotation of a sprite Sprite object is 0.
 ///
 /// \param sprite Sprite object
 /// \param angle  New rotation, in degrees
@@ -93,14 +93,13 @@ CSFML_GRAPHICS_API void sfSprite_SetRotation(sfSprite* sprite, float angle);
 ///
 /// This function completely overwrites the previous scale.
 /// See sfSprite_Scale to add a factor based on the previous scale instead.
-/// The default scale of a sprite object is (1, 1).
+/// The default scale of a sprite Sprite object is (1, 1).
 ///
-/// \param sprite  Sprite object
-/// \param factorX New horizontal scale factor
-/// \param factorY New vertical scale factor
+/// \param sprite Sprite object
+/// \param scale  New scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_SetScale(sfSprite* sprite, float factorX, float factorY);
+CSFML_GRAPHICS_API void sfSprite_SetScale(sfSprite* sprite, sfVector2f scale);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the local origin of a sprite
@@ -110,14 +109,13 @@ CSFML_GRAPHICS_API void sfSprite_SetScale(sfSprite* sprite, float factorX, float
 /// The coordinates of this point must be relative to the
 /// top-left corner of the object, and ignore all
 /// transformations (position, scale, rotation).
-/// The default origin of a sprite object is (0, 0).
+/// The default origin of a sprite Sprite object is (0, 0).
 ///
 /// \param sprite Sprite object
-/// \param x      X coordinate of the new origin
-/// \param y      Y coordinate of the new origin
+/// \param origin New origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_SetOrigin(sfSprite* sprite, float x, float y);
+CSFML_GRAPHICS_API void sfSprite_SetOrigin(sfSprite* sprite, sfVector2f origin);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a sprite
@@ -127,7 +125,7 @@ CSFML_GRAPHICS_API void sfSprite_SetOrigin(sfSprite* sprite, float x, float y);
 /// \return Current position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_GetPosition(const sfSprite* sprite, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfSprite_GetPosition(const sfSprite* sprite);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the orientation of a sprite
@@ -149,7 +147,7 @@ CSFML_GRAPHICS_API float sfSprite_GetRotation(const sfSprite* sprite);
 /// \return Current scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_GetScale(const sfSprite* sprite, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfSprite_GetScale(const sfSprite* sprite);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local origin of a sprite
@@ -159,7 +157,7 @@ CSFML_GRAPHICS_API void sfSprite_GetScale(const sfSprite* sprite, float* x, floa
 /// \return Current origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_GetOrigin(const sfSprite* sprite, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfSprite_GetOrigin(const sfSprite* sprite);
 
 ////////////////////////////////////////////////////////////
 /// \brief Move a sprite by a given offset
@@ -167,12 +165,11 @@ CSFML_GRAPHICS_API void sfSprite_GetOrigin(const sfSprite* sprite, float* x, flo
 /// This function adds to the current position of the object,
 /// unlike sfSprite_SetPosition which overwrites it.
 ///
-/// \param sprite  Sprite object
-/// \param offsetX X offset
-/// \param offsetY Y offset
+/// \param sprite Sprite object
+/// \param offset Offset
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_Move(sfSprite* sprite, float offsetX, float offsetY);
+CSFML_GRAPHICS_API void sfSprite_Move(sfSprite* sprite, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Rotate a sprite
@@ -193,11 +190,10 @@ CSFML_GRAPHICS_API void sfSprite_Rotate(sfSprite* sprite, float angle);
 /// unlike sfSprite_SetScale which overwrites it.
 ///
 /// \param sprite  Sprite object
-/// \param factorX Horizontal scale factor
-/// \param factorY Vertical scale factor
+/// \param factors Scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_Scale(sfSprite* sprite, float factorX, float factorY);
+CSFML_GRAPHICS_API void sfSprite_Scale(sfSprite* sprite, sfVector2f factors);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the combined transform of a sprite

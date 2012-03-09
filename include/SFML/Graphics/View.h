@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -74,22 +75,20 @@ CSFML_GRAPHICS_API void sfView_Destroy(sfView* view);
 ////////////////////////////////////////////////////////////
 /// \brief Set the center of a view
 ///
-/// \param view View object
-/// \param x    X coordinate of the new center
-/// \param y    Y coordinate of the new center
+/// \param view   View object
+/// \param center New center
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfView_SetCenter(sfView* view, float x, float y);
+CSFML_GRAPHICS_API void sfView_SetCenter(sfView* view, sfVector2f center);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the size of a view
 ///
-/// \param view   View object
-/// \param width  New width of the view
-/// \param height New height of the view
+/// \param view View object
+/// \param size New size of the view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfView_SetSize(sfView* view, float width, float height);
+CSFML_GRAPHICS_API void sfView_SetSize(sfView* view, sfVector2f size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of a view
@@ -133,21 +132,21 @@ CSFML_GRAPHICS_API void sfView_Reset(sfView* view, sfFloatRect rectangle);
 /// \brief Get the center of a view
 ///
 /// \param view View object
-/// \param x    Returned X coordinate of the center
-/// \param y    Returned Y coordinate of the center
+///
+/// \return Center of the view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfView_GetCenter(const sfView* view, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfView_GetCenter(const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the size of a view
 ///
-/// \param view   View object
-/// \param width  Returned width
-/// \param height Returned height
+/// \param view View object
+///
+/// \return Size of the view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfView_GetSize(const sfView* view, float* width, float* height);
+CSFML_GRAPHICS_API sfVector2f sfView_GetSize(const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current orientation of a view
@@ -172,12 +171,11 @@ CSFML_GRAPHICS_API sfFloatRect sfView_GetViewport(const sfView* view);
 ////////////////////////////////////////////////////////////
 /// \brief Move a view relatively to its current position
 ///
-/// \param view    View object
-/// \param offsetX X coordinate of the move offset
-/// \param offsetY Y coordinate of the move offset
+/// \param view   View object
+/// \param offset Offset
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfView_Move(sfView* view, float offsetX, float offsetY);
+CSFML_GRAPHICS_API void sfView_Move(sfView* view, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Rotate a view relatively to its current orientation

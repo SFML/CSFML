@@ -60,8 +60,8 @@ CSFML_GRAPHICS_API sfTransform* sfTransform_Create(void);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfTransform* sfTransform_CreateFromMatrix(float a00, float a01, float a02,
-                                                    float a10, float a11, float a12,
-                                                    float a20, float a21, float a22);
+                                                             float a10, float a11, float a12,
+                                                             float a20, float a21, float a22);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing transform

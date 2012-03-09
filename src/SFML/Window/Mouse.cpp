@@ -39,26 +39,24 @@ sfBool sfMouse_IsButtonPressed(sfMouseButton button)
 
 
 ////////////////////////////////////////////////////////////
-void sfMouse_GetPosition(int* x, int* y, const sfWindow* relativeTo)
+sfVector2i sfMouse_GetPosition(const sfWindow* relativeTo)
 {
-    sf::Vector2i position;
+    sf::Vector2i sfmlPos;
     if (relativeTo)
-        position = sf::Mouse::GetPosition(relativeTo->This);
+        sfmlPos = sf::Mouse::GetPosition(relativeTo->This);
     else
-        position = sf::Mouse::GetPosition();
+        sfmlPos = sf::Mouse::GetPosition();
 
-    if (x)
-        *x = position.x;
-    if (y)
-        *y = position.y;
+    sfVector2i position = {sfmlPos.x, sfmlPos.y};
+    return position;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfMouse_SetPosition(int x, int y, const sfWindow* relativeTo)
+void sfMouse_SetPosition(sfVector2i position, const sfWindow* relativeTo)
 {
     if (relativeTo)
-        sf::Mouse::SetPosition(sf::Vector2i(x, y), relativeTo->This);
+        sf::Mouse::SetPosition(sf::Vector2i(position.x, position.y), relativeTo->This);
     else
-        sf::Mouse::SetPosition(sf::Vector2i(x, y));
+        sf::Mouse::SetPosition(sf::Vector2i(position.x, position.y));
 }

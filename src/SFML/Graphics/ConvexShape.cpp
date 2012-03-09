@@ -55,9 +55,9 @@ void sfConvexShape_Destroy(sfConvexShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_SetPosition(sfConvexShape* shape, float x, float y)
+void sfConvexShape_SetPosition(sfConvexShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, SetPosition(x, y));
+    CSFML_CALL(shape, SetPosition(position.x, position.y));
 }
 
 
@@ -69,30 +69,30 @@ void sfConvexShape_SetRotation(sfConvexShape* shape, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_SetScale(sfConvexShape* shape, float factorX, float factorY)
+void sfConvexShape_SetScale(sfConvexShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, SetScale(factorX, factorY));
+    CSFML_CALL(shape, SetScale(scale.x, scale.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_SetOrigin(sfConvexShape* shape, float x, float y)
+void sfConvexShape_SetOrigin(sfConvexShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, SetOrigin(x, y));
+    CSFML_CALL(shape, SetOrigin(origin.x, origin.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_GetPosition(const sfConvexShape* shape, float* x, float* y)
+sfVector2f sfConvexShape_GetPosition(const sfConvexShape* shape)
 {
-    CSFML_CHECK(shape);
+    sfVector2f position = {0, 0};
+    CSFML_CHECK_RETURN(shape, position);
 
-    sf::Vector2f point = shape->This.GetPosition();
+    sf::Vector2f sfmlPos = shape->This.GetPosition();
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return position;
 }
 
 
@@ -104,37 +104,37 @@ float sfConvexShape_GetRotation(const sfConvexShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_GetScale(const sfConvexShape* shape, float* x, float* y)
+sfVector2f sfConvexShape_GetScale(const sfConvexShape* shape)
 {
-    CSFML_CHECK(shape);
+    sfVector2f scale = {0, 0};
+    CSFML_CHECK_RETURN(shape, scale);
 
-    sf::Vector2f point = shape->This.GetScale();
+    sf::Vector2f sfmlScale = shape->This.GetScale();
+    scale.x = sfmlScale.x;
+    scale.y = sfmlScale.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return scale;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_GetOrigin(const sfConvexShape* shape, float* x, float* y)
+sfVector2f sfConvexShape_GetOrigin(const sfConvexShape* shape)
 {
-    CSFML_CHECK(shape);
+    sfVector2f origin = {0, 0};
+    CSFML_CHECK_RETURN(shape, origin);
 
-    sf::Vector2f point = shape->This.GetOrigin();
+    sf::Vector2f sfmlOrigin = shape->This.GetOrigin();
+    origin.x = sfmlOrigin.x;
+    origin.y = sfmlOrigin.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return origin;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_Move(sfConvexShape* shape, float offsetX, float offsetY)
+void sfConvexShape_Move(sfConvexShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, Move(offsetX, offsetY));
+    CSFML_CALL(shape, Move(offset.x, offset.y));
 }
 
 
@@ -146,9 +146,9 @@ void sfConvexShape_Rotate(sfConvexShape* shape, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_Scale(sfConvexShape* shape, float factorX, float factorY)
+void sfConvexShape_Scale(sfConvexShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, Scale(factorX, factorY));
+    CSFML_CALL(shape, Scale(factors.x, factors.y));
 }
 
 
@@ -280,15 +280,16 @@ unsigned int sfConvexShape_GetPointCount(const sfConvexShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_GetPoint(const sfConvexShape* shape, unsigned int index, float* x, float* y)
+sfVector2f sfConvexShape_GetPoint(const sfConvexShape* shape, unsigned int index)
 {
-    CSFML_CHECK(shape);
+    sfVector2f point = {0, 0};
+    CSFML_CHECK_RETURN(shape, point);
 
-    sf::Vector2f point = shape->This.GetPoint(index);
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    sf::Vector2f sfmlPoint = shape->This.GetPoint(index);
+    point.x = sfmlPoint.x;
+    point.y = sfmlPoint.y;
+
+    return point;
 }
 
 
@@ -300,9 +301,9 @@ void sfConvexShape_SetPointCount(sfConvexShape* shape, unsigned int count)
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_SetPoint(sfConvexShape* shape, unsigned int index, float x, float y)
+void sfConvexShape_SetPoint(sfConvexShape* shape, unsigned int index, sfVector2f point)
 {
-    CSFML_CALL(shape, SetPoint(index, sf::Vector2f(x, y)));
+    CSFML_CALL(shape, SetPoint(index, sf::Vector2f(point.x, point.y)));
 }
 
 

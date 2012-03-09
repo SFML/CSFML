@@ -64,16 +64,16 @@ void sfView_Destroy(sfView* view)
 
 
 ////////////////////////////////////////////////////////////
-void sfView_SetCenter(sfView* view, float x, float y)
+void sfView_SetCenter(sfView* view, sfVector2f center)
 {
-    CSFML_CALL(view, SetCenter(x, y));
+    CSFML_CALL(view, SetCenter(center.x, center.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfView_SetSize(sfView* view, float width, float height)
+void sfView_SetSize(sfView* view, sfVector2f size)
 {
-    CSFML_CALL(view, SetSize(width, height));
+    CSFML_CALL(view, SetSize(size.x, size.y));
 }
 
 
@@ -99,28 +99,30 @@ void sfView_Reset(sfView* view, sfFloatRect rectangle)
 
 
 ////////////////////////////////////////////////////////////
-void sfView_GetCenter(const sfView* view, float* x, float* y)
+sfVector2f sfView_GetCenter(const sfView* view)
 {
-    CSFML_CHECK(view);
+    sfVector2f center = {0, 0};
+    CSFML_CHECK_RETURN(view, center);
 
-    sf::Vector2f center = view->This.GetCenter();
-    if (x)
-        *x = center.x;
-    if (y)
-        *y = center.y;
+    sf::Vector2f sfmlCenter = view->This.GetCenter();
+    center.x = sfmlCenter.x;
+    center.y = sfmlCenter.y;
+
+    return center;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfView_GetSize(const sfView* view, float* width, float* height)
+sfVector2f sfView_GetSize(const sfView* view)
 {
-    CSFML_CHECK(view);
+    sfVector2f size = {0, 0};
+    CSFML_CHECK_RETURN(view, size);
 
-    sf::Vector2f size = view->This.GetSize();
-    if (width)
-        *width = size.x;
-    if (height)
-        *height = size.y;
+    sf::Vector2f sfmlSize = view->This.GetSize();
+    size.x = sfmlSize.x;
+    size.y = sfmlSize.y;
+
+    return size;
 }
 
 
@@ -148,9 +150,9 @@ sfFloatRect sfView_GetViewport(const sfView* view)
 
 
 ////////////////////////////////////////////////////////////
-void sfView_Move(sfView* view, float offsetX, float offsetY)
+void sfView_Move(sfView* view, sfVector2f offset)
 {
-    CSFML_CALL(view, Move(offsetX, offsetY));
+    CSFML_CALL(view, Move(offset.x, offset.y));
 }
 
 

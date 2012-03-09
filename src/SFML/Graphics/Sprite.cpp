@@ -59,9 +59,9 @@ void sfSprite_Destroy(sfSprite* sprite)
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_SetPosition(sfSprite* sprite, float x, float y)
+void sfSprite_SetPosition(sfSprite* sprite, sfVector2f position)
 {
-    CSFML_CALL(sprite, SetPosition(x, y));
+    CSFML_CALL(sprite, SetPosition(position.x, position.y));
 }
 
 
@@ -73,30 +73,30 @@ void sfSprite_SetRotation(sfSprite* sprite, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_SetScale(sfSprite* sprite, float factorX, float factorY)
+void sfSprite_SetScale(sfSprite* sprite, sfVector2f scale)
 {
-    CSFML_CALL(sprite, SetScale(factorX, factorY));
+    CSFML_CALL(sprite, SetScale(scale.x, scale.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_SetOrigin(sfSprite* sprite, float x, float y)
+void sfSprite_SetOrigin(sfSprite* sprite, sfVector2f origin)
 {
-    CSFML_CALL(sprite, SetOrigin(x, y));
+    CSFML_CALL(sprite, SetOrigin(origin.x, origin.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_GetPosition(const sfSprite* sprite, float* x, float* y)
+sfVector2f sfSprite_GetPosition(const sfSprite* sprite)
 {
-    CSFML_CHECK(sprite);
+    sfVector2f position = {0, 0};
+    CSFML_CHECK_RETURN(sprite, position);
 
-    sf::Vector2f point = sprite->This.GetPosition();
+    sf::Vector2f sfmlPos = sprite->This.GetPosition();
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return position;
 }
 
 
@@ -108,37 +108,37 @@ float sfSprite_GetRotation(const sfSprite* sprite)
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_GetScale(const sfSprite* sprite, float* x, float* y)
+sfVector2f sfSprite_GetScale(const sfSprite* sprite)
 {
-    CSFML_CHECK(sprite);
+    sfVector2f scale = {0, 0};
+    CSFML_CHECK_RETURN(sprite, scale);
 
-    sf::Vector2f point = sprite->This.GetScale();
+    sf::Vector2f sfmlScale = sprite->This.GetScale();
+    scale.x = sfmlScale.x;
+    scale.y = sfmlScale.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return scale;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_GetOrigin(const sfSprite* sprite, float* x, float* y)
+sfVector2f sfSprite_GetOrigin(const sfSprite* sprite)
 {
-    CSFML_CHECK(sprite);
+    sfVector2f origin = {0, 0};
+    CSFML_CHECK_RETURN(sprite, origin);
 
-    sf::Vector2f point = sprite->This.GetOrigin();
+    sf::Vector2f sfmlOrigin = sprite->This.GetOrigin();
+    origin.x = sfmlOrigin.x;
+    origin.y = sfmlOrigin.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return origin;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_Move(sfSprite* sprite, float offsetX, float offsetY)
+void sfSprite_Move(sfSprite* sprite, sfVector2f offset)
 {
-    CSFML_CALL(sprite, Move(offsetX, offsetY));
+    CSFML_CALL(sprite, Move(offset.x, offset.y));
 }
 
 
@@ -150,9 +150,9 @@ void sfSprite_Rotate(sfSprite* sprite, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_Scale(sfSprite* sprite, float factorX, float factorY)
+void sfSprite_Scale(sfSprite* sprite, sfVector2f factors)
 {
-    CSFML_CALL(sprite, Scale(factorX, factorY));
+    CSFML_CALL(sprite, Scale(factors.x, factors.y));
 }
 
 

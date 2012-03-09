@@ -45,40 +45,32 @@ float sfListener_GetGlobalVolume(void)
 
 
 ////////////////////////////////////////////////////////////
-void sfListener_SetPosition(float x, float y, float z)
+void sfListener_SetPosition(sfVector3f position)
 {
-    sf::Listener::SetPosition(x, y, z);
+    sf::Listener::SetPosition(position.x, position.y, position.z);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfListener_GetPosition(float* x, float* y, float* z)
+sfVector3f sfListener_GetPosition()
 {
-    if (x && y && z)
-    {
-        sf::Vector3f position = sf::Listener::GetPosition();
-        *x = position.x;
-        *y = position.y;
-        *z = position.z;
-    }
+    sf::Vector3f sfmlPos = sf::Listener::GetPosition();
+    sfVector3f position = {sfmlPos.x, sfmlPos.y, sfmlPos.z};
+    return position;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfListener_SetDirection(float x, float y, float z)
+void sfListener_SetDirection(sfVector3f direction)
 {
-    sf::Listener::SetDirection(x, y, z);
+    sf::Listener::SetDirection(direction.x, direction.y, direction.z);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfListener_GetDirection(float* x, float* y, float* z)
+sfVector3f sfListener_GetDirection()
 {
-    if (x && y && z)
-    {
-        sf::Vector3f direction = sf::Listener::GetDirection();
-        *x = direction.x;
-        *y = direction.y;
-        *z = direction.z;
-    }
+    sf::Vector3f sfmlDirection = sf::Listener::GetDirection();
+    sfVector3f direction = {sfmlDirection.x, sfmlDirection.y, sfmlDirection.z};
+    return direction;
 }

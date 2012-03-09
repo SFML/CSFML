@@ -58,9 +58,8 @@ public :
 
     virtual sf::Vector2f GetPoint(unsigned int index) const
     {
-        sf::Vector2f point;
-        myGetPointCallback(index, &point.x, &point.y, myUserData);
-        return point;
+        sfVector2f point = myGetPointCallback(index, myUserData);
+        return sf::Vector2f(point.x, point.y);
     }
 
     using sf::Shape::Update;

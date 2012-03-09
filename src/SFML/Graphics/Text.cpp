@@ -59,9 +59,9 @@ void sfText_Destroy(sfText* text)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_SetPosition(sfText* text, float x, float y)
+void sfText_SetPosition(sfText* text, sfVector2f position)
 {
-    CSFML_CALL(text, SetPosition(x, y));
+    CSFML_CALL(text, SetPosition(position.x, position.y));
 }
 
 
@@ -73,30 +73,30 @@ void sfText_SetRotation(sfText* text, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_SetScale(sfText* text, float factorX, float factorY)
+void sfText_SetScale(sfText* text, sfVector2f scale)
 {
-    CSFML_CALL(text, SetScale(factorX, factorY));
+    CSFML_CALL(text, SetScale(scale.x, scale.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfText_SetOrigin(sfText* text, float x, float y)
+void sfText_SetOrigin(sfText* text, sfVector2f origin)
 {
-    CSFML_CALL(text, SetOrigin(x, y));
+    CSFML_CALL(text, SetOrigin(origin.x, origin.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfText_GetPosition(const sfText* text, float* x, float* y)
+sfVector2f sfText_GetPosition(const sfText* text)
 {
-    CSFML_CHECK(text);
+    sfVector2f position = {0, 0};
+    CSFML_CHECK_RETURN(text, position);
 
-    sf::Vector2f point = text->This.GetPosition();
+    sf::Vector2f sfmlPos = text->This.GetPosition();
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return position;
 }
 
 
@@ -108,37 +108,37 @@ float sfText_GetRotation(const sfText* text)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_GetScale(const sfText* text, float* x, float* y)
+sfVector2f sfText_GetScale(const sfText* text)
 {
-    CSFML_CHECK(text);
+    sfVector2f scale = {0, 0};
+    CSFML_CHECK_RETURN(text, scale);
 
-    sf::Vector2f point = text->This.GetScale();
+    sf::Vector2f sfmlScale = text->This.GetScale();
+    scale.x = sfmlScale.x;
+    scale.y = sfmlScale.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return scale;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfText_GetOrigin(const sfText* text, float* x, float* y)
+sfVector2f sfText_GetOrigin(const sfText* text)
 {
-    CSFML_CHECK(text);
+    sfVector2f origin = {0, 0};
+    CSFML_CHECK_RETURN(text, origin);
 
-    sf::Vector2f point = text->This.GetOrigin();
+    sf::Vector2f sfmlOrigin = text->This.GetOrigin();
+    origin.x = sfmlOrigin.x;
+    origin.y = sfmlOrigin.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return origin;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfText_Move(sfText* text, float offsetX, float offsetY)
+void sfText_Move(sfText* text, sfVector2f offset)
 {
-    CSFML_CALL(text, Move(offsetX, offsetY));
+    CSFML_CALL(text, Move(offset.x, offset.y));
 }
 
 
@@ -150,9 +150,9 @@ void sfText_Rotate(sfText* text, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_Scale(sfText* text, float factorX, float factorY)
+void sfText_Scale(sfText* text, sfVector2f factors)
 {
-    CSFML_CALL(text, Scale(factorX, factorY));
+    CSFML_CALL(text, Scale(factors.x, factors.y));
 }
 
 
@@ -282,15 +282,16 @@ sfColor sfText_GetColor(const sfText* text)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_FindCharacterPos(const sfText* text, size_t index, float* x, float* y)
+sfVector2f sfText_FindCharacterPos(const sfText* text, size_t index)
 {
-    CSFML_CHECK(text);
+    sfVector2f position = {0, 0};
+    CSFML_CHECK_RETURN(text, position);
 
-    sf::Vector2f pos = text->This.FindCharacterPos(index);
-    if (x)
-        *x = pos.x;
-    if (y)
-        *y = pos.y;
+    sf::Vector2f sfmlPos = text->This.FindCharacterPos(index);
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
+
+    return position;
 }
 
 

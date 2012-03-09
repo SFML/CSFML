@@ -32,6 +32,7 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -65,21 +66,20 @@ CSFML_GRAPHICS_API void sfConvexShape_Destroy(sfConvexShape* shape);
 ///
 /// This function completely overwrites the previous position.
 /// See sfConvexShape_Move to apply an offset based on the previous position instead.
-/// The default position of a convex shape object is (0, 0).
+/// The default position of a circle Shape object is (0, 0).
 ///
-/// \param shape Shape object
-/// \param x     X coordinate of the new position
-/// \param y     Y coordinate of the new position
+/// \param shape    Shape object
+/// \param position New position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_SetPosition(sfConvexShape* shape, float x, float y);
+CSFML_GRAPHICS_API void sfConvexShape_SetPosition(sfConvexShape* shape, sfVector2f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of a convex shape
 ///
 /// This function completely overwrites the previous rotation.
 /// See sfConvexShape_Rotate to add an angle based on the previous rotation instead.
-/// The default rotation of a convex shape object is 0.
+/// The default rotation of a circle Shape object is 0.
 ///
 /// \param shape Shape object
 /// \param angle New rotation, in degrees
@@ -92,14 +92,13 @@ CSFML_GRAPHICS_API void sfConvexShape_SetRotation(sfConvexShape* shape, float an
 ///
 /// This function completely overwrites the previous scale.
 /// See sfConvexShape_Scale to add a factor based on the previous scale instead.
-/// The default scale of a convex shape object is (1, 1).
+/// The default scale of a circle Shape object is (1, 1).
 ///
-/// \param shape   Shape object
-/// \param factorX New horizontal scale factor
-/// \param factorY New vertical scale factor
+/// \param shape Shape object
+/// \param scale New scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_SetScale(sfConvexShape* shape, float factorX, float factorY);
+CSFML_GRAPHICS_API void sfConvexShape_SetScale(sfConvexShape* shape, sfVector2f scale);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the local origin of a convex shape
@@ -109,14 +108,13 @@ CSFML_GRAPHICS_API void sfConvexShape_SetScale(sfConvexShape* shape, float facto
 /// The coordinates of this point must be relative to the
 /// top-left corner of the object, and ignore all
 /// transformations (position, scale, rotation).
-/// The default origin of a convex shape object is (0, 0).
+/// The default origin of a circle Shape object is (0, 0).
 ///
-/// \param shape Shape object
-/// \param x     X coordinate of the new origin
-/// \param y     Y coordinate of the new origin
+/// \param shape  Shape object
+/// \param origin New origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_SetOrigin(sfConvexShape* shape, float x, float y);
+CSFML_GRAPHICS_API void sfConvexShape_SetOrigin(sfConvexShape* shape, sfVector2f origin);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a convex shape
@@ -126,7 +124,7 @@ CSFML_GRAPHICS_API void sfConvexShape_SetOrigin(sfConvexShape* shape, float x, f
 /// \return Current position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_GetPosition(const sfConvexShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfConvexShape_GetPosition(const sfConvexShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the orientation of a convex shape
@@ -148,7 +146,7 @@ CSFML_GRAPHICS_API float sfConvexShape_GetRotation(const sfConvexShape* shape);
 /// \return Current scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_GetScale(const sfConvexShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfConvexShape_GetScale(const sfConvexShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local origin of a convex shape
@@ -158,7 +156,7 @@ CSFML_GRAPHICS_API void sfConvexShape_GetScale(const sfConvexShape* shape, float
 /// \return Current origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_GetOrigin(const sfConvexShape* shape, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfConvexShape_GetOrigin(const sfConvexShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Move a convex shape by a given offset
@@ -166,12 +164,11 @@ CSFML_GRAPHICS_API void sfConvexShape_GetOrigin(const sfConvexShape* shape, floa
 /// This function adds to the current position of the object,
 /// unlike sfConvexShape_SetPosition which overwrites it.
 ///
-/// \param shape   Shape object
-/// \param offsetX X offset
-/// \param offsetY Y offset
+/// \param shape  Shape object
+/// \param offset Offset
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_Move(sfConvexShape* shape, float offsetX, float offsetY);
+CSFML_GRAPHICS_API void sfConvexShape_Move(sfConvexShape* shape, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Rotate a convex shape
@@ -192,11 +189,10 @@ CSFML_GRAPHICS_API void sfConvexShape_Rotate(sfConvexShape* shape, float angle);
 /// unlike sfConvexShape_SetScale which overwrites it.
 ///
 /// \param shape   Shape object
-/// \param factorX Horizontal scale factor
-/// \param factorY Vertical scale factor
+/// \param factors Scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_Scale(sfConvexShape* shape, float factorX, float factorY);
+CSFML_GRAPHICS_API void sfConvexShape_Scale(sfConvexShape* shape, sfVector2f factors);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the combined transform of a convex shape
@@ -368,7 +364,7 @@ CSFML_GRAPHICS_API unsigned int sfConvexShape_GetPointCount(const sfConvexShape*
 /// \return Index-th point of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_GetPoint(const sfConvexShape* shape, unsigned int index, float* x, float* y);
+CSFML_GRAPHICS_API sfVector2f sfConvexShape_GetPoint(const sfConvexShape* shape, unsigned int index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the number of points of a convex shap
@@ -392,11 +388,10 @@ CSFML_GRAPHICS_API void sfConvexShape_SetPointCount(sfConvexShape* shape, unsign
 ///
 /// \param shape Shape object
 /// \param index Index of the point to change, in range [0 .. GetPointCount() - 1]
-/// \param x     New X coordinate of the point
-/// \param y     New Y coordinate of the point
+/// \param point New point
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_SetPoint(sfConvexShape* shape, unsigned int index, float x, float y);
+CSFML_GRAPHICS_API void sfConvexShape_SetPoint(sfConvexShape* shape, unsigned int index, sfVector2f point);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a convex shape

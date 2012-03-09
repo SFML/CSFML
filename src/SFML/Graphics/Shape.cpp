@@ -48,9 +48,9 @@ void sfShape_Destroy(sfShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_SetPosition(sfShape* shape, float x, float y)
+void sfShape_SetPosition(sfShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, SetPosition(x, y));
+    CSFML_CALL(shape, SetPosition(position.x, position.y));
 }
 
 
@@ -62,30 +62,30 @@ void sfShape_SetRotation(sfShape* shape, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_SetScale(sfShape* shape, float factorX, float factorY)
+void sfShape_SetScale(sfShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, SetScale(factorX, factorY));
+    CSFML_CALL(shape, SetScale(scale.x, scale.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_SetOrigin(sfShape* shape, float x, float y)
+void sfShape_SetOrigin(sfShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, SetOrigin(x, y));
+    CSFML_CALL(shape, SetOrigin(origin.x, origin.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_GetPosition(const sfShape* shape, float* x, float* y)
+sfVector2f sfShape_GetPosition(const sfShape* shape)
 {
-    CSFML_CHECK(shape);
+    sfVector2f position = {0, 0};
+    CSFML_CHECK_RETURN(shape, position);
 
-    sf::Vector2f point = shape->This.GetPosition();
+    sf::Vector2f sfmlPos = shape->This.GetPosition();
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return position;
 }
 
 
@@ -97,37 +97,37 @@ float sfShape_GetRotation(const sfShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_GetScale(const sfShape* shape, float* x, float* y)
+sfVector2f sfShape_GetScale(const sfShape* shape)
 {
-    CSFML_CHECK(shape);
+    sfVector2f scale = {0, 0};
+    CSFML_CHECK_RETURN(shape, scale);
 
-    sf::Vector2f point = shape->This.GetScale();
+    sf::Vector2f sfmlScale = shape->This.GetScale();
+    scale.x = sfmlScale.x;
+    scale.y = sfmlScale.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return scale;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_GetOrigin(const sfShape* shape, float* x, float* y)
+sfVector2f sfShape_GetOrigin(const sfShape* shape)
 {
-    CSFML_CHECK(shape);
+    sfVector2f origin = {0, 0};
+    CSFML_CHECK_RETURN(shape, origin);
 
-    sf::Vector2f point = shape->This.GetOrigin();
+    sf::Vector2f sfmlOrigin = shape->This.GetOrigin();
+    origin.x = sfmlOrigin.x;
+    origin.y = sfmlOrigin.y;
 
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    return origin;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_Move(sfShape* shape, float offsetX, float offsetY)
+void sfShape_Move(sfShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, Move(offsetX, offsetY));
+    CSFML_CALL(shape, Move(offset.x, offset.y));
 }
 
 
@@ -139,9 +139,9 @@ void sfShape_Rotate(sfShape* shape, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_Scale(sfShape* shape, float factorX, float factorY)
+void sfShape_Scale(sfShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, Scale(factorX, factorY));
+    CSFML_CALL(shape, Scale(factors.x, factors.y));
 }
 
 
@@ -273,15 +273,16 @@ unsigned int sfShape_GetPointCount(const sfShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_GetPoint(const sfShape* shape, unsigned int index, float* x, float* y)
+sfVector2f sfShape_GetPoint(const sfShape* shape, unsigned int index)
 {
-    CSFML_CHECK(shape);
+    sfVector2f point = {0, 0};
+    CSFML_CHECK_RETURN(shape, point);
 
-    sf::Vector2f point = shape->This.GetPoint(index);
-    if (x)
-        *x = point.x;
-    if (y)
-        *y = point.y;
+    sf::Vector2f sfmlPoint = shape->This.GetPoint(index);
+    point.x = sfmlPoint.x;
+    point.y = sfmlPoint.y;
+
+    return point;
 }
 
 

@@ -177,9 +177,9 @@ void sfMusic_SetVolume(sfMusic* music, float volume)
 
 
 ////////////////////////////////////////////////////////////
-void sfMusic_SetPosition(sfMusic* music, float x, float y, float z)
+void sfMusic_SetPosition(sfMusic* music, sfVector3f position)
 {
-    CSFML_CALL(music, SetPosition(sf::Vector3f(x, y, z)));
+    CSFML_CALL(music, SetPosition(sf::Vector3f(position.x, position.y, position.z)));
 }
 
 
@@ -226,17 +226,17 @@ float sfMusic_GetVolume(const sfMusic* music)
 
 
 ////////////////////////////////////////////////////////////
-void sfMusic_GetPosition(const sfMusic* music, float* x, float* y, float* z)
+sfVector3f sfMusic_GetPosition(const sfMusic* music)
 {
-    CSFML_CHECK(music);
+    sfVector3f position = {0, 0, 0};
+    CSFML_CHECK_RETURN(music, position);
 
-    if (x && y && z)
-    {
-        sf::Vector3f position = music->This.GetPosition();
-        *x = position.x;
-        *y = position.y;
-        *z = position.z;
-    }
+    sf::Vector3f sfmlPos = music->This.GetPosition();
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
+    position.z = sfmlPos.z;
+
+    return position;
 }
 
 

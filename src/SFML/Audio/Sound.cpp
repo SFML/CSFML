@@ -132,9 +132,9 @@ void sfSound_SetVolume(sfSound* sound, float volume)
 
 
 ////////////////////////////////////////////////////////////
-void sfSound_SetPosition(sfSound* sound, float x, float y, float z)
+void sfSound_SetPosition(sfSound* sound, sfVector3f position)
 {
-    CSFML_CALL(sound, SetPosition(sf::Vector3f(x, y, z)));
+    CSFML_CALL(sound, SetPosition(sf::Vector3f(position.x, position.y, position.z)));
 }
 
 
@@ -181,14 +181,17 @@ float sfSound_GetVolume(const sfSound* sound)
 
 
 ////////////////////////////////////////////////////////////
-void sfSound_GetPosition(const sfSound* sound, float* x, float* y, float* z)
+sfVector3f sfSound_GetPosition(const sfSound* sound)
 {
-    CSFML_CHECK(sound);
+    sfVector3f position = {0, 0, 0};
+    CSFML_CHECK_RETURN(sound, position);
 
-    sf::Vector3f position = sound->This.GetPosition();
-    if (x) *x = position.x;
-    if (y) *y = position.y;
-    if (z) *z = position.z;
+    sf::Vector3f sfmlPos = sound->This.GetPosition();
+    position.x = sfmlPos.x;
+    position.y = sfmlPos.y;
+    position.z = sfmlPos.z;
+
+    return position;
 }
 
 

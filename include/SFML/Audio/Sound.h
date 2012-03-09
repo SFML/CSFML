@@ -32,6 +32,7 @@
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
 #include <SFML/System/Time.h>
+#include <SFML/System/Vector3.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -188,13 +189,11 @@ CSFML_AUDIO_API void sfSound_SetVolume(sfSound* sound, float volume);
 /// spatialized.
 /// The default position of a sound is (0, 0, 0).
 ///
-/// \param sound Sound object
-/// \param x     X coordinate of the position of the sound in the scene
-/// \param y     Y coordinate of the position of the sound in the scene
-/// \param z     Z coordinate of the position of the sound in the scene
+/// \param sound    Sound object
+/// \param position Position of the sound in the scene
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSound_SetPosition(sfSound* sound, float x, float y, float z);
+CSFML_AUDIO_API void sfSound_SetPosition(sfSound* sound, sfVector3f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Make the sound's position relative to the listener or absolute
@@ -281,12 +280,11 @@ CSFML_AUDIO_API float sfSound_GetVolume(const sfSound* sound);
 /// \brief Get the 3D position of a sound in the audio scene
 ///
 /// \param sound Sound object
-/// \param x     X position of the sound in the world
-/// \param y     Y position of the sound in the world
-/// \param z     Z position of the sound in the world
+///
+/// \return Position of the sound in the world
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSound_GetPosition(const sfSound* sound, float* x, float* y, float* z);
+CSFML_AUDIO_API sfVector3f sfSound_GetPosition(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a sound's position is relative to the

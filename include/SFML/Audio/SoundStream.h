@@ -32,6 +32,7 @@
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
 #include <SFML/System/Time.h>
+#include <SFML/System/Vector3.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -181,12 +182,10 @@ CSFML_AUDIO_API void sfSoundStream_SetVolume(sfSoundStream* soundStream, float v
 /// The default position of a stream is (0, 0, 0).
 ///
 /// \param soundStream Sound stream object
-/// \param x           X coordinate of the position of the stream in the scene
-/// \param y           Y coordinate of the position of the stream in the scene
-/// \param z           Z coordinate of the position of the stream in the scene
+/// \param position    Position of the stream in the scene
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetPosition(sfSoundStream* soundStream, float x, float y, float z);
+CSFML_AUDIO_API void sfSoundStream_SetPosition(sfSoundStream* soundStream, sfVector3f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Make a sound stream's position relative to the listener or absolute
@@ -287,12 +286,11 @@ CSFML_AUDIO_API float sfSoundStream_GetVolume(const sfSoundStream* soundStream);
 /// \brief Get the 3D position of a sound stream in the audio scene
 ///
 /// \param soundStream Sound stream object
-/// \param x           X position of the stream in the world
-/// \param y           Y position of the stream in the world
-/// \param z           Z position of the stream in the world
+///
+/// \return Position of the stream in the world
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_GetPosition(const sfSoundStream* soundStream, float* x, float* y, float* z);
+CSFML_AUDIO_API sfVector3f sfSoundStream_GetPosition(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a sound stream's position is relative to the
