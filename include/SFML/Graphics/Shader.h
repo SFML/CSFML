@@ -32,6 +32,8 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/InputStream.h>
+#include <SFML/System/Vector2.h>
+#include <SFML/System/Vector3.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -51,7 +53,7 @@
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_CreateFromFile(const char* vertexShaderFilename, const char* fragmentShaderFilename);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* fragmentShaderFilename);
 
 ////////////////////////////////////////////////////////////
 /// \brief Load both the vertex and fragment shaders from source codes in memory
@@ -70,7 +72,7 @@ CSFML_GRAPHICS_API sfShader* sfShader_CreateFromFile(const char* vertexShaderFil
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_CreateFromMemory(const char* vertexShader, const char* fragmentShader);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromMemory(const char* vertexShader, const char* fragmentShader);
 
 ////////////////////////////////////////////////////////////
 /// \brief Load both the vertex and fragment shaders from custom streams
@@ -89,7 +91,7 @@ CSFML_GRAPHICS_API sfShader* sfShader_CreateFromMemory(const char* vertexShader,
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_CreateFromStream(sfInputStream* vertexShaderStream, sfInputStream* fragmentShaderStream);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* fragmentShaderStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing shader
@@ -97,7 +99,7 @@ CSFML_GRAPHICS_API sfShader* sfShader_CreateFromStream(sfInputStream* vertexShad
 /// \param shader Shader to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_Destroy(sfShader* shader);
+CSFML_GRAPHICS_API void sfShader_destroy(sfShader* shader);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a float parameter of a shader
@@ -111,7 +113,7 @@ CSFML_GRAPHICS_API void sfShader_Destroy(sfShader* shader);
 /// uniform float myparam; // this is the variable in the shader
 /// \endcode
 /// \code
-/// sfShader_SetFloatParameter(shader, "myparam", 5.2f);
+/// sfShader_setFloatParameter(shader, "myparam", 5.2f);
 /// \endcode
 ///
 /// \param shader Shader object
@@ -119,7 +121,7 @@ CSFML_GRAPHICS_API void sfShader_Destroy(sfShader* shader);
 /// \param x      Value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_SetFloatParameter(sfShader* shader, const char* name, float x);
+CSFML_GRAPHICS_API void sfShader_setFloatParameter(sfShader* shader, const char* name, float x);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 2-components vector parameter of a shader
@@ -133,7 +135,7 @@ CSFML_GRAPHICS_API void sfShader_SetFloatParameter(sfShader* shader, const char*
 /// uniform vec2 myparam; // this is the variable in the shader
 /// \endcode
 /// \code
-/// sfShader_SetFloat2Parameter(shader, "myparam", 5.2f, 6.0f);
+/// sfShader_setFloat2Parameter(shader, "myparam", 5.2f, 6.0f);
 /// \endcode
 ///
 /// \param shader Shader object
@@ -142,7 +144,7 @@ CSFML_GRAPHICS_API void sfShader_SetFloatParameter(sfShader* shader, const char*
 /// \param y      Second component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_SetFloat2Parameter(sfShader* shader, const char* name, float x, float y);
+CSFML_GRAPHICS_API void sfShader_setFloat2Parameter(sfShader* shader, const char* name, float x, float y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 3-components vector parameter of a shader
@@ -156,7 +158,7 @@ CSFML_GRAPHICS_API void sfShader_SetFloat2Parameter(sfShader* shader, const char
 /// uniform vec3 myparam; // this is the variable in the shader
 /// \endcode
 /// \code
-/// sfShader_SetFloat3Parameter(shader, "myparam", 5.2f, 6.0f, -8.1f);
+/// sfShader_setFloat3Parameter(shader, "myparam", 5.2f, 6.0f, -8.1f);
 /// \endcode
 ///
 /// \param shader Shader object
@@ -166,7 +168,7 @@ CSFML_GRAPHICS_API void sfShader_SetFloat2Parameter(sfShader* shader, const char
 /// \param z      Third component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_SetFloat3Parameter(sfShader* shader, const char* name, float x, float y, float z);
+CSFML_GRAPHICS_API void sfShader_setFloat3Parameter(sfShader* shader, const char* name, float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 4-components vector parameter of a shader
@@ -180,7 +182,7 @@ CSFML_GRAPHICS_API void sfShader_SetFloat3Parameter(sfShader* shader, const char
 /// uniform vec4 myparam; // this is the variable in the shader
 /// \endcode
 /// \code
-/// sfShader_SetFloat4Parameter(shader, "myparam", 5.2f, 6.0f, -8.1f, 0.4f);
+/// sfShader_setFloat4Parameter(shader, "myparam", 5.2f, 6.0f, -8.1f, 0.4f);
 /// \endcode
 ///
 /// \param shader Shader object
@@ -191,7 +193,53 @@ CSFML_GRAPHICS_API void sfShader_SetFloat3Parameter(sfShader* shader, const char
 /// \param w      Fourth component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_SetFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w);
+CSFML_GRAPHICS_API void sfShader_setFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w);
+
+////////////////////////////////////////////////////////////
+/// \brief Change a 2-components vector parameter of a shader
+///
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 2x1 vector
+/// (vec2 GLSL type).
+///
+/// Example:
+/// \code
+/// uniform vec2 myparam; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfVector2f vec = {5.2f, 6.0f};
+/// sfShader_setVector2Parameter(shader, "myparam", vec);
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the parameter in the shader
+/// \param vector Vector to assign
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setVector2Parameter(sfShader* shader, const char* name, sfVector2f vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Change a 3-components vector parameter of a shader
+///
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 3x1 vector
+/// (vec3 GLSL type).
+///
+/// Example:
+/// \code
+/// uniform vec3 myparam; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfVector3f vec = {5.2f, 6.0f, -8.1f};
+/// sfShader_setVector3Parameter(shader, "myparam", vec);
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the parameter in the shader
+/// \param vector Vector to assign
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setVector3Parameter(sfShader* shader, const char* name, sfVector3f vector);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a color parameter of a shader
@@ -211,7 +259,7 @@ CSFML_GRAPHICS_API void sfShader_SetFloat4Parameter(sfShader* shader, const char
 /// uniform vec4 color; // this is the variable in the shader
 /// \endcode
 /// \code
-/// sfShader_SetColorParameter(shader, "color", sfColor_FromRGB(255, 128, 0));
+/// sfShader_setColorParameter(shader, "color", sfColor_FromRGB(255, 128, 0));
 /// \endcode
 ///
 /// \param shader Shader object
@@ -219,7 +267,7 @@ CSFML_GRAPHICS_API void sfShader_SetFloat4Parameter(sfShader* shader, const char
 /// \param color  Color to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_SetColorParameter(sfShader* shader, const char* name, sfColor color);
+CSFML_GRAPHICS_API void sfShader_setColorParameter(sfShader* shader, const char* name, sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a matrix parameter of a shader
@@ -234,7 +282,7 @@ CSFML_GRAPHICS_API void sfShader_SetColorParameter(sfShader* shader, const char*
 /// \endcode
 /// \code
 /// @todo
-/// sfShader_SetTransformParameter(shader, "matrix", transform);
+/// sfShader_setTransformParameter(shader, "matrix", transform);
 /// \endcode
 ///
 /// \param shader    Shader object
@@ -242,7 +290,7 @@ CSFML_GRAPHICS_API void sfShader_SetColorParameter(sfShader* shader, const char*
 /// \param transform Transform to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_SetTransformParameter(sfShader* shader, const char* name, const sfTransform* transform);
+CSFML_GRAPHICS_API void sfShader_setTransformParameter(sfShader* shader, const char* name, const sfTransform* transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a texture parameter of a shader
@@ -258,16 +306,16 @@ CSFML_GRAPHICS_API void sfShader_SetTransformParameter(sfShader* shader, const c
 /// \code
 /// sf::Texture texture;
 /// ...
-/// sfShader_SetTextureParameter(shader, "the_texture", texture);
+/// sfShader_setTextureParameter(shader, "the_texture", texture);
 /// \endcode
 /// It is important to note that \a texture must remain alive as long
 /// as the shader uses it, no copy is made internally.
 ///
 /// To use the texture of the object being draw, which cannot be
 /// known in advance, you can use the special function
-/// sfShader_SetCurrentTextureParameter:
+/// sfShader_setCurrentTextureParameter:
 /// \code
-/// sfShader_SetCurrentTextureParameter(shader, "the_texture").
+/// sfShader_setCurrentTextureParameter(shader, "the_texture").
 /// \endcode
 ///
 /// \param shader  Shader object
@@ -275,7 +323,7 @@ CSFML_GRAPHICS_API void sfShader_SetTransformParameter(sfShader* shader, const c
 /// \param texture Texture to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_SetTextureParameter(sfShader* shader, const char* name, const sfTexture* texture);
+CSFML_GRAPHICS_API void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a texture parameter of a shader
@@ -291,14 +339,14 @@ CSFML_GRAPHICS_API void sfShader_SetTextureParameter(sfShader* shader, const cha
 /// uniform sampler2D current; // this is the variable in the shader
 /// \endcode
 /// \code
-/// sfShader_SetCurrentTextureParameter(shader, "current");
+/// sfShader_setCurrentTextureParameter(shader, "current");
 /// \endcode
 ///
 /// \param shader Shader object
 /// \param name   Name of the texture in the shader
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_SetCurrentTextureParameter(sfShader* shader, const char* name);
+CSFML_GRAPHICS_API void sfShader_setCurrentTextureParameter(sfShader* shader, const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Bind a shader for rendering (activate it)
@@ -307,16 +355,16 @@ CSFML_GRAPHICS_API void sfShader_SetCurrentTextureParameter(sfShader* shader, co
 /// you want to use the shader with a custom OpenGL rendering
 /// instead of a SFML drawable.
 /// \code
-/// sfWindow_SetActive(window, sfTrue);
-/// sfShader_Bind(shader);
+/// sfWindow_setActive(window, sfTrue);
+/// sfShader_bind(shader);
 /// ... render OpenGL geometry ...
-/// sfShader_Unbind(shader);
+/// sfShader_unbind(shader);
 /// \endcode
 ///
 /// \param shader Shader to bind
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_Bind(const sfShader* shader);
+CSFML_GRAPHICS_API void sfShader_bind(const sfShader* shader);
 
 ////////////////////////////////////////////////////////////
 /// \brief Unbind a shader (deactivate it)
@@ -328,7 +376,7 @@ CSFML_GRAPHICS_API void sfShader_Bind(const sfShader* shader);
 /// \param shader Shader to unbind
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_Unbind(const sfShader* shader);
+CSFML_GRAPHICS_API void sfShader_unbind(const sfShader* shader);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not the system supports shaders
@@ -340,7 +388,7 @@ CSFML_GRAPHICS_API void sfShader_Unbind(const sfShader* shader);
 /// \return sfTrue if the system can use shaders, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfShader_IsAvailable(void);
+CSFML_GRAPHICS_API sfBool sfShader_isAvailable(void);
 
 
 #endif // SFML_SHADER_H

@@ -48,7 +48,7 @@
 /// \return A new sfRenderTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_Create(unsigned int width, unsigned int height, sfBool depthBuffer);
+CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, sfBool depthBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing render texture
@@ -56,7 +56,7 @@ CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_Create(unsigned int width, u
 /// \param renderTexture Render texture to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_Destroy(sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API void sfRenderTexture_destroy(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the size of the rendering region of a render texture
@@ -66,7 +66,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_Destroy(sfRenderTexture* renderTexture);
 /// \return Size in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2u sfRenderTexture_GetSize(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API sfVector2u sfRenderTexture_getSize(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a render texture as the current target for rendering
@@ -77,7 +77,7 @@ CSFML_GRAPHICS_API sfVector2u sfRenderTexture_GetSize(const sfRenderTexture* ren
 /// \return True if operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderTexture_SetActive(sfRenderTexture* renderTexture, sfBool active);
+CSFML_GRAPHICS_API sfBool sfRenderTexture_setActive(sfRenderTexture* renderTexture, sfBool active);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update the contents of the target texture
@@ -85,7 +85,7 @@ CSFML_GRAPHICS_API sfBool sfRenderTexture_SetActive(sfRenderTexture* renderTextu
 /// \param renderTexture Render texture object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_Display(sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API void sfRenderTexture_display(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Clear the rendertexture with the given color
@@ -94,7 +94,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_Display(sfRenderTexture* renderTexture);
 /// \param color         Fill color
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_Clear(sfRenderTexture* renderTexture, sfColor color);
+CSFML_GRAPHICS_API void sfRenderTexture_clear(sfRenderTexture* renderTexture, sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the current active view of a render texture
@@ -103,7 +103,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_Clear(sfRenderTexture* renderTexture, sf
 /// \param view          Pointer to the new view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_SetView(sfRenderTexture* renderTexture, const sfView* view);
+CSFML_GRAPHICS_API void sfRenderTexture_setView(sfRenderTexture* renderTexture, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current active view of a render texture
@@ -113,7 +113,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_SetView(sfRenderTexture* renderTexture, 
 /// \return Current active view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfView* sfRenderTexture_GetView(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API const sfView* sfRenderTexture_getView(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the default view of a render texture
@@ -123,7 +123,7 @@ CSFML_GRAPHICS_API const sfView* sfRenderTexture_GetView(const sfRenderTexture* 
 /// \return Default view of the rendertexture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfView* sfRenderTexture_GetDefaultView(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API const sfView* sfRenderTexture_getDefaultView(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the viewport of a view applied to this target
@@ -134,7 +134,7 @@ CSFML_GRAPHICS_API const sfView* sfRenderTexture_GetDefaultView(const sfRenderTe
 /// \return Viewport rectangle, expressed in pixels in the current target
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfIntRect sfRenderTexture_GetViewport(const sfRenderTexture* renderTexture, const sfView* view);
+CSFML_GRAPHICS_API sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Convert a point in texture coordinates into view coordinates
@@ -147,7 +147,7 @@ CSFML_GRAPHICS_API sfIntRect sfRenderTexture_GetViewport(const sfRenderTexture* 
 /// \param targetView    Target view to convert the point to (pass NULL to use the current view)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_ConvertCoords(const sfRenderTexture* renderTexture, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView);
+CSFML_GRAPHICS_API void sfRenderTexture_convertCoords(const sfRenderTexture* renderTexture, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw a drawable object to the render-target
@@ -157,13 +157,13 @@ CSFML_GRAPHICS_API void sfRenderTexture_ConvertCoords(const sfRenderTexture* ren
 /// \param states        Render states to use for drawing (NULL to use the default states)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_DrawSprite(sfRenderTexture* renderTexture, const sfSprite* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_DrawText(sfRenderTexture* renderTexture, const sfText* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_DrawShape(sfRenderTexture* renderTexture, const sfShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_DrawCircleShape(sfRenderTexture* renderTexture, const sfCircleShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_DrawConvexShape(sfRenderTexture* renderTexture, const sfConvexShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_DrawRectangleShape(sfRenderTexture* renderTexture, const sfRectangleShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_DrawVertexArray(sfRenderTexture* renderTexture, const sfVertexArray* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawSprite(sfRenderTexture* renderTexture, const sfSprite* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawText(sfRenderTexture* renderTexture, const sfText* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawShape(sfRenderTexture* renderTexture, const sfShape* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawCircleShape(sfRenderTexture* renderTexture, const sfCircleShape* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawConvexShape(sfRenderTexture* renderTexture, const sfConvexShape* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawRectangleShape(sfRenderTexture* renderTexture, const sfRectangleShape* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawVertexArray(sfRenderTexture* renderTexture, const sfVertexArray* object, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render texture
@@ -175,15 +175,15 @@ CSFML_GRAPHICS_API void sfRenderTexture_DrawVertexArray(sfRenderTexture* renderT
 /// \param states        Render states to use for drawing (NULL to use the default states)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_DrawPrimitives(sfRenderTexture* renderTexture,
-                                              const sfVertex* vertices, unsigned int vertexCount,
-                                              sfPrimitiveType type, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawPrimitives(sfRenderTexture* renderTexture,
+                                                       const sfVertex* vertices, unsigned int vertexCount,
+                                                       sfPrimitiveType type, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save the current OpenGL render states and matrices
 ///
 /// This function can be used when you mix SFML drawing
-/// and direct OpenGL rendering. Combined with PopGLStates,
+/// and direct OpenGL rendering. Combined with popGLStates,
 /// it ensures that:
 /// \li SFML's internal states are not messed up by your OpenGL code
 /// \li your OpenGL states are not modified by a call to a SFML function
@@ -194,38 +194,38 @@ CSFML_GRAPHICS_API void sfRenderTexture_DrawPrimitives(sfRenderTexture* renderTe
 /// It is provided for convenience, but the best results will
 /// be achieved if you handle OpenGL states yourself (because
 /// you know which states have really changed, and need to be
-/// saved and restored). Take a look at the ResetGLStates
+/// saved and restored). Take a look at the resetGLStates
 /// function if you do so.
 ///
 /// \param renderTexture Render texture object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_PushGLStates(sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API void sfRenderTexture_pushGLStates(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Restore the previously saved OpenGL render states and matrices
 ///
-/// See the description of PushGLStates to get a detailed
+/// See the description of pushGLStates to get a detailed
 /// description of these functions.
 ///
 /// \param renderTexture Render texture object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_PopGLStates(sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API void sfRenderTexture_popGLStates(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Reset the internal OpenGL states so that the target is ready for drawing
 ///
 /// This function can be used when you mix SFML drawing
 /// and direct OpenGL rendering, if you choose not to use
-/// PushGLStates/PopGLStates. It makes sure that all OpenGL
-/// states needed by SFML are set, so that subsequent sfRenderTexture_Draw*()
+/// pushGLStates/popGLStates. It makes sure that all OpenGL
+/// states needed by SFML are set, so that subsequent sfRenderTexture_draw*()
 /// calls will work as expected.
 ///
 /// \param renderTexture Render texture object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_ResetGLStates(sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API void sfRenderTexture_resetGLStates(sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the target texture of a render texture
@@ -235,7 +235,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_ResetGLStates(sfRenderTexture* renderTex
 /// \return Pointer to the target texture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTexture* sfRenderTexture_GetTexture(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API const sfTexture* sfRenderTexture_getTexture(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable the smooth filter on a render texture
@@ -244,7 +244,7 @@ CSFML_GRAPHICS_API const sfTexture* sfRenderTexture_GetTexture(const sfRenderTex
 /// \param smooth        sfTrue to enable smoothing, sfFalse to disable it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_SetSmooth(sfRenderTexture* renderTexture, sfBool smooth);
+CSFML_GRAPHICS_API void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture, sfBool smooth);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether the smooth filter is enabled or not for a render texture
@@ -254,7 +254,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_SetSmooth(sfRenderTexture* renderTexture
 /// \return sfTrue if smoothing is enabled, sfFalse if it is disabled
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderTexture_IsSmooth(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API sfBool sfRenderTexture_isSmooth(const sfRenderTexture* renderTexture);
 
 
 #endif // SFML_RENDERTEXTURE_H

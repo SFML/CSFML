@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Color.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -37,11 +38,9 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    float   X;         ///< X coordinate of the position of the vertex
-    float   Y;         ///< Y coordinate of the position of the vertex
-    sfColor Color;     ///< Color of the vertex
-    float   TexCoordX; ///< X coordinate of the texture's pixel to map to the vertex
-    float   TexCoordY; ///< Y coordinate of the texture's pixel to map to the vertex
+    sfVector2f position;  ///< Position of the vertex
+    sfColor    color;     ///< Color of the vertex
+    sfVector2f texCoords; ///< Coordinates of the texture's pixel to map to the vertex
 } sfVertex;
 
 

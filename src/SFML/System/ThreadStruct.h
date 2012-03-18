@@ -36,8 +36,8 @@
 ////////////////////////////////////////////////////////////
 struct sfThread
 {
-    sfThread(void (*Function)(void*), void* UserData) :
-    This(Function, UserData)
+    sfThread(void (*function)(void*), void* userData) :
+    This(function, userData)
     {
     }
 

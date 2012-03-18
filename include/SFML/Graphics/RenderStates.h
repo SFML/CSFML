@@ -39,10 +39,10 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    sfBlendMode      BlendMode; ///< Blending mode
-    sfTransform*     Transform; ///< Transform
-    const sfTexture* Texture;   ///< Texture
-    const sfShader*  Shader;    ///< Shader
+    sfBlendMode      blendMode; ///< Blending mode
+    sfTransform*     transform; ///< Transform
+    const sfTexture* texture;   ///< Texture
+    const sfShader*  shader;    ///< Shader
 } sfRenderStates;
 
 

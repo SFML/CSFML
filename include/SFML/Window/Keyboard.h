@@ -150,7 +150,7 @@ typedef enum
 /// \return sfTrue if the key is pressed, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfKeyboard_IsKeyPressed(sfKeyCode key);
+CSFML_WINDOW_API sfBool sfKeyboard_isKeyPressed(sfKeyCode key);
 
 
 #endif // SFML_KEYBOARD_H

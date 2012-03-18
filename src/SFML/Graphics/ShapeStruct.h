@@ -51,18 +51,18 @@ public :
     {
     }
 
-    virtual unsigned int GetPointCount() const
+    virtual unsigned int getPointCount() const
     {
         return myGetPointCountCallback(myUserData);
     }
 
-    virtual sf::Vector2f GetPoint(unsigned int index) const
+    virtual sf::Vector2f getPoint(unsigned int index) const
     {
         sfVector2f point = myGetPointCallback(index, myUserData);
         return sf::Vector2f(point.x, point.y);
     }
 
-    using sf::Shape::Update;
+    using sf::Shape::update;
 
 private:
 

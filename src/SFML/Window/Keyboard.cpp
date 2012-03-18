@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfKeyboard_IsKeyPressed(sfKeyCode key)
+sfBool sfKeyboard_isKeyPressed(sfKeyCode key)
 {
-    return sf::Keyboard::IsKeyPressed(static_cast<sf::Keyboard::Key>(key));
+    return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key));
 }

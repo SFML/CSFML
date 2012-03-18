@@ -48,27 +48,27 @@ public :
     mySeekCallback   (onSeek),
     myUserData       (userData)
     {
-        Initialize(channelCount, sampleRate);
+        initialize(channelCount, sampleRate);
     }
 
 private :
 
-    virtual bool OnGetData(Chunk& data)
+    virtual bool onGetData(Chunk& data)
     {
         sfSoundStreamChunk chunk = {NULL, 0};
         bool ok = (myGetDataCallback(&chunk, myUserData) == sfTrue);
 
-        data.Samples     = chunk.Samples;
-        data.SampleCount = chunk.SampleCount;
+        data.samples     = chunk.samples;
+        data.sampleCount = chunk.sampleCount;
 
         return ok;
     }
 
-    virtual void OnSeek(sf::Time timeOffset)
+    virtual void onSeek(sf::Time timeOffset)
     {
         if (mySeekCallback)
         {
-            sfTime time = {timeOffset.AsMicroseconds()};
+            sfTime time = {timeOffset.asMicroseconds()};
             mySeekCallback(time, myUserData);
         }
     }

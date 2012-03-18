@@ -56,7 +56,7 @@ typedef enum
 /// \return sfTrue if the button is pressed, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfMouse_IsButtonPressed(sfMouseButton button);
+CSFML_WINDOW_API sfBool sfMouse_isButtonPressed(sfMouseButton button);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of the mouse
@@ -69,7 +69,7 @@ CSFML_WINDOW_API sfBool sfMouse_IsButtonPressed(sfMouseButton button);
 /// \return Position of the mouse cursor, relative to the given window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfVector2i sfMouse_GetPosition(const sfWindow* relativeTo);
+CSFML_WINDOW_API sfVector2i sfMouse_getPosition(const sfWindow* relativeTo);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the current position of the mouse
@@ -81,7 +81,7 @@ CSFML_WINDOW_API sfVector2i sfMouse_GetPosition(const sfWindow* relativeTo);
 /// \param relativeTo Reference window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfMouse_SetPosition(sfVector2i position, const sfWindow* relativeTo);
+CSFML_WINDOW_API void sfMouse_setPosition(sfVector2i position, const sfWindow* relativeTo);
 
 
 #endif // SFML_MOUSE_H

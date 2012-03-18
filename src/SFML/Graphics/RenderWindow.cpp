@@ -41,141 +41,143 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderWindow* sfRenderWindow_Create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings)
+sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings)
 {
     // Convert video mode
-    sf::VideoMode videoMode(mode.Width, mode.Height, mode.BitsPerPixel);
+    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
 
     // Convert context settings
     sf::ContextSettings params;
     if (settings)
     {
-        params.DepthBits         = settings->DepthBits;
-        params.StencilBits       = settings->StencilBits;
-        params.AntialiasingLevel = settings->AntialiasingLevel;
-        params.MajorVersion      = settings->MajorVersion;
-        params.MinorVersion      = settings->MinorVersion;
+        params.depthBits         = settings->depthBits;
+        params.stencilBits       = settings->stencilBits;
+        params.antialiasingLevel = settings->antialiasingLevel;
+        params.majorVersion      = settings->majorVersion;
+        params.minorVersion      = settings->minorVersion;
     }
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.Create(videoMode, title, style, params);
-    renderWindow->DefaultView.This = renderWindow->This.GetDefaultView();
-    renderWindow->CurrentView.This = renderWindow->This.GetView();
+    renderWindow->This.create(videoMode, title, style, params);
+    renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
+    renderWindow->CurrentView.This = renderWindow->This.getView();
 
     return renderWindow;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfRenderWindow* sfRenderWindow_CreateFromHandle(sfWindowHandle handle, const sfContextSettings* settings)
+sfRenderWindow* sfRenderWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings)
 {
     // Convert context settings
     sf::ContextSettings params;
     if (settings)
     {
-        params.DepthBits         = settings->DepthBits;
-        params.StencilBits       = settings->StencilBits;
-        params.AntialiasingLevel = settings->AntialiasingLevel;
-        params.MajorVersion      = settings->MajorVersion;
-        params.MinorVersion      = settings->MinorVersion;
+        params.depthBits         = settings->depthBits;
+        params.stencilBits       = settings->stencilBits;
+        params.antialiasingLevel = settings->antialiasingLevel;
+        params.majorVersion      = settings->majorVersion;
+        params.minorVersion      = settings->minorVersion;
     }
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.Create(handle, params);
-    renderWindow->DefaultView.This = renderWindow->This.GetDefaultView();
-    renderWindow->CurrentView.This = renderWindow->This.GetView();
+    renderWindow->This.create(handle, params);
+    renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
+    renderWindow->CurrentView.This = renderWindow->This.getView();
 
     return renderWindow;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_Destroy(sfRenderWindow* renderWindow)
+void sfRenderWindow_destroy(sfRenderWindow* renderWindow)
 {
     delete renderWindow;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_Close(sfRenderWindow* renderWindow)
+void sfRenderWindow_close(sfRenderWindow* renderWindow)
 {
-    CSFML_CALL(renderWindow, Close());
+    CSFML_CALL(renderWindow, close());
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_IsOpen(const sfRenderWindow* renderWindow)
+sfBool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow)
 {
-    CSFML_CALL_RETURN(renderWindow, IsOpen(), sfFalse);
+    CSFML_CALL_RETURN(renderWindow, isOpen(), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfContextSettings sfRenderWindow_GetSettings(const sfRenderWindow* renderWindow)
+sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow)
 {
     sfContextSettings settings = {0, 0, 0, 2, 0};
     CSFML_CHECK_RETURN(renderWindow, settings);
 
-    const sf::ContextSettings& params = renderWindow->This.GetSettings();
-    settings.DepthBits         = params.DepthBits;
-    settings.StencilBits       = params.StencilBits;
-    settings.AntialiasingLevel = params.AntialiasingLevel;
+    const sf::ContextSettings& params = renderWindow->This.getSettings();
+    settings.depthBits         = params.depthBits;
+    settings.stencilBits       = params.stencilBits;
+    settings.antialiasingLevel = params.antialiasingLevel;
+    settings.majorVersion      = params.majorVersion;
+    settings.minorVersion      = params.minorVersion;
 
     return settings;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_PollEvent(sfRenderWindow* renderWindow, sfEvent* event)
+sfBool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
     CSFML_CHECK_RETURN(renderWindow, sfFalse);
     CSFML_CHECK_RETURN(event,        sfFalse);
 
     // Get the event
     sf::Event SFMLEvent;
-    sfBool ret = renderWindow->This.PollEvent(SFMLEvent);
+    sfBool ret = renderWindow->This.pollEvent(SFMLEvent);
 
     // No event, return
     if (!ret)
         return sfFalse;
 
     // Convert the sf::Event event to a sfEvent
-    ConvertEvent(SFMLEvent, event);
+    convertEvent(SFMLEvent, event);
 
     return sfTrue;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_WaitEvent(sfRenderWindow* renderWindow, sfEvent* event)
+sfBool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
     CSFML_CHECK_RETURN(renderWindow, sfFalse);
     CSFML_CHECK_RETURN(event,        sfFalse);
 
     // Get the event
     sf::Event SFMLEvent;
-    sfBool ret = renderWindow->This.WaitEvent(SFMLEvent);
+    sfBool ret = renderWindow->This.waitEvent(SFMLEvent);
 
     // Error, return
     if (!ret)
         return sfFalse;
 
     // Convert the sf::Event event to a sfEvent
-    ConvertEvent(SFMLEvent, event);
+    convertEvent(SFMLEvent, event);
 
     return sfTrue;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2i sfRenderWindow_GetPosition(const sfRenderWindow* renderWindow)
+sfVector2i sfRenderWindow_getPosition(const sfRenderWindow* renderWindow)
 {
     sfVector2i position = {0, 0};
     CSFML_CHECK_RETURN(renderWindow, position);
 
-    sf::Vector2i sfmlPos = renderWindow->This.GetPosition();
+    sf::Vector2i sfmlPos = renderWindow->This.getPosition();
     position.x = sfmlPos.x;
     position.y = sfmlPos.y;
 
@@ -184,19 +186,19 @@ sfVector2i sfRenderWindow_GetPosition(const sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetPosition(sfRenderWindow* renderWindow, sfVector2i position)
+void sfRenderWindow_setPosition(sfRenderWindow* renderWindow, sfVector2i position)
 {
-    CSFML_CALL(renderWindow, SetPosition(sf::Vector2i(position.x, position.y)));
+    CSFML_CALL(renderWindow, setPosition(sf::Vector2i(position.x, position.y)));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2u sfRenderWindow_GetSize(const sfRenderWindow* renderWindow)
+sfVector2u sfRenderWindow_getSize(const sfRenderWindow* renderWindow)
 {
     sfVector2u size = {0, 0};
     CSFML_CHECK_RETURN(renderWindow, size);
 
-    sf::Vector2u sfmlSize = renderWindow->This.GetSize();
+    sf::Vector2u sfmlSize = renderWindow->This.getSize();
     size.x = sfmlSize.x;
     size.y = sfmlSize.y;
 
@@ -205,111 +207,111 @@ sfVector2u sfRenderWindow_GetSize(const sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, sfVector2u size)
+void sfRenderWindow_setSize(sfRenderWindow* renderWindow, sfVector2u size)
 {
-    CSFML_CALL(renderWindow, SetSize(sf::Vector2u(size.x, size.y)));
+    CSFML_CALL(renderWindow, setSize(sf::Vector2u(size.x, size.y)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetTitle(sfRenderWindow* renderWindow, const char* title)
+void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, const char* title)
 {
-    CSFML_CALL(renderWindow, SetTitle(title));
+    CSFML_CALL(renderWindow, setTitle(title));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels)
+void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels)
 {
-    CSFML_CALL(renderWindow, SetIcon(width, height, pixels));
+    CSFML_CALL(renderWindow, setIcon(width, height, pixels));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetVisible(sfRenderWindow* renderWindow, sfBool visible)
+void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, sfBool visible)
 {
-    CSFML_CALL(renderWindow, SetVisible(visible == sfTrue));
+    CSFML_CALL(renderWindow, setVisible(visible == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetMouseCursorVisible(sfRenderWindow* renderWindow, sfBool visible)
+void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, sfBool visible)
 {
-    CSFML_CALL(renderWindow, SetMouseCursorVisible(visible == sfTrue));
+    CSFML_CALL(renderWindow, setMouseCursorVisible(visible == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled)
+void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled)
 {
-    CSFML_CALL(renderWindow, SetVerticalSyncEnabled(enabled == sfTrue));
+    CSFML_CALL(renderWindow, setVerticalSyncEnabled(enabled == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled)
+void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled)
 {
-    CSFML_CALL(renderWindow, SetKeyRepeatEnabled(enabled == sfTrue));
+    CSFML_CALL(renderWindow, setKeyRepeatEnabled(enabled == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_SetActive(sfRenderWindow* renderWindow, sfBool active)
+sfBool sfRenderWindow_setActive(sfRenderWindow* renderWindow, sfBool active)
 {
-    CSFML_CALL_RETURN(renderWindow, SetActive(active == sfTrue), sfFalse);
+    CSFML_CALL_RETURN(renderWindow, setActive(active == sfTrue), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_Display(sfRenderWindow* renderWindow)
+void sfRenderWindow_display(sfRenderWindow* renderWindow)
 {
-    CSFML_CALL(renderWindow, Display());
+    CSFML_CALL(renderWindow, display());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetFramerateLimit(sfRenderWindow* renderWindow, unsigned int limit)
+void sfRenderWindow_setFramerateLimit(sfRenderWindow* renderWindow, unsigned int limit)
 {
-    CSFML_CALL(renderWindow, SetFramerateLimit(limit));
+    CSFML_CALL(renderWindow, setFramerateLimit(limit));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetJoystickThreshold(sfRenderWindow* renderWindow, float threshold)
+void sfRenderWindow_setJoystickThreshold(sfRenderWindow* renderWindow, float threshold)
 {
-    CSFML_CALL(renderWindow, SetJoystickThreshold(threshold));
+    CSFML_CALL(renderWindow, setJoystickThreshold(threshold));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfWindowHandle sfRenderWindow_GetSystemHandle(const sfRenderWindow* renderWindow)
+sfWindowHandle sfRenderWindow_getSystemHandle(const sfRenderWindow* renderWindow)
 {
     CSFML_CHECK_RETURN(renderWindow, 0);
 
-    return (sfWindowHandle)renderWindow->This.GetSystemHandle();
+    return (sfWindowHandle)renderWindow->This.getSystemHandle();
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_Clear(sfRenderWindow* renderWindow, sfColor color)
+void sfRenderWindow_clear(sfRenderWindow* renderWindow, sfColor color)
 {
     sf::Color SFMLColor(color.r, color.g, color.b, color.a);
 
-    CSFML_CALL(renderWindow, Clear(SFMLColor));
+    CSFML_CALL(renderWindow, clear(SFMLColor));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_SetView(sfRenderWindow* renderWindow, const sfView* view)
+void sfRenderWindow_setView(sfRenderWindow* renderWindow, const sfView* view)
 {
     CSFML_CHECK(view);
-    CSFML_CALL(renderWindow, SetView(view->This));
+    CSFML_CALL(renderWindow, setView(view->This));
     renderWindow->CurrentView.This = view->This;
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfView* sfRenderWindow_GetView(const sfRenderWindow* renderWindow)
+const sfView* sfRenderWindow_getView(const sfRenderWindow* renderWindow)
 {
     CSFML_CHECK_RETURN(renderWindow, NULL);
 
@@ -318,7 +320,7 @@ const sfView* sfRenderWindow_GetView(const sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-const sfView* sfRenderWindow_GetDefaultView(const sfRenderWindow* renderWindow)
+const sfView* sfRenderWindow_getDefaultView(const sfRenderWindow* renderWindow)
 {
     CSFML_CHECK_RETURN(renderWindow, NULL);
 
@@ -327,32 +329,32 @@ const sfView* sfRenderWindow_GetDefaultView(const sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-sfIntRect sfRenderWindow_GetViewport(const sfRenderWindow* renderWindow, const sfView* view)
+sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const sfView* view)
 {
     sfIntRect rect = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(view, rect);
     CSFML_CHECK_RETURN(renderWindow, rect);
 
-    sf::IntRect SFMLrect = renderWindow->This.GetViewport(view->This);
-    rect.Left   = SFMLrect.Left;
-    rect.Top    = SFMLrect.Top;
-    rect.Width  = SFMLrect.Width;
-    rect.Height = SFMLrect.Height;
+    sf::IntRect SFMLrect = renderWindow->This.getViewport(view->This);
+    rect.left   = SFMLrect.left;
+    rect.top    = SFMLrect.top;
+    rect.width  = SFMLrect.width;
+    rect.height = SFMLrect.height;
 
     return rect;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_ConvertCoords(const sfRenderWindow* renderWindow, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView)
+void sfRenderWindow_convertCoords(const sfRenderWindow* renderWindow, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView)
 {
     CSFML_CHECK(renderWindow);
 
     sf::Vector2f point;
     if (targetView)
-        point = renderWindow->This.ConvertCoords(windowX, windowY, targetView->This);
+        point = renderWindow->This.convertCoords(windowX, windowY, targetView->This);
     else
-        point = renderWindow->This.ConvertCoords(windowX, windowY);
+        point = renderWindow->This.convertCoords(windowX, windowY);
 
     if (viewX) *viewX = point.x;
     if (viewY) *viewY = point.y;
@@ -360,83 +362,81 @@ void sfRenderWindow_ConvertCoords(const sfRenderWindow* renderWindow, unsigned i
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_DrawSprite(sfRenderWindow* renderWindow, const sfSprite* object, const sfRenderStates* states)
+void sfRenderWindow_drawSprite(sfRenderWindow* renderWindow, const sfSprite* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderWindow_DrawText(sfRenderWindow* renderWindow, const sfText* object, const sfRenderStates* states)
+void sfRenderWindow_drawText(sfRenderWindow* renderWindow, const sfText* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderWindow_DrawShape(sfRenderWindow* renderWindow, const sfShape* object, const sfRenderStates* states)
+void sfRenderWindow_drawShape(sfRenderWindow* renderWindow, const sfShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderWindow_DrawCircleShape(sfRenderWindow* renderWindow, const sfCircleShape* object, const sfRenderStates* states)
+void sfRenderWindow_drawCircleShape(sfRenderWindow* renderWindow, const sfCircleShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderWindow_DrawConvexShape(sfRenderWindow* renderWindow, const sfConvexShape* object, const sfRenderStates* states)
+void sfRenderWindow_drawConvexShape(sfRenderWindow* renderWindow, const sfConvexShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderWindow_DrawRectangleShape(sfRenderWindow* renderWindow, const sfRectangleShape* object, const sfRenderStates* states)
+void sfRenderWindow_drawRectangleShape(sfRenderWindow* renderWindow, const sfRectangleShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderWindow_DrawVertexArray(sfRenderWindow* renderWindow, const sfVertexArray* object, const sfRenderStates* states)
+void sfRenderWindow_drawVertexArray(sfRenderWindow* renderWindow, const sfVertexArray* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderWindow, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_DrawPrimitives(sfRenderWindow* renderWindow,
-                                             const sfVertex* vertices, unsigned int vertexCount,
-                                             sfPrimitiveType type, const sfRenderStates* states)
+void sfRenderWindow_drawPrimitives(sfRenderWindow* renderWindow,
+                                   const sfVertex* vertices, unsigned int vertexCount,
+                                   sfPrimitiveType type, const sfRenderStates* states)
 {
-    CSFML_CALL(renderWindow, Draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount,
-               static_cast<sf::PrimitiveType>(type), ConvertRenderStates(states)));
+    CSFML_CALL(renderWindow, draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount,
+               static_cast<sf::PrimitiveType>(type), convertRenderStates(states)));
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_PushGLStates(sfRenderWindow* renderWindow)
+void sfRenderWindow_pushGLStates(sfRenderWindow* renderWindow)
 {
-    CSFML_CALL(renderWindow, PushGLStates());
+    CSFML_CALL(renderWindow, pushGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_PopGLStates(sfRenderWindow* renderWindow)
+void sfRenderWindow_popGLStates(sfRenderWindow* renderWindow)
 {
-    CSFML_CALL(renderWindow, PopGLStates());
+    CSFML_CALL(renderWindow, popGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_ResetGLStates(sfRenderWindow* renderWindow)
+void sfRenderWindow_resetGLStates(sfRenderWindow* renderWindow)
 {
-    CSFML_CALL(renderWindow, ResetGLStates());
+    CSFML_CALL(renderWindow, resetGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-/// Copy the current contents of a window to an image
-////////////////////////////////////////////////////////////
-sfImage* sfRenderWindow_Capture(const sfRenderWindow* renderWindow)
+sfImage* sfRenderWindow_capture(const sfRenderWindow* renderWindow)
 {
     CSFML_CHECK_RETURN(renderWindow, NULL);
 
     sfImage* image = new sfImage;
-    image->This = renderWindow->This.Capture();
+    image->This = renderWindow->This.capture();
 
     return image;
 }

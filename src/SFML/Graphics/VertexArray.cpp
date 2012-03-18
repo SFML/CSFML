@@ -31,14 +31,14 @@
 
 
 ////////////////////////////////////////////////////////////
-sfVertexArray* sfVertexArray_Create(void)
+sfVertexArray* sfVertexArray_create(void)
 {
     return new sfVertexArray;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVertexArray* sfVertexArray_Copy(sfVertexArray* vertexArray)
+sfVertexArray* sfVertexArray_copy(sfVertexArray* vertexArray)
 {
     CSFML_CHECK_RETURN(vertexArray, NULL);
 
@@ -47,21 +47,21 @@ sfVertexArray* sfVertexArray_Copy(sfVertexArray* vertexArray)
 
 
 ////////////////////////////////////////////////////////////
-void sfVertexArray_Destroy(sfVertexArray* vertexArray)
+void sfVertexArray_destroy(sfVertexArray* vertexArray)
 {
     delete vertexArray;
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfVertexArray_GetVertexCount(const sfVertexArray* vertexArray)
+unsigned int sfVertexArray_getVertexCount(const sfVertexArray* vertexArray)
 {
-    CSFML_CALL_RETURN(vertexArray, GetVertexCount(), 0);
+    CSFML_CALL_RETURN(vertexArray, getVertexCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVertex* sfVertexArray_GetVertex(sfVertexArray* vertexArray, unsigned int index)
+sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, unsigned int index)
 {
     CSFML_CHECK_RETURN(vertexArray, NULL);
 
@@ -71,53 +71,53 @@ sfVertex* sfVertexArray_GetVertex(sfVertexArray* vertexArray, unsigned int index
 
 
 ////////////////////////////////////////////////////////////
-void sfVertexArray_Clear(sfVertexArray* vertexArray)
+void sfVertexArray_clear(sfVertexArray* vertexArray)
 {
-    CSFML_CALL(vertexArray, Clear());
+    CSFML_CALL(vertexArray, clear());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfVertexArray_Resize(sfVertexArray* vertexArray, unsigned int vertexCount)
+void sfVertexArray_resize(sfVertexArray* vertexArray, unsigned int vertexCount)
 {
-    CSFML_CALL(vertexArray, Resize(vertexCount));
+    CSFML_CALL(vertexArray, resize(vertexCount));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfVertexArray_Append(sfVertexArray* vertexArray, sfVertex vertex)
+void sfVertexArray_append(sfVertexArray* vertexArray, sfVertex vertex)
 {
     // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
-    CSFML_CALL(vertexArray, Append(reinterpret_cast<sf::Vertex&>(vertex)));
+    CSFML_CALL(vertexArray, append(reinterpret_cast<sf::Vertex&>(vertex)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfVertexArray_SetPrimitiveType(sfVertexArray* vertexArray, sfPrimitiveType type)
+void sfVertexArray_setPrimitiveType(sfVertexArray* vertexArray, sfPrimitiveType type)
 {
-    CSFML_CALL(vertexArray, SetPrimitiveType(static_cast<sf::PrimitiveType>(type)));
+    CSFML_CALL(vertexArray, setPrimitiveType(static_cast<sf::PrimitiveType>(type)));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfPrimitiveType sfVertexArray_GetPrimitiveType(sfVertexArray* vertexArray)
+sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
 {
     CSFML_CHECK_RETURN(vertexArray, sfPoints);
-    return static_cast<sfPrimitiveType>(vertexArray->This.GetPrimitiveType());
+    return static_cast<sfPrimitiveType>(vertexArray->This.getPrimitiveType());
 }
 
 
 ////////////////////////////////////////////////////////////
-sfFloatRect sfVertexArray_GetBounds(sfVertexArray* vertexArray)
+sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray)
 {
     sfFloatRect rect = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(vertexArray, rect);
 
-    sf::FloatRect sfmlRect = vertexArray->This.GetBounds();
-    rect.Left = sfmlRect.Left;
-    rect.Top = sfmlRect.Top;
-    rect.Width = sfmlRect.Width;
-    rect.Height = sfmlRect.Height;
+    sf::FloatRect sfmlRect = vertexArray->This.getBounds();
+    rect.left = sfmlRect.left;
+    rect.top = sfmlRect.top;
+    rect.width = sfmlRect.width;
+    rect.height = sfmlRect.height;
 
     return rect;
 }

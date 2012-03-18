@@ -65,7 +65,7 @@ CSFML_GRAPHICS_API sfColor sfTransparent; ///< Transparent (black) predefined co
 /// \return sfColor constructed from the components
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfColor_FromRGB(sfUint8 red, sfUint8 green, sfUint8 blue);
+CSFML_GRAPHICS_API sfColor sfColor_fromRGB(sfUint8 red, sfUint8 green, sfUint8 blue);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a color from its 4 RGBA components
@@ -78,7 +78,7 @@ CSFML_GRAPHICS_API sfColor sfColor_FromRGB(sfUint8 red, sfUint8 green, sfUint8 b
 /// \return sfColor constructed from the components
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfColor_FromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha);
+CSFML_GRAPHICS_API sfColor sfColor_fromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha);
 
 ////////////////////////////////////////////////////////////
 /// \brief Add two colors
@@ -89,7 +89,7 @@ CSFML_GRAPHICS_API sfColor sfColor_FromRGBA(sfUint8 red, sfUint8 green, sfUint8 
 /// \return Component-wise saturated addition of the two colors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfColor_Add(sfColor color1, sfColor color2);
+CSFML_GRAPHICS_API sfColor sfColor_add(sfColor color1, sfColor color2);
 
 ////////////////////////////////////////////////////////////
 /// \brief Modulate two colors
@@ -100,7 +100,7 @@ CSFML_GRAPHICS_API sfColor sfColor_Add(sfColor color1, sfColor color2);
 /// \return Component-wise multiplication of the two colors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfColor_Modulate(sfColor color1, sfColor color2);
+CSFML_GRAPHICS_API sfColor sfColor_modulate(sfColor color1, sfColor color2);
 
 
 #endif // SFML_COLOR_H

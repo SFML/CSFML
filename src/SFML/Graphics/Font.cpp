@@ -34,10 +34,10 @@
 ////////////////////////////////////////////////////////////
 /// Create a new font from a file
 ////////////////////////////////////////////////////////////
-sfFont* sfFont_CreateFromFile(const char* filename)
+sfFont* sfFont_createFromFile(const char* filename)
 {
     sfFont* font = new sfFont;
-    if (!font->This.LoadFromFile(filename))
+    if (!font->This.loadFromFile(filename))
     {
         delete font;
         font = NULL;
@@ -50,10 +50,10 @@ sfFont* sfFont_CreateFromFile(const char* filename)
 ////////////////////////////////////////////////////////////
 /// Create a new font from a file in memory
 ////////////////////////////////////////////////////////////
-sfFont* sfFont_CreateFromMemory(const void* data, size_t sizeInBytes)
+sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
 {
     sfFont* font = new sfFont;
-    if (!font->This.LoadFromMemory(data, sizeInBytes))
+    if (!font->This.loadFromMemory(data, sizeInBytes))
     {
         delete font;
         font = NULL;
@@ -66,13 +66,13 @@ sfFont* sfFont_CreateFromMemory(const void* data, size_t sizeInBytes)
 ////////////////////////////////////////////////////////////
 /// Create a new font from a custom stream
 ////////////////////////////////////////////////////////////
-sfFont* sfFont_CreateFromStream(sfInputStream* stream)
+sfFont* sfFont_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, NULL);
 
     sfFont* font = new sfFont;
     font->Stream = CallbackStream(stream);
-    if (!font->This.LoadFromStream(font->Stream))
+    if (!font->This.loadFromStream(font->Stream))
     {
         delete font;
         font = NULL;
@@ -85,7 +85,7 @@ sfFont* sfFont_CreateFromStream(sfInputStream* stream)
 ////////////////////////////////////////////////////////////
 /// Copy an existing font
 ////////////////////////////////////////////////////////////
-sfFont* sfFont_Copy(sfFont* font)
+sfFont* sfFont_copy(sfFont* font)
 {
     CSFML_CHECK_RETURN(font, NULL);
 
@@ -96,7 +96,7 @@ sfFont* sfFont_Copy(sfFont* font)
 ////////////////////////////////////////////////////////////
 /// Destroy an existing font
 ////////////////////////////////////////////////////////////
-void sfFont_Destroy(sfFont* font)
+void sfFont_destroy(sfFont* font)
 {
     delete font;
 }
@@ -105,22 +105,22 @@ void sfFont_Destroy(sfFont* font)
 ////////////////////////////////////////////////////////////
 /// Get a glyph in a font
 ////////////////////////////////////////////////////////////
-sfGlyph sfFont_GetGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold)
+sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold)
 {
     sfGlyph glyph = {0, {0, 0, 0, 0}, {0, 0, 0, 0}};
     CSFML_CHECK_RETURN(font, glyph);
 
-    sf::Glyph SFMLGlyph = font->This.GetGlyph(codePoint, characterSize, bold == sfTrue);
+    sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold == sfTrue);
 
-    glyph.Advance            = SFMLGlyph.Advance;
-    glyph.Bounds.Left        = SFMLGlyph.Bounds.Left;
-    glyph.Bounds.Top         = SFMLGlyph.Bounds.Top;
-    glyph.Bounds.Width       = SFMLGlyph.Bounds.Width;
-    glyph.Bounds.Height      = SFMLGlyph.Bounds.Height;
-    glyph.TextureRect.Left   = SFMLGlyph.TextureRect.Left;
-    glyph.TextureRect.Top    = SFMLGlyph.TextureRect.Top;
-    glyph.TextureRect.Width  = SFMLGlyph.TextureRect.Width;
-    glyph.TextureRect.Height = SFMLGlyph.TextureRect.Height;
+    glyph.advance            = SFMLGlyph.advance;
+    glyph.bounds.left        = SFMLGlyph.bounds.left;
+    glyph.bounds.top         = SFMLGlyph.bounds.top;
+    glyph.bounds.width       = SFMLGlyph.bounds.width;
+    glyph.bounds.height      = SFMLGlyph.bounds.height;
+    glyph.textureRect.left   = SFMLGlyph.textureRect.left;
+    glyph.textureRect.top    = SFMLGlyph.textureRect.top;
+    glyph.textureRect.width  = SFMLGlyph.textureRect.width;
+    glyph.textureRect.height = SFMLGlyph.textureRect.height;
 
     return glyph;
 }
@@ -129,29 +129,29 @@ sfGlyph sfFont_GetGlyph(sfFont* font, sfUint32 codePoint, unsigned int character
 ////////////////////////////////////////////////////////////
 /// Get the kerning value corresponding to a given pair of characters in a font
 ////////////////////////////////////////////////////////////
-int sfFont_GetKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize)
+int sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize)
 {
-    CSFML_CALL_RETURN(font, GetKerning(first, second, characterSize), 0);
+    CSFML_CALL_RETURN(font, getKerning(first, second, characterSize), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
 /// Get the line spacing value
 ////////////////////////////////////////////////////////////
-int sfFont_GetLineSpacing(sfFont* font, unsigned int characterSize)
+int sfFont_getLineSpacing(sfFont* font, unsigned int characterSize)
 {
-    CSFML_CALL_RETURN(font, GetLineSpacing(characterSize), 0);
+    CSFML_CALL_RETURN(font, getLineSpacing(characterSize), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
 /// Get the texture containing the glyphs of a given size in a font
 ////////////////////////////////////////////////////////////
-const sfTexture* sfFont_GetTexture(sfFont* font, unsigned int characterSize)
+const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 {
     CSFML_CHECK_RETURN(font, NULL);
 
-    *font->Textures[characterSize].This = font->This.GetTexture(characterSize);
+    *font->Textures[characterSize].This = font->This.getTexture(characterSize);
 
     return &font->Textures[characterSize];
 }
@@ -160,9 +160,9 @@ const sfTexture* sfFont_GetTexture(sfFont* font, unsigned int characterSize)
 ////////////////////////////////////////////////////////////
 /// Get the built-in default font (Arial)
 ////////////////////////////////////////////////////////////
-const sfFont* sfFont_GetDefaultFont(void)
+const sfFont* sfFont_getDefaultFont(void)
 {
-    static sfFont defaultFont = {sf::Font::GetDefaultFont(), std::map<unsigned int, sfTexture>()};
+    static sfFont defaultFont = {sf::Font::getDefaultFont(), std::map<unsigned int, sfTexture>()};
 
     return &defaultFont;
 }

@@ -53,7 +53,7 @@ public :
 
 private :
 
-    virtual bool OnStart()
+    virtual bool onStart()
     {
         if (myStartCallback)
             return myStartCallback(myUserData) == sfTrue;
@@ -61,7 +61,7 @@ private :
             return true;
     }
 
-    virtual bool OnProcessSamples(const sf::Int16* samples, std::size_t sampleCount)
+    virtual bool onProcessSamples(const sf::Int16* samples, std::size_t sampleCount)
     {
         if (myProcessCallback)
             return myProcessCallback(samples, sampleCount, myUserData) == sfTrue;
@@ -69,7 +69,7 @@ private :
             return true;
     }
 
-    virtual void OnStop()
+    virtual void onStop()
     {
         if (myStopCallback)
             myStopCallback(myUserData);

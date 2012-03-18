@@ -33,5 +33,5 @@
 ////////////////////////////////////////////////////////////
 void sfSleep(sfTime duration)
 {
-    sf::Sleep(sf::Microseconds(duration.Microseconds));
+    sf::sleep(sf::microseconds(duration.microseconds));
 }

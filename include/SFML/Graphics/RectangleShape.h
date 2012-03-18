@@ -254,7 +254,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetTextureRect(sfRectangleShape* shape,
 /// This color is modulated (multiplied) with the shape's
 /// texture if any. It can be used to colorize the shape,
 /// or change its global opacity.
-/// You can use sf::Color::Transparent to make the inside of
+/// You can use sfTransparent to make the inside of
 /// the shape transparent, and have the outline alone.
 /// By default, the shape's fill color is opaque white.
 ///
@@ -267,7 +267,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetFillColor(sfRectangleShape* shape, s
 ////////////////////////////////////////////////////////////
 /// \brief Set the outline color of a rectangle shape
 ///
-/// You can use sf::Color::Transparent to disable the outline.
+/// You can use sfTransparent to disable the outline.
 /// By default, the shape's outline color is opaque white.
 ///
 /// \param shape Shape object

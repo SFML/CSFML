@@ -42,7 +42,7 @@
 /// \return A new sfTcpSocket object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfTcpSocket* sfTcpSocket_Create(void);
+CSFML_NETWORK_API sfTcpSocket* sfTcpSocket_create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a TCP socket
@@ -50,14 +50,14 @@ CSFML_NETWORK_API sfTcpSocket* sfTcpSocket_Create(void);
 /// \param socket TCP socket to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfTcpSocket_Destroy(sfTcpSocket* socket);
+CSFML_NETWORK_API void sfTcpSocket_destroy(sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the blocking state of a TCP listener
 ///
 /// In blocking mode, calls will not return until they have
 /// completed their task. For example, a call to
-/// sfTcpSocket_Receive in blocking mode won't return until
+/// sfTcpSocket_receive in blocking mode won't return until
 /// new data was actually received.
 /// In non-blocking mode, calls will always return immediately,
 /// using the return code to signal whether there was data
@@ -68,7 +68,7 @@ CSFML_NETWORK_API void sfTcpSocket_Destroy(sfTcpSocket* socket);
 /// \param blocking sfTrue to set the socket as blocking, sfFalse for non-blocking
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfTcpSocket_SetBlocking(sfTcpSocket* socket, sfBool blocking);
+CSFML_NETWORK_API void sfTcpSocket_setBlocking(sfTcpSocket* socket, sfBool blocking);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a TCP socket is in blocking or non-blocking mode
@@ -78,7 +78,7 @@ CSFML_NETWORK_API void sfTcpSocket_SetBlocking(sfTcpSocket* socket, sfBool block
 /// \return sfTrue if the socket is blocking, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfTcpSocket_IsBlocking(const sfTcpSocket* socket);
+CSFML_NETWORK_API sfBool sfTcpSocket_isBlocking(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the port to which a TCP socket is bound locally
@@ -90,20 +90,20 @@ CSFML_NETWORK_API sfBool sfTcpSocket_IsBlocking(const sfTcpSocket* socket);
 /// \return Port to which the socket is bound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API unsigned short sfTcpSocket_GetLocalPort(const sfTcpSocket* socket);
+CSFML_NETWORK_API unsigned short sfTcpSocket_getLocalPort(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the address of the connected peer of a TCP socket
 ///
 /// It the socket is not connected, this function returns
-/// sfIpAddress_None().
+/// sfIpAddress_None.
 ///
 /// \param socket TCP socket object
 ///
 /// \return Address of the remote peer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfTcpSocket_GetRemoteAddress(const sfTcpSocket* socket);
+CSFML_NETWORK_API sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the port of the connected peer to which
@@ -116,7 +116,7 @@ CSFML_NETWORK_API sfIpAddress sfTcpSocket_GetRemoteAddress(const sfTcpSocket* so
 /// \return Remote port to which the socket is connected
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API unsigned short sfTcpSocket_GetRemotePort(const sfTcpSocket* socket);
+CSFML_NETWORK_API unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Connect a TCP socket to a remote peer
@@ -134,7 +134,7 @@ CSFML_NETWORK_API unsigned short sfTcpSocket_GetRemotePort(const sfTcpSocket* so
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfTime timeout);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Disconnect a TCP socket from its remote peer
@@ -145,7 +145,7 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAd
 /// \param socket TCP socket object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfTcpSocket_Disconnect(sfTcpSocket* socket);
+CSFML_NETWORK_API void sfTcpSocket_disconnect(sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send raw data to the remote peer of a TCP socket
@@ -159,7 +159,7 @@ CSFML_NETWORK_API void sfTcpSocket_Disconnect(sfTcpSocket* socket);
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_Send(sfTcpSocket* socket, const char* data, size_t size);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const char* data, size_t size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Receive raw data from the remote peer of a TCP socket
@@ -176,7 +176,7 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_Send(sfTcpSocket* socket, const cha
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_Receive(sfTcpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a formatted packet of data to the remote peer of a TCP socket
@@ -189,7 +189,7 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_Receive(sfTcpSocket* socket, char* 
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_SendPacket(sfTcpSocket* socket, sfPacket* packet);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_sendPacket(sfTcpSocket* socket, sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Receive a formatted packet of data from the remote peer
@@ -204,7 +204,7 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_SendPacket(sfTcpSocket* socket, sfP
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_ReceivePacket(sfTcpSocket* socket, sfPacket* packet);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receivePacket(sfTcpSocket* socket, sfPacket* packet);
 
 
 #endif // SFML_TCPSOCKET_H

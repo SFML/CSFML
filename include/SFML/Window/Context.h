@@ -40,7 +40,7 @@
 /// \return New sfContext object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfContext* sfContext_Create(void);
+CSFML_WINDOW_API sfContext* sfContext_create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a context
@@ -48,7 +48,7 @@ CSFML_WINDOW_API sfContext* sfContext_Create(void);
 /// \param context Context to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfContext_Destroy(sfContext* context);
+CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate explicitely a context
@@ -57,7 +57,7 @@ CSFML_WINDOW_API void sfContext_Destroy(sfContext* context);
 /// \param active  sfTrue to activate, sfFalse to deactivate
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfContext_SetActive(sfContext* context, sfBool active);
+CSFML_WINDOW_API void sfContext_setActive(sfContext* context, sfBool active);
 
 
 #endif // SFML_CONTEXT_H

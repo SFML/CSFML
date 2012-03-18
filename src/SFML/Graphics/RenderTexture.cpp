@@ -39,20 +39,20 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderTexture* sfRenderTexture_Create(unsigned int width, unsigned int height, sfBool depthBuffer)
+sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, sfBool depthBuffer)
 {
     sfRenderTexture* renderTexture = new sfRenderTexture;
-    renderTexture->This.Create(width, height, depthBuffer == sfTrue);
-    renderTexture->Target = new sfTexture(const_cast<sf::Texture*>(&renderTexture->This.GetTexture()));
-    renderTexture->DefaultView.This = renderTexture->This.GetDefaultView();
-    renderTexture->CurrentView.This = renderTexture->This.GetView();
+    renderTexture->This.create(width, height, depthBuffer == sfTrue);
+    renderTexture->Target = new sfTexture(const_cast<sf::Texture*>(&renderTexture->This.getTexture()));
+    renderTexture->DefaultView.This = renderTexture->This.getDefaultView();
+    renderTexture->CurrentView.This = renderTexture->This.getView();
 
     return renderTexture;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_Destroy(sfRenderTexture* renderTexture)
+void sfRenderTexture_destroy(sfRenderTexture* renderTexture)
 {
     delete renderTexture->Target;
     delete renderTexture;
@@ -60,12 +60,12 @@ void sfRenderTexture_Destroy(sfRenderTexture* renderTexture)
 
 
 ////////////////////////////////////////////////////////////
-sfVector2u sfRenderTexture_GetSize(const sfRenderTexture* renderTexture)
+sfVector2u sfRenderTexture_getSize(const sfRenderTexture* renderTexture)
 {
     sfVector2u size = {0, 0};
     CSFML_CHECK_RETURN(renderTexture, size);
 
-    sf::Vector2u sfmlSize = renderTexture->This.GetSize();
+    sf::Vector2u sfmlSize = renderTexture->This.getSize();
     size.x = sfmlSize.x;
     size.y = sfmlSize.y;
 
@@ -74,39 +74,39 @@ sfVector2u sfRenderTexture_GetSize(const sfRenderTexture* renderTexture)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderTexture_SetActive(sfRenderTexture* renderTexture, sfBool active)
+sfBool sfRenderTexture_setActive(sfRenderTexture* renderTexture, sfBool active)
 {
-    CSFML_CALL_RETURN(renderTexture, SetActive(active == sfTrue), sfFalse);
+    CSFML_CALL_RETURN(renderTexture, setActive(active == sfTrue), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_Display(sfRenderTexture* renderTexture)
+void sfRenderTexture_display(sfRenderTexture* renderTexture)
 {
-    CSFML_CALL(renderTexture, Display());
+    CSFML_CALL(renderTexture, display());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_Clear(sfRenderTexture* renderTexture, sfColor color)
+void sfRenderTexture_clear(sfRenderTexture* renderTexture, sfColor color)
 {
     sf::Color SFMLColor(color.r, color.g, color.b, color.a);
 
-    CSFML_CALL(renderTexture, Clear(SFMLColor));
+    CSFML_CALL(renderTexture, clear(SFMLColor));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_SetView(sfRenderTexture* renderTexture, const sfView* view)
+void sfRenderTexture_setView(sfRenderTexture* renderTexture, const sfView* view)
 {
     CSFML_CHECK(view);
-    CSFML_CALL(renderTexture, SetView(view->This));
+    CSFML_CALL(renderTexture, setView(view->This));
     renderTexture->CurrentView.This = view->This;
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfView* sfRenderTexture_GetView(const sfRenderTexture* renderTexture)
+const sfView* sfRenderTexture_getView(const sfRenderTexture* renderTexture)
 {
     CSFML_CHECK_RETURN(renderTexture, NULL);
 
@@ -115,7 +115,7 @@ const sfView* sfRenderTexture_GetView(const sfRenderTexture* renderTexture)
 
 
 ////////////////////////////////////////////////////////////
-const sfView* sfRenderTexture_GetDefaultView(const sfRenderTexture* renderTexture)
+const sfView* sfRenderTexture_getDefaultView(const sfRenderTexture* renderTexture)
 {
     CSFML_CHECK_RETURN(renderTexture, NULL);
 
@@ -124,32 +124,32 @@ const sfView* sfRenderTexture_GetDefaultView(const sfRenderTexture* renderTextur
 
 
 ////////////////////////////////////////////////////////////
-sfIntRect sfRenderTexture_GetViewport(const sfRenderTexture* renderTexture, const sfView* view)
+sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, const sfView* view)
 {
     sfIntRect rect = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(view, rect);
     CSFML_CHECK_RETURN(renderTexture, rect);
 
-    sf::IntRect SFMLrect = renderTexture->This.GetViewport(view->This);
-    rect.Left   = SFMLrect.Left;
-    rect.Top    = SFMLrect.Top;
-    rect.Width  = SFMLrect.Width;
-    rect.Height = SFMLrect.Height;
+    sf::IntRect SFMLrect = renderTexture->This.getViewport(view->This);
+    rect.left   = SFMLrect.left;
+    rect.top    = SFMLrect.top;
+    rect.width  = SFMLrect.width;
+    rect.height = SFMLrect.height;
 
     return rect;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_ConvertCoords(const sfRenderTexture* renderTexture, unsigned int textureX, unsigned int textureY, float* viewX, float* viewY, const sfView* targetView)
+void sfRenderTexture_convertCoords(const sfRenderTexture* renderTexture, unsigned int textureX, unsigned int textureY, float* viewX, float* viewY, const sfView* targetView)
 {
     CSFML_CHECK(renderTexture);
 
     sf::Vector2f point;
     if (targetView)
-        point = renderTexture->This.ConvertCoords(textureX, textureY, targetView->This);
+        point = renderTexture->This.convertCoords(textureX, textureY, targetView->This);
     else
-        point = renderTexture->This.ConvertCoords(textureX, textureY);
+        point = renderTexture->This.convertCoords(textureX, textureY);
 
     if (viewX) *viewX = point.x;
     if (viewY) *viewY = point.y;
@@ -157,76 +157,76 @@ void sfRenderTexture_ConvertCoords(const sfRenderTexture* renderTexture, unsigne
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_DrawSprite(sfRenderTexture* renderTexture, const sfSprite* object, const sfRenderStates* states)
+void sfRenderTexture_drawSprite(sfRenderTexture* renderTexture, const sfSprite* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderTexture_DrawText(sfRenderTexture* renderTexture, const sfText* object, const sfRenderStates* states)
+void sfRenderTexture_drawText(sfRenderTexture* renderTexture, const sfText* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderTexture_DrawShape(sfRenderTexture* renderTexture, const sfShape* object, const sfRenderStates* states)
+void sfRenderTexture_drawShape(sfRenderTexture* renderTexture, const sfShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderTexture_DrawCircleShape(sfRenderTexture* renderTexture, const sfCircleShape* object, const sfRenderStates* states)
+void sfRenderTexture_drawCircleShape(sfRenderTexture* renderTexture, const sfCircleShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderTexture_DrawConvexShape(sfRenderTexture* renderTexture, const sfConvexShape* object, const sfRenderStates* states)
+void sfRenderTexture_drawConvexShape(sfRenderTexture* renderTexture, const sfConvexShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderTexture_DrawRectangleShape(sfRenderTexture* renderTexture, const sfRectangleShape* object, const sfRenderStates* states)
+void sfRenderTexture_drawRectangleShape(sfRenderTexture* renderTexture, const sfRectangleShape* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
-void sfRenderTexture_DrawVertexArray(sfRenderTexture* renderTexture, const sfVertexArray* object, const sfRenderStates* states)
+void sfRenderTexture_drawVertexArray(sfRenderTexture* renderTexture, const sfVertexArray* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
-    CSFML_CALL(renderTexture, Draw(object->This, ConvertRenderStates(states)));
+    CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_DrawPrimitives(sfRenderTexture* renderTexture,
-                                              const sfVertex* vertices, unsigned int vertexCount,
-                                              sfPrimitiveType type, const sfRenderStates* states)
+void sfRenderTexture_drawPrimitives(sfRenderTexture* renderTexture,
+                                    const sfVertex* vertices, unsigned int vertexCount,
+                                    sfPrimitiveType type, const sfRenderStates* states)
 {
-    CSFML_CALL(renderTexture, Draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount,
-               static_cast<sf::PrimitiveType>(type), ConvertRenderStates(states)));
+    CSFML_CALL(renderTexture, draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount,
+               static_cast<sf::PrimitiveType>(type), convertRenderStates(states)));
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_PushGLStates(sfRenderTexture* renderTexture)
+void sfRenderTexture_pushGLStates(sfRenderTexture* renderTexture)
 {
-    CSFML_CALL(renderTexture, PushGLStates());
+    CSFML_CALL(renderTexture, pushGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_PopGLStates(sfRenderTexture* renderTexture)
+void sfRenderTexture_popGLStates(sfRenderTexture* renderTexture)
 {
-    CSFML_CALL(renderTexture, PopGLStates());
+    CSFML_CALL(renderTexture, popGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_ResetGLStates(sfRenderTexture* renderTexture)
+void sfRenderTexture_resetGLStates(sfRenderTexture* renderTexture)
 {
-    CSFML_CALL(renderTexture, ResetGLStates());
+    CSFML_CALL(renderTexture, resetGLStates());
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfTexture* sfRenderTexture_GetTexture(const sfRenderTexture* renderTexture)
+const sfTexture* sfRenderTexture_getTexture(const sfRenderTexture* renderTexture)
 {
     CSFML_CHECK_RETURN(renderTexture, NULL);
 
@@ -235,14 +235,14 @@ const sfTexture* sfRenderTexture_GetTexture(const sfRenderTexture* renderTexture
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_SetSmooth(sfRenderTexture* renderTexture, sfBool smooth)
+void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture, sfBool smooth)
 {
-    CSFML_CALL(renderTexture, SetSmooth(smooth == sfTrue));
+    CSFML_CALL(renderTexture, setSmooth(smooth == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderTexture_IsSmooth(const sfRenderTexture* renderTexture)
+sfBool sfRenderTexture_isSmooth(const sfRenderTexture* renderTexture)
 {
-    CSFML_CALL_RETURN(renderTexture, IsSmooth(), sfFalse);
+    CSFML_CALL_RETURN(renderTexture, isSmooth(), sfFalse);
 }

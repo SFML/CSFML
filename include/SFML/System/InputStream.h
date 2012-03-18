@@ -43,11 +43,11 @@ typedef sfInt64 (*sfInputStreamGetSizeFunc)(void* userData);
 ////////////////////////////////////////////////////////////
 typedef struct sfInputStream
 {
-    sfInputStreamReadFunc    Read;     ///< Function to read data from the stream
-    sfInputStreamSeekFunc    Seek;     ///< Function to set the current read position
-    sfInputStreamTellFunc    Tell;     ///< Function to get the current read position
-    sfInputStreamGetSizeFunc GetSize;  ///< Function to get the total number of bytes in the stream
-    void*                    UserData; ///< User data that will be passed to the callbacks
+    sfInputStreamReadFunc    read;     ///< Function to read data from the stream
+    sfInputStreamSeekFunc    seek;     ///< Function to set the current read position
+    sfInputStreamTellFunc    tell;     ///< Function to get the current read position
+    sfInputStreamGetSizeFunc getSize;  ///< Function to get the total number of bytes in the stream
+    void*                    userData; ///< User data that will be passed to the callbacks
 } sfInputStream;
 
 

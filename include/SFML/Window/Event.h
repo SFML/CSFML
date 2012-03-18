@@ -66,12 +66,12 @@ typedef enum
 ////////////////////////////////////////////////////////////
 struct sfKeyEvent
 {
-    sfEventType Type;
-    sfKeyCode   Code;
-    sfBool      Alt;
-    sfBool      Control;
-    sfBool      Shift;
-    sfBool      System;
+    sfEventType type;
+    sfKeyCode   code;
+    sfBool      alt;
+    sfBool      control;
+    sfBool      shift;
+    sfBool      system;
 };
 
 ////////////////////////////////////////////////////////////
@@ -80,8 +80,8 @@ struct sfKeyEvent
 ////////////////////////////////////////////////////////////
 struct sfTextEvent
 {
-    sfEventType Type;
-    sfUint32    Unicode;
+    sfEventType type;
+    sfUint32    unicode;
 };
 
 ////////////////////////////////////////////////////////////
@@ -90,9 +90,9 @@ struct sfTextEvent
 ////////////////////////////////////////////////////////////
 struct sfMouseMoveEvent
 {
-    sfEventType Type;
-    int         X;
-    int         Y;
+    sfEventType type;
+    int         x;
+    int         y;
 };
 
 ////////////////////////////////////////////////////////////
@@ -101,10 +101,10 @@ struct sfMouseMoveEvent
 ////////////////////////////////////////////////////////////
 struct sfMouseButtonEvent
 {
-    sfEventType   Type;
-    sfMouseButton Button;
-    int           X;
-    int           Y;
+    sfEventType   type;
+    sfMouseButton button;
+    int           x;
+    int           y;
 };
 
 ////////////////////////////////////////////////////////////
@@ -113,10 +113,10 @@ struct sfMouseButtonEvent
 ////////////////////////////////////////////////////////////
 struct sfMouseWheelEvent
 {
-    sfEventType Type;
-    int         Delta;
-    int         X;
-    int         Y;
+    sfEventType type;
+    int         delta;
+    int         x;
+    int         y;
 };
 
 ////////////////////////////////////////////////////////////
@@ -125,10 +125,10 @@ struct sfMouseWheelEvent
 ////////////////////////////////////////////////////////////
 struct sfJoystickMoveEvent
 {
-    sfEventType    Type;
-    unsigned int   JoystickId;
-    sfJoystickAxis Axis;
-    float          Position;
+    sfEventType    type;
+    unsigned int   joystickId;
+    sfJoystickAxis axis;
+    float          position;
 };
 
 ////////////////////////////////////////////////////////////
@@ -137,9 +137,9 @@ struct sfJoystickMoveEvent
 ////////////////////////////////////////////////////////////
 struct sfJoystickButtonEvent
 {
-    sfEventType  Type;
-    unsigned int JoystickId;
-    unsigned int Button;
+    sfEventType  type;
+    unsigned int joystickId;
+    unsigned int button;
 };
 
 ////////////////////////////////////////////////////////////
@@ -148,8 +148,8 @@ struct sfJoystickButtonEvent
 ////////////////////////////////////////////////////////////
 struct sfJoystickConnectEvent
 {
-    sfEventType  Type;
-    unsigned int JoystickId;
+    sfEventType  type;
+    unsigned int joystickId;
 };
 
 ////////////////////////////////////////////////////////////
@@ -158,9 +158,9 @@ struct sfJoystickConnectEvent
 ////////////////////////////////////////////////////////////
 struct sfSizeEvent
 {
-    sfEventType  Type;
-    unsigned int Width;
-    unsigned int Height;
+    sfEventType  type;
+    unsigned int width;
+    unsigned int height;
 };
 
 
@@ -173,16 +173,16 @@ typedef union
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    sfEventType                   Type; ///< Type of the event
-    struct sfSizeEvent            Size;
-    struct sfKeyEvent             Key;
-    struct sfTextEvent            Text;
-    struct sfMouseMoveEvent       MouseMove;
-    struct sfMouseButtonEvent     MouseButton;
-    struct sfMouseWheelEvent      MouseWheel;
-    struct sfJoystickMoveEvent    JoystickMove;
-    struct sfJoystickButtonEvent  JoystickButton;
-    struct sfJoystickConnectEvent JoystickConnect;
+    sfEventType                   type; ///< Type of the event
+    struct sfSizeEvent            size;
+    struct sfKeyEvent             key;
+    struct sfTextEvent            text;
+    struct sfMouseMoveEvent       mouseMove;
+    struct sfMouseButtonEvent     mouseButton;
+    struct sfMouseWheelEvent      mouseWheel;
+    struct sfJoystickMoveEvent    joystickMove;
+    struct sfJoystickButtonEvent  joystickButton;
+    struct sfJoystickConnectEvent joystickConnect;
 } sfEvent;
 
 

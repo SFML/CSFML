@@ -41,8 +41,8 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    sfInt16*     Samples;     ///< Pointer to the audio samples
-    unsigned int SampleCount; ///< Number of samples pointed by Samples
+    sfInt16*     samples;     ///< Pointer to the audio samples
+    unsigned int sampleCount; ///< Number of samples pointed by Samples
 } sfSoundStreamChunk;
 
 typedef sfBool (*sfSoundStreamGetDataCallback)(sfSoundStreamChunk*, void*); ///< Type of the callback used to get a sound stream data

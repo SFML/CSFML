@@ -45,7 +45,7 @@
 /// \return A new sfTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_Create(unsigned int width, unsigned int height);
+CSFML_GRAPHICS_API sfTexture* sfTexture_create(unsigned int width, unsigned int height);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new texture from a file
@@ -56,7 +56,7 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_Create(unsigned int width, unsigned int 
 /// \return A new sfTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_CreateFromFile(const char* filename, const sfIntRect* area);
+CSFML_GRAPHICS_API sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new texture from a file in memory
@@ -68,7 +68,7 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_CreateFromFile(const char* filename, con
 /// \return A new sfTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_CreateFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area);
+CSFML_GRAPHICS_API sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new texture from a custom stream
@@ -79,7 +79,7 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_CreateFromMemory(const void* data, size_
 /// \return A new sfTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_CreateFromStream(sfInputStream* stream, const sfIntRect* area);
+CSFML_GRAPHICS_API sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new texture from an image
@@ -90,7 +90,7 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_CreateFromStream(sfInputStream* stream, 
 /// \return A new sfTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_CreateFromImage(const sfImage* image, const sfIntRect* area);
+CSFML_GRAPHICS_API sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing texture
@@ -100,7 +100,7 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_CreateFromImage(const sfImage* image, co
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_Copy(sfTexture* texture);
+CSFML_GRAPHICS_API sfTexture* sfTexture_copy(sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing texture
@@ -108,7 +108,7 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_Copy(sfTexture* texture);
 /// \param texture Texture to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_Destroy(sfTexture* texture);
+CSFML_GRAPHICS_API void sfTexture_destroy(sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the width of the texture
@@ -118,7 +118,7 @@ CSFML_GRAPHICS_API void sfTexture_Destroy(sfTexture* texture);
 /// \return Width in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfTexture_GetWidth(const sfTexture* texture);
+CSFML_GRAPHICS_API unsigned int sfTexture_getWidth(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the height of the texture
@@ -128,7 +128,7 @@ CSFML_GRAPHICS_API unsigned int sfTexture_GetWidth(const sfTexture* texture);
 /// \return Height in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfTexture_GetHeight(const sfTexture* texture);
+CSFML_GRAPHICS_API unsigned int sfTexture_getHeight(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy a texture's pixels to an image
@@ -138,7 +138,7 @@ CSFML_GRAPHICS_API unsigned int sfTexture_GetHeight(const sfTexture* texture);
 /// \return Image containing the texture's pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfImage* sfTexture_CopyToImage(const sfTexture* texture);
+CSFML_GRAPHICS_API sfImage* sfTexture_copyToImage(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a texture from an array of pixels
@@ -151,7 +151,7 @@ CSFML_GRAPHICS_API sfImage* sfTexture_CopyToImage(const sfTexture* texture);
 /// \param y       Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_UpdateFromPixels(sfTexture* texture, const sfUint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromPixels(sfTexture* texture, const sfUint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a texture from an image
@@ -162,7 +162,7 @@ CSFML_GRAPHICS_API void sfTexture_UpdateFromPixels(sfTexture* texture, const sfU
 /// \param y       Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_UpdateFromImage(sfTexture* texture, const sfImage* image, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromImage(sfTexture* texture, const sfImage* image, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a texture from the contents of a window
@@ -173,7 +173,7 @@ CSFML_GRAPHICS_API void sfTexture_UpdateFromImage(sfTexture* texture, const sfIm
 /// \param y       Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_UpdateFromWindow(sfTexture* texture, const sfWindow* window, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromWindow(sfTexture* texture, const sfWindow* window, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a texture from the contents of a render-window
@@ -184,7 +184,7 @@ CSFML_GRAPHICS_API void sfTexture_UpdateFromWindow(sfTexture* texture, const sfW
 /// \param y            Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_UpdateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate a texture for rendering
@@ -192,7 +192,7 @@ CSFML_GRAPHICS_API void sfTexture_UpdateFromRenderWindow(sfTexture* texture, con
 /// \param texture Texture to bind
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_Bind(const sfTexture* texture);
+CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable the smooth filter on a texture
@@ -201,7 +201,7 @@ CSFML_GRAPHICS_API void sfTexture_Bind(const sfTexture* texture);
 /// \param smooth  sfTrue to enable smoothing, sfFalse to disable it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_SetSmooth(sfTexture* texture, sfBool smooth);
+CSFML_GRAPHICS_API void sfTexture_setSmooth(sfTexture* texture, sfBool smooth);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether the smooth filter is enabled or not for a texture
@@ -211,7 +211,7 @@ CSFML_GRAPHICS_API void sfTexture_SetSmooth(sfTexture* texture, sfBool smooth);
 /// \return sfTrue if smoothing is enabled, sfFalse if it is disabled
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfTexture_IsSmooth(const sfTexture* texture);
+CSFML_GRAPHICS_API sfBool sfTexture_isSmooth(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable repeating for a texture
@@ -234,7 +234,7 @@ CSFML_GRAPHICS_API sfBool sfTexture_IsSmooth(const sfTexture* texture);
 /// \param repeated True to repeat the texture, false to disable repeating
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_SetRepeated(sfTexture* texture, sfBool repeated);
+CSFML_GRAPHICS_API void sfTexture_setRepeated(sfTexture* texture, sfBool repeated);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a texture is repeated or not
@@ -244,7 +244,7 @@ CSFML_GRAPHICS_API void sfTexture_SetRepeated(sfTexture* texture, sfBool repeate
 /// \return sfTrue if repeat mode is enabled, sfFalse if it is disabled
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfTexture_IsRepeated(const sfTexture* texture);
+CSFML_GRAPHICS_API sfBool sfTexture_isRepeated(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the maximum texture size allowed
@@ -252,7 +252,7 @@ CSFML_GRAPHICS_API sfBool sfTexture_IsRepeated(const sfTexture* texture);
 /// \return Maximum size allowed for textures, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfTexture_GetMaximumSize();
+CSFML_GRAPHICS_API unsigned int sfTexture_getMaximumSize();
 
 
 #endif // SFML_TEXTURE_H

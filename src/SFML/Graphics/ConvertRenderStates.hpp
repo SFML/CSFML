@@ -38,22 +38,19 @@
 ////////////////////////////////////////////////////////////
 // Convert sfRenderStates* to sf::RenderStates
 ////////////////////////////////////////////////////////////
-inline sf::RenderStates ConvertRenderStates(const sfRenderStates* states)
+inline sf::RenderStates convertRenderStates(const sfRenderStates* states)
 {
-    if (!states)
-    {
-        return sf::RenderStates::Default;
-    }
-    else
-    {
-        sf::RenderStates sfmlStates;
-        sfmlStates.BlendMode = static_cast<sf::BlendMode>(states->BlendMode);
-        sfmlStates.Transform = states->Transform ? states->Transform->This : sf::Transform::Identity;
-        sfmlStates.Texture = states->Texture ? states->Texture->This : NULL;
-        sfmlStates.Shader = states->Shader ? &states->Shader->This : NULL;
+    sf::RenderStates sfmlStates;
 
-        return sfmlStates;
+    if (states)
+    {
+        sfmlStates.blendMode = static_cast<sf::BlendMode>(states->blendMode);
+        sfmlStates.transform = states->transform ? states->transform->This : sf::Transform::Identity;
+        sfmlStates.texture = states->texture ? states->texture->This : NULL;
+        sfmlStates.shader = states->shader ? &states->shader->This : NULL;
     }
+
+    return sfmlStates;
 }
 
 

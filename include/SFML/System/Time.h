@@ -37,14 +37,14 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    sfInt64 Microseconds;
+    sfInt64 microseconds;
 } sfTime;
 
 ////////////////////////////////////////////////////////////
 /// \brief Predefined "zero" time value 
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API sfTime sfTimeZero;
+CSFML_SYSTEM_API sfTime sfTime_Zero;
 
 ////////////////////////////////////////////////////////////
 /// \brief Return a time value as a number of seconds
@@ -54,7 +54,7 @@ CSFML_SYSTEM_API sfTime sfTimeZero;
 /// \return Time in seconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API float sfTime_AsSeconds(sfTime time);
+CSFML_SYSTEM_API float sfTime_asSeconds(sfTime time);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return a time value as a number of milliseconds
@@ -64,7 +64,7 @@ CSFML_SYSTEM_API float sfTime_AsSeconds(sfTime time);
 /// \return Time in milliseconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API sfInt32 sfTime_AsMilliseconds(sfTime time);
+CSFML_SYSTEM_API sfInt32 sfTime_asMilliseconds(sfTime time);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return a time value as a number of microseconds
@@ -74,7 +74,7 @@ CSFML_SYSTEM_API sfInt32 sfTime_AsMilliseconds(sfTime time);
 /// \return Time in microseconds
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API sfInt64 sfTime_AsMicroseconds(sfTime time);
+CSFML_SYSTEM_API sfInt64 sfTime_asMicroseconds(sfTime time);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a time value from a number of seconds

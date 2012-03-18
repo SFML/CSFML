@@ -32,11 +32,11 @@
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_CreateFromFile(const char* filename)
+sfSoundBuffer* sfSoundBuffer_createFromFile(const char* filename)
 {
     sfSoundBuffer* buffer = new sfSoundBuffer;
 
-    if (!buffer->This.LoadFromFile(filename))
+    if (!buffer->This.loadFromFile(filename))
     {
         delete buffer;
         buffer = NULL;
@@ -47,11 +47,11 @@ sfSoundBuffer* sfSoundBuffer_CreateFromFile(const char* filename)
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_CreateFromMemory(const void* data, size_t sizeInBytes)
+sfSoundBuffer* sfSoundBuffer_createFromMemory(const void* data, size_t sizeInBytes)
 {
     sfSoundBuffer* buffer = new sfSoundBuffer;
 
-    if (!buffer->This.LoadFromMemory(data, sizeInBytes))
+    if (!buffer->This.loadFromMemory(data, sizeInBytes))
     {
         delete buffer;
         buffer = NULL;
@@ -63,13 +63,13 @@ sfSoundBuffer* sfSoundBuffer_CreateFromMemory(const void* data, size_t sizeInByt
 
 
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_CreateFromStream(sfInputStream* stream)
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, NULL);
 
     sfSoundBuffer* buffer = new sfSoundBuffer;
     CallbackStream sfmlStream(stream);
-    if (!buffer->This.LoadFromStream(sfmlStream))
+    if (!buffer->This.loadFromStream(sfmlStream))
     {
         delete buffer;
         buffer = NULL;
@@ -80,11 +80,11 @@ CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_CreateFromStream(sfInputStream* str
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_CreateFromSamples(const sfInt16* samples, size_t sampleCount, unsigned int channelsCount, unsigned int sampleRate)
+sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, size_t sampleCount, unsigned int channelCount, unsigned int sampleRate)
 {
     sfSoundBuffer* buffer = new sfSoundBuffer;
 
-    if (!buffer->This.LoadFromSamples(samples, sampleCount, channelsCount, sampleRate))
+    if (!buffer->This.loadFromSamples(samples, sampleCount, channelCount, sampleRate))
     {
         delete buffer;
         buffer = NULL;
@@ -95,7 +95,7 @@ sfSoundBuffer* sfSoundBuffer_CreateFromSamples(const sfInt16* samples, size_t sa
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_Copy(sfSoundBuffer* soundBuffer)
+sfSoundBuffer* sfSoundBuffer_copy(sfSoundBuffer* soundBuffer)
 {
     CSFML_CHECK_RETURN(soundBuffer, NULL);
 
@@ -104,53 +104,53 @@ sfSoundBuffer* sfSoundBuffer_Copy(sfSoundBuffer* soundBuffer)
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundBuffer_Destroy(sfSoundBuffer* soundBuffer)
+void sfSoundBuffer_destroy(sfSoundBuffer* soundBuffer)
 {
     delete soundBuffer;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSoundBuffer_SaveToFile(const sfSoundBuffer* soundBuffer, const char* filename)
+sfBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* filename)
 {
-    CSFML_CALL_RETURN(soundBuffer, SaveToFile(filename), sfFalse);
+    CSFML_CALL_RETURN(soundBuffer, saveToFile(filename), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfInt16* sfSoundBuffer_GetSamples(const sfSoundBuffer* soundBuffer)
+const sfInt16* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetSamples(), NULL);
+    CSFML_CALL_RETURN(soundBuffer, getSamples(), NULL);
 }
 
 
 ////////////////////////////////////////////////////////////
-size_t sfSoundBuffer_GetSampleCount(const sfSoundBuffer* soundBuffer)
+size_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetSampleCount(), 0);
+    CSFML_CALL_RETURN(soundBuffer, getSampleCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfSoundBuffer_GetSampleRate(const sfSoundBuffer* soundBuffer)
+unsigned int sfSoundBuffer_getSampleRate(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetSampleRate(), 0);
+    CSFML_CALL_RETURN(soundBuffer, getSampleRate(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfSoundBuffer_GetChannelCount(const sfSoundBuffer* soundBuffer)
+unsigned int sfSoundBuffer_getChannelCount(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, GetChannelCount(), 0);
+    CSFML_CALL_RETURN(soundBuffer, getChannelCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTime sfSoundBuffer_GetDuration(const sfSoundBuffer* soundBuffer)
+sfTime sfSoundBuffer_getDuration(const sfSoundBuffer* soundBuffer)
 {
     sfTime time = {0};
     CSFML_CHECK_RETURN(soundBuffer, time);
 
-    time.Microseconds = soundBuffer->This.GetDuration().AsMicroseconds();
+    time.microseconds = soundBuffer->This.getDuration().asMicroseconds();
     return time;
 }

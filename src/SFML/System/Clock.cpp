@@ -31,14 +31,14 @@
 
 
 ////////////////////////////////////////////////////////////
-sfClock* sfClock_Create(void)
+sfClock* sfClock_create(void)
 {
     return new sfClock;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfClock* sfClock_Copy(sfClock* clock)
+sfClock* sfClock_copy(sfClock* clock)
 {
     CSFML_CHECK_RETURN(clock, NULL);
 
@@ -47,27 +47,27 @@ sfClock* sfClock_Copy(sfClock* clock)
 
 
 ////////////////////////////////////////////////////////////
-void sfClock_Destroy(sfClock* clock)
+void sfClock_destroy(sfClock* clock)
 {
     delete clock;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTime sfClock_GetElapsedTime(const sfClock* clock)
+sfTime sfClock_getElapsedTime(const sfClock* clock)
 {
-    CSFML_CHECK_RETURN(clock, sfTimeZero);
+    CSFML_CHECK_RETURN(clock, sfTime_Zero);
 
-    sf::Time time = clock->This.GetElapsedTime();
-    return sfMicroseconds(time.AsMicroseconds());
+    sf::Time time = clock->This.getElapsedTime();
+    return sfMicroseconds(time.asMicroseconds());
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTime sfClock_Restart(sfClock* clock)
+sfTime sfClock_restart(sfClock* clock)
 {
-    CSFML_CHECK_RETURN(clock, sfTimeZero);
+    CSFML_CHECK_RETURN(clock, sfTime_Zero);
 
-    sf::Time time = clock->This.Restart();
-    return sfMicroseconds(time.AsMicroseconds());
+    sf::Time time = clock->This.restart();
+    return sfMicroseconds(time.asMicroseconds());
 }

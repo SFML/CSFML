@@ -39,9 +39,9 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    unsigned int Width;        ///< Video mode width, in pixels
-    unsigned int Height;       ///< Video mode height, in pixels
-    unsigned int BitsPerPixel; ///< Video mode pixel depth, in bits per pixels
+    unsigned int width;        ///< Video mode width, in pixels
+    unsigned int height;       ///< Video mode height, in pixels
+    unsigned int bitsPerPixel; ///< Video mode pixel depth, in bits per pixels
 } sfVideoMode;
 
 
@@ -51,7 +51,7 @@ typedef struct
 /// \return Current desktop video mode
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfVideoMode sfVideoMode_GetDesktopMode(void);
+CSFML_WINDOW_API sfVideoMode sfVideoMode_getDesktopMode(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Retrieve all the video modes supported in fullscreen mode
@@ -69,7 +69,7 @@ CSFML_WINDOW_API sfVideoMode sfVideoMode_GetDesktopMode(void);
 /// \return Pointer to an array containing all the supported fullscreen modes
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API const sfVideoMode* sfVideoMode_GetFullscreenModes(size_t* Count);
+CSFML_WINDOW_API const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* Count);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a video mode is valid
@@ -83,7 +83,7 @@ CSFML_WINDOW_API const sfVideoMode* sfVideoMode_GetFullscreenModes(size_t* Count
 /// \return sfTrue if the video mode is valid for fullscreen mode
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfVideoMode_IsValid(sfVideoMode mode);
+CSFML_WINDOW_API sfBool sfVideoMode_isValid(sfVideoMode mode);
 
 
 #endif // SFML_VIDEOMODE_H

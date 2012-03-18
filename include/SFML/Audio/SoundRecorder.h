@@ -49,10 +49,10 @@ typedef void   (*sfSoundRecorderStopCallback)(void*);                           
 /// \return A new sfSoundRecorder object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundRecorder* sfSoundRecorder_Create(sfSoundRecorderStartCallback   onStart,
-                                                  sfSoundRecorderProcessCallback onProcess,
-                                                  sfSoundRecorderStopCallback    onStop,
-                                                  void*                          userData);
+CSFML_AUDIO_API sfSoundRecorder* sfSoundRecorder_create(sfSoundRecorderStartCallback   onStart,
+                                                        sfSoundRecorderProcessCallback onProcess,
+                                                        sfSoundRecorderStopCallback    onStop,
+                                                        void*                          userData);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a sound recorder
@@ -60,7 +60,7 @@ CSFML_AUDIO_API sfSoundRecorder* sfSoundRecorder_Create(sfSoundRecorderStartCall
 /// \param soundRecorder Sound recorder to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundRecorder_Destroy(sfSoundRecorder* soundRecorder);
+CSFML_AUDIO_API void sfSoundRecorder_destroy(sfSoundRecorder* soundRecorder);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start the capture of a sound recorder
@@ -76,7 +76,7 @@ CSFML_AUDIO_API void sfSoundRecorder_Destroy(sfSoundRecorder* soundRecorder);
 /// \param sampleRate    Desired capture rate, in number of samples per second
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundRecorder_Start(sfSoundRecorder* soundRecorder, unsigned int sampleRate);
+CSFML_AUDIO_API void sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
 /// \brief Stop the capture of a sound recorder
@@ -84,7 +84,7 @@ CSFML_AUDIO_API void sfSoundRecorder_Start(sfSoundRecorder* soundRecorder, unsig
 /// \param soundRecorder Sound recorder object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundRecorder_Stop(sfSoundRecorder* soundRecorder);
+CSFML_AUDIO_API void sfSoundRecorder_stop(sfSoundRecorder* soundRecorder);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the sample rate of a sound recorder
@@ -98,7 +98,7 @@ CSFML_AUDIO_API void sfSoundRecorder_Stop(sfSoundRecorder* soundRecorder);
 /// \return Sample rate, in samples per second
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API unsigned int sfSoundRecorder_GetSampleRate(const sfSoundRecorder* soundRecorder);
+CSFML_AUDIO_API unsigned int sfSoundRecorder_getSampleRate(const sfSoundRecorder* soundRecorder);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if the system supports audio capture
@@ -110,7 +110,7 @@ CSFML_AUDIO_API unsigned int sfSoundRecorder_GetSampleRate(const sfSoundRecorder
 /// \return sfTrue if audio capture is supported, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundRecorder_IsAvailable(void);
+CSFML_AUDIO_API sfBool sfSoundRecorder_isAvailable(void);
 
 
 #endif // SFML_SOUNDRECORDER_H

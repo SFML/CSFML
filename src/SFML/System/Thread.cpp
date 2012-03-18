@@ -31,35 +31,35 @@
 
 
 ////////////////////////////////////////////////////////////
-sfThread* sfThread_Create(void (*function)(void*), void* userData)
+sfThread* sfThread_create(void (*function)(void*), void* userData)
 {
     return new sfThread(function, userData);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfThread_Destroy(sfThread* thread)
+void sfThread_destroy(sfThread* thread)
 {
     delete thread;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfThread_Launch(sfThread* thread)
+void sfThread_launch(sfThread* thread)
 {
-    CSFML_CALL(thread, Launch());
+    CSFML_CALL(thread, launch());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfThread_Wait(sfThread* thread)
+void sfThread_wait(sfThread* thread)
 {
-    CSFML_CALL(thread, Wait());
+    CSFML_CALL(thread, wait());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfThread_Terminate(sfThread* thread)
+void sfThread_terminate(sfThread* thread)
 {
-    CSFML_CALL(thread, Terminate());
+    CSFML_CALL(thread, terminate());
 }

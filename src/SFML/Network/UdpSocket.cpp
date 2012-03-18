@@ -34,69 +34,69 @@
 
 
 ////////////////////////////////////////////////////////////
-sfUdpSocket* sfUdpSocket_Create(void)
+sfUdpSocket* sfUdpSocket_create(void)
 {
     return new sfUdpSocket;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfUdpSocket_Destroy(sfUdpSocket* socket)
+void sfUdpSocket_destroy(sfUdpSocket* socket)
 {
     delete socket;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfUdpSocket_SetBlocking(sfUdpSocket* socket, sfBool blocking)
+void sfUdpSocket_setBlocking(sfUdpSocket* socket, sfBool blocking)
 {
-    CSFML_CALL(socket, SetBlocking(blocking == sfTrue));
+    CSFML_CALL(socket, setBlocking(blocking == sfTrue));
 }
 
 ////////////////////////////////////////////////////////////
-sfBool sfUdpSocket_IsBlocking(const sfUdpSocket* socket)
+sfBool sfUdpSocket_isBlocking(const sfUdpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, IsBlocking(), sfFalse);
-}
-
-
-////////////////////////////////////////////////////////////
-unsigned short sfUdpSocket_GetLocalPort(const sfUdpSocket* socket)
-{
-    CSFML_CALL_RETURN(socket, GetLocalPort(), 0);
+    CSFML_CALL_RETURN(socket, isBlocking(), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_Bind(sfUdpSocket* socket, unsigned short port)
+unsigned short sfUdpSocket_getLocalPort(const sfUdpSocket* socket)
+{
+    CSFML_CALL_RETURN(socket, getLocalPort(), 0);
+}
+
+
+////////////////////////////////////////////////////////////
+sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.Bind(port));
+    return static_cast<sfSocketStatus>(socket->This.bind(port));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfUdpSocket_Unbind(sfUdpSocket* socket)
+void sfUdpSocket_unbind(sfUdpSocket* socket)
 {
-    CSFML_CALL(socket, Unbind());
+    CSFML_CALL(socket, unbind());
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_Send(sfUdpSocket* socket, const char* data, size_t size, sfIpAddress address, unsigned short port)
+sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const char* data, size_t size, sfIpAddress address, unsigned short port)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
     // Convert the address
-    sf::IpAddress receiver(address.Address);
+    sf::IpAddress receiver(address.address);
 
-    return static_cast<sfSocketStatus>(socket->This.Send(data, size, receiver, port));
+    return static_cast<sfSocketStatus>(socket->This.send(data, size, receiver, port));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_Receive(sfUdpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port)
+sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
@@ -105,7 +105,7 @@ sfSocketStatus sfUdpSocket_Receive(sfUdpSocket* socket, char* data, size_t maxSi
     unsigned short senderPort;
     std::size_t received;
 
-    sf::Socket::Status status = socket->This.Receive(data, maxSize, received, sender, senderPort);
+    sf::Socket::Status status = socket->This.receive(data, maxSize, received, sender, senderPort);
     if (status != sf::Socket::Done)
         return static_cast<sfSocketStatus>(status);
 
@@ -113,7 +113,7 @@ sfSocketStatus sfUdpSocket_Receive(sfUdpSocket* socket, char* data, size_t maxSi
         *sizeReceived = received;
 
     if (address)
-        strncpy(address->Address, sender.ToString().c_str(), 16);
+        strncpy(address->address, sender.toString().c_str(), 16);
 
     if (port)
         *port = senderPort;
@@ -123,32 +123,32 @@ sfSocketStatus sfUdpSocket_Receive(sfUdpSocket* socket, char* data, size_t maxSi
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_SendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress address, unsigned short port)
+sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress address, unsigned short port)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
     // Convert the address
-    sf::IpAddress receiver(address.Address);
+    sf::IpAddress receiver(address.address);
 
-    return static_cast<sfSocketStatus>(socket->This.Send(packet->This, receiver, port));
+    return static_cast<sfSocketStatus>(socket->This.send(packet->This, receiver, port));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_ReceivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* address, unsigned short* port)
+sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* address, unsigned short* port)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
     sf::IpAddress sender;
     unsigned short senderPort;
-    sf::Socket::Status status = socket->This.Receive(packet->This, sender, senderPort);
+    sf::Socket::Status status = socket->This.receive(packet->This, sender, senderPort);
     if (status != sf::Socket::Done)
         return static_cast<sfSocketStatus>(status);
 
     if (address)
-        strncpy(address->Address, sender.ToString().c_str(), 16);
+        strncpy(address->address, sender.toString().c_str(), 16);
 
     if (port)
         *port = senderPort;
@@ -158,7 +158,7 @@ sfSocketStatus sfUdpSocket_ReceivePacket(sfUdpSocket* socket, sfPacket* packet, 
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfUdpSocket_MaxDatagramSize()
+unsigned int sfUdpSocket_maxDatagramSize()
 {
     return sf::UdpSocket::MaxDatagramSize;
 }

@@ -31,46 +31,46 @@
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBufferRecorder* sfSoundBufferRecorder_Create(void)
+sfSoundBufferRecorder* sfSoundBufferRecorder_create(void)
 {
     return new sfSoundBufferRecorder;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundBufferRecorder_Destroy(sfSoundBufferRecorder* soundBufferRecorder)
+void sfSoundBufferRecorder_destroy(sfSoundBufferRecorder* soundBufferRecorder)
 {
     delete soundBufferRecorder;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundBufferRecorder_Start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate)
+void sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate)
 {
-    CSFML_CALL(soundBufferRecorder, Start(sampleRate));
+    CSFML_CALL(soundBufferRecorder, start(sampleRate));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundBufferRecorder_Stop(sfSoundBufferRecorder* soundBufferRecorder)
+void sfSoundBufferRecorder_stop(sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CALL(soundBufferRecorder, Stop());
+    CSFML_CALL(soundBufferRecorder, stop());
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfSoundBufferRecorder_GetSampleRate(const sfSoundBufferRecorder* soundBufferRecorder)
+unsigned int sfSoundBufferRecorder_getSampleRate(const sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CALL_RETURN(soundBufferRecorder, GetSampleRate(), 0);
+    CSFML_CALL_RETURN(soundBufferRecorder, getSampleRate(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfSoundBuffer* sfSoundBufferRecorder_GetBuffer(const sfSoundBufferRecorder* soundBufferRecorder)
+const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder* soundBufferRecorder)
 {
     CSFML_CHECK_RETURN(soundBufferRecorder, NULL);
 
-    soundBufferRecorder->SoundBuffer.This = soundBufferRecorder->This.GetBuffer();
+    soundBufferRecorder->SoundBuffer.This = soundBufferRecorder->This.getBuffer();
 
     return &soundBufferRecorder->SoundBuffer;
 }

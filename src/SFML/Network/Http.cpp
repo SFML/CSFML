@@ -31,135 +31,135 @@
 
 
 ////////////////////////////////////////////////////////////
-sfHttpRequest* sfHttpRequest_Create(void)
+sfHttpRequest* sfHttpRequest_create(void)
 {
     return new sfHttpRequest;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpRequest_Destroy(sfHttpRequest* httpRequest)
+void sfHttpRequest_destroy(sfHttpRequest* httpRequest)
 {
     delete httpRequest;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpRequest_SetField(sfHttpRequest* httpRequest, const char* field, const char* value)
+void sfHttpRequest_setField(sfHttpRequest* httpRequest, const char* field, const char* value)
 {
     CSFML_CHECK(httpRequest);
     if (field)
-        httpRequest->This.SetField(field, value);
+        httpRequest->This.setField(field, value);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpRequest_SetMethod(sfHttpRequest* httpRequest, sfHttpMethod method)
+void sfHttpRequest_setMethod(sfHttpRequest* httpRequest, sfHttpMethod method)
 {
-    CSFML_CALL(httpRequest, SetMethod(static_cast<sf::Http::Request::Method>(method)));
+    CSFML_CALL(httpRequest, setMethod(static_cast<sf::Http::Request::Method>(method)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpRequest_SetUri(sfHttpRequest* httpRequest, const char* uri)
+void sfHttpRequest_setUri(sfHttpRequest* httpRequest, const char* uri)
 {
-    CSFML_CALL(httpRequest, SetUri(uri ? uri : ""));
+    CSFML_CALL(httpRequest, setUri(uri ? uri : ""));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpRequest_SetHttpVersion(sfHttpRequest* httpRequest, unsigned int major, unsigned int minor)
+void sfHttpRequest_setHttpVersion(sfHttpRequest* httpRequest, unsigned int major, unsigned int minor)
 {
-    CSFML_CALL(httpRequest, SetHttpVersion(major, minor));
+    CSFML_CALL(httpRequest, setHttpVersion(major, minor));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpRequest_SetBody(sfHttpRequest* httpRequest, const char* body)
+void sfHttpRequest_setBody(sfHttpRequest* httpRequest, const char* body)
 {
-    CSFML_CALL(httpRequest, SetBody(body ? body : ""));
+    CSFML_CALL(httpRequest, setBody(body ? body : ""));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpResponse_Destroy(sfHttpResponse* httpResponse)
+void sfHttpResponse_destroy(sfHttpResponse* httpResponse)
 {
     delete httpResponse;
 }
 
 
 ////////////////////////////////////////////////////////////
-const char* sfHttpResponse_GetField(const sfHttpResponse* httpResponse, const char* field)
+const char* sfHttpResponse_getField(const sfHttpResponse* httpResponse, const char* field)
 {
     CSFML_CHECK_RETURN(httpResponse, NULL);
     if (!field)
         return NULL;
 
-    return httpResponse->This.GetField(field).c_str();
+    return httpResponse->This.getField(field).c_str();
 }
 
 
 ////////////////////////////////////////////////////////////
-sfHttpStatus sfHttpResponse_GetStatus(const sfHttpResponse* httpResponse)
+sfHttpStatus sfHttpResponse_getStatus(const sfHttpResponse* httpResponse)
 {
     CSFML_CHECK_RETURN(httpResponse, sfHttpInvalidResponse);
 
-    return static_cast<sfHttpStatus>(httpResponse->This.GetStatus());
+    return static_cast<sfHttpStatus>(httpResponse->This.getStatus());
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfHttpResponse_GetMajorVersion(const sfHttpResponse* httpResponse)
+unsigned int sfHttpResponse_getMajorVersion(const sfHttpResponse* httpResponse)
 {
-    CSFML_CALL_RETURN(httpResponse, GetMajorHttpVersion(), 0);
+    CSFML_CALL_RETURN(httpResponse, getMajorHttpVersion(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfHttpResponse_GetMinorVersion(const sfHttpResponse* httpResponse)
+unsigned int sfHttpResponse_getMinorVersion(const sfHttpResponse* httpResponse)
 {
-    CSFML_CALL_RETURN(httpResponse, GetMinorHttpVersion(), 0);
+    CSFML_CALL_RETURN(httpResponse, getMinorHttpVersion(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-const char* sfHttpResponse_GetBody(const sfHttpResponse* httpResponse)
+const char* sfHttpResponse_getBody(const sfHttpResponse* httpResponse)
 {
     CSFML_CHECK_RETURN(httpResponse, NULL);
 
-    return httpResponse->This.GetBody().c_str();
+    return httpResponse->This.getBody().c_str();
 }
 
 
 ////////////////////////////////////////////////////////////
-sfHttp* sfHttp_Create(void)
+sfHttp* sfHttp_create(void)
 {
     return new sfHttp;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttp_Destroy(sfHttp* http)
+void sfHttp_destroy(sfHttp* http)
 {
     delete http;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfHttp_SetHost(sfHttp* http, const char* host, unsigned short port)
+void sfHttp_setHost(sfHttp* http, const char* host, unsigned short port)
 {
-    CSFML_CALL(http, SetHost(host ? host : "", port));
+    CSFML_CALL(http, setHost(host ? host : "", port));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfHttpResponse* sfHttp_SendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout)
+sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout)
 {
     CSFML_CHECK_RETURN(http,    NULL);
     CSFML_CHECK_RETURN(request, NULL);
 
     sfHttpResponse* response = new sfHttpResponse;
-    response->This = http->This.SendRequest(request->This, sf::Microseconds(timeout.Microseconds));
+    response->This = http->This.sendRequest(request->This, sf::microseconds(timeout.microseconds));
 
     return response;
 }

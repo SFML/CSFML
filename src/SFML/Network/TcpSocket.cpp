@@ -34,119 +34,119 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTcpSocket* sfTcpSocket_Create(void)
+sfTcpSocket* sfTcpSocket_create(void)
 {
     return new sfTcpSocket;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpSocket_Destroy(sfTcpSocket* socket)
+void sfTcpSocket_destroy(sfTcpSocket* socket)
 {
     delete socket;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpSocket_SetBlocking(sfTcpSocket* socket, sfBool blocking)
+void sfTcpSocket_setBlocking(sfTcpSocket* socket, sfBool blocking)
 {
-    CSFML_CALL(socket, SetBlocking(blocking == sfTrue));
+    CSFML_CALL(socket, setBlocking(blocking == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTcpSocket_IsBlocking(const sfTcpSocket* socket)
+sfBool sfTcpSocket_isBlocking(const sfTcpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, IsBlocking(), sfFalse);
+    CSFML_CALL_RETURN(socket, isBlocking(), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned short sfTcpSocket_GetLocalPort(const sfTcpSocket* socket)
+unsigned short sfTcpSocket_getLocalPort(const sfTcpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, GetLocalPort(), 0);
+    CSFML_CALL_RETURN(socket, getLocalPort(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfTcpSocket_GetRemoteAddress(const sfTcpSocket* socket)
+sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
 {
-    sfIpAddress result = sfIpAddress_None();
+    sfIpAddress result = sfIpAddress_None;
     CSFML_CHECK_RETURN(socket, result);
 
-    sf::IpAddress address = socket->This.GetRemoteAddress();
-    strncpy(result.Address, address.ToString().c_str(), 16);
+    sf::IpAddress address = socket->This.getRemoteAddress();
+    strncpy(result.address, address.toString().c_str(), 16);
 
     return result;
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned short sfTcpSocket_GetRemotePort(const sfTcpSocket* socket)
+unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, GetRemotePort(), 0);
+    CSFML_CALL_RETURN(socket, getRemotePort(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_Connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfTime timeout)
+sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfTime timeout)
 {
-    sf::IpAddress address(host.Address);
+    sf::IpAddress address(host.address);
 
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.Connect(address, port, sf::Microseconds(timeout.Microseconds)));
+    return static_cast<sfSocketStatus>(socket->This.connect(address, port, sf::microseconds(timeout.microseconds)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpSocket_Disconnect(sfTcpSocket* socket)
+void sfTcpSocket_disconnect(sfTcpSocket* socket)
 {
-    CSFML_CALL(socket, Disconnect());
+    CSFML_CALL(socket, disconnect());
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_Send(sfTcpSocket* socket, const char* data, size_t size)
+sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const char* data, size_t size)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.Send(data, size));
+    return static_cast<sfSocketStatus>(socket->This.send(data, size));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_Receive(sfTcpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived)
+sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
     if (sizeReceived)
     {
-        return static_cast<sfSocketStatus>(socket->This.Receive(data, maxSize, *sizeReceived));
+        return static_cast<sfSocketStatus>(socket->This.receive(data, maxSize, *sizeReceived));
     }
     else
     {
         std::size_t size = 0;
-        return static_cast<sfSocketStatus>(socket->This.Receive(data, maxSize, size));
+        return static_cast<sfSocketStatus>(socket->This.receive(data, maxSize, size));
     }
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_SendPacket(sfTcpSocket* socket, sfPacket* packet)
+sfSocketStatus sfTcpSocket_sendPacket(sfTcpSocket* socket, sfPacket* packet)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.Send(packet->This));
+    return static_cast<sfSocketStatus>(socket->This.send(packet->This));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_ReceivePacket(sfTcpSocket* socket, sfPacket* packet)
+sfSocketStatus sfTcpSocket_receivePacket(sfTcpSocket* socket, sfPacket* packet)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.Receive(packet->This));
+    return static_cast<sfSocketStatus>(socket->This.receive(packet->This));
 }

@@ -31,28 +31,28 @@
 
 
 ////////////////////////////////////////////////////////////
-sfMutex* sfMutex_Create(void)
+sfMutex* sfMutex_create(void)
 {
     return new sfMutex;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfMutex_Destroy(sfMutex* mutex)
+void sfMutex_destroy(sfMutex* mutex)
 {
     delete mutex;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfMutex_Lock(sfMutex* mutex)
+void sfMutex_lock(sfMutex* mutex)
 {
-    CSFML_CALL(mutex, Lock());
+    CSFML_CALL(mutex, lock());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfMutex_Unlock(sfMutex* mutex)
+void sfMutex_unlock(sfMutex* mutex)
 {
-    CSFML_CALL(mutex, Unlock());
+    CSFML_CALL(mutex, unlock());
 }

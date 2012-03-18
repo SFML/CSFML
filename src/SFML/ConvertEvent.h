@@ -35,68 +35,65 @@
 ////////////////////////////////////////////////////////////
 // Define a function to convert a sf::Event ot a sfEvent
 ////////////////////////////////////////////////////////////
-inline void ConvertEvent(const sf::Event& SFMLEvent, sfEvent* event)
+inline void convertEvent(const sf::Event& SFMLEvent, sfEvent* event)
 {
     // Convert its type
-    event->Type = static_cast<sfEventType>(SFMLEvent.Type);
+    event->type = static_cast<sfEventType>(SFMLEvent.type);
 
     // Fill its fields
-    switch (event->Type)
+    switch (event->type)
     {
         case sfEvtResized :
-            event->Size.Width  = SFMLEvent.Size.Width;
-            event->Size.Height = SFMLEvent.Size.Height;
+            event->size.width  = SFMLEvent.size.width;
+            event->size.height = SFMLEvent.size.height;
             break;
 
         case sfEvtTextEntered :
-            event->Text.Unicode = SFMLEvent.Text.Unicode;
+            event->text.unicode = SFMLEvent.text.unicode;
             break;
 
         case sfEvtKeyReleased :
         case sfEvtKeyPressed :
-            event->Key.Code    = static_cast<sfKeyCode>(SFMLEvent.Key.Code);
-            event->Key.Alt     = SFMLEvent.Key.Alt     ? sfTrue : sfFalse;
-            event->Key.Control = SFMLEvent.Key.Control ? sfTrue : sfFalse;
-            event->Key.Shift   = SFMLEvent.Key.Shift   ? sfTrue : sfFalse;
-            event->Key.System  = SFMLEvent.Key.System  ? sfTrue : sfFalse;
+            event->key.code    = static_cast<sfKeyCode>(SFMLEvent.key.code);
+            event->key.alt     = SFMLEvent.key.alt     ? sfTrue : sfFalse;
+            event->key.control = SFMLEvent.key.control ? sfTrue : sfFalse;
+            event->key.shift   = SFMLEvent.key.shift   ? sfTrue : sfFalse;
+            event->key.system  = SFMLEvent.key.system  ? sfTrue : sfFalse;
             break;
 
         case sfEvtMouseWheelMoved :
-            event->MouseWheel.Delta = SFMLEvent.MouseWheel.Delta;
-            event->MouseWheel.X     = SFMLEvent.MouseWheel.X;
-            event->MouseWheel.Y     = SFMLEvent.MouseWheel.Y;
+            event->mouseWheel.delta = SFMLEvent.mouseWheel.delta;
+            event->mouseWheel.x     = SFMLEvent.mouseWheel.x;
+            event->mouseWheel.y     = SFMLEvent.mouseWheel.y;
             break;
 
         case sfEvtMouseButtonPressed :
         case sfEvtMouseButtonReleased :
-            event->MouseButton.Button = static_cast<sfMouseButton>(SFMLEvent.MouseButton.Button);
-            event->MouseButton.X      = SFMLEvent.MouseButton.X;
-            event->MouseButton.Y      = SFMLEvent.MouseButton.Y;
+            event->mouseButton.button = static_cast<sfMouseButton>(SFMLEvent.mouseButton.button);
+            event->mouseButton.x      = SFMLEvent.mouseButton.x;
+            event->mouseButton.y      = SFMLEvent.mouseButton.y;
             break;
 
         case sfEvtMouseMoved :
-            event->MouseMove.X = SFMLEvent.MouseMove.X;
-            event->MouseMove.Y = SFMLEvent.MouseMove.Y;
+            event->mouseMove.x = SFMLEvent.mouseMove.x;
+            event->mouseMove.y = SFMLEvent.mouseMove.y;
             break;
 
         case sfEvtJoystickButtonPressed :
         case sfEvtJoystickButtonReleased :
-            event->JoystickButton.JoystickId = SFMLEvent.JoystickButton.JoystickId;
-            event->JoystickButton.Button     = SFMLEvent.JoystickButton.Button;
+            event->joystickButton.joystickId = SFMLEvent.joystickButton.joystickId;
+            event->joystickButton.button     = SFMLEvent.joystickButton.button;
             break;
 
         case sfEvtJoystickMoved :
-            event->JoystickMove.JoystickId = SFMLEvent.JoystickMove.JoystickId;
-            event->JoystickMove.Axis       = static_cast<sfJoystickAxis>(SFMLEvent.JoystickMove.Axis);
-            event->JoystickMove.Position   = SFMLEvent.JoystickMove.Position;
+            event->joystickMove.joystickId = SFMLEvent.joystickMove.joystickId;
+            event->joystickMove.axis       = static_cast<sfJoystickAxis>(SFMLEvent.joystickMove.axis);
+            event->joystickMove.position   = SFMLEvent.joystickMove.position;
             break;
 
         case sfEvtJoystickConnected :
-            event->JoystickConnect.JoystickId = SFMLEvent.JoystickConnect.JoystickId;
-            break;
-
         case sfEvtJoystickDisconnected :
-            event->JoystickConnect.JoystickId = SFMLEvent.JoystickConnect.JoystickId;
+            event->joystickConnect.joystickId = SFMLEvent.joystickConnect.joystickId;
             break;
 
         default :

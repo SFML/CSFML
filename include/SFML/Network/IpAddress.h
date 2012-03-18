@@ -38,9 +38,27 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    char Address[16];
+    char address[16];
 } sfIpAddress;
 
+
+////////////////////////////////////////////////////////////
+/// \brief Empty object that represents invalid addresses
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfIpAddress sfIpAddress_None;
+
+////////////////////////////////////////////////////////////
+/// \brief Local host IP address (127.0.0.1, or "localhost")
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfIpAddress sfIpAddress_LocalHost;
+
+////////////////////////////////////////////////////////////
+/// \brief UDP broadcast address (255.255.255.255)
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfIpAddress sfIpAddress_Broadcast;
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an address from a string
@@ -53,13 +71,13 @@ typedef struct
 /// \return Resulting address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_FromString(const char* address);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_fromString(const char* address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an address from 4 bytes
 ///
-/// Calling sfIpAddress_FromBytes(a, b, c, d) is equivalent
-/// to calling sfIpAddress_FromString("a.b.c.d"), but safer
+/// Calling sfIpAddress_fromBytes(a, b, c, d) is equivalent
+/// to calling sfIpAddress_fromString("a.b.c.d"), but safer
 /// as it doesn't have to parse a string to get the address
 /// components.
 ///
@@ -71,7 +89,7 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_FromString(const char* address);
 /// \return Resulting address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_FromBytes(sfUint8 byte0, sfUint8 byte1, sfUint8 byte2, sfUint8 byte3);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_fromBytes(sfUint8 byte0, sfUint8 byte1, sfUint8 byte2, sfUint8 byte3);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct an address from a 32-bits integer
@@ -86,7 +104,7 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_FromBytes(sfUint8 byte0, sfUint8 byte1
 /// \return Resulting address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_FromInteger(sfUint32 address);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_fromInteger(sfUint32 address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a string representation of an address
@@ -100,7 +118,7 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_FromInteger(sfUint32 address);
 /// \return String representation of the address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfIpAddress_ToString(sfIpAddress address, char* string);
+CSFML_NETWORK_API void sfIpAddress_toString(sfIpAddress address, char* string);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get an integer representation of the address
@@ -116,7 +134,7 @@ CSFML_NETWORK_API void sfIpAddress_ToString(sfIpAddress address, char* string);
 /// \return 32-bits unsigned integer representation of the address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfUint32 sfIpAddress_ToInteger(sfIpAddress address);
+CSFML_NETWORK_API sfUint32 sfIpAddress_toInteger(sfIpAddress address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the computer's local address
@@ -124,13 +142,13 @@ CSFML_NETWORK_API sfUint32 sfIpAddress_ToInteger(sfIpAddress address);
 /// The local address is the address of the computer from the
 /// LAN point of view, i.e. something like 192.168.1.56. It is
 /// meaningful only for communications over the local network.
-/// Unlike sfIpAddress_GetPublicAddress, this function is fast
+/// Unlike sfIpAddress_getPublicAddress, this function is fast
 /// and may be used safely anywhere.
 ///
 /// \return Local IP address of the computer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_GetLocalAddress(void);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_getLocalAddress(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the computer's public address
@@ -152,31 +170,7 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_GetLocalAddress(void);
 /// \return Public IP address of the computer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_GetPublicAddress(sfTime timeout);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the empty/invalid address
-///
-/// \return Empty object that represents invalid addresses
-///
-////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_None(void);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the computer's loopback address
-///
-/// \return Local host IP address (127.0.0.1, or "localhost")
-///
-////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_LocalHost(void);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the UDP broadcast address
-///
-/// \return Broadcast IP address (255.255.255.255)
-///
-////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_Broadcast(void);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_getPublicAddress(sfTime timeout);
 
 
 #endif // SFML_IPADDRESS_H

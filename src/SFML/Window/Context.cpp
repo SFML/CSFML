@@ -31,21 +31,21 @@
 
 
 ////////////////////////////////////////////////////////////
-sfContext* sfContext_Create(void)
+sfContext* sfContext_create(void)
 {
     return new sfContext;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfContext_Destroy(sfContext* context)
+void sfContext_destroy(sfContext* context)
 {
     delete context;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfContext_SetActive(sfContext* context, sfBool active)
+void sfContext_setActive(sfContext* context, sfBool active)
 {
-    CSFML_CALL(context, SetActive(active == sfTrue));
+    CSFML_CALL(context, setActive(active == sfTrue));
 }

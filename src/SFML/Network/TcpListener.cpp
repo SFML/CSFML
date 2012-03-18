@@ -32,55 +32,55 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTcpListener* sfTcpListener_Create(void)
+sfTcpListener* sfTcpListener_create(void)
 {
     return new sfTcpListener;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpListener_Destroy(sfTcpListener* listener)
+void sfTcpListener_destroy(sfTcpListener* listener)
 {
     delete listener;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpListener_SetBlocking(sfTcpListener* listener, sfBool blocking)
+void sfTcpListener_setBlocking(sfTcpListener* listener, sfBool blocking)
 {
-    CSFML_CALL(listener, SetBlocking(blocking == sfTrue));
+    CSFML_CALL(listener, setBlocking(blocking == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTcpListener_IsBlocking(const sfTcpListener* listener)
+sfBool sfTcpListener_isBlocking(const sfTcpListener* listener)
 {
-    CSFML_CALL_RETURN(listener, IsBlocking(), sfFalse);
+    CSFML_CALL_RETURN(listener, isBlocking(), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned short sfTcpListener_GetLocalPort(const sfTcpListener* listener)
+unsigned short sfTcpListener_getLocalPort(const sfTcpListener* listener)
 {
-    CSFML_CALL_RETURN(listener, GetLocalPort(), 0);
+    CSFML_CALL_RETURN(listener, getLocalPort(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpListener_Listen(sfTcpListener* listener, unsigned short port)
+sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port)
 {
     CSFML_CHECK_RETURN(listener, sfSocketError);
 
-    return static_cast<sfSocketStatus>(listener->This.Listen(port));
+    return static_cast<sfSocketStatus>(listener->This.listen(port));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpListener_Accept(sfTcpListener* listener, sfTcpSocket** connected)
+sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** connected)
 {
     CSFML_CHECK_RETURN(listener, sfSocketError);
     CSFML_CHECK_RETURN(connected, sfSocketError);
 
     *connected = new sfTcpSocket;
-    return static_cast<sfSocketStatus>(listener->This.Accept((*connected)->This));
+    return static_cast<sfSocketStatus>(listener->This.accept((*connected)->This));
 }

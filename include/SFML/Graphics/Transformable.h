@@ -39,7 +39,7 @@
 /// \return A new sfTransformable object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransformable* sfTransformable_Create(void);
+CSFML_GRAPHICS_API sfTransformable* sfTransformable_create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing transformable
@@ -49,7 +49,7 @@ CSFML_GRAPHICS_API sfTransformable* sfTransformable_Create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransformable* sfTransformable_Copy(sfTransformable* transformable);
+CSFML_GRAPHICS_API sfTransformable* sfTransformable_copy(sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing transformable
@@ -57,46 +57,46 @@ CSFML_GRAPHICS_API sfTransformable* sfTransformable_Copy(sfTransformable* transf
 /// \param transformable Transformable to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_Destroy(sfTransformable* transformable);
+CSFML_GRAPHICS_API void sfTransformable_destroy(sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a transformable
 ///
 /// This function completely overwrites the previous position.
-/// See sfTransformable_Move to apply an offset based on the previous position instead.
+/// See sfTransformable_move to apply an offset based on the previous position instead.
 /// The default position of a transformable Transformable object is (0, 0).
 ///
 /// \param transformable Transformable object
 /// \param position      New position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_SetPosition(sfTransformable* transformable, sfVector2f position);
+CSFML_GRAPHICS_API void sfTransformable_setPosition(sfTransformable* transformable, sfVector2f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of a transformable
 ///
 /// This function completely overwrites the previous rotation.
-/// See sfTransformable_Rotate to add an angle based on the previous rotation instead.
+/// See sfTransformable_rotate to add an angle based on the previous rotation instead.
 /// The default rotation of a transformable Transformable object is 0.
 ///
 /// \param transformable Transformable object
 /// \param angle         New rotation, in degrees
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_SetRotation(sfTransformable* transformable, float angle);
+CSFML_GRAPHICS_API void sfTransformable_setRotation(sfTransformable* transformable, float angle);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the scale factors of a transformable
 ///
 /// This function completely overwrites the previous scale.
-/// See sfTransformable_Scale to add a factor based on the previous scale instead.
+/// See sfTransformable_scale to add a factor based on the previous scale instead.
 /// The default scale of a transformable Transformable object is (1, 1).
 ///
 /// \param transformable Transformable object
 /// \param scale         New scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_SetScale(sfTransformable* transformable, sfVector2f scale);
+CSFML_GRAPHICS_API void sfTransformable_setScale(sfTransformable* transformable, sfVector2f scale);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the local origin of a transformable
@@ -112,7 +112,7 @@ CSFML_GRAPHICS_API void sfTransformable_SetScale(sfTransformable* transformable,
 /// \param origin        New origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_SetOrigin(sfTransformable* transformable, sfVector2f origin);
+CSFML_GRAPHICS_API void sfTransformable_setOrigin(sfTransformable* transformable, sfVector2f origin);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a transformable
@@ -122,7 +122,7 @@ CSFML_GRAPHICS_API void sfTransformable_SetOrigin(sfTransformable* transformable
 /// \return Current position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfTransformable_GetPosition(const sfTransformable* transformable);
+CSFML_GRAPHICS_API sfVector2f sfTransformable_getPosition(const sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the orientation of a transformable
@@ -134,7 +134,7 @@ CSFML_GRAPHICS_API sfVector2f sfTransformable_GetPosition(const sfTransformable*
 /// \return Current rotation, in degrees
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfTransformable_GetRotation(const sfTransformable* transformable);
+CSFML_GRAPHICS_API float sfTransformable_getRotation(const sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current scale of a transformable
@@ -144,7 +144,7 @@ CSFML_GRAPHICS_API float sfTransformable_GetRotation(const sfTransformable* tran
 /// \return Current scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfTransformable_GetScale(const sfTransformable* transformable);
+CSFML_GRAPHICS_API sfVector2f sfTransformable_getScale(const sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local origin of a transformable
@@ -154,43 +154,43 @@ CSFML_GRAPHICS_API sfVector2f sfTransformable_GetScale(const sfTransformable* tr
 /// \return Current origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfTransformable_GetOrigin(const sfTransformable* transformable);
+CSFML_GRAPHICS_API sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Move a transformable by a given offset
 ///
 /// This function adds to the current position of the object,
-/// unlike sfTransformable_SetPosition which overwrites it.
+/// unlike sfTransformable_setPosition which overwrites it.
 ///
 /// \param transformable Transformable object
 /// \param offset        Offset
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_Move(sfTransformable* transformable, sfVector2f offset);
+CSFML_GRAPHICS_API void sfTransformable_move(sfTransformable* transformable, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Rotate a transformable
 ///
 /// This function adds to the current rotation of the object,
-/// unlike sfTransformable_SetRotation which overwrites it.
+/// unlike sfTransformable_setRotation which overwrites it.
 ///
 /// \param transformable Transformable object
 /// \param angle         Angle of rotation, in degrees
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_Rotate(sfTransformable* transformable, float angle);
+CSFML_GRAPHICS_API void sfTransformable_rotate(sfTransformable* transformable, float angle);
 
 ////////////////////////////////////////////////////////////
 /// \brief Scale a transformable
 ///
 /// This function multiplies the current scale of the object,
-/// unlike sfTransformable_SetScale which overwrites it.
+/// unlike sfTransformable_setScale which overwrites it.
 ///
 /// \param transformable Transformable object
 /// \param factors       Scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_Scale(sfTransformable* transformable, sfVector2f factors);
+CSFML_GRAPHICS_API void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the combined transform of a transformable
@@ -200,7 +200,7 @@ CSFML_GRAPHICS_API void sfTransformable_Scale(sfTransformable* transformable, sf
 /// \return Transform combining the position/rotation/scale/origin of the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfTransformable_GetTransform(const sfTransformable* transformable);
+CSFML_GRAPHICS_API const sfTransform* sfTransformable_getTransform(const sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the inverse of the combined transform of a transformable
@@ -210,7 +210,7 @@ CSFML_GRAPHICS_API const sfTransform* sfTransformable_GetTransform(const sfTrans
 /// \return Inverse of the combined transformations applied to the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfTransformable_GetInverseTransform(const sfTransformable* transformable);
+CSFML_GRAPHICS_API const sfTransform* sfTransformable_getInverseTransform(const sfTransformable* transformable);
 
 
 #endif // SFML_TRANSFORMABLE_H

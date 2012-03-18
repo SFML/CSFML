@@ -31,42 +31,42 @@
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfJoystick_IsConnected(unsigned int joystick)
+sfBool sfJoystick_isConnected(unsigned int joystick)
 {
-    return sf::Joystick::IsConnected(joystick) ? sfTrue : sfFalse;
+    return sf::Joystick::isConnected(joystick) ? sfTrue : sfFalse;
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfJoystick_GetButtonCount(unsigned int joystick)
+unsigned int sfJoystick_getButtonCount(unsigned int joystick)
 {
-    return sf::Joystick::GetButtonCount(joystick);
+    return sf::Joystick::getButtonCount(joystick);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfJoystick_HasAxis(unsigned int joystick, sfJoystickAxis axis)
+sfBool sfJoystick_hasAxis(unsigned int joystick, sfJoystickAxis axis)
 {
-    return sf::Joystick::HasAxis(joystick, static_cast<sf::Joystick::Axis>(axis)) ? sfTrue : sfFalse;
+    return sf::Joystick::hasAxis(joystick, static_cast<sf::Joystick::Axis>(axis)) ? sfTrue : sfFalse;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfJoystick_IsButtonPressed(unsigned int joystick, unsigned int button)
+sfBool sfJoystick_isButtonPressed(unsigned int joystick, unsigned int button)
 {
-    return sf::Joystick::IsButtonPressed(joystick, button) ? sfTrue : sfFalse;
+    return sf::Joystick::isButtonPressed(joystick, button) ? sfTrue : sfFalse;
 }
 
 
 ////////////////////////////////////////////////////////////
-float sfJoystick_GetAxisPosition(unsigned int joystick, sfJoystickAxis axis)
+float sfJoystick_getAxisPosition(unsigned int joystick, sfJoystickAxis axis)
 {
-    return sf::Joystick::GetAxisPosition(joystick, static_cast<sf::Joystick::Axis>(axis));
+    return sf::Joystick::getAxisPosition(joystick, static_cast<sf::Joystick::Axis>(axis));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfJoystick_Update(void)
+void sfJoystick_update(void)
 {
-    sf::Joystick::Update();
+    sf::Joystick::update();
 }

@@ -37,18 +37,18 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    float Left;
-    float Top;
-    float Width;
-    float Height;
+    float left;
+    float top;
+    float width;
+    float height;
 } sfFloatRect;
 
 typedef struct
 {
-    int Left;
-    int Top;
-    int Width;
-    int Height;
+    int left;
+    int top;
+    int width;
+    int height;
 } sfIntRect;
 
 ////////////////////////////////////////////////////////////
@@ -61,8 +61,8 @@ typedef struct
 /// \return sfTrue if the point is inside
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfFloatRect_Contains(const sfFloatRect* rect, float x, float y);
-CSFML_GRAPHICS_API sfBool sfIntRect_Contains(const sfIntRect* rect, int x, int y);
+CSFML_GRAPHICS_API sfBool sfFloatRect_contains(const sfFloatRect* rect, float x, float y);
+CSFML_GRAPHICS_API sfBool sfIntRect_contains(const sfIntRect* rect, int x, int y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check intersection between two rectangles
@@ -74,8 +74,8 @@ CSFML_GRAPHICS_API sfBool sfIntRect_Contains(const sfIntRect* rect, int x, int y
 /// \return sfTrue if rectangles overlap
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfFloatRect_Intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, sfFloatRect* intersection);
-CSFML_GRAPHICS_API sfBool sfIntRect_Intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection);
+CSFML_GRAPHICS_API sfBool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, sfFloatRect* intersection);
+CSFML_GRAPHICS_API sfBool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection);
 
 
 #endif // SFML_RECT_H

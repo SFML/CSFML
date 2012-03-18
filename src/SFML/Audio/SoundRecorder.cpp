@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfSoundRecorder* sfSoundRecorder_Create(sfSoundRecorderStartCallback   onStart,
+sfSoundRecorder* sfSoundRecorder_create(sfSoundRecorderStartCallback   onStart,
                                         sfSoundRecorderProcessCallback onProcess,
                                         sfSoundRecorderStopCallback    onStop,
                                         void*                          userData)
@@ -41,35 +41,35 @@ sfSoundRecorder* sfSoundRecorder_Create(sfSoundRecorderStartCallback   onStart,
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundRecorder_Destroy(sfSoundRecorder* soundRecorder)
+void sfSoundRecorder_destroy(sfSoundRecorder* soundRecorder)
 {
     delete soundRecorder;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundRecorder_Start(sfSoundRecorder* soundRecorder, unsigned int sampleRate)
+void sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate)
 {
-    CSFML_CALL(soundRecorder, Start(sampleRate));
+    CSFML_CALL(soundRecorder, start(sampleRate));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundRecorder_Stop(sfSoundRecorder* soundRecorder)
+void sfSoundRecorder_stop(sfSoundRecorder* soundRecorder)
 {
-    CSFML_CALL(soundRecorder, Stop());
+    CSFML_CALL(soundRecorder, stop());
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfSoundRecorder_GetSampleRate(const sfSoundRecorder* soundRecorder)
+unsigned int sfSoundRecorder_getSampleRate(const sfSoundRecorder* soundRecorder)
 {
-    CSFML_CALL_RETURN(soundRecorder, GetSampleRate(), 0);
+    CSFML_CALL_RETURN(soundRecorder, getSampleRate(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSoundRecorder_IsAvailable(void)
+sfBool sfSoundRecorder_isAvailable(void)
 {
-    return sf::SoundRecorder::IsAvailable() ? sfTrue : sfFalse;
+    return sf::SoundRecorder::isAvailable() ? sfTrue : sfFalse;
 }

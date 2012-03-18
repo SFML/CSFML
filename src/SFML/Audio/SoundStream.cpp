@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfSoundStream* sfSoundStream_Create(sfSoundStreamGetDataCallback onGetData,
+sfSoundStream* sfSoundStream_create(sfSoundStreamGetDataCallback onGetData,
                                     sfSoundStreamSeekCallback    onSeek,
                                     unsigned int                 channelCount,
                                     unsigned int                 sampleRate,
@@ -42,133 +42,133 @@ sfSoundStream* sfSoundStream_Create(sfSoundStreamGetDataCallback onGetData,
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_Destroy(sfSoundStream* soundStream)
+void sfSoundStream_destroy(sfSoundStream* soundStream)
 {
     delete soundStream;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_Play(sfSoundStream* soundStream)
+void sfSoundStream_play(sfSoundStream* soundStream)
 {
-    CSFML_CALL(soundStream, Play());
+    CSFML_CALL(soundStream, play());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_Pause(sfSoundStream* soundStream)
+void sfSoundStream_pause(sfSoundStream* soundStream)
 {
-    CSFML_CALL(soundStream, Pause());
+    CSFML_CALL(soundStream, pause());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_Stop(sfSoundStream* soundStream)
+void sfSoundStream_stop(sfSoundStream* soundStream)
 {
-    CSFML_CALL(soundStream, Stop());
+    CSFML_CALL(soundStream, stop());
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSoundStatus sfSoundStream_GetStatus(const sfSoundStream* soundStream)
+sfSoundStatus sfSoundStream_getStatus(const sfSoundStream* soundStream)
 {
     CSFML_CHECK_RETURN(soundStream, sfStopped);
 
-    return static_cast<sfSoundStatus>(soundStream->This.GetStatus());
+    return static_cast<sfSoundStatus>(soundStream->This.getStatus());
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfSoundStream_GetChannelCount(const sfSoundStream* soundStream)
+unsigned int sfSoundStream_getChannelCount(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, GetChannelCount(), 0);
+    CSFML_CALL_RETURN(soundStream, getChannelCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfSoundStream_GetSampleRate(const sfSoundStream* soundStream)
+unsigned int sfSoundStream_getSampleRate(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, GetSampleRate(), 0);
+    CSFML_CALL_RETURN(soundStream, getSampleRate(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_SetPitch(sfSoundStream* soundStream, float pitch)
+void sfSoundStream_setPitch(sfSoundStream* soundStream, float pitch)
 {
-    CSFML_CALL(soundStream, SetPitch(pitch));
+    CSFML_CALL(soundStream, setPitch(pitch));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_SetVolume(sfSoundStream* soundStream, float volume)
+void sfSoundStream_setVolume(sfSoundStream* soundStream, float volume)
 {
-    CSFML_CALL(soundStream, SetVolume(volume));
+    CSFML_CALL(soundStream, setVolume(volume));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_SetPosition(sfSoundStream* soundStream, sfVector3f position)
+void sfSoundStream_setPosition(sfSoundStream* soundStream, sfVector3f position)
 {
-    CSFML_CALL(soundStream, SetPosition(position.x, position.y, position.z));
+    CSFML_CALL(soundStream, setPosition(position.x, position.y, position.z));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_SetRelativeToListener(sfSoundStream* soundStream, sfBool relative)
+void sfSoundStream_setRelativeToListener(sfSoundStream* soundStream, sfBool relative)
 {
-    CSFML_CALL(soundStream, SetRelativeToListener(relative == sfTrue));
+    CSFML_CALL(soundStream, setRelativeToListener(relative == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_SetMinDistance(sfSoundStream* soundStream, float distance)
+void sfSoundStream_setMinDistance(sfSoundStream* soundStream, float distance)
 {
-    CSFML_CALL(soundStream, SetMinDistance(distance));
+    CSFML_CALL(soundStream, setMinDistance(distance));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_SetAttenuation(sfSoundStream* soundStream, float attenuation)
+void sfSoundStream_setAttenuation(sfSoundStream* soundStream, float attenuation)
 {
-    CSFML_CALL(soundStream, SetAttenuation(attenuation));
+    CSFML_CALL(soundStream, setAttenuation(attenuation));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_SetPlayingOffset(sfSoundStream* soundStream, sfTime timeOffset)
+void sfSoundStream_setPlayingOffset(sfSoundStream* soundStream, sfTime timeOffset)
 {
-    CSFML_CALL(soundStream, SetPlayingOffset(sf::Microseconds(timeOffset.Microseconds)));
+    CSFML_CALL(soundStream, setPlayingOffset(sf::microseconds(timeOffset.microseconds)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_SetLoop(sfSoundStream* soundStream, sfBool loop)
+void sfSoundStream_setLoop(sfSoundStream* soundStream, sfBool loop)
 {
-    CSFML_CALL(soundStream, SetLoop(loop == sfTrue));
+    CSFML_CALL(soundStream, setLoop(loop == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-float sfSoundStream_GetPitch(const sfSoundStream* soundStream)
+float sfSoundStream_getPitch(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, GetPitch(), 0.f);
+    CSFML_CALL_RETURN(soundStream, getPitch(), 0.f);
 }
 
 
 ////////////////////////////////////////////////////////////
-float sfSoundStream_GetVolume(const sfSoundStream* soundStream)
+float sfSoundStream_getVolume(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, GetVolume(), 0.f);
+    CSFML_CALL_RETURN(soundStream, getVolume(), 0.f);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector3f sfSoundStream_GetPosition(const sfSoundStream* soundStream)
+sfVector3f sfSoundStream_getPosition(const sfSoundStream* soundStream)
 {
     sfVector3f position = {0, 0, 0};
     CSFML_CHECK_RETURN(soundStream, position);
 
-    sf::Vector3f sfmlPos = soundStream->This.GetPosition();
+    sf::Vector3f sfmlPos = soundStream->This.getPosition();
     position.x = sfmlPos.x;
     position.y = sfmlPos.y;
     position.z = sfmlPos.z;
@@ -178,39 +178,39 @@ sfVector3f sfSoundStream_GetPosition(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundStream_IsRelativeToListener(const sfSoundStream* soundStream)
+CSFML_AUDIO_API sfBool sfSoundStream_isRelativeToListener(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, IsRelativeToListener(), sfFalse);
+    CSFML_CALL_RETURN(soundStream, isRelativeToListener(), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-float sfSoundStream_GetMinDistance(const sfSoundStream* soundStream)
+float sfSoundStream_getMinDistance(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, GetMinDistance(), 0.f);
+    CSFML_CALL_RETURN(soundStream, getMinDistance(), 0.f);
 }
 
 
 ////////////////////////////////////////////////////////////
-float sfSoundStream_GetAttenuation(const sfSoundStream* soundStream)
+float sfSoundStream_getAttenuation(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, GetAttenuation(), 0.f);
+    CSFML_CALL_RETURN(soundStream, getAttenuation(), 0.f);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSoundStream_GetLoop(const sfSoundStream* soundStream)
+sfBool sfSoundStream_getLoop(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, GetLoop(), sfFalse);
+    CSFML_CALL_RETURN(soundStream, getLoop(), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTime sfSoundStream_GetPlayingOffset(const sfSoundStream* soundStream)
+sfTime sfSoundStream_getPlayingOffset(const sfSoundStream* soundStream)
 {
     sfTime time = {0};
     CSFML_CHECK_RETURN(soundStream, time);
 
-    time.Microseconds = soundStream->This.GetPlayingOffset().AsMicroseconds();
+    time.microseconds = soundStream->This.getPlayingOffset().asMicroseconds();
     return time;
 }

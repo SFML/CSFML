@@ -31,26 +31,26 @@
 
 
 ////////////////////////////////////////////////////////////
-sfColor sfBlack       = sfColor_FromRGB(  0,   0,   0);
-sfColor sfWhite       = sfColor_FromRGB(255, 255, 255);
-sfColor sfRed         = sfColor_FromRGB(255,   0,   0);
-sfColor sfGreen       = sfColor_FromRGB(  0, 255,   0);
-sfColor sfBlue        = sfColor_FromRGB(  0,   0, 255);
-sfColor sfYellow      = sfColor_FromRGB(255, 255,   0);
-sfColor sfMagenta     = sfColor_FromRGB(255,   0, 255);
-sfColor sfCyan        = sfColor_FromRGB(  0, 255, 255);
-sfColor sfTransparent = sfColor_FromRGBA( 0,   0,   0, 0);
+sfColor sfBlack       = sfColor_fromRGB(  0,   0,   0);
+sfColor sfWhite       = sfColor_fromRGB(255, 255, 255);
+sfColor sfRed         = sfColor_fromRGB(255,   0,   0);
+sfColor sfGreen       = sfColor_fromRGB(  0, 255,   0);
+sfColor sfBlue        = sfColor_fromRGB(  0,   0, 255);
+sfColor sfYellow      = sfColor_fromRGB(255, 255,   0);
+sfColor sfMagenta     = sfColor_fromRGB(255,   0, 255);
+sfColor sfCyan        = sfColor_fromRGB(  0, 255, 255);
+sfColor sfTransparent = sfColor_fromRGBA( 0,   0,   0, 0);
 
 
 ////////////////////////////////////////////////////////////
-sfColor sfColor_FromRGB(sfUint8 red, sfUint8 green, sfUint8 blue)
+sfColor sfColor_fromRGB(sfUint8 red, sfUint8 green, sfUint8 blue)
 {
-    return sfColor_FromRGBA(red, green, blue, 255);
+    return sfColor_fromRGBA(red, green, blue, 255);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfColor sfColor_FromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha)
+sfColor sfColor_fromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha)
 {
     sfColor color;
 
@@ -64,14 +64,14 @@ sfColor sfColor_FromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha
 
 
 ////////////////////////////////////////////////////////////
-sfColor sfColor_Add(sfColor color1, sfColor color2)
+sfColor sfColor_add(sfColor color1, sfColor color2)
 {
     int red   = std::min(color1.r + color2.r, 255);
     int green = std::min(color1.g + color2.g, 255);
     int blue  = std::min(color1.b + color2.b, 255);
     int alpha = std::min(color1.a + color2.a, 255);
 
-    return sfColor_FromRGBA(static_cast<sfUint8>(red),
+    return sfColor_fromRGBA(static_cast<sfUint8>(red),
                             static_cast<sfUint8>(green),
                             static_cast<sfUint8>(blue),
                             static_cast<sfUint8>(alpha));
@@ -79,14 +79,14 @@ sfColor sfColor_Add(sfColor color1, sfColor color2)
 
 
 ////////////////////////////////////////////////////////////
-sfColor sfColor_Modulate(sfColor color1, sfColor color2)
+sfColor sfColor_modulate(sfColor color1, sfColor color2)
 {
     int red   = color1.r * color2.r / 255;
     int green = color1.g * color2.g / 255;
     int blue  = color1.b * color2.b / 255;
     int alpha = color1.a * color2.a / 255;
 
-    return sfColor_FromRGBA(static_cast<sfUint8>(red),
+    return sfColor_fromRGBA(static_cast<sfUint8>(red),
                             static_cast<sfUint8>(green),
                             static_cast<sfUint8>(blue),
                             static_cast<sfUint8>(alpha));

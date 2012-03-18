@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTransformable* sfTransformable_Create(void)
+sfTransformable* sfTransformable_create(void)
 {
     sfTransformable* transformable = new sfTransformable;
 
@@ -40,7 +40,7 @@ sfTransformable* sfTransformable_Create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfTransformable* sfTransformable_Copy(sfTransformable* transformable)
+sfTransformable* sfTransformable_copy(sfTransformable* transformable)
 {
     CSFML_CHECK_RETURN(transformable, NULL);
 
@@ -49,47 +49,47 @@ sfTransformable* sfTransformable_Copy(sfTransformable* transformable)
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_Destroy(sfTransformable* transformable)
+void sfTransformable_destroy(sfTransformable* transformable)
 {
     delete transformable;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_SetPosition(sfTransformable* transformable, sfVector2f position)
+void sfTransformable_setPosition(sfTransformable* transformable, sfVector2f position)
 {
-    CSFML_CALL(transformable, SetPosition(position.x, position.y));
+    CSFML_CALL(transformable, setPosition(position.x, position.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_SetRotation(sfTransformable* transformable, float angle)
+void sfTransformable_setRotation(sfTransformable* transformable, float angle)
 {
-    CSFML_CALL(transformable, SetRotation(angle));
+    CSFML_CALL(transformable, setRotation(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_SetScale(sfTransformable* transformable, sfVector2f scale)
+void sfTransformable_setScale(sfTransformable* transformable, sfVector2f scale)
 {
-    CSFML_CALL(transformable, SetScale(scale.x, scale.y));
+    CSFML_CALL(transformable, setScale(scale.x, scale.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_SetOrigin(sfTransformable* transformable, sfVector2f origin)
+void sfTransformable_setOrigin(sfTransformable* transformable, sfVector2f origin)
 {
-    CSFML_CALL(transformable, SetOrigin(origin.x, origin.y));
+    CSFML_CALL(transformable, setOrigin(origin.x, origin.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2f sfTransformable_GetPosition(const sfTransformable* transformable)
+sfVector2f sfTransformable_getPosition(const sfTransformable* transformable)
 {
     sfVector2f position = {0, 0};
     CSFML_CHECK_RETURN(transformable, position);
 
-    sf::Vector2f sfmlPos = transformable->This.GetPosition();
+    sf::Vector2f sfmlPos = transformable->This.getPosition();
     position.x = sfmlPos.x;
     position.y = sfmlPos.y;
 
@@ -98,19 +98,19 @@ sfVector2f sfTransformable_GetPosition(const sfTransformable* transformable)
 
 
 ////////////////////////////////////////////////////////////
-float sfTransformable_GetRotation(const sfTransformable* transformable)
+float sfTransformable_getRotation(const sfTransformable* transformable)
 {
-    CSFML_CALL_RETURN(transformable, GetRotation(), 0.f);
+    CSFML_CALL_RETURN(transformable, getRotation(), 0.f);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2f sfTransformable_GetScale(const sfTransformable* transformable)
+sfVector2f sfTransformable_getScale(const sfTransformable* transformable)
 {
     sfVector2f scale = {0, 0};
     CSFML_CHECK_RETURN(transformable, scale);
 
-    sf::Vector2f sfmlScale = transformable->This.GetScale();
+    sf::Vector2f sfmlScale = transformable->This.getScale();
     scale.x = sfmlScale.x;
     scale.y = sfmlScale.y;
 
@@ -119,12 +119,12 @@ sfVector2f sfTransformable_GetScale(const sfTransformable* transformable)
 
 
 ////////////////////////////////////////////////////////////
-sfVector2f sfTransformable_GetOrigin(const sfTransformable* transformable)
+sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable)
 {
     sfVector2f origin = {0, 0};
     CSFML_CHECK_RETURN(transformable, origin);
 
-    sf::Vector2f sfmlOrigin = transformable->This.GetOrigin();
+    sf::Vector2f sfmlOrigin = transformable->This.getOrigin();
     origin.x = sfmlOrigin.x;
     origin.y = sfmlOrigin.y;
 
@@ -133,41 +133,41 @@ sfVector2f sfTransformable_GetOrigin(const sfTransformable* transformable)
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_Move(sfTransformable* transformable, sfVector2f offset)
+void sfTransformable_move(sfTransformable* transformable, sfVector2f offset)
 {
-    CSFML_CALL(transformable, Move(offset.x, offset.y));
+    CSFML_CALL(transformable, move(offset.x, offset.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_Rotate(sfTransformable* transformable, float angle)
+void sfTransformable_rotate(sfTransformable* transformable, float angle)
 {
-    CSFML_CALL(transformable, Rotate(angle));
+    CSFML_CALL(transformable, rotate(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_Scale(sfTransformable* transformable, sfVector2f factors)
+void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors)
 {
-    CSFML_CALL(transformable, Scale(factors.x, factors.y));
+    CSFML_CALL(transformable, scale(factors.x, factors.y));
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfTransformable_GetTransform(const sfTransformable* transformable)
+const sfTransform* sfTransformable_getTransform(const sfTransformable* transformable)
 {
     CSFML_CHECK_RETURN(transformable, NULL);
 
-    transformable->Transform.This = transformable->This.GetTransform();
+    transformable->Transform.This = transformable->This.getTransform();
     return &transformable->Transform;
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfTransformable_GetInverseTransform(const sfTransformable* transformable)
+const sfTransform* sfTransformable_getInverseTransform(const sfTransformable* transformable)
 {
     CSFML_CHECK_RETURN(transformable, NULL);
 
-    transformable->InverseTransform.This = transformable->This.GetInverseTransform();
+    transformable->InverseTransform.This = transformable->This.getInverseTransform();
     return &transformable->InverseTransform;
 }

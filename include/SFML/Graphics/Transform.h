@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -41,7 +42,7 @@
 /// \return A new sfTransform object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform* sfTransform_Create(void);
+CSFML_GRAPHICS_API sfTransform* sfTransform_create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new transform from a matrix
@@ -59,7 +60,7 @@ CSFML_GRAPHICS_API sfTransform* sfTransform_Create(void);
 /// \return A new sfTransform object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform* sfTransform_CreateFromMatrix(float a00, float a01, float a02,
+CSFML_GRAPHICS_API sfTransform* sfTransform_createFromMatrix(float a00, float a01, float a02,
                                                              float a10, float a11, float a12,
                                                              float a20, float a21, float a22);
 
@@ -71,7 +72,7 @@ CSFML_GRAPHICS_API sfTransform* sfTransform_CreateFromMatrix(float a00, float a0
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform* sfTransform_Copy(sfTransform* transform);
+CSFML_GRAPHICS_API sfTransform* sfTransform_copy(sfTransform* transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing transform
@@ -79,7 +80,7 @@ CSFML_GRAPHICS_API sfTransform* sfTransform_Copy(sfTransform* transform);
 /// \param transform Transform to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_Destroy(sfTransform* transform);
+CSFML_GRAPHICS_API void sfTransform_destroy(sfTransform* transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the 4x4 matrix of a transform
@@ -90,7 +91,7 @@ CSFML_GRAPHICS_API void sfTransform_Destroy(sfTransform* transform);
 ///
 /// \code
 /// sfTransform* transform = ...;
-/// glLoadMatrixf(sfTransform_GetMatrix(transform));
+/// glLoadMatrixf(sfTransform_getMatrix(transform));
 /// \endcode
 ///
 /// \param transform Transform object
@@ -98,7 +99,7 @@ CSFML_GRAPHICS_API void sfTransform_Destroy(sfTransform* transform);
 /// \return Pointer to a 4x4 matrix
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const float* sfTransform_GetMatrix(const sfTransform* transform);
+CSFML_GRAPHICS_API const float* sfTransform_getMatrix(const sfTransform* transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the inverse of a transform
@@ -110,19 +111,18 @@ CSFML_GRAPHICS_API const float* sfTransform_GetMatrix(const sfTransform* transfo
 /// \param result Returned inverse matrix
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_GetInverse(const sfTransform* transform, sfTransform* result);
+CSFML_GRAPHICS_API void sfTransform_getInverse(const sfTransform* transform, sfTransform* result);
 
 ////////////////////////////////////////////////////////////
 /// \brief Apply a transform to a 2D point
 ///
-/// \param transform    Transform object
-/// \param x            X coordinate of the point to transform
-/// \param y            Y coordinate of the point to transform
-/// \param transformedX X coordinate of the transformed point
-/// \param transformedY Y coordinate of the transformed point
+/// \param transform Transform object
+/// \param point     Point to transform
+///
+/// \return Transformed point
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_TransformPoint(const sfTransform* transform, float x, float y, float* transformedX, float* transformedY);
+CSFML_GRAPHICS_API sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f point);
 
 ////////////////////////////////////////////////////////////
 /// \brief Apply a transform to a rectangle
@@ -133,12 +133,13 @@ CSFML_GRAPHICS_API void sfTransform_TransformPoint(const sfTransform* transform,
 /// rotation, the bounding rectangle of the transformed rectangle
 /// is returned.
 ///
-/// \param transform            Transform object
-/// \param rectangle            Rectangle to transform
-/// \param transformedRectangle Transformed rectangle
+/// \param transform Transform object
+/// \param rectangle Rectangle to transform
+///
+/// \return Transformed rectangle
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_TransformRect(const sfTransform* transform, sfFloatRect rectangle, sfFloatRect* transformedRectangle);
+CSFML_GRAPHICS_API sfFloatRect sfTransform_transformRect(const sfTransform* transform, sfFloatRect rectangle);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine two transforms
@@ -151,7 +152,7 @@ CSFML_GRAPHICS_API void sfTransform_TransformRect(const sfTransform* transform, 
 /// \param right     Transform to combine to \a transform
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_Combine(sfTransform* transform, const sfTransform* other);
+CSFML_GRAPHICS_API void sfTransform_combine(sfTransform* transform, const sfTransform* other);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine a transform with a translation
@@ -161,7 +162,7 @@ CSFML_GRAPHICS_API void sfTransform_Combine(sfTransform* transform, const sfTran
 /// \param y         Offset to apply on Y axis
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_Translate(sfTransform* transform, float x, float y);
+CSFML_GRAPHICS_API void sfTransform_translate(sfTransform* transform, float x, float y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine the current transform with a rotation
@@ -170,7 +171,7 @@ CSFML_GRAPHICS_API void sfTransform_Translate(sfTransform* transform, float x, f
 /// \param angle     Rotation angle, in degrees
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_Rotate(sfTransform* transform, float angle);
+CSFML_GRAPHICS_API void sfTransform_rotate(sfTransform* transform, float angle);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine the current transform with a rotation
@@ -178,7 +179,7 @@ CSFML_GRAPHICS_API void sfTransform_Rotate(sfTransform* transform, float angle);
 /// The center of rotation is provided for convenience as a second
 /// argument, so that you can build rotations around arbitrary points
 /// more easily (and efficiently) than the usual
-/// [Translate(-center), Rotate(angle), Translate(center)].
+/// [translate(-center), rotate(angle), translate(center)].
 ///
 /// \param transform Transform object
 /// \param angle     Rotation angle, in degrees
@@ -186,7 +187,7 @@ CSFML_GRAPHICS_API void sfTransform_Rotate(sfTransform* transform, float angle);
 /// \param centerY   Y coordinate of the center of rotation
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_RotateWithCenter(sfTransform* transform, float angle, float centerX, float centerY);
+CSFML_GRAPHICS_API void sfTransform_rotateWithCenter(sfTransform* transform, float angle, float centerX, float centerY);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine the current transform with a scaling
@@ -196,7 +197,7 @@ CSFML_GRAPHICS_API void sfTransform_RotateWithCenter(sfTransform* transform, flo
 /// \param scaleY    Scaling factor on the Y axis
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_Scale(sfTransform* transform, float scaleX, float scaleY);
+CSFML_GRAPHICS_API void sfTransform_scale(sfTransform* transform, float scaleX, float scaleY);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine the current transform with a scaling
@@ -204,7 +205,7 @@ CSFML_GRAPHICS_API void sfTransform_Scale(sfTransform* transform, float scaleX, 
 /// The center of scaling is provided for convenience as a second
 /// argument, so that you can build scaling around arbitrary points
 /// more easily (and efficiently) than the usual
-/// [Translate(-center), Scale(factors), Translate(center)]
+/// [translate(-center), scale(factors), translate(center)]
 ///
 /// \param transform Transform object
 /// \param scaleX    Scaling factor on X axis
@@ -213,7 +214,7 @@ CSFML_GRAPHICS_API void sfTransform_Scale(sfTransform* transform, float scaleX, 
 /// \param centerY   Y coordinate of the center of scaling
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_ScaleWithCenter(sfTransform* transform, float scaleX, float scaleY, float centerX, float centerY);
+CSFML_GRAPHICS_API void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float scaleY, float centerX, float centerY);
 
 
 #endif // SFML_TRANSFORM_H

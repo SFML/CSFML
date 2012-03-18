@@ -31,14 +31,14 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTransform* sfTransform_Create(void)
+sfTransform* sfTransform_create(void)
 {
     return new sfTransform;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTransform* sfTransform_CreateFromMatrix(float a00, float a01, float a02,
+sfTransform* sfTransform_createFromMatrix(float a00, float a01, float a02,
                                           float a10, float a11, float a12,
                                           float a20, float a21, float a22)
 {
@@ -49,7 +49,7 @@ sfTransform* sfTransform_CreateFromMatrix(float a00, float a01, float a02,
 
 
 ////////////////////////////////////////////////////////////
-sfTransform* sfTransform_Copy(sfTransform* transform)
+sfTransform* sfTransform_copy(sfTransform* transform)
 {
     CSFML_CHECK_RETURN(transform, NULL);
 
@@ -58,99 +58,100 @@ sfTransform* sfTransform_Copy(sfTransform* transform)
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_Destroy(sfTransform* transform)
+void sfTransform_destroy(sfTransform* transform)
 {
     delete transform;
 }
 
 
 ////////////////////////////////////////////////////////////
-const float* sfTransform_GetMatrix(const sfTransform* transform)
+const float* sfTransform_getMatrix(const sfTransform* transform)
 {
-    CSFML_CALL_RETURN(transform, GetMatrix(), NULL);
+    CSFML_CALL_RETURN(transform, getMatrix(), NULL);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_GetInverse(const sfTransform* transform, sfTransform* result)
+void sfTransform_getInverse(const sfTransform* transform, sfTransform* result)
 {
     CSFML_CHECK(transform);
 
     if (result)
-        result->This = transform->This.GetInverse();
+        result->This = transform->This.getInverse();
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_TransformPoint(const sfTransform* transform, float x, float y, float* transformedX, float* transformedY)
+sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f point)
 {
-    CSFML_CHECK(transform);
+    sfVector2f p = {0, 0};
+    CSFML_CHECK_RETURN(transform, p);
 
-    sf::Vector2f point = transform->This.TransformPoint(x, y);
+    sf::Vector2f sfmlPoint = transform->This.transformPoint(point.x, point.y);
 
-    if (transformedX)
-        *transformedX = point.x;
-    if (transformedY)
-        *transformedY = point.y;
+    p.x = sfmlPoint.x;
+    p.y = sfmlPoint.y;
+
+    return p;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_TransformRect(const sfTransform* transform, sfFloatRect rectangle, sfFloatRect* transformedRectangle)
+sfFloatRect sfTransform_transformRect(const sfTransform* transform, sfFloatRect rectangle)
 {
-    CSFML_CHECK(transform);
+    sfFloatRect rect = {0, 0, 0, 0};
+    CSFML_CHECK_RETURN(transform, rect);
 
-    sf::FloatRect rect = transform->This.TransformRect(sf::FloatRect(rectangle.Left, rectangle.Top, rectangle.Width, rectangle.Height));
+    sf::FloatRect sfmlRect = transform->This.transformRect(sf::FloatRect(rectangle.left, rectangle.top, rectangle.width, rectangle.height));
 
-    if (transformedRectangle)
-    {
-        transformedRectangle->Left = rect.Left;
-        transformedRectangle->Top = rect.Top;
-        transformedRectangle->Width = rect.Width;
-        transformedRectangle->Height = rect.Height;
-    }
+    rect.left = sfmlRect.left;
+    rect.top = sfmlRect.top;
+    rect.width = sfmlRect.width;
+    rect.height = sfmlRect.height;
+
+    return rect;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_Combine(sfTransform* transform, const sfTransform* other)
+void sfTransform_combine(sfTransform* transform, const sfTransform* other)
 {
     CSFML_CHECK(other);
 
-    CSFML_CALL(transform, Combine(other->This));
+    CSFML_CALL(transform, combine(other->This));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_Translate(sfTransform* transform, float x, float y)
+void sfTransform_translate(sfTransform* transform, float x, float y)
 {
-    CSFML_CALL(transform, Translate(x, y));
+    CSFML_CALL(transform, translate(x, y));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_Rotate(sfTransform* transform, float angle)
+void sfTransform_rotate(sfTransform* transform, float angle)
 {
-    CSFML_CALL(transform, Rotate(angle));
+    CSFML_CALL(transform, rotate(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_RotateWithCenter(sfTransform* transform, float angle, float centerX, float centerY)
+void sfTransform_rotateWithCenter(sfTransform* transform, float angle, float centerX, float centerY)
 {
-    CSFML_CALL(transform, Rotate(angle, centerX, centerY));
+    CSFML_CALL(transform, rotate(angle, centerX, centerY));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_Scale(sfTransform* transform, float scaleX, float scaleY)
+void sfTransform_scale(sfTransform* transform, float scaleX, float scaleY)
 {
-    CSFML_CALL(transform, Scale(scaleX, scaleY));
+    CSFML_CALL(transform, scale(scaleX, scaleY));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_ScaleWithCenter(sfTransform* transform, float scaleX, float scaleY, float centerX, float centerY)
+void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float scaleY, float centerX, float centerY)
 {
-    CSFML_CALL(transform, Scale(scaleX, scaleY, centerX, centerY));
+    CSFML_CALL(transform, scale(scaleX, scaleY, centerX, centerY));
 }

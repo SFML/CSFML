@@ -32,138 +32,138 @@
 
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_Create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings)
+sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings)
 {
     // Convert video mode
-    sf::VideoMode videoMode(mode.Width, mode.Height, mode.BitsPerPixel);
+    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
 
     // Convert context settings
     sf::ContextSettings params;
     if (settings)
     {
-        params.DepthBits         = settings->DepthBits;
-        params.StencilBits       = settings->StencilBits;
-        params.AntialiasingLevel = settings->AntialiasingLevel;
-        params.MajorVersion      = settings->MajorVersion;
-        params.MinorVersion      = settings->MinorVersion;
+        params.depthBits         = settings->depthBits;
+        params.stencilBits       = settings->stencilBits;
+        params.antialiasingLevel = settings->antialiasingLevel;
+        params.majorVersion      = settings->majorVersion;
+        params.minorVersion      = settings->minorVersion;
     }
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.Create(videoMode, title, style, params);
+    window->This.create(videoMode, title, style, params);
 
     return window;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_CreateFromHandle(sfWindowHandle handle, const sfContextSettings* settings)
+sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings)
 {
     // Convert context settings
     sf::ContextSettings params;
     if (settings)
     {
-        params.DepthBits         = settings->DepthBits;
-        params.StencilBits       = settings->StencilBits;
-        params.AntialiasingLevel = settings->AntialiasingLevel;
-        params.MajorVersion      = settings->MajorVersion;
-        params.MinorVersion      = settings->MinorVersion;
+        params.depthBits         = settings->depthBits;
+        params.stencilBits       = settings->stencilBits;
+        params.antialiasingLevel = settings->antialiasingLevel;
+        params.majorVersion      = settings->majorVersion;
+        params.minorVersion      = settings->minorVersion;
     }
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.Create(handle, params);
+    window->This.create(handle, params);
 
     return window;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_Destroy(sfWindow* window)
+void sfWindow_destroy(sfWindow* window)
 {
     delete window;
 }
 
 ////////////////////////////////////////////////////////////
-void sfWindow_Close(sfWindow* window)
+void sfWindow_close(sfWindow* window)
 {
-    CSFML_CALL(window, Close());
+    CSFML_CALL(window, close());
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_IsOpen(const sfWindow* window)
+sfBool sfWindow_isOpen(const sfWindow* window)
 {
-    CSFML_CALL_RETURN(window, IsOpen(), sfFalse);
+    CSFML_CALL_RETURN(window, isOpen(), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfContextSettings sfWindow_GetSettings(const sfWindow* window)
+sfContextSettings sfWindow_getSettings(const sfWindow* window)
 {
     sfContextSettings settings = {0, 0, 0, 0, 0};
     CSFML_CHECK_RETURN(window, settings);
 
-    const sf::ContextSettings& params = window->This.GetSettings();
-    settings.DepthBits         = params.DepthBits;
-    settings.StencilBits       = params.StencilBits;
-    settings.AntialiasingLevel = params.AntialiasingLevel;
-    settings.MajorVersion      = params.MajorVersion;
-    settings.MinorVersion      = params.MinorVersion;
+    const sf::ContextSettings& params = window->This.getSettings();
+    settings.depthBits         = params.depthBits;
+    settings.stencilBits       = params.stencilBits;
+    settings.antialiasingLevel = params.antialiasingLevel;
+    settings.majorVersion      = params.majorVersion;
+    settings.minorVersion      = params.minorVersion;
 
     return settings;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_PollEvent(sfWindow* window, sfEvent* event)
+sfBool sfWindow_pollEvent(sfWindow* window, sfEvent* event)
 {
     CSFML_CHECK_RETURN(window, sfFalse);
     CSFML_CHECK_RETURN(event, sfFalse);
 
     // Get the event
     sf::Event SFMLEvent;
-    sfBool ret = window->This.PollEvent(SFMLEvent);
+    sfBool ret = window->This.pollEvent(SFMLEvent);
 
     // No event, return
     if (!ret)
         return sfFalse;
 
     // Convert the sf::Event event to a sfEvent
-    ConvertEvent(SFMLEvent, event);
+    convertEvent(SFMLEvent, event);
 
     return sfTrue;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_WaitEvent(sfWindow* window, sfEvent* event)
+sfBool sfWindow_waitEvent(sfWindow* window, sfEvent* event)
 {
     CSFML_CHECK_RETURN(window, sfFalse);
     CSFML_CHECK_RETURN(event, sfFalse);
 
     // Get the event
     sf::Event SFMLEvent;
-    sfBool ret = window->This.WaitEvent(SFMLEvent);
+    sfBool ret = window->This.waitEvent(SFMLEvent);
 
     // Error, return
     if (!ret)
         return sfFalse;
 
     // Convert the sf::Event event to a sfEvent
-    ConvertEvent(SFMLEvent, event);
+    convertEvent(SFMLEvent, event);
 
     return sfTrue;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2i sfWindow_GetPosition(const sfWindow* window)
+sfVector2i sfWindow_getPosition(const sfWindow* window)
 {
     sfVector2i position = {0, 0};
     CSFML_CHECK_RETURN(window, position);
 
-    sf::Vector2i sfmlPos = window->This.GetPosition();
+    sf::Vector2i sfmlPos = window->This.getPosition();
     position.x = sfmlPos.x;
     position.y = sfmlPos.y;
 
@@ -172,19 +172,19 @@ sfVector2i sfWindow_GetPosition(const sfWindow* window)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetPosition(sfWindow* window, sfVector2i position)
+void sfWindow_setPosition(sfWindow* window, sfVector2i position)
 {
-    CSFML_CALL(window, SetPosition(sf::Vector2i(position.x, position.y)));
+    CSFML_CALL(window, setPosition(sf::Vector2i(position.x, position.y)));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2u sfWindow_GetSize(const sfWindow* window)
+sfVector2u sfWindow_getSize(const sfWindow* window)
 {
     sfVector2u size = {0, 0};
     CSFML_CHECK_RETURN(window, size);
 
-    sf::Vector2u sfmlSize = window->This.GetSize();
+    sf::Vector2u sfmlSize = window->This.getSize();
     size.x = sfmlSize.x;
     size.y = sfmlSize.y;
 
@@ -195,84 +195,84 @@ sfVector2u sfWindow_GetSize(const sfWindow* window)
 ////////////////////////////////////////////////////////////
 void sfWindow_SetSize(sfWindow* window, sfVector2u size)
 {
-    CSFML_CALL(window, SetSize(sf::Vector2u(size.x, size.y)));
+    CSFML_CALL(window, setSize(sf::Vector2u(size.x, size.y)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetTitle(sfWindow* window, const char* title)
+void sfWindow_setTitle(sfWindow* window, const char* title)
 {
-    CSFML_CALL(window, SetTitle(title));
+    CSFML_CALL(window, setTitle(title));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels)
+void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels)
 {
-    CSFML_CALL(window, SetIcon(width, height, pixels));
+    CSFML_CALL(window, setIcon(width, height, pixels));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetVisible(sfWindow* window, sfBool visible)
+void sfWindow_setVisible(sfWindow* window, sfBool visible)
 {
-    CSFML_CALL(window, SetVisible(visible == sfTrue));
+    CSFML_CALL(window, setVisible(visible == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetMouseCursorVisible(sfWindow* window, sfBool visible)
+void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool visible)
 {
-    CSFML_CALL(window, SetMouseCursorVisible(visible == sfTrue));
+    CSFML_CALL(window, setMouseCursorVisible(visible == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetVerticalSyncEnabled(sfWindow* window, sfBool enabled)
+void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled)
 {
-    CSFML_CALL(window, SetVerticalSyncEnabled(enabled == sfTrue));
+    CSFML_CALL(window, setVerticalSyncEnabled(enabled == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetKeyRepeatEnabled(sfWindow* window, sfBool enabled)
+void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enabled)
 {
-    CSFML_CALL(window, SetKeyRepeatEnabled(enabled == sfTrue));
+    CSFML_CALL(window, setKeyRepeatEnabled(enabled == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_SetActive(sfWindow* window, sfBool active)
+sfBool sfWindow_setActive(sfWindow* window, sfBool active)
 {
-    CSFML_CALL_RETURN(window, SetActive(active == sfTrue), sfFalse);
+    CSFML_CALL_RETURN(window, setActive(active == sfTrue), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_Display(sfWindow* window)
+void sfWindow_display(sfWindow* window)
 {
-    CSFML_CALL(window, Display());
+    CSFML_CALL(window, display());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetFramerateLimit(sfWindow* window, unsigned int limit)
+void sfWindow_setFramerateLimit(sfWindow* window, unsigned int limit)
 {
-    CSFML_CALL(window, SetFramerateLimit(limit));
+    CSFML_CALL(window, setFramerateLimit(limit));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetJoystickThreshold(sfWindow* window, float threshold)
+void sfWindow_setJoystickThreshold(sfWindow* window, float threshold)
 {
-    CSFML_CALL(window, SetJoystickThreshold(threshold));
+    CSFML_CALL(window, setJoystickThreshold(threshold));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfWindowHandle sfWindow_GetSystemHandle(const sfWindow* window)
+sfWindowHandle sfWindow_getSystemHandle(const sfWindow* window)
 {
     CSFML_CHECK_RETURN(window, NULL);
 
-    return (sfWindowHandle)window->This.GetSystemHandle();
+    return (sfWindowHandle)window->This.getSystemHandle();
 }

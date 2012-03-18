@@ -51,7 +51,7 @@
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_Create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a render window from an existing control
@@ -60,7 +60,7 @@ CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_Create(sfVideoMode mode, const
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_CreateFromHandle(sfWindowHandle handle, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing render window
@@ -68,7 +68,7 @@ CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_CreateFromHandle(sfWindowHandl
 /// \param renderWindow Render window to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_Destroy(sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API void sfRenderWindow_destroy(sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Close a render window (but doesn't destroy the internal data)
@@ -76,7 +76,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_Destroy(sfRenderWindow* renderWindow);
 /// \param renderWindow Render window to close
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_Close(sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API void sfRenderWindow_close(sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a render window is opened
@@ -84,7 +84,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_Close(sfRenderWindow* renderWindow);
 /// \param renderWindow Render window object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_IsOpen(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API sfBool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the creation settings of a render window
@@ -94,7 +94,7 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_IsOpen(const sfRenderWindow* renderWind
 /// \return Settings used to create the window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfContextSettings sfRenderWindow_GetSettings(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the event on top of events stack of a render window, if any, and pop it
@@ -105,7 +105,7 @@ CSFML_GRAPHICS_API sfContextSettings sfRenderWindow_GetSettings(const sfRenderWi
 /// \return sfTrue if an event was returned, sfFalse if events stack was empty
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_PollEvent(sfRenderWindow* renderWindow, sfEvent* event);
+CSFML_GRAPHICS_API sfBool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Wait for an event and return it
@@ -116,7 +116,7 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_PollEvent(sfRenderWindow* renderWindow,
 /// \return sfFalse if an error occured
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_WaitEvent(sfRenderWindow* renderWindow, sfEvent* event);
+CSFML_GRAPHICS_API sfBool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a render window
@@ -126,7 +126,7 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_WaitEvent(sfRenderWindow* renderWindow,
 /// \return Position in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2i sfRenderWindow_GetPosition(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API sfVector2i sfRenderWindow_getPosition(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the position of a render window on screen
@@ -137,7 +137,7 @@ CSFML_GRAPHICS_API sfVector2i sfRenderWindow_GetPosition(const sfRenderWindow* r
 /// \param position     New position, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetPosition(sfRenderWindow* renderWindow, sfVector2i position);
+CSFML_GRAPHICS_API void sfRenderWindow_setPosition(sfRenderWindow* renderWindow, sfVector2i position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the size of the rendering region of a render window
@@ -147,7 +147,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetPosition(sfRenderWindow* renderWindow,
 /// \return Size in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2u sfRenderWindow_GetSize(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API sfVector2u sfRenderWindow_getSize(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the size of the rendering region of a render window
@@ -156,7 +156,7 @@ CSFML_GRAPHICS_API sfVector2u sfRenderWindow_GetSize(const sfRenderWindow* rende
 /// \param size         New size, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, sfVector2u size);
+CSFML_GRAPHICS_API void sfRenderWindow_setSize(sfRenderWindow* renderWindow, sfVector2u size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the title of a render window
@@ -165,7 +165,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetSize(sfRenderWindow* renderWindow, sfV
 /// \param title        New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetTitle(sfRenderWindow* renderWindow, const char* title);
+CSFML_GRAPHICS_API void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, const char* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a render window's icon
@@ -176,7 +176,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetTitle(sfRenderWindow* renderWindow, co
 /// \param pixels       Pointer to the pixels in memory, format must be RGBA 32 bits
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels);
+CSFML_GRAPHICS_API void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide a render window
@@ -185,7 +185,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetIcon(sfRenderWindow* renderWindow, uns
 /// \param visible      sfTrue to show the window, sfFalse to hide it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetVisible(sfRenderWindow* renderWindow, sfBool visible);
+CSFML_GRAPHICS_API void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, sfBool visible);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide the mouse cursor on a render window
@@ -194,7 +194,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetVisible(sfRenderWindow* renderWindow, 
 /// \param show         sfTrue to show, sfFalse to hide
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetMouseCursorVisible(sfRenderWindow* renderWindow, sfBool show);
+CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, sfBool show);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable / disable vertical synchronization on a render window
@@ -203,7 +203,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetMouseCursorVisible(sfRenderWindow* ren
 /// \param enabled      sfTrue to enable v-sync, sfFalse to deactivate
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled);
+CSFML_GRAPHICS_API void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable automatic key-repeat for keydown events
@@ -214,7 +214,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetVerticalSyncEnabled(sfRenderWindow* re
 /// \param enabled      sfTrue to enable, sfFalse to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled);
+CSFML_GRAPHICS_API void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a render window as the current target for rendering
@@ -225,7 +225,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetKeyRepeatEnabled(sfRenderWindow* rende
 /// \return True if operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_SetActive(sfRenderWindow* renderWindow, sfBool active);
+CSFML_GRAPHICS_API sfBool sfRenderWindow_setActive(sfRenderWindow* renderWindow, sfBool active);
 
 ////////////////////////////////////////////////////////////
 /// \brief Display a render window on screen
@@ -233,7 +233,7 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_SetActive(sfRenderWindow* renderWindow,
 /// \param renderWindow Render window object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_Display(sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API void sfRenderWindow_display(sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Limit the framerate to a maximum fixed frequency for a render window
@@ -242,7 +242,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_Display(sfRenderWindow* renderWindow);
 /// \param limit        Framerate limit, in frames per seconds (use 0 to disable limit)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetFramerateLimit(sfRenderWindow* renderWindow, unsigned int limit);
+CSFML_GRAPHICS_API void sfRenderWindow_setFramerateLimit(sfRenderWindow* renderWindow, unsigned int limit);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the joystick threshold, ie. the value below which no move event will be generated
@@ -251,7 +251,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetFramerateLimit(sfRenderWindow* renderW
 /// \param threshold    New threshold, in range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetJoystickThreshold(sfRenderWindow* renderWindow, float threshold);
+CSFML_GRAPHICS_API void sfRenderWindow_setJoystickThreshold(sfRenderWindow* renderWindow, float threshold);
 
 ////////////////////////////////////////////////////////////
 /// \brief Retrieve the OS-specific handle of a render window
@@ -261,7 +261,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetJoystickThreshold(sfRenderWindow* rend
 /// \return Window handle
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfWindowHandle sfRenderWindow_GetSystemHandle(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API sfWindowHandle sfRenderWindow_getSystemHandle(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Clear a render window with the given color
@@ -270,7 +270,7 @@ CSFML_GRAPHICS_API sfWindowHandle sfRenderWindow_GetSystemHandle(const sfRenderW
 /// \param color        Fill color
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_Clear(sfRenderWindow* renderWindow, sfColor color);
+CSFML_GRAPHICS_API void sfRenderWindow_clear(sfRenderWindow* renderWindow, sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the current active view of a render window
@@ -279,7 +279,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_Clear(sfRenderWindow* renderWindow, sfCol
 /// \param view         Pointer to the new view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_SetView(sfRenderWindow* renderWindow, const sfView* view);
+CSFML_GRAPHICS_API void sfRenderWindow_setView(sfRenderWindow* renderWindow, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current active view of a render window
@@ -289,7 +289,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_SetView(sfRenderWindow* renderWindow, con
 /// \return Current active view
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfView* sfRenderWindow_GetView(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API const sfView* sfRenderWindow_getView(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the default view of a render window
@@ -299,7 +299,7 @@ CSFML_GRAPHICS_API const sfView* sfRenderWindow_GetView(const sfRenderWindow* re
 /// \return Default view of the render window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfView* sfRenderWindow_GetDefaultView(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API const sfView* sfRenderWindow_getDefaultView(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the viewport of a view applied to this target
@@ -310,7 +310,7 @@ CSFML_GRAPHICS_API const sfView* sfRenderWindow_GetDefaultView(const sfRenderWin
 /// \return Viewport rectangle, expressed in pixels in the current target
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfIntRect sfRenderWindow_GetViewport(const sfRenderWindow* renderWindow, const sfView* view);
+CSFML_GRAPHICS_API sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Convert a point in window coordinates into view coordinates
@@ -323,7 +323,7 @@ CSFML_GRAPHICS_API sfIntRect sfRenderWindow_GetViewport(const sfRenderWindow* re
 /// \param targetView   Target view to convert the point to (pass NULL to use the current view)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_ConvertCoords(const sfRenderWindow* renderWindow, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView);
+CSFML_GRAPHICS_API void sfRenderWindow_convertCoords(const sfRenderWindow* renderWindow, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw a drawable object to the render-target
@@ -333,13 +333,13 @@ CSFML_GRAPHICS_API void sfRenderWindow_ConvertCoords(const sfRenderWindow* rende
 /// \param states       Render states to use for drawing (NULL to use the default states)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_DrawSprite(sfRenderWindow* renderWindow, const sfSprite* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_DrawText(sfRenderWindow* renderWindow, const sfText* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_DrawShape(sfRenderWindow* renderWindow, const sfShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_DrawCircleShape(sfRenderWindow* renderWindow, const sfCircleShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_DrawConvexShape(sfRenderWindow* renderWindow, const sfConvexShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_DrawRectangleShape(sfRenderWindow* renderWindow, const sfRectangleShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_DrawVertexArray(sfRenderWindow* renderWindow, const sfVertexArray* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawSprite(sfRenderWindow* renderWindow, const sfSprite* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawText(sfRenderWindow* renderWindow, const sfText* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawShape(sfRenderWindow* renderWindow, const sfShape* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawCircleShape(sfRenderWindow* renderWindow, const sfCircleShape* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawConvexShape(sfRenderWindow* renderWindow, const sfConvexShape* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawRectangleShape(sfRenderWindow* renderWindow, const sfRectangleShape* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawVertexArray(sfRenderWindow* renderWindow, const sfVertexArray* object, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render window
@@ -351,15 +351,15 @@ CSFML_GRAPHICS_API void sfRenderWindow_DrawVertexArray(sfRenderWindow* renderWin
 /// \param states       Render states to use for drawing (NULL to use the default states)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_DrawPrimitives(sfRenderWindow* renderWindow,
-                                             const sfVertex* vertices, unsigned int vertexCount,
-                                             sfPrimitiveType type, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawPrimitives(sfRenderWindow* renderWindow,
+                                                      const sfVertex* vertices, unsigned int vertexCount,
+                                                      sfPrimitiveType type, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save the current OpenGL render states and matrices
 ///
 /// This function can be used when you mix SFML drawing
-/// and direct OpenGL rendering. Combined with PopGLStates,
+/// and direct OpenGL rendering. Combined with popGLStates,
 /// it ensures that:
 /// \li SFML's internal states are not messed up by your OpenGL code
 /// \li your OpenGL states are not modified by a call to a SFML function
@@ -370,38 +370,38 @@ CSFML_GRAPHICS_API void sfRenderWindow_DrawPrimitives(sfRenderWindow* renderWind
 /// It is provided for convenience, but the best results will
 /// be achieved if you handle OpenGL states yourself (because
 /// you know which states have really changed, and need to be
-/// saved and restored). Take a look at the ResetGLStates
+/// saved and restored). Take a look at the resetGLStates
 /// function if you do so.
 ///
 /// \param renderWindow render window object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_PushGLStates(sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API void sfRenderWindow_pushGLStates(sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Restore the previously saved OpenGL render states and matrices
 ///
-/// See the description of PushGLStates to get a detailed
+/// See the description of pushGLStates to get a detailed
 /// description of these functions.
 ///
 /// \param renderWindow render window object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_PopGLStates(sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API void sfRenderWindow_popGLStates(sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Reset the internal OpenGL states so that the target is ready for drawing
 ///
 /// This function can be used when you mix SFML drawing
 /// and direct OpenGL rendering, if you choose not to use
-/// PushGLStates/PopGLStates. It makes sure that all OpenGL
-/// states needed by SFML are set, so that subsequent sfRenderWindow_Draw*()
+/// pushGLStates/popGLStates. It makes sure that all OpenGL
+/// states needed by SFML are set, so that subsequent sfRenderWindow_draw*()
 /// calls will work as expected.
 ///
 /// \param renderWindow render window object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_ResetGLStates(sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API void sfRenderWindow_resetGLStates(sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy the current contents of a render window to an image
@@ -410,7 +410,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_ResetGLStates(sfRenderWindow* renderWindo
 /// screenshots of the application. If you want to update an
 /// image with the contents of the window and then use it for
 /// drawing, you should rather use a sfTexture and its
-/// Update(sfWindow*) function.
+/// update(sfWindow*) function.
 /// You can also draw things directly to a texture with the
 /// sfRenderWindow class.
 ///
@@ -419,7 +419,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_ResetGLStates(sfRenderWindow* renderWindo
 /// \return New image containing the captured contents
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfImage* sfRenderWindow_Capture(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API sfImage* sfRenderWindow_capture(const sfRenderWindow* renderWindow);
 
 
 #endif // SFML_RENDERWINDOW_H

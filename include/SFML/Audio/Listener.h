@@ -42,7 +42,7 @@
 /// \param volume New global volume, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfListener_SetGlobalVolume(float volume);
+CSFML_AUDIO_API void sfListener_setGlobalVolume(float volume);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current value of the global volume
@@ -50,7 +50,7 @@ CSFML_AUDIO_API void sfListener_SetGlobalVolume(float volume);
 /// \return Current global volume, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API float sfListener_GetGlobalVolume(void);
+CSFML_AUDIO_API float sfListener_getGlobalVolume(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of the listener in the scene
@@ -60,7 +60,7 @@ CSFML_AUDIO_API float sfListener_GetGlobalVolume(void);
 /// \param position New position of the listener
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfListener_SetPosition(sfVector3f position);
+CSFML_AUDIO_API void sfListener_setPosition(sfVector3f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of the listener in the scene
@@ -68,7 +68,7 @@ CSFML_AUDIO_API void sfListener_SetPosition(sfVector3f position);
 /// \return The listener's position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfVector3f sfListener_GetPosition();
+CSFML_AUDIO_API sfVector3f sfListener_getPosition();
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of the listener in the scene
@@ -81,7 +81,7 @@ CSFML_AUDIO_API sfVector3f sfListener_GetPosition();
 /// \param position New direction of the listener
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfListener_SetDirection(sfVector3f orientation);
+CSFML_AUDIO_API void sfListener_setDirection(sfVector3f orientation);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current orientation of the listener in the scene
@@ -89,7 +89,7 @@ CSFML_AUDIO_API void sfListener_SetDirection(sfVector3f orientation);
 /// \return The listener's direction
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfVector3f sfListener_GetDirection();
+CSFML_AUDIO_API sfVector3f sfListener_getDirection();
 
 
 #endif // SFML_LISTENER_H

@@ -31,41 +31,41 @@
 #include <SFML/CallbackStream.h>
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_Create(unsigned int width, unsigned int height)
+sfImage* sfImage_create(unsigned int width, unsigned int height)
 {
     sfImage* image = new sfImage;
-    image->This.Create(width, height);
+    image->This.create(width, height);
 
     return image;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_CreateFromColor(unsigned int width, unsigned int height, sfColor color)
+sfImage* sfImage_createFromColor(unsigned int width, unsigned int height, sfColor color)
 {
     sfImage* image = new sfImage;
-    image->This.Create(width, height, sf::Color(color.r, color.g, color.b, color.a));
+    image->This.create(width, height, sf::Color(color.r, color.g, color.b, color.a));
 
     return image;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_CreateFromPixels(unsigned int width, unsigned int height, const sfUint8* data)
+sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const sfUint8* data)
 {
     sfImage* image = new sfImage;
-    image->This.Create(width, height, data);
+    image->This.create(width, height, data);
 
     return image;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_CreateFromFile(const char* filename)
+sfImage* sfImage_createFromFile(const char* filename)
 {
     sfImage* image = new sfImage;
 
-    if (!image->This.LoadFromFile(filename))
+    if (!image->This.loadFromFile(filename))
     {
         delete image;
         image = NULL;
@@ -76,11 +76,11 @@ sfImage* sfImage_CreateFromFile(const char* filename)
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_CreateFromMemory(const void* data, size_t sizeInBytes)
+sfImage* sfImage_createFromMemory(const void* data, size_t sizeInBytes)
 {
     sfImage* image = new sfImage;
 
-    if (!image->This.LoadFromMemory(data, sizeInBytes))
+    if (!image->This.loadFromMemory(data, sizeInBytes))
     {
         delete image;
         image = NULL;
@@ -91,14 +91,14 @@ sfImage* sfImage_CreateFromMemory(const void* data, size_t sizeInBytes)
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_CreateFromStream(sfInputStream* stream)
+sfImage* sfImage_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, NULL);
 
     sfImage* image = new sfImage;
 
     CallbackStream sfmlStream(stream);
-    if (!image->This.LoadFromStream(sfmlStream))
+    if (!image->This.loadFromStream(sfmlStream))
     {
         delete image;
         image = NULL;
@@ -109,7 +109,7 @@ sfImage* sfImage_CreateFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_Copy(sfImage* image)
+sfImage* sfImage_copy(sfImage* image)
 {
     CSFML_CHECK_RETURN(image, NULL);
 
@@ -118,84 +118,84 @@ sfImage* sfImage_Copy(sfImage* image)
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_Destroy(sfImage* image)
+void sfImage_destroy(sfImage* image)
 {
     delete image;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfImage_SaveToFile(const sfImage* image, const char* filename)
+sfBool sfImage_saveToFile(const sfImage* image, const char* filename)
 {
-    CSFML_CALL_RETURN(image, SaveToFile(filename), sfFalse);
+    CSFML_CALL_RETURN(image, saveToFile(filename), sfFalse);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_CreateMaskFromColor(sfImage* image, sfColor colorKey, sfUint8 alpha)
+void sfImage_createMaskFromColor(sfImage* image, sfColor colorKey, sfUint8 alpha)
 {
-    CSFML_CALL(image, CreateMaskFromColor(sf::Color(colorKey.r, colorKey.g, colorKey.b, colorKey.a), alpha));
+    CSFML_CALL(image, createMaskFromColor(sf::Color(colorKey.r, colorKey.g, colorKey.b, colorKey.a), alpha));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_CopyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha)
+void sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha)
 {
     CSFML_CHECK(source);
-    sf::IntRect sfmlRect(sourceRect.Left, sourceRect.Top, sourceRect.Width, sourceRect.Height);
-    CSFML_CALL(image, Copy(source->This, destX, destY, sfmlRect, applyAlpha == sfTrue));
+    sf::IntRect sfmlRect(sourceRect.left, sourceRect.top, sourceRect.width, sourceRect.height);
+    CSFML_CALL(image, copy(source->This, destX, destY, sfmlRect, applyAlpha == sfTrue));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_SetPixel(sfImage* image, unsigned int x, unsigned int y, sfColor color)
+void sfImage_setPixel(sfImage* image, unsigned int x, unsigned int y, sfColor color)
 {
-    CSFML_CALL(image, SetPixel(x, y, sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(image, setPixel(x, y, sf::Color(color.r, color.g, color.b, color.a)));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfColor sfImage_GetPixel(const sfImage* image, unsigned int x, unsigned int y)
+sfColor sfImage_getPixel(const sfImage* image, unsigned int x, unsigned int y)
 {
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(image, color);
 
-    sf::Color sfmlColor = image->This.GetPixel(x, y);
+    sf::Color sfmlColor = image->This.getPixel(x, y);
 
-    return sfColor_FromRGBA(sfmlColor.r, sfmlColor.g, sfmlColor.b, sfmlColor.a);
+    return sfColor_fromRGBA(sfmlColor.r, sfmlColor.g, sfmlColor.b, sfmlColor.a);
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfUint8* sfImage_GetPixelsPtr(const sfImage* image)
+const sfUint8* sfImage_getPixelsPtr(const sfImage* image)
 {
-    CSFML_CALL_RETURN(image, GetPixelsPtr(), NULL);
+    CSFML_CALL_RETURN(image, getPixelsPtr(), NULL);
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfImage_GetWidth(const sfImage* image)
+unsigned int sfImage_getWidth(const sfImage* image)
 {
-    CSFML_CALL_RETURN(image, GetWidth(), 0);
+    CSFML_CALL_RETURN(image, getWidth(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfImage_GetHeight(const sfImage* image)
+unsigned int sfImage_getHeight(const sfImage* image)
 {
-    CSFML_CALL_RETURN(image, GetHeight(), 0);
+    CSFML_CALL_RETURN(image, getHeight(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_FlipHorizontally(sfImage* image)
+void sfImage_flipHorizontally(sfImage* image)
 {
-    CSFML_CALL(image, FlipHorizontally());
+    CSFML_CALL(image, flipHorizontally());
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_FlipVertically(sfImage* image)
+void sfImage_flipVertically(sfImage* image)
 {
-    CSFML_CALL(image, FlipVertically());
+    CSFML_CALL(image, flipVertically());
 }

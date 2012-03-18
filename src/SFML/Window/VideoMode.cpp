@@ -31,33 +31,33 @@
 
 
 ////////////////////////////////////////////////////////////
-sfVideoMode sfVideoMode_GetDesktopMode(void)
+sfVideoMode sfVideoMode_getDesktopMode(void)
 {
-    sf::VideoMode desktop = sf::VideoMode::GetDesktopMode();
+    sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     sfVideoMode ret;
-    ret.Width        = desktop.Width;
-    ret.Height       = desktop.Height;
-    ret.BitsPerPixel = desktop.BitsPerPixel;
+    ret.width        = desktop.width;
+    ret.height       = desktop.height;
+    ret.bitsPerPixel = desktop.bitsPerPixel;
 
     return ret;
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfVideoMode* sfVideoMode_GetFullscreenModes(size_t* count)
+const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count)
 {
     static std::vector<sfVideoMode> modes;
 
     // Populate the array on first call
     if (modes.empty())
     {
-        const std::vector<sf::VideoMode>& SFMLModes = sf::VideoMode::GetFullscreenModes();
+        const std::vector<sf::VideoMode>& SFMLModes = sf::VideoMode::getFullscreenModes();
         for (std::vector<sf::VideoMode>::const_iterator it = SFMLModes.begin(); it != SFMLModes.end(); ++it)
         {
             sfVideoMode mode;
-            mode.Width        = it->Width;
-            mode.Height       = it->Height;
-            mode.BitsPerPixel = it->BitsPerPixel;
+            mode.width        = it->width;
+            mode.height       = it->height;
+            mode.bitsPerPixel = it->bitsPerPixel;
             modes.push_back(mode);
         }
     }
@@ -70,8 +70,8 @@ const sfVideoMode* sfVideoMode_GetFullscreenModes(size_t* count)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfVideoMode_IsValid(sfVideoMode mode)
+sfBool sfVideoMode_isValid(sfVideoMode mode)
 {
-    sf::VideoMode videoMode(mode.Width, mode.Height, mode.BitsPerPixel);
-    return videoMode.IsValid() ? sfTrue : sfFalse;
+    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+    return videoMode.isValid() ? sfTrue : sfFalse;
 }

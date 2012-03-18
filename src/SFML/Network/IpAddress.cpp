@@ -33,88 +33,79 @@
 namespace
 {
     // Helper function for converting a SFML address to a CSFML one
-    sfIpAddress FromSFMLAddress(sf::IpAddress address)
+    sfIpAddress fromSFMLAddress(sf::IpAddress address)
     {
         sfIpAddress result;
-        strncpy(result.Address, address.ToString().c_str(), 16);
+        strncpy(result.address, address.toString().c_str(), 16);
 
         return result;
     }
 
     // Helper function for converting a CSFML address to a SFML one
-    sf::IpAddress ToSFMLAddress(sfIpAddress address)
+    sf::IpAddress toSFMLAddress(sfIpAddress address)
     {
-        return sf::IpAddress(address.Address);
+        return sf::IpAddress(address.address);
     }
 }
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_FromString(const char* address)
+sfIpAddress sfIpAddress_None = sfIpAddress_fromBytes(0, 0, 0, 0);
+
+
+////////////////////////////////////////////////////////////
+sfIpAddress sfIpAddress_LocalHost = sfIpAddress_fromBytes(127, 0, 0, 1);
+
+
+////////////////////////////////////////////////////////////
+sfIpAddress sfIpAddress_Broadcast = sfIpAddress_fromBytes(255, 255, 255, 255);
+
+
+////////////////////////////////////////////////////////////
+sfIpAddress sfIpAddress_fromString(const char* address)
 {
-    return FromSFMLAddress(sf::IpAddress(address));
+    return fromSFMLAddress(sf::IpAddress(address));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_FromBytes(sfUint8 byte0, sfUint8 byte1, sfUint8 byte2, sfUint8 byte3)
+sfIpAddress sfIpAddress_fromBytes(sfUint8 byte0, sfUint8 byte1, sfUint8 byte2, sfUint8 byte3)
 {
-    return FromSFMLAddress(sf::IpAddress(byte0, byte1, byte2, byte3));
+    return fromSFMLAddress(sf::IpAddress(byte0, byte1, byte2, byte3));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_FromInteger(sfUint32 address)
+sfIpAddress sfIpAddress_fromInteger(sfUint32 address)
 {
-    return FromSFMLAddress(sf::IpAddress(address));
+    return fromSFMLAddress(sf::IpAddress(address));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfIpAddress_ToString(sfIpAddress address, char* string)
+void sfIpAddress_toString(sfIpAddress address, char* string)
 {
     if (string)
-        strcpy(string, address.Address);
+        strcpy(string, address.address);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfUint32 sfIpAddress_ToInteger(sfIpAddress address)
+sfUint32 sfIpAddress_toInteger(sfIpAddress address)
 {
-    return ToSFMLAddress(address).ToInteger();
+    return toSFMLAddress(address).toInteger();
 }
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_GetLocalAddress(void)
+sfIpAddress sfIpAddress_getLocalAddress(void)
 {
-    return FromSFMLAddress(sf::IpAddress::GetLocalAddress());
+    return fromSFMLAddress(sf::IpAddress::getLocalAddress());
 }
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_GetPublicAddress(sfTime timeout)
+sfIpAddress sfIpAddress_getPublicAddress(sfTime timeout)
 {
-    return FromSFMLAddress(sf::IpAddress::GetPublicAddress(sf::Microseconds(timeout.Microseconds)));
-}
-
-
-////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_None(void)
-{
-    return FromSFMLAddress(sf::IpAddress::None);
-}
-
-
-////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_LocalHost(void)
-{
-    return FromSFMLAddress(sf::IpAddress::LocalHost);
-}
-
-
-////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_Broadcast(void)
-{
-    return FromSFMLAddress(sf::IpAddress::Broadcast);
+    return fromSFMLAddress(sf::IpAddress::getPublicAddress(sf::microseconds(timeout.microseconds)));
 }
