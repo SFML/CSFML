@@ -140,14 +140,13 @@ CSFML_GRAPHICS_API sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* 
 /// \brief Convert a point in texture coordinates into view coordinates
 ///
 /// \param renderTexture Render texture object
-/// \param windowX       X coordinate of the point to convert, relative to the texture
-/// \param windowY       Y coordinate of the point to convert, relative to the texture
-/// \param viewX         Pointer to fill with the X coordinate of the converted point
-/// \param viewY         Pointer to fill with the Y coordinate of the converted point
+/// \param point         Point to convert, relative to the texture
 /// \param targetView    Target view to convert the point to (pass NULL to use the current view)
 ///
+/// \return The converted point, in "world" units
+///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_convertCoords(const sfRenderTexture* renderTexture, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView);
+CSFML_GRAPHICS_API sfVector2f sfRenderTexture_convertCoords(const sfRenderTexture* renderTexture, sfVector2i point, const sfView* targetView);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw a drawable object to the render-target

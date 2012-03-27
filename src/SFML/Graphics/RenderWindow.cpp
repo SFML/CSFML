@@ -346,18 +346,21 @@ sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const s
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_convertCoords(const sfRenderWindow* renderWindow, unsigned int windowX, unsigned int windowY, float* viewX, float* viewY, const sfView* targetView)
+sfVector2f sfRenderWindow_convertCoords(const sfRenderWindow* renderWindow, sfVector2i point, const sfView* targetView)
 {
-    CSFML_CHECK(renderWindow);
+    sfVector2f result = {0, 0};
+    CSFML_CHECK_RETURN(renderWindow, result);
 
-    sf::Vector2f point;
+    sf::Vector2f sfmlPoint;
     if (targetView)
-        point = renderWindow->This.convertCoords(windowX, windowY, targetView->This);
+        sfmlPoint = renderWindow->This.convertCoords(sf::Vector2i(point.x, point.y), targetView->This);
     else
-        point = renderWindow->This.convertCoords(windowX, windowY);
+        sfmlPoint = renderWindow->This.convertCoords(sf::Vector2i(point.x, point.y));
 
-    if (viewX) *viewX = point.x;
-    if (viewY) *viewY = point.y;
+    result.x = sfmlPoint.x;
+    result.y = sfmlPoint.y;
+
+    return result;
 }
 
 

@@ -141,18 +141,21 @@ sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, cons
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_convertCoords(const sfRenderTexture* renderTexture, unsigned int textureX, unsigned int textureY, float* viewX, float* viewY, const sfView* targetView)
+sfVector2f sfRenderTexture_convertCoords(const sfRenderTexture* renderTexture, sfVector2i point, const sfView* targetView)
 {
-    CSFML_CHECK(renderTexture);
+    sfVector2f result = {0, 0};
+    CSFML_CHECK_RETURN(renderWindow, result);
 
-    sf::Vector2f point;
+    sf::Vector2f sfmlPoint;
     if (targetView)
-        point = renderTexture->This.convertCoords(textureX, textureY, targetView->This);
+        sfmlPoint = renderTexture->This.convertCoords(sf::Vector2i(point.x, point.y), targetView->This);
     else
-        point = renderTexture->This.convertCoords(textureX, textureY);
+        sfmlPoint = renderTexture->This.convertCoords(sf::Vector2i(point.x, point.y));
 
-    if (viewX) *viewX = point.x;
-    if (viewY) *viewY = point.y;
+    result.x = sfmlPoint.x;
+    result.y = sfmlPoint.y;
+
+    return result;
 }
 
 
