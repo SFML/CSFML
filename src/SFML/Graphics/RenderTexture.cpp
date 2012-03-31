@@ -144,7 +144,7 @@ sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, cons
 sfVector2f sfRenderTexture_convertCoords(const sfRenderTexture* renderTexture, sfVector2i point, const sfView* targetView)
 {
     sfVector2f result = {0, 0};
-    CSFML_CHECK_RETURN(renderWindow, result);
+    CSFML_CHECK_RETURN(renderTexture, result);
 
     sf::Vector2f sfmlPoint;
     if (targetView)
