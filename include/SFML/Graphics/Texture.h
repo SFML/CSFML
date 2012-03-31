@@ -33,6 +33,7 @@
 #include <SFML/Graphics/Types.h>
 #include <SFML/Window/Types.h>
 #include <SFML/System/InputStream.h>
+#include <SFML/System/Vector2.h>
 #include <stddef.h>
 
 
@@ -111,24 +112,14 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_copy(sfTexture* texture);
 CSFML_GRAPHICS_API void sfTexture_destroy(sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
-/// \brief Return the width of the texture
+/// \brief Return the size of the texture
 ///
 /// \param texture Texture to read
 ///
-/// \return Width in pixels
+/// \return Size in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfTexture_getWidth(const sfTexture* texture);
-
-////////////////////////////////////////////////////////////
-/// \brief Return the height of the texture
-///
-/// \param texture Texture to read
-///
-/// \return Height in pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfTexture_getHeight(const sfTexture* texture);
+CSFML_GRAPHICS_API sfVector2u sfTexture_getSize(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy a texture's pixels to an image

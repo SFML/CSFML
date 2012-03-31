@@ -147,16 +147,17 @@ void sfTexture_destroy(sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfTexture_getWidth(const sfTexture* texture)
+sfVector2u sfTexture_getSize(const sfTexture* texture)
 {
-    CSFML_CALL_PTR_RETURN(texture, getWidth(), 0);
-}
+    sfVector2u size = {0, 0};
+    CSFML_CHECK_RETURN(texture, size);
 
+    sf::Vector2u sfmlSize = texture->This->getSize();
 
-////////////////////////////////////////////////////////////
-unsigned int sfTexture_getHeight(const sfTexture* texture)
-{
-    CSFML_CALL_PTR_RETURN(texture, getHeight(), 0);
+    size.x = sfmlSize.x;
+    size.y = sfmlSize.y;
+
+    return size;
 }
 
 

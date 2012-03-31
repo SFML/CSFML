@@ -33,6 +33,7 @@
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/InputStream.h>
+#include <SFML/System/Vector2.h>
 #include <stddef.h>
 
 
@@ -159,24 +160,14 @@ CSFML_GRAPHICS_API void sfImage_destroy(sfImage* image);
 CSFML_GRAPHICS_API sfBool sfImage_saveToFile(const sfImage* image, const char* filename);
 
 ////////////////////////////////////////////////////////////
-/// \brief Return the width of an image
+/// \brief Return the size of an image
 ///
 /// \param image Image object
 ///
-/// \return Width in pixels
+/// \return Size in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfImage_getWidth(const sfImage* image);
-
-////////////////////////////////////////////////////////////
-/// \brief Return the height of an image
-///
-/// \param image Image object
-///
-/// \return Height in pixels
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfImage_getHeight(const sfImage* image);
+CSFML_GRAPHICS_API sfVector2u sfImage_getSize(const sfImage* image);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a transparency mask from a specified color-key

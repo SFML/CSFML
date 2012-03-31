@@ -174,16 +174,17 @@ const sfUint8* sfImage_getPixelsPtr(const sfImage* image)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfImage_getWidth(const sfImage* image)
+sfVector2u sfImage_getSize(const sfImage* image)
 {
-    CSFML_CALL_RETURN(image, getWidth(), 0);
-}
+    sfVector2u size = {0, 0};
+    CSFML_CHECK_RETURN(image, size);
 
+    sf::Vector2u sfmlSize = image->This.getSize();
 
-////////////////////////////////////////////////////////////
-unsigned int sfImage_getHeight(const sfImage* image)
-{
-    CSFML_CALL_RETURN(image, getHeight(), 0);
+    size.x = sfmlSize.x;
+    size.y = sfmlSize.y;
+
+    return size;
 }
 
 
