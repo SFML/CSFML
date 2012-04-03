@@ -68,7 +68,7 @@ void sfPacket_clear(sfPacket* packet)
 
 
 ////////////////////////////////////////////////////////////
-const char* sfPacket_getData(const sfPacket* packet)
+const void* sfPacket_getData(const sfPacket* packet)
 {
     CSFML_CALL_RETURN(packet, getData(), NULL);
 }

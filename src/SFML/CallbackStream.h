@@ -68,7 +68,7 @@ public:
     /// \return The number of bytes actually read
     ///
     ////////////////////////////////////////////////////////////
-    virtual sf::Int64 read(char* data, sf::Int64 size)
+    virtual sf::Int64 read(void* data, sf::Int64 size)
     {
         return myStream.read ? myStream.read(data, size, myStream.userData) : -1;
     }

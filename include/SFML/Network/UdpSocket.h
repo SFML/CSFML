@@ -137,7 +137,7 @@ CSFML_NETWORK_API void sfUdpSocket_Unbind(sfUdpSocket* socket);
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const char* data, size_t size, sfIpAddress address, unsigned short port);
+CSFML_NETWORK_API sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t size, sfIpAddress address, unsigned short port);
 
 ////////////////////////////////////////////////////////////
 /// \brief Receive raw data from a remote peer with a UDP socket
@@ -159,7 +159,7 @@ CSFML_NETWORK_API sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const cha
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port);
+CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a formatted packet of data to a remote peer with a UDP socket

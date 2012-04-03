@@ -84,7 +84,7 @@ void sfUdpSocket_unbind(sfUdpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const char* data, size_t size, sfIpAddress address, unsigned short port)
+sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t size, sfIpAddress address, unsigned short port)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
@@ -96,7 +96,7 @@ sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const char* data, size_t si
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port)
+sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 

@@ -159,7 +159,7 @@ CSFML_NETWORK_API void sfTcpSocket_disconnect(sfTcpSocket* socket);
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const char* data, size_t size);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const void* data, size_t size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Receive raw data from the remote peer of a TCP socket
@@ -176,7 +176,7 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const cha
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a formatted packet of data to the remote peer of a TCP socket

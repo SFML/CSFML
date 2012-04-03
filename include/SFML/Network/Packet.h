@@ -92,7 +92,7 @@ CSFML_NETWORK_API void sfPacket_clear(sfPacket* packet);
 /// \return Pointer to the data
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char* sfPacket_getData(const sfPacket* packet);
+CSFML_NETWORK_API const void* sfPacket_getData(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the size of the data contained in a packet

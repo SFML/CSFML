@@ -107,7 +107,7 @@ void sfTcpSocket_disconnect(sfTcpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const char* data, size_t size)
+sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const void* data, size_t size)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
@@ -116,7 +116,7 @@ sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const char* data, size_t si
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, char* data, size_t maxSize, size_t* sizeReceived)
+sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
