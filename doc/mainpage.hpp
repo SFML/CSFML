@@ -28,65 +28,65 @@
 ///     sfEvent event;
 ///
 ///     /* Create the main window */
-///     window = sfRenderWindow_Create(mode, "SFML window", sfResize | sfClose, NULL);
+///     window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, NULL);
 ///     if (!window)
 ///         return EXIT_FAILURE;
 ///
 ///     /* Load a sprite to display */
-///     texture = sfTexture_CreateFromFile("cute_image.jpg");
+///     texture = sfTexture_createFromFile("cute_image.jpg");
 ///     if (!texture)
 ///         return EXIT_FAILURE;
-///     sprite = sfSprite_Create();
-///     sfSprite_SetTexture(sprite, texture, sfTrue);
+///     sprite = sfSprite_create();
+///     sfSprite_setTexture(sprite, texture, sfTrue);
 /// 
 ///     /* Create a graphical text to display */
-///     font = sfFont_CreateFromFile("arial.ttf");
+///     font = sfFont_createFromFile("arial.ttf");
 ///     if (!font)
 ///         return EXIT_FAILURE;
-///     text = sfText_Create();
-///     sfText_SetString(text, "Hello SFML");
-///     sfText_SetFont(text, font);
-///     sfText_SetCharacterSize(text, 50);
+///     text = sfText_create();
+///     sfText_setString(text, "Hello SFML");
+///     sfText_setFont(text, font);
+///     sfText_setCharacterSize(text, 50);
 /// 
 ///     /* Load a music to play */
-///     music = sfMusic_CreateFromFile("nice_music.ogg");
+///     music = sfMusic_createFromFile("nice_music.ogg");
 ///     if (!music)
 ///         return EXIT_FAILURE;
 ///
 ///     /* Play the music */
-///     sfMusic_Play(music);
+///     sfMusic_play(music);
 /// 
 ///     /* Start the game loop */
-///     while (sfRenderWindow_IsOpen(window))
+///     while (sfRenderWindow_isOpen(window))
 ///     {
 ///         /* Process events */
-///         while (sfRenderWindow_PollEvent(window, &event))
+///         while (sfRenderWindow_pollEvent(window, &event))
 ///         {
 ///             /* Close window : exit */
-///             if (event.Type == sfEvtClosed)
-///                 sfRenderWindow_Close(window);
+///             if (event.type == sfEvtClosed)
+///                 sfRenderWindow_close(window);
 ///         }
 /// 
 ///         /* Clear the screen */
-///         sfRenderWindow_Clear(window, sfBlack);
+///         sfRenderWindow_clear(window, sfBlack);
 /// 
 ///         /* Draw the sprite */
-///         sfRenderWindow_DrawSprite(window, sprite, NULL);
+///         sfRenderWindow_drawSprite(window, sprite, NULL);
 /// 
 ///         /* Draw the text */
-///         sfRenderWindow_DrawText(window, text, NULL);
+///         sfRenderWindow_drawText(window, text, NULL);
 /// 
 ///         /* Update the window */
-///         sfRenderWindow_Display(window);
+///         sfRenderWindow_display(window);
 ///     }
 /// 
 ///     /* Cleanup resources */
-///     sfMusic_Destroy(music);
-///     sfText_Destroy(text);
-///     sfFont_Destroy(font);
-///     sfSprite_Destroy(sprite);
-///     sfTexture_Destroy(texture);
-///     sfRenderWindow_Destroy(window);
+///     sfMusic_destroy(music);
+///     sfText_destroy(text);
+///     sfFont_destroy(font);
+///     sfSprite_destroy(sprite);
+///     sfTexture_destroy(texture);
+///     sfRenderWindow_destroy(window);
 /// 
 ///     return EXIT_SUCCESS;
 /// }
