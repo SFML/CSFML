@@ -306,10 +306,10 @@ CSFML_AUDIO_API void sfMusic_setAttenuation(sfMusic* music, float attenuation);
 /// either paused or playing.
 ///
 /// \param music      Music object
-/// \param timeOffset New playing position, in milliseconds
+/// \param timeOffset New playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfMusic_setPlayingOffset(sfMusic* music, sfUint32 timeOffset);
+CSFML_AUDIO_API void sfMusic_setPlayingOffset(sfMusic* music, sfTime timeOffset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the pitch of a music
