@@ -193,7 +193,7 @@ sfVector2u sfWindow_getSize(const sfWindow* window)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_SetSize(sfWindow* window, sfVector2u size)
+void sfWindow_setSize(sfWindow* window, sfVector2u size)
 {
     CSFML_CALL(window, setSize(sf::Vector2u(size.x, size.y)));
 }

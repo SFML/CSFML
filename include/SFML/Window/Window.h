@@ -132,7 +132,7 @@ CSFML_WINDOW_API void sfWindow_close(sfWindow* window);
 /// \brief Tell whether or not a window is opened
 ///
 /// This function returns whether or not the window exists.
-/// Note that a hidden window (sfWindow_SetVisible(sfFalse)) will return
+/// Note that a hidden window (sfWindow_setVisible(sfFalse)) will return
 /// sfTrue.
 ///
 /// \param window Window object
@@ -343,7 +343,7 @@ CSFML_WINDOW_API void sfWindow_display(sfWindow* window);
 /// \brief Limit the framerate to a maximum fixed frequency
 ///
 /// If a limit is set, the window will use a small delay after
-/// each call to sfWindow_Display to ensure that the current frame
+/// each call to sfWindow_display to ensure that the current frame
 /// lasted long enough to match the framerate limit.
 ///
 /// \param window Window object

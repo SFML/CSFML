@@ -175,14 +175,14 @@ void sfShader_setFloat4Parameter(sfShader* shader, const char* name, float x, fl
 
 
 ////////////////////////////////////////////////////////////
-void sfShader_SetVector2Parameter(sfShader* shader, const char* name, sfVector2f vector)
+void sfShader_setVector2Parameter(sfShader* shader, const char* name, sfVector2f vector)
 {
     CSFML_CALL(shader, setParameter(name, sf::Vector2f(vector.x, vector.y)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfShader_SetVector3Parameter(sfShader* shader, const char* name, sfVector3f vector)
+void sfShader_setVector3Parameter(sfShader* shader, const char* name, sfVector3f vector)
 {
     CSFML_CALL(shader, setParameter(name, sf::Vector3f(vector.x, vector.y, vector.z)));
 }

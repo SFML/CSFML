@@ -121,7 +121,7 @@ CSFML_NETWORK_API sfBool sfSocketSelector_wait(sfSocketSelector* selector, sfTim
 /// \brief Test a socket to know if it is ready to receive data
 ///
 /// This function must be used after a call to
-/// sfSocketSelector_Wait, to know which sockets are ready to
+/// sfSocketSelector_wait, to know which sockets are ready to
 /// receive data. If a socket is ready, a call to Receive will
 /// never block because we know that there is data available to read.
 /// Note that if this function returns sfTrue for a sfTcpListener,

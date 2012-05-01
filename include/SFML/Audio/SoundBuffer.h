@@ -132,7 +132,7 @@ CSFML_AUDIO_API sfBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer
 ///
 /// The format of the returned samples is 16 bits signed integer
 /// (sfInt16). The total number of samples in this array
-/// is given by the sfSoundBuffer_GetSampleCount function.
+/// is given by the sfSoundBuffer_getSampleCount function.
 ///
 /// \param soundBuffer Sound buffer object
 ///

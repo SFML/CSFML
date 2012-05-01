@@ -61,7 +61,7 @@ typedef void   (*sfSoundStreamSeekCallback)(sfTime, void*);                 ///<
 /// \return A new sfSoundStream object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundStream* sfSoundStream_Create(sfSoundStreamGetDataCallback onGetData,
+CSFML_AUDIO_API sfSoundStream* sfSoundStream_create(sfSoundStreamGetDataCallback onGetData,
                                               sfSoundStreamSeekCallback    onSeek,
                                               unsigned int                 channelCount,
                                               unsigned int                 sampleRate,
@@ -73,7 +73,7 @@ CSFML_AUDIO_API sfSoundStream* sfSoundStream_Create(sfSoundStreamGetDataCallback
 /// \param soundStream Sound stream to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_Destroy(sfSoundStream* soundStream);
+CSFML_AUDIO_API void sfSoundStream_destroy(sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start or resume playing a sound stream
@@ -87,7 +87,7 @@ CSFML_AUDIO_API void sfSoundStream_Destroy(sfSoundStream* soundStream);
 /// \param soundStream Sound stream object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_Play(sfSoundStream* soundStream);
+CSFML_AUDIO_API void sfSoundStream_play(sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Pause a sound stream
@@ -98,19 +98,19 @@ CSFML_AUDIO_API void sfSoundStream_Play(sfSoundStream* soundStream);
 /// \param soundStream Sound stream object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_Pause(sfSoundStream* soundStream);
+CSFML_AUDIO_API void sfSoundStream_pause(sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Stop playing a sound stream
 ///
 /// This function stops the stream if it was playing or paused,
 /// and does nothing if it was already stopped.
-/// It also resets the playing position (unlike sfSoundStream_Pause).
+/// It also resets the playing position (unlike sfSoundStream_pause).
 ///
 /// \param soundStream Sound stream object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_Stop(sfSoundStream* soundStream);
+CSFML_AUDIO_API void sfSoundStream_stop(sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current status of a sound stream (stopped, paused, playing)
@@ -120,7 +120,7 @@ CSFML_AUDIO_API void sfSoundStream_Stop(sfSoundStream* soundStream);
 /// \return Current status
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundStatus sfSoundStream_GetStatus(const sfSoundStream* soundStream);
+CSFML_AUDIO_API sfSoundStatus sfSoundStream_getStatus(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the number of channels of a sound stream
@@ -132,7 +132,7 @@ CSFML_AUDIO_API sfSoundStatus sfSoundStream_GetStatus(const sfSoundStream* sound
 /// \return Number of channels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API unsigned int sfSoundStream_GetChannelCount(const sfSoundStream* soundStream);
+CSFML_AUDIO_API unsigned int sfSoundStream_getChannelCount(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the sample rate of a sound stream
@@ -145,7 +145,7 @@ CSFML_AUDIO_API unsigned int sfSoundStream_GetChannelCount(const sfSoundStream* 
 /// \return Sample rate, in number of samples per second
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API unsigned int sfSoundStream_GetSampleRate(const sfSoundStream* soundStream);
+CSFML_AUDIO_API unsigned int sfSoundStream_getSampleRate(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the pitch of a sound stream
@@ -160,7 +160,7 @@ CSFML_AUDIO_API unsigned int sfSoundStream_GetSampleRate(const sfSoundStream* so
 /// \param pitch       New pitch to apply to the stream
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetPitch(sfSoundStream* soundStream, float pitch);
+CSFML_AUDIO_API void sfSoundStream_setPitch(sfSoundStream* soundStream, float pitch);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the volume of a sound stream
@@ -172,7 +172,7 @@ CSFML_AUDIO_API void sfSoundStream_SetPitch(sfSoundStream* soundStream, float pi
 /// \param volume      Volume of the stream
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetVolume(sfSoundStream* soundStream, float volume);
+CSFML_AUDIO_API void sfSoundStream_setVolume(sfSoundStream* soundStream, float volume);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the 3D position of a sound stream in the audio scene
@@ -185,7 +185,7 @@ CSFML_AUDIO_API void sfSoundStream_SetVolume(sfSoundStream* soundStream, float v
 /// \param position    Position of the stream in the scene
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetPosition(sfSoundStream* soundStream, sfVector3f position);
+CSFML_AUDIO_API void sfSoundStream_setPosition(sfSoundStream* soundStream, sfVector3f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Make a sound stream's position relative to the listener or absolute
@@ -200,7 +200,7 @@ CSFML_AUDIO_API void sfSoundStream_SetPosition(sfSoundStream* soundStream, sfVec
 /// \param relative    sfTrue to set the position relative, sfFalse to set it absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetRelativeToListener(sfSoundStream* soundStream, sfBool relative);
+CSFML_AUDIO_API void sfSoundStream_setRelativeToListener(sfSoundStream* soundStream, sfBool relative);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the minimum distance of a sound stream
@@ -216,7 +216,7 @@ CSFML_AUDIO_API void sfSoundStream_SetRelativeToListener(sfSoundStream* soundStr
 /// \param distance    New minimum distance of the stream
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetMinDistance(sfSoundStream* soundStream, float distance);
+CSFML_AUDIO_API void sfSoundStream_setMinDistance(sfSoundStream* soundStream, float distance);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the attenuation factor of a sound stream
@@ -234,7 +234,7 @@ CSFML_AUDIO_API void sfSoundStream_SetMinDistance(sfSoundStream* soundStream, fl
 /// \param attenuation New attenuation factor of the stream
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetAttenuation(sfSoundStream* soundStream, float attenuation);
+CSFML_AUDIO_API void sfSoundStream_setAttenuation(sfSoundStream* soundStream, float attenuation);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the current playing position of a sound stream
@@ -246,21 +246,21 @@ CSFML_AUDIO_API void sfSoundStream_SetAttenuation(sfSoundStream* soundStream, fl
 /// \param timeOffset  New playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetPlayingOffset(sfSoundStream* soundStream, sfTime timeOffset);
+CSFML_AUDIO_API void sfSoundStream_setPlayingOffset(sfSoundStream* soundStream, sfTime timeOffset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set whether or not a sound stream should loop after reaching the end
 ///
 /// If set, the stream will restart from beginning after
 /// reaching the end and so on, until it is stopped or
-/// sfSoundStream_SetLoop(stream, sfFalse) is called.
+/// sfSoundStream_setLoop(stream, sfFalse) is called.
 /// The default looping state for sound streams is false.
 ///
 /// \param soundStream Sound stream object
 /// \param loop        sfTrue to play in loop, sfFalse to play once
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_SetLoop(sfSoundStream* soundStream, sfBool loop);
+CSFML_AUDIO_API void sfSoundStream_setLoop(sfSoundStream* soundStream, sfBool loop);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the pitch of a sound stream
@@ -270,7 +270,7 @@ CSFML_AUDIO_API void sfSoundStream_SetLoop(sfSoundStream* soundStream, sfBool lo
 /// \return Pitch of the stream
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API float sfSoundStream_GetPitch(const sfSoundStream* soundStream);
+CSFML_AUDIO_API float sfSoundStream_getPitch(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the volume of a sound stream
@@ -280,7 +280,7 @@ CSFML_AUDIO_API float sfSoundStream_GetPitch(const sfSoundStream* soundStream);
 /// \return Volume of the stream, in the range [0, 100]
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API float sfSoundStream_GetVolume(const sfSoundStream* soundStream);
+CSFML_AUDIO_API float sfSoundStream_getVolume(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the 3D position of a sound stream in the audio scene
@@ -290,7 +290,7 @@ CSFML_AUDIO_API float sfSoundStream_GetVolume(const sfSoundStream* soundStream);
 /// \return Position of the stream in the world
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfVector3f sfSoundStream_GetPosition(const sfSoundStream* soundStream);
+CSFML_AUDIO_API sfVector3f sfSoundStream_getPosition(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a sound stream's position is relative to the
@@ -301,7 +301,7 @@ CSFML_AUDIO_API sfVector3f sfSoundStream_GetPosition(const sfSoundStream* soundS
 /// \return sfTrue if the position is relative, sfFalse if it's absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundStream_IsRelativeToListener(const sfSoundStream* soundStream);
+CSFML_AUDIO_API sfBool sfSoundStream_isRelativeToListener(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the minimum distance of a sound stream
@@ -311,7 +311,7 @@ CSFML_AUDIO_API sfBool sfSoundStream_IsRelativeToListener(const sfSoundStream* s
 /// \return Minimum distance of the stream
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API float sfSoundStream_GetMinDistance(const sfSoundStream* soundStream);
+CSFML_AUDIO_API float sfSoundStream_getMinDistance(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the attenuation factor of a sound stream
@@ -321,7 +321,7 @@ CSFML_AUDIO_API float sfSoundStream_GetMinDistance(const sfSoundStream* soundStr
 /// \return Attenuation factor of the stream
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API float sfSoundStream_GetAttenuation(const sfSoundStream* soundStream);
+CSFML_AUDIO_API float sfSoundStream_getAttenuation(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a sound stream is in loop mode
@@ -331,7 +331,7 @@ CSFML_AUDIO_API float sfSoundStream_GetAttenuation(const sfSoundStream* soundStr
 /// \return sfTrue if the music is looping, sfFalse otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundStream_GetLoop(const sfSoundStream* soundStream);
+CSFML_AUDIO_API sfBool sfSoundStream_getLoop(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current playing position of a sound stream
@@ -341,7 +341,7 @@ CSFML_AUDIO_API sfBool sfSoundStream_GetLoop(const sfSoundStream* soundStream);
 /// \return Current playing position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfTime sfSoundStream_GetPlayingOffset(const sfSoundStream* soundStream);
+CSFML_AUDIO_API sfTime sfSoundStream_getPlayingOffset(const sfSoundStream* soundStream);
 
 
 #endif // SFML_SOUNDSTREAM_H

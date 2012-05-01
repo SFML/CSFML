@@ -275,7 +275,7 @@ CSFML_NETWORK_API void sfHttp_setHost(sfHttp* http, const char* host, unsigned s
 ////////////////////////////////////////////////////////////
 /// \brief Send a HTTP request and return the server's response.
 ///
-/// You must have a valid host before sending a request (see sfHttp_SetHost).
+/// You must have a valid host before sending a request (see sfHttp_setHost).
 /// Any missing mandatory header field in the request will be added
 /// with an appropriate value.
 /// Warning: this function waits for the server's response and may

@@ -146,7 +146,7 @@ CSFML_GRAPHICS_API float sfCircleShape_getRotation(const sfCircleShape* shape);
 /// \return Current scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfCircleShape_GetScale(const sfCircleShape* shape);
+CSFML_GRAPHICS_API sfVector2f sfCircleShape_getScale(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local origin of a circle shape
@@ -156,7 +156,7 @@ CSFML_GRAPHICS_API sfVector2f sfCircleShape_GetScale(const sfCircleShape* shape)
 /// \return Current origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfCircleShape_GetOrigin(const sfCircleShape* shape);
+CSFML_GRAPHICS_API sfVector2f sfCircleShape_getOrigin(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Move a circle shape by a given offset

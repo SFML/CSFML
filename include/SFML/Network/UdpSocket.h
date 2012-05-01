@@ -119,7 +119,7 @@ CSFML_NETWORK_API sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned 
 /// \param socket UDP socket object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfUdpSocket_Unbind(sfUdpSocket* socket);
+CSFML_NETWORK_API void sfUdpSocket_unbind(sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send raw data to a remote peer with a UDP socket

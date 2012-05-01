@@ -41,7 +41,7 @@
 /// \return A new sfRectangleShape object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_Create(void);
+CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing rectangle shape
@@ -51,7 +51,7 @@ CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_Create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_Copy(sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_copy(sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing rectangle shape
@@ -59,46 +59,46 @@ CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_Copy(sfRectangleShape* sha
 /// \param Shape Shape to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_Destroy(sfRectangleShape* shape);
+CSFML_GRAPHICS_API void sfRectangleShape_destroy(sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a rectangle shape
 ///
 /// This function completely overwrites the previous position.
-/// See sfRectangleShape_Move to apply an offset based on the previous position instead.
+/// See sfRectangleShape_move to apply an offset based on the previous position instead.
 /// The default position of a circle Shape object is (0, 0).
 ///
 /// \param shape    Shape object
 /// \param position New position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetPosition(sfRectangleShape* shape, sfVector2f position);
+CSFML_GRAPHICS_API void sfRectangleShape_setPosition(sfRectangleShape* shape, sfVector2f position);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of a rectangle shape
 ///
 /// This function completely overwrites the previous rotation.
-/// See sfRectangleShape_Rotate to add an angle based on the previous rotation instead.
+/// See sfRectangleShape_rotate to add an angle based on the previous rotation instead.
 /// The default rotation of a circle Shape object is 0.
 ///
 /// \param shape Shape object
 /// \param angle New rotation, in degrees
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetRotation(sfRectangleShape* shape, float angle);
+CSFML_GRAPHICS_API void sfRectangleShape_setRotation(sfRectangleShape* shape, float angle);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the scale factors of a rectangle shape
 ///
 /// This function completely overwrites the previous scale.
-/// See sfRectangleShape_Scale to add a factor based on the previous scale instead.
+/// See sfRectangleShape_scale to add a factor based on the previous scale instead.
 /// The default scale of a circle Shape object is (1, 1).
 ///
 /// \param shape Shape object
 /// \param scale New scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetScale(sfRectangleShape* shape, sfVector2f scale);
+CSFML_GRAPHICS_API void sfRectangleShape_setScale(sfRectangleShape* shape, sfVector2f scale);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the local origin of a rectangle shape
@@ -114,7 +114,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetScale(sfRectangleShape* shape, sfVec
 /// \param origin New origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetOrigin(sfRectangleShape* shape, sfVector2f origin);
+CSFML_GRAPHICS_API void sfRectangleShape_setOrigin(sfRectangleShape* shape, sfVector2f origin);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a rectangle shape
@@ -124,7 +124,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetOrigin(sfRectangleShape* shape, sfVe
 /// \return Current position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetPosition(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_getPosition(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the orientation of a rectangle shape
@@ -136,7 +136,7 @@ CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetPosition(const sfRectangleShap
 /// \return Current rotation, in degrees
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfRectangleShape_GetRotation(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API float sfRectangleShape_getRotation(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current scale of a rectangle shape
@@ -146,7 +146,7 @@ CSFML_GRAPHICS_API float sfRectangleShape_GetRotation(const sfRectangleShape* sh
 /// \return Current scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetScale(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_getScale(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local origin of a rectangle shape
@@ -156,43 +156,43 @@ CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetScale(const sfRectangleShape* 
 /// \return Current origin
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetOrigin(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_getOrigin(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Move a rectangle shape by a given offset
 ///
 /// This function adds to the current position of the object,
-/// unlike sfRectangleShape_SetPosition which overwrites it.
+/// unlike sfRectangleShape_setPosition which overwrites it.
 ///
 /// \param shape  Shape object
 /// \param offset Offset
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_Move(sfRectangleShape* shape, sfVector2f offset);
+CSFML_GRAPHICS_API void sfRectangleShape_move(sfRectangleShape* shape, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Rotate a rectangle shape
 ///
 /// This function adds to the current rotation of the object,
-/// unlike sfRectangleShape_SetRotation which overwrites it.
+/// unlike sfRectangleShape_setRotation which overwrites it.
 ///
 /// \param shape Shape object
 /// \param angle Angle of rotation, in degrees
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_Rotate(sfRectangleShape* shape, float angle);
+CSFML_GRAPHICS_API void sfRectangleShape_rotate(sfRectangleShape* shape, float angle);
 
 ////////////////////////////////////////////////////////////
 /// \brief Scale a rectangle shape
 ///
 /// This function multiplies the current scale of the object,
-/// unlike sfRectangleShape_SetScale which overwrites it.
+/// unlike sfRectangleShape_setScale which overwrites it.
 ///
 /// \param shape   Shape object
 /// \param factors Scale factors
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_Scale(sfRectangleShape* shape, sfVector2f factors);
+CSFML_GRAPHICS_API void sfRectangleShape_scale(sfRectangleShape* shape, sfVector2f factors);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the combined transform of a rectangle shape
@@ -202,7 +202,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_Scale(sfRectangleShape* shape, sfVector
 /// \return Transform combining the position/rotation/scale/origin of the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_GetTransform(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_getTransform(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the inverse of the combined transform of a rectangle shape
@@ -212,7 +212,7 @@ CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_GetTransform(const sfRect
 /// \return Inverse of the combined transformations applied to the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_GetInverseTransform(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_getInverseTransform(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the source texture of a rectangle shape
@@ -233,7 +233,7 @@ CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_GetInverseTransform(const
 /// \param resetRect Should the texture rect be reset to the size of the new texture?
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetTexture(sfRectangleShape* shape, const sfTexture* texture, sfBool resetRect);
+CSFML_GRAPHICS_API void sfRectangleShape_setTexture(sfRectangleShape* shape, const sfTexture* texture, sfBool resetRect);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the sub-rectangle of the texture that a rectangle shape will display
@@ -246,7 +246,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetTexture(sfRectangleShape* shape, con
 /// \param rect  Rectangle defining the region of the texture to display
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetTextureRect(sfRectangleShape* shape, sfIntRect rect);
+CSFML_GRAPHICS_API void sfRectangleShape_setTextureRect(sfRectangleShape* shape, sfIntRect rect);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the fill color of a rectangle shape
@@ -262,7 +262,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetTextureRect(sfRectangleShape* shape,
 /// \param color New color of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetFillColor(sfRectangleShape* shape, sfColor color);
+CSFML_GRAPHICS_API void sfRectangleShape_setFillColor(sfRectangleShape* shape, sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the outline color of a rectangle shape
@@ -274,7 +274,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetFillColor(sfRectangleShape* shape, s
 /// \param color New outline color of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetOutlineColor(sfRectangleShape* shape, sfColor color);
+CSFML_GRAPHICS_API void sfRectangleShape_setOutlineColor(sfRectangleShape* shape, sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the thickness of a rectangle shape's outline
@@ -287,7 +287,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetOutlineColor(sfRectangleShape* shape
 /// \param thickness New outline thickness
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetOutlineThickness(sfRectangleShape* shape, float thickness);
+CSFML_GRAPHICS_API void sfRectangleShape_setOutlineThickness(sfRectangleShape* shape, float thickness);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the source texture of a rectangle shape
@@ -301,7 +301,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetOutlineThickness(sfRectangleShape* s
 /// \return Pointer to the shape's texture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTexture* sfRectangleShape_GetTexture(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API const sfTexture* sfRectangleShape_getTexture(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the sub-rectangle of the texture displayed by a rectangle shape
@@ -311,7 +311,7 @@ CSFML_GRAPHICS_API const sfTexture* sfRectangleShape_GetTexture(const sfRectangl
 /// \return Texture rectangle of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfIntRect sfRectangleShape_GetTextureRect(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfIntRect sfRectangleShape_getTextureRect(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the fill color of a rectangle shape
@@ -321,7 +321,7 @@ CSFML_GRAPHICS_API sfIntRect sfRectangleShape_GetTextureRect(const sfRectangleSh
 /// \return Fill color of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfRectangleShape_GetFillColor(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfColor sfRectangleShape_getFillColor(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the outline color of a rectangle shape
@@ -331,7 +331,7 @@ CSFML_GRAPHICS_API sfColor sfRectangleShape_GetFillColor(const sfRectangleShape*
 /// \return Outline color of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfRectangleShape_GetOutlineColor(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfColor sfRectangleShape_getOutlineColor(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the outline thickness of a rectangle shape
@@ -341,7 +341,7 @@ CSFML_GRAPHICS_API sfColor sfRectangleShape_GetOutlineColor(const sfRectangleSha
 /// \return Outline thickness of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfRectangleShape_GetOutlineThickness(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API float sfRectangleShape_getOutlineThickness(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the total number of points of a rectangle shape
@@ -351,7 +351,7 @@ CSFML_GRAPHICS_API float sfRectangleShape_GetOutlineThickness(const sfRectangleS
 /// \return Number of points of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfRectangleShape_GetPointCount(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API unsigned int sfRectangleShape_getPointCount(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a point of a rectangle shape
@@ -359,12 +359,12 @@ CSFML_GRAPHICS_API unsigned int sfRectangleShape_GetPointCount(const sfRectangle
 /// The result is undefined if \a index is out of the valid range.
 ///
 /// \param shape Shape object
-/// \param index Index of the point to get, in range [0 .. GetPointCount() - 1]
+/// \param index Index of the point to get, in range [0 .. getPointCount() - 1]
 ///
 /// \return Index-th point of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetPoint(const sfRectangleShape* shape, unsigned int index);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, unsigned int index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the size of a rectangle shape
@@ -373,7 +373,7 @@ CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetPoint(const sfRectangleShape* 
 /// \param size  New size of the rectangle
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_SetSize(sfRectangleShape* shape, sfVector2f size);
+CSFML_GRAPHICS_API void sfRectangleShape_setSize(sfRectangleShape* shape, sfVector2f size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the size of a rectangle shape
@@ -383,7 +383,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_SetSize(sfRectangleShape* shape, sfVect
 /// \return height Size of the rectangle
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetSize(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_getSize(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a rectangle shape
@@ -399,7 +399,7 @@ CSFML_GRAPHICS_API sfVector2f sfRectangleShape_GetSize(const sfRectangleShape* s
 /// \return Local bounding rectangle of the entity
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfFloatRect sfRectangleShape_GetLocalBounds(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfFloatRect sfRectangleShape_getLocalBounds(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the global bounding rectangle of a rectangle shape
@@ -415,7 +415,7 @@ CSFML_GRAPHICS_API sfFloatRect sfRectangleShape_GetLocalBounds(const sfRectangle
 /// \return Global bounding rectangle of the entity
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfFloatRect sfRectangleShape_GetGlobalBounds(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfFloatRect sfRectangleShape_getGlobalBounds(const sfRectangleShape* shape);
 
 
 #endif // SFML_RECTANGLESHAPE_H

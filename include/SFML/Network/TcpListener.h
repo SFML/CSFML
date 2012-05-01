@@ -54,7 +54,7 @@ CSFML_NETWORK_API void sfTcpListener_destroy(sfTcpListener* listener);
 ///
 /// In blocking mode, calls will not return until they have
 /// completed their task. For example, a call to
-/// sfTcpListener_Accept in blocking mode won't return until
+/// sfTcpListener_accept in blocking mode won't return until
 /// a new connection was actually received.
 /// In non-blocking mode, calls will always return immediately,
 /// using the return code to signal whether there was data

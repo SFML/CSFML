@@ -259,7 +259,7 @@ CSFML_GRAPHICS_API void sfShader_setVector3Parameter(sfShader* shader, const cha
 /// uniform vec4 color; // this is the variable in the shader
 /// \endcode
 /// \code
-/// sfShader_setColorParameter(shader, "color", sfColor_FromRGB(255, 128, 0));
+/// sfShader_setColorParameter(shader, "color", sfColor_fromRGB(255, 128, 0));
 /// \endcode
 ///
 /// \param shader Shader object

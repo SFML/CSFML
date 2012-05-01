@@ -158,7 +158,7 @@ CSFML_AUDIO_API void sfMusic_pause(sfMusic* music);
 ///
 /// This function stops the music if it was playing or paused,
 /// and does nothing if it was already stopped.
-/// It also resets the playing position (unlike sfMusic_Pause).
+/// It also resets the playing position (unlike sfMusic_pause).
 ///
 /// \param music Music object
 ///
