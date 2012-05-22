@@ -28,6 +28,7 @@
 #include <SFML/Graphics/Shape.h>
 #include <SFML/Graphics/ShapeStruct.h>
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/ConvertTransform.hpp>
 #include <SFML/Internal.h>
 
 
@@ -146,22 +147,22 @@ void sfShape_scale(sfShape* shape, sfVector2f factors)
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfShape_getTransform(const sfShape* shape)
+sfTransform sfShape_getTransform(const sfShape* shape)
 {
     CSFML_CHECK_RETURN(shape, NULL);
 
-    shape->Transform.This = shape->This.getTransform();
-    return &shape->Transform;
+    shape->Transform = convertTransform(shape->This.getTransform());
+    return shape->Transform;
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfShape_getInverseTransform(const sfShape* shape)
+sfTransform sfShape_getInverseTransform(const sfShape* shape)
 {
     CSFML_CHECK_RETURN(shape, NULL);
 
-    shape->InverseTransform.This = shape->This.getInverseTransform();
-    return &shape->InverseTransform;
+    shape->InverseTransform = convertTransform(shape->This.getInverseTransform());
+    return shape->InverseTransform;
 }
 
 

@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
 
@@ -202,7 +203,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_scale(sfRectangleShape* shape, sfVector
 /// \return Transform combining the position/rotation/scale/origin of the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_getTransform(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfTransform sfRectangleShape_getTransform(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the inverse of the combined transform of a rectangle shape
@@ -212,7 +213,7 @@ CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_getTransform(const sfRect
 /// \return Inverse of the combined transformations applied to the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfRectangleShape_getInverseTransform(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfTransform sfRectangleShape_getInverseTransform(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the source texture of a rectangle shape

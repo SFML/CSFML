@@ -38,7 +38,6 @@ typedef struct sfShape sfShape;
 typedef struct sfSprite sfSprite;
 typedef struct sfText sfText;
 typedef struct sfTexture sfTexture;
-typedef struct sfTransform sfTransform;
 typedef struct sfTransformable sfTransformable;
 typedef struct sfVertexArray sfVertexArray;
 typedef struct sfView sfView;

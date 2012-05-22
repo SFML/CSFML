@@ -30,7 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/ConvexShape.hpp>
 #include <SFML/Graphics/TextureStruct.h>
-#include <SFML/Graphics/TransformStruct.h>
+#include <SFML/Graphics/Transform.h>
 
 
 ////////////////////////////////////////////////////////////

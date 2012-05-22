@@ -29,6 +29,7 @@
 #include <SFML/Graphics/SpriteStruct.h>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Image.hpp>
+#include <SFML/Graphics/ConvertTransform.hpp>
 #include <SFML/Internal.h>
 
 
@@ -157,22 +158,22 @@ void sfSprite_scale(sfSprite* sprite, sfVector2f factors)
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfSprite_getTransform(const sfSprite* sprite)
+sfTransform sfSprite_getTransform(const sfSprite* sprite)
 {
     CSFML_CHECK_RETURN(sprite, NULL);
 
-    sprite->Transform.This = sprite->This.getTransform();
-    return &sprite->Transform;
+    sprite->Transform = convertTransform(sprite->This.getTransform());
+    return sprite->Transform;
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfSprite_getInverseTransform(const sfSprite* sprite)
+sfTransform sfSprite_getInverseTransform(const sfSprite* sprite)
 {
     CSFML_CHECK_RETURN(sprite, NULL);
 
-    sprite->InverseTransform.This = sprite->This.getInverseTransform();
-    return &sprite->InverseTransform;
+    sprite->InverseTransform = convertTransform(sprite->This.getInverseTransform());
+    return sprite->InverseTransform;
 }
 
 

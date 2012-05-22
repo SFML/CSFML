@@ -30,7 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/RenderStates.h>
 #include <SFML/Graphics/RenderStates.hpp>
-#include <SFML/Graphics/TransformStruct.h>
+#include <SFML/Graphics/ConvertTransform.hpp>
 #include <SFML/Graphics/TextureStruct.h>
 #include <SFML/Graphics/ShaderStruct.h>
 
@@ -45,7 +45,7 @@ inline sf::RenderStates convertRenderStates(const sfRenderStates* states)
     if (states)
     {
         sfmlStates.blendMode = static_cast<sf::BlendMode>(states->blendMode);
-        sfmlStates.transform = states->transform ? states->transform->This : sf::Transform::Identity;
+        sfmlStates.transform = convertTransform(states->transform);
         sfmlStates.texture = states->texture ? states->texture->This : NULL;
         sfmlStates.shader = states->shader ? &states->shader->This : NULL;
     }

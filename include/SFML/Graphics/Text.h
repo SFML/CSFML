@@ -32,6 +32,7 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
+#include <SFML/Graphics/Transform.h>
 #include <SFML/System/Vector2.h>
 #include <stddef.h>
 
@@ -215,7 +216,7 @@ CSFML_GRAPHICS_API void sfText_scale(sfText* text, sfVector2f factors);
 /// \return Transform combining the position/rotation/scale/origin of the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfText_getTransform(const sfText* text);
+CSFML_GRAPHICS_API sfTransform sfText_getTransform(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the inverse of the combined transform of a text
@@ -225,7 +226,7 @@ CSFML_GRAPHICS_API const sfTransform* sfText_getTransform(const sfText* text);
 /// \return Inverse of the combined transformations applied to the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfText_getInverseTransform(const sfText* text);
+CSFML_GRAPHICS_API sfTransform sfText_getInverseTransform(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the string of a text (from an ANSI string)

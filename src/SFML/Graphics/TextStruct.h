@@ -31,7 +31,7 @@
 #include <SFML/Graphics/Text.hpp>
 #include <SFML/Graphics/FontStruct.h>
 #include <SFML/Graphics/Rect.h>
-#include <SFML/Graphics/TransformStruct.h>
+#include <SFML/Graphics/Transform.h>
 #include <string>
 
 

@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
 
@@ -202,7 +203,7 @@ CSFML_GRAPHICS_API void sfCircleShape_scale(sfCircleShape* shape, sfVector2f fac
 /// \return Transform combining the position/rotation/scale/origin of the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfCircleShape_getTransform(const sfCircleShape* shape);
+CSFML_GRAPHICS_API sfTransform sfCircleShape_getTransform(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the inverse of the combined transform of a circle shape
@@ -212,7 +213,7 @@ CSFML_GRAPHICS_API const sfTransform* sfCircleShape_getTransform(const sfCircleS
 /// \return Inverse of the combined transformations applied to the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfCircleShape_getInverseTransform(const sfCircleShape* shape);
+CSFML_GRAPHICS_API sfTransform sfCircleShape_getInverseTransform(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the source texture of a circle shape

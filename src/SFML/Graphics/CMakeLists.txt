@@ -12,6 +12,7 @@ set(SRC
     ${SRCROOT}/Color.cpp
     ${INCROOT}/Color.h
     ${SRCROOT}/ConvertRenderStates.hpp
+    ${SRCROOT}/ConvertTransform.hpp
     ${SRCROOT}/ConvexShape.cpp
     ${SRCROOT}/ConvexShapeStruct.h
     ${INCROOT}/ConvexShape.h
@@ -49,7 +50,6 @@ set(SRC
     ${SRCROOT}/TextureStruct.h
     ${INCROOT}/Texture.h
     ${SRCROOT}/Transform.cpp
-    ${SRCROOT}/TransformStruct.h
     ${INCROOT}/Transform.h
     ${SRCROOT}/Transformable.cpp
     ${SRCROOT}/TransformableStruct.h

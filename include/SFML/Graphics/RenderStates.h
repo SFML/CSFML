@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/BlendMode.h>
+#include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 
 
@@ -40,7 +41,7 @@
 typedef struct
 {
     sfBlendMode      blendMode; ///< Blending mode
-    sfTransform*     transform; ///< Transform
+    sfTransform      transform; ///< Transform
     const sfTexture* texture;   ///< Texture
     const sfShader*  shader;    ///< Shader
 } sfRenderStates;

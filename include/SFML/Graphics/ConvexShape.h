@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
 
@@ -202,7 +203,7 @@ CSFML_GRAPHICS_API void sfConvexShape_scale(sfConvexShape* shape, sfVector2f fac
 /// \return Transform combining the position/rotation/scale/origin of the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfConvexShape_getTransform(const sfConvexShape* shape);
+CSFML_GRAPHICS_API sfTransform sfConvexShape_getTransform(const sfConvexShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the inverse of the combined transform of a convex shape
@@ -212,7 +213,7 @@ CSFML_GRAPHICS_API const sfTransform* sfConvexShape_getTransform(const sfConvexS
 /// \return Inverse of the combined transformations applied to the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfConvexShape_getInverseTransform(const sfConvexShape* shape);
+CSFML_GRAPHICS_API sfTransform sfConvexShape_getInverseTransform(const sfConvexShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the source texture of a convex shape

@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Transformable.h>
 #include <SFML/Graphics/TransformableStruct.h>
+#include <SFML/Graphics/ConvertTransform.hpp>
 #include <SFML/Internal.h>
 
 
@@ -154,20 +155,20 @@ void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors)
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfTransformable_getTransform(const sfTransformable* transformable)
+sfTransform sfTransformable_getTransform(const sfTransformable* transformable)
 {
     CSFML_CHECK_RETURN(transformable, NULL);
 
-    transformable->Transform.This = transformable->This.getTransform();
-    return &transformable->Transform;
+    transformable->Transform = convertTransform(transformable->This.getTransform());
+    return transformable->Transform;
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfTransformable_getInverseTransform(const sfTransformable* transformable)
+sfTransform sfTransformable_getInverseTransform(const sfTransformable* transformable)
 {
     CSFML_CHECK_RETURN(transformable, NULL);
 
-    transformable->InverseTransform.This = transformable->This.getInverseTransform();
-    return &transformable->InverseTransform;
+    transformable->InverseTransform = convertTransform(transformable->This.getInverseTransform());
+    return transformable->InverseTransform;
 }

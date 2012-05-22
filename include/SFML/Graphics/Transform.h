@@ -34,15 +34,22 @@
 #include <SFML/System/Vector2.h>
 
 
+
 ////////////////////////////////////////////////////////////
-/// \brief Create a new transform
-///
-/// This function creates an identity transform.
-///
-/// \return A new sfTransform object
+/// \brief Encapsulate a 3x3 transform matrix
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform* sfTransform_create(void);
+typedef struct
+{
+    float matrix[9];
+} sfTransform;
+
+
+////////////////////////////////////////////////////////////
+/// \brief Identity transform (does nothing)
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfTransform sfTransform_Identity;
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new transform from a matrix
@@ -60,46 +67,29 @@ CSFML_GRAPHICS_API sfTransform* sfTransform_create(void);
 /// \return A new sfTransform object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform* sfTransform_createFromMatrix(float a00, float a01, float a02,
-                                                             float a10, float a11, float a12,
-                                                             float a20, float a21, float a22);
-
-////////////////////////////////////////////////////////////
-/// \brief Copy an existing transform
-///
-/// \param transform Transform to copy
-///
-/// \return Copied object
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform* sfTransform_copy(sfTransform* transform);
-
-////////////////////////////////////////////////////////////
-/// \brief Destroy an existing transform
-///
-/// \param transform Transform to delete
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_destroy(sfTransform* transform);
+CSFML_GRAPHICS_API sfTransform sfTransform_fromMatrix(float a00, float a01, float a02,
+                                                      float a10, float a11, float a12,
+                                                      float a20, float a21, float a22);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the 4x4 matrix of a transform
 ///
-/// This function returns a pointer to an array of 16 floats
-/// containing the transform elements as a 4x4 matrix, which
-/// is directly compatible with OpenGL functions.
+/// This function fills an array of 16 floats with the transform
+/// converted as a 4x4 matrix, which is directly compatible with
+/// OpenGL functions.
 ///
 /// \code
-/// sfTransform* transform = ...;
-/// glLoadMatrixf(sfTransform_getMatrix(transform));
+/// sfTransform transform = ...;
+/// float matrix[16];
+/// sfTransform_getMatrix(&transform, matrix)
+/// glLoadMatrixf(matrix);
 /// \endcode
 ///
 /// \param transform Transform object
-///
-/// \return Pointer to a 4x4 matrix
+/// \param matrix Pointer to the 16-element array to fill with the matrix
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const float* sfTransform_getMatrix(const sfTransform* transform);
+CSFML_GRAPHICS_API void sfTransform_getMatrix(const sfTransform* transform, float* matrix);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the inverse of a transform
@@ -108,10 +98,10 @@ CSFML_GRAPHICS_API const float* sfTransform_getMatrix(const sfTransform* transfo
 /// is returned.
 ///
 /// \param transform Transform object
-/// \param result Returned inverse matrix
+/// \return The inverse matrix
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_getInverse(const sfTransform* transform, sfTransform* result);
+CSFML_GRAPHICS_API sfTransform sfTransform_getInverse(const sfTransform* transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Apply a transform to a 2D point

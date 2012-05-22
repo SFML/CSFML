@@ -29,6 +29,7 @@
 #include <SFML/Graphics/TextStruct.h>
 #include <SFML/Graphics/Font.h>
 #include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/ConvertTransform.hpp>
 #include <SFML/Internal.h>
 
 
@@ -157,22 +158,22 @@ void sfText_scale(sfText* text, sfVector2f factors)
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfText_getTransform(const sfText* text)
+sfTransform sfText_getTransform(const sfText* text)
 {
     CSFML_CHECK_RETURN(text, NULL);
 
-    text->Transform.This = text->This.getTransform();
-    return &text->Transform;
+    text->Transform = convertTransform(text->This.getTransform());
+    return text->Transform;
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform* sfText_getInverseTransform(const sfText* text)
+sfTransform sfText_getInverseTransform(const sfText* text)
 {
     CSFML_CHECK_RETURN(text, NULL);
 
-    text->InverseTransform.This = text->This.getInverseTransform();
-    return &text->InverseTransform;
+    text->InverseTransform = convertTransform(text->This.getInverseTransform());
+    return text->InverseTransform;
 }
 
 

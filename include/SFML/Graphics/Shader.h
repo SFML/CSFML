@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Color.h>
+#include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/InputStream.h>
 #include <SFML/System/Vector2.h>
@@ -290,7 +291,7 @@ CSFML_GRAPHICS_API void sfShader_setColorParameter(sfShader* shader, const char*
 /// \param transform Transform to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setTransformParameter(sfShader* shader, const char* name, const sfTransform* transform);
+CSFML_GRAPHICS_API void sfShader_setTransformParameter(sfShader* shader, const char* name, sfTransform transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a texture parameter of a shader

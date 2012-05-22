@@ -31,6 +31,7 @@
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/Rect.h>
+#include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
 
@@ -201,7 +202,7 @@ CSFML_GRAPHICS_API void sfShape_scale(sfShape* shape, sfVector2f factors);
 /// \return Transform combining the position/rotation/scale/origin of the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfShape_getTransform(const sfShape* shape);
+CSFML_GRAPHICS_API sfTransform sfShape_getTransform(const sfShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the inverse of the combined transform of a shape
@@ -211,7 +212,7 @@ CSFML_GRAPHICS_API const sfTransform* sfShape_getTransform(const sfShape* shape)
 /// \return Inverse of the combined transformations applied to the object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfTransform* sfShape_getInverseTransform(const sfShape* shape);
+CSFML_GRAPHICS_API sfTransform sfShape_getInverseTransform(const sfShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the source texture of a shape

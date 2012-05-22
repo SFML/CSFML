@@ -28,7 +28,7 @@
 #include <SFML/Graphics/Shader.h>
 #include <SFML/Graphics/ShaderStruct.h>
 #include <SFML/Graphics/TextureStruct.h>
-#include <SFML/Graphics/TransformStruct.h>
+#include <SFML/Graphics/ConvertTransform.hpp>
 #include <SFML/Internal.h>
 #include <SFML/CallbackStream.h>
 
@@ -196,9 +196,9 @@ void sfShader_setColorParameter(sfShader* shader, const char* name, sfColor colo
 
 
 ////////////////////////////////////////////////////////////
-void sfShader_setTransformParameter(sfShader* shader, const char* name, const sfTransform* transform)
+void sfShader_setTransformParameter(sfShader* shader, const char* name, sfTransform transform)
 {
-    CSFML_CALL(shader, setParameter(name, transform ? transform->This : sf::Transform::Identity));
+    CSFML_CALL(shader, setParameter(name, convertTransform(transform)));
 }
 
 
