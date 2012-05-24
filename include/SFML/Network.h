@@ -30,6 +30,8 @@
 ////////////////////////////////////////////////////////////
 
 #include <SFML/System.h>
+#include <SFML/Network/Ftp.h>
+#include <SFML/Network/Http.h>
 #include <SFML/Network/IpAddress.h>
 #include <SFML/Network/Packet.h>
 #include <SFML/Network/SocketSelector.h>
