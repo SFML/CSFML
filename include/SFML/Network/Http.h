@@ -37,19 +37,19 @@
 /// \brief Enumerate the available HTTP methods for a request
 ///
 ////////////////////////////////////////////////////////////
-enum sfHttpMethod
+typedef enum
 {
     sfHttpGet,  ///< Request in get mode, standard method to retrieve a page
     sfHttpPost, ///< Request in post mode, usually to send data to a page
     sfHttpHead  ///< Request a page's header only
-};
+} sfHttpMethod;
 
 
 ////////////////////////////////////////////////////////////
 /// \brief Enumerate all the valid status codes for a response
 ///
 ////////////////////////////////////////////////////////////
-enum sfHttpStatus
+typedef enum
 {
     // 2xx: success
     sfHttpOk        = 200, ///< Most common code returned when operation was successful
@@ -78,7 +78,7 @@ enum sfHttpStatus
     // 10xx: SFML custom codes
     sfHttpInvalidResponse  = 1000, ///< Response is not a valid HTTP one
     sfHttpConnectionFailed = 1001  ///< Connection with server failed
-};
+} sfHttpStatus;
 
 
 ////////////////////////////////////////////////////////////

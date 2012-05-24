@@ -38,19 +38,19 @@
 /// \brief Enumeration of transfer modes
 ///
 ////////////////////////////////////////////////////////////
-enum sfFtpTransferMode
+typedef enum
 {
     sfFtpBinary, ///< Binary mode (file is transfered as a sequence of bytes)
     sfFtpAscii,  ///< Text mode using ASCII encoding
     sfFtpEbcdic  ///< Text mode using EBCDIC encoding
-};
+} sfFtpTransferMode;
 
 
 ////////////////////////////////////////////////////////////
 /// \brief Status codes possibly returned by a FTP response
 ///
 ////////////////////////////////////////////////////////////
-enum sfFtpStatus
+typedef enum
 {
     // 1xx: the requested action is being initiated,
     // expect another reply before proceeding with a new command
@@ -110,7 +110,7 @@ enum sfFtpStatus
     sfFtpConnectionFailed = 1001, ///< Connection with server failed
     sfFtpConnectionClosed = 1002, ///< Connection with server closed
     sfFtpInvalidFile      = 1003  ///< Invalid file to upload / download
-};
+} sfFtpStatus;
 
 
 ////////////////////////////////////////////////////////////
