@@ -29,6 +29,7 @@
 #include <SFML/Graphics/Transform.hpp>
 #include <SFML/Graphics/ConvertTransform.hpp>
 #include <SFML/Internal.h>
+#include <cstring>
 
 
 ////////////////////////////////////////////////////////////
