@@ -159,7 +159,7 @@ void sfCircleShape_scale(sfCircleShape* shape, sfVector2f factors)
 ////////////////////////////////////////////////////////////
 sfTransform sfCircleShape_getTransform(const sfCircleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
 
     shape->Transform = convertTransform(shape->This.getTransform());
     return shape->Transform;
@@ -169,7 +169,7 @@ sfTransform sfCircleShape_getTransform(const sfCircleShape* shape)
 ////////////////////////////////////////////////////////////
 sfTransform sfCircleShape_getInverseTransform(const sfCircleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
 
     shape->InverseTransform = convertTransform(shape->This.getInverseTransform());
     return shape->InverseTransform;

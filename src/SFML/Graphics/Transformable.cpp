@@ -157,7 +157,7 @@ void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors)
 ////////////////////////////////////////////////////////////
 sfTransform sfTransformable_getTransform(const sfTransformable* transformable)
 {
-    CSFML_CHECK_RETURN(transformable, NULL);
+    CSFML_CHECK_RETURN(transformable, sfTransform_Identity);
 
     transformable->Transform = convertTransform(transformable->This.getTransform());
     return transformable->Transform;
@@ -167,7 +167,7 @@ sfTransform sfTransformable_getTransform(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 sfTransform sfTransformable_getInverseTransform(const sfTransformable* transformable)
 {
-    CSFML_CHECK_RETURN(transformable, NULL);
+    CSFML_CHECK_RETURN(transformable, sfTransform_Identity);
 
     transformable->InverseTransform = convertTransform(transformable->This.getInverseTransform());
     return transformable->InverseTransform;

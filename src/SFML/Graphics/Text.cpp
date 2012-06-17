@@ -160,7 +160,7 @@ void sfText_scale(sfText* text, sfVector2f factors)
 ////////////////////////////////////////////////////////////
 sfTransform sfText_getTransform(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL);
+    CSFML_CHECK_RETURN(text, sfTransform_Identity);
 
     text->Transform = convertTransform(text->This.getTransform());
     return text->Transform;
@@ -170,7 +170,7 @@ sfTransform sfText_getTransform(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfTransform sfText_getInverseTransform(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL);
+    CSFML_CHECK_RETURN(text, sfTransform_Identity);
 
     text->InverseTransform = convertTransform(text->This.getInverseTransform());
     return text->InverseTransform;

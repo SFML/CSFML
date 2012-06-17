@@ -156,7 +156,7 @@ void sfRectangleShape_scale(sfRectangleShape* shape, sfVector2f factors)
 ////////////////////////////////////////////////////////////
 sfTransform sfRectangleShape_getTransform(const sfRectangleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
 
     shape->Transform = convertTransform(shape->This.getTransform());
     return shape->Transform;
@@ -166,7 +166,7 @@ sfTransform sfRectangleShape_getTransform(const sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 sfTransform sfRectangleShape_getInverseTransform(const sfRectangleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
 
     shape->InverseTransform = convertTransform(shape->This.getInverseTransform());
     return shape->InverseTransform;

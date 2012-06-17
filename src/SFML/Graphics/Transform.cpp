@@ -65,7 +65,7 @@ void sfTransform_getMatrix(const sfTransform* transform, float* matrix)
 ////////////////////////////////////////////////////////////
 sfTransform sfTransform_getInverse(const sfTransform* transform)
 {
-    CSFML_CHECK(transform);
+    CSFML_CHECK_RETURN(transform, sfTransform_Identity);
 
     return convertTransform(convertTransform(*transform).getInverse());
 }

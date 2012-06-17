@@ -149,7 +149,7 @@ void sfShape_scale(sfShape* shape, sfVector2f factors)
 ////////////////////////////////////////////////////////////
 sfTransform sfShape_getTransform(const sfShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
 
     shape->Transform = convertTransform(shape->This.getTransform());
     return shape->Transform;
@@ -159,7 +159,7 @@ sfTransform sfShape_getTransform(const sfShape* shape)
 ////////////////////////////////////////////////////////////
 sfTransform sfShape_getInverseTransform(const sfShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
 
     shape->InverseTransform = convertTransform(shape->This.getInverseTransform());
     return shape->InverseTransform;

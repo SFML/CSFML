@@ -160,7 +160,7 @@ void sfSprite_scale(sfSprite* sprite, sfVector2f factors)
 ////////////////////////////////////////////////////////////
 sfTransform sfSprite_getTransform(const sfSprite* sprite)
 {
-    CSFML_CHECK_RETURN(sprite, NULL);
+    CSFML_CHECK_RETURN(sprite, sfTransform_Identity);
 
     sprite->Transform = convertTransform(sprite->This.getTransform());
     return sprite->Transform;
@@ -170,7 +170,7 @@ sfTransform sfSprite_getTransform(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfTransform sfSprite_getInverseTransform(const sfSprite* sprite)
 {
-    CSFML_CHECK_RETURN(sprite, NULL);
+    CSFML_CHECK_RETURN(sprite, sfTransform_Identity);
 
     sprite->InverseTransform = convertTransform(sprite->This.getInverseTransform());
     return sprite->InverseTransform;

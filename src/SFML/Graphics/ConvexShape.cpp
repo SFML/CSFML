@@ -156,7 +156,7 @@ void sfConvexShape_scale(sfConvexShape* shape, sfVector2f factors)
 ////////////////////////////////////////////////////////////
 sfTransform sfConvexShape_getTransform(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
 
     shape->Transform = convertTransform(shape->This.getTransform());
     return shape->Transform;
@@ -166,7 +166,7 @@ sfTransform sfConvexShape_getTransform(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfTransform sfConvexShape_getInverseTransform(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
 
     shape->InverseTransform = convertTransform(shape->This.getInverseTransform());
     return shape->InverseTransform;
