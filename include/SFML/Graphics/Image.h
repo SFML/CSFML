@@ -181,7 +181,7 @@ CSFML_GRAPHICS_API sfVector2u sfImage_getSize(const sfImage* image);
 /// \param alpha Alpha value to assign to transparent pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfImage_createMaskFromColor(sfColor color, sfUint8 alpha);
+CSFML_GRAPHICS_API void sfImage_createMaskFromColor(sfImage* image, sfColor color, sfUint8 alpha);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy pixels from an image onto another
