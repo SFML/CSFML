@@ -52,10 +52,12 @@ typedef enum
 typedef enum
 {
     // 2xx: success
-    sfHttpOk        = 200, ///< Most common code returned when operation was successful
-    sfHttpCreated   = 201, ///< The resource has successfully been created
-    sfHttpAccepted  = 202, ///< The request has been accepted, but will be processed later by the server
-    sfHttpNoContent = 204, ///< Sent when the server didn't send any data in return
+    sfHttpOk             = 200, ///< Most common code returned when operation was successful
+    sfHttpCreated        = 201, ///< The resource has successfully been created
+    sfHttpAccepted       = 202, ///< The request has been accepted, but will be processed later by the server
+    sfHttpNoContent      = 204, ///< Sent when the server didn't send any data in return
+    sfHttpResetContent   = 205, ///< The server informs the client that it should clear the view (form) that caused the request to be sent
+    sfHttpPartialContent = 206, ///< The server has sent a part of the resource, as a response to a partial GET request
 
     // 3xx: redirection
     sfHttpMultipleChoices  = 300, ///< The requested page can be accessed from several locations
@@ -64,16 +66,19 @@ typedef enum
     sfHttpNotModified      = 304, ///< For conditionnal requests, means the requested page hasn't changed and doesn't need to be refreshed
 
     // 4xx: client error
-    sfHttpBadRequest   = 400, ///< The server couldn't understand the request (syntax error)
-    sfHttpUnauthorized = 401, ///< The requested page needs an authentification to be accessed
-    sfHttpForbidden    = 403, ///< The requested page cannot be accessed at all, even with authentification
-    sfHttpNotFound     = 404, ///< The requested page doesn't exist
+    sfHttpBadRequest          = 400, ///< The server couldn't understand the request (syntax error)
+    sfHttpUnauthorized        = 401, ///< The requested page needs an authentification to be accessed
+    sfHttpForbidden           = 403, ///< The requested page cannot be accessed at all, even with authentification
+    sfHttpNotFound            = 404, ///< The requested page doesn't exist
+    sfHttpRangeNotSatisfiable = 407, ///< The server can't satisfy the partial GET request (with a "Range" header field)
 
     // 5xx: server error
     sfHttpInternalServerError = 500, ///< The server encountered an unexpected error
     sfHttpNotImplemented      = 501, ///< The server doesn't implement a requested feature
     sfHttpBadGateway          = 502, ///< The gateway server has received an error from the source server
     sfHttpServiceNotAvailable = 503, ///< The server is temporarily unavailable (overloaded, in maintenance, ...)
+    sfHttpGatewayTimeout      = 504, ///< The gateway server couldn't receive a response from the source server
+    sfHttpVersionNotSupported = 505, ///< The server doesn't support the requested HTTP version
 
     // 10xx: SFML custom codes
     sfHttpInvalidResponse  = 1000, ///< Response is not a valid HTTP one
