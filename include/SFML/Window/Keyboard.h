@@ -36,6 +36,7 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
+    sfKeyUnknown = -1, ///< Unhandled key
     sfKeyA,            ///< The A key
     sfKeyB,            ///< The B key
     sfKeyC,            ///< The C key
