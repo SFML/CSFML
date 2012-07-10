@@ -158,18 +158,18 @@ CSFML_WINDOW_API sfBool sfWindow_isOpen(const sfWindow* window);
 CSFML_WINDOW_API sfContextSettings sfWindow_getSettings(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
-/// \brief Pop the event on top of events stack, if any, and return it
+/// \brief Pop the event on top of event queue, if any, and return it
 ///
 /// This function is not blocking: if there's no pending event then
 /// it will return false and leave \a event unmodified.
-/// Note that more than one event may be present in the events stack,
+/// Note that more than one event may be present in the event queue,
 /// thus you should always call this function in a loop
 /// to make sure that you process every pending event.
 ///
 /// \param window Window object
 /// \param event  Event to be returned
 ///
-/// \return sfTrue if an event was returned, or sfFalse if the events stack was empty
+/// \return sfTrue if an event was returned, or sfFalse if the event queue was empty
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfBool sfWindow_pollEvent(sfWindow* window, sfEvent* event);

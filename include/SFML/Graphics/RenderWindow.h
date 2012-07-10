@@ -97,12 +97,12 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_isOpen(const sfRenderWindow* renderWind
 CSFML_GRAPHICS_API sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the event on top of events stack of a render window, if any, and pop it
+/// \brief Get the event on top of event queue of a render window, if any, and pop it
 ///
 /// \param renderWindow Render window object
 /// \param event        Event to fill, if any
 ///
-/// \return sfTrue if an event was returned, sfFalse if events stack was empty
+/// \return sfTrue if an event was returned, sfFalse if event queue was empty
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event);
