@@ -37,7 +37,7 @@
 sfText* sfText_create(void)
 {
     sfText* text = new sfText;
-    text->Font = sfFont_getDefaultFont();
+    text->Font = NULL;
 
     return text;
 }

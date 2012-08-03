@@ -257,8 +257,6 @@ CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const sfUint32* st
 /// a pointer to the one that you passed to this function.
 /// If the font is destroyed and the text tries to
 /// use it, the behaviour is undefined.
-/// Texts have a valid font by default, which the built-in
-/// sfFont_getDefaultFont().
 ///
 /// \param text Text object
 /// \param font New font
@@ -323,6 +321,10 @@ CSFML_GRAPHICS_API const sfUint32* sfText_getUnicodeString(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the font used by a text
+///
+/// If the text has no font attached, a NULL pointer is returned.
+/// The returned pointer is const, which means that you can't
+/// modify the font when you retrieve it with this function.
 ///
 /// \param text Text object
 ///

@@ -133,13 +133,5 @@ CSFML_GRAPHICS_API int sfFont_getLineSpacing(sfFont* font, unsigned int characte
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize);
 
-////////////////////////////////////////////////////////////
-/// \brief Get the built-in default font (Arial)
-///
-/// \return Pointer to the default font
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfFont* sfFont_getDefaultFont(void);
-
 
 #endif // SFML_IMAGE_H

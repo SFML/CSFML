@@ -155,14 +155,3 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 
     return &font->Textures[characterSize];
 }
-
-
-////////////////////////////////////////////////////////////
-/// Get the built-in default font (Arial)
-////////////////////////////////////////////////////////////
-const sfFont* sfFont_getDefaultFont(void)
-{
-    static sfFont defaultFont = {sf::Font::getDefaultFont(), std::map<unsigned int, sfTexture>()};
-
-    return &defaultFont;
-}
