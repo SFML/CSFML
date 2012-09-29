@@ -64,7 +64,7 @@ typedef enum
 /// \brief Keyboard event parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfKeyEvent
+typedef struct
 {
     sfEventType type;
     sfKeyCode   code;
@@ -72,96 +72,96 @@ struct sfKeyEvent
     sfBool      control;
     sfBool      shift;
     sfBool      system;
-};
+} sfKeyEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Text event parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfTextEvent
+typedef struct
 {
     sfEventType type;
     sfUint32    unicode;
-};
+} sfTextEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Mouse move event parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfMouseMoveEvent
+typedef struct
 {
     sfEventType type;
     int         x;
     int         y;
-};
+} sfMouseMoveEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Mouse buttons events parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfMouseButtonEvent
+typedef struct
 {
     sfEventType   type;
     sfMouseButton button;
     int           x;
     int           y;
-};
+} sfMouseButtonEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Mouse wheel events parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfMouseWheelEvent
+typedef struct
 {
     sfEventType type;
     int         delta;
     int         x;
     int         y;
-};
+} sfMouseWheelEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Joystick axis move event parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfJoystickMoveEvent
+typedef struct
 {
     sfEventType    type;
     unsigned int   joystickId;
     sfJoystickAxis axis;
     float          position;
-};
+} sfJoystickMoveEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Joystick buttons events parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfJoystickButtonEvent
+typedef struct
 {
     sfEventType  type;
     unsigned int joystickId;
     unsigned int button;
-};
+} sfJoystickButtonEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Joystick connection/disconnection event parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfJoystickConnectEvent
+typedef struct
 {
     sfEventType  type;
     unsigned int joystickId;
-};
+} sfJoystickConnectEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Size events parameters
 ///
 ////////////////////////////////////////////////////////////
-struct sfSizeEvent
+typedef struct
 {
     sfEventType  type;
     unsigned int width;
     unsigned int height;
-};
+} sfSizeEvent;
 
 
 ////////////////////////////////////////////////////////////
@@ -173,16 +173,16 @@ typedef union
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    sfEventType                   type; ///< Type of the event
-    struct sfSizeEvent            size;
-    struct sfKeyEvent             key;
-    struct sfTextEvent            text;
-    struct sfMouseMoveEvent       mouseMove;
-    struct sfMouseButtonEvent     mouseButton;
-    struct sfMouseWheelEvent      mouseWheel;
-    struct sfJoystickMoveEvent    joystickMove;
-    struct sfJoystickButtonEvent  joystickButton;
-    struct sfJoystickConnectEvent joystickConnect;
+    sfEventType            type; ///< Type of the event
+    sfSizeEvent            size;
+    sfKeyEvent             key;
+    sfTextEvent            text;
+    sfMouseMoveEvent       mouseMove;
+    sfMouseButtonEvent     mouseButton;
+    sfMouseWheelEvent      mouseWheel;
+    sfJoystickMoveEvent    joystickMove;
+    sfJoystickButtonEvent  joystickButton;
+    sfJoystickConnectEvent joystickConnect;
 } sfEvent;
 
 
