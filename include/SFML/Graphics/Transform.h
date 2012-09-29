@@ -49,7 +49,7 @@ typedef struct
 /// \brief Identity transform (does nothing)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform sfTransform_Identity;
+CSFML_GRAPHICS_API const sfTransform sfTransform_Identity;
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new transform from a matrix

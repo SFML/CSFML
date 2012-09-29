@@ -50,15 +50,15 @@ namespace
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_None = sfIpAddress_fromBytes(0, 0, 0, 0);
+const sfIpAddress sfIpAddress_None = sfIpAddress_fromBytes(0, 0, 0, 0);
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_LocalHost = sfIpAddress_fromBytes(127, 0, 0, 1);
+const sfIpAddress sfIpAddress_LocalHost = sfIpAddress_fromBytes(127, 0, 0, 1);
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_Broadcast = sfIpAddress_fromBytes(255, 255, 255, 255);
+const sfIpAddress sfIpAddress_Broadcast = sfIpAddress_fromBytes(255, 255, 255, 255);
 
 
 ////////////////////////////////////////////////////////////

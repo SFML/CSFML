@@ -46,19 +46,19 @@ typedef struct
 /// \brief Empty object that represents invalid addresses
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_None;
+CSFML_NETWORK_API const sfIpAddress sfIpAddress_None;
 
 ////////////////////////////////////////////////////////////
 /// \brief Local host IP address (127.0.0.1, or "localhost")
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_LocalHost;
+CSFML_NETWORK_API const sfIpAddress sfIpAddress_LocalHost;
 
 ////////////////////////////////////////////////////////////
 /// \brief UDP broadcast address (255.255.255.255)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_Broadcast;
+CSFML_NETWORK_API const sfIpAddress sfIpAddress_Broadcast;
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an address from a string

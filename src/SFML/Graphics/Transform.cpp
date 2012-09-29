@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTransform sfTransform_Identity =
+const sfTransform sfTransform_Identity =
 {
     1, 0, 0,
     0, 1, 0,
