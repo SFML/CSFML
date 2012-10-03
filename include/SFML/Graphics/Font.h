@@ -114,7 +114,6 @@ CSFML_GRAPHICS_API int sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 
 /// \brief Get the line spacing value
 ///
 /// \param font          Source font
-/// \param codePoint     Unicode code point of the character to get
 /// \param characterSize Character size, in pixels
 ///
 /// \return Line spacing, in pixels
