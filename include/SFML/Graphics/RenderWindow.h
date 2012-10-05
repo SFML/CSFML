@@ -170,7 +170,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, co
 ////////////////////////////////////////////////////////////
 /// \brief Change a render window's icon
 ///
-/// \param renderWindow Renderw indow object
+/// \param renderWindow Render window object
 /// \param width        Icon's width, in pixels
 /// \param height       Icon's height, in pixels
 /// \param pixels       Pointer to the pixels in memory, format must be RGBA 32 bits
