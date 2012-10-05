@@ -443,3 +443,27 @@ sfImage* sfRenderWindow_capture(const sfRenderWindow* renderWindow)
 
     return image;
 }
+
+
+////////////////////////////////////////////////////////////
+sfVector2i sfMouse_getPositionRenderWindow(const sfRenderWindow* relativeTo)
+{
+    sf::Vector2i sfmlPos;
+    if (relativeTo)
+        sfmlPos = sf::Mouse::getPosition(relativeTo->This);
+    else
+        sfmlPos = sf::Mouse::getPosition();
+
+    sfVector2i position = {sfmlPos.x, sfmlPos.y};
+    return position;
+}
+
+
+////////////////////////////////////////////////////////////
+void sfMouse_setPositionRenderWindow(sfVector2i position, const sfRenderWindow* relativeTo)
+{
+    if (relativeTo)
+        sf::Mouse::setPosition(sf::Vector2i(position.x, position.y), relativeTo->This);
+    else
+        sf::Mouse::setPosition(sf::Vector2i(position.x, position.y));
+}

@@ -420,5 +420,30 @@ CSFML_GRAPHICS_API void sfRenderWindow_resetGLStates(sfRenderWindow* renderWindo
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfImage* sfRenderWindow_capture(const sfRenderWindow* renderWindow);
 
+////////////////////////////////////////////////////////////
+/// \brief Get the current position of the mouse relatively to a render-window
+///
+/// This function returns the current position of the mouse
+/// cursor relative to the given render-window, or desktop if NULL is passed.
+///
+/// \param relativeTo Reference window
+///
+/// \return Position of the mouse cursor, relative to the given render-window
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVector2i sfMouse_getPositionRenderWindow(const sfRenderWindow* relativeTo);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the current position of the mouse relatively to a render-window
+///
+/// This function sets the current position of the mouse
+/// cursor relative to the given render-window, or desktop if NULL is passed.
+///
+/// \param position   New position of the mouse
+/// \param relativeTo Reference window
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfMouse_setPositionRenderWindow(sfVector2i position, const sfRenderWindow* relativeTo);
+
 
 #endif // SFML_RENDERWINDOW_H
