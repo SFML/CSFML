@@ -300,11 +300,11 @@ CSFML_GRAPHICS_API void sfText_setStyle(sfText* text, sfUint32 style);
 CSFML_GRAPHICS_API void sfText_setColor(sfText* text, sfColor color);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the text of a text (returns an ANSI string)
+/// \brief Get the string of a text (returns an ANSI string)
 ///
 /// \param text Text object
 ///
-/// \return String an a locale-dependant ANSI string
+/// \return String as a locale-dependant ANSI string
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API const char* sfText_getString(const sfText* text);
