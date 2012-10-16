@@ -33,7 +33,7 @@
 ///         return EXIT_FAILURE;
 ///
 ///     /* Load a sprite to display */
-///     texture = sfTexture_createFromFile("cute_image.jpg");
+///     texture = sfTexture_createFromFile("cute_image.jpg", NULL);
 ///     if (!texture)
 ///         return EXIT_FAILURE;
 ///     sprite = sfSprite_create();
