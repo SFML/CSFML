@@ -359,25 +359,12 @@ CSFML_GRAPHICS_API void sfShader_setCurrentTextureParameter(sfShader* shader, co
 /// sfWindow_setActive(window, sfTrue);
 /// sfShader_bind(shader);
 /// ... render OpenGL geometry ...
-/// sfShader_unbind(shader);
 /// \endcode
 ///
 /// \param shader Shader to bind
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfShader_bind(const sfShader* shader);
-
-////////////////////////////////////////////////////////////
-/// \brief Unbind a shader (deactivate it)
-///
-/// This function is normally for internal use only, unless
-/// you want to use the shader with a custom OpenGL rendering
-/// instead of a SFML drawable.
-///
-/// \param shader Shader to unbind
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_unbind(const sfShader* shader);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not the system supports shaders

@@ -225,13 +225,6 @@ void sfShader_bind(const sfShader* shader)
 
 
 ////////////////////////////////////////////////////////////
-void sfShader_unbind(const sfShader* shader)
-{
-    CSFML_CALL(shader, unbind());
-}
-
-
-////////////////////////////////////////////////////////////
 sfBool sfShader_isAvailable(void)
 {
     return sf::Shader::isAvailable() ? sfTrue : sfFalse;
