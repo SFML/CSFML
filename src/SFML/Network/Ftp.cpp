@@ -68,16 +68,16 @@ size_t sfFtpListingResponse_getCount(const sfFtpListingResponse* ftpListingRespo
 {
     CSFML_CHECK_RETURN(ftpListingResponse, 0);
 
-    return ftpListingResponse->This.getFilenames().size();
+    return ftpListingResponse->This.getListing().size();
 }
 
 
 ////////////////////////////////////////////////////////////
-const char* sfFtpListingResponse_getFilename(const sfFtpListingResponse* ftpListingResponse, size_t index)
+const char* sfFtpListingResponse_getName(const sfFtpListingResponse* ftpListingResponse, size_t index)
 {
     CSFML_CHECK_RETURN(ftpListingResponse, NULL);
 
-    return ftpListingResponse->This.getFilenames()[index].c_str();
+    return ftpListingResponse->This.getListing()[index].c_str();
 }
 
 

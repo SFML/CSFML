@@ -155,25 +155,25 @@ CSFML_NETWORK_API sfFtpStatus sfFtpListingResponse_getStatus(const sfFtpListingR
 CSFML_NETWORK_API const char* sfFtpListingResponse_getMessage(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
-/// \brief Return the number of filenames contained in a FTP listing response
+/// \brief Return the number of directory/file names contained in a FTP listing response
 ///
 /// \param ftpListingResponse Ftp listing response
 ///
-/// \return Total number of filenames available
+/// \return Total number of names available
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API size_t sfFtpListingResponse_getCount(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
-/// \brief Return a filename contained in a FTP listing response
+/// \brief Return a directory/file name contained in a FTP listing response
 ///
 /// \param ftpListingResponse Ftp listing response
-/// \param index              Index of the filename to get (in range [0 .. GetCount])
+/// \param index              Index of the name to get (in range [0 .. getCount])
 ///
-/// \return Array containing the requested filenames
+/// \return The requested name
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char* sfFtpListingResponse_getFilename(const sfFtpListingResponse* ftpListingResponse, size_t index);
+CSFML_NETWORK_API const char* sfFtpListingResponse_getName(const sfFtpListingResponse* ftpListingResponse, size_t index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a FTP directory response
