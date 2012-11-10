@@ -313,16 +313,60 @@ CSFML_GRAPHICS_API const sfView* sfRenderWindow_getDefaultView(const sfRenderWin
 CSFML_GRAPHICS_API sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const sfView* view);
 
 ////////////////////////////////////////////////////////////
-/// \brief Convert a point in window coordinates into view coordinates
+/// \brief Convert a point from window coordinates to world coordinates
+///
+/// This function finds the 2D position that matches the
+/// given pixel of the render-window. In other words, it does
+/// the inverse of what the graphics card does, to find the
+/// initial position of a rendered pixel.
+///
+/// Initially, both coordinate systems (world units and target pixels)
+/// match perfectly. But if you define a custom view or resize your
+/// render-window, this assertion is not true anymore, ie. a point
+/// located at (10, 50) in your render-window may map to the point
+/// (150, 75) in your 2D world -- if the view is translated by (140, 25).
+///
+/// This function is typically used to find which point (or object) is
+/// located below the mouse cursor.
+///
+/// This version uses a custom view for calculations, see the other
+/// overload of the function if you want to use the current view of the
+/// render-window.
 ///
 /// \param renderWindow Render window object
-/// \param point        Point to convert, relative to the window
-/// \param targetView   Target view to convert the point to (pass NULL to use the current view)
+/// \param point Pixel to convert
+/// \param view The view to use for converting the point
 ///
 /// \return The converted point, in "world" units
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRenderWindow_convertCoords(const sfRenderWindow* renderWindow, sfVector2i point, const sfView* targetView);
+CSFML_GRAPHICS_API sfVector2f sfRenderWindow_mapPixelToCoords(const sfRenderWindow* renderWindow, sfVector2i point, const sfView* view);
+
+////////////////////////////////////////////////////////////
+/// \brief Convert a point from world coordinates to window coordinates
+///
+/// This function finds the pixel of the render-window that matches
+/// the given 2D point. In other words, it goes through the same process
+/// as the graphics card, to compute the final position of a rendered point.
+///
+/// Initially, both coordinate systems (world units and target pixels)
+/// match perfectly. But if you define a custom view or resize your
+/// render-window, this assertion is not true anymore, ie. a point
+/// located at (150, 75) in your 2D world may map to the pixel
+/// (10, 50) of your render-window -- if the view is translated by (140, 25).
+///
+/// This version uses a custom view for calculations, see the other
+/// overload of the function if you want to use the current view of the
+/// render-window.
+///
+/// \param renderWindow Render window object
+/// \param point Point to convert
+/// \param view The view to use for converting the point
+///
+/// \return The converted point, in target coordinates (pixels)
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVector2i sfRenderWindow_mapCoordsToPixel(const sfRenderWindow* renderWindow, sfVector2f point, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw a drawable object to the render-target

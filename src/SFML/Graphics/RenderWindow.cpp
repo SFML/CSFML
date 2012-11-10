@@ -346,16 +346,35 @@ sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const s
 
 
 ////////////////////////////////////////////////////////////
-sfVector2f sfRenderWindow_convertCoords(const sfRenderWindow* renderWindow, sfVector2i point, const sfView* targetView)
+sfVector2f sfRenderWindow_mapPixelToCoords(const sfRenderWindow* renderWindow, sfVector2i point, const sfView* targetView)
 {
     sfVector2f result = {0, 0};
     CSFML_CHECK_RETURN(renderWindow, result);
 
     sf::Vector2f sfmlPoint;
     if (targetView)
-        sfmlPoint = renderWindow->This.convertCoords(sf::Vector2i(point.x, point.y), targetView->This);
+        sfmlPoint = renderWindow->This.mapPixelToCoords(sf::Vector2i(point.x, point.y), targetView->This);
     else
-        sfmlPoint = renderWindow->This.convertCoords(sf::Vector2i(point.x, point.y));
+        sfmlPoint = renderWindow->This.mapPixelToCoords(sf::Vector2i(point.x, point.y));
+
+    result.x = sfmlPoint.x;
+    result.y = sfmlPoint.y;
+
+    return result;
+}
+
+
+////////////////////////////////////////////////////////////
+sfVector2i sfRenderWindow_mapCoordsToPixel(const sfRenderWindow* renderWindow, sfVector2f point, const sfView* targetView)
+{
+    sfVector2i result = {0, 0};
+    CSFML_CHECK_RETURN(renderWindow, result);
+
+    sf::Vector2i sfmlPoint;
+    if (targetView)
+        sfmlPoint = renderWindow->This.mapCoordsToPixel(sf::Vector2f(point.x, point.y), targetView->This);
+    else
+        sfmlPoint = renderWindow->This.mapCoordsToPixel(sf::Vector2f(point.x, point.y));
 
     result.x = sfmlPoint.x;
     result.y = sfmlPoint.y;
