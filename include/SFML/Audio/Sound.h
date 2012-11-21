@@ -136,7 +136,7 @@ CSFML_AUDIO_API const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound);
 CSFML_AUDIO_API void sfSound_setLoop(sfSound* sound, sfBool loop);
 
 ////////////////////////////////////////////////////////////
-/// \brief Tell whether or not a soud is in loop mode
+/// \brief Tell whether or not a sound is in loop mode
 ///
 /// \param sound Sound object
 ///
