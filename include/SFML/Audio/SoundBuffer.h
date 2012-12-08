@@ -102,7 +102,7 @@ CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* sa
 /// \return A new sfSoundBuffer object which is a copy of \a soundBuffer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_copy(sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_copy(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a sound buffer

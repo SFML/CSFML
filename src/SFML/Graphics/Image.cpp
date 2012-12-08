@@ -109,7 +109,7 @@ sfImage* sfImage_createFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_copy(sfImage* image)
+sfImage* sfImage_copy(const sfImage* image)
 {
     CSFML_CHECK_RETURN(image, NULL);
 

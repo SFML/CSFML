@@ -95,7 +95,7 @@ sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, size_t sa
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_copy(sfSoundBuffer* soundBuffer)
+sfSoundBuffer* sfSoundBuffer_copy(const sfSoundBuffer* soundBuffer)
 {
     CSFML_CHECK_RETURN(soundBuffer, NULL);
 

@@ -51,7 +51,7 @@ CSFML_AUDIO_API sfSound* sfSound_create(void);
 /// \return A new sfSound object which is a copy of \a sound
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSound* sfSound_copy(sfSound* sound);
+CSFML_AUDIO_API sfSound* sfSound_copy(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a sound

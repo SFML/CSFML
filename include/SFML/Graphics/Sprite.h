@@ -53,7 +53,7 @@ CSFML_GRAPHICS_API sfSprite* sfSprite_create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfSprite* sfSprite_copy(sfSprite* sprite);
+CSFML_GRAPHICS_API sfSprite* sfSprite_copy(const sfSprite* sprite);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing sprite

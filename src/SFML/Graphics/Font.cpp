@@ -85,7 +85,7 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
 ////////////////////////////////////////////////////////////
 /// Copy an existing font
 ////////////////////////////////////////////////////////////
-sfFont* sfFont_copy(sfFont* font)
+sfFont* sfFont_copy(const sfFont* font)
 {
     CSFML_CHECK_RETURN(font, NULL);
 

@@ -52,7 +52,7 @@ CSFML_GRAPHICS_API sfConvexShape* sfConvexShape_create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfConvexShape* sfConvexShape_copy(sfConvexShape* shape);
+CSFML_GRAPHICS_API sfConvexShape* sfConvexShape_copy(const sfConvexShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing convex Shape

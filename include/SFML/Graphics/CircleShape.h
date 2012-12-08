@@ -52,7 +52,7 @@ CSFML_GRAPHICS_API sfCircleShape* sfCircleShape_create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfCircleShape* sfCircleShape_copy(sfCircleShape* shape);
+CSFML_GRAPHICS_API sfCircleShape* sfCircleShape_copy(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing circle Shape

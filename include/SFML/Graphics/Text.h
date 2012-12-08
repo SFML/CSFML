@@ -65,7 +65,7 @@ CSFML_GRAPHICS_API sfText* sfText_create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfText* sfText_copy(sfText* text);
+CSFML_GRAPHICS_API sfText* sfText_copy(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing text

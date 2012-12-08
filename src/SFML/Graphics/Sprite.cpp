@@ -44,7 +44,7 @@ sfSprite* sfSprite_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfSprite* sfSprite_copy(sfSprite* sprite)
+sfSprite* sfSprite_copy(const sfSprite* sprite)
 {
     CSFML_CHECK_RETURN(sprite, NULL);
 

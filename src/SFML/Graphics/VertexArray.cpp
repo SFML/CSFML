@@ -38,7 +38,7 @@ sfVertexArray* sfVertexArray_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfVertexArray* sfVertexArray_copy(sfVertexArray* vertexArray)
+sfVertexArray* sfVertexArray_copy(const sfVertexArray* vertexArray)
 {
     CSFML_CHECK_RETURN(vertexArray, NULL);
 

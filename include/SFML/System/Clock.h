@@ -49,7 +49,7 @@ CSFML_SYSTEM_API sfClock* sfClock_create(void);
 /// \return A new sfClock object which is a copy of \a clock
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API sfClock* sfClock_copy(sfClock* clock);
+CSFML_SYSTEM_API sfClock* sfClock_copy(const sfClock* clock);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a clock

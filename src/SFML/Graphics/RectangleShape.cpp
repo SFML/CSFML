@@ -40,7 +40,7 @@ sfRectangleShape* sfRectangleShape_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfRectangleShape* sfRectangleShape_copy(sfRectangleShape* shape)
+sfRectangleShape* sfRectangleShape_copy(const sfRectangleShape* shape)
 {
     CSFML_CHECK_RETURN(shape, NULL);
 

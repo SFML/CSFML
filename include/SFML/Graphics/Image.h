@@ -133,7 +133,7 @@ CSFML_GRAPHICS_API sfImage* sfImage_createFromStream(sfInputStream* stream);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfImage* sfImage_copy(sfImage* image);
+CSFML_GRAPHICS_API sfImage* sfImage_copy(const sfImage* image);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing image

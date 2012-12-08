@@ -40,7 +40,7 @@ sfConvexShape* sfConvexShape_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfConvexShape* sfConvexShape_copy(sfConvexShape* shape)
+sfConvexShape* sfConvexShape_copy(const sfConvexShape* shape)
 {
     CSFML_CHECK_RETURN(shape, NULL);
 

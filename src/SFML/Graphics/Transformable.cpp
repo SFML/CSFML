@@ -41,7 +41,7 @@ sfTransformable* sfTransformable_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfTransformable* sfTransformable_copy(sfTransformable* transformable)
+sfTransformable* sfTransformable_copy(const sfTransformable* transformable)
 {
     CSFML_CHECK_RETURN(transformable, NULL);
 

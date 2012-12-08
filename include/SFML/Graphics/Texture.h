@@ -101,7 +101,7 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_createFromImage(const sfImage* image, co
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_copy(sfTexture* texture);
+CSFML_GRAPHICS_API sfTexture* sfTexture_copy(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing texture

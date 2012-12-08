@@ -74,7 +74,7 @@ CSFML_GRAPHICS_API sfFont* sfFont_createFromStream(sfInputStream* stream);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfFont* sfFont_copy(sfFont* font);
+CSFML_GRAPHICS_API sfFont* sfFont_copy(const sfFont* font);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing font

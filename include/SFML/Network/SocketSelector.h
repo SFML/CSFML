@@ -49,7 +49,7 @@ CSFML_NETWORK_API sfSocketSelector* sfSocketSelector_create(void);
 /// \return A new sfSocketSelector object which is a copy of \a selector
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketSelector* sfSocketSelector_copy(sfSocketSelector* selector);
+CSFML_NETWORK_API sfSocketSelector* sfSocketSelector_copy(const sfSocketSelector* selector);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a socket selector

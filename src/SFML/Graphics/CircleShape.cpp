@@ -43,7 +43,7 @@ sfCircleShape* sfCircleShape_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfCircleShape* sfCircleShape_copy(sfCircleShape* shape)
+sfCircleShape* sfCircleShape_copy(const sfCircleShape* shape)
 {
     CSFML_CHECK_RETURN(shape, NULL);
 

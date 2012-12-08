@@ -44,7 +44,7 @@ sfText* sfText_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfText* sfText_copy(sfText* text)
+sfText* sfText_copy(const sfText* text)
 {
     CSFML_CHECK_RETURN(text, NULL);
 

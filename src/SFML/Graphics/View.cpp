@@ -48,7 +48,7 @@ sfView* sfView_createFromRect(sfFloatRect rectangle)
 
 
 ////////////////////////////////////////////////////////////
-sfView* sfView_copy(sfView* view)
+sfView* sfView_copy(const sfView* view)
 {
     CSFML_CHECK_RETURN(view, NULL);
 

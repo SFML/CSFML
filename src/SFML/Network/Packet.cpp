@@ -38,7 +38,7 @@ sfPacket* sfPacket_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfPacket* sfPacket_copy(sfPacket* packet)
+sfPacket* sfPacket_copy(const sfPacket* packet)
 {
     CSFML_CHECK_RETURN(packet, NULL);
 

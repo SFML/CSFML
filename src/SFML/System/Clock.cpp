@@ -38,7 +38,7 @@ sfClock* sfClock_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfClock* sfClock_copy(sfClock* clock)
+sfClock* sfClock_copy(const sfClock* clock)
 {
     CSFML_CHECK_RETURN(clock, NULL);
 

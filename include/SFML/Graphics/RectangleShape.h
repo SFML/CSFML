@@ -52,7 +52,7 @@ CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_copy(sfRectangleShape* shape);
+CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_copy(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing rectangle shape

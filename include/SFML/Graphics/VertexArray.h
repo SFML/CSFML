@@ -51,7 +51,7 @@ CSFML_GRAPHICS_API sfVertexArray* sfVertexArray_create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVertexArray* sfVertexArray_copy(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API sfVertexArray* sfVertexArray_copy(const sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing vertex array

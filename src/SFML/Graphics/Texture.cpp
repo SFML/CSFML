@@ -131,7 +131,7 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 
 
 ////////////////////////////////////////////////////////////
-sfTexture* sfTexture_copy(sfTexture* texture)
+sfTexture* sfTexture_copy(const sfTexture* texture)
 {
     CSFML_CHECK_RETURN(texture, NULL);
 

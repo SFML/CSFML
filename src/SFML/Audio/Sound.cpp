@@ -38,7 +38,7 @@ sfSound* sfSound_create(void)
 
 
 ////////////////////////////////////////////////////////////
-sfSound* sfSound_copy(sfSound* sound)
+sfSound* sfSound_copy(const sfSound* sound)
 {
     CSFML_CHECK_RETURN(sound, NULL);
 

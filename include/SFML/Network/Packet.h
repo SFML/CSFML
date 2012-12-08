@@ -49,7 +49,7 @@ CSFML_NETWORK_API sfPacket* sfPacket_create(void);
 /// \return A new sfPacket object which is a copy of \a packet
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfPacket* sfPacket_copy(sfPacket* packet);
+CSFML_NETWORK_API sfPacket* sfPacket_copy(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a packet

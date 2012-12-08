@@ -50,7 +50,7 @@ CSFML_GRAPHICS_API sfTransformable* sfTransformable_create(void);
 /// \return Copied object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransformable* sfTransformable_copy(sfTransformable* transformable);
+CSFML_GRAPHICS_API sfTransformable* sfTransformable_copy(const sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing transformable
