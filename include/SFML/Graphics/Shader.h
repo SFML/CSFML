@@ -352,16 +352,22 @@ CSFML_GRAPHICS_API void sfShader_setCurrentTextureParameter(sfShader* shader, co
 ////////////////////////////////////////////////////////////
 /// \brief Bind a shader for rendering (activate it)
 ///
-/// This function is normally for internal use only, unless
-/// you want to use the shader with a custom OpenGL rendering
-/// instead of a SFML drawable.
+/// This function is not part of the graphics API, it mustn't be
+/// used when drawing SFML entities. It must be used only if you
+/// mix sfShader with OpenGL code.
+///
 /// \code
-/// sfWindow_setActive(window, sfTrue);
-/// sfShader_bind(shader);
-/// ... render OpenGL geometry ...
+/// sfShader *s1, *s2;
+/// ...
+/// sfShader_bind(s1);
+/// // draw OpenGL stuff that use s1...
+/// sfShader_bind(s2);
+/// // draw OpenGL stuff that use s2...
+/// sfShader_bind(0);
+/// // draw OpenGL stuff that use no shader...
 /// \endcode
 ///
-/// \param shader Shader to bind
+/// \param shader Shader to bind, can be null to use no shader
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfShader_bind(const sfShader* shader);

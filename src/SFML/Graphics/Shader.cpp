@@ -220,7 +220,7 @@ void sfShader_setCurrentTextureParameter(sfShader* shader, const char* name)
 ////////////////////////////////////////////////////////////
 void sfShader_bind(const sfShader* shader)
 {
-    CSFML_CALL(shader, bind());
+    sf::Shader::bind(shader ? &shader->This : NULL);
 }
 
 

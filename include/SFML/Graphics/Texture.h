@@ -178,14 +178,6 @@ CSFML_GRAPHICS_API void sfTexture_updateFromWindow(sfTexture* texture, const sfW
 CSFML_GRAPHICS_API void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
-/// \brief Activate a texture for rendering
-///
-/// \param texture Texture to bind
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture);
-
-////////////////////////////////////////////////////////////
 /// \brief Enable or disable the smooth filter on a texture
 ///
 /// \param texture The texture object
@@ -236,6 +228,29 @@ CSFML_GRAPHICS_API void sfTexture_setRepeated(sfTexture* texture, sfBool repeate
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfTexture_isRepeated(const sfTexture* texture);
+
+////////////////////////////////////////////////////////////
+/// \brief Bind a texture for rendering
+///
+/// This function is not part of the graphics API, it mustn't be
+/// used when drawing SFML entities. It must be used only if you
+/// mix sfTexture with OpenGL code.
+///
+/// \code
+/// sfTexture *t1, *t2;
+/// ...
+/// sfTexture_bind(t1);
+/// // draw OpenGL stuff that use t1...
+/// sfTexture_bind(t2);
+/// // draw OpenGL stuff that use t2...
+/// sfTexture_bind(NULL);
+/// // draw OpenGL stuff that use no texture...
+/// \endcode
+///
+/// \param texture Pointer to the texture to bind, can be null to use no texture
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the maximum texture size allowed

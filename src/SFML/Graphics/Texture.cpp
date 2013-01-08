@@ -209,13 +209,6 @@ void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* 
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_bind(const sfTexture* texture)
-{
-    CSFML_CALL_PTR(texture, bind());
-}
-
-
-////////////////////////////////////////////////////////////
 void sfTexture_setSmooth(sfTexture* texture, sfBool smooth)
 {
     CSFML_CALL_PTR(texture, setSmooth(smooth == sfTrue));
@@ -246,6 +239,13 @@ sfBool sfTexture_isRepeated(const sfTexture* texture)
     CSFML_CHECK_RETURN(texture->This, sfFalse);
 
     return texture->This->isRepeated();
+}
+
+
+////////////////////////////////////////////////////////////
+void sfTexture_bind(const sfTexture* texture)
+{
+    sf::Texture::bind(texture ? texture->This : NULL);
 }
 
 
