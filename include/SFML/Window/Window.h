@@ -89,6 +89,29 @@ typedef struct
 CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
+/// \brief Construct a new window (with a UTF-32 title)
+///
+/// This function creates the window with the size and pixel
+/// depth defined in \a mode. An optional style can be passed to
+/// customize the look and behaviour of the window (borders,
+/// title bar, resizable, closable, ...). If \a style contains
+/// sfFullscreen, then \a mode must be a valid video mode.
+///
+/// The fourth parameter is a pointer to a structure specifying
+/// advanced OpenGL context settings such as antialiasing,
+/// depth-buffer bits, etc.
+///
+/// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the window)
+/// \param title    Title of the window (UTF-32)
+/// \param style    Window style
+/// \param settings Additional settings for the underlying OpenGL context
+///
+/// \return A new sfWindow object
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings);
+
+////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control
 ///
 /// Use this constructor if you want to create an OpenGL
@@ -246,6 +269,15 @@ CSFML_WINDOW_API void sfWindow_setSize(sfWindow* window, sfVector2u size);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfWindow_setTitle(sfWindow* window, const char* title);
+
+////////////////////////////////////////////////////////////
+/// \brief Change the title of a window (with a UTF-32 string)
+///
+/// \param window Window object
+/// \param title  New title
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const sfUint32* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a window's icon

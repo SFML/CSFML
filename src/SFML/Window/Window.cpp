@@ -55,6 +55,30 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, c
     return window;
 }
 
+////////////////////////////////////////////////////////////
+sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings)
+{
+    // Convert video mode
+    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+
+    // Convert context settings
+    sf::ContextSettings params;
+    if (settings)
+    {
+        params.depthBits         = settings->depthBits;
+        params.stencilBits       = settings->stencilBits;
+        params.antialiasingLevel = settings->antialiasingLevel;
+        params.majorVersion      = settings->majorVersion;
+        params.minorVersion      = settings->minorVersion;
+    }
+
+    // Create the window
+    sfWindow* window = new sfWindow;
+    window->This.create(videoMode, title, style, params);
+
+    return window;
+}
+
 
 ////////////////////////////////////////////////////////////
 sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings)
@@ -201,6 +225,13 @@ void sfWindow_setSize(sfWindow* window, sfVector2u size)
 
 ////////////////////////////////////////////////////////////
 void sfWindow_setTitle(sfWindow* window, const char* title)
+{
+    CSFML_CALL(window, setTitle(title));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfWindow_setUnicodeTitle(sfWindow* window, const sfUint32* title)
 {
     CSFML_CALL(window, setTitle(title));
 }

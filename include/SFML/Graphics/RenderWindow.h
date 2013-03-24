@@ -54,6 +54,17 @@
 CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
+/// \brief Construct a new render window (with a UTF-32 title)
+///
+/// \param mode     Video mode to use
+/// \param title    Title of the window (UTF-32)
+/// \param style    Window style
+/// \param settings Creation settings (pass NULL to use default values)
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings);
+
+////////////////////////////////////////////////////////////
 /// \brief Construct a render window from an existing control
 ///
 /// \param handle   Platform-specific handle of the control
@@ -166,6 +177,15 @@ CSFML_GRAPHICS_API void sfRenderWindow_setSize(sfRenderWindow* renderWindow, sfV
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, const char* title);
+
+////////////////////////////////////////////////////////////
+/// \brief Change the title of a render window (with a UTF-32 string)
+///
+/// \param renderWindow Render window object
+/// \param title        New title
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const sfUint32* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a render window's icon
