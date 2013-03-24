@@ -14,6 +14,11 @@ set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}/lib")
 # define the export symbol
 add_definitions(-DCSFML_EXPORTS)
 
+# disable stupid warnings with Visual C++
+if(COMPILER_MSVC)
+    add_definitions(-D_CRT_SECURE_NO_WARNINGS)
+endif()
+
 # find SFML libraries (C++)
 if(WINDOWS)
     set(SFML_STATIC_LIBRARIES TRUE)
