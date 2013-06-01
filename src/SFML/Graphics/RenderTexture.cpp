@@ -268,3 +268,16 @@ sfBool sfRenderTexture_isSmooth(const sfRenderTexture* renderTexture)
 {
     CSFML_CALL_RETURN(renderTexture, isSmooth(), sfFalse);
 }
+
+////////////////////////////////////////////////////////////
+void sfRenderTexture_setRepeated(sfRenderTexture* renderTexture, sfBool repeated)
+{
+    CSFML_CALL(renderTexture, setRepeated(repeated == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfRenderTexture_isRepeated(const sfRenderTexture* renderTexture)
+{
+    CSFML_CALL_RETURN(renderTexture, isRepeated(), sfFalse);
+}
