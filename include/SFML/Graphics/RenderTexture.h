@@ -296,5 +296,23 @@ CSFML_GRAPHICS_API void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfRenderTexture_isSmooth(const sfRenderTexture* renderTexture);
 
+////////////////////////////////////////////////////////////
+/// \brief Enable or disable texture repeating
+///
+/// \param renderTexture Render texture object
+/// \param repeated      sfTrue to enable repeating, sfFalse to disable it
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderTexture_setRepeated(sfRenderTexture* renderTexture, sfBool repeated);
+
+////////////////////////////////////////////////////////////
+/// \brief Tell whether the texture is repeated or not
+///
+/// \param renderTexture Render texture object
+///
+/// \return sfTrue if repeat mode is enabled, sfFalse if it is disabled
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfRenderTexture_isRepeated(const sfRenderTexture* renderTexture);
 
 #endif // SFML_RENDERTEXTURE_H
