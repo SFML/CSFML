@@ -112,6 +112,10 @@ CSFML_NETWORK_API sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, u
 /// If the socket is in blocking mode, this function will
 /// not return until a connection is actually received.
 ///
+/// The \a connected argument points to a valid sfTcpSocket pointer
+/// in case of success (the function returns sfSocketDone), it points
+/// to a NULL pointer otherwise.
+///
 /// \param listener  TCP listener object
 /// \param connected Socket that will hold the new connection
 ///

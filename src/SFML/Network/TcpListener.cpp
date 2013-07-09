@@ -82,5 +82,13 @@ sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** conne
     CSFML_CHECK_RETURN(connected, sfSocketError);
 
     *connected = new sfTcpSocket;
-    return static_cast<sfSocketStatus>(listener->This.accept((*connected)->This));
+    sfSocketStatus status = static_cast<sfSocketStatus>(listener->This.accept((*connected)->This));
+
+    if (status != sfSocketDone)
+    {
+        delete *connected;
+        *connected = NULL;
+    }
+
+    return status;
 }
