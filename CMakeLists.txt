@@ -1,11 +1,17 @@
 
 cmake_minimum_required(VERSION 2.8)
 
+# define a macro that helps defining an option
+macro(csfml_set_option var default type docstring)
+    if(NOT DEFINED ${var})
+        set(${var} ${default})
+    endif()
+    set(${var} ${${var}} CACHE ${type} ${docstring} FORCE)
+endmacro()
+
 # set a default build type if none was provided
 # this has to be done before the project() instruction!
-if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE Release CACHE STRING "Choose the type of build (Debug or Release)" FORCE)
-endif()
+csfml_set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or Release)")
 
 # project name
 project(CSFML)
@@ -21,11 +27,11 @@ set(VERSION_PATCH 0)
 # add the CSFML header path
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
-# force dynamic build (static build is not supported)
-set(BUILD_SHARED_LIBS TRUE)
+# add an option for choosing the build type (shared or static)
+csfml_set_option(BUILD_SHARED_LIBS TRUE BOOL "TRUE to build CSFML as shared libraries, FALSE to build it as static libraries")
 
 # add an option for building the API documentation
-set(BUILD_DOC FALSE CACHE BOOL "TRUE to generate the API documentation, FALSE to ignore it")
+csfml_set_option(CSFML_BUILD_DOC FALSE BOOL "TRUE to generate the API documentation, FALSE to ignore it")
 
 # disable the rpath stuff
 set(CMAKE_SKIP_BUILD_RPATH TRUE)
@@ -48,7 +54,7 @@ endif()
 
 # add the subdirectories
 add_subdirectory(src/SFML)
-if(BUILD_DOC)
+if(CSFML_BUILD_DOC)
     add_subdirectory(doc)
 endif()
 

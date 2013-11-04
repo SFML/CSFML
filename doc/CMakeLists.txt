@@ -7,7 +7,7 @@ set(DOXYGEN_INPUT_DIR ${CMAKE_SOURCE_DIR})
 set(DOXYGEN_OUTPUT_DIR ${CMAKE_BINARY_DIR}/doc)
 
 # see if we can generate the CHM documentation
-if(WINDOWS)
+if(SFML_OS_WINDOWS)
     # if HHC is found, we can generate the CHM (compressed HTML) output
     find_program(DOXYGEN_HHC_PROGRAM
                  NAMES hhc.exe

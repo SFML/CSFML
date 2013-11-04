@@ -12,16 +12,16 @@ set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}/lib")
 add_definitions(-DCSFML_EXPORTS)
 
 # disable stupid warnings with Visual C++
-if(COMPILER_MSVC)
+if(SFML_COMPILER_MSVC)
     add_definitions(-D_CRT_SECURE_NO_WARNINGS)
 endif()
 
 # find SFML libraries (C++)
-if(WINDOWS)
+if(SFML_OS_WINDOWS)
     set(SFML_STATIC_LIBRARIES TRUE)
     add_definitions(-DSFML_STATIC)
 endif()
-find_package(SFML 2.0 COMPONENTS system window network graphics audio REQUIRED)
+find_package(SFML 2 COMPONENTS system window network graphics audio REQUIRED)
 include_directories(${SFML_INCLUDE_DIR})
 
 # add the modules subdirectories
@@ -30,6 +30,6 @@ add_subdirectory(Window)
 add_subdirectory(Network)
 add_subdirectory(Graphics)
 add_subdirectory(Audio)
-if(WINDOWS)
+if(SFML_OS_WINDOWS)
     add_subdirectory(Main)
 endif()
