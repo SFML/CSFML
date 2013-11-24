@@ -1,3 +1,4 @@
+include(CMakeParseArguments)
 
 # add a new target which is a CSFML library
 # ex: csfml_add_library(csfml-graphics
