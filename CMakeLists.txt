@@ -37,11 +37,11 @@ csfml_set_option(CSFML_BUILD_DOC FALSE BOOL "TRUE to generate the API documentat
 set(CMAKE_SKIP_BUILD_RPATH TRUE)
 
 # define an option for choosing between static and dynamic C runtime (Windows only)
-if(WINDOWS)
+if(SFML_OS_WINDOWS)
     set(STATIC_STD_LIBS FALSE CACHE BOOL "TRUE to statically link to the standard libraries, FALSE to use them as DLLs")
     
     # for VC++, we can apply it globally by modifying the compiler flags
-    if(COMPILER_MSVC AND STATIC_STD_LIBS)
+    if(SFML_COMPILER_MSVC AND STATIC_STD_LIBS)
         foreach(flag
                 CMAKE_CXX_FLAGS CMAKE_CXX_FLAGS_DEBUG CMAKE_CXX_FLAGS_RELEASE
                 CMAKE_CXX_FLAGS_MINSIZEREL CMAKE_CXX_FLAGS_RELWITHDEBINFO)
