@@ -196,7 +196,7 @@ sfVector3f sfSound_getPosition(const sfSound* sound)
 
 
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSound_isRelativeToListener(const sfSound* sound)
+sfBool sfSound_isRelativeToListener(const sfSound* sound)
 {
     CSFML_CALL_RETURN(sound, isRelativeToListener(), sfFalse);
 }
