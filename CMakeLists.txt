@@ -33,6 +33,9 @@ csfml_set_option(BUILD_SHARED_LIBS TRUE BOOL "TRUE to build CSFML as shared libr
 # add an option for building the API documentation
 csfml_set_option(CSFML_BUILD_DOC FALSE BOOL "TRUE to generate the API documentation, FALSE to ignore it")
 
+# add an option for linking to sfml either statically or dynamically
+csfml_set_option(CSFML_LINK_SFML_STATICALLY TRUE BOOL "TRUE to link to a static version of SFML, FALSE to link dynamically")
+
 # disable the rpath stuff
 set(CMAKE_SKIP_BUILD_RPATH TRUE)
 
