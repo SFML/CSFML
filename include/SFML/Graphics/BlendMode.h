@@ -32,16 +32,54 @@
 
 
 ////////////////////////////////////////////////////////////
-/// \brief Available blending modes for drawing
+/// \brief Enumeration of the blending factors
 ///
 ////////////////////////////////////////////////////////////
 typedef enum 
 {
-    sfBlendAlpha,    ///< Pixel = Src * a + Dest * (1 - a)
-    sfBlendAdd,      ///< Pixel = Src + Dest
-    sfBlendMultiply, ///< Pixel = Src * Dest
-    sfBlendNone      ///< No blending
+    sfBlendFactorZero,             ///< (0, 0, 0, 0)
+    sfBlendFactorOne,              ///< (1, 1, 1, 1)
+    sfBlendFactorSrcColor,         ///< (src.r, src.g, src.b, src.a)
+    sfBlendFactorOneMinusSrcColor, ///< (1, 1, 1, 1) - (src.r, src.g, src.b, src.a)
+    sfBlendFactorDstColor,         ///< (dst.r, dst.g, dst.b, dst.a)
+    sfBlendFactorOneMinusDstColor, ///< (1, 1, 1, 1) - (dst.r, dst.g, dst.b, dst.a)
+    sfBlendFactorSrcAlpha,         ///< (src.a, src.a, src.a, src.a)
+    sfBlendFactorOneMinusSrcAlpha, ///< (1, 1, 1, 1) - (src.a, src.a, src.a, src.a)
+    sfBlendFactorDstAlpha,         ///< (dst.a, dst.a, dst.a, dst.a)
+    sfBlendFactorOneMinusDstAlpha  ///< (1, 1, 1, 1) - (dst.a, dst.a, dst.a, dst.a)
+} sfBlendFactor;
+
+
+////////////////////////////////////////////////////////////
+/// \brief Enumeration of the blending equations
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfBlendEquationAdd,     ///< Pixel = Src * SrcFactor + Dst * DstFactor
+    sfBlendEquationSubtract ///< Pixel = Src * SrcFactor - Dst * DstFactor
+} sfBlendEquation;
+
+
+////////////////////////////////////////////////////////////
+/// \brief Blending mode for drawing
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    sfBlendFactor colorSrcFactor;  ///< Source blending factor for the color channels
+    sfBlendFactor colorDstFactor;  ///< Destination blending factor for the color channels
+    sfBlendEquation colorEquation; ///< Blending equation for the color channels
+    sfBlendFactor alphaSrcFactor;  ///< Source blending factor for the alpha channel
+    sfBlendFactor alphaDstFactor;  ///< Destination blending factor for the alpha channel
+    sfBlendEquation alphaEquation; ///< Blending equation for the alpha channel
 } sfBlendMode;
+
+
+CSFML_GRAPHICS_API const sfBlendMode sfBlendAlpha;    ///< Blend source and dest according to dest alpha
+CSFML_GRAPHICS_API const sfBlendMode sfBlendAdd;      ///< Add source to dest
+CSFML_GRAPHICS_API const sfBlendMode sfBlendMultiply; ///< Multiply source and dest
+CSFML_GRAPHICS_API const sfBlendMode sfBlendNone;     ///< Overwrite dest with source
 
 
 #endif // SFML_BLENDMODE_H

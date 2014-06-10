@@ -44,7 +44,12 @@ inline sf::RenderStates convertRenderStates(const sfRenderStates* states)
 
     if (states)
     {
-        sfmlStates.blendMode = static_cast<sf::BlendMode>(states->blendMode);
+        sfmlStates.blendMode.colorSrcFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.colorSrcFactor);
+        sfmlStates.blendMode.colorDstFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.colorDstFactor);
+        sfmlStates.blendMode.colorEquation = static_cast<sf::BlendMode::Equation>(states->blendMode.colorEquation);
+        sfmlStates.blendMode.alphaSrcFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaSrcFactor);
+        sfmlStates.blendMode.alphaDstFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaDstFactor);
+        sfmlStates.blendMode.alphaEquation = static_cast<sf::BlendMode::Equation>(states->blendMode.alphaEquation);
         sfmlStates.transform = convertTransform(states->transform);
         sfmlStates.texture = states->texture ? states->texture->This : NULL;
         sfmlStates.shader = states->shader ? &states->shader->This : NULL;
