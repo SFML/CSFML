@@ -40,7 +40,7 @@
 /// \brief Enumeration of window creation styles
 ///
 ////////////////////////////////////////////////////////////
-enum
+typedef enum
 {
     sfNone         = 0,      ///< No border / title bar (this flag and all others are mutually exclusive)
     sfTitlebar     = 1 << 0, ///< Title bar + fixed border
@@ -48,7 +48,7 @@ enum
     sfClose        = 1 << 2, ///< Titlebar + close button
     sfFullscreen   = 1 << 3, ///< Fullscreen mode (this flag and all others are mutually exclusive)
     sfDefaultStyle = sfTitlebar | sfResize | sfClose ///< Default window style
-};
+} sfWindowStyle;
 
 
 ////////////////////////////////////////////////////////////
