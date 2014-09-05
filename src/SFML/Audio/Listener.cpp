@@ -74,3 +74,19 @@ sfVector3f sfListener_getDirection()
     sfVector3f direction = {sfmlDirection.x, sfmlDirection.y, sfmlDirection.z};
     return direction;
 }
+
+
+////////////////////////////////////////////////////////////
+void sfListener_setUpVector(sfVector3f upVector)
+{
+    sf::Listener::setUpVector(upVector.x, upVector.y, upVector.z);
+}
+
+
+////////////////////////////////////////////////////////////
+sfVector3f sfListener_getUpVector()
+{
+    sf::Vector3f sfmlUpVector = sf::Listener::getUpVector();
+    sfVector3f upVector = {sfmlUpVector.x, sfmlUpVector.y, sfmlUpVector.z};
+    return upVector;
+}
