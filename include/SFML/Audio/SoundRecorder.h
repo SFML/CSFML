@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Audio/Export.h>
 #include <SFML/Audio/Types.h>
+#include <SFML/System/Time.h>
 #include <stddef.h>
 
 
@@ -111,6 +112,25 @@ CSFML_AUDIO_API unsigned int sfSoundRecorder_getSampleRate(const sfSoundRecorder
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfBool sfSoundRecorder_isAvailable(void);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the processing interval
+///
+/// The processing interval controls the period
+/// between calls to the onProcessSamples function. You may
+/// want to use a small interval if you want to process the
+/// recorded data in real time, for example.
+///
+/// Note: this is only a hint, the actual period may vary.
+/// So don't rely on this parameter to implement precise timing.
+///
+/// The default processing interval is 100 ms.
+///
+/// \param soundRecorder Sound recorder object
+/// \param interval Processing interval
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundRecorder_setProcessingInterval(sfSoundRecorder* soundRecorder, sfTime interval);
 
 
 #endif // SFML_SOUNDRECORDER_H

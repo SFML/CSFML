@@ -73,3 +73,10 @@ sfBool sfSoundRecorder_isAvailable(void)
 {
     return sf::SoundRecorder::isAvailable() ? sfTrue : sfFalse;
 }
+
+
+////////////////////////////////////////////////////////////
+void sfSoundRecorder_setProcessingInterval(sfSoundRecorder* soundRecorder, sfTime interval)
+{
+    CSFML_CALL(soundRecorder, setProcessingInterval(interval));
+}
