@@ -71,25 +71,50 @@ CSFML_AUDIO_API void sfListener_setPosition(sfVector3f position);
 CSFML_AUDIO_API sfVector3f sfListener_getPosition();
 
 ////////////////////////////////////////////////////////////
-/// \brief Set the orientation of the listener in the scene
+/// \brief Set the orientation of the forward vector in the scene
 ///
-/// The orientation defines the 3D axes of the listener
-/// (left, up, front) in the scene. The orientation vector
-/// doesn't have to be normalized.
-/// The default listener's orientation is (0, 0, -1).
+/// The direction (also called "at vector") is the vector
+/// pointing forward from the listener's perspective. Together
+/// with the up vector, it defines the 3D orientation of the
+/// listener in the scene. The direction vector doesn't
+/// have to be normalized.
+/// The default listener's direction is (0, 0, -1).
 ///
-/// \param position New direction of the listener
+/// \param direction New listener's direction
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfListener_setDirection(sfVector3f orientation);
+CSFML_AUDIO_API void sfListener_setDirection(sfVector3f direction);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the current orientation of the listener in the scene
+/// \brief Get the current forward vector of the listener in the scene
 ///
-/// \return The listener's direction
+/// \return Listener's forward vector (not normalized)
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfVector3f sfListener_getDirection();
+
+////////////////////////////////////////////////////////////
+/// \brief Set the upward vector of the listener in the scene
+///
+/// The up vector is the vector that points upward from the
+/// listener's perspective. Together with the direction, it
+/// defines the 3D orientation of the listener in the scene.
+/// The up vector doesn't have to be normalized.
+/// The default listener's up vector is (0, 1, 0). It is usually
+/// not necessary to change it, especially in 2D scenarios.
+///
+/// \param upVector New listener's up vector
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfListener_setUpVector(sfVector3f upVector);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the current upward vector of the listener in the scene
+///
+/// \return Listener's upward vector (not normalized)
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfVector3f sfListener_getUpVector();
 
 
 #endif // SFML_LISTENER_H
