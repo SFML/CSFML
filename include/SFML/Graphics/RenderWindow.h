@@ -247,6 +247,35 @@ CSFML_GRAPHICS_API void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* rende
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfRenderWindow_setActive(sfRenderWindow* renderWindow, sfBool active);
 
+///////////////////////////////////////////////////////////
+/// \brief Request the current render window to be made the active
+/// foreground window
+///
+/// At any given time, only one window may have the input focus
+/// to receive input events such as keystrokes or mouse events.
+/// If a window requests focus, it only hints to the operating
+/// system, that it would like to be focused. The operating system
+/// is free to deny the request.
+/// This is not to be confused with sfWindow_setActive().
+///
+/// \see hasFocus
+///
+///////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_requestFocus(sfRenderWindow* renderWindow);
+
+////////////////////////////////////////////////////////////
+/// \brief Check whether the render window has the input focus
+///
+/// At any given time, only one window may have the input focus
+/// to receive input events such as keystrokes or most mouse
+/// events.
+///
+/// \return True if window has focus, false otherwise
+/// \see requestFocus
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfRenderWindow_hasFocus(const sfRenderWindow* renderWindow);
+
 ////////////////////////////////////////////////////////////
 /// \brief Display a render window on screen
 ///

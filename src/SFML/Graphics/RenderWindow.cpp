@@ -296,6 +296,20 @@ sfBool sfRenderWindow_setActive(sfRenderWindow* renderWindow, sfBool active)
 
 
 ////////////////////////////////////////////////////////////
+void sfRenderWindow_requestFocus(sfRenderWindow* renderWindow)
+{
+    CSFML_CALL(renderWindow, requestFocus());
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfRenderWindow_hasFocus(const sfRenderWindow* renderWindow)
+{
+    CSFML_CALL_RETURN(renderWindow, hasFocus(), sfFalse);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderWindow_display(sfRenderWindow* renderWindow)
 {
     CSFML_CALL(renderWindow, display());

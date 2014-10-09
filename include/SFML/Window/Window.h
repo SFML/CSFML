@@ -349,6 +349,7 @@ CSFML_WINDOW_API void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enab
 /// on the previous thread first if it was active.
 /// Only one window can be active on a thread at a time, thus
 /// the window previously active (if any) automatically gets deactivated.
+/// This is not to be confused with sfWindow_requestFocus().
 ///
 /// \param window Window object
 /// \param active sfTrue to activate, sfFalse to deactivate
@@ -357,6 +358,35 @@ CSFML_WINDOW_API void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enab
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfBool sfWindow_setActive(sfWindow* window, sfBool active);
+
+///////////////////////////////////////////////////////////
+/// \brief Request the current window to be made the active
+/// foreground window
+///
+/// At any given time, only one window may have the input focus
+/// to receive input events such as keystrokes or mouse events.
+/// If a window requests focus, it only hints to the operating
+/// system, that it would like to be focused. The operating system
+/// is free to deny the request.
+/// This is not to be confused with sfWindow_setActive().
+///
+/// \see hasFocus
+///
+///////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_requestFocus(sfWindow* window);
+
+////////////////////////////////////////////////////////////
+/// \brief Check whether the window has the input focus
+///
+/// At any given time, only one window may have the input focus
+/// to receive input events such as keystrokes or most mouse
+/// events.
+///
+/// \return True if window has focus, false otherwise
+/// \see requestFocus
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API sfBool sfWindow_hasFocus(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
 /// \brief Display on screen what has been rendered to the
