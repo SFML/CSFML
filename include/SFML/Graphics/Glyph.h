@@ -37,9 +37,9 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    int       advance;     ///< Offset to move horizontically to the next character
-    sfIntRect bounds;      ///< Bounding rectangle of the glyph, in coordinates relative to the baseline
-    sfIntRect textureRect; ///< Texture coordinates of the glyph inside the font's image
+    float       advance;     ///< Offset to move horizontically to the next character
+    sfFloatRect bounds;      ///< Bounding rectangle of the glyph, in coordinates relative to the baseline
+    sfIntRect   textureRect; ///< Texture coordinates of the glyph inside the font's image
 } sfGlyph;
 
 

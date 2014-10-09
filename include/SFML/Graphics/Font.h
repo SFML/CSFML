@@ -108,7 +108,7 @@ CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, uns
 /// \return Kerning offset, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API int sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
+CSFML_GRAPHICS_API float sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the line spacing value
@@ -119,7 +119,7 @@ CSFML_GRAPHICS_API int sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 
 /// \return Line spacing, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API int sfFont_getLineSpacing(sfFont* font, unsigned int characterSize);
+CSFML_GRAPHICS_API float sfFont_getLineSpacing(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the texture containing the glyphs of a given size in a font
