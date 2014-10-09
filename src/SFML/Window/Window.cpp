@@ -280,6 +280,20 @@ sfBool sfWindow_setActive(sfWindow* window, sfBool active)
 
 
 ////////////////////////////////////////////////////////////
+void sfWindow_requestFocus(sfWindow* window)
+{
+    CSFML_CALL(window, requestFocus());
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfWindow_hasFocus(const sfWindow* window)
+{
+    CSFML_CALL_RETURN(window, hasFocus(), sfFalse);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfWindow_display(sfWindow* window)
 {
     CSFML_CALL(window, display());
