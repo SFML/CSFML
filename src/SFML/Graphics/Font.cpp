@@ -129,7 +129,7 @@ sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, unsigned int character
 ////////////////////////////////////////////////////////////
 /// Get the kerning value corresponding to a given pair of characters in a font
 ////////////////////////////////////////////////////////////
-int sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize)
+float sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize)
 {
     CSFML_CALL_RETURN(font, getKerning(first, second, characterSize), 0);
 }
@@ -138,7 +138,7 @@ int sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned in
 ////////////////////////////////////////////////////////////
 /// Get the line spacing value
 ////////////////////////////////////////////////////////////
-int sfFont_getLineSpacing(sfFont* font, unsigned int characterSize)
+float sfFont_getLineSpacing(sfFont* font, unsigned int characterSize)
 {
     CSFML_CALL_RETURN(font, getLineSpacing(characterSize), 0);
 }
