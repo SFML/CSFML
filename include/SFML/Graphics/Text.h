@@ -42,10 +42,11 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfTextRegular    = 0,      ///< Regular characters, no style
-    sfTextBold       = 1 << 0, ///< Characters are bold
-    sfTextItalic     = 1 << 1, ///< Characters are in italic
-    sfTextUnderlined = 1 << 2  ///< Characters are underlined
+    sfTextRegular       = 0,      ///< Regular characters, no style
+    sfTextBold          = 1 << 0, ///< Bold characters
+    sfTextItalic        = 1 << 1, ///< Italic characters
+    sfTextUnderlined    = 1 << 2, ///< Underlined characters
+    sfTextStrikeThrough = 1 << 3  ///< Strike through characters
 } sfTextStyle;
 
 
