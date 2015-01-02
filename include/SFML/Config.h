@@ -34,6 +34,16 @@
 
 
 ////////////////////////////////////////////////////////////
+// Check if we need to mark functions as extern "C"
+////////////////////////////////////////////////////////////
+#ifdef __cplusplus
+    #define CSFML_EXTERN_C extern "C"
+#else
+    #define CSFML_EXTERN_C extern
+#endif
+
+
+////////////////////////////////////////////////////////////
 // Identify the operating system
 ////////////////////////////////////////////////////////////
 #if defined(_WIN32) || defined(__WIN32__)
@@ -71,7 +81,7 @@
 
     // Windows compilers need specific (and different) keywords for export and import
     #define CSFML_API_EXPORT extern "C" __declspec(dllexport)
-    #define CSFML_API_IMPORT extern __declspec(dllimport)
+    #define CSFML_API_IMPORT CSFML_EXTERN_C __declspec(dllimport)
 
     // For Visual C++ compilers, we also need to turn off this annoying C4251 warning
     #ifdef _MSC_VER
@@ -87,13 +97,13 @@
         // GCC 4 has special keywords for showing/hidding symbols,
         // the same keyword is used for both importing and exporting
         #define CSFML_API_EXPORT extern "C" __attribute__ ((__visibility__ ("default")))
-        #define CSFML_API_IMPORT extern __attribute__ ((__visibility__ ("default")))
+        #define CSFML_API_IMPORT CSFML_EXTERN_C __attribute__ ((__visibility__ ("default")))
 
     #else
 
         // GCC < 4 has no mechanism to explicitely hide symbols, everything's exported
         #define CSFML_API_EXPORT extern "C"
-        #define CSFML_API_IMPORT extern
+        #define CSFML_API_IMPORT CSFML_EXTERN_C
 
     #endif
 
