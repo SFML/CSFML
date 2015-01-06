@@ -8,7 +8,7 @@ It is originally written in C++, and this project is its official binding for th
 Authors
 -------
 
-Laurent Gomila - main developer (laurent.gom@gmail.com)
+Laurent Gomila - main developer (laurent@sfml-dev.org)
 
 Download
 --------
@@ -20,12 +20,17 @@ Learn
 -----
 
 There is no tutorial for CSFML, but since it's a binding you can use the C++ resources:
-* The official tutorials (http://www.sfml-dev.org/resources.php#tutorials)
-* The online API documentation (http://www.sfml-dev.org/resources.php#documentation)
+* The official tutorials (http://www.sfml-dev.org/tutorials/)
+* The online API documentation (http://www.sfml-dev.org/documentation/)
 * The community wiki (https://github.com/LaurentGomila/SFML/wiki/)
 * The community forum (http://en.sfml-dev.org/forums/) (or http://fr.sfml-dev.org/forums/ for french people)
 
 Of course, you can also find the CSFM API documentation in the SDK.
+
+Building
+--------
+
+The FindSFML.cmake script required by CMake to build CSFML, is located in SFML's cmake/Modules/ directory.
 
 Contribute
 ----------
@@ -33,4 +38,4 @@ Contribute
 SFML and CSFML are open-source projects, and they need your help to go on growing and improving.
 Don't hesitate to post suggestions or bug reports on the forum (http://en.sfml-dev.org/forums/),
 submit patches by e-mail, or post new bugs/features requests on the task tracker (https://github.com/LaurentGomila/CSFML/issues/).
-You can even fork the project on github, maintain your own version and send us pull requests periodically to merge your work.
+You can even fork the project on GitHub, maintain your own version and send us pull requests periodically to merge your work.
