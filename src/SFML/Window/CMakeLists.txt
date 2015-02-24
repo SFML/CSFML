@@ -11,6 +11,7 @@ set(SRC
     ${INCROOT}/Event.h
     ${SRCROOT}/Joystick.cpp
     ${INCROOT}/Joystick.h
+    ${INCROOT}/JoystickIdentification.h
     ${SRCROOT}/Keyboard.cpp
     ${INCROOT}/Keyboard.h
     ${SRCROOT}/Mouse.cpp

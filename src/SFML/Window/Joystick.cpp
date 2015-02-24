@@ -64,6 +64,22 @@ float sfJoystick_getAxisPosition(unsigned int joystick, sfJoystickAxis axis)
     return sf::Joystick::getAxisPosition(joystick, static_cast<sf::Joystick::Axis>(axis));
 }
 
+////////////////////////////////////////////////////////////
+sfJoystickIdentification sfJoystick_getIdentification(unsigned int joystick)
+{
+    static std::string name;
+
+    sf::Joystick::Identification identification = sf::Joystick::getIdentification(joystick);
+    name = identification.name;
+
+    sfJoystickIdentification result;
+
+    result.name = name.c_str();
+    result.productId = identification.productId;
+    result.vendorId = identification.vendorId;
+
+    return result;
+}
 
 ////////////////////////////////////////////////////////////
 void sfJoystick_update(void)
