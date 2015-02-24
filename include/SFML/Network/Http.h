@@ -39,9 +39,11 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfHttpGet,  ///< Request in get mode, standard method to retrieve a page
-    sfHttpPost, ///< Request in post mode, usually to send data to a page
-    sfHttpHead  ///< Request a page's header only
+    sfHttpGet,   ///< Request in get mode, standard method to retrieve a page
+    sfHttpPost,  ///< Request in post mode, usually to send data to a page
+    sfHttpHead,  ///< Request a page's header only
+    sfHttpPut,   ///< Request in put mode, useful for a REST API
+    sfHttpDelete ///< Request in delete mode, useful for a REST API 
 } sfHttpMethod;
 
 
@@ -63,12 +65,12 @@ typedef enum
     sfHttpMultipleChoices  = 300, ///< The requested page can be accessed from several locations
     sfHttpMovedPermanently = 301, ///< The requested page has permanently moved to a new location
     sfHttpMovedTemporarily = 302, ///< The requested page has temporarily moved to a new location
-    sfHttpNotModified      = 304, ///< For conditionnal requests, means the requested page hasn't changed and doesn't need to be refreshed
+    sfHttpNotModified      = 304, ///< For conditional requests, means the requested page hasn't changed and doesn't need to be refreshed
 
     // 4xx: client error
     sfHttpBadRequest          = 400, ///< The server couldn't understand the request (syntax error)
-    sfHttpUnauthorized        = 401, ///< The requested page needs an authentification to be accessed
-    sfHttpForbidden           = 403, ///< The requested page cannot be accessed at all, even with authentification
+    sfHttpUnauthorized        = 401, ///< The requested page needs an authentication to be accessed
+    sfHttpForbidden           = 403, ///< The requested page cannot be accessed at all, even with authentication
     sfHttpNotFound            = 404, ///< The requested page doesn't exist
     sfHttpRangeNotSatisfiable = 407, ///< The server can't satisfy the partial GET request (with a "Range" header field)
 
