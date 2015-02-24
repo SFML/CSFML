@@ -29,6 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.h>
+#include <SFML/Graphics/FontInfo.h>
 #include <SFML/Graphics/Glyph.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/InputStream.h>
@@ -159,5 +160,19 @@ CSFML_GRAPHICS_API float sfFont_getUnderlineThickness(sfFont* font, unsigned int
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize);
 
+////////////////////////////////////////////////////////////
+/// \brief Get the font information
+///
+/// The returned structure will remain valid only if the font
+/// is still valid. If the font is invalid an invalid structure
+/// is returned.
+///
+/// \param font Source font
+///
+/// \return A structure that holds the font information
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfFontInfo sfFont_getInfo(const sfFont* font);
 
-#endif // SFML_IMAGE_H
+
+#endif // SFML_FONT_H

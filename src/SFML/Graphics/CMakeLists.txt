@@ -20,6 +20,7 @@ set(SRC
     ${SRCROOT}/Font.cpp
     ${SRCROOT}/FontStruct.h
     ${INCROOT}/Font.h
+    ${INCROOT}/FontInfo.h
     ${INCROOT}/Glyph.h
     ${SRCROOT}/Image.cpp
     ${SRCROOT}/ImageStruct.h
