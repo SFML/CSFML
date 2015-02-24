@@ -88,7 +88,7 @@ private :
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfPacket
+// Internal structure of sfSoundRecorder
 ////////////////////////////////////////////////////////////
 struct sfSoundRecorder
 {
@@ -101,6 +101,7 @@ struct sfSoundRecorder
     }
 
     sfSoundRecorderImpl This;
+    std::string DeviceName;
 };
 
 

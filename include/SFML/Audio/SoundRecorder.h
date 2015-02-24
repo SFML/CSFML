@@ -76,8 +76,10 @@ CSFML_AUDIO_API void sfSoundRecorder_destroy(sfSoundRecorder* soundRecorder);
 /// \param soundRecorder Sound recorder object
 /// \param sampleRate    Desired capture rate, in number of samples per second
 ///
+/// \return True, if start of capture was successful
+///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate);
+CSFML_AUDIO_API sfBool sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
 /// \brief Stop the capture of a sound recorder
@@ -131,6 +133,57 @@ CSFML_AUDIO_API sfBool sfSoundRecorder_isAvailable(void);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API void sfSoundRecorder_setProcessingInterval(sfSoundRecorder* soundRecorder, sfTime interval);
+
+////////////////////////////////////////////////////////////
+/// \brief Get a list of the names of all availabe audio capture devices
+///
+/// This function returns an array of strings (null terminated),
+/// containing the names of all availabe audio capture devices.
+/// If no devices are available then NULL is returned.
+///
+/// \param count Pointer to a variable that will be filled with the number of modes in the array
+///
+/// \return An array of strings containing the names
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API const char** sfSoundRecorder_getAvailableDevices(size_t* count);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the name of the default audio capture device
+///
+/// This function returns the name of the default audio
+/// capture device. If none is available, NULL is returned.
+///
+/// \return The name of the default audio capture device (null terminated)
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API const char* sfSoundRecorder_getDefaultDevice();
+
+////////////////////////////////////////////////////////////
+/// \brief Set the audio capture device
+///
+/// This function sets the audio capture device to the device
+/// with the given name. It can be called on the fly (i.e:
+/// while recording). If you do so while recording and
+/// opening the device fails, it stops the recording.
+///
+/// \param soundRecorder Sound recorder object
+/// \param The name of the audio capture device
+///
+/// \return sfTrue, if it was able to set the requested device
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfBool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* name);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the name of the current audio capture device
+///
+/// \param soundRecorder Sound recorder object
+///
+/// \return The name of the current audio capture device
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder);
 
 
 #endif // SFML_SOUNDRECORDER_H
