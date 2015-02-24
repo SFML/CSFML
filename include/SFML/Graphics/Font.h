@@ -122,6 +122,33 @@ CSFML_GRAPHICS_API float sfFont_getKerning(sfFont* font, sfUint32 first, sfUint3
 CSFML_GRAPHICS_API float sfFont_getLineSpacing(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the position of the underline
+///
+/// Underline position is the vertical offset to apply between the
+/// baseline and the underline.
+///
+/// \param font          Source font
+/// \param characterSize Reference character size
+///
+/// \return Underline position, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float sfFont_getUnderlinePosition(sfFont* font, unsigned int characterSize);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the thickness of the underline
+///
+/// Underline thickness is the vertical size of the underline.
+///
+/// \param font          Source font
+/// \param characterSize Reference character size
+///
+/// \return Underline thickness, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float sfFont_getUnderlineThickness(sfFont* font, unsigned int characterSize);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the texture containing the glyphs of a given size in a font
 ///
 /// \param font          Source font

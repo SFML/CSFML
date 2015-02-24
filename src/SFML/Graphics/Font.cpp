@@ -129,6 +129,20 @@ float sfFont_getLineSpacing(sfFont* font, unsigned int characterSize)
 
 
 ////////////////////////////////////////////////////////////
+float sfFont_getUnderlinePosition(sfFont* font, unsigned int characterSize)
+{
+    CSFML_CALL_RETURN(font, getUnderlinePosition(characterSize), 0)
+}
+
+
+////////////////////////////////////////////////////////////
+float sfFont_getUnderlineThickness(sfFont* font, unsigned int characterSize)
+{
+    CSFML_CALL_RETURN(font, getUnderlineThickness(characterSize), 0)
+}
+
+
+////////////////////////////////////////////////////////////
 const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 {
     CSFML_CHECK_RETURN(font, NULL);
