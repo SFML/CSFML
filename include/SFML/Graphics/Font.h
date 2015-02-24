@@ -159,5 +159,14 @@ CSFML_GRAPHICS_API float sfFont_getUnderlineThickness(sfFont* font, unsigned int
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize);
 
+////////////////////////////////////////////////////////////
+/// \brief Get the family member of this font's info struct (returns an ANSI string)
+///
+/// \param text Source font
+///
+/// \return String as a locale-dependant ANSI string
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API const char* sfFont_getInfoFamily(sfFont* font);
 
 #endif // SFML_IMAGE_H
