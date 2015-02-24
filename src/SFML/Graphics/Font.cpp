@@ -32,8 +32,6 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new font from a file
-////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromFile(const char* filename)
 {
     sfFont* font = new sfFont;
@@ -48,8 +46,6 @@ sfFont* sfFont_createFromFile(const char* filename)
 
 
 ////////////////////////////////////////////////////////////
-/// Create a new font from a file in memory
-////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
 {
     sfFont* font = new sfFont;
@@ -63,8 +59,6 @@ sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
 }
 
 
-////////////////////////////////////////////////////////////
-/// Create a new font from a custom stream
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromStream(sfInputStream* stream)
 {
@@ -83,8 +77,6 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-/// Copy an existing font
-////////////////////////////////////////////////////////////
 sfFont* sfFont_copy(const sfFont* font)
 {
     CSFML_CHECK_RETURN(font, NULL);
@@ -94,16 +86,12 @@ sfFont* sfFont_copy(const sfFont* font)
 
 
 ////////////////////////////////////////////////////////////
-/// Destroy an existing font
-////////////////////////////////////////////////////////////
 void sfFont_destroy(sfFont* font)
 {
     delete font;
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get a glyph in a font
 ////////////////////////////////////////////////////////////
 sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold)
 {
@@ -127,16 +115,12 @@ sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, unsigned int character
 
 
 ////////////////////////////////////////////////////////////
-/// Get the kerning value corresponding to a given pair of characters in a font
-////////////////////////////////////////////////////////////
 float sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize)
 {
     CSFML_CALL_RETURN(font, getKerning(first, second, characterSize), 0);
 }
 
 
-////////////////////////////////////////////////////////////
-/// Get the line spacing value
 ////////////////////////////////////////////////////////////
 float sfFont_getLineSpacing(sfFont* font, unsigned int characterSize)
 {
@@ -145,7 +129,19 @@ float sfFont_getLineSpacing(sfFont* font, unsigned int characterSize)
 
 
 ////////////////////////////////////////////////////////////
-/// Get the texture containing the glyphs of a given size in a font
+float sfFont_getUnderlinePosition(sfFont* font, unsigned int characterSize)
+{
+    CSFML_CALL_RETURN(font, getUnderlinePosition(characterSize), 0)
+}
+
+
+////////////////////////////////////////////////////////////
+float sfFont_getUnderlineThickness(sfFont* font, unsigned int characterSize)
+{
+    CSFML_CALL_RETURN(font, getUnderlineThickness(characterSize), 0)
+}
+
+
 ////////////////////////////////////////////////////////////
 const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 {
