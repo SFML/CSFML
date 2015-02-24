@@ -29,6 +29,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Export.h>
+#include <SFML/Window/JoystickIdentification.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -120,6 +121,19 @@ CSFML_WINDOW_API sfBool sfJoystick_isButtonPressed(unsigned int joystick, unsign
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API float sfJoystick_getAxisPosition(unsigned int joystick, sfJoystickAxis axis);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the joystick information
+///
+/// The result of this function will only remain valid until
+/// the next time the function is called.
+///
+/// \param joystick Index of the joystick
+///
+/// \return Structure containing joystick information.
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API sfJoystickIdentification sfJoystick_getIdentification(unsigned int joystick);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update the states of all joysticks
