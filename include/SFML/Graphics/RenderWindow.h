@@ -258,8 +258,6 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_setActive(sfRenderWindow* renderWindow,
 /// is free to deny the request.
 /// This is not to be confused with sfWindow_setActive().
 ///
-/// \see hasFocus
-///
 ///////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderWindow_requestFocus(sfRenderWindow* renderWindow);
 
@@ -271,7 +269,6 @@ CSFML_GRAPHICS_API void sfRenderWindow_requestFocus(sfRenderWindow* renderWindow
 /// events.
 ///
 /// \return True if window has focus, false otherwise
-/// \see requestFocus
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfRenderWindow_hasFocus(const sfRenderWindow* renderWindow);

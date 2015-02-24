@@ -370,8 +370,6 @@ CSFML_WINDOW_API sfBool sfWindow_setActive(sfWindow* window, sfBool active);
 /// is free to deny the request.
 /// This is not to be confused with sfWindow_setActive().
 ///
-/// \see hasFocus
-///
 ///////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfWindow_requestFocus(sfWindow* window);
 
@@ -383,7 +381,6 @@ CSFML_WINDOW_API void sfWindow_requestFocus(sfWindow* window);
 /// events.
 ///
 /// \return True if window has focus, false otherwise
-/// \see requestFocus
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfBool sfWindow_hasFocus(const sfWindow* window);

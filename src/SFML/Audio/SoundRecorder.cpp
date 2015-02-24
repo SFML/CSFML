@@ -48,9 +48,9 @@ void sfSoundRecorder_destroy(sfSoundRecorder* soundRecorder)
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate)
+sfBool sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate)
 {
-    CSFML_CALL(soundRecorder, start(sampleRate));
+    CSFML_CALL_RETURN(soundRecorder, start(sampleRate), sfFalse);
 }
 
 
@@ -71,7 +71,7 @@ unsigned int sfSoundRecorder_getSampleRate(const sfSoundRecorder* soundRecorder)
 ////////////////////////////////////////////////////////////
 sfBool sfSoundRecorder_isAvailable(void)
 {
-    return sf::SoundRecorder::isAvailable() ? sfTrue : sfFalse;
+    return sf::SoundRecorder::isAvailable();
 }
 
 
@@ -79,4 +79,49 @@ sfBool sfSoundRecorder_isAvailable(void)
 void sfSoundRecorder_setProcessingInterval(sfSoundRecorder* soundRecorder, sfTime interval)
 {
     CSFML_CALL(soundRecorder, setProcessingInterval(interval));
+}
+
+
+////////////////////////////////////////////////////////////
+const char** sfSoundRecorder_getAvailableDevices(size_t* count)
+{
+    static std::vector<std::string> stringDevices = sf::SoundRecorder::getAvailableDevices();
+    static std::vector<const char*> cstringDevices;
+
+    if (cstringDevices.empty() && !stringDevices.empty())
+    {
+        for (std::vector<std::string>::const_iterator it = stringDevices.begin(); it != stringDevices.end(); ++it)
+        {
+            cstringDevices.push_back(it->c_str());
+        }
+    }
+
+    if (count)
+        *count = cstringDevices.size();
+
+    return !cstringDevices.empty() ? &cstringDevices[0] : NULL;
+}
+
+////////////////////////////////////////////////////////////
+const char* sfSoundRecorder_getDefaultDevice()
+{
+    static std::string defaultDevice = sf::SoundRecorder::getDefaultDevice();
+
+    return !defaultDevice.empty() ? defaultDevice.c_str() : NULL;
+}
+
+////////////////////////////////////////////////////////////
+sfBool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* name)
+{
+    CSFML_CALL_RETURN(soundRecorder, setDevice(name), sfFalse);
+}
+
+////////////////////////////////////////////////////////////
+const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
+{
+    CSFML_CHECK(soundRecorder);
+
+    soundRecorder->DeviceName = soundRecorder->This.getDevice();
+
+    return soundRecorder->DeviceName.c_str();
 }
