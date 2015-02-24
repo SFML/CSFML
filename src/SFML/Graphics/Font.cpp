@@ -155,3 +155,14 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 
     return &font->Textures[characterSize];
 }
+
+////////////////////////////////////////////////////////////
+sfFontInfo sfFont_getInfo(const sfFont* font)
+{
+    sfFontInfo info = {NULL};
+    CSFML_CHECK_RETURN(font, info);
+
+    info.family = font->This.getInfo().family.c_str();
+
+    return info;
+}
