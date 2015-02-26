@@ -119,7 +119,7 @@ sfBool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* nam
 ////////////////////////////////////////////////////////////
 const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
 {
-    CSFML_CHECK(soundRecorder);
+    CSFML_CHECK_RETURN(soundRecorder, NULL);
 
     soundRecorder->DeviceName = soundRecorder->This.getDevice();
 
