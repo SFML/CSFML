@@ -18,6 +18,8 @@ set(SRC
     ${INCROOT}/Mouse.h
     ${SRCROOT}/Sensor.cpp
     ${INCROOT}/Sensor.h
+    ${SRCROOT}/Touch.cpp
+    ${INCROOT}/Touch.h
     ${INCROOT}/Types.h
     ${SRCROOT}/VideoMode.cpp
     ${INCROOT}/VideoMode.h
