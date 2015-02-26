@@ -96,6 +96,21 @@ inline void convertEvent(const sf::Event& SFMLEvent, sfEvent* event)
             event->joystickConnect.joystickId = SFMLEvent.joystickConnect.joystickId;
             break;
 
+        case sfEvtTouchBegan :
+        case sfEvtTouchMoved :
+        case sfEvtTouchEnded :
+            event->touch.finger = SFMLEvent.touch.finger;
+            event->touch.x = SFMLEvent.touch.x;
+            event->touch.y = SFMLEvent.touch.y;
+            break;
+
+        case sfEvtSensorChanged :
+            event->sensor.sensorType = static_cast<sfSensorType>(SFMLEvent.sensor.type);
+            event->sensor.x = SFMLEvent.sensor.x;
+            event->sensor.y = SFMLEvent.sensor.y;
+            event->sensor.z = SFMLEvent.sensor.z;
+            break;
+
         default :
             break;
     }
