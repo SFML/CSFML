@@ -16,6 +16,8 @@ set(SRC
     ${INCROOT}/Keyboard.h
     ${SRCROOT}/Mouse.cpp
     ${INCROOT}/Mouse.h
+    ${SRCROOT}/Sensor.cpp
+    ${INCROOT}/Sensor.h
     ${INCROOT}/Types.h
     ${SRCROOT}/VideoMode.cpp
     ${INCROOT}/VideoMode.h
