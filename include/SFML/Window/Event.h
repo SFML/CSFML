@@ -32,6 +32,7 @@
 #include <SFML/Window/Joystick.h>
 #include <SFML/Window/Keyboard.h>
 #include <SFML/Window/Mouse.h>
+#include <SFML/Window/Sensor.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -40,24 +41,30 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfEvtClosed,
-    sfEvtResized,
-    sfEvtLostFocus,
-    sfEvtGainedFocus,
-    sfEvtTextEntered,
-    sfEvtKeyPressed,
-    sfEvtKeyReleased,
-    sfEvtMouseWheelMoved,
-    sfEvtMouseButtonPressed,
-    sfEvtMouseButtonReleased,
-    sfEvtMouseMoved,
-    sfEvtMouseEntered,
-    sfEvtMouseLeft,
-    sfEvtJoystickButtonPressed,
-    sfEvtJoystickButtonReleased,
-    sfEvtJoystickMoved,
-    sfEvtJoystickConnected,
-    sfEvtJoystickDisconnected
+    sfEvtClosed,                 ///< The window requested to be closed (no data)
+    sfEvtResized,                ///< The window was resized (data in event.size)
+    sfEvtLostFocus,              ///< The window lost the focus (no data)
+    sfEvtGainedFocus,            ///< The window gained the focus (no data)
+    sfEvtTextEntered,            ///< A character was entered (data in event.text)
+    sfEvtKeyPressed,             ///< A key was pressed (data in event.key)
+    sfEvtKeyReleased,            ///< A key was released (data in event.key)
+    sfEvtMouseWheelMoved,        ///< The mouse wheel was scrolled (data in event.mouseWheel)
+    sfEvtMouseButtonPressed,     ///< A mouse button was pressed (data in event.mouseButton)
+    sfEvtMouseButtonReleased,    ///< A mouse button was released (data in event.mouseButton)
+    sfEvtMouseMoved,             ///< The mouse cursor moved (data in event.mouseMove)
+    sfEvtMouseEntered,           ///< The mouse cursor entered the area of the window (no data)
+    sfEvtMouseLeft,              ///< The mouse cursor left the area of the window (no data)
+    sfEvtJoystickButtonPressed,  ///< A joystick button was pressed (data in event.joystickButton)
+    sfEvtJoystickButtonReleased, ///< A joystick button was released (data in event.joystickButton)
+    sfEvtJoystickMoved,          ///< The joystick moved along an axis (data in event.joystickMove)
+    sfEvtJoystickConnected,      ///< A joystick was connected (data in event.joystickConnect)
+    sfEvtJoystickDisconnected,   ///< A joystick was disconnected (data in event.joystickConnect)
+    sfEvtTouchBegan,             ///< A touch event began (data in event.touch)
+    sfEvtTouchMoved,             ///< A touch moved (data in event.touch)
+    sfEvtTouchEnded,             ///< A touch event ended (data in event.touch)
+    sfEvtSensorChanged,          ///< A sensor value changed (data in event.sensor)
+
+    sfEvtCount,                  ///< Keep last -- the total number of event types
 } sfEventType;
 
 
@@ -164,6 +171,30 @@ typedef struct
     unsigned int height;
 } sfSizeEvent;
 
+////////////////////////////////////////////////////////////
+/// \brief Touch events parameters
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    sfEventType  type;
+    unsigned int finger;
+    int          x;
+    int          y;
+} sfTouchEvent;
+
+////////////////////////////////////////////////////////////
+/// \brief Sensor event parameters
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    sfEventType  type;
+    sfSensorType sensorType;
+    float        x;
+    float        y;
+    float        z;
+} sfSensorEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief sfEvent defines a system event and its parameters
@@ -171,19 +202,18 @@ typedef struct
 ////////////////////////////////////////////////////////////
 typedef union
 {
-    ////////////////////////////////////////////////////////////
-    // Member data
-    ////////////////////////////////////////////////////////////
-    sfEventType            type; ///< Type of the event
-    sfSizeEvent            size;
-    sfKeyEvent             key;
-    sfTextEvent            text;
-    sfMouseMoveEvent       mouseMove;
-    sfMouseButtonEvent     mouseButton;
-    sfMouseWheelEvent      mouseWheel;
-    sfJoystickMoveEvent    joystickMove;
-    sfJoystickButtonEvent  joystickButton;
-    sfJoystickConnectEvent joystickConnect;
+    sfEventType            type;            ///< Type of the event
+    sfSizeEvent            size;            ///< Size event parameters
+    sfKeyEvent             key;             ///< Key event parameters
+    sfTextEvent            text;            ///< Text event parameters
+    sfMouseMoveEvent       mouseMove;       ///< Mouse move event parameters
+    sfMouseButtonEvent     mouseButton;     ///< Mouse button event parameters
+    sfMouseWheelEvent      mouseWheel;      ///< Mouse wheel event parameters
+    sfJoystickMoveEvent    joystickMove;    ///< Joystick move event parameters
+    sfJoystickButtonEvent  joystickButton;  ///< Joystick button event parameters
+    sfJoystickConnectEvent joystickConnect; ///< Joystick (dis)connect event parameters
+    sfTouchEvent           touch;           ///< Touch events parameters
+    sfSensorEvent          sensor;          ///< Sensor event parameters
 } sfEvent;
 
 
