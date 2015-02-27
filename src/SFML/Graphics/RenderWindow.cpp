@@ -36,6 +36,7 @@
 #include <SFML/Graphics/RectangleShapeStruct.h>
 #include <SFML/Graphics/VertexArrayStruct.h>
 #include <SFML/Graphics/ConvertRenderStates.hpp>
+#include <SFML/Window/Touch.hpp>
 #include <SFML/Internal.h>
 #include <SFML/ConvertEvent.h>
 
@@ -532,4 +533,18 @@ void sfMouse_setPositionRenderWindow(sfVector2i position, const sfRenderWindow* 
         sf::Mouse::setPosition(sf::Vector2i(position.x, position.y), relativeTo->This);
     else
         sf::Mouse::setPosition(sf::Vector2i(position.x, position.y));
+}
+
+////////////////////////////////////////////////////////////
+sfVector2i sfTouch_getPositionRenderWindow(unsigned int finger, const sfRenderWindow* relativeTo)
+{
+    sf::Vector2i sfmlPosition;
+
+    if (relativeTo)
+        sfmlPosition = sf::Touch::getPosition(finger, relativeTo->This);
+    else
+        sfmlPosition = sf::Touch::getPosition(finger);
+
+    sfVector2i position = { sfmlPosition.x, sfmlPosition.y };
+    return position;
 }
