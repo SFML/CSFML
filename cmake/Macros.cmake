@@ -32,8 +32,8 @@ macro(csfml_add_library target)
     endif()
 
     # set the version and soversion of the target (for compatible systems -- mostly Linuxes)
-    set_target_properties(${target} PROPERTIES SOVERSION ${VERSION_MAJOR})
-    set_target_properties(${target} PROPERTIES VERSION ${VERSION_MAJOR}.${VERSION_MINOR})
+    set_target_properties(${target} PROPERTIES SOVERSION ${VERSION_MAJOR}.${VERSION_MINOR})
+    set_target_properties(${target} PROPERTIES VERSION ${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH})
 
     # set the target's folder (for IDEs that support it, e.g. Visual Studio)
     set_target_properties(${target} PROPERTIES FOLDER "CSFML")
