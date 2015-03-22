@@ -125,7 +125,7 @@ const sfInt16* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer)
 
 
 ////////////////////////////////////////////////////////////
-size_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
+sfUint64 sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
 {
     CSFML_CALL_RETURN(soundBuffer, getSampleCount(), 0);
 }
