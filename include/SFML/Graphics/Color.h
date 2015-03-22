@@ -81,6 +81,24 @@ CSFML_GRAPHICS_API sfColor sfColor_fromRGB(sfUint8 red, sfUint8 green, sfUint8 b
 CSFML_GRAPHICS_API sfColor sfColor_fromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha);
 
 ////////////////////////////////////////////////////////////
+/// \brief Construct the color from 32-bit unsigned integer
+///
+/// \param color Number containing the RGBA components (in that order)
+///
+/// \return sfColor constructed from the 32-bit unsigned integer
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfColor sfColor_fromInteger(sfUint32 color);
+
+////////////////////////////////////////////////////////////
+/// \brief Convert a color to a 32-bit unsigned integer
+///
+/// \return Color represented as a 32-bit unsigned integer
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfUint32 sfColor_toInteger(sfColor color);
+
+////////////////////////////////////////////////////////////
 /// \brief Add two colors
 ///
 /// \param color1 First color
