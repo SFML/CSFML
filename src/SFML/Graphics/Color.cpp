@@ -64,6 +64,25 @@ sfColor sfColor_fromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha
 
 
 ////////////////////////////////////////////////////////////
+sfColor sfColor_fromInteger(sfUint32 color)
+{
+    sfUint8 red =   (color & 0xff000000) >> 24;
+    sfUint8 green = (color & 0x00ff0000) >> 16;
+    sfUint8 blue =  (color & 0x0000ff00) >> 8;
+    sfUint8 alpha = (color & 0x000000ff) >> 0;
+
+    return sfColor_fromRGBA(red, green, blue, alpha);
+}
+
+
+////////////////////////////////////////////////////////////
+sfUint32 sfColor_toInteger(sfColor color)
+{
+    return (color.r << 24) | (color.g << 16) | (color.b << 8) | color.a;
+}
+
+
+////////////////////////////////////////////////////////////
 sfColor sfColor_add(sfColor color1, sfColor color2)
 {
     int red   = std::min(color1.r + color2.r, 255);
