@@ -116,6 +116,15 @@ sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const void* data, size_t si
 
 
 ////////////////////////////////////////////////////////////
+sfSocketStatus sfTcpSocket_sendPartial(sfTcpSocket* socket, const void* data, size_t size, size_t* sent)
+{
+    CSFML_CHECK_RETURN(socket, sfSocketError);
+
+    return static_cast<sfSocketStatus>(socket->This.send(data, size, *sent));
+}
+
+
+////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);

@@ -150,6 +150,9 @@ CSFML_NETWORK_API void sfTcpSocket_disconnect(sfTcpSocket* socket);
 ////////////////////////////////////////////////////////////
 /// \brief Send raw data to the remote peer of a TCP socket
 ///
+/// To be able to handle partial sends over non-blocking
+/// sockets, use the sfTcpSocket_sendPartial(sfTcpSocket*, const void*, std::size_t, size_t*)
+/// overload instead.
 /// This function will fail if the socket is not connected.
 ///
 /// \param socket TCP socket object
@@ -160,6 +163,21 @@ CSFML_NETWORK_API void sfTcpSocket_disconnect(sfTcpSocket* socket);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const void* data, size_t size);
+
+////////////////////////////////////////////////////////////
+/// \brief Send raw data to the remote peer
+///
+/// This function will fail if the socket is not connected.
+///
+/// \param socket TCP socket object
+/// \param data   Pointer to the sequence of bytes to send
+/// \param size   Number of bytes to send
+/// \param sent   The number of bytes sent will be written here
+///
+/// \return Status code
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_sendPartial(sfTcpSocket* socket, const void* data, size_t size, size_t* sent);
 
 ////////////////////////////////////////////////////////////
 /// \brief Receive raw data from the remote peer of a TCP socket
@@ -181,6 +199,10 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* 
 ////////////////////////////////////////////////////////////
 /// \brief Send a formatted packet of data to the remote peer of a TCP socket
 ///
+/// In non-blocking mode, if this function returns sfSocketPartial,
+/// you must retry sending the same unmodified packet before sending
+/// anything else in order to guarantee the packet arrives at the remote
+/// peer uncorrupted.
 /// This function will fail if the socket is not connected.
 ///
 /// \param socket TCP socket object

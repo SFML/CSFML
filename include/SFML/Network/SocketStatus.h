@@ -34,6 +34,7 @@ typedef enum
 {
     sfSocketDone,         ///< The socket has sent / received the data
     sfSocketNotReady,     ///< The socket is not ready to send / receive data yet
+    sfSocketPartial,      ///< The socket sent a part of the data
     sfSocketDisconnected, ///< The TCP socket has been disconnected
     sfSocketError         ///< An unexpected error happened
 
