@@ -152,7 +152,7 @@ CSFML_AUDIO_API const sfInt16* sfSoundBuffer_getSamples(const sfSoundBuffer* sou
 /// \return Number of samples
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API size_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API sfUint64 sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the sample rate of a sound buffer
