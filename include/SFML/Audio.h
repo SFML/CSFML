@@ -36,6 +36,8 @@
 #include <SFML/Audio/SoundBuffer.h>
 #include <SFML/Audio/SoundBufferRecorder.h>
 #include <SFML/Audio/SoundRecorder.h>
+#include <SFML/Audio/SoundStatus.h>
+#include <SFML/Audio/SoundStream.h>
 
 
 #endif // SFML_AUDIO_H
