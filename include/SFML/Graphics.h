@@ -35,14 +35,15 @@
 #include <SFML/Graphics/Color.h>
 #include <SFML/Graphics/ConvexShape.h>
 #include <SFML/Graphics/Font.h>
+#include <SFML/Graphics/FontInfo.h>
 #include <SFML/Graphics/Glyph.h>
 #include <SFML/Graphics/Image.h>
 #include <SFML/Graphics/PrimitiveType.h>
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/RectangleShape.h>
 #include <SFML/Graphics/RenderStates.h>
-#include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/RenderTexture.h>
+#include <SFML/Graphics/RenderWindow.h>
 #include <SFML/Graphics/Shader.h>
 #include <SFML/Graphics/Shape.h>
 #include <SFML/Graphics/Sprite.h>

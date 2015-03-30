@@ -35,6 +35,7 @@
 #include <SFML/System/Mutex.h>
 #include <SFML/System/Sleep.h>
 #include <SFML/System/Thread.h>
+#include <SFML/System/Time.h>
 #include <SFML/System/Vector2.h>
 #include <SFML/System/Vector3.h>
 

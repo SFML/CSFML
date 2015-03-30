@@ -35,6 +35,7 @@
 #include <SFML/Network/IpAddress.h>
 #include <SFML/Network/Packet.h>
 #include <SFML/Network/SocketSelector.h>
+#include <SFML/Network/SocketStatus.h>
 #include <SFML/Network/TcpListener.h>
 #include <SFML/Network/TcpSocket.h>
 #include <SFML/Network/UdpSocket.h>
