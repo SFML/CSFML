@@ -350,6 +350,20 @@ CSFML_GRAPHICS_API void sfShader_setTextureParameter(sfShader* shader, const cha
 CSFML_GRAPHICS_API void sfShader_setCurrentTextureParameter(sfShader* shader, const char* name);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the underlying OpenGL handle of the shader.
+///
+/// You shouldn't need to use this function, unless you have
+/// very specific stuff to implement that SFML doesn't support,
+/// or implement a temporary workaround until a bug is fixed.
+///
+/// \param shader Shader object
+///
+/// \return OpenGL handle of the shader or 0 if not yet loaded
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API unsigned int sfShader_getNativeHandle(const sfShader* shader);
+
+////////////////////////////////////////////////////////////
 /// \brief Bind a shader for rendering (activate it)
 ///
 /// This function is not part of the graphics API, it mustn't be

@@ -218,6 +218,13 @@ void sfShader_setCurrentTextureParameter(sfShader* shader, const char* name)
 
 
 ////////////////////////////////////////////////////////////
+unsigned int sfShader_getNativeHandle(const sfShader* shader)
+{
+    CSFML_CALL_RETURN(shader, getNativeHandle(), 0);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfShader_bind(const sfShader* shader)
 {
     sf::Shader::bind(shader ? &shader->This : NULL);
