@@ -230,6 +230,20 @@ CSFML_GRAPHICS_API void sfTexture_setRepeated(sfTexture* texture, sfBool repeate
 CSFML_GRAPHICS_API sfBool sfTexture_isRepeated(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the underlying OpenGL handle of the texture.
+///
+/// You shouldn't need to use this function, unless you have
+/// very specific stuff to implement that SFML doesn't support,
+/// or implement a temporary workaround until a bug is fixed.
+///
+/// \param texture The texture object
+///
+/// \return OpenGL handle of the texture or 0 if not yet created
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API unsigned int sfTexture_getNativeHandle(const sfTexture* texture);
+
+////////////////////////////////////////////////////////////
 /// \brief Bind a texture for rendering
 ///
 /// This function is not part of the graphics API, it mustn't be

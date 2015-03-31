@@ -46,6 +46,7 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, c
         params.antialiasingLevel = settings->antialiasingLevel;
         params.majorVersion      = settings->majorVersion;
         params.minorVersion      = settings->minorVersion;
+        params.attributeFlags    = settings->attributeFlags;
     }
 
     // Create the window
@@ -70,6 +71,7 @@ sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint
         params.antialiasingLevel = settings->antialiasingLevel;
         params.majorVersion      = settings->majorVersion;
         params.minorVersion      = settings->minorVersion;
+        params.attributeFlags    = settings->attributeFlags;
     }
 
     // Create the window
@@ -92,6 +94,7 @@ sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettin
         params.antialiasingLevel = settings->antialiasingLevel;
         params.majorVersion      = settings->majorVersion;
         params.minorVersion      = settings->minorVersion;
+        params.attributeFlags    = settings->attributeFlags;
     }
 
     // Create the window
@@ -134,6 +137,7 @@ sfContextSettings sfWindow_getSettings(const sfWindow* window)
     settings.antialiasingLevel = params.antialiasingLevel;
     settings.majorVersion      = params.majorVersion;
     settings.minorVersion      = params.minorVersion;
+    settings.attributeFlags    = params.attributeFlags;
 
     return settings;
 }

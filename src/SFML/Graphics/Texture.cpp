@@ -243,6 +243,13 @@ sfBool sfTexture_isRepeated(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
+unsigned int sfTexture_getNativeHandle(const sfTexture* texture)
+{
+    CSFML_CALL_PTR_RETURN(texture, getNativeHandle(), 0);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfTexture_bind(const sfTexture* texture)
 {
     sf::Texture::bind(texture ? texture->This : NULL);

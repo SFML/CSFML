@@ -52,6 +52,18 @@ typedef enum
 
 
 ////////////////////////////////////////////////////////////
+/// \brief Enumeration of the context attribute flags
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfContextDefault = 0,      ///< Non-debug, compatibility context (this and the core attribute are mutually exclusive)
+    sfContextCore    = 1 << 0, ///< Core attribute
+    sfContextDebug   = 1 << 2  ///< Debug attribute
+} sfContextAttribute;
+
+
+////////////////////////////////////////////////////////////
 /// \brief Structure defining the window's creation settings
 ///
 ////////////////////////////////////////////////////////////
@@ -62,6 +74,7 @@ typedef struct
     unsigned int antialiasingLevel; ///< Level of antialiasing
     unsigned int majorVersion;      ///< Major number of the context version to create
     unsigned int minorVersion;      ///< Minor number of the context version to create
+    sfUint32     attributeFlags;    ///< The attribute flags to create the context with
 } sfContextSettings;
 
 
