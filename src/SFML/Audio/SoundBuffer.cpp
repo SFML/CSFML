@@ -80,7 +80,7 @@ sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, size_t sampleCount, unsigned int channelCount, unsigned int sampleRate)
+sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, sfUint64 sampleCount, unsigned int channelCount, unsigned int sampleRate)
 {
     sfSoundBuffer* buffer = new sfSoundBuffer;
 

@@ -274,14 +274,14 @@ float sfRectangleShape_getOutlineThickness(const sfRectangleShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfRectangleShape_getPointCount(const sfRectangleShape* shape)
+size_t sfRectangleShape_getPointCount(const sfRectangleShape* shape)
 {
     CSFML_CALL_RETURN(shape, getPointCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, unsigned int index)
+sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, size_t index)
 {
     sfVector2f point = {0, 0};
     CSFML_CHECK_RETURN(shape, point);

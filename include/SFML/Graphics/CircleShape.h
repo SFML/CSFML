@@ -34,6 +34,7 @@
 #include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -352,7 +353,7 @@ CSFML_GRAPHICS_API float sfCircleShape_getOutlineThickness(const sfCircleShape* 
 /// \return Number of points of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfCircleShape_getPointCount(const sfCircleShape* shape);
+CSFML_GRAPHICS_API size_t sfCircleShape_getPointCount(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a point of a circle shape
@@ -365,7 +366,7 @@ CSFML_GRAPHICS_API unsigned int sfCircleShape_getPointCount(const sfCircleShape*
 /// \return Index-th point of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfCircleShape_getPoint(const sfCircleShape* shape, unsigned int index);
+CSFML_GRAPHICS_API sfVector2f sfCircleShape_getPoint(const sfCircleShape* shape, size_t index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the radius of a circle
@@ -393,7 +394,7 @@ CSFML_GRAPHICS_API float sfCircleShape_getRadius(const sfCircleShape* shape);
 /// \param count New number of points of the circle
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_setPointCount(sfCircleShape* shape, unsigned int count);
+CSFML_GRAPHICS_API void sfCircleShape_setPointCount(sfCircleShape* shape, size_t count);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a circle shape

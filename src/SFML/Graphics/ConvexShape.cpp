@@ -274,14 +274,14 @@ float sfConvexShape_getOutlineThickness(const sfConvexShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfConvexShape_getPointCount(const sfConvexShape* shape)
+size_t sfConvexShape_getPointCount(const sfConvexShape* shape)
 {
     CSFML_CALL_RETURN(shape, getPointCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, unsigned int index)
+sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index)
 {
     sfVector2f point = {0, 0};
     CSFML_CHECK_RETURN(shape, point);
@@ -295,14 +295,14 @@ sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, unsigned int index
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_setPointCount(sfConvexShape* shape, unsigned int count)
+void sfConvexShape_setPointCount(sfConvexShape* shape, size_t count)
 {
     CSFML_CALL(shape, setPointCount(count));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_setPoint(sfConvexShape* shape, unsigned int index, sfVector2f point)
+void sfConvexShape_setPoint(sfConvexShape* shape, size_t index, sfVector2f point)
 {
     CSFML_CALL(shape, setPoint(index, sf::Vector2f(point.x, point.y)));
 }

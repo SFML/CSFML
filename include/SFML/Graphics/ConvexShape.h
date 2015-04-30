@@ -34,6 +34,7 @@
 #include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -352,7 +353,7 @@ CSFML_GRAPHICS_API float sfConvexShape_getOutlineThickness(const sfConvexShape* 
 /// \return Number of points of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfConvexShape_getPointCount(const sfConvexShape* shape);
+CSFML_GRAPHICS_API size_t sfConvexShape_getPointCount(const sfConvexShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a point of a convex shape
@@ -365,7 +366,7 @@ CSFML_GRAPHICS_API unsigned int sfConvexShape_getPointCount(const sfConvexShape*
 /// \return Index-th point of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, unsigned int index);
+CSFML_GRAPHICS_API sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the number of points of a convex shap
@@ -376,7 +377,7 @@ CSFML_GRAPHICS_API sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape,
 /// \param count New number of points of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_setPointCount(sfConvexShape* shape, unsigned int count);
+CSFML_GRAPHICS_API void sfConvexShape_setPointCount(sfConvexShape* shape, size_t count);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a point in a convex shape
@@ -392,7 +393,7 @@ CSFML_GRAPHICS_API void sfConvexShape_setPointCount(sfConvexShape* shape, unsign
 /// \param point New point
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_setPoint(sfConvexShape* shape, unsigned int index, sfVector2f point);
+CSFML_GRAPHICS_API void sfConvexShape_setPoint(sfConvexShape* shape, size_t index, sfVector2f point);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a convex shape

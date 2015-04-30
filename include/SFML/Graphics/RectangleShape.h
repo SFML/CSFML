@@ -34,6 +34,7 @@
 #include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -352,7 +353,7 @@ CSFML_GRAPHICS_API float sfRectangleShape_getOutlineThickness(const sfRectangleS
 /// \return Number of points of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfRectangleShape_getPointCount(const sfRectangleShape* shape);
+CSFML_GRAPHICS_API size_t sfRectangleShape_getPointCount(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a point of a rectangle shape
@@ -365,7 +366,7 @@ CSFML_GRAPHICS_API unsigned int sfRectangleShape_getPointCount(const sfRectangle
 /// \return Index-th point of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, unsigned int index);
+CSFML_GRAPHICS_API sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, size_t index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the size of a rectangle shape
