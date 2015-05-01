@@ -48,6 +48,16 @@ typedef enum
     sfMouseButtonCount ///< Keep last -- the total number of mouse buttons
 } sfMouseButton;
 
+////////////////////////////////////////////////////////////
+/// \brief Mouse wheels
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfMouseVerticalWheel,  ///< The vertical mouse wheel
+    sfMouseHorizontalWheel ///< The horizontal mouse wheel
+} sfMouseWheel;
+
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a mouse button is pressed

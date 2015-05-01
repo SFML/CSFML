@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////
-// Define a function to convert a sf::Event ot a sfEvent
+// Define a function to convert a sf::Event to a sfEvent
 ////////////////////////////////////////////////////////////
 inline void convertEvent(const sf::Event& SFMLEvent, sfEvent* event)
 {
@@ -65,6 +65,13 @@ inline void convertEvent(const sf::Event& SFMLEvent, sfEvent* event)
             event->mouseWheel.delta = SFMLEvent.mouseWheel.delta;
             event->mouseWheel.x     = SFMLEvent.mouseWheel.x;
             event->mouseWheel.y     = SFMLEvent.mouseWheel.y;
+            break;
+
+        case sfEvtMouseWheelScrolled :
+            event->mouseWheelScroll.wheel = static_cast<sfMouseWheel>(SFMLEvent.mouseWheelScroll.wheel);
+            event->mouseWheelScroll.delta = SFMLEvent.mouseWheelScroll.delta;
+            event->mouseWheelScroll.x     = SFMLEvent.mouseWheelScroll.x;
+            event->mouseWheelScroll.y     = SFMLEvent.mouseWheelScroll.y;
             break;
 
         case sfEvtMouseButtonPressed :
