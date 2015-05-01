@@ -98,6 +98,21 @@ sfColor sfColor_add(sfColor color1, sfColor color2)
 
 
 ////////////////////////////////////////////////////////////
+sfColor sfColor_subtract(sfColor color1, sfColor color2)
+{
+    int red   = std::max(color1.r - color2.r, 0);
+    int green = std::max(color1.g - color2.g, 0);
+    int blue  = std::max(color1.b - color2.b, 0);
+    int alpha = std::max(color1.a - color2.a, 0);
+
+    return sfColor_fromRGBA(static_cast<sfUint8>(red),
+                            static_cast<sfUint8>(green),
+                            static_cast<sfUint8>(blue),
+                            static_cast<sfUint8>(alpha));
+}
+
+
+////////////////////////////////////////////////////////////
 sfColor sfColor_modulate(sfColor color1, sfColor color2)
 {
     int red   = color1.r * color2.r / 255;
