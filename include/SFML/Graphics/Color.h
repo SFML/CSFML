@@ -110,6 +110,17 @@ CSFML_GRAPHICS_API sfUint32 sfColor_toInteger(sfColor color);
 CSFML_GRAPHICS_API sfColor sfColor_add(sfColor color1, sfColor color2);
 
 ////////////////////////////////////////////////////////////
+/// \brief Subtract two colors
+///
+/// \param color1 First color
+/// \param color2 Second color
+///
+/// \return Component-wise saturated subtraction of the two colors
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfColor sfColor_subtract(sfColor color1, sfColor color2);
+
+////////////////////////////////////////////////////////////
 /// \brief Modulate two colors
 ///
 /// \param color1 First color
