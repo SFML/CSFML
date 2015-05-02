@@ -51,12 +51,12 @@ public :
     {
     }
 
-    virtual unsigned int getPointCount() const
+    virtual std::size_t getPointCount() const
     {
         return myGetPointCountCallback(myUserData);
     }
 
-    virtual sf::Vector2f getPoint(unsigned int index) const
+    virtual sf::Vector2f getPoint(std::size_t index) const
     {
         sfVector2f point = myGetPointCallback(index, myUserData);
         return sf::Vector2f(point.x, point.y);

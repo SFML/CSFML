@@ -475,7 +475,7 @@ void sfRenderWindow_drawVertexArray(sfRenderWindow* renderWindow, const sfVertex
 
 ////////////////////////////////////////////////////////////
 void sfRenderWindow_drawPrimitives(sfRenderWindow* renderWindow,
-                                   const sfVertex* vertices, unsigned int vertexCount,
+                                   const sfVertex* vertices, size_t vertexCount,
                                    sfPrimitiveType type, const sfRenderStates* states)
 {
     CSFML_CALL(renderWindow, draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount,

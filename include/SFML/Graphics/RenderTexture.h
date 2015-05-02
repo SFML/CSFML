@@ -36,6 +36,7 @@
 #include <SFML/Graphics/RenderStates.h>
 #include <SFML/Graphics/Vertex.h>
 #include <SFML/System/Vector2.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -216,7 +217,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_drawVertexArray(sfRenderTexture* renderT
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderTexture_drawPrimitives(sfRenderTexture* renderTexture,
-                                                       const sfVertex* vertices, unsigned int vertexCount,
+                                                       const sfVertex* vertices, size_t vertexCount,
                                                        sfPrimitiveType type, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////

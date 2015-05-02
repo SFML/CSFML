@@ -92,7 +92,7 @@ CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* str
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, size_t sampleCount, unsigned int channelCount, unsigned int sampleRate);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, sfUint64 sampleCount, unsigned int channelCount, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound buffer by copying an existing one

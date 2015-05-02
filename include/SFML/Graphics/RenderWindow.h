@@ -40,6 +40,7 @@
 #include <SFML/Window/WindowHandle.h>
 #include <SFML/Window/Window.h>
 #include <SFML/System/Vector2.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -441,7 +442,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_drawVertexArray(sfRenderWindow* renderWin
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderWindow_drawPrimitives(sfRenderWindow* renderWindow,
-                                                      const sfVertex* vertices, unsigned int vertexCount,
+                                                      const sfVertex* vertices, size_t vertexCount,
                                                       sfPrimitiveType type, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////

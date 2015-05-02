@@ -34,10 +34,11 @@
 #include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/Vector2.h>
+#include <stddef.h>
 
 
-typedef unsigned int (*sfShapeGetPointCountCallback)(void*);        ///< Type of the callback used to get the number of points in a shape
-typedef sfVector2f (*sfShapeGetPointCallback)(unsigned int, void*); ///< Type of the callback used to get a point of a shape
+typedef size_t (*sfShapeGetPointCountCallback)(void*);        ///< Type of the callback used to get the number of points in a shape
+typedef sfVector2f (*sfShapeGetPointCallback)(size_t, void*); ///< Type of the callback used to get a point of a shape
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new shape
@@ -351,7 +352,7 @@ CSFML_GRAPHICS_API float sfShape_getOutlineThickness(const sfShape* shape);
 /// \return Number of points of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfShape_getPointCount(const sfShape* shape);
+CSFML_GRAPHICS_API size_t sfShape_getPointCount(const sfShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a point of a shape
@@ -364,7 +365,7 @@ CSFML_GRAPHICS_API unsigned int sfShape_getPointCount(const sfShape* shape);
 /// \return Index-th point of the shape
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfShape_getPoint(const sfShape* shape, unsigned int index);
+CSFML_GRAPHICS_API sfVector2f sfShape_getPoint(const sfShape* shape, size_t index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a shape

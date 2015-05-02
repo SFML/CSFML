@@ -218,7 +218,7 @@ void sfRenderTexture_drawVertexArray(sfRenderTexture* renderTexture, const sfVer
 
 ////////////////////////////////////////////////////////////
 void sfRenderTexture_drawPrimitives(sfRenderTexture* renderTexture,
-                                    const sfVertex* vertices, unsigned int vertexCount,
+                                    const sfVertex* vertices, size_t vertexCount,
                                     sfPrimitiveType type, const sfRenderStates* states)
 {
     CSFML_CALL(renderTexture, draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount,

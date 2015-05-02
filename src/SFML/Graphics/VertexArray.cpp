@@ -54,14 +54,14 @@ void sfVertexArray_destroy(sfVertexArray* vertexArray)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfVertexArray_getVertexCount(const sfVertexArray* vertexArray)
+size_t sfVertexArray_getVertexCount(const sfVertexArray* vertexArray)
 {
     CSFML_CALL_RETURN(vertexArray, getVertexCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, unsigned int index)
+sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, size_t index)
 {
     CSFML_CHECK_RETURN(vertexArray, NULL);
 
@@ -78,7 +78,7 @@ void sfVertexArray_clear(sfVertexArray* vertexArray)
 
 
 ////////////////////////////////////////////////////////////
-void sfVertexArray_resize(sfVertexArray* vertexArray, unsigned int vertexCount)
+void sfVertexArray_resize(sfVertexArray* vertexArray, size_t vertexCount)
 {
     CSFML_CALL(vertexArray, resize(vertexCount));
 }

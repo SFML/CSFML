@@ -277,14 +277,14 @@ float sfCircleShape_getOutlineThickness(const sfCircleShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfCircleShape_getPointCount(const sfCircleShape* shape)
+size_t sfCircleShape_getPointCount(const sfCircleShape* shape)
 {
     CSFML_CALL_RETURN(shape, getPointCount(), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2f sfCircleShape_getPoint(const sfCircleShape* shape, unsigned int index)
+sfVector2f sfCircleShape_getPoint(const sfCircleShape* shape, size_t index)
 {
     sfVector2f point = {0, 0};
     CSFML_CHECK_RETURN(shape, point);
@@ -312,7 +312,7 @@ float sfCircleShape_getRadius(const sfCircleShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfCircleShape_setPointCount(sfCircleShape* shape, unsigned int count)
+void sfCircleShape_setPointCount(sfCircleShape* shape, size_t count)
 {
     CSFML_CALL(shape, setPointCount(count));
 }

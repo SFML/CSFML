@@ -33,6 +33,7 @@
 #include <SFML/Graphics/Rect.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/Graphics/Vertex.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -69,7 +70,7 @@ CSFML_GRAPHICS_API void sfVertexArray_destroy(sfVertexArray* vertexArray);
 /// \return Number of vertices in the array
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfVertexArray_getVertexCount(const sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API size_t sfVertexArray_getVertexCount(const sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get access to a vertex by its index
@@ -84,7 +85,7 @@ CSFML_GRAPHICS_API unsigned int sfVertexArray_getVertexCount(const sfVertexArray
 /// \return Pointer to the index-th vertex
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, unsigned int index);
+CSFML_GRAPHICS_API sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, size_t index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Clear a vertex array
@@ -112,7 +113,7 @@ CSFML_GRAPHICS_API void sfVertexArray_clear(sfVertexArray* vertexArray);
 /// \param vertexCount New size of the array (number of vertices)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfVertexArray_resize(sfVertexArray* vertexArray, unsigned int vertexCount);
+CSFML_GRAPHICS_API void sfVertexArray_resize(sfVertexArray* vertexArray, size_t vertexCount);
 
 ////////////////////////////////////////////////////////////
 /// \brief Add a vertex to a vertex array array
