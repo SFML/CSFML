@@ -1,5 +1,5 @@
 
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 2.8.3)
 
 # define a macro that helps defining an option
 macro(csfml_set_option var default type docstring)
@@ -21,7 +21,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/Config.cmake)
 
 # setup version numbers
 set(VERSION_MAJOR 2)
-set(VERSION_MINOR 2)
+set(VERSION_MINOR 3)
 set(VERSION_PATCH 0)
 
 # add the CSFML header path
