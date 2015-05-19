@@ -56,6 +56,14 @@ macro(csfml_add_library target)
     # link the target to its external dependencies (C++ SFML libraries)
     target_link_libraries(${target} ${THIS_DEPENDS})
 
+    # build dylibs
+    if(SFML_OS_MACOSX AND BUILD_SHARED_LIBS)
+        # adapt install directory to allow distributing dylibs in user’s application bundle
+        set_target_properties(${target} PROPERTIES
+                              BUILD_WITH_INSTALL_RPATH 1
+                              INSTALL_NAME_DIR "@rpath")
+    endif()
+
     # add the install rule
     install(TARGETS ${target}
             RUNTIME DESTINATION bin COMPONENT bin
