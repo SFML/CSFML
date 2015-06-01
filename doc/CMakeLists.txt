@@ -42,7 +42,7 @@ install(DIRECTORY ${DOXYGEN_OUTPUT_DIR}/html
         DESTINATION ${INSTALL_MISC_DIR}/doc
         COMPONENT doc)
 if(DOXYGEN_HHC_PROGRAM)
-    install(FILES ${DOXYGEN_OUTPUT_DIR}/SFML.chm
+    install(FILES ${DOXYGEN_OUTPUT_DIR}/CSFML.chm
             DESTINATION ${INSTALL_MISC_DIR}/doc
             COMPONENT doc)
 endif()
