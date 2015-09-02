@@ -506,5 +506,25 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* distantF
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* destPath, sfFtpTransferMode mode);
 
+////////////////////////////////////////////////////////////
+/// \brief Send a command to the FTP server
+///
+/// While the most often used commands are provided as
+/// specific functions, this function can be used to send
+/// any FTP command to the server. If the command requires
+/// one or more parameters, they can be specified in
+/// \a parameter. Otherwise you should pass NULL.
+/// If the server returns information, you can extract it
+/// from the response using sfResponse_getMessage().
+///
+/// \param ftp       Ftp object
+/// \param command   Command to send
+/// \param parameter Command parameter
+///
+/// \return Server response to the request
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfFtpResponse* sfFtp_sendCommand(sfFtp* ftp, const char* command, const char* parameter);
+
 
 #endif // SFML_FTP_H
