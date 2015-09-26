@@ -9,7 +9,7 @@ Authors
 -------
 
 Laurent Gomila - main developer (laurent@sfml-dev.org)
-Zachariah Brown - active maintainer (crazyzprogrammer@hotmail.com)
+Zachariah Brown - active maintainer (contact@zbrown.net)
 
 Download
 --------
