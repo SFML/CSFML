@@ -219,7 +219,28 @@ void sfText_setStyle(sfText* text, sfUint32 style)
 ////////////////////////////////////////////////////////////
 void sfText_setColor(sfText* text, sfColor color)
 {
-    CSFML_CALL(text, setColor(sf::Color(color.r, color.g, color.b, color.a)));
+    sfText_setFillColor(text, color);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfText_setFillColor(sfText* text, sfColor color)
+{
+    CSFML_CALL(text, setFillColor(sf::Color(color.r, color.g, color.b, color.a)));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfText_setOutlineColor(sfText* text, sfColor color)
+{
+    CSFML_CALL(text, setOutlineColor(sf::Color(color.r, color.g, color.b, color.a)));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfText_setOutlineThickness(sfText* text, float thickness)
+{
+    CSFML_CALL(text, setOutlineThickness(thickness));
 }
 
 
@@ -269,16 +290,46 @@ sfUint32 sfText_getStyle(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfColor sfText_getColor(const sfText* text)
 {
+    return sfText_getFillColor(text);
+}
+
+
+////////////////////////////////////////////////////////////
+sfColor sfText_getFillColor(const sfText* text)
+{
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(text, color);
 
-    sf::Color sfmlColor = text->This.getColor();
+    sf::Color sfmlColor = text->This.getFillColor();
     color.r = sfmlColor.r;
     color.g = sfmlColor.g;
     color.b = sfmlColor.b;
     color.a = sfmlColor.a;
 
     return color;
+}
+
+
+////////////////////////////////////////////////////////////
+sfColor sfText_getOutlineColor(const sfText* text)
+{
+    sfColor color = { 0, 0, 0, 0 };
+    CSFML_CHECK_RETURN(text, color);
+
+    sf::Color sfmlColor = text->This.getOutlineColor();
+    color.r = sfmlColor.r;
+    color.g = sfmlColor.g;
+    color.b = sfmlColor.b;
+    color.a = sfmlColor.a;
+
+    return color;
+}
+
+
+////////////////////////////////////////////////////////////
+float sfText_getOutlineThickness(const sfText* text)
+{
+    CSFML_CALL_RETURN(text, getOutlineThickness(), 0.f);
 }
 
 
