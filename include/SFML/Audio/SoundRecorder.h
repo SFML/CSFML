@@ -129,7 +129,7 @@ CSFML_AUDIO_API sfBool sfSoundRecorder_isAvailable(void);
 /// The default processing interval is 100 ms.
 ///
 /// \param soundRecorder Sound recorder object
-/// \param interval Processing interval
+/// \param interval      Processing interval
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API void sfSoundRecorder_setProcessingInterval(sfSoundRecorder* soundRecorder, sfTime interval);
@@ -168,7 +168,7 @@ CSFML_AUDIO_API const char* sfSoundRecorder_getDefaultDevice();
 /// opening the device fails, it stops the recording.
 ///
 /// \param soundRecorder Sound recorder object
-/// \param The name of the audio capture device
+/// \param name          The name of the audio capture device
 ///
 /// \return sfTrue, if it was able to set the requested device
 ///

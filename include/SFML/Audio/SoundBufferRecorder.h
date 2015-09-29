@@ -101,5 +101,31 @@ CSFML_AUDIO_API unsigned int sfSoundBufferRecorder_getSampleRate(const sfSoundBu
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder* soundBufferRecorder);
 
+////////////////////////////////////////////////////////////
+/// \brief Set the audio capture device
+///
+/// This function sets the audio capture device to the device
+/// with the given name. It can be called on the fly (i.e:
+/// while recording). If you do so while recording and
+/// opening the device fails, it stops the recording.
+///
+/// \param soundBufferRecorder Sound buffer recorder object
+/// \param name                The name of the audio capture device
+///
+/// \return sfTrue, if it was able to set the requested device
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfBool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorder, const char* name);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the name of the current audio capture device
+///
+/// \param soundBufferRecorder Sound buffer recorder object
+///
+/// \return The name of the current audio capture device
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API const char* sfSoundBufferRecorder_getDevice(sfSoundBufferRecorder* soundBufferRecorder);
+
 
 #endif // SFML_SOUNDBUFFERRECORDER_H
