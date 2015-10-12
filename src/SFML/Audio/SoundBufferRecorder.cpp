@@ -74,3 +74,19 @@ const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder
 
     return &soundBufferRecorder->SoundBuffer;
 }
+
+////////////////////////////////////////////////////////////
+sfBool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorder, const char* name)
+{
+    CSFML_CALL_RETURN(soundBufferRecorder, setDevice(name), sfFalse);
+}
+
+////////////////////////////////////////////////////////////
+const char* sfSoundBufferRecorder_getDevice(sfSoundBufferRecorder* soundBufferRecorder)
+{
+    CSFML_CHECK_RETURN(soundRecorder, NULL);
+
+    soundBufferRecorder->DeviceName = soundBufferRecorder->This.getDevice();
+
+    return soundBufferRecorder->DeviceName.c_str();
+}

@@ -39,6 +39,7 @@ struct sfSoundBufferRecorder
 {
     sf::SoundBufferRecorder This;
     mutable sfSoundBuffer   SoundBuffer;
+    std::string             DeviceName;
 };
 
 
