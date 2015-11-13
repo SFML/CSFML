@@ -34,7 +34,13 @@ csfml_set_option(BUILD_SHARED_LIBS TRUE BOOL "TRUE to build CSFML as shared libr
 csfml_set_option(CSFML_BUILD_DOC FALSE BOOL "TRUE to generate the API documentation, FALSE to ignore it")
 
 # add an option for linking to sfml either statically or dynamically
-csfml_set_option(CSFML_LINK_SFML_STATICALLY TRUE BOOL "TRUE to link to a static version of SFML, FALSE to link dynamically")
+# default on windows to static and on other platforms to dynamic
+if(SFML_OS_WINDOWS)
+    set(LINK_STATICALLY_DEFAULT TRUE)
+else()
+    set(LINK_STATICALLY_DEFAULT FALSE)
+endif()
+csfml_set_option(CSFML_LINK_SFML_STATICALLY ${LINK_STATICALLY_DEFAULT} BOOL "TRUE to link to a static version of SFML, FALSE to link dynamically")
 
 # disable the rpath stuff
 set(CMAKE_SKIP_BUILD_RPATH TRUE)
