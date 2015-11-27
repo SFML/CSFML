@@ -84,7 +84,7 @@ sfBool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorde
 ////////////////////////////////////////////////////////////
 const char* sfSoundBufferRecorder_getDevice(sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CHECK_RETURN(soundRecorder, NULL);
+    CSFML_CHECK_RETURN(soundBufferRecorder, NULL);
 
     soundBufferRecorder->DeviceName = soundBufferRecorder->This.getDevice();
 
