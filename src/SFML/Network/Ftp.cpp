@@ -189,11 +189,11 @@ sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp)
 
 
 ////////////////////////////////////////////////////////////
-sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* userName, const char* password)
+sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
 
-    return new sfFtpResponse(ftp->This.login(userName ? userName : "", password ? password : ""));
+    return new sfFtpResponse(ftp->This.login(name ? name : "", password ? password : ""));
 }
 
 
@@ -288,23 +288,23 @@ sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name)
 
 
 ////////////////////////////////////////////////////////////
-sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* distantFile, const char* destPath, sfFtpTransferMode mode)
+sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* localPath, sfFtpTransferMode mode)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
 
-    return new sfFtpResponse(ftp->This.download(distantFile ? distantFile : "",
-                                                destPath ? destPath : "",
+    return new sfFtpResponse(ftp->This.download(remoteFile ? remoteFile : "",
+                                                localPath ? localPath : "",
                                                 static_cast<sf::Ftp::TransferMode>(mode)));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* destPath, sfFtpTransferMode mode)
+sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
 
     return new sfFtpResponse(ftp->This.upload(localFile ? localFile : "",
-                                              destPath ? destPath : "",
+                                              remotePath ? remotePath : "",
                                               static_cast<sf::Ftp::TransferMode>(mode)));
 }
 

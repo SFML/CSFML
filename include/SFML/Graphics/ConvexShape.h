@@ -58,7 +58,7 @@ CSFML_GRAPHICS_API sfConvexShape* sfConvexShape_copy(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing convex Shape
 ///
-/// \param Shape Shape to delete
+/// \param shape Shape to delete
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfConvexShape_destroy(sfConvexShape* shape);

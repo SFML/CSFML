@@ -70,7 +70,7 @@ CSFML_WINDOW_API sfVideoMode sfVideoMode_getDesktopMode(void);
 /// \return Pointer to an array containing all the supported fullscreen modes
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* Count);
+CSFML_WINDOW_API const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a video mode is valid

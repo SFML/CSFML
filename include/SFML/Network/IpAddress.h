@@ -114,8 +114,7 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_fromInteger(sfUint32 address);
 /// from a host name.
 ///
 /// \param address Address object
-///
-/// \return String representation of the address
+/// \param string  String where the string representation will be stored
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API void sfIpAddress_toString(sfIpAddress address, char* string);

@@ -58,7 +58,7 @@ CSFML_GRAPHICS_API sfCircleShape* sfCircleShape_copy(const sfCircleShape* shape)
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing circle Shape
 ///
-/// \param Shape Shape to delete
+/// \param shape Shape to delete
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfCircleShape_destroy(sfCircleShape* shape);

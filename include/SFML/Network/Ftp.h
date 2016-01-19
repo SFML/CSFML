@@ -332,7 +332,7 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp);
 /// \return Server response to the request
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* userName, const char* password);
+CSFML_NETWORK_API sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password);
 
 ////////////////////////////////////////////////////////////
 /// \brief Close the connection with the server
@@ -486,7 +486,7 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name);
 /// \return Server response to the request
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* distantFile, const char* destPath, sfFtpTransferMode mode);
+CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* localPath, sfFtpTransferMode mode);
 
 ////////////////////////////////////////////////////////////
 /// \brief Upload a file to a FTP server
@@ -504,7 +504,7 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* distantF
 /// \return Server response to the request
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* destPath, sfFtpTransferMode mode);
+CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a command to the FTP server
