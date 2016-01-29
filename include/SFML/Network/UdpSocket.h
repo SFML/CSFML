@@ -137,7 +137,7 @@ CSFML_NETWORK_API void sfUdpSocket_unbind(sfUdpSocket* socket);
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t size, sfIpAddress address, unsigned short port);
+CSFML_NETWORK_API sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t size, sfIpAddress remoteAddress, unsigned short remotePort);
 
 ////////////////////////////////////////////////////////////
 /// \brief Receive raw data from a remote peer with a UDP socket
@@ -159,7 +159,7 @@ CSFML_NETWORK_API sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const voi
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port);
+CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t size, size_t* received, sfIpAddress* remoteAddress, unsigned short* remotePort);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a formatted packet of data to a remote peer with a UDP socket
@@ -176,7 +176,7 @@ CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* 
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress address, unsigned short port);
+CSFML_NETWORK_API sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress remoteAddress, unsigned short remotePort);
 
 ////////////////////////////////////////////////////////////
 /// \brief Receive a formatted packet of data from a remote peer with a UDP socket
@@ -191,7 +191,7 @@ CSFML_NETWORK_API sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfP
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* address, unsigned short* port);
+CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* remoteAddress, unsigned short* remotePort);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the maximum number of bytes that can be

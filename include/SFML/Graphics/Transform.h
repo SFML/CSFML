@@ -139,7 +139,7 @@ CSFML_GRAPHICS_API sfFloatRect sfTransform_transformRect(const sfTransform* tran
 /// equivalent to a matrix multiplication.
 ///
 /// \param transform Transform object
-/// \param right     Transform to combine to \a transform
+/// \param other     Transform to combine to \a transform
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfTransform_combine(sfTransform* transform, const sfTransform* other);

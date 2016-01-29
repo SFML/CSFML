@@ -134,7 +134,7 @@ CSFML_NETWORK_API unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* so
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfTime timeout);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddress, unsigned short remotePort, sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Disconnect a TCP socket from its remote peer
@@ -194,7 +194,7 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_sendPartial(sfTcpSocket* socket, co
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived);
+CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t size, size_t* received);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a formatted packet of data to the remote peer of a TCP socket

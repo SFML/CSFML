@@ -84,74 +84,74 @@ void sfUdpSocket_unbind(sfUdpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t size, sfIpAddress address, unsigned short port)
+sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t size, sfIpAddress remoteAddress, unsigned short remotePort)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
     // Convert the address
-    sf::IpAddress receiver(address.address);
+    sf::IpAddress address(remoteAddress.address);
 
-    return static_cast<sfSocketStatus>(socket->This.send(data, size, receiver, port));
+    return static_cast<sfSocketStatus>(socket->This.send(data, size, address, remotePort));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived, sfIpAddress* address, unsigned short* port)
+sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t size, size_t* received, sfIpAddress* remoteAddress, unsigned short* remotePort)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    // Call SFML internal function
-    sf::IpAddress sender;
-    unsigned short senderPort;
-    std::size_t received;
+    sf::IpAddress address;
+    unsigned short port;
+    std::size_t sizeReceived;
 
-    sf::Socket::Status status = socket->This.receive(data, maxSize, received, sender, senderPort);
+    sf::Socket::Status status = socket->This.receive(data, size, sizeReceived, address, port);
     if (status != sf::Socket::Done)
         return static_cast<sfSocketStatus>(status);
 
-    if (sizeReceived)
-        *sizeReceived = received;
+    if (received)
+        *received = sizeReceived;
 
-    if (address)
-        strncpy(address->address, sender.toString().c_str(), 16);
+    if (remoteAddress)
+        strncpy(remoteAddress->address, address.toString().c_str(), 16);
 
-    if (port)
-        *port = senderPort;
+    if (remotePort)
+        *remotePort = port;
 
     return sfSocketDone;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress address, unsigned short port)
+sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress remoteAddress, unsigned short remotePort)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
     // Convert the address
-    sf::IpAddress receiver(address.address);
+    sf::IpAddress address(remoteAddress.address);
 
-    return static_cast<sfSocketStatus>(socket->This.send(packet->This, receiver, port));
+    return static_cast<sfSocketStatus>(socket->This.send(packet->This, address, remotePort));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* address, unsigned short* port)
+sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* remoteAddress, unsigned short* remotePort)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
-    sf::IpAddress sender;
-    unsigned short senderPort;
-    sf::Socket::Status status = socket->This.receive(packet->This, sender, senderPort);
+    sf::IpAddress address;
+    unsigned short port;
+
+    sf::Socket::Status status = socket->This.receive(packet->This, address, port);
     if (status != sf::Socket::Done)
         return static_cast<sfSocketStatus>(status);
 
-    if (address)
-        strncpy(address->address, sender.toString().c_str(), 16);
+    if (remoteAddress)
+        strncpy(remoteAddress->address, address.toString().c_str(), 16);
 
-    if (port)
-        *port = senderPort;
+    if (remotePort)
+        *remotePort = port;
 
     return sfSocketDone;
 }

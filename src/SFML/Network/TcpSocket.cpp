@@ -89,13 +89,13 @@ unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress host, unsigned short port, sfTime timeout)
+sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddress, unsigned short remotePort, sfTime timeout)
 {
-    sf::IpAddress address(host.address);
+    sf::IpAddress address(remoteAddress.address);
 
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.connect(address, port, sf::microseconds(timeout.microseconds)));
+    return static_cast<sfSocketStatus>(socket->This.connect(address, remotePort, sf::microseconds(timeout.microseconds)));
 }
 
 
@@ -125,18 +125,18 @@ sfSocketStatus sfTcpSocket_sendPartial(sfTcpSocket* socket, const void* data, si
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t maxSize, size_t* sizeReceived)
+sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t size, size_t* received)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    if (sizeReceived)
+    if (received)
     {
-        return static_cast<sfSocketStatus>(socket->This.receive(data, maxSize, *sizeReceived));
+        return static_cast<sfSocketStatus>(socket->This.receive(data, size, *received));
     }
     else
     {
-        std::size_t size = 0;
-        return static_cast<sfSocketStatus>(socket->This.receive(data, maxSize, size));
+        std::size_t tempReceived = 0;
+        return static_cast<sfSocketStatus>(socket->This.receive(data, size, tempReceived));
     }
 }
 
