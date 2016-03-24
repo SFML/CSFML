@@ -26,7 +26,7 @@ There is no tutorial for CSFML, but since it's a binding you can use the C++ res
 * The community wiki (https://github.com/SFML/SFML/wiki/)
 * The community forum (http://en.sfml-dev.org/forums/) (or http://fr.sfml-dev.org/forums/ for French people)
 
-Of course, you can also find the CSFM API documentation in the SDK.
+Of course, you can also find the CSFML API documentation in the SDK.
 
 Building
 --------
