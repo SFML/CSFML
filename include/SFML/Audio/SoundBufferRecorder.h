@@ -61,8 +61,10 @@ CSFML_AUDIO_API void sfSoundBufferRecorder_destroy(sfSoundBufferRecorder* soundB
 /// \param soundBufferRecorder Sound buffer recorder object
 /// \param sampleRate          Desired capture rate, in number of samples per second
 ///
+/// \return sfTrue, if it was able to start recording
+///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate);
+CSFML_AUDIO_API sfBool sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
 /// \brief Stop the capture of a sound recorder
