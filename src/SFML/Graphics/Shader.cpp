@@ -236,3 +236,10 @@ sfBool sfShader_isAvailable(void)
 {
     return sf::Shader::isAvailable() ? sfTrue : sfFalse;
 }
+
+
+////////////////////////////////////////////////////////////
+sfBool sfShader_isGeometryAvailable(void)
+{
+    return sf::Shader::isGeometryAvailable() ? sfTrue : sfFalse;
+}
