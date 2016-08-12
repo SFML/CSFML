@@ -332,4 +332,5 @@ CSFML_GRAPHICS_API sfBool sfRenderTexture_isRepeated(const sfRenderTexture* rend
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfRenderTexture_generateMipmap(sfRenderTexture* renderTexture);
 
+
 #endif // SFML_RENDERTEXTURE_H
