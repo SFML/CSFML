@@ -101,13 +101,16 @@ CSFML_NETWORK_API unsigned short sfUdpSocket_getLocalPort(const sfUdpSocket* soc
 /// system to automatically pick an available port, and then
 /// call sfUdpSocket_getLocalPort to retrieve the chosen port.
 ///
-/// \param socket UDP socket object
-/// \param port   Port to bind the socket to
+/// If there is no specific address to listen to, pass sfIpAddress_Any
+///
+/// \param socket  UDP socket object
+/// \param port    Port to bind the socket to
+/// \param address Address of the interface to bind to
 ///
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port);
+CSFML_NETWORK_API sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port, sfIpAddress address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Unbind a UDP socket from the local port to which it is bound

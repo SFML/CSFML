@@ -68,11 +68,12 @@ unsigned short sfUdpSocket_getLocalPort(const sfUdpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port)
+sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port, sfIpAddress address)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.bind(port));
+    sf::IpAddress sfmlAddress(address.address);
+    return static_cast<sfSocketStatus>(socket->This.bind(port, sfmlAddress));
 }
 
 
