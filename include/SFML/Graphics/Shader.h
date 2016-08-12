@@ -38,61 +38,64 @@
 
 
 ////////////////////////////////////////////////////////////
-/// \brief Load both the vertex and fragment shaders from files
+/// \brief Load the vertex, geometry and fragment shaders from files
 ///
-/// This function can load both the vertex and the fragment
-/// shaders, or only one of them: pass NULL if you don't want to load
-/// either the vertex shader or the fragment shader.
+/// This function loads the vertex, geometry and fragment
+/// shaders. Pass NULL if you don't want to load
+/// a specific shader.
 /// The sources must be text files containing valid shaders
 /// in GLSL language. GLSL is a C-like language dedicated to
 /// OpenGL shaders; you'll probably need to read a good documentation
 /// for it before writing your own shaders.
 ///
 /// \param vertexShaderFilename   Path of the vertex shader file to load, or NULL to skip this shader
+/// \param geometryShaderFilename Path of the geometry shader file to load, or NULL to skip this shader
 /// \param fragmentShaderFilename Path of the fragment shader file to load, or NULL to skip this shader
 ///
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* fragmentShaderFilename);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* geometryShaderFilename, const char* fragmentShaderFilename);
 
 ////////////////////////////////////////////////////////////
-/// \brief Load both the vertex and fragment shaders from source codes in memory
+/// \brief Load the vertex, geometry and fragment shaders from source code in memory
 ///
-/// This function can load both the vertex and the fragment
-/// shaders, or only one of them: pass NULL if you don't want to load
-/// either the vertex shader or the fragment shader.
+/// This function loads the vertex, geometry and fragment
+/// shaders. Pass NULL if you don't want to load
+/// a specific shader.
 /// The sources must be valid shaders in GLSL language. GLSL is
 /// a C-like language dedicated to OpenGL shaders; you'll
 /// probably need to read a good documentation for it before
 /// writing your own shaders.
 ///
 /// \param vertexShader   String containing the source code of the vertex shader, or NULL to skip this shader
+/// \param geometryShader String containing the source code of the geometry shader, or NULL to skip this shader
 /// \param fragmentShader String containing the source code of the fragment shader, or NULL to skip this shader
 ///
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromMemory(const char* vertexShader, const char* fragmentShader);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geometryShader, const char* fragmentShader);
 
 ////////////////////////////////////////////////////////////
-/// \brief Load both the vertex and fragment shaders from custom streams
+/// \brief Load the vertex, geometry and fragment shaders from custom streams
 ///
-/// This function can load both the vertex and the fragment
-/// shaders, or only one of them: pass NULL if you don't want to load
-/// either the vertex shader or the fragment shader.
+/// This function loads the vertex, geometry and fragment
+/// shaders. Pass NULL if you don't want to load
+/// a specific shader.
 /// The source codes must be valid shaders in GLSL language.
 /// GLSL is a C-like language dedicated to OpenGL shaders;
 /// you'll probably need to read a good documentation for
 /// it before writing your own shaders.
 ///
 /// \param vertexShaderStream   Source stream to read the vertex shader from, or NULL to skip this shader
+/// \param geometryShaderStream Source stream to read the geometry shader from, or NULL to skip this shader
 /// \param fragmentShaderStream Source stream to read the fragment shader from, or NULL to skip this shader
 ///
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* fragmentShaderStream);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* geometryShaderStream, sfInputStream* fragmentShaderStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing shader
@@ -122,7 +125,7 @@ CSFML_GRAPHICS_API void sfShader_destroy(sfShader* shader);
 /// \param x      Value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setFloatParameter(sfShader* shader, const char* name, float x);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setFloatParameter(sfShader* shader, const char* name, float x);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 2-components vector parameter of a shader
