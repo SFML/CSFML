@@ -257,6 +257,13 @@ sfBool sfTexture_isRepeated(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
+sfBool sfTexture_generateMipmap(sfTexture* texture)
+{
+    CSFML_CALL_PTR_RETURN(texture, generateMipmap(), sfFalse);
+}
+
+
+////////////////////////////////////////////////////////////
 unsigned int sfTexture_getNativeHandle(const sfTexture* texture)
 {
     CSFML_CALL_PTR_RETURN(texture, getNativeHandle(), 0);
