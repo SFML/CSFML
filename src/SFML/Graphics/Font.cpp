@@ -93,12 +93,12 @@ void sfFont_destroy(sfFont* font)
 
 
 ////////////////////////////////////////////////////////////
-sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold)
+sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold, float outlineThickness)
 {
     sfGlyph glyph = {0, {0, 0, 0, 0}, {0, 0, 0, 0}};
     CSFML_CHECK_RETURN(font, glyph);
 
-    sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold == sfTrue);
+    sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold == sfTrue, outlineThickness);
 
     glyph.advance            = SFMLGlyph.advance;
     glyph.bounds.left        = SFMLGlyph.bounds.left;
