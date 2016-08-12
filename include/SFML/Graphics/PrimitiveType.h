@@ -41,13 +41,17 @@
 ////////////////////////////////////////////////////////////
 typedef enum 
 {
-    sfPoints,         ///< List of individual points
-    sfLines,          ///< List of individual lines
-    sfLinesStrip,     ///< List of connected lines, a point uses the previous point to form a line
-    sfTriangles,      ///< List of individual triangles
-    sfTrianglesStrip, ///< List of connected triangles, a point uses the two previous points to form a triangle
-    sfTrianglesFan,   ///< List of connected triangles, a point uses the common center and the previous point to form a triangle
-    sfQuads           ///< List of individual quads
+    sfPoints,        ///< List of individual points
+    sfLines,         ///< List of individual lines
+    sfLineStrip,     ///< List of connected lines, a point uses the previous point to form a line
+    sfTriangles,     ///< List of individual triangles
+    sfTriangleStrip, ///< List of connected triangles, a point uses the two previous points to form a triangle
+    sfTriangleFan,   ///< List of connected triangles, a point uses the common center and the previous point to form a triangle
+    sfQuads,         ///< List of individual quads
+
+    sfLinesStrip    = sfLineStrip,     ///< \deprecated Use sfLineStrip instead
+    sfTrianglesStrp = sfTriangleStrip, ///< \deprecated Use sfTriangleStrip instead
+    sfTrianglesFan  = sfTriangleFan    ///< \deprecated Use sfTriangleFan instead
 } sfPrimitiveType;
 
 
