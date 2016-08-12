@@ -102,6 +102,7 @@ const char** sfSoundRecorder_getAvailableDevices(size_t* count)
     return !cstringDevices.empty() ? &cstringDevices[0] : NULL;
 }
 
+
 ////////////////////////////////////////////////////////////
 const char* sfSoundRecorder_getDefaultDevice()
 {
@@ -110,11 +111,13 @@ const char* sfSoundRecorder_getDefaultDevice()
     return !defaultDevice.empty() ? defaultDevice.c_str() : NULL;
 }
 
+
 ////////////////////////////////////////////////////////////
 sfBool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* name)
 {
     CSFML_CALL_RETURN(soundRecorder, setDevice(name), sfFalse);
 }
+
 
 ////////////////////////////////////////////////////////////
 const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
@@ -124,4 +127,18 @@ const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
     soundRecorder->DeviceName = soundRecorder->This.getDevice();
 
     return soundRecorder->DeviceName.c_str();
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundRecorder_setChannelCount(sfSoundRecorder* soundRecorder, unsigned int channelCount)
+{
+    CSFML_CALL(soundRecorder, setChannelCount(channelCount));
+}
+
+
+////////////////////////////////////////////////////////////
+unsigned int sfSoundRecorder_getChannelCount(const sfSoundRecorder* soundRecorder)
+{
+    CSFML_CALL_RETURN(soundRecorder, getChannelCount(), 0);
 }

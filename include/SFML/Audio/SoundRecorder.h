@@ -185,5 +185,33 @@ CSFML_AUDIO_API sfBool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder,
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder);
 
+////////////////////////////////////////////////////////////
+/// \brief Set the channel count of the audio capture device
+///
+/// This method allows you to specify the number of channels
+/// used for recording. Currently only 16-bit mono and
+/// 16-bit stereo are supported.
+///
+/// \param channelCount Number of channels. Currently only
+///                     mono (1) and stereo (2) are supported.
+///
+/// \see sfSoundRecorder_getChannelCount
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundRecorder_setChannelCount(sfSoundRecorder* soundRecorder, unsigned int channelCount);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the number of channels used by this recorder
+///
+/// Currently only mono and stereo are supported, so the
+/// value is either 1 (for mono) or 2 (for stereo).
+///
+/// \return Number of channels
+///
+/// \see sfSoundRecorder_setChannelCount
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API unsigned int sfSoundRecorder_getChannelCount(const sfSoundRecorder* soundRecorder);
+
 
 #endif // SFML_SOUNDRECORDER_H
