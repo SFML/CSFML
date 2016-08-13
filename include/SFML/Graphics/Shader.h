@@ -693,5 +693,23 @@ CSFML_GRAPHICS_API void sfShader_bind(const sfShader* shader);
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfShader_isAvailable(void);
 
+////////////////////////////////////////////////////////////
+/// \brief Tell whether or not the system supports geometry shaders
+///
+/// This function should always be called before using
+/// the geometry shader features. If it returns false, then
+/// any attempt to use sfShader geometry shader features will fail.
+///
+/// This function can only return true if isAvailable() would also
+/// return true, since shaders in general have to be supported in
+/// order for geometry shaders to be supported as well.
+///
+/// Note: The first call to this function, whether by your
+/// code or SFML will result in a context switch.
+///
+/// \return True if geometry shaders are supported, false otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfShader_isGeometryAvailable(void);
 
 #endif // SFML_SHADER_H

@@ -36,105 +36,133 @@
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* geometryShaderFilename, const char* fragmentShaderFilename)
 {
-	bool vertexSuccess = false;
-	bool geometrySuccess = false;
-	bool fragmentSuccess = false;
+    bool success = false;
+    sfShader* shader = new sfShader;
+    if (vertexShaderFilename || geometryShaderFilename || fragmentShaderFilename)
+    {
+        if (!geometryShaderFilename)
+        {
+            if (!vertexShaderFilename)
+            {
+                // fragment shader only
+                success = shader->This.loadFromFile(fragmentShaderFilename, sf::Shader::Fragment);
+            }
+            else if (!fragmentShaderFilename)
+            {
+                // vertex shader only
+                success = shader->This.loadFromFile(vertexShaderFilename, sf::Shader::Vertex);
+            }
+            else
+            {
+                // vertex + fragment shaders
+                success = shader->This.loadFromFile(vertexShaderFilename, fragmentShaderFilename);
+            }
+        }
+        else
+        {
+            // vertex + geometry + fragment shaders
+            success = shader->This.loadFromFile(vertexShaderFilename, geometryShaderFilename, fragmentShaderFilename);
+        }
+    }
 
-	sfShader* shader = new sfShader;
-	
-	if (vertexShaderFilename)
-	{
-		vertexSuccess = shader->This.loadFromFile(vertexShaderFilename, sf::Shader::Vertex);
-	}
+    if (!success)
+    {
+        delete shader;
+        shader = NULL;
+    }
 
-	if (geometryShaderFilename)
-	{
-		geometrySuccess = shader->This.loadFromFile(geometryShaderFilename, sf::Shader::Geometry);
-	}
-
-	if (fragmentShaderFilename)
-	{
-		fragmentSuccess = shader->This.loadFromFile(fragmentShaderFilename, sf::Shader::Fragment);
-	}
-
-	if (!(vertexSuccess || geometrySuccess || fragmentSuccess))
-	{
-		delete shader;
-		shader = NULL;
-	}
-
-	return shader;
+    return shader;
 }
 
 
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geometryShader, const char* fragmentShader)
 {
-	bool vertexSuccess = false;
-	bool geometrySuccess = false;
-	bool fragmentSuccess = false;
+    bool success = false;
+    sfShader* shader = new sfShader;
+    if (vertexShader || geometryShader || fragmentShader)
+    {
+        if (!geometryShader)
+        {
+            if (!vertexShader)
+            {
+                // fragment shader only
+                success = shader->This.loadFromMemory(fragmentShader, sf::Shader::Fragment);
+            }
+            else if (!fragmentShader)
+            {
+                // vertex shader only
+                success = shader->This.loadFromMemory(vertexShader, sf::Shader::Vertex);
+            }
+            else
+            {
+                // vertex + fragment shaders
+                success = shader->This.loadFromMemory(vertexShader, fragmentShader);
+            }
+        }
+        else
+        {
+            // vertex + geometry + fragment shaders
+            success = shader->This.loadFromMemory(vertexShader, geometryShader, fragmentShader);
+        }
+    }
 
-	sfShader* shader = new sfShader;
+    if (!success)
+    {
+        delete shader;
+        shader = NULL;
+    }
 
-	if (vertexShader)
-	{
-		vertexSuccess = shader->This.loadFromMemory(vertexShader, sf::Shader::Vertex);
-	}
-
-	if (geometryShader)
-	{
-		geometrySuccess = shader->This.loadFromMemory(geometryShader, sf::Shader::Geometry);
-	}
-
-	if (fragmentShader)
-	{
-		fragmentSuccess = shader->This.loadFromMemory(fragmentShader, sf::Shader::Fragment);
-	}
-
-	if (!(vertexSuccess || geometrySuccess || fragmentSuccess))
-	{
-		delete shader;
-		shader = NULL;
-	}
-
-	return shader;
+    return shader;
 }
 
 
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* geometryShaderStream, sfInputStream* fragmentShaderStream)
 {
-	bool vertexSuccess = false;
-	bool geometrySuccess = false;
-	bool fragmentSuccess = false;
+    bool success = false;
+    sfShader* shader = new sfShader;
+    if (vertexShaderStream || geometryShaderStream || fragmentShaderStream)
+    {
+        if (!geometryShaderStream)
+        {
+            if (!vertexShaderStream)
+            {
+                // fragment shader only
+                CallbackStream stream(fragmentShaderStream);
+                success = shader->This.loadFromStream(stream, sf::Shader::Fragment);
+            }
+            else if (!fragmentShaderStream)
+            {
+                // vertex shader only
+                CallbackStream stream(vertexShaderStream);
+                success = shader->This.loadFromStream(stream, sf::Shader::Vertex);
+            }
+            else
+            {
+                // vertex + fragment shaders
+                CallbackStream vertexStream(vertexShaderStream);
+                CallbackStream fragmentStream(fragmentShaderStream);
+                success = shader->This.loadFromStream(vertexStream, fragmentStream);
+            }
+        }
+        else
+        {
+            // vertex + geometry + fragment shaders
+            CallbackStream vertexStream(vertexShaderStream);
+            CallbackStream geometryStream(geometryShaderStream);
+            CallbackStream fragmentStream(fragmentShaderStream);
+            success = shader->This.loadFromStream(vertexStream, geometryStream, fragmentStream);
+        }
+    }
 
-	sfShader* shader = new sfShader;
+    if (!success)
+    {
+        delete shader;
+        shader = NULL;
+    }
 
-	if (vertexShaderStream)
-	{
-		CallbackStream stream(vertexShaderStream);
-		vertexSuccess = shader->This.loadFromStream(stream, sf::Shader::Vertex);
-	}
-
-	if (geometryShaderStream)
-	{
-		CallbackStream stream(geometryShaderStream);
-		geometrySuccess = shader->This.loadFromStream(stream, sf::Shader::Geometry);
-	}
-
-	if (fragmentShaderStream)
-	{
-		CallbackStream stream(fragmentShaderStream);
-		fragmentSuccess = shader->This.loadFromStream(stream, sf::Shader::Fragment);
-	}
-
-	if (!(vertexSuccess || geometrySuccess || fragmentSuccess))
-	{
-		delete shader;
-		shader = NULL;
-	}
-
-	return shader;
+    return shader;
 }
 
 
@@ -412,4 +440,11 @@ void sfShader_bind(const sfShader* shader)
 sfBool sfShader_isAvailable(void)
 {
 	return sf::Shader::isAvailable() ? sfTrue : sfFalse;
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfShader_isGeometryAvailable(void)
+{
+    return sf::Shader::isGeometryAvailable() ? sfTrue : sfFalse;
 }
