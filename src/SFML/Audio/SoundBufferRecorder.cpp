@@ -45,9 +45,9 @@ void sfSoundBufferRecorder_destroy(sfSoundBufferRecorder* soundBufferRecorder)
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate)
+sfBool sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate)
 {
-    CSFML_CALL(soundBufferRecorder, start(sampleRate));
+    CSFML_CALL_RETURN(soundBufferRecorder, start(sampleRate), sfFalse);
 }
 
 
