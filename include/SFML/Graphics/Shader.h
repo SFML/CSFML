@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.h>
 #include <SFML/Graphics/Color.h>
+#include <SFML/Graphics/Glsl.h>
 #include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Types.h>
 #include <SFML/System/InputStream.h>
@@ -38,61 +39,64 @@
 
 
 ////////////////////////////////////////////////////////////
-/// \brief Load both the vertex and fragment shaders from files
+/// \brief Load the vertex, geometry and fragment shaders from files
 ///
-/// This function can load both the vertex and the fragment
-/// shaders, or only one of them: pass NULL if you don't want to load
-/// either the vertex shader or the fragment shader.
+/// This function loads the vertex, geometry and fragment
+/// shaders. Pass NULL if you don't want to load
+/// a specific shader.
 /// The sources must be text files containing valid shaders
 /// in GLSL language. GLSL is a C-like language dedicated to
 /// OpenGL shaders; you'll probably need to read a good documentation
 /// for it before writing your own shaders.
 ///
 /// \param vertexShaderFilename   Path of the vertex shader file to load, or NULL to skip this shader
+/// \param geometryShaderFilename Path of the geometry shader file to load, or NULL to skip this shader
 /// \param fragmentShaderFilename Path of the fragment shader file to load, or NULL to skip this shader
 ///
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* fragmentShaderFilename);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* geometryShaderFilename, const char* fragmentShaderFilename);
 
 ////////////////////////////////////////////////////////////
-/// \brief Load both the vertex and fragment shaders from source codes in memory
+/// \brief Load the vertex, geometry and fragment shaders from source code in memory
 ///
-/// This function can load both the vertex and the fragment
-/// shaders, or only one of them: pass NULL if you don't want to load
-/// either the vertex shader or the fragment shader.
+/// This function loads the vertex, geometry and fragment
+/// shaders. Pass NULL if you don't want to load
+/// a specific shader.
 /// The sources must be valid shaders in GLSL language. GLSL is
 /// a C-like language dedicated to OpenGL shaders; you'll
 /// probably need to read a good documentation for it before
 /// writing your own shaders.
 ///
 /// \param vertexShader   String containing the source code of the vertex shader, or NULL to skip this shader
+/// \param geometryShader String containing the source code of the geometry shader, or NULL to skip this shader
 /// \param fragmentShader String containing the source code of the fragment shader, or NULL to skip this shader
 ///
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromMemory(const char* vertexShader, const char* fragmentShader);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geometryShader, const char* fragmentShader);
 
 ////////////////////////////////////////////////////////////
-/// \brief Load both the vertex and fragment shaders from custom streams
+/// \brief Load the vertex, geometry and fragment shaders from custom streams
 ///
-/// This function can load both the vertex and the fragment
-/// shaders, or only one of them: pass NULL if you don't want to load
-/// either the vertex shader or the fragment shader.
+/// This function loads the vertex, geometry and fragment
+/// shaders. Pass NULL if you don't want to load
+/// a specific shader.
 /// The source codes must be valid shaders in GLSL language.
 /// GLSL is a C-like language dedicated to OpenGL shaders;
 /// you'll probably need to read a good documentation for
 /// it before writing your own shaders.
 ///
 /// \param vertexShaderStream   Source stream to read the vertex shader from, or NULL to skip this shader
+/// \param geometryShaderStream Source stream to read the geometry shader from, or NULL to skip this shader
 /// \param fragmentShaderStream Source stream to read the fragment shader from, or NULL to skip this shader
 ///
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* fragmentShaderStream);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* geometryShaderStream, sfInputStream* fragmentShaderStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing shader
@@ -101,6 +105,297 @@ CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShad
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfShader_destroy(sfShader* shader);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p float uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param x      Value of the float scalar
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setFloatUniform(sfShader* shader, const char* name, float x);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p vec2 uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the vec2 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setVec2Uniform(sfShader* shader, const char* name, sfGlslVec2 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p vec3 uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the vec3 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setVec3Uniform(sfShader* shader, const char* name, sfGlslVec3 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p vec4 uniform
+///
+/// sfColor objects can be passed to this function via 
+/// the use of sfGlslVec4_fromsfColor(sfColor);
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the vec4 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setVec4Uniform(sfShader* shader, const char* name, sfGlslVec4 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p vec4 uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param color  Value of the vec4 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setColorUniform(sfShader* shader, const char* name, sfColor color);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p int uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param x      Value of the integer scalar
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setIntUniform(sfShader* shader, const char* name, int x);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p ivec2 uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the ivec2 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setIvec2Uniform(sfShader* shader, const char* name, sfGlslIvec2 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p ivec3 uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the ivec3 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setIvec3Uniform(sfShader* shader, const char* name, sfGlslIvec3 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p ivec4 uniform
+///
+/// sfColor objects can be passed to this function via 
+/// the use of sfGlslIvec4_fromsfColor(sfColor);
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the ivec4 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setIvec4Uniform(sfShader* shader, const char* name, sfGlslIvec4 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p ivec4 uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param color  Value of the ivec4 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setIntColorUniform(sfShader* shader, const char* name, sfColor color);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p bool uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param x      Value of the bool scalar
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setBoolUniform(sfShader* shader, const char* name, sfBool x);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p bvec2 uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the bvec2 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setBvec2Uniform(sfShader* shader, const char* name, sfGlslBvec2 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p Bvec3 uniform
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the Bvec3 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setBvec3Uniform(sfShader* shader, const char* name, sfGlslBvec3 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p bvec4 uniform
+///
+/// sfColor objects can be passed to this function via 
+/// the use of sfGlslIvec4_fromsfColor(sfColor);
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param vector Value of the bvec4 vector
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setBvec4Uniform(sfShader* shader, const char* name, sfGlslBvec4 vector);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p mat3 matrix
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param matrix Value of the mat3 matrix
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setMat3Uniform(sfShader* shader, const char* name, const sfGlslMat3* matrix);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify value for \p mat4 matrix
+///
+/// \param shader Shader object
+/// \param name   Name of the uniform variable in GLSL
+/// \param matrix Value of the mat4 matrix
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setMat4Uniform(sfShader* shader, const char* name, const sfGlslMat4* matrix);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify a texture as \p sampler2D uniform
+///
+/// \a name is the name of the variable to change in the shader.
+/// The corresponding parameter in the shader must be a 2D texture
+/// (\p sampler2D GLSL type).
+///
+/// Example:
+/// \code
+/// uniform sampler2D the_texture; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfTexture texture;
+/// ...
+/// sfShader_setTextureUniform(shader, "the_texture", &texture);
+/// \endcode
+/// It is important to note that \a texture must remain alive as long
+/// as the shader uses it, no copy is made internally.
+///
+/// To use the texture of the object being drawn, which cannot be
+/// known in advance, you can pass the special value
+/// sf::Shader::CurrentTexture:
+/// \code
+/// shader.setUniform("the_texture", sf::Shader::CurrentTexture).
+/// \endcode
+///
+/// \param shader  Shader object
+/// \param name    Name of the texture in the shader
+/// \param texture Texture to assign
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setTextureUniform(sfShader* shader, const char* name, const sfTexture* texture);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify current texture as \p sampler2D uniform
+///
+/// This overload maps a shader texture variable to the
+/// texture of the object being drawn, which cannot be
+/// known in advance.
+/// The corresponding parameter in the shader must be a 2D texture
+/// (\p sampler2D GLSL type).
+///
+/// Example:
+/// \code
+/// uniform sampler2D current; // this is the variable in the shader
+/// \endcode
+/// \code
+/// sfShader_setCurrentTextureUniform(shader, "current");
+/// \endcode
+///
+/// \param shader Shader object
+/// \param name   Name of the texture in the shader
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setCurrentTextureUniform(sfShader* shader, const char* name);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify values for \p float[] array uniform
+///
+/// \param shader      Shader object
+/// \param name        Name of the uniform variable in GLSL
+/// \param scalarArray pointer to array of \p float values
+/// \param length      Number of elements in the array
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setFloatUniformArray(sfShader* shader, const char* name, const float* scalarArray, size_t length);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify values for \p vec2[] array uniform
+///
+/// \param shader      Shader object
+/// \param name        Name of the uniform variable in GLSL
+/// \param vectorArray pointer to array of \p vec2 values
+/// \param length      Number of elements in the array
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setVec2UniformArray(sfShader* shader, const char* name, const sfGlslVec2* vectorArray, size_t length);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify values for \p vec3[] array uniform
+///
+/// \param shader      Shader object
+/// \param name        Name of the uniform variable in GLSL
+/// \param vectorArray pointer to array of \p vec3 values
+/// \param length      Number of elements in the array
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setVec3UniformArray(sfShader* shader, const char* name, const sfGlslVec3* vectorArray, size_t length);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify values for \p vec4[] array uniform
+///
+/// \param shader      Shader object
+/// \param name        Name of the uniform variable in GLSL
+/// \param vectorArray pointer to array of \p vec4 values
+/// \param length      Number of elements in the array
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setVec4UniformArray(sfShader* shader, const char* name, const sfGlslVec4* vectorArray, size_t length);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify values for \p mat3[] array uniform
+///
+/// \param shader      Shader object
+/// \param name        Name of the uniform variable in GLSL
+/// \param matrixArray pointer to array of \p mat3 values
+/// \param length      Number of elements in the array
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setMat3UniformArray(sfShader* shader, const char* name, const sfGlslMat3* matrixArray, size_t length);
+
+////////////////////////////////////////////////////////////
+/// \brief Specify values for \p mat4[] array uniform
+///
+/// \param shader      Shader object
+/// \param name        Name of the uniform variable in GLSL
+/// \param matrixArray pointer to array of \p mat4 values
+/// \param length      Number of elements in the array
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShader_setMat4UniformArray(sfShader* shader, const char* name, const sfGlslMat4* matrixArray, size_t length);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a float parameter of a shader
@@ -122,7 +417,7 @@ CSFML_GRAPHICS_API void sfShader_destroy(sfShader* shader);
 /// \param x      Value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setFloatParameter(sfShader* shader, const char* name, float x);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setFloatParameter(sfShader* shader, const char* name, float x);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 2-components vector parameter of a shader
@@ -145,7 +440,7 @@ CSFML_GRAPHICS_API void sfShader_setFloatParameter(sfShader* shader, const char*
 /// \param y      Second component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setFloat2Parameter(sfShader* shader, const char* name, float x, float y);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setFloat2Parameter(sfShader* shader, const char* name, float x, float y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 3-components vector parameter of a shader
@@ -169,7 +464,7 @@ CSFML_GRAPHICS_API void sfShader_setFloat2Parameter(sfShader* shader, const char
 /// \param z      Third component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setFloat3Parameter(sfShader* shader, const char* name, float x, float y, float z);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setFloat3Parameter(sfShader* shader, const char* name, float x, float y, float z);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 4-components vector parameter of a shader
@@ -194,7 +489,7 @@ CSFML_GRAPHICS_API void sfShader_setFloat3Parameter(sfShader* shader, const char
 /// \param w      Fourth component of the value to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 2-components vector parameter of a shader
@@ -217,7 +512,7 @@ CSFML_GRAPHICS_API void sfShader_setFloat4Parameter(sfShader* shader, const char
 /// \param vector Vector to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setVector2Parameter(sfShader* shader, const char* name, sfVector2f vector);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setVector2Parameter(sfShader* shader, const char* name, sfVector2f vector);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a 3-components vector parameter of a shader
@@ -240,7 +535,7 @@ CSFML_GRAPHICS_API void sfShader_setVector2Parameter(sfShader* shader, const cha
 /// \param vector Vector to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setVector3Parameter(sfShader* shader, const char* name, sfVector3f vector);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setVector3Parameter(sfShader* shader, const char* name, sfVector3f vector);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a color parameter of a shader
@@ -268,7 +563,7 @@ CSFML_GRAPHICS_API void sfShader_setVector3Parameter(sfShader* shader, const cha
 /// \param color  Color to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setColorParameter(sfShader* shader, const char* name, sfColor color);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setColorParameter(sfShader* shader, const char* name, sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a matrix parameter of a shader
@@ -291,7 +586,7 @@ CSFML_GRAPHICS_API void sfShader_setColorParameter(sfShader* shader, const char*
 /// \param transform Transform to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setTransformParameter(sfShader* shader, const char* name, sfTransform transform);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setTransformParameter(sfShader* shader, const char* name, sfTransform transform);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a texture parameter of a shader
@@ -324,7 +619,7 @@ CSFML_GRAPHICS_API void sfShader_setTransformParameter(sfShader* shader, const c
 /// \param texture Texture to assign
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTexture* texture);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a texture parameter of a shader
@@ -347,7 +642,7 @@ CSFML_GRAPHICS_API void sfShader_setTextureParameter(sfShader* shader, const cha
 /// \param name   Name of the texture in the shader
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setCurrentTextureParameter(sfShader* shader, const char* name);
+CSFML_GRAPHICS_API CSFML_DEPRECATED void sfShader_setCurrentTextureParameter(sfShader* shader, const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the underlying OpenGL handle of the shader.
@@ -398,5 +693,23 @@ CSFML_GRAPHICS_API void sfShader_bind(const sfShader* shader);
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfShader_isAvailable(void);
 
+////////////////////////////////////////////////////////////
+/// \brief Tell whether or not the system supports geometry shaders
+///
+/// This function should always be called before using
+/// the geometry shader features. If it returns false, then
+/// any attempt to use sfShader geometry shader features will fail.
+///
+/// This function can only return true if isAvailable() would also
+/// return true, since shaders in general have to be supported in
+/// order for geometry shaders to be supported as well.
+///
+/// Note: The first call to this function, whether by your
+/// code or SFML will result in a context switch.
+///
+/// \return True if geometry shaders are supported, false otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfShader_isGeometryAvailable(void);
 
 #endif // SFML_SHADER_H

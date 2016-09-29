@@ -56,8 +56,9 @@ typedef enum
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfBlendEquationAdd,     ///< Pixel = Src * SrcFactor + Dst * DstFactor
-    sfBlendEquationSubtract ///< Pixel = Src * SrcFactor - Dst * DstFactor
+    sfBlendEquationAdd,            ///< Pixel = Src * SrcFactor + Dst * DstFactor
+    sfBlendEquationSubtract,       ///< Pixel = Src * SrcFactor - Dst * DstFactor
+    sfBlendEquationReverseSubtract ///< Pixel = Dst * DstFactor - Src * SrcFactor
 } sfBlendEquation;
 
 

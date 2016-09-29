@@ -290,15 +290,59 @@ CSFML_GRAPHICS_API void sfText_setCharacterSize(sfText* text, unsigned int size)
 CSFML_GRAPHICS_API void sfText_setStyle(sfText* text, sfUint32 style);
 
 ////////////////////////////////////////////////////////////
-/// \brief Set the global color of a text
+/// \brief Set the fill color of a text
 ///
-/// By default, the text's color is opaque white.
+/// By default, the text's fill color is opaque white.
+/// Setting the fill color to a transparent color with an outline
+/// will cause the outline to be displayed in the fill area of the text.
 ///
 /// \param text  Text object
-/// \param color New color of the text
+/// \param color New fill color of the text
+///
+/// \deprecated This function is deprecated and may be removed in future releases.
+/// Use sfText_setFillColor instead.
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfText_setColor(sfText* text, sfColor color);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the fill color of a text
+///
+/// By default, the text's fill color is opaque white.
+/// Setting the fill color to a transparent color with an outline
+/// will cause the outline to be displayed in the fill area of the text.
+///
+/// \param text  Text object
+/// \param color New fill color of the text
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setFillColor(sfText* text, sfColor color);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the outline color of the text
+///
+/// By default, the text's outline color is opaque black.
+///
+/// \param text  Text object
+/// \param color New outline color of the text
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setOutlineColor(sfText* text, sfColor color);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the thickness of the text's outline
+///
+/// By default, the outline thickness is 0.
+///
+/// Be aware that using a negative value for the outline
+/// thickness will cause distorted rendering.
+///
+/// \param thickness New outline thickness, in pixels
+///
+/// \see getOutlineThickness
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setOutlineThickness(sfText* text, float thickness);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the string of a text (returns an ANSI string)
@@ -355,14 +399,47 @@ CSFML_GRAPHICS_API unsigned int sfText_getCharacterSize(const sfText* text);
 CSFML_GRAPHICS_API sfUint32 sfText_getStyle(const sfText* text);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the global color of a text
+/// \brief Get the fill color of a text
 ///
 /// \param text Text object
 ///
-/// \return Global color of the text
+/// \return Fill color of the text
+///
+/// \deprecated This function is deprecated and may be removed in future releases.
+/// Use sfText_getFillColor instead.
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfColor sfText_getColor(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the fill color of a text
+///
+/// \param text Text object
+///
+/// \return Fill color of the text
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfColor sfText_getFillColor(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the outline color of a text
+///
+/// \param text Text object
+///
+/// \return Outline color of the text
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfColor sfText_getOutlineColor(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the outline thickness of a text
+///
+/// \param text Text object
+///
+/// \return Outline thickness of a text, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float sfText_getOutlineThickness(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the position of the \a index-th character in a text

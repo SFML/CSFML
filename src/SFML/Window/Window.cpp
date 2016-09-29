@@ -263,6 +263,13 @@ void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool visible)
 
 
 ////////////////////////////////////////////////////////////
+void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed)
+{
+    CSFML_CALL(window, setMouseCursorGrabbed(grabbed == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled)
 {
     CSFML_CALL(window, setVerticalSyncEnabled(enabled == sfTrue));

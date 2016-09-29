@@ -67,11 +67,12 @@ unsigned short sfTcpListener_getLocalPort(const sfTcpListener* listener)
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port)
+sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port, sfIpAddress address)
 {
     CSFML_CHECK_RETURN(listener, sfSocketError);
 
-    return static_cast<sfSocketStatus>(listener->This.listen(port));
+    sf::IpAddress sfmlAddress(address.address);
+    return static_cast<sfSocketStatus>(listener->This.listen(port, sfmlAddress));
 }
 
 

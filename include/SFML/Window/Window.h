@@ -316,15 +316,6 @@ CSFML_WINDOW_API void sfWindow_setIcon(sfWindow* window, unsigned int width, uns
 CSFML_WINDOW_API void sfWindow_setVisible(sfWindow* window, sfBool visible);
 
 ////////////////////////////////////////////////////////////
-/// \brief Show or hide the mouse cursor
-///
-/// \param window  Window object
-/// \param visible sfTrue to show, sfFalse to hide
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool visible);
-
-////////////////////////////////////////////////////////////
 /// \brief Enable or disable vertical synchronization
 ///
 /// Activating vertical synchronization will limit the number
@@ -337,6 +328,30 @@ CSFML_WINDOW_API void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool vi
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled);
+
+////////////////////////////////////////////////////////////
+/// \brief Show or hide the mouse cursor
+///
+/// \param window  Window object
+/// \param visible sfTrue to show, sfFalse to hide
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool visible);
+
+////////////////////////////////////////////////////////////
+/// \brief Grab or release the mouse cursor
+///
+/// If set, grabs the mouse cursor inside this window's client
+/// area so it may no longer be moved outside its bounds.
+/// Note that grabbing is only active while the window has
+/// focus and calling this function for fullscreen windows
+/// won't have any effect (fullscreen windows always grab the
+/// cursor).
+///
+/// \param grabbed sfTrue to enable, sfFalse to disable
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable automatic key-repeat
@@ -352,6 +367,31 @@ CSFML_WINDOW_API void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool e
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enabled);
+
+////////////////////////////////////////////////////////////
+/// \brief Limit the framerate to a maximum fixed frequency
+///
+/// If a limit is set, the window will use a small delay after
+/// each call to sfWindow_display to ensure that the current frame
+/// lasted long enough to match the framerate limit.
+///
+/// \param window Window object
+/// \param limit  Framerate limit, in frames per seconds (use 0 to disable limit)
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_setFramerateLimit(sfWindow* window, unsigned int limit);
+
+////////////////////////////////////////////////////////////
+/// \brief Change the joystick threshold
+///
+/// The joystick threshold is the value below which
+/// no JoyMoved event will be generated.
+///
+/// \param window    Window object
+/// \param threshold New threshold, in the range [0, 100]
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_setJoystickThreshold(sfWindow* window, float threshold);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a window as the current target
@@ -410,31 +450,6 @@ CSFML_WINDOW_API sfBool sfWindow_hasFocus(const sfWindow* window);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfWindow_display(sfWindow* window);
-
-////////////////////////////////////////////////////////////
-/// \brief Limit the framerate to a maximum fixed frequency
-///
-/// If a limit is set, the window will use a small delay after
-/// each call to sfWindow_display to ensure that the current frame
-/// lasted long enough to match the framerate limit.
-///
-/// \param window Window object
-/// \param limit  Framerate limit, in frames per seconds (use 0 to disable limit)
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setFramerateLimit(sfWindow* window, unsigned int limit);
-
-////////////////////////////////////////////////////////////
-/// \brief Change the joystick threshold
-///
-/// The joystick threshold is the value below which
-/// no JoyMoved event will be generated.
-///
-/// \param window    Window object
-/// \param threshold New threshold, in the range [0, 100]
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setJoystickThreshold(sfWindow* window, float threshold);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the OS-specific handle of the window

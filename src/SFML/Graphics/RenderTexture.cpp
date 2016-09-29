@@ -281,3 +281,10 @@ sfBool sfRenderTexture_isRepeated(const sfRenderTexture* renderTexture)
 {
     CSFML_CALL_RETURN(renderTexture, isRepeated(), sfFalse);
 }
+
+
+////////////////////////////////////////////////////////////
+sfBool sfRenderTexture_generateMipmap(sfRenderTexture* renderTexture)
+{
+    CSFML_CALL_RETURN(renderTexture, generateMipmap(), sfFalse);
+}

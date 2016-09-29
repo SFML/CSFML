@@ -226,6 +226,20 @@ sfBool sfTexture_isSmooth(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
+void sfTexture_setSrgb(sfTexture* texture, sfBool sRgb)
+{
+    CSFML_CALL_PTR(texture, setSrgb(sRgb == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfTexture_isSrgb(const sfTexture* texture)
+{
+    CSFML_CALL_PTR_RETURN(texture, isSrgb(), sfFalse);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfTexture_setRepeated(sfTexture* texture, sfBool repeated)
 {
     CSFML_CALL_PTR(texture, setRepeated(repeated == sfTrue));
@@ -239,6 +253,13 @@ sfBool sfTexture_isRepeated(const sfTexture* texture)
     CSFML_CHECK_RETURN(texture->This, sfFalse);
 
     return texture->This->isRepeated();
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfTexture_generateMipmap(sfTexture* texture)
+{
+    CSFML_CALL_PTR_RETURN(texture, generateMipmap(), sfFalse);
 }
 
 

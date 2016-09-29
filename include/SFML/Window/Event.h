@@ -117,10 +117,13 @@ typedef struct
 } sfMouseButtonEvent;
 
 ////////////////////////////////////////////////////////////
-/// \brief Mouse wheel events parameters (deprecated)
+/// \brief Mouse wheel events parameters
 ///
+/// \deprecated
+/// Use sfMouseWheelScrollEvent instead.
+/// 
 ////////////////////////////////////////////////////////////
-typedef struct
+typedef struct CSFML_DEPRECATED
 {
     sfEventType type;
     int         delta;
@@ -216,19 +219,19 @@ typedef struct
 ////////////////////////////////////////////////////////////
 typedef union
 {
-    sfEventType            type;            ///< Type of the event
-    sfSizeEvent            size;            ///< Size event parameters
-    sfKeyEvent             key;             ///< Key event parameters
-    sfTextEvent            text;            ///< Text event parameters
-    sfMouseMoveEvent       mouseMove;       ///< Mouse move event parameters
-    sfMouseButtonEvent     mouseButton;     ///< Mouse button event parameters
-    sfMouseWheelEvent       mouseWheel;        ///< Mouse wheel event parameters (deprecated)
-    sfMouseWheelScrollEvent mouseWheelScroll;  ///< Mouse wheel event parameters
-    sfJoystickMoveEvent    joystickMove;    ///< Joystick move event parameters
-    sfJoystickButtonEvent  joystickButton;  ///< Joystick button event parameters
-    sfJoystickConnectEvent joystickConnect; ///< Joystick (dis)connect event parameters
-    sfTouchEvent           touch;           ///< Touch events parameters
-    sfSensorEvent          sensor;          ///< Sensor event parameters
+    sfEventType             type;             ///< Type of the event
+    sfSizeEvent             size;             ///< Size event parameters
+    sfKeyEvent              key;              ///< Key event parameters
+    sfTextEvent             text;             ///< Text event parameters
+    sfMouseMoveEvent        mouseMove;        ///< Mouse move event parameters
+    sfMouseButtonEvent      mouseButton;      ///< Mouse button event parameters
+    sfMouseWheelEvent       mouseWheel;       ///< Mouse wheel event parameters (deprecated)
+    sfMouseWheelScrollEvent mouseWheelScroll; ///< Mouse wheel event parameters
+    sfJoystickMoveEvent     joystickMove;     ///< Joystick move event parameters
+    sfJoystickButtonEvent   joystickButton;   ///< Joystick button event parameters
+    sfJoystickConnectEvent  joystickConnect;  ///< Joystick (dis)connect event parameters
+    sfTouchEvent            touch;            ///< Touch events parameters
+    sfSensorEvent           sensor;           ///< Sensor event parameters
 } sfEvent;
 
 

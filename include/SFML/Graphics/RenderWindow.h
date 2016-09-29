@@ -209,6 +209,15 @@ CSFML_GRAPHICS_API void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, uns
 CSFML_GRAPHICS_API void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, sfBool visible);
 
 ////////////////////////////////////////////////////////////
+/// \brief Enable / disable vertical synchronization on a render window
+///
+/// \param renderWindow Render window object
+/// \param enabled      sfTrue to enable v-sync, sfFalse to deactivate
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled);
+
+////////////////////////////////////////////////////////////
 /// \brief Show or hide the mouse cursor on a render window
 ///
 /// \param renderWindow Render window object
@@ -218,13 +227,19 @@ CSFML_GRAPHICS_API void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, 
 CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, sfBool show);
 
 ////////////////////////////////////////////////////////////
-/// \brief Enable / disable vertical synchronization on a render window
+/// \brief Grab or release the mouse cursor
 ///
-/// \param renderWindow Render window object
-/// \param enabled      sfTrue to enable v-sync, sfFalse to deactivate
+/// If set, grabs the mouse cursor inside this window's client
+/// area so it may no longer be moved outside its bounds.
+/// Note that grabbing is only active while the window has
+/// focus and calling this function for fullscreen windows
+/// won't have any effect (fullscreen windows always grab the
+/// cursor).
+///
+/// \param grabbed sfTrue to enable, sfFalse to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled);
+CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, sfBool grabbed);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable automatic key-repeat for keydown events
@@ -236,6 +251,24 @@ CSFML_GRAPHICS_API void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* re
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled);
+
+////////////////////////////////////////////////////////////
+/// \brief Limit the framerate to a maximum fixed frequency for a render window
+///
+/// \param renderWindow Render window object
+/// \param limit        Framerate limit, in frames per seconds (use 0 to disable limit)
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_setFramerateLimit(sfRenderWindow* renderWindow, unsigned int limit);
+
+////////////////////////////////////////////////////////////
+/// \brief Change the joystick threshold, ie. the value below which no move event will be generated
+///
+/// \param renderWindow Render window object
+/// \param threshold    New threshold, in range [0, 100]
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_setJoystickThreshold(sfRenderWindow* renderWindow, float threshold);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a render window as the current target for rendering
@@ -281,24 +314,6 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_hasFocus(const sfRenderWindow* renderWi
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderWindow_display(sfRenderWindow* renderWindow);
-
-////////////////////////////////////////////////////////////
-/// \brief Limit the framerate to a maximum fixed frequency for a render window
-///
-/// \param renderWindow Render window object
-/// \param limit        Framerate limit, in frames per seconds (use 0 to disable limit)
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setFramerateLimit(sfRenderWindow* renderWindow, unsigned int limit);
-
-////////////////////////////////////////////////////////////
-/// \brief Change the joystick threshold, ie. the value below which no move event will be generated
-///
-/// \param renderWindow Render window object
-/// \param threshold    New threshold, in range [0, 100]
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setJoystickThreshold(sfRenderWindow* renderWindow, float threshold);
 
 ////////////////////////////////////////////////////////////
 /// \brief Retrieve the OS-specific handle of a render window
@@ -494,22 +509,31 @@ CSFML_GRAPHICS_API void sfRenderWindow_popGLStates(sfRenderWindow* renderWindow)
 CSFML_GRAPHICS_API void sfRenderWindow_resetGLStates(sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
-/// \brief Copy the current contents of a render window to an image
+/// \brief Copy the current contents of the window to an image
+///
+/// \deprecated
+/// Use a sfTexture and its
+/// sfTexture_updateFromRenderWindow(sfTexture*, const sfRenderWindow*, unsigned int, unsigned int)
+/// function and copy its contents into an sfImage instead.
+/// \code
+/// sfVector2u windowSize = sfRenderWindow_getSize(window);
+/// sfTexture* texture = sfTexture_create(windowSize.x, windowSize.y);
+/// sfTexture_updateFromRenderWindow(texture, window, windowSize.x, windowSize.y);
+/// sfImage* screenshot = sfTexture_copyToImage(texture);
+/// \endcode
 ///
 /// This is a slow operation, whose main purpose is to make
 /// screenshots of the application. If you want to update an
 /// image with the contents of the window and then use it for
-/// drawing, you should rather use a sfTexture and its
-/// update(sfWindow*) function.
+/// drawing, you should rather use a sfTexture and the
+/// sfTexture_updateFromWindow(sfTexture*, const sfWindow*, unsigned int, unsigned int) function.
 /// You can also draw things directly to a texture with the
-/// sfRenderWindow class.
+/// sfRenderTexture class.
 ///
-/// \param renderWindow Render window object
-///
-/// \return New image containing the captured contents
+/// \return sfImage containing the captured contents.
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfImage* sfRenderWindow_capture(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API CSFML_DEPRECATED sfImage* sfRenderWindow_capture(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of the mouse relative to a render-window

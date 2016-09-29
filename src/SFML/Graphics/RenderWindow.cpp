@@ -273,6 +273,13 @@ void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, sfBool visible)
 
 
 ////////////////////////////////////////////////////////////
+void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled)
+{
+    CSFML_CALL(renderWindow, setVerticalSyncEnabled(enabled == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, sfBool visible)
 {
     CSFML_CALL(renderWindow, setMouseCursorVisible(visible == sfTrue));
@@ -280,9 +287,9 @@ void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, sfBool v
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled)
+void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, sfBool grabbed)
 {
-    CSFML_CALL(renderWindow, setVerticalSyncEnabled(enabled == sfTrue));
+    CSFML_CALL(renderWindow, setMouseCursorGrabbed(grabbed == sfTrue));
 }
 
 

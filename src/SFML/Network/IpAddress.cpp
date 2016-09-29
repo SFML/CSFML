@@ -54,6 +54,10 @@ const sfIpAddress sfIpAddress_None = sfIpAddress_fromBytes(0, 0, 0, 0);
 
 
 ////////////////////////////////////////////////////////////
+const sfIpAddress sfIpAddress_Any = sfIpAddress_fromBytes(0, 0, 0, 0);
+
+
+////////////////////////////////////////////////////////////
 const sfIpAddress sfIpAddress_LocalHost = sfIpAddress_fromBytes(127, 0, 0, 1);
 
 
