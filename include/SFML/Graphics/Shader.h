@@ -36,6 +36,7 @@
 #include <SFML/System/InputStream.h>
 #include <SFML/System/Vector2.h>
 #include <SFML/System/Vector3.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
