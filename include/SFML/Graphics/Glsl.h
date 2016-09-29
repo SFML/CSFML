@@ -36,8 +36,8 @@ typedef sfVector2i sfGlslIvec2;
 
 typedef struct
 {
-    bool x;
-    bool y;
+    sfBool x;
+    sfBool y;
 } sfGlslBvec2;
 
 // 3D vectors
@@ -52,9 +52,9 @@ typedef struct
 
 typedef struct
 {
-    bool x;
-    bool y;
-    bool z;
+    sfBool x;
+    sfBool y;
+    sfBool z;
 } sfGlslBvec3;
 
 // 4D vectors
@@ -76,10 +76,10 @@ typedef struct
 
 typedef struct
 {
-    bool x;
-    bool y;
-    bool z;
-    bool w;
+    sfBool x;
+    sfBool y;
+    sfBool z;
+    sfBool w;
 } sfGlslBvec4;
 
 // matrices

@@ -256,28 +256,28 @@ void sfShader_setIntColorUniform(sfShader* shader, const char* name, sfColor col
 ////////////////////////////////////////////////////////////
 void sfShader_setBoolUniform(sfShader* shader, const char* name, sfBool x)
 {
-	CSFML_CALL(shader, setUniform(name, x));
+	CSFML_CALL(shader, setUniform(name, x != sfFalse));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec2Uniform(sfShader* shader, const char* name, sfGlslBvec2 vector)
 {
-	CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec2(vector.x, vector.y)));
+	CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec2(vector.x != sfFalse, vector.y != sfFalse)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec3Uniform(sfShader* shader, const char* name, sfGlslBvec3 vector)
 {
-	CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec3(vector.x, vector.y, vector.z)));
+	CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec3(vector.x != sfFalse, vector.y != sfFalse, vector.z != sfFalse)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec4Uniform(sfShader* shader, const char* name, sfGlslBvec4 vector)
 {
-	CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec4(vector.x, vector.y, vector.z, vector.w)));
+	CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec4(vector.x != sfFalse, vector.y != sfFalse, vector.z != sfFalse, vector.w != sfFalse)));
 }
 
 
