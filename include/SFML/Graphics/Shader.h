@@ -36,6 +36,7 @@
 #include <SFML/System/InputStream.h>
 #include <SFML/System/Vector2.h>
 #include <SFML/System/Vector3.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -139,7 +140,7 @@ CSFML_GRAPHICS_API void sfShader_setVec3Uniform(sfShader* shader, const char* na
 ////////////////////////////////////////////////////////////
 /// \brief Specify value for \p vec4 uniform
 ///
-/// sfColor objects can be passed to this function via 
+/// sfColor objects can be passed to this function via
 /// the use of sfGlslVec4_fromsfColor(sfColor);
 ///
 /// \param shader Shader object
@@ -192,7 +193,7 @@ CSFML_GRAPHICS_API void sfShader_setIvec3Uniform(sfShader* shader, const char* n
 ////////////////////////////////////////////////////////////
 /// \brief Specify value for \p ivec4 uniform
 ///
-/// sfColor objects can be passed to this function via 
+/// sfColor objects can be passed to this function via
 /// the use of sfGlslIvec4_fromsfColor(sfColor);
 ///
 /// \param shader Shader object
@@ -245,7 +246,7 @@ CSFML_GRAPHICS_API void sfShader_setBvec3Uniform(sfShader* shader, const char* n
 ////////////////////////////////////////////////////////////
 /// \brief Specify value for \p bvec4 uniform
 ///
-/// sfColor objects can be passed to this function via 
+/// sfColor objects can be passed to this function via
 /// the use of sfGlslIvec4_fromsfColor(sfColor);
 ///
 /// \param shader Shader object
