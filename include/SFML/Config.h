@@ -30,7 +30,7 @@
 // Define the CSFML version
 ////////////////////////////////////////////////////////////
 #define CSFML_VERSION_MAJOR 2
-#define CSFML_VERSION_MINOR 3
+#define CSFML_VERSION_MINOR 4
 #define CSFML_VERSION_PATCH 0
 
 
