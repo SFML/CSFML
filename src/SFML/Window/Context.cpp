@@ -45,7 +45,7 @@ void sfContext_destroy(sfContext* context)
 
 
 ////////////////////////////////////////////////////////////
-void sfContext_setActive(sfContext* context, sfBool active)
+sfBool sfContext_setActive(sfContext* context, sfBool active)
 {
-    CSFML_CALL(context, setActive(active == sfTrue));
+    CSFML_CALL_RETURN(context, setActive(active == sfTrue), false)
 }
