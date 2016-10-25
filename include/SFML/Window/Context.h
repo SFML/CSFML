@@ -30,7 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Export.h>
 #include <SFML/Window/Types.h>
-
+#include <SFML/Window/Window.h>
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new context
@@ -61,5 +61,16 @@ CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfBool sfContext_setActive(sfContext* context, sfBool active);
 
+////////////////////////////////////////////////////////////
+/// \brief Get the settings of the context.
+///
+/// Note that these settings may be different than the ones passed to the
+/// constructor; they are indeed adjusted if the original settings are not
+/// directly supported by the system.
+///
+/// \return Structure containing the settings
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API sfContextSettings sfContext_getSettings(const sfContext* context);
 
 #endif // SFML_CONTEXT_H

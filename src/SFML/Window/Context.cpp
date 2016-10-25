@@ -49,3 +49,21 @@ sfBool sfContext_setActive(sfContext* context, sfBool active)
 {
     CSFML_CALL_RETURN(context, setActive(active == sfTrue), false)
 }
+
+////////////////////////////////////////////////////////////
+sfContextSettings sfContext_getSettings(const sfContext* context)
+{
+    sfContextSettings settings = {0, 0, 0, 0, 0};
+    CSFML_CHECK_RETURN(context, settings);
+
+    const sf::ContextSettings& params = context->This.getSettings();
+
+    settings.depthBits         = params.depthBits;
+    settings.stencilBits       = params.stencilBits;
+    settings.antialiasingLevel = params.antialiasingLevel;
+    settings.majorVersion      = params.majorVersion;
+    settings.minorVersion      = params.minorVersion;
+    settings.attributeFlags    = params.attributeFlags;
+
+    return settings;
+}
