@@ -56,8 +56,10 @@ CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
 /// \param context Context object
 /// \param active  sfTrue to activate, sfFalse to deactivate
 ///
+/// \return True on success, false on failure
+///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfContext_setActive(sfContext* context, sfBool active);
+CSFML_WINDOW_API sfBool sfContext_setActive(sfContext* context, sfBool active);
 
 
 #endif // SFML_CONTEXT_H
