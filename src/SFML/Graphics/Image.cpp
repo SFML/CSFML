@@ -27,7 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Image.h>
 #include <SFML/Graphics/ImageStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 #include <SFML/CallbackStream.h>
 
 ////////////////////////////////////////////////////////////

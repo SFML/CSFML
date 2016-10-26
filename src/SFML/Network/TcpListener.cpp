@@ -28,7 +28,7 @@
 #include <SFML/Network/TcpListener.h>
 #include <SFML/Network/TcpListenerStruct.h>
 #include <SFML/Network/TcpSocketStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 
 
 ////////////////////////////////////////////////////////////

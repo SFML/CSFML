@@ -29,7 +29,7 @@
 #include <SFML/Network/TcpSocketStruct.h>
 #include <SFML/Network/PacketStruct.h>
 #include <SFML/Network/IpAddress.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 #include <string.h>
 
 

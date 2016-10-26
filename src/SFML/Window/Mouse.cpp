@@ -28,7 +28,7 @@
 #include <SFML/Window/Mouse.h>
 #include <SFML/Window/WindowStruct.h>
 #include <SFML/Window/Mouse.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 
 
 ////////////////////////////////////////////////////////////

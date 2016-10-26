@@ -27,7 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Audio/SoundBufferRecorder.h>
 #include <SFML/Audio/SoundBufferRecorderStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 
 
 ////////////////////////////////////////////////////////////

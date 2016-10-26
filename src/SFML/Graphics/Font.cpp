@@ -27,7 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Font.h>
 #include <SFML/Graphics/FontStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 #include <SFML/CallbackStream.h>
 
 

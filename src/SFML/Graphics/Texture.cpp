@@ -30,7 +30,7 @@
 #include <SFML/Graphics/ImageStruct.h>
 #include <SFML/Graphics/RenderWindowStruct.h>
 #include <SFML/Window/WindowStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 #include <SFML/CallbackStream.h>
 
 

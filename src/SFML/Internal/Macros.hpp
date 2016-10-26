@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_INTERNAL_H
-#define SFML_INTERNAL_H
+#ifndef SFML_INTERNAL_MACROS_HPP
+#define SFML_INTERNAL_MACROS_HPP
 
 ////////////////////////////////////////////////////////////
 // Define macros to check the validity of CSFML objects in debug run
@@ -134,4 +134,4 @@
 
 #endif
 
-#endif // SFML_INTERNAL_H
+#endif // SFML_INTERNAL_MACROS_HPP

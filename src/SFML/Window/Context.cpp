@@ -27,8 +27,8 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Context.h>
 #include <SFML/Window/ContextStruct.h>
-#include <SFML/Internal.h>
-
+#include <SFML/Internal/Macros.hpp>
+#include <SFML/Internal/Window.hpp>
 
 ////////////////////////////////////////////////////////////
 sfContext* sfContext_create(void)
@@ -53,17 +53,11 @@ sfBool sfContext_setActive(sfContext* context, sfBool active)
 ////////////////////////////////////////////////////////////
 sfContextSettings sfContext_getSettings(const sfContext* context)
 {
-    sfContextSettings settings = {0, 0, 0, 0, 0};
+    sfContextSettings settings = in::sfContextSettings_zeroed();
     CSFML_CHECK_RETURN(context, settings);
 
     const sf::ContextSettings& params = context->This.getSettings();
-
-    settings.depthBits         = params.depthBits;
-    settings.stencilBits       = params.stencilBits;
-    settings.antialiasingLevel = params.antialiasingLevel;
-    settings.majorVersion      = params.majorVersion;
-    settings.minorVersion      = params.minorVersion;
-    settings.attributeFlags    = params.attributeFlags;
+    in::sfContextSettings_setFromCpp(settings, params);
 
     return settings;
 }
