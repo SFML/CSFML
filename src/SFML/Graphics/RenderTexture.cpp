@@ -35,7 +35,7 @@
 #include <SFML/Graphics/RectangleShapeStruct.h>
 #include <SFML/Graphics/VertexArrayStruct.h>
 #include <SFML/Graphics/ConvertRenderStates.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 
 
 ////////////////////////////////////////////////////////////

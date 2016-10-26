@@ -29,7 +29,7 @@
 #include <SFML/Graphics/ShaderStruct.h>
 #include <SFML/Graphics/TextureStruct.h>
 #include <SFML/Graphics/ConvertTransform.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 #include <SFML/CallbackStream.h>
 
 

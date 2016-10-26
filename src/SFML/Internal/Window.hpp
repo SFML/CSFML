@@ -22,52 +22,45 @@
 //
 ////////////////////////////////////////////////////////////
 
-////////////////////////////////////////////////////////////
-// Headers
-////////////////////////////////////////////////////////////
-#include <SFML/System/Clock.h>
-#include <SFML/System/ClockStruct.h>
-#include <SFML/Internal/Macros.hpp>
+#ifndef SFML_INTERNAL_WINDOW_HPP
+#define SFML_INTERNAL_WINDOW_HPP
 
+#include <SFML/Window.h>
+#include <SFML/Window.hpp>
 
-////////////////////////////////////////////////////////////
-sfClock* sfClock_create(void)
+namespace in
 {
-    return new sfClock;
+
+////////////////////////////////////////////////////////////
+inline sfContextSettings sfContextSettings_zeroed()
+{
+    return sfContextSettings { 0, 0, 0, 0, 0, 0, sfFalse };
 }
 
-
-////////////////////////////////////////////////////////////
-sfClock* sfClock_copy(const sfClock* clock)
+inline void sfContextSettings_setFromCpp(sfContextSettings& self,
+                                         const sf::ContextSettings& cpp)
 {
-    CSFML_CHECK_RETURN(clock, NULL);
-
-    return new sfClock(*clock);
+    self.depthBits = cpp.depthBits;
+    self.stencilBits = cpp.stencilBits;
+    self.antialiasingLevel = cpp.antialiasingLevel;
+    self.majorVersion = cpp.majorVersion;
+    self.minorVersion = cpp.minorVersion;
+    self.attributeFlags = cpp.attributeFlags;
+    self.sRgbCapable = cpp.sRgbCapable ? sfTrue : sfFalse;
 }
 
-
-////////////////////////////////////////////////////////////
-void sfClock_destroy(sfClock* clock)
+inline void sfContextSettings_setToCpp(const sfContextSettings& self,
+                                       sf::ContextSettings& cpp)
 {
-    delete clock;
+    cpp.depthBits = self.depthBits;
+    cpp.stencilBits = self.stencilBits;
+    cpp.antialiasingLevel = self.antialiasingLevel;
+    cpp.majorVersion = self.majorVersion;
+    cpp.minorVersion = self.minorVersion;
+    cpp.attributeFlags = self.attributeFlags;
+    cpp.sRgbCapable = self.sRgbCapable == sfTrue;
 }
 
-
-////////////////////////////////////////////////////////////
-sfTime sfClock_getElapsedTime(const sfClock* clock)
-{
-    CSFML_CHECK_RETURN(clock, sfTime_Zero);
-
-    sf::Time time = clock->This.getElapsedTime();
-    return sfMicroseconds(time.asMicroseconds());
 }
 
-
-////////////////////////////////////////////////////////////
-sfTime sfClock_restart(sfClock* clock)
-{
-    CSFML_CHECK_RETURN(clock, sfTime_Zero);
-
-    sf::Time time = clock->This.restart();
-    return sfMicroseconds(time.asMicroseconds());
-}
+#endif // SFML_INTERNAL_WINDOW_HPP

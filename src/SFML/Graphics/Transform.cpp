@@ -28,7 +28,7 @@
 #include <SFML/Graphics/Transform.h>
 #include <SFML/Graphics/Transform.hpp>
 #include <SFML/Graphics/ConvertTransform.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 #include <cstring>
 
 

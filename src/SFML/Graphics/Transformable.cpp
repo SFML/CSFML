@@ -28,7 +28,7 @@
 #include <SFML/Graphics/Transformable.h>
 #include <SFML/Graphics/TransformableStruct.h>
 #include <SFML/Graphics/ConvertTransform.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal/Macros.hpp>
 
 
 ////////////////////////////////////////////////////////////
