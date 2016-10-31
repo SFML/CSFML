@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2016 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,43 +22,31 @@
 //
 ////////////////////////////////////////////////////////////
 
+#ifndef SFML_CONTEXTSETTINGSINTERNAL_H
+#define SFML_CONTEXTSETTINGSINTERNAL_H
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Context.h>
-#include <SFML/Window/ContextStruct.h>
-#include <SFML/Internal.h>
-#include <SFML/Window/ContextSettingsInternal.h>
+#include <SFML/Window.h>
+#include <SFML/Window.hpp>
 
-
-////////////////////////////////////////////////////////////
-sfContext* sfContext_create(void)
+namespace priv
 {
-    return new sfContext;
+    ////////////////////////////////////////////////////////////
+    // Create a "null" sfContextSettings that's returned in case of an error.
+    ////////////////////////////////////////////////////////////
+    sfContextSettings sfContextSettings_null();
+
+    ////////////////////////////////////////////////////////////
+    // Read the data of an sf::ContextSettings into an sfContextSettings
+    ////////////////////////////////////////////////////////////
+    void sfContextSettings_readFromCpp(const sf::ContextSettings& from, sfContextSettings& to);
+
+    ////////////////////////////////////////////////////////////
+    // Read the data of an sf::ContextSettings into an sfContextSettings
+    ////////////////////////////////////////////////////////////
+    void sfContextSettings_writeToCpp(const sfContextSettings& from, sf::ContextSettings& to);
 }
 
-
-////////////////////////////////////////////////////////////
-void sfContext_destroy(sfContext* context)
-{
-    delete context;
-}
-
-
-////////////////////////////////////////////////////////////
-sfBool sfContext_setActive(sfContext* context, sfBool active)
-{
-    CSFML_CALL_RETURN(context, setActive(active == sfTrue), false)
-}
-
-////////////////////////////////////////////////////////////
-sfContextSettings sfContext_getSettings(const sfContext* context)
-{
-    sfContextSettings settings = priv::sfContextSettings_null();
-    CSFML_CHECK_RETURN(context, settings);
-
-    const sf::ContextSettings& params = context->This.getSettings();
-    priv::sfContextSettings_readFromCpp(params, settings);
-
-    return settings;
-}
+#endif // SFML_CONTEXTSETTINGSINTERNAL_H

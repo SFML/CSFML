@@ -38,6 +38,7 @@
 #include <SFML/Graphics/ConvertRenderStates.hpp>
 #include <SFML/Window/Touch.hpp>
 #include <SFML/Internal.h>
+#include <SFML/Window/ContextSettingsInternal.h>
 #include <SFML/ConvertEvent.h>
 
 
@@ -51,12 +52,7 @@ sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, sfUin
     sf::ContextSettings params;
     if (settings)
     {
-        params.depthBits         = settings->depthBits;
-        params.stencilBits       = settings->stencilBits;
-        params.antialiasingLevel = settings->antialiasingLevel;
-        params.majorVersion      = settings->majorVersion;
-        params.minorVersion      = settings->minorVersion;
-        params.attributeFlags    = settings->attributeFlags;
+        priv::sfContextSettings_writeToCpp(*settings, params);
     }
 
     // Create the window
@@ -78,12 +74,7 @@ sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfUint32* t
     sf::ContextSettings params;
     if (settings)
     {
-        params.depthBits         = settings->depthBits;
-        params.stencilBits       = settings->stencilBits;
-        params.antialiasingLevel = settings->antialiasingLevel;
-        params.majorVersion      = settings->majorVersion;
-        params.minorVersion      = settings->minorVersion;
-        params.attributeFlags    = settings->attributeFlags;
+        priv::sfContextSettings_writeToCpp(*settings, params);
     }
 
     // Create the window
@@ -103,12 +94,7 @@ sfRenderWindow* sfRenderWindow_createFromHandle(sfWindowHandle handle, const sfC
     sf::ContextSettings params;
     if (settings)
     {
-        params.depthBits         = settings->depthBits;
-        params.stencilBits       = settings->stencilBits;
-        params.antialiasingLevel = settings->antialiasingLevel;
-        params.majorVersion      = settings->majorVersion;
-        params.minorVersion      = settings->minorVersion;
-        params.attributeFlags    = settings->attributeFlags;
+        priv::sfContextSettings_writeToCpp(*settings, params);
     }
 
     // Create the window
@@ -145,16 +131,11 @@ sfBool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow)
 ////////////////////////////////////////////////////////////
 sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow)
 {
-    sfContextSettings settings = {0, 0, 0, 2, 0};
+    sfContextSettings settings = priv::sfContextSettings_null();
     CSFML_CHECK_RETURN(renderWindow, settings);
 
     const sf::ContextSettings& params = renderWindow->This.getSettings();
-    settings.depthBits         = params.depthBits;
-    settings.stencilBits       = params.stencilBits;
-    settings.antialiasingLevel = params.antialiasingLevel;
-    settings.majorVersion      = params.majorVersion;
-    settings.minorVersion      = params.minorVersion;
-    settings.attributeFlags    = params.attributeFlags;
+    priv::sfContextSettings_readFromCpp(params, settings);
 
     return settings;
 }
