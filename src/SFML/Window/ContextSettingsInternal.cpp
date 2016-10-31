@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2016 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -25,40 +25,41 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Context.h>
-#include <SFML/Window/ContextStruct.h>
-#include <SFML/Internal.h>
 #include <SFML/Window/ContextSettingsInternal.h>
 
 
-////////////////////////////////////////////////////////////
-sfContext* sfContext_create(void)
+namespace priv
 {
-    return new sfContext;
-}
-
-
 ////////////////////////////////////////////////////////////
-void sfContext_destroy(sfContext* context)
+sfContextSettings sfContextSettings_null()
 {
-    delete context;
-}
-
-
-////////////////////////////////////////////////////////////
-sfBool sfContext_setActive(sfContext* context, sfBool active)
-{
-    CSFML_CALL_RETURN(context, setActive(active == sfTrue), false)
-}
-
-////////////////////////////////////////////////////////////
-sfContextSettings sfContext_getSettings(const sfContext* context)
-{
-    sfContextSettings settings = priv::sfContextSettings_null();
-    CSFML_CHECK_RETURN(context, settings);
-
-    const sf::ContextSettings& params = context->This.getSettings();
-    priv::sfContextSettings_readFromCpp(params, settings);
+    sfContextSettings settings = {0, 0, 0, 0, 0, 0};
 
     return settings;
 }
+
+
+////////////////////////////////////////////////////////////
+void sfContextSettings_readFromCpp(const sf::ContextSettings& from, sfContextSettings& to)
+{
+    to.depthBits         = from.depthBits;
+    to.stencilBits       = from.stencilBits;
+    to.antialiasingLevel = from.antialiasingLevel;
+    to.majorVersion      = from.majorVersion;
+    to.minorVersion      = from.minorVersion;
+    to.attributeFlags    = from.attributeFlags;
+}
+
+
+////////////////////////////////////////////////////////////
+void sfContextSettings_writeToCpp(const sfContextSettings& from, sf::ContextSettings& to)
+{
+    to.depthBits         = from.depthBits;
+    to.stencilBits       = from.stencilBits;
+    to.antialiasingLevel = from.antialiasingLevel;
+    to.majorVersion      = from.majorVersion;
+    to.minorVersion      = from.minorVersion;
+    to.attributeFlags    = from.attributeFlags;
+}
+
+} // namespace priv
