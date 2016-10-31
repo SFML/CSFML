@@ -44,7 +44,7 @@ namespace priv
     void sfContextSettings_readFromCpp(const sf::ContextSettings& from, sfContextSettings& to);
 
     ////////////////////////////////////////////////////////////
-    // Read the data of an sf::ContextSettings into an sfContextSettings
+    // Write the data of an sfContextSettings into an sf::ContextSettings
     ////////////////////////////////////////////////////////////
     void sfContextSettings_writeToCpp(const sfContextSettings& from, sf::ContextSettings& to);
 }
