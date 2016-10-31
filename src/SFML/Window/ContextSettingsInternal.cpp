@@ -33,7 +33,7 @@ namespace priv
 ////////////////////////////////////////////////////////////
 sfContextSettings sfContextSettings_null()
 {
-    sfContextSettings settings = {0, 0, 0, 0, 0, 0};
+    sfContextSettings settings = {0, 0, 0, 0, 0, 0, sfFalse};
 
     return settings;
 }
@@ -48,6 +48,7 @@ void sfContextSettings_readFromCpp(const sf::ContextSettings& from, sfContextSet
     to.majorVersion      = from.majorVersion;
     to.minorVersion      = from.minorVersion;
     to.attributeFlags    = from.attributeFlags;
+    to.sRgbCapable       = from.sRgbCapable ? sfTrue : sfFalse;
 }
 
 
@@ -60,6 +61,7 @@ void sfContextSettings_writeToCpp(const sfContextSettings& from, sf::ContextSett
     to.majorVersion      = from.majorVersion;
     to.minorVersion      = from.minorVersion;
     to.attributeFlags    = from.attributeFlags;
+    to.sRgbCapable       = from.sRgbCapable == sfTrue;
 }
 
 } // namespace priv
