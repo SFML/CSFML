@@ -75,6 +75,7 @@ typedef struct
     unsigned int majorVersion;      ///< Major number of the context version to create
     unsigned int minorVersion;      ///< Minor number of the context version to create
     sfUint32     attributeFlags;    ///< The attribute flags to create the context with
+    sfBool       sRgbCapable;       ///< Whether the context framebuffer is sRGB capable
 } sfContextSettings;
 
 
