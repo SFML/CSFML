@@ -36,17 +36,40 @@ namespace priv
     ////////////////////////////////////////////////////////////
     // Create a "null" sfContextSettings that's returned in case of an error.
     ////////////////////////////////////////////////////////////
-    sfContextSettings sfContextSettings_null();
+    inline sfContextSettings sfContextSettings_null()
+    {
+        sfContextSettings settings = {0, 0, 0, 0, 0, 0, sfFalse};
+
+        return settings;
+    }
 
     ////////////////////////////////////////////////////////////
     // Read the data of an sf::ContextSettings into an sfContextSettings
     ////////////////////////////////////////////////////////////
-    void sfContextSettings_readFromCpp(const sf::ContextSettings& from, sfContextSettings& to);
+    inline void sfContextSettings_readFromCpp(const sf::ContextSettings& from, sfContextSettings& to)
+    {
+        to.depthBits         = from.depthBits;
+        to.stencilBits       = from.stencilBits;
+        to.antialiasingLevel = from.antialiasingLevel;
+        to.majorVersion      = from.majorVersion;
+        to.minorVersion      = from.minorVersion;
+        to.attributeFlags    = from.attributeFlags;
+        to.sRgbCapable       = from.sRgbCapable ? sfTrue : sfFalse;
+    }
 
     ////////////////////////////////////////////////////////////
     // Write the data of an sfContextSettings into an sf::ContextSettings
     ////////////////////////////////////////////////////////////
-    void sfContextSettings_writeToCpp(const sfContextSettings& from, sf::ContextSettings& to);
+    inline void sfContextSettings_writeToCpp(const sfContextSettings& from, sf::ContextSettings& to)
+    {
+        to.depthBits         = from.depthBits;
+        to.stencilBits       = from.stencilBits;
+        to.antialiasingLevel = from.antialiasingLevel;
+        to.majorVersion      = from.majorVersion;
+        to.minorVersion      = from.minorVersion;
+        to.attributeFlags    = from.attributeFlags;
+        to.sRgbCapable       = from.sRgbCapable == sfTrue;
+    }
 }
 
 #endif // SFML_CONTEXTSETTINGSINTERNAL_H
