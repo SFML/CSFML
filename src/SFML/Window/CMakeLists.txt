@@ -7,6 +7,7 @@ set(SRC
     ${INCROOT}/Export.h
     ${SRCROOT}/Context.cpp
     ${SRCROOT}/ContextSettingsInternal.cpp
+    ${SRCROOT}/ContextSettingsInternal.h
     ${SRCROOT}/ContextStruct.h
     ${INCROOT}/Context.h
     ${INCROOT}/Event.h
