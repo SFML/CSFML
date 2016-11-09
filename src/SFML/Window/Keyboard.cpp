@@ -35,3 +35,9 @@ sfBool sfKeyboard_isKeyPressed(sfKeyCode key)
 {
     return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key));
 }
+
+////////////////////////////////////////////////////////////
+void sfKeyboard_setVirtualKeyboardVisible(sfBool visible)
+{
+    sf::Keyboard::setVirtualKeyboardVisible(visible == sfTrue);
+}
