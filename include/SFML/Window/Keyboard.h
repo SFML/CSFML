@@ -154,5 +154,18 @@ typedef enum
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfBool sfKeyboard_isKeyPressed(sfKeyCode key);
 
+////////////////////////////////////////////////////////////
+/// \brief Show or hide the virtual keyboard.
+///
+/// Warning: the virtual keyboard is not supported on all systems.
+/// It will typically be implemented on mobile OSes (Android, iOS)
+/// but not on desktop OSes (Windows, Linux, ...).
+///
+/// If the virtual keyboard is not available, this function does nothing.
+///
+/// \param visible True to show, false to hide
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfKeyboard_setVirtualKeyboardVisible(sfBool visible);
 
 #endif // SFML_KEYBOARD_H
