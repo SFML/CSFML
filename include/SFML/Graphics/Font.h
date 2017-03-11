@@ -97,7 +97,7 @@ CSFML_GRAPHICS_API void sfFont_destroy(sfFont* font);
 /// \return The corresponding glyph
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold, float outlineThickness);
+CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(const sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold, float outlineThickness);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the kerning value corresponding to a given pair of characters in a font
@@ -110,7 +110,7 @@ CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(sfFont* font, sfUint32 codePoint, uns
 /// \return Kerning offset, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfFont_getKerning(sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
+CSFML_GRAPHICS_API float sfFont_getKerning(const sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the line spacing value
@@ -121,7 +121,7 @@ CSFML_GRAPHICS_API float sfFont_getKerning(sfFont* font, sfUint32 first, sfUint3
 /// \return Line spacing, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfFont_getLineSpacing(sfFont* font, unsigned int characterSize);
+CSFML_GRAPHICS_API float sfFont_getLineSpacing(const sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of the underline
@@ -135,7 +135,7 @@ CSFML_GRAPHICS_API float sfFont_getLineSpacing(sfFont* font, unsigned int charac
 /// \return Underline position, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfFont_getUnderlinePosition(sfFont* font, unsigned int characterSize);
+CSFML_GRAPHICS_API float sfFont_getUnderlinePosition(const sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the thickness of the underline
@@ -148,7 +148,7 @@ CSFML_GRAPHICS_API float sfFont_getUnderlinePosition(sfFont* font, unsigned int 
 /// \return Underline thickness, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfFont_getUnderlineThickness(sfFont* font, unsigned int characterSize);
+CSFML_GRAPHICS_API float sfFont_getUnderlineThickness(const sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the texture containing the glyphs of a given size in a font
