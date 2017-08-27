@@ -246,7 +246,7 @@ CSFML_AUDIO_API void sfMusic_setVolume(sfMusic* music, float volume);
 ///
 /// \param music    Music object
 /// \param position Position of the music in the scene
-//
+///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API void sfMusic_setPosition(sfMusic* music, sfVector3f position);
 

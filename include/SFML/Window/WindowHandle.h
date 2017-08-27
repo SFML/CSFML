@@ -32,8 +32,8 @@
 
 
 ////////////////////////////////////////////////////////////
-/// Define a low-level window handle type, specific to
-/// each platform
+// Define a low-level window handle type, specific to
+// each platform
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_SYSTEM_WINDOWS)
 

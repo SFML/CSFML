@@ -381,7 +381,7 @@ CSFML_GRAPHICS_API void sfRectangleShape_setSize(sfRectangleShape* shape, sfVect
 /// \brief Get the size of a rectangle shape
 ///
 /// \param shape Shape object
-//
+///
 /// \return height Size of the rectangle
 ///
 ////////////////////////////////////////////////////////////
