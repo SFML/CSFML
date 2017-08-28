@@ -121,7 +121,7 @@ typedef struct
 ///
 /// \deprecated
 /// Use sfMouseWheelScrollEvent instead.
-/// 
+///
 ////////////////////////////////////////////////////////////
 typedef struct CSFML_DEPRECATED
 {
