@@ -210,6 +210,20 @@ void sfText_setCharacterSize(sfText* text, unsigned int size)
 
 
 ////////////////////////////////////////////////////////////
+void sfText_setLineSpacing(sfText* text, float spacingFactor)
+{
+    CSFML_CALL(text, setLineSpacing(spacingFactor));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfText_setLetterSpacing(sfText* text, float spacingFactor)
+{
+    CSFML_CALL(text, setLetterSpacing(spacingFactor));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfText_setStyle(sfText* text, sfUint32 style)
 {
     CSFML_CALL(text, setStyle(style));
@@ -278,6 +292,21 @@ unsigned int sfText_getCharacterSize(const sfText* text)
 {
     CSFML_CALL_RETURN(text, getCharacterSize(), 0);
 }
+
+
+////////////////////////////////////////////////////////////
+float sfText_getLetterSpacing(const sfText* text)
+{
+    CSFML_CALL_RETURN(text, getLetterSpacing(), 1);
+}
+
+
+////////////////////////////////////////////////////////////
+float sfText_getLineSpacing(const sfText* text)
+{
+    CSFML_CALL_RETURN(text, getLineSpacing(), 1);
+}
+
 
 
 ////////////////////////////////////////////////////////////

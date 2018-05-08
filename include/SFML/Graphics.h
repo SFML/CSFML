@@ -53,6 +53,7 @@
 #include <SFML/Graphics/Transformable.h>
 #include <SFML/Graphics/Vertex.h>
 #include <SFML/Graphics/VertexArray.h>
+#include <SFML/Graphics/VertexBuffer.h>
 #include <SFML/Graphics/View.h>
 
 

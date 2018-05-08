@@ -206,5 +206,18 @@ CSFML_GRAPHICS_API void sfTransform_scale(sfTransform* transform, float scaleX, 
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float scaleY, float centerX, float centerY);
 
+////////////////////////////////////////////////////////////
+/// \brief Compare two transforms for equality
+///
+/// Performs an element-wise comparison of the elements of the
+/// left transform with the elements of the right transform.
+///
+/// \param left Left operand (the first transform)
+/// \param right Right operand (the second transform)
+///
+/// \return true if the transforms are equal, false otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfTransform_equal(sfTransform* left, sfTransform* right);
 
 #endif // SFML_TRANSFORM_H

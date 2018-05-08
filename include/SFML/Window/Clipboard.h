@@ -22,66 +22,64 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONTEXT_H
-#define SFML_CONTEXT_H
+#ifndef SFML_CLIPBOARD_H
+#define SFML_CLIPBOARD_H
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Export.h>
 #include <SFML/Window/Types.h>
-#include <SFML/Window/Window.h>
+
 
 ////////////////////////////////////////////////////////////
-/// \brief Create a new context
+/// \brief Get the content of the clipboard as string data (returns an ANSI string)
 ///
-/// This function activates the new context.
+/// This function returns the content of the clipboard
+/// as a string. If the clipboard does not contain string
+/// it returns an empty string.
 ///
-/// \return New sfContext object
+/// \return Clipboard contents as a locale-dependent ANSI string
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfContext* sfContext_create(void);
+CSFML_WINDOW_API const char* sfClipboard_getString();
+
 
 ////////////////////////////////////////////////////////////
-/// \brief Destroy a context
+/// \brief Get the content of the clipboard as string data (returns a Unicode string)
 ///
-/// \param context Context to destroy
+/// This function returns the content of the clipboard
+/// as a string. If the clipboard does not contain string
+/// it returns an empty string.
+///
+/// \return Clipboard contents as UTF-32
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
+CSFML_WINDOW_API const sfUint32* sfClipboard_getUnicodeString();
 
 ////////////////////////////////////////////////////////////
-/// \brief Activate or deactivate explicitely a context
+/// \brief Set the content of the clipboard as ANSI string data
 ///
-/// \param context Context object
-/// \param active  sfTrue to activate, sfFalse to deactivate
+/// This function sets the content of the clipboard as an
+/// ANSI string.
 ///
-/// \return sfTrue on success, sfFalse on failure
+/// \param text ANSI string containing the data to be sent
+/// to the clipboard
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfContext_setActive(sfContext* context, sfBool active);
+CSFML_WINDOW_API void sfClipboard_setString(const char* text);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the settings of the context.
+/// \brief Set the content of the clipboard as Unicode string data
 ///
-/// Note that these settings may be different than the ones passed to the
-/// constructor; they are indeed adjusted if the original settings are not
-/// directly supported by the system.
+/// This function sets the content of the clipboard as a
+/// Unicode string.
 ///
-/// \return Structure containing the settings
+/// \param text Unicode string containing the data to be sent
+/// to the clipboard
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfContextSettings sfContext_getSettings(const sfContext* context);
+CSFML_WINDOW_API void sfClipboard_setUnicodeString(const sfUint32* text);
 
-////////////////////////////////////////////////////////////
-/// \brief Get the currently active context's ID
-///
-/// The context ID is used to identify contexts when
-/// managing unshareable OpenGL resources.
-///
-/// \return The active context's ID or 0 if no context is currently active
-///
-////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfUint64 sfContext_getActiveContextId();
 
-#endif // SFML_CONTEXT_H
+#endif // SFML_CURSOR_H

@@ -30,7 +30,9 @@
 ////////////////////////////////////////////////////////////
 
 #include <SFML/System.h>
+#include <SFML/Window/Clipboard.h>
 #include <SFML/Window/Context.h>
+#include <SFML/Window/Cursor.h>
 #include <SFML/Window/Event.h>
 #include <SFML/Window/Joystick.h>
 #include <SFML/Window/JoystickIdentification.h>

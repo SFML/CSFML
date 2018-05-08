@@ -25,48 +25,43 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Context.h>
-#include <SFML/Window/ContextStruct.h>
+#include <SFML/Window/Clipboard.h>
+#include <SFML/Window/Clipboard.hpp>
 #include <SFML/Internal.h>
-#include <SFML/Window/ContextSettingsInternal.h>
 
 
-////////////////////////////////////////////////////////////
-sfContext* sfContext_create(void)
+namespace
 {
-    return new sfContext;
+    sf::String ClipboardString;
+    std::string ClipboardStringAnsi;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfContext_destroy(sfContext* context)
+const char* sfClipboard_getString()
 {
-    delete context;
+    ClipboardStringAnsi = sf::Clipboard::getString().toAnsiString();
+    return ClipboardStringAnsi.c_str();
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfContext_setActive(sfContext* context, sfBool active)
+const sfUint32* sfClipboard_getUnicodeString()
 {
-    CSFML_CALL_RETURN(context, setActive(active == sfTrue), false)
+    ClipboardString = sf::Clipboard::getString();
+    return ClipboardString.getData();
 }
 
 
 ////////////////////////////////////////////////////////////
-sfContextSettings sfContext_getSettings(const sfContext* context)
+void sfClipboard_setString(const char* text)
 {
-    sfContextSettings settings = priv::sfContextSettings_null();
-    CSFML_CHECK_RETURN(context, settings);
-
-    const sf::ContextSettings& params = context->This.getSettings();
-    priv::sfContextSettings_readFromCpp(params, settings);
-
-    return settings;
+    sf::Clipboard::setString(text);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfUint64 sfContext_getActiveContextId()
+void sfClipboard_setUnicodeString(const sfUint32* text)
 {
-    return sf::Context::getActiveContextId();
+    sf::Clipboard::setString(text);
 }

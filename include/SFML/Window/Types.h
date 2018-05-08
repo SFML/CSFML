@@ -27,6 +27,7 @@
 
 
 typedef struct sfContext sfContext;
+typedef struct sfCursor sfCursor;
 typedef struct sfWindow sfWindow;
 
 

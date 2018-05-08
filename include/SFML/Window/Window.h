@@ -355,6 +355,26 @@ CSFML_WINDOW_API void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool vi
 CSFML_WINDOW_API void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the displayed cursor to a native system cursor
+///
+/// Upon window creation, the arrow cursor is used by default.
+///
+/// \warning The cursor must not be destroyed while in use by
+///          the window.
+///
+/// \warning Features related to Cursor are not supported on
+///          iOS and Android.
+///
+/// \param window Window object
+/// \param cursor Native system cursor type to display
+///
+/// \see sfCursor_createFromSystem
+/// \see sfCursor_createFromPixels
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_setMouseCursor(sfWindow* window, const sfCursor* cursor);
+
+////////////////////////////////////////////////////////////
 /// \brief Enable or disable automatic key-repeat
 ///
 /// If key repeat is enabled, you will receive repeated

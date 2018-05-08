@@ -25,48 +25,44 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Context.h>
-#include <SFML/Window/ContextStruct.h>
+#include <SFML/Window/Cursor.h>
+#include <SFML/Window/CursorStruct.h>
 #include <SFML/Internal.h>
-#include <SFML/Window/ContextSettingsInternal.h>
 
 
 ////////////////////////////////////////////////////////////
-sfContext* sfContext_create(void)
+sfCursor* sfCursor_createFromPixels(const sfUint8* pixels, sfVector2u size, sfVector2u hotspot)
 {
-    return new sfContext;
+    sfCursor* cursor = new sfCursor;
+
+    if (!cursor->This.loadFromPixels(pixels, sf::Vector2u(size.x, size.y), sf::Vector2u(hotspot.x, hotspot.y)))
+    {
+        delete cursor;
+        cursor = NULL;
+    }
+
+    return cursor;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfContext_destroy(sfContext* context)
+sfCursor* sfCursor_createFromSystem(sfCursorType type)
 {
-    delete context;
+    sfCursor* cursor = new sfCursor;
+
+    if (!cursor->This.loadFromSystem(static_cast<sf::Cursor::Type>(type)))
+    {
+        delete cursor;
+        cursor = NULL;
+    }
+
+    return cursor;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfContext_setActive(sfContext* context, sfBool active)
+void sfCursor_destroy(sfCursor* cursor)
 {
-    CSFML_CALL_RETURN(context, setActive(active == sfTrue), false)
+    delete cursor;
 }
 
-
-////////////////////////////////////////////////////////////
-sfContextSettings sfContext_getSettings(const sfContext* context)
-{
-    sfContextSettings settings = priv::sfContextSettings_null();
-    CSFML_CHECK_RETURN(context, settings);
-
-    const sf::ContextSettings& params = context->This.getSettings();
-    priv::sfContextSettings_readFromCpp(params, settings);
-
-    return settings;
-}
-
-
-////////////////////////////////////////////////////////////
-sfUint64 sfContext_getActiveContextId()
-{
-    return sf::Context::getActiveContextId();
-}

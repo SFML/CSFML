@@ -5,6 +5,11 @@ set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/Window)
 # all source files
 set(SRC
     ${INCROOT}/Export.h
+    ${INCROOT}/Clipboard.h
+    ${SRCROOT}/Clipboard.cpp
+    ${INCROOT}/Cursor.h
+    ${SRCROOT}/Cursor.cpp
+    ${SRCROOT}/CursorStruct.h
     ${SRCROOT}/Context.cpp
     ${SRCROOT}/ContextSettingsInternal.h
     ${SRCROOT}/ContextStruct.h
@@ -33,4 +38,4 @@ set(SRC
 # define the csfml-window target
 csfml_add_library(csfml-window
                   SOURCES ${SRC}
-                  DEPENDS ${SFML_WINDOW_LIBRARY} ${SFML_SYSTEM_LIBRARY} ${SFML_WINDOW_DEPENDENCIES} ${SFML_SYSTEM_DEPENDENCIES})
+                  DEPENDS sfml-window)

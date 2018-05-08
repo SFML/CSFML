@@ -108,6 +108,29 @@ sfTime sfMusic_getDuration(const sfMusic* music)
 
 
 ////////////////////////////////////////////////////////////
+sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music)
+{
+    sfTimeSpan timeSpan = {{0}, {0}};
+    CSFML_CHECK_RETURN(music, timeSpan);
+
+    sf::Music::TimeSpan span = music->This.getLoopPoints();
+
+    timeSpan.offset.microseconds = span.offset.asMicroseconds();
+    timeSpan.length.microseconds = span.length.asMicroseconds();
+
+    return timeSpan;
+}
+
+
+////////////////////////////////////////////////////////////
+void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints)
+{
+    CSFML_CALL(music, setLoopPoints(sf::Music::TimeSpan(sf::microseconds(timePoints.offset.microseconds),
+                                                        sf::microseconds(timePoints.length.microseconds))));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfMusic_play(sfMusic* music)
 {
     CSFML_CALL(music, play());

@@ -156,3 +156,14 @@ void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float sca
 
     *transform = convertTransform(convertTransform(*transform).scale(scaleX, scaleY, centerX, centerY));
 }
+
+
+////////////////////////////////////////////////////////////
+sfBool sfTransform_equal(sfTransform* left, sfTransform* right)
+{
+    CSFML_CHECK_RETURN(left, false);
+    CSFML_CHECK_RETURN(right, false);
+
+    return (left->matrix == right->matrix) ? sfTrue : sfFalse;
+}
+

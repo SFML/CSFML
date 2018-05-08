@@ -29,6 +29,7 @@
 #include <SFML/Window/WindowStruct.h>
 #include <SFML/Internal.h>
 #include <SFML/Window/ContextSettingsInternal.h>
+#include <SFML/Window/CursorStruct.h>
 #include <SFML/ConvertEvent.h>
 
 
@@ -249,6 +250,14 @@ void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed)
     CSFML_CALL(window, setMouseCursorGrabbed(grabbed == sfTrue));
 }
 
+
+////////////////////////////////////////////////////////////
+void sfWindow_setMouseCursor(sfWindow* window, const sfCursor* cursor)
+{
+    CSFML_CHECK(cursor);
+
+    CSFML_CALL(window, setMouseCursor(cursor->This));
+}
 
 ////////////////////////////////////////////////////////////
 void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled)

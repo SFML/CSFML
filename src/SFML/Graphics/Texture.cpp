@@ -38,7 +38,7 @@
 sfTexture* sfTexture_create(unsigned int width, unsigned int height)
 {
     sfTexture* texture = new sfTexture;
-    
+
     if (!texture->This->create(width, height))
     {
         delete texture;
@@ -260,6 +260,15 @@ sfBool sfTexture_isRepeated(const sfTexture* texture)
 sfBool sfTexture_generateMipmap(sfTexture* texture)
 {
     CSFML_CALL_PTR_RETURN(texture, generateMipmap(), sfFalse);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfTexture_swap(sfTexture* left, sfTexture* right)
+{
+    CSFML_CHECK(right);
+
+    CSFML_CALL_PTR(left, swap(*right->This));
 }
 
 
