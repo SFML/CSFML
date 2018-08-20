@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -72,5 +72,16 @@ CSFML_WINDOW_API sfBool sfContext_setActive(sfContext* context, sfBool active);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfContextSettings sfContext_getSettings(const sfContext* context);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the currently active context's ID
+///
+/// The context ID is used to identify contexts when
+/// managing unshareable OpenGL resources.
+///
+/// \return The active context's ID or 0 if no context is currently active
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API sfUint64 sfContext_getActiveContextId();
 
 #endif // SFML_CONTEXT_H

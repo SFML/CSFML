@@ -21,7 +21,7 @@ include(${CMAKE_SOURCE_DIR}/cmake/Config.cmake)
 
 # setup version numbers
 set(VERSION_MAJOR 2)
-set(VERSION_MINOR 4)
+set(VERSION_MINOR 5)
 set(VERSION_PATCH 0)
 
 # add the CSFML header path
@@ -42,7 +42,7 @@ set(CMAKE_SKIP_BUILD_RPATH TRUE)
 # define an option for choosing between static and dynamic C runtime (Windows only)
 if(SFML_OS_WINDOWS)
     set(STATIC_STD_LIBS FALSE CACHE BOOL "TRUE to statically link to the standard libraries, FALSE to use them as DLLs")
-    
+
     # for VC++, we can apply it globally by modifying the compiler flags
     if(SFML_COMPILER_MSVC AND STATIC_STD_LIBS)
         foreach(flag

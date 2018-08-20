@@ -23,8 +23,7 @@ if(SFML_OS_WINDOWS)
         add_definitions(-DSFML_STATIC)
     endif()
 endif()
-find_package(SFML 2 COMPONENTS system window network graphics audio REQUIRED)
-include_directories(${SFML_INCLUDE_DIR})
+find_package(SFML 2 COMPONENTS network graphics audio REQUIRED)
 
 # add the modules subdirectories
 add_subdirectory(System)

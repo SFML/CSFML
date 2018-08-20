@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -299,13 +299,14 @@ sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* lo
 
 
 ////////////////////////////////////////////////////////////
-sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode)
+sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, sfBool append)
 {
     CSFML_CHECK_RETURN(ftp, NULL);
 
     return new sfFtpResponse(ftp->This.upload(localFile ? localFile : "",
                                               remotePath ? remotePath : "",
-                                              static_cast<sf::Ftp::TransferMode>(mode)));
+                                              static_cast<sf::Ftp::TransferMode>(mode),
+                                              append == sfTrue));
 }
 
 

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -143,6 +143,24 @@ CSFML_GRAPHICS_API sfImage* sfTexture_copyToImage(const sfTexture* texture);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfTexture_updateFromPixels(sfTexture* texture, const sfUint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y);
+
+////////////////////////////////////////////////////////////
+/// \brief Update a part of this texture from another texture
+///
+/// No additional check is performed on the size of the texture,
+/// passing an invalid combination of texture size and offset
+/// will lead to an undefined behavior.
+///
+/// This function does nothing if either texture was not
+/// previously created.
+///
+/// \param destination Destination texture to copy source texture to
+/// \param source      Source texture to copy to destination texture
+/// \param x           X offset in this texture where to copy the source texture
+/// \param y           Y offset in this texture where to copy the source texture
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* source, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a texture from an image
@@ -288,6 +306,15 @@ CSFML_GRAPHICS_API sfBool sfTexture_isRepeated(const sfTexture* texture);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfTexture_generateMipmap(sfTexture* texture);
+
+////////////////////////////////////////////////////////////
+/// \brief Swap the contents of a texture with those of another
+///
+/// \param left  Instance to swap from
+/// \param right Instance to swap with
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfTexture_swap(sfTexture* left, sfTexture* right);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the underlying OpenGL handle of the texture.

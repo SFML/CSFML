@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -29,6 +29,7 @@
 #include <SFML/Window/WindowStruct.h>
 #include <SFML/Internal.h>
 #include <SFML/Window/ContextSettingsInternal.h>
+#include <SFML/Window/CursorStruct.h>
 #include <SFML/ConvertEvent.h>
 
 
@@ -249,6 +250,14 @@ void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed)
     CSFML_CALL(window, setMouseCursorGrabbed(grabbed == sfTrue));
 }
 
+
+////////////////////////////////////////////////////////////
+void sfWindow_setMouseCursor(sfWindow* window, const sfCursor* cursor)
+{
+    CSFML_CHECK(cursor);
+
+    CSFML_CALL(window, setMouseCursor(cursor->This));
+}
 
 ////////////////////////////////////////////////////////////
 void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled)

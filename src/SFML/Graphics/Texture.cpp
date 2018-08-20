@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -38,7 +38,7 @@
 sfTexture* sfTexture_create(unsigned int width, unsigned int height)
 {
     sfTexture* texture = new sfTexture;
-    
+
     if (!texture->This->create(width, height))
     {
         delete texture;
@@ -260,6 +260,15 @@ sfBool sfTexture_isRepeated(const sfTexture* texture)
 sfBool sfTexture_generateMipmap(sfTexture* texture)
 {
     CSFML_CALL_PTR_RETURN(texture, generateMipmap(), sfFalse);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfTexture_swap(sfTexture* left, sfTexture* right)
+{
+    CSFML_CHECK(right);
+
+    CSFML_CALL_PTR(left, swap(*right->This));
 }
 
 

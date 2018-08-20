@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -35,6 +35,7 @@
 #include <SFML/Graphics/PrimitiveType.h>
 #include <SFML/Graphics/RenderStates.h>
 #include <SFML/Graphics/Vertex.h>
+#include <SFML/Window/Window.h>
 #include <SFML/System/Vector2.h>
 #include <stddef.h>
 
@@ -48,8 +49,23 @@
 ///
 /// \return A new sfRenderTexture object, or NULL if it failed
 ///
+/// \deprecated
+/// Use sfRenderTexture_createWithSettings instead.
+///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, sfBool depthBuffer);
+
+////////////////////////////////////////////////////////////
+/// \brief Construct a new render texture
+///
+/// \param width    Width of the render texture
+/// \param height   Height of the render texture
+/// \param settings Settings of the render texture
+///
+/// \return A new sfRenderTexture object, or NULL if it failed
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_createWithSettings(unsigned int width, unsigned int height, sfContextSettings settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing render texture
@@ -205,6 +221,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_drawCircleShape(sfRenderTexture* renderT
 CSFML_GRAPHICS_API void sfRenderTexture_drawConvexShape(sfRenderTexture* renderTexture, const sfConvexShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderTexture_drawRectangleShape(sfRenderTexture* renderTexture, const sfRectangleShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderTexture_drawVertexArray(sfRenderTexture* renderTexture, const sfVertexArray* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBuffer(sfRenderTexture* renderTexture, const sfVertexBuffer* object, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render texture
@@ -277,6 +294,15 @@ CSFML_GRAPHICS_API void sfRenderTexture_resetGLStates(sfRenderTexture* renderTex
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API const sfTexture* sfRenderTexture_getTexture(const sfRenderTexture* renderTexture);
+
+
+////////////////////////////////////////////////////////////
+/// \brief Get the maximum anti-aliasing level supported by the system
+///
+/// \return The maximum anti-aliasing level supported by the system
+///
+////////////////////////////////////////////////////////////
+unsigned int sfRenderTexture_getMaximumAntialiasingLevel();
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable the smooth filter on a render texture

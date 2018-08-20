@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -35,6 +35,17 @@
 #include <SFML/System/Time.h>
 #include <SFML/System/Vector3.h>
 #include <stddef.h>
+
+
+////////////////////////////////////////////////////////////
+/// \brief Structure defining a time range
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    sfTime offset; ///< The beginning offset of the time range
+    sfTime length; ///< The length of the time range
+} sfTimeSpan;
 
 
 ////////////////////////////////////////////////////////////
@@ -127,6 +138,45 @@ CSFML_AUDIO_API sfBool sfMusic_getLoop(const sfMusic* music);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfTime sfMusic_getDuration(const sfMusic* music);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the positions of the of the sound's looping sequence
+///
+/// \return Loop Time position class.
+///
+/// \warning Since sfMusic_setLoopPoints() performs some adjustments on the
+/// provided values and rounds them to internal samples, a call to
+/// sfMusic_getLoopPoints() is not guaranteed to return the same times passed
+/// into a previous call to sfMusic_setLoopPoints(). However, it is guaranteed
+/// to return times that will map to the valid internal samples of
+/// this Music if they are later passed to sfMusic_setLoopPoints().
+///
+/// \see setLoopPoints
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music);
+
+////////////////////////////////////////////////////////////
+/// \brief Sets the beginning and end of the sound's looping sequence using sf::Time
+///
+/// Loop points allow one to specify a pair of positions such that, when the music
+/// is enabled for looping, it will seamlessly seek to the beginning whenever it
+/// encounters the end. Valid ranges for timePoints.offset and timePoints.length are
+/// [0, Dur) and (0, Dur-offset] respectively, where Dur is the value returned by sfMusic_getDuration().
+/// Note that the EOF "loop point" from the end to the beginning of the stream is still honored,
+/// in case the caller seeks to a point after the end of the loop range. This function can be
+/// safely called at any point after a stream is opened, and will be applied to a playing sound
+/// without affecting the current playing offset.
+///
+/// \warning Setting the loop points while the stream's status is Paused
+/// will set its status to Stopped. The playing offset will be unaffected.
+///
+/// \param timePoints The definition of the loop. Can be any time points within the sound's length
+///
+/// \see getLoopPoints
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start or resume playing a music

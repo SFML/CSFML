@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -156,3 +156,14 @@ void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float sca
 
     *transform = convertTransform(convertTransform(*transform).scale(scaleX, scaleY, centerX, centerY));
 }
+
+
+////////////////////////////////////////////////////////////
+sfBool sfTransform_equal(sfTransform* left, sfTransform* right)
+{
+    CSFML_CHECK_RETURN(left, false);
+    CSFML_CHECK_RETURN(right, false);
+
+    return (left->matrix == right->matrix) ? sfTrue : sfFalse;
+}
+

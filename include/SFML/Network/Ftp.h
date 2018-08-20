@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -500,11 +500,12 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFi
 /// \param localFile  Path of the local file to upload
 /// \param remotePath Where to put to file on the server
 /// \param mode       Transfer mode
+/// \param append     Pass sfTrue to append to or sfFalse to overwrite the remote file if it already exists
 ///
 /// \return Server response to the request
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode);
+CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, sfBool append);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a command to the FTP server

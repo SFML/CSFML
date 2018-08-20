@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -276,6 +276,41 @@ CSFML_GRAPHICS_API void sfText_setFont(sfText* text, const sfFont* font);
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfText_setCharacterSize(sfText* text, unsigned int size);
 
+    ////////////////////////////////////////////////////////////
+/// \brief Set the line spacing factor
+///
+/// The default spacing between lines is defined by the font.
+/// This method enables you to set a factor for the spacing
+/// between lines. By default the line spacing factor is 1.
+///
+/// \param text Text object
+/// \param spacingFactor New line spacing factor
+///
+/// \see sfText_getLineSpacing
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setLineSpacing(sfText* text, float spacingFactor);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the letter spacing factor
+///
+/// The default spacing between letters is defined by the font.
+/// This factor doesn't directly apply to the existing
+/// spacing between each character, it rather adds a fixed
+/// space between them which is calculated from the font
+/// metrics and the character size.
+/// Note that factors below 1 (including negative numbers) bring
+/// characters closer to each other.
+/// By default the letter spacing factor is 1.
+///
+/// \param text Text object
+/// \param spacingFactor New letter spacing factor
+///
+/// \see sfText_getLetterSpacing
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setLetterSpacing(sfText* text, float spacingFactor);
+
 ////////////////////////////////////////////////////////////
 /// \brief Set the style of a text
 ///
@@ -387,6 +422,30 @@ CSFML_GRAPHICS_API const sfFont* sfText_getFont(const sfText* text);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API unsigned int sfText_getCharacterSize(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the size of the letter spacing factor
+///
+/// \param text Text object
+///
+/// \return Size of the letter spacing factor
+///
+/// \see sfText_setLetterSpacing
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float sfText_getLetterSpacing(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the size of the line spacing factor
+///
+/// \param text Text object
+///
+/// \return Size of the line spacing factor
+///
+/// \see sfText_setLineSpacing
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float getLineSpacing(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the style of a text

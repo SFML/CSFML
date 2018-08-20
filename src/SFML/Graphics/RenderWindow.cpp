@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -35,10 +35,12 @@
 #include <SFML/Graphics/ConvexShapeStruct.h>
 #include <SFML/Graphics/RectangleShapeStruct.h>
 #include <SFML/Graphics/VertexArrayStruct.h>
+#include <SFML/Graphics/VertexBufferStruct.h>
 #include <SFML/Graphics/ConvertRenderStates.hpp>
 #include <SFML/Window/Touch.hpp>
 #include <SFML/Internal.h>
 #include <SFML/Window/ContextSettingsInternal.h>
+#include <SFML/Window/CursorStruct.h>
 #include <SFML/ConvertEvent.h>
 
 
@@ -275,6 +277,15 @@ void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, sfBool g
 
 
 ////////////////////////////////////////////////////////////
+void sfRenderWindow_setMouseCursor(sfRenderWindow* window, const sfCursor* cursor)
+{
+    CSFML_CHECK(cursor);
+
+    CSFML_CALL(window, setMouseCursor(cursor->This));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled)
 {
     CSFML_CALL(renderWindow, setKeyRepeatEnabled(enabled == sfTrue));
@@ -455,6 +466,11 @@ void sfRenderWindow_drawRectangleShape(sfRenderWindow* renderWindow, const sfRec
     CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
 void sfRenderWindow_drawVertexArray(sfRenderWindow* renderWindow, const sfVertexArray* object, const sfRenderStates* states)
+{
+    CSFML_CHECK(object);
+    CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
+}
+void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWindow, const sfVertexBuffer* object, const sfRenderStates* states)
 {
     CSFML_CHECK(object);
     CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));

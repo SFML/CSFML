@@ -4,6 +4,7 @@ set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/System)
 
 # all source files
 set(SRC
+    ${CMAKE_SOURCE_DIR}/include/SFML/GPUPreference.h
     ${INCROOT}/Export.h
     ${SRCROOT}/Clock.cpp
     ${SRCROOT}/ClockStruct.h
@@ -27,4 +28,4 @@ set(SRC
 # define the csfml-system target
 csfml_add_library(csfml-system
                   SOURCES ${SRC}
-                  DEPENDS ${SFML_SYSTEM_LIBRARY} ${SFML_SYSTEM_DEPENDENCIES})
+                  DEPENDS sfml-system)

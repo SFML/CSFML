@@ -61,6 +61,9 @@ set(SRC
     ${SRCROOT}/VertexArray.cpp
     ${SRCROOT}/VertexArrayStruct.h
     ${INCROOT}/VertexArray.h
+    ${INCROOT}/VertexBuffer.h
+    ${SRCROOT}/VertexBuffer.cpp
+    ${SRCROOT}/VertexBufferStruct.h
     ${SRCROOT}/View.cpp
     ${SRCROOT}/ViewStruct.h
     ${INCROOT}/View.h
@@ -69,4 +72,4 @@ set(SRC
 # define the csfml-graphics target
 csfml_add_library(csfml-graphics
                   SOURCES ${SRC}
-                  DEPENDS ${SFML_GRAPHICS_LIBRARY} ${SFML_WINDOW_LIBRARY} ${SFML_SYSTEM_LIBRARY} ${SFML_GRAPHICS_DEPENDENCIES} ${SFML_WINDOW_DEPENDENCIES} ${SFML_SYSTEM_DEPENDENCIES})
+                  DEPENDS sfml-graphics)

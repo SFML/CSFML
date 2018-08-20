@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -34,8 +34,10 @@
 #include <SFML/Graphics/ConvexShapeStruct.h>
 #include <SFML/Graphics/RectangleShapeStruct.h>
 #include <SFML/Graphics/VertexArrayStruct.h>
+#include <SFML/Graphics/VertexBufferStruct.h>
 #include <SFML/Graphics/ConvertRenderStates.hpp>
 #include <SFML/Internal.h>
+#include <SFML/Window/ContextSettingsInternal.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -43,6 +45,27 @@ sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height,
 {
     sfRenderTexture* renderTexture = new sfRenderTexture;
     renderTexture->This.create(width, height, depthBuffer == sfTrue);
+    renderTexture->Target = new sfTexture(const_cast<sf::Texture*>(&renderTexture->This.getTexture()));
+    renderTexture->DefaultView.This = renderTexture->This.getDefaultView();
+    renderTexture->CurrentView.This = renderTexture->This.getView();
+
+    return renderTexture;
+}
+
+
+////////////////////////////////////////////////////////////
+sfRenderTexture* sfRenderTexture_createWithSettings(unsigned int width, unsigned int height, const sfContextSettings* settings)
+{
+    // Convert context settings
+    sf::ContextSettings params;
+    if (settings)
+    {
+        priv::sfContextSettings_writeToCpp(*settings, params);
+    }
+
+    // Create the render texture
+    sfRenderTexture* renderTexture = new sfRenderTexture;
+    renderTexture->This.create(width, height, params);
     renderTexture->Target = new sfTexture(const_cast<sf::Texture*>(&renderTexture->This.getTexture()));
     renderTexture->DefaultView.This = renderTexture->This.getDefaultView();
     renderTexture->CurrentView.This = renderTexture->This.getView();
@@ -214,6 +237,11 @@ void sfRenderTexture_drawVertexArray(sfRenderTexture* renderTexture, const sfVer
     CSFML_CHECK(object);
     CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
+void sfRenderTexture_drawVertexBuffer(sfRenderTexture* renderTexture, const sfVertexBuffer* object, const sfRenderStates* states)
+{
+    CSFML_CHECK(object);
+    CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
+}
 
 
 ////////////////////////////////////////////////////////////
@@ -260,6 +288,13 @@ const sfTexture* sfRenderTexture_getTexture(const sfRenderTexture* renderTexture
 void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture, sfBool smooth)
 {
     CSFML_CALL(renderTexture, setSmooth(smooth == sfTrue));
+}
+
+
+////////////////////////////////////////////////////////////
+unsigned int sfRenderTexture_getMaximumAntialiasingLevel()
+{
+    return sf::RenderTexture::getMaximumAntialiasingLevel();
 }
 
 

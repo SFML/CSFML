@@ -32,4 +32,4 @@ set(SRC
 # define the csfml-audio target
 csfml_add_library(csfml-audio
                   SOURCES ${SRC}
-                  DEPENDS ${SFML_AUDIO_LIBRARY} ${SFML_SYSTEM_LIBRARY} ${SFML_AUDIO_DEPENDENCIES} ${SFML_SYSTEM_DEPENDENCIES})
+                  DEPENDS sfml-audio)

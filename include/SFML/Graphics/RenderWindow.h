@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -242,6 +242,25 @@ CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* ren
 CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, sfBool grabbed);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the displayed cursor to a native system cursor
+///
+/// Upon window creation, the arrow cursor is used by default.
+///
+/// \warning The cursor must not be destroyed while in use by
+///          the window.
+///
+/// \warning Features related to Cursor are not supported on
+///          iOS and Android.
+///
+/// \param cursor Native system cursor type to display
+///
+/// \see sfCursor_createFromSystem
+/// \see sfCursor_createFromPixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursor(sfRenderWindow* window, const sfCursor* cursor);
+
+////////////////////////////////////////////////////////////
 /// \brief Enable or disable automatic key-repeat for keydown events
 ///
 /// Automatic key-repeat is enabled by default
@@ -445,6 +464,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_drawCircleShape(sfRenderWindow* renderWin
 CSFML_GRAPHICS_API void sfRenderWindow_drawConvexShape(sfRenderWindow* renderWindow, const sfConvexShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_drawRectangleShape(sfRenderWindow* renderWindow, const sfRectangleShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_drawVertexArray(sfRenderWindow* renderWindow, const sfVertexArray* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWindow, const sfVertexBuffer* object, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render window

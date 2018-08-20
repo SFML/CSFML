@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -86,18 +86,18 @@ typedef enum
     sfKeyMenu,         ///< The Menu key
     sfKeyLBracket,     ///< The [ key
     sfKeyRBracket,     ///< The ] key
-    sfKeySemiColon,    ///< The ; key
+    sfKeySemicolon,    ///< The ; key
     sfKeyComma,        ///< The , key
     sfKeyPeriod,       ///< The . key
     sfKeyQuote,        ///< The ' key
     sfKeySlash,        ///< The / key
-    sfKeyBackSlash,    ///< The \ key
+    sfKeyBackslash,    ///< The \ key
     sfKeyTilde,        ///< The ~ key
     sfKeyEqual,        ///< The = key
-    sfKeyDash,         ///< The - key
+    sfKeyHyphen,       ///< The - key (hyphen)
     sfKeySpace,        ///< The Space key
-    sfKeyReturn,       ///< The Return key
-    sfKeyBack,         ///< The Backspace key
+    sfKeyEnter,        ///< The Enter/Return key
+    sfKeyBackspace,    ///< The Backspace key
     sfKeyTab,          ///< The Tabulation key
     sfKeyPageUp,       ///< The Page up key
     sfKeyPageDown,     ///< The Page down key
@@ -105,10 +105,10 @@ typedef enum
     sfKeyHome,         ///< The Home key
     sfKeyInsert,       ///< The Insert key
     sfKeyDelete,       ///< The Delete key
-    sfKeyAdd,          ///< +
-    sfKeySubtract,     ///< -
-    sfKeyMultiply,     ///< *
-    sfKeyDivide,       ///< /
+    sfKeyAdd,          ///< The + key
+    sfKeySubtract,     ///< The - key (minus, usually from numpad)
+    sfKeyMultiply,     ///< The * key
+    sfKeyDivide,       ///< The / key
     sfKeyLeft,         ///< Left arrow
     sfKeyRight,        ///< Right arrow
     sfKeyUp,           ///< Up arrow
@@ -140,7 +140,15 @@ typedef enum
     sfKeyF15,          ///< The F15 key
     sfKeyPause,        ///< The Pause key
 
-    sfKeyCount      ///< Keep last -- the total number of keyboard keys
+    sfKeyCount,      ///< Keep last -- the total number of keyboard keys
+
+    // Deprecated values:
+
+    sfKeyDash      = sfKeyHyphen,       ///< \deprecated Use Hyphen instead
+    sfKeyBack      = sfKeyBackspace,    ///< \deprecated Use Backspace instead
+    sfKeyBackSlash = sfKeyBackslash,    ///< \deprecated Use Backslash instead
+    sfKeySemiColon = sfKeySemicolon,    ///< \deprecated Use Semicolon instead
+    sfKeyReturn    = sfKeyEnter         ///< \deprecated Use Enter instead
 } sfKeyCode;
 
 

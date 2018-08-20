@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2015 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2018 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -104,6 +104,29 @@ sfTime sfMusic_getDuration(const sfMusic* music)
 
     time.microseconds = music->This.getDuration().asMicroseconds();
     return time;
+}
+
+
+////////////////////////////////////////////////////////////
+sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music)
+{
+    sfTimeSpan timeSpan = {{0}, {0}};
+    CSFML_CHECK_RETURN(music, timeSpan);
+
+    sf::Music::TimeSpan span = music->This.getLoopPoints();
+
+    timeSpan.offset.microseconds = span.offset.asMicroseconds();
+    timeSpan.length.microseconds = span.length.asMicroseconds();
+
+    return timeSpan;
+}
+
+
+////////////////////////////////////////////////////////////
+void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints)
+{
+    CSFML_CALL(music, setLoopPoints(sf::Music::TimeSpan(sf::microseconds(timePoints.offset.microseconds),
+                                                        sf::microseconds(timePoints.length.microseconds))));
 }
 
 
