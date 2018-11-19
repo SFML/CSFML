@@ -445,7 +445,7 @@ CSFML_GRAPHICS_API float sfText_getLetterSpacing(const sfText* text);
 /// \see sfText_setLineSpacing
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float getLineSpacing(const sfText* text);
+CSFML_GRAPHICS_API float sfText_getLineSpacing(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the style of a text
