@@ -37,7 +37,10 @@ Write-Output "Using architecture $Architecture"
 
 $SFMLBranch = "2.5.x" # The branch or tag of the SFML repository to be cloned
 $CSFMLDir = (Get-Item (git rev-parse --show-toplevel)).FullName # The directory of the source code of CSFML
-$OutDir = (Get-Item ./CSFML/runtimes/$RID/native).FullName # The directory of all CSFML modules, used to copy the final dlls
+
+$OutDir = "./CSFML/runtimes/$RID/native" # The directory of all CSFML modules, used to copy the final dlls
+New-Item -ItemType Directory -ErrorAction Ignore $OutDir > $null
+$OutDir = (Get-Item $OutDir).FullName
 
 <#
 .SYNOPSIS
