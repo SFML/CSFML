@@ -180,7 +180,7 @@ Copies a specific CSFML module into its proper NuGet project
 
 .DESCRIPTION
 This function locates a file named csfml-(module)-2.dll inside of the
-folder specified by $CSFMLLibDir and copies it to $OutDir/CSFML/runtimes/(RID)/native/csfml-(module).dll.
+folder specified by $CSFMLLibDir and copies it to $OutDir/csfml-(module).dll.
 
 Notice how it removes the "-2" at the end, to make the name compatible with other platforms.
 
@@ -200,7 +200,7 @@ Copy-Module 'System'
 Copy-Module 'Window'
 
 Write-Output "Copying Audio module extra files"
-Copy-Item "$SFMLAudioExtras/*" "$OutDir/CSFML/runtimes/$RID/native"
+Copy-Item "$SFMLAudioExtras/*" "$OutDir"
 
 Pop-Location # Pop CSFML
 Pop-Location # Pop $RID
