@@ -65,7 +65,7 @@ CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_create(unsigned int width, u
 /// \return A new sfRenderTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_createWithSettings(unsigned int width, unsigned int height, sfContextSettings settings);
+CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_createWithSettings(unsigned int width, unsigned int height, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing render texture
