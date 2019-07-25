@@ -182,7 +182,7 @@ void sfTexture_updateFromPixels(sfTexture* texture, const sfUint8* pixels, unsig
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* texture, unsigned int x, unsigned int y);
+void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* texture, unsigned int x, unsigned int y)
 {
     CSFML_CHECK(texture);
 
