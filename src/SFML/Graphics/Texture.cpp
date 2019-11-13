@@ -185,8 +185,9 @@ void sfTexture_updateFromPixels(sfTexture* texture, const sfUint8* pixels, unsig
 void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* texture, unsigned int x, unsigned int y);
 {
     CSFML_CHECK(texture);
+    CSFML_CHECK(texture->This);
 
-    CSFML_CALL_PTR(destination, update(texture->This, x, y));
+    CSFML_CALL_PTR(destination, update(*texture->This, x, y));
 }
 
 
