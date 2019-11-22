@@ -51,6 +51,16 @@ CSFML_WINDOW_API sfContext* sfContext_create(void);
 CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
 
 ////////////////////////////////////////////////////////////
+/// \brief Check whether a given OpenGL extension is available.
+///
+/// \param Name of the extension to check for
+///
+/// \return True if available, false if unavailable
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API sfBool sfContext_isExtensionAvailable(const char* name);
+
+////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate explicitely a context
 ///
 /// \param context Context object
