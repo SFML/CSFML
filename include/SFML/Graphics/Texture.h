@@ -36,6 +36,15 @@
 #include <SFML/System/Vector2.h>
 #include <stddef.h>
 
+////////////////////////////////////////////////////////////
+/// \brief Types of texture coordinates that can be used for rendering.
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfTextureNormalized, ///< sfTexture coordinates in range [0 .. 1].
+    sfTexturePixels      ///< sfTexture coordinates in range [0 .. size].
+} sfTextureCoordinateType;
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new texture
@@ -351,7 +360,7 @@ CSFML_GRAPHICS_API unsigned int sfTexture_getNativeHandle(const sfTexture* textu
 /// \param texture Pointer to the texture to bind, can be null to use no texture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture);
+CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture, sfTextureCoordinateType type);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the maximum texture size allowed
