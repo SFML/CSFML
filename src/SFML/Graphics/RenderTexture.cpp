@@ -245,6 +245,16 @@ void sfRenderTexture_drawVertexBuffer(sfRenderTexture* renderTexture, const sfVe
 
 
 ////////////////////////////////////////////////////////////
+void sfRenderTexture_drawVertexBufferRange(sfRenderTexture* renderTexture,
+                                           const sfVertexBuffer* object, size_t firstVertex,
+                                           size_t vertexCount, const sfRenderStates* states)
+{
+    CSFML_CHECK(object);
+    CSFML_CALL(renderTexture, draw(object->This, firstVertex, vertexCount, convertRenderStates(states)));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderTexture_drawPrimitives(sfRenderTexture* renderTexture,
                                     const sfVertex* vertices, size_t vertexCount,
                                     sfPrimitiveType type, const sfRenderStates* states)

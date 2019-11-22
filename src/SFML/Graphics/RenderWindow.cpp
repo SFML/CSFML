@@ -478,6 +478,16 @@ void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWindow, const sfVerte
 
 
 ////////////////////////////////////////////////////////////
+void sfRenderWindow_drawVertexBufferRange(sfRenderWindow* renderWindow,
+                                          const sfVertexBuffer* object, size_t firstVertex,
+                                          size_t vertexCount, const sfRenderStates* states)
+{
+    CSFML_CHECK(object);
+    CSFML_CALL(renderWindow, draw(object->This, firstVertex, vertexCount, convertRenderStates(states)));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderWindow_drawPrimitives(sfRenderWindow* renderWindow,
                                    const sfVertex* vertices, size_t vertexCount,
                                    sfPrimitiveType type, const sfRenderStates* states)

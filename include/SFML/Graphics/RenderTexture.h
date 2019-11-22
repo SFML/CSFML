@@ -224,6 +224,20 @@ CSFML_GRAPHICS_API void sfRenderTexture_drawVertexArray(sfRenderTexture* renderT
 CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBuffer(sfRenderTexture* renderTexture, const sfVertexBuffer* object, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
+/// \brief Draw primitives defined by a vertex buffer.
+///
+/// \param renderTexture render texture object
+/// \param vertexBuffer  Vertex buffer object to draw
+/// \param firstVertex   Index of the first vertex to render
+/// \param vertexCount   Number of vertices to render
+/// \param states        Render states to use for drawing
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBufferRange(sfRenderTexture* renderTexture,
+                                                              const sfVertexBuffer* object, size_t firstVertex,
+                                                              size_t vertexCount, const sfRenderStates* states);
+
+////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render texture
 ///
 /// \param renderTexture Render texture object
