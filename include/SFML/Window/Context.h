@@ -32,6 +32,8 @@
 #include <SFML/Window/Types.h>
 #include <SFML/Window/Window.h>
 
+typedef void (*GlFunctionPointer)();
+
 ////////////////////////////////////////////////////////////
 /// \brief Create a new context
 ///
@@ -70,6 +72,16 @@ CSFML_WINDOW_API sfBool sfContext_isExtensionAvailable(const char* name);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfBool sfContext_setActive(sfContext* context, sfBool active);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the address of an OpenGL function.
+///
+/// \param name	Name of the function to get the address of
+///
+/// \return Address of the OpenGL function, 0 on failure
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API GlFunctionPointer sfContext_getFunction(const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the settings of the context.
