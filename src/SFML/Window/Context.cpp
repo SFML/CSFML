@@ -60,6 +60,13 @@ sfBool sfContext_setActive(sfContext* context, sfBool active)
 
 
 ////////////////////////////////////////////////////////////
+GlFunctionPointer sfContext_getFunction(const char* name)
+{
+    return sf::Context::getFunction(name);
+}
+
+
+////////////////////////////////////////////////////////////
 sfContextSettings sfContext_getSettings(const sfContext* context)
 {
     sfContextSettings settings = priv::sfContextSettings_null();
