@@ -15,6 +15,7 @@
     <PackageLicenseExpression>Zlib</PackageLicenseExpression>
     <PackageProjectUrl>https://www.sfml-dev.org/</PackageProjectUrl>
     <PackageIconUrl>https://www.sfml-dev.org/images/sfml-icon.png</PackageIconUrl>
+    <PackageIcon>sfml-icon.png</PackageIcon>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -35,6 +36,7 @@
   <ItemGroup>
     <None Pack="True" Include="runtimes/**" PackagePath="runtimes" />
     <None Pack="True" Include="build/**" PackagePath="build" />
+    <None Pack="True" Include="sfml-icon.png" PackagePath="/" />
   </ItemGroup>
 
 </Project>
