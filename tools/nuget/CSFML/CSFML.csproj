@@ -34,6 +34,7 @@
 
   <ItemGroup>
     <None Pack="True" Include="runtimes/**" PackagePath="runtimes" />
+    <None Pack="True" Include="build/**" PackagePath="build" />
   </ItemGroup>
 
 </Project>
