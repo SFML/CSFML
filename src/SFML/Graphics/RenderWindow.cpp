@@ -475,6 +475,14 @@ void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWindow, const sfVerte
     CSFML_CHECK(object);
     CSFML_CALL(renderWindow, draw(object->This, convertRenderStates(states)));
 }
+void sfRenderWindow_drawVertexBufferRange(sfRenderWindow* renderWindow,
+                                          const sfVertexBuffer* object,
+                                          size_t firstVertex, size_t vertexCount,
+                                          const sfRenderStates* states)
+{
+        CSFML_CHECK(object);
+        CSFML_CALL(renderWindow, draw(object->This, firstVertex, vertexCount, convertRenderStates(states)));
+}
 
 
 ////////////////////////////////////////////////////////////

@@ -222,6 +222,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_drawConvexShape(sfRenderTexture* renderT
 CSFML_GRAPHICS_API void sfRenderTexture_drawRectangleShape(sfRenderTexture* renderTexture, const sfRectangleShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderTexture_drawVertexArray(sfRenderTexture* renderTexture, const sfVertexArray* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBuffer(sfRenderTexture* renderTexture, const sfVertexBuffer* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBufferRange(sfRenderTexture* renderTexture, const sfVertexBuffer* object, size_t firstVertex, size_t vertexCount, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render texture

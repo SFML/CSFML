@@ -242,6 +242,14 @@ void sfRenderTexture_drawVertexBuffer(sfRenderTexture* renderTexture, const sfVe
     CSFML_CHECK(object);
     CSFML_CALL(renderTexture, draw(object->This, convertRenderStates(states)));
 }
+void sfRenderTexture_drawVertexBufferRange(sfRenderTexture* renderTexture,
+                                          const sfVertexBuffer* object,
+                                          size_t firstVertex, size_t vertexCount,
+                                          const sfRenderStates* states)
+{
+        CSFML_CHECK(object);
+        CSFML_CALL(renderTexture, draw(object->This, firstVertex, vertexCount, convertRenderStates(states)));
+}
 
 
 ////////////////////////////////////////////////////////////

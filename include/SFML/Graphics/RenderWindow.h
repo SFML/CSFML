@@ -465,6 +465,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_drawConvexShape(sfRenderWindow* renderWin
 CSFML_GRAPHICS_API void sfRenderWindow_drawRectangleShape(sfRenderWindow* renderWindow, const sfRectangleShape* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_drawVertexArray(sfRenderWindow* renderWindow, const sfVertexArray* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWindow, const sfVertexBuffer* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBufferRange(sfRenderWindow* renderWindow, const sfVertexBuffer* object, size_t firstVertex, size_t vertexCount, const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render window
