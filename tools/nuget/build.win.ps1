@@ -16,7 +16,7 @@ if (-not $RID) {
     exit
 }
 
-$Generator = 'Visual Studio 15 2017'
+$Generator = 'Visual Studio 16 2019'
 
 switch ($RID) {
     'win-x86' { 
@@ -194,10 +194,10 @@ function Copy-Module($module) {
     Copy-Item "$CSFMLLibDir/csfml-$module-2.dll" "$OutDir/csfml-$module.dll" -Force > $null
 }
 
-Copy-Module 'Audio'
-Copy-Module 'Graphics'
-Copy-Module 'System'
-Copy-Module 'Window'
+Copy-Module 'audio'
+Copy-Module 'graphics'
+Copy-Module 'system'
+Copy-Module 'window'
 
 Write-Output "Copying Audio module extra files"
 Copy-Item "$SFMLAudioExtras/*" "$OutDir"
