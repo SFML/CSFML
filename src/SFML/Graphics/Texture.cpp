@@ -290,9 +290,9 @@ unsigned int sfTexture_getNativeHandle(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_bind(const sfTexture* texture)
+void sfTexture_bind(const sfTexture* texture, sfTextureCoordinateType type)
 {
-    sf::Texture::bind(texture ? texture->This : NULL);
+    sf::Texture::bind(texture ? texture->This : NULL, static_cast<sf::Texture::CoordinateType>(type));
 }
 
 
