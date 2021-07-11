@@ -72,5 +72,5 @@ install(DIRECTORY include
         DESTINATION .
         COMPONENT devel
         PATTERN ".svn" EXCLUDE)
-install(FILES license.txt DESTINATION ${INSTALL_MISC_DIR})
-install(FILES readme.txt DESTINATION ${INSTALL_MISC_DIR})
+install(FILES license.md DESTINATION ${INSTALL_MISC_DIR})
+install(FILES readme.md DESTINATION ${INSTALL_MISC_DIR})
