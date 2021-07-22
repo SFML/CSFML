@@ -37,8 +37,8 @@
 ////////////////////////////////////////////////////////////
 struct sfMusic
 {
-    sf::Music This;
     CallbackStream Stream;
+    sf::Music This;
 };
 
 
