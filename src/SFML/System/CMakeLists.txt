@@ -1,10 +1,10 @@
 
-set(INCROOT ${CMAKE_SOURCE_DIR}/include/SFML/System)
-set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/System)
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/SFML/System)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/SFML/System)
 
 # all source files
 set(SRC
-    ${CMAKE_SOURCE_DIR}/include/SFML/GPUPreference.h
+    ${PROJECT_SOURCE_DIR}/include/SFML/GPUPreference.h
     ${INCROOT}/Export.h
     ${SRCROOT}/Clock.cpp
     ${SRCROOT}/ClockStruct.h

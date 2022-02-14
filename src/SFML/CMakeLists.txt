@@ -1,9 +1,9 @@
 
 # include the SFML specific macros
-include(${CMAKE_SOURCE_DIR}/cmake/Macros.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/Macros.cmake)
 
 # add the CSFML sources path
-include_directories(${CMAKE_SOURCE_DIR}/src)
+include_directories(${PROJECT_SOURCE_DIR}/src)
 
 # set the output directory for CSFML libraries
 set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}/lib")

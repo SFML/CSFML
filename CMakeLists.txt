@@ -1,5 +1,4 @@
-
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 
 # define a macro that helps defining an option
 macro(csfml_set_option var default type docstring)
@@ -17,7 +16,7 @@ csfml_set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debu
 project(CSFML)
 
 # include the configuration file
-include(${CMAKE_SOURCE_DIR}/cmake/Config.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 
 # setup version numbers
 set(VERSION_MAJOR 2)
@@ -25,7 +24,7 @@ set(VERSION_MINOR 5)
 set(VERSION_PATCH 1)
 
 # add the CSFML header path
-include_directories(${CMAKE_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 
 # add an option for choosing the build type (shared or static)
 csfml_set_option(BUILD_SHARED_LIBS TRUE BOOL "TRUE to build CSFML as shared libraries, FALSE to build it as static libraries")
