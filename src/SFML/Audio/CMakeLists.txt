@@ -1,6 +1,6 @@
 
-set(INCROOT ${CMAKE_SOURCE_DIR}/include/SFML/Audio)
-set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/Audio)
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/SFML/Audio)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/SFML/Audio)
 
 # all source files
 set(SRC

@@ -1,6 +1,6 @@
 
-set(INCROOT ${CMAKE_SOURCE_DIR}/include/SFML/Graphics)
-set(SRCROOT ${CMAKE_SOURCE_DIR}/src/SFML/Graphics)
+set(INCROOT ${PROJECT_SOURCE_DIR}/include/SFML/Graphics)
+set(SRCROOT ${PROJECT_SOURCE_DIR}/src/SFML/Graphics)
 
 # all source files
 set(SRC
