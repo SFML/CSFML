@@ -13,15 +13,10 @@ endmacro()
 csfml_set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or Release)")
 
 # project name
-project(CSFML)
+project(CSFML VERSION 2.5.1)
 
 # include the configuration file
 include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
-
-# setup version numbers
-set(VERSION_MAJOR 2)
-set(VERSION_MINOR 5)
-set(VERSION_PATCH 1)
 
 # add the CSFML header path
 include_directories(${PROJECT_SOURCE_DIR}/include)
