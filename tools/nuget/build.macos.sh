@@ -64,7 +64,7 @@ pushd "Build"
 if [[ ! -d "SFML/.git" ]]; then
     echo "Cloning SFML"
     rm -rf "SFML"
-    git clone --branch "$SFMLBranch" --depth 1 "git://github.com/SFML/SFML.git" "SFML"
+    git clone --branch "$SFMLBranch" --depth 1 "https://github.com/SFML/SFML.git" "SFML"
 fi
 
 SFMLDir="$(grealpath SFML)"
