@@ -75,7 +75,7 @@ If (-not (Test-Path "SFML/.git")) {
     Write-Output "Cloning SFML"
     Remove-Item -Recurse -Force -ErrorAction Ignore "SFML" > $null
 
-    git clone --branch "$SFMLBranch" --depth 1 "git://github.com/SFML/SFML.git" "SFML"
+    git clone --branch "$SFMLBranch" --depth 1 "https://github.com/SFML/SFML.git" "SFML"
     Ensure-Success
 }
 
