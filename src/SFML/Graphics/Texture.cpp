@@ -67,6 +67,25 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
     return texture;
 }
 
+////////////////////////////////////////////////////////////
+sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* area)
+{
+    sfTexture* texture = new sfTexture;
+
+    sf::IntRect rect;
+    if (area)
+        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+
+    texture->This->setSrgb(true);
+
+    if (!texture->This->loadFromFile(filename, rect))
+    {
+        delete texture;
+        texture = NULL;
+    }
+
+    return texture;
+}
 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
@@ -76,6 +95,26 @@ sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, cons
     sf::IntRect rect;
     if (area)
         rect = sf::IntRect(area->left, area->top, area->width, area->height);
+
+    if (!texture->This->loadFromMemory(data, sizeInBytes, rect))
+    {
+        delete texture;
+        texture = NULL;
+    }
+
+    return texture;
+}
+
+////////////////////////////////////////////////////////////
+sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
+{
+    sfTexture* texture = new sfTexture;
+
+    sf::IntRect rect;
+    if (area)
+        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+
+    texture->This->setSrgb(true);
 
     if (!texture->This->loadFromMemory(data, sizeInBytes, rect))
     {
@@ -108,6 +147,29 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
     return texture;
 }
 
+////////////////////////////////////////////////////////////
+sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect* area)
+{
+    CSFML_CHECK_RETURN(stream, NULL);
+
+    sfTexture* texture = new sfTexture;
+
+    sf::IntRect rect;
+    if (area)
+        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+
+     texture->This->setSrgb(true);
+
+    CallbackStream sfmlStream(stream);
+    if (!texture->This->loadFromStream(sfmlStream, rect))
+    {
+        delete texture;
+        texture = NULL;
+    }
+
+    return texture;
+}
+
 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area)
@@ -129,6 +191,27 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
     return texture;
 }
 
+////////////////////////////////////////////////////////////
+sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* area)
+{
+    CSFML_CHECK_RETURN(image, NULL);
+
+    sfTexture* texture = new sfTexture;
+
+    sf::IntRect rect;
+    if (area)
+        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+
+    texture->This->setSrgb(true);
+
+    if (!texture->This->loadFromImage(image->This, rect))
+    {
+        delete texture;
+        texture = NULL;
+    }
+
+    return texture;
+}
 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_copy(const sfTexture* texture)
@@ -233,14 +316,6 @@ sfBool sfTexture_isSmooth(const sfTexture* texture)
 
     return texture->This->isSmooth();
 }
-
-
-////////////////////////////////////////////////////////////
-void sfTexture_setSrgb(sfTexture* texture, sfBool sRgb)
-{
-    CSFML_CALL_PTR(texture, setSrgb(sRgb == sfTrue));
-}
-
 
 ////////////////////////////////////////////////////////////
 sfBool sfTexture_isSrgb(const sfTexture* texture)
