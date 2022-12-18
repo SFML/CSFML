@@ -94,18 +94,6 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_createFromFile(const char* filename, con
 CSFML_GRAPHICS_API sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* area);
 
 ////////////////////////////////////////////////////////////
-/// \brief Create a new texture from a file
-///
-/// \param filename Path of the image file to load
-/// \param area     Area of the source image to load (NULL to load the entire image)
-///
-/// \return A new sfTexture object, or NULL if it failed
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area);
-
-
-////////////////////////////////////////////////////////////
 /// \brief Create a new texture from a file in memory
 ///
 /// \param data        Pointer to the file data in memory
