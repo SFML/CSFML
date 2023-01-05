@@ -22,34 +22,19 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RENDERSTATES_H
-#define SFML_RENDERSTATES_H
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Export.h>
-#include <SFML/Graphics/BlendMode.h>
-#include <SFML/Graphics/Transform.h>
-#include <SFML/Graphics/Types.h>
+#include "SFML/Graphics/RenderStates.h"
 
 
 ////////////////////////////////////////////////////////////
-/// \brief Define the states used for drawing to a RenderTarget
-///
-////////////////////////////////////////////////////////////
-typedef struct
-{
-    sfBlendMode      blendMode; ///< Blending mode
-    sfTransform      transform; ///< Transform
-    const sfTexture* texture;   ///< Texture
-    const sfShader*  shader;    ///< Shader
-} sfRenderStates;
-
-////////////////////////////////////////////////////////////
-/// \brief Define the default values for a RenderState
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderStates sfRenderStates_default();
-
-#endif // SFML_RENDERSTATES_H
+sfRenderStates sfRenderStates_default() {
+    sfRenderStates states = {
+            .blendMode = sfBlendAlpha,
+            .transform = sfTransform_Identity,
+            .texture = 0,
+            .shader = 0,
+    };
+    return states;
+}
