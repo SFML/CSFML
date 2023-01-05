@@ -166,4 +166,3 @@ sfBool sfTransform_equal(sfTransform* left, sfTransform* right)
 
     return (left->matrix == right->matrix) ? sfTrue : sfFalse;
 }
-

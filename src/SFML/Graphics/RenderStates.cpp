@@ -31,10 +31,11 @@
 ////////////////////////////////////////////////////////////
 sfRenderStates sfRenderStates_default() {
     sfRenderStates states = {
-            .blendMode = sfBlendAlpha,
-            .transform = sfTransform_Identity,
-            .texture = 0,
-            .shader = 0,
+        sfBlendAlpha,
+        sfTransform_Identity,
+        0,
+        0,
     };
     return states;
 }
+
