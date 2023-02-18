@@ -30,6 +30,7 @@ set(SRC
     ${SRCROOT}/RectangleShape.cpp
     ${SRCROOT}/RectangleShapeStruct.h
     ${INCROOT}/RectangleShape.h
+    ${SRCROOT}/RenderStates.cpp
     ${SRCROOT}/RenderTexture.cpp
     ${SRCROOT}/RenderTextureStruct.h
     ${INCROOT}/RenderTexture.h

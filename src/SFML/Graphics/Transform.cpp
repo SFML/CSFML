@@ -169,4 +169,3 @@ sfBool sfTransform_equal(sfTransform* left, sfTransform* right)
     }
     return sfTrue;
 }
-
