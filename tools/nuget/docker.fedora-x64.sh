@@ -8,6 +8,7 @@ dnf install -y \
     freetype-devel \
     xorg-x11-server-devel \
     libXrandr-devel \
+    libXcursor-devel \
     systemd-devel \
     mesa-libEGL-devel \
     flac-devel \

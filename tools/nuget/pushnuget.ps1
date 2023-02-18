@@ -3,7 +3,7 @@ Param(
     [string]$APIKey
 )
 
-dotnet build -c Release
+dotnet pack -c Release
 if ($LASTEXITCODE -ne 0) {
     Write-Error "Build failed"
     exit 1
