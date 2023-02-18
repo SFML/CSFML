@@ -2,6 +2,7 @@
 
 # Automatically exit on error
 set -e
+set -x
 
 # ========================= #
 # PRELUDE: A note on rpaths #
@@ -89,18 +90,18 @@ mkdir -p lib
 # SFML shared libraries together with the CSFML shared libraries into SFML.Net
 SFMLLibDir="$(grealpath lib)"
 
-if [ $RID == "osx.10.15-x64" ]; then
+if [ $RID == "osx-x64" ]; then
     ARCHITECTURE="x86_64"
-    TARGET="10.15"
-    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.15.sdk/"
+    TARGET="10.12"
+    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/"
 elif [ $RID == "osx.11.0-x64" ]; then
     ARCHITECTURE="x86_64"
     TARGET="11.0"
-    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/"
+    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/"
 elif [ $RID == "osx.11.0-arm64" ]; then
     ARCHITECTURE="arm64"
     TARGET="11.0"
-    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.3.sdk/"
+    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/"
 
     echo "Note: arm64 is only supported with SFML 2.6"
 else
@@ -111,16 +112,20 @@ fi
 cmake -E env \
     cmake -G "Unix Makefiles" \
           -D 'BUILD_SHARED_LIBS=ON' \
+          -D 'SFML_BUILD_FRAMEWORKS=OFF' \
           -D 'CMAKE_BUILD_TYPE=Release' \
           -D "CMAKE_OSX_ARCHITECTURES=$ARCHITECTURE" \
           -D "CMAKE_OSX_DEPLOYMENT_TARGET=$TARGET" \
           -D "CMAKE_OSX_SYSROOT=$SYSROOT" \
           -D "CMAKE_LIBRARY_OUTPUT_DIRECTORY=$SFMLLibDir" \
           -D 'CMAKE_BUILD_WITH_INSTALL_RPATH=ON' \
-          -D 'CMAKE_INSTALL_RPATH=@executable_path' \
+          -D 'CMAKE_INSTALL_RPATH=@loader_path' \
+          -D "CMAKE_INSTALL_PREFIX=$SFMLLibDir" \
+          -D "SFML_DEPENDENCIES_INSTALL_PREFIX=$SFMLLibDir" \
+          -D "SFML_MISC_INSTALL_PREFIX=$SFMLLibDir" \
           "$SFMLDir"
 
-cmake --build . --config Release
+cmake --build . --config Release --target install
 
 popd # Pop SFML
 
@@ -145,13 +150,48 @@ cmake -E env \
           -D "CMAKE_OSX_SYSROOT=$SYSROOT" \
           -D "CMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" \
           -D 'CMAKE_BUILD_WITH_INSTALL_RPATH=ON' \
-          -D 'CMAKE_INSTALL_RPATH=@executable_path' \
+          -D 'CMAKE_INSTALL_RPATH=@loader_path' \
+          -D "CMAKE_INSTALL_PREFIX=$CSFMLLibDir" \
+          -D "INSTALL_MISC_DIR=$CSFMLLibDir" \
           "$CSFMLDir"
-cmake --build . --config Release
+cmake --build . --config Release --target install
+
+# ============================ #
+# STEP 5: Fix RPATH references #
+# ============================ #
+
+SFMLMajorMinor="2.5"
+SFMLMajorMinorPatch="$SFMLMajorMinor.1"
+
+# SFML's framework dependencies will always reference @rpath/../Frameworks/<depedency>
+# Which is not where we place the frameworks and where SFML should look for them
+# This this fixes the dependency with install_name_tool
+fixrpath()
+{
+    MODULE="$1"
+    OLD="$2"
+    NEW="$3"
+
+    install_name_tool -change $OLD $NEW "$SFMLLibDir/libsfml-$MODULE.dylib"
+    install_name_tool -change $OLD $NEW "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinor.dylib"
+    install_name_tool -change $OLD $NEW "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinorPatch.dylib"
+}
+
+fixrpath audio "@rpath/../Frameworks/OpenAL.framework/Versions/A/OpenAL" "@rpath/OpenAL.framework/Versions/A/OpenAL"
+fixrpath audio "@rpath/../Frameworks/vorbisenc.framework/Versions/A/vorbisenc" "@rpath/vorbisenc.framework/Versions/A/vorbisen"
+fixrpath audio "@rpath/../Frameworks/vorbisfile.framework/Versions/A/vorbisfile" "@rpath/vorbisfile.framework/Versions/A/vorbisfile"
+fixrpath audio "@rpath/../Frameworks/vorbis.framework/Versions/A/vorbis" "@rpath/vorbis.framework/Versions/A/vorbis"
+fixrpath audio "@rpath/../Frameworks/ogg.framework/Versions/A/ogg" "@rpath/ogg.framework/Versions/A/ogg"
+fixrpath audio "@rpath/../Frameworks/FLAC.framework/Versions/A/FLAC" "@rpath/FLAC.framework/Versions/A/FLAC"
+
+fixrpath graphics "@rpath/../Frameworks/freetype.framework/Versions/A/freetype" "@rpath/freetype.framework/Versions/A/freetype"
 
 # ======================================== #
-# STEP 5: Copy result to the NuGet folders #
+# STEP 6: Copy result to the NuGet folders #
 # ======================================== #
+
+CSFMLMajorMinor="2.5"
+CSFMLMajorMinorPatch="$CSFMLMajorMinor.2"
 
 # Copies one SFML and CSFML module into the NuGet package
 # The module name must be passed to this function as an argument, in lowercase
@@ -171,12 +211,19 @@ copymodule()
     cp "$SFMLLibDir/libsfml-$MODULE."* "$OutDir"
 
     cp "$CSFMLLibDir/libcsfml-$MODULE."* "$OutDir"
+
+    # Fix naming for expected filename
+    mv "$OutDir/libcsfml-$MODULE.dylib" "$OutDir/libcsfml-$MODULE"
+    mv "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinor.dylib" "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinor"
+    mv "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinorPatch.dylib" "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinorPatch"
 }
 
 copymodule audio
 copymodule graphics
 copymodule system
 copymodule window
+
+cp -R "$SFMLLibDir/"*.framework "$OutDir"
 
 popd # Pop CSFML
 popd # Pop $RID

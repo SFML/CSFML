@@ -16,7 +16,8 @@ apt-get install -y \
     libflac-dev \
     libogg-dev \
     libvorbis-dev \
+    libopenal-dev \
     cmake \
     g++
 
-./build.linux.sh debian-x64
+./build.linux.sh linux-arm64

@@ -22,4 +22,4 @@ apk add \
     make \
     g++
 
-./build.linux.sh alpine-x64
+./build.linux.sh linux-musl-x64

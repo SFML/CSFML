@@ -6,10 +6,11 @@ Param(
 $ErrorActionPreference = "Stop"
 
 if (-not $RID ) {
-    Write-Output "No RID specified, building all known RIDs"
-    ./build.docker.ps1 "alpine-x64"
-    ./build.docker.ps1 "debian-x64"
-    ./build.docker.ps1 "fedora-x64"
+    Write-Output "No RID specified, building all common RIDs"
+    ./build.docker.ps1 "linux-x64"
+    ./build.docker.ps1 "linux-musl-x64"
+    ./build.docker.ps1 "linux-arm"
+    ./build.docker.ps1 "linux-arm64"
     exit
 }
 
@@ -18,15 +19,35 @@ $Shell = $null
 
 switch ($RID) {
     'alpine-x64' { 
-        $Image = 'alpine' 
+        $Image = 'alpine:3.7' 
         $Shell = '/bin/sh'
     }
     'debian-x64' { 
-        $Image = 'debian' 
+        $Image = 'debian:bullseye' 
+        $Shell = '/bin/bash'
+    }
+    'ubuntu-x64' { 
+        $Image = 'ubuntu:22.04' 
         $Shell = '/bin/bash'
     }
     'fedora-x64' { 
-        $Image = 'fedora' 
+        $Image = 'fedora:37' 
+        $Shell = '/bin/bash'
+    }
+    'linux-x64' { 
+        $Image = 'ubuntu:22.04' 
+        $Shell = '/bin/bash'
+    }
+    'linux-musl-x64' { 
+        $Image = 'alpine:3.15' 
+        $Shell = '/bin/sh'
+    }
+    'linux-arm' { 
+        $Image = 'arm32v7/ubuntu:22.04' 
+        $Shell = '/bin/bash'
+    }
+    'linux-arm64' { 
+        $Image = 'arm64v8/ubuntu:22.04' 
         $Shell = '/bin/bash'
     }
     Default { 
