@@ -83,8 +83,7 @@ endif()
 # setup the install rules
 install(DIRECTORY include/
         DESTINATION include
-        COMPONENT devel
-        PATTERN ".svn" EXCLUDE)
+        COMPONENT devel)
 install(FILES license.md DESTINATION ${INSTALL_MISC_DIR})
 install(FILES readme.md DESTINATION ${INSTALL_MISC_DIR})
 
