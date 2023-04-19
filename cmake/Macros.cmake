@@ -61,7 +61,7 @@ macro(csfml_add_library target)
     endif()
 
     # link the target to its external dependencies (C++ SFML libraries)
-    target_link_libraries(${target} ${THIS_DEPENDS})
+    target_link_libraries(${target} PRIVATE ${THIS_DEPENDS})
 
     # build dylibs
     if(SFML_OS_MACOSX AND BUILD_SHARED_LIBS)
