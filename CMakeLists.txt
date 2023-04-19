@@ -81,8 +81,8 @@ if(CSFML_INSTALL_PKGCONFIG_FILES)
 endif()
 
 # setup the install rules
-install(DIRECTORY include
-        DESTINATION .
+install(DIRECTORY include/
+        DESTINATION include
         COMPONENT devel
         PATTERN ".svn" EXCLUDE)
 install(FILES license.md DESTINATION ${INSTALL_MISC_DIR})
