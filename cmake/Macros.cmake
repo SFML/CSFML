@@ -12,6 +12,9 @@ macro(csfml_add_library target)
     # create the target
     add_library(${target} ${THIS_SOURCES})
 
+    # add the CSFML header path
+    target_include_directories(${target} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
     # define the export symbol of the module
     string(REPLACE "-" "_" NAME_UPPER "${target}")
     string(TOUPPER "${NAME_UPPER}" NAME_UPPER)
