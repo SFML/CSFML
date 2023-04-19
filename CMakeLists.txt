@@ -18,9 +18,6 @@ project(CSFML VERSION 2.5.1)
 # include the configuration file
 include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 
-# add the CSFML header path
-include_directories(${PROJECT_SOURCE_DIR}/include)
-
 # add an option for choosing the build type (shared or static)
 csfml_set_option(BUILD_SHARED_LIBS TRUE BOOL "TRUE to build CSFML as shared libraries, FALSE to build it as static libraries")
 
