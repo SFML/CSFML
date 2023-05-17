@@ -162,6 +162,35 @@ CSFML_GRAPHICS_API float sfFont_getUnderlineThickness(const sfFont* font, unsign
 CSFML_GRAPHICS_API const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
+/// \brief Enable or disable the smooth filter
+///
+/// When the filter is activated, the font appears smoother
+/// so that pixels are less noticeable. However if you want
+/// the font to look exactly the same as its source file,
+/// you should disable it.
+/// The smooth filter is enabled by default.
+///
+/// \param font          Source font
+/// \param smooth        sfTrue to enable smoothing, sfFalse to disable it
+///
+/// \see isSmooth
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfFont_setSmooth(sfFont* font, sfBool smooth);
+
+////////////////////////////////////////////////////////////
+/// \brief Tell whether the smooth filter is enabled or disabled
+///
+/// \param font          Source font
+///
+/// \return sfTrue if smoothing is enabled, sfFalse if it is disabled
+///
+/// \see setSmooth
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API const sfBool sfFont_isSmooth(const sfFont* font);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the font information
 ///
 /// The returned structure will remain valid only if the font

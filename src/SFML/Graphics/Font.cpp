@@ -152,6 +152,26 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
     return &font->Textures[characterSize];
 }
 
+
+////////////////////////////////////////////////////////////
+void sfFont_setSmooth(sfFont* font, sfBool smooth)
+{
+    font->This.setSmooth(smooth == sfTrue);
+}
+
+
+////////////////////////////////////////////////////////////
+const sfBool sfFont_isSmooth(const sfFont *font)
+{
+    if (font->This.isSmooth())
+    {
+        return sfTrue;        
+    }
+
+    return sfFalse;
+}
+
+
 ////////////////////////////////////////////////////////////
 sfFontInfo sfFont_getInfo(const sfFont* font)
 {
