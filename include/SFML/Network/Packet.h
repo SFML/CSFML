@@ -70,6 +70,18 @@ CSFML_NETWORK_API void sfPacket_destroy(sfPacket* packet);
 CSFML_NETWORK_API void sfPacket_append(sfPacket* packet, const void* data, size_t sizeInBytes);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the current reading position in the packet
+///
+/// The next read operation will read data from this position
+///
+/// \return The byte offset of the current read position
+///
+/// \see append
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API size_t sfPacket_getReadPosition(const sfPacket* packet);
+
+////////////////////////////////////////////////////////////
 /// \brief Clear a packet
 ///
 /// After calling Clear, the packet is empty.
