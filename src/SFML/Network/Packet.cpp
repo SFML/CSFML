@@ -61,6 +61,13 @@ void sfPacket_append(sfPacket* packet, const void* data, size_t sizeInBytes)
 
 
 ////////////////////////////////////////////////////////////
+size_t sfPacket_getReadPosition(const sfPacket* packet)
+{
+    CSFML_CALL_RETURN(packet, getReadPosition(), 0);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfPacket_clear(sfPacket* packet)
 {
     CSFML_CALL(packet, clear());
