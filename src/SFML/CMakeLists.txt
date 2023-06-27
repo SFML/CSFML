@@ -21,7 +21,7 @@ if(CSFML_LINK_SFML_STATICALLY)
     set(SFML_STATIC_LIBRARIES TRUE)
     add_definitions(-DSFML_STATIC)
 endif()
-find_package(SFML 2.5 COMPONENTS network graphics audio REQUIRED)
+find_package(SFML 2.6 COMPONENTS network graphics audio REQUIRED)
 
 # add the modules subdirectories
 add_subdirectory(System)
