@@ -1,0 +1,13 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/include
+
+Name: CSFML-network
+Description: The Simple and Fast Multimedia Library for C, network module.
+URL: https://www.sfml-dev.org
+Version: @PROJECT_VERSION@
+Requires: csfml-system
+Requires.private: sfml-network
+Libs: -L${libdir} -lcsfml-network
+Cflags: -I${includedir}
