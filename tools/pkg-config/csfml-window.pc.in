@@ -1,0 +1,13 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/include
+
+Name: CSFML-window
+Description: The Simple and Fast Multimedia Library for C, window module.
+URL: https://www.sfml-dev.org
+Version: @PROJECT_VERSION@
+Requires: csfml-system
+Requires.private: sfml-window
+Libs: -L${libdir} -lcsfml-window
+Cflags: -I${includedir}

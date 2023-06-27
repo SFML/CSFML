@@ -1,0 +1,12 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/include
+
+Name: CSFML-system
+Description: The Simple and Fast Multimedia Library for C, system module.
+URL: https://www.sfml-dev.org
+Version: @PROJECT_VERSION@
+Requires.private: sfml-system
+Libs: -L${libdir} -lcsfml-system
+Cflags: -I${includedir}

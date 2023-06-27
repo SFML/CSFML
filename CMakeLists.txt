@@ -58,6 +58,28 @@ if(CSFML_BUILD_DOC)
     add_subdirectory(doc)
 endif()
 
+# on Linux and BSD-like OS, install pkg-config files by default
+set(CSFML_INSTALL_PKGCONFIG_DEFAULT FALSE)
+
+if(SFML_OS_LINUX OR SFML_OS_FREEBSD OR SFML_OS_OPENBSD OR SFML_OS_NETBSD)
+    set(CSFML_INSTALL_PKGCONFIG_DEFAULT TRUE)
+endif()
+
+csfml_set_option(CSFML_INSTALL_PKGCONFIG_FILES ${CSFML_INSTALL_PKGCONFIG_DEFAULT} BOOL "TRUE to automatically install pkg-config files so other projects can find SFML")
+
+if(CSFML_INSTALL_PKGCONFIG_FILES)
+    csfml_set_option(CSFML_PKGCONFIG_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}/${CSFML_PKGCONFIG_DIR}" PATH "Install directory for CSFML's pkg-config .pc files")
+
+    foreach(csfml_module IN ITEMS all system window graphics audio network)
+        configure_file(
+            "tools/pkg-config/csfml-${csfml_module}.pc.in"
+            "tools/pkg-config/csfml-${csfml_module}.pc"
+            @ONLY)
+        install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tools/pkg-config/csfml-${csfml_module}.pc"
+            DESTINATION "${CSFML_PKGCONFIG_INSTALL_PREFIX}")
+    endforeach()
+endif()
+
 # setup the install rules
 install(DIRECTORY include
         DESTINATION .

@@ -1,0 +1,13 @@
+prefix=@CMAKE_INSTALL_PREFIX@
+exec_prefix=${prefix}
+libdir=${exec_prefix}/@CMAKE_INSTALL_LIBDIR@
+includedir=${prefix}/include
+
+Name: CSFML-audio
+Description: The Simple and Fast Multimedia Library for C, audio module.
+URL: https://www.sfml-dev.org
+Version: @PROJECT_VERSION@
+Requires: csfml-system
+Requires.private: sfml-audio
+Libs: -L${libdir} -lcsfml-audio
+Cflags: -I${includedir}
