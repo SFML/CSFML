@@ -56,9 +56,11 @@ typedef enum
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfBlendEquationAdd,            ///< Pixel = Src * SrcFactor + Dst * DstFactor
-    sfBlendEquationSubtract,       ///< Pixel = Src * SrcFactor - Dst * DstFactor
-    sfBlendEquationReverseSubtract ///< Pixel = Dst * DstFactor - Src * SrcFactor
+    sfBlendEquationAdd,             ///< Pixel = Src * SrcFactor + Dst * DstFactor
+    sfBlendEquationSubtract,        ///< Pixel = Src * SrcFactor - Dst * DstFactor
+    sfBlendEquationReverseSubtract, ///< Pixel = Dst * DstFactor - Src * SrcFactor
+    sfBlendEquationMin,             ///< Pixel = min(Dst, Src)
+    sfBlendEquationMax              ///< Pixel = max(Dst, Src)
 } sfBlendEquation;
 
 
@@ -80,6 +82,8 @@ typedef struct
 CSFML_GRAPHICS_API const sfBlendMode sfBlendAlpha;    ///< Blend source and dest according to dest alpha
 CSFML_GRAPHICS_API const sfBlendMode sfBlendAdd;      ///< Add source to dest
 CSFML_GRAPHICS_API const sfBlendMode sfBlendMultiply; ///< Multiply source and dest
+CSFML_GRAPHICS_API const sfBlendMode sfBlendMin;      ///< Take minimum between source and dest
+CSFML_GRAPHICS_API const sfBlendMode sfBlendMax;      ///< Take maximum between source and dest
 CSFML_GRAPHICS_API const sfBlendMode sfBlendNone;     ///< Overwrite dest with source
 
 

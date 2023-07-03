@@ -41,5 +41,13 @@ const sfBlendMode sfBlendMultiply = { sfBlendFactorDstColor, sfBlendFactorZero, 
                                       sfBlendFactorDstColor, sfBlendFactorZero, sfBlendEquationAdd };
 
 ////////////////////////////////////////////////////////////
+const sfBlendMode sfBlendMin = { sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMin,
+                                 sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMin };
+
+////////////////////////////////////////////////////////////
+const sfBlendMode sfBlendMax = { sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMax,
+                                 sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMax };
+
+////////////////////////////////////////////////////////////
 const sfBlendMode sfBlendNone = { sfBlendFactorOne, sfBlendFactorZero, sfBlendEquationAdd,
-                                      sfBlendFactorOne, sfBlendFactorZero, sfBlendEquationAdd };
+                                  sfBlendFactorOne, sfBlendFactorZero, sfBlendEquationAdd };
