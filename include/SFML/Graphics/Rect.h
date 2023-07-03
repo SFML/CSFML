@@ -30,6 +30,8 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Export.h>
 
+#include <SFML/System/Vector2.h>
+
 
 ////////////////////////////////////////////////////////////
 /// sfFloatRect and sfIntRect are utility classes for
@@ -76,6 +78,28 @@ CSFML_GRAPHICS_API sfBool sfIntRect_contains(const sfIntRect* rect, int x, int y
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, sfFloatRect* intersection);
 CSFML_GRAPHICS_API sfBool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the position of the rectangle's top-left corner
+///
+/// \return Position of rectangle
+///
+/// \see getSize
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVector2f sfFloatRect_getPosition(const sfFloatRect* rect);
+CSFML_GRAPHICS_API sfVector2i sfIntRect_getPosition(const sfIntRect* rect);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the size of the rectangle
+///
+/// \return Size of rectangle
+///
+/// \see getPosition
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVector2f sfFloatRect_getSize(const sfFloatRect* rect);
+CSFML_GRAPHICS_API sfVector2i sfIntRect_getSize(const sfIntRect* rect);
 
 
 #endif // SFML_RECT_H
