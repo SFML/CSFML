@@ -30,6 +30,21 @@
 #include <SFML/Internal.h>
 
 
+namespace
+{
+sfVector2f toCType(const sf::Vector2f& vector)
+{
+    sfVector2f vec = {vector.x, vector.y};
+    return vec;
+}
+
+sfVector2i toCType(const sf::Vector2i& vector)
+{
+    sfVector2i vec = {vector.x, vector.y};
+    return vec;
+}
+}
+
 ////////////////////////////////////////////////////////////
 /// Check if a point is inside a rectangle's area
 ////////////////////////////////////////////////////////////
@@ -97,4 +112,30 @@ sfBool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIn
     {
         return SFMLRect1.intersects(SFMLRect2);
     }
+}
+
+
+////////////////////////////////////////////////////////////
+/// Get the position of the rectangle's top-left corner
+////////////////////////////////////////////////////////////
+sfVector2f sfFloatRect_getPosition(const sfFloatRect* rect)
+{
+    return toCType(sf::FloatRect(rect->left, rect->top, rect->width, rect->height).getPosition());
+}
+sfVector2i sfIntRect_getPosition(const sfIntRect* rect)
+{
+    return toCType(sf::IntRect(rect->left, rect->top, rect->width, rect->height).getPosition());
+}
+
+
+////////////////////////////////////////////////////////////
+/// Get the size of the rectangle
+////////////////////////////////////////////////////////////
+sfVector2f sfFloatRect_getSize(const sfFloatRect* rect)
+{
+    return toCType(sf::FloatRect(rect->left, rect->top, rect->width, rect->height).getSize());
+}
+sfVector2i sfIntRect_getSize(const sfIntRect* rect)
+{
+    return toCType(sf::IntRect(rect->left, rect->top, rect->width, rect->height).getSize());
 }
