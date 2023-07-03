@@ -50,6 +50,14 @@
 ///  sfCursorSizeVertical           |  yes  |    yes   |   yes
 ///  sfCursorSizeTopLeftBottomRight |  no   |    no    |   yes
 ///  sfCursorSizeBottomLeftTopRight |  no   |    no    |   yes
+///  sfCursorSizeLeft               |  yes  |    yes   |   yes
+///  sfCursorSizeRight              |  yes  |    yes   |   yes
+///  sfCursorSizeTop                |  yes  |    yes   |   yes
+///  sfCursorSizeBottom             |  yes  |    yes   |   yes
+///  sfCursorSizeTopLeft            |  yes  |    yes   |   yes
+///  sfCursorSizeTopRight           |  yes  |    yes   |   yes
+///  sfCursorSizeBottomLeft         |  yes  |    yes   |   yes
+///  sfCursorSizeBottomRight        |  yes  |    yes   |   yes
 ///  sfCursorSizeAll                |  yes  |    no    |   yes
 ///  sfCursorCross                  |  yes  |    yes   |   yes
 ///  sfCursorHelp                   |  yes  |    no    |   yes
@@ -67,6 +75,14 @@ typedef enum
     sfCursorSizeVertical,           ///< Vertical double arrow cursor
     sfCursorSizeTopLeftBottomRight, ///< Double arrow cursor going from top-left to bottom-right
     sfCursorSizeBottomLeftTopRight, ///< Double arrow cursor going from bottom-left to top-right
+    sfCursorSizeLeft,               ///< Left arrow cursor on Linux, same as SizeHorizontal on other platforms
+    sfCursorSizeRight,              ///< Right arrow cursor on Linux, same as SizeHorizontal on other platforms
+    sfCursorSizeTop,                ///< Up arrow cursor on Linux, same as SizeVertical on other platforms
+    sfCursorSizeBottom,             ///< Down arrow cursor on Linux, same as SizeVertical on other platforms
+    sfCursorSizeTopLeft,            ///< Top-left arrow cursor on Linux, same as SizeTopLeftBottomRight on other platforms
+    sfCursorSizeBottomRight,        ///< Bottom-right arrow cursor on Linux, same as SizeTopLeftBottomRight on other platforms
+    sfCursorSizeBottomLeft,         ///< Bottom-left arrow cursor on Linux, same as SizeBottomLeftTopRight on other platforms
+    sfCursorSizeTopRight,           ///< Top-right arrow cursor on Linux, same as SizeBottomLeftTopRight on other platforms
     sfCursorSizeAll,                ///< Combination of SizeHorizontal and SizeVertical
     sfCursorCross,                  ///< Crosshair cursor
     sfCursorHelp,                   ///< Help cursor
