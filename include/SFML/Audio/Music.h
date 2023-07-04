@@ -54,7 +54,7 @@ typedef struct
 /// This function doesn't start playing the music (call
 /// sfMusic_play to do so).
 /// Here is a complete list of all the supported audio formats:
-/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// ogg, wav, flac, mp3, aiff, au, raw, paf, svx, nist, voc, ircam,
 /// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
 ///
 /// \param filename Path of the music file to open
@@ -70,7 +70,7 @@ CSFML_AUDIO_API sfMusic* sfMusic_createFromFile(const char* filename);
 /// This function doesn't start playing the music (call
 /// sfMusic_play to do so).
 /// Here is a complete list of all the supported audio formats:
-/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// ogg, wav, flac, mp3, aiff, au, raw, paf, svx, nist, voc, ircam,
 /// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
 ///
 /// \param data        Pointer to the file data in memory
@@ -87,7 +87,7 @@ CSFML_AUDIO_API sfMusic* sfMusic_createFromMemory(const void* data, size_t sizeI
 /// This function doesn't start playing the music (call
 /// sfMusic_play to do so).
 /// Here is a complete list of all the supported audio formats:
-/// ogg, wav, flac, aiff, au, raw, paf, svx, nist, voc, ircam,
+/// ogg, wav, flac, mp3, aiff, au, raw, paf, svx, nist, voc, ircam,
 /// w64, mat4, mat5 pvf, htk, sds, avr, sd2, caf, wve, mpc2k, rf64.
 ///
 /// \param stream Source stream to read from
