@@ -162,6 +162,16 @@ CSFML_GRAPHICS_API void sfRenderWindow_setPosition(sfRenderWindow* renderWindow,
 CSFML_GRAPHICS_API sfVector2u sfRenderWindow_getSize(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
+/// \brief Tell if the render window will use sRGB encoding when drawing on it
+///
+/// \param renderWindow Render window object
+///
+/// \return sfTrue if the render window use sRGB encoding, sfFalse otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfRenderWindow_isSrgb(const sfRenderWindow* renderWindow);
+
+////////////////////////////////////////////////////////////
 /// \brief Change the size of the rendering region of a render window
 ///
 /// \param renderWindow Render window object

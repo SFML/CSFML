@@ -221,6 +221,14 @@ sfVector2u sfRenderWindow_getSize(const sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
+sfBool sfRenderWindow_isSrgb(const sfRenderWindow* renderWindow)
+{
+    CSFML_CHECK_RETURN(renderWindow, sfFalse);
+    return renderWindow->This.isSrgb();
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderWindow_setSize(sfRenderWindow* renderWindow, sfVector2u size)
 {
     CSFML_CALL(renderWindow, setSize(sf::Vector2u(size.x, size.y)));
