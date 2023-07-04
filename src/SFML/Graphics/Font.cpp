@@ -122,6 +122,13 @@ float sfFont_getKerning(const sfFont* font, sfUint32 first, sfUint32 second, uns
 
 
 ////////////////////////////////////////////////////////////
+float sfFont_getBoldKerning(const sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize)
+{
+    CSFML_CALL_RETURN(font, getKerning(first, second, characterSize, true), 0);
+}
+
+
+////////////////////////////////////////////////////////////
 float sfFont_getLineSpacing(const sfFont* font, unsigned int characterSize)
 {
     CSFML_CALL_RETURN(font, getLineSpacing(characterSize), 0);

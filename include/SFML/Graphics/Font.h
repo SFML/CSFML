@@ -113,6 +113,19 @@ CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(const sfFont* font, sfUint32 codePoin
 CSFML_GRAPHICS_API float sfFont_getKerning(const sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the bold kerning value corresponding to a given pair of characters in a font
+///
+/// \param font          Source font
+/// \param first         Unicode code point of the first character
+/// \param second        Unicode code point of the second character
+/// \param characterSize Character size, in pixels
+///
+/// \return Kerning offset, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float sfFont_getBoldKerning(const sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the line spacing value
 ///
 /// \param font          Source font
