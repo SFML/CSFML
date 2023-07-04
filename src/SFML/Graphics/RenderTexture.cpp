@@ -97,6 +97,14 @@ sfVector2u sfRenderTexture_getSize(const sfRenderTexture* renderTexture)
 
 
 ////////////////////////////////////////////////////////////
+sfBool sfRenderTexture_isSrgb(const sfRenderTexture* renderTexture)
+{
+    CSFML_CHECK_RETURN(renderTexture, sfFalse);
+    return renderTexture->This.isSrgb();
+}
+
+
+////////////////////////////////////////////////////////////
 sfBool sfRenderTexture_setActive(sfRenderTexture* renderTexture, sfBool active)
 {
     CSFML_CALL_RETURN(renderTexture, setActive(active == sfTrue), sfFalse);

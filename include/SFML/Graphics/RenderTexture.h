@@ -86,6 +86,16 @@ CSFML_GRAPHICS_API void sfRenderTexture_destroy(sfRenderTexture* renderTexture);
 CSFML_GRAPHICS_API sfVector2u sfRenderTexture_getSize(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
+/// \brief Tell if the render texture will use sRGB encoding when drawing on it
+///
+/// \param renderTexture Render texture object
+///
+/// \return sfTrue if the render texture use sRGB encoding, sfFalse otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfRenderTexture_isSrgb(const sfRenderTexture* renderTexture);
+
+////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a render texture as the current target for rendering
 ///
 /// \param renderTexture Render texture object
