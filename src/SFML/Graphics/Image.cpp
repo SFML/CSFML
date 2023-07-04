@@ -30,6 +30,9 @@
 #include <SFML/Internal.h>
 #include <SFML/CallbackStream.h>
 
+#include <cstdlib>
+#include <cstring>
+
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_create(unsigned int width, unsigned int height)
 {
@@ -128,6 +131,28 @@ void sfImage_destroy(sfImage* image)
 sfBool sfImage_saveToFile(const sfImage* image, const char* filename)
 {
     CSFML_CALL_RETURN(image, saveToFile(filename), sfFalse);
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfImage_saveToMemory(const sfImage* image, unsigned char** buffer, size_t* size, const char* format)
+{
+    CSFML_CHECK_RETURN(image, sfFalse);
+
+    std::vector<sf::Uint8> output;
+    if (image->This.saveToMemory(output, format)){
+        // Create new buffer then return address and size to user
+        *buffer = reinterpret_cast<unsigned char*>(std::malloc(output.size()));
+        *size = output.size();
+
+        // Copy vector contents into buffer
+        std::memcpy(*buffer, &output[0], output.size());
+        return sfTrue;
+    }
+
+    *buffer = NULL;
+    *size = 0;
+    return sfFalse;
 }
 
 

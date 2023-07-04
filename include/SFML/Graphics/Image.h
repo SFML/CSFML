@@ -156,8 +156,33 @@ CSFML_GRAPHICS_API void sfImage_destroy(sfImage* image);
 ///
 /// \return sfTrue if saving was successful
 ///
+/// \see sfImage_saveToMemory
+///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfImage_saveToFile(const sfImage* image, const char* filename);
+
+////////////////////////////////////////////////////////////
+/// \brief Save the image to a buffer in memory
+///
+/// The format of the image must be specified.
+/// The supported image formats are bmp, png, tga and jpg.
+/// This function fails if the image is empty, or if
+/// the format was invalid.
+///
+/// The array pointed to by \p buffer must be freed to prevent
+/// a memory leak.
+///
+/// \param image  Image object
+/// \param buffer Address of buffer to fill with encoded data
+/// \param size   Size of buffer
+/// \param format Encoding format to use
+///
+/// \return True if saving was successful
+///
+/// \see sfImage_saveToFile
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfImage_saveToMemory(const sfImage* image, unsigned char** buffer, size_t* size, const char* format);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the size of an image
