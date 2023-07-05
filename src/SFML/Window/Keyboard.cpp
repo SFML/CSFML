@@ -28,6 +28,9 @@
 #include <SFML/Window/Keyboard.h>
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Internal.h>
+#include <SFML/System/String.hpp>
+
+#include <string.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -35,6 +38,35 @@ sfBool sfKeyboard_isKeyPressed(sfKeyCode key)
 {
     return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key));
 }
+
+
+////////////////////////////////////////////////////////////
+sfBool sfKeyboard_isScancodePressed(sfScancode code)
+{
+    return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Scancode>(code));
+}
+
+
+////////////////////////////////////////////////////////////
+sfKeyCode sfKeyboard_localize(sfScancode code)
+{
+    return static_cast<sfKeyCode>(sf::Keyboard::localize(static_cast<sf::Keyboard::Scancode>(code)));
+}
+
+
+////////////////////////////////////////////////////////////
+sfScancode sfKeyboard_delocalize(sfKeyCode key)
+{
+    return static_cast<sfScancode>(sf::Keyboard::delocalize(static_cast<sf::Keyboard::Key>(key)));
+}
+
+
+////////////////////////////////////////////////////////////
+const char* sfKeyboard_getDescription(sfScancode code)
+{
+    return strdup(sf::Keyboard::getDescription(static_cast<sf::Keyboard::Scancode>(code)).toAnsiString().c_str());
+}
+
 
 ////////////////////////////////////////////////////////////
 void sfKeyboard_setVirtualKeyboardVisible(sfBool visible)

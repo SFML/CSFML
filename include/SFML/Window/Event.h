@@ -77,6 +77,7 @@ typedef struct
 {
     sfEventType type;
     sfKeyCode   code;
+    sfScancode  scancode;
     sfBool      alt;
     sfBool      control;
     sfBool      shift;
