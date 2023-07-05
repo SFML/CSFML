@@ -29,6 +29,8 @@ set(SRC
     ${INCROOT}/Types.h
     ${SRCROOT}/VideoMode.cpp
     ${INCROOT}/VideoMode.h
+    ${SRCROOT}/Vulkan.cpp
+    ${INCROOT}/Vulkan.h
     ${SRCROOT}/Window.cpp
     ${SRCROOT}/WindowStruct.h
     ${INCROOT}/Window.h
