@@ -54,11 +54,12 @@ inline void convertEvent(const sf::Event& SFMLEvent, sfEvent* event)
 
         case sfEvtKeyReleased :
         case sfEvtKeyPressed :
-            event->key.code    = static_cast<sfKeyCode>(SFMLEvent.key.code);
-            event->key.alt     = SFMLEvent.key.alt     ? sfTrue : sfFalse;
-            event->key.control = SFMLEvent.key.control ? sfTrue : sfFalse;
-            event->key.shift   = SFMLEvent.key.shift   ? sfTrue : sfFalse;
-            event->key.system  = SFMLEvent.key.system  ? sfTrue : sfFalse;
+            event->key.code     = static_cast<sfKeyCode>(SFMLEvent.key.code);
+            event->key.scancode = static_cast<sfScancode>(SFMLEvent.key.scancode);
+            event->key.alt      = SFMLEvent.key.alt     ? sfTrue : sfFalse;
+            event->key.control  = SFMLEvent.key.control ? sfTrue : sfFalse;
+            event->key.shift    = SFMLEvent.key.shift   ? sfTrue : sfFalse;
+            event->key.system   = SFMLEvent.key.system  ? sfTrue : sfFalse;
             break;
 
         case sfEvtMouseWheelMoved :
