@@ -35,14 +35,14 @@ sfTime sfTime_Zero = {0};
 ////////////////////////////////////////////////////////////
 float sfTime_asSeconds(sfTime time)
 {
-    return time.microseconds / 1000000.f;
+    return static_cast<float>(time.microseconds) / 1000000.f;
 }
 
 
 ////////////////////////////////////////////////////////////
 sfInt32 sfTime_asMilliseconds(sfTime time)
 {
-    return static_cast<sfUint32>(time.microseconds / 1000);
+    return static_cast<sfInt32>(time.microseconds / 1000);
 }
 
 
@@ -57,7 +57,7 @@ sfInt64 sfTime_asMicroseconds(sfTime time)
 sfTime sfSeconds(float amount)
 {
     sfTime time;
-    time.microseconds = static_cast<sfUint64>(amount * 1000000);
+    time.microseconds = static_cast<sfInt64>(amount * 1000000);
     return time;
 }
 
@@ -66,7 +66,7 @@ sfTime sfSeconds(float amount)
 sfTime sfMilliseconds(sfInt32 amount)
 {
     sfTime time;
-    time.microseconds = static_cast<sfUint64>(amount) * 1000;
+    time.microseconds = static_cast<sfInt64>(amount) * 1000;
     return time;
 }
 

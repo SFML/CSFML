@@ -269,10 +269,10 @@ void sfShader_setIvec4Uniform(sfShader* shader, const char* name, sfGlslIvec4 ve
 void sfShader_setIntColorUniform(sfShader* shader, const char* name, sfColor color)
 {
 	sfGlslIvec4 ivec4;
-	ivec4.x = (int)color.r;
-	ivec4.y = (int)color.g;
-	ivec4.z = (int)color.b;
-	ivec4.w = (int)color.a;
+	ivec4.x = static_cast<int>(color.r);
+	ivec4.y = static_cast<int>(color.g);
+	ivec4.z = static_cast<int>(color.b);
+	ivec4.w = static_cast<int>(color.a);
 
 	sfShader_setIvec4Uniform(shader, name, ivec4);
 }

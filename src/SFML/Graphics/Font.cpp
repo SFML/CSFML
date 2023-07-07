@@ -168,7 +168,7 @@ void sfFont_setSmooth(sfFont* font, sfBool smooth)
 
 
 ////////////////////////////////////////////////////////////
-const sfBool sfFont_isSmooth(const sfFont *font)
+sfBool sfFont_isSmooth(const sfFont *font)
 {
     if (font->This.isSmooth())
     {

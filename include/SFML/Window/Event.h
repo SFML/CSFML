@@ -65,7 +65,7 @@ typedef enum
     sfEvtTouchEnded,             ///< A touch event ended (data in event.touch)
     sfEvtSensorChanged,          ///< A sensor value changed (data in event.sensor)
 
-    sfEvtCount,                  ///< Keep last -- the total number of event types
+    sfEvtCount                   ///< Keep last -- the total number of event types
 } sfEventType;
 
 

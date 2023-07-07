@@ -69,7 +69,8 @@ void sfVertexBuffer_destroy(sfVertexBuffer* vertexBuffer)
 ////////////////////////////////////////////////////////////
 unsigned int sfVertexBuffer_getVertexCount(const sfVertexBuffer* vertexBuffer)
 {
-    CSFML_CALL_RETURN(vertexBuffer, getVertexCount(), 0);
+    CSFML_CHECK_RETURN(vertexBuffer, 0);
+    return static_cast<unsigned int>(vertexBuffer->This.getVertexCount());
 }
 
 

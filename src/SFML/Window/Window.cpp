@@ -320,5 +320,5 @@ sfWindowHandle sfWindow_getSystemHandle(const sfWindow* window)
 {
     CSFML_CHECK_RETURN(window, 0);
 
-    return (sfWindowHandle)window->This.getSystemHandle();
+    return static_cast<sfWindowHandle>(window->This.getSystemHandle());
 }

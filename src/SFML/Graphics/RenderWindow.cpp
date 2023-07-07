@@ -347,7 +347,7 @@ sfWindowHandle sfRenderWindow_getSystemHandle(const sfRenderWindow* renderWindow
 {
     CSFML_CHECK_RETURN(renderWindow, 0);
 
-    return (sfWindowHandle)renderWindow->This.getSystemHandle();
+    return static_cast<sfWindowHandle>(renderWindow->This.getSystemHandle());
 }
 
 

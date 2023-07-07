@@ -201,7 +201,7 @@ CSFML_GRAPHICS_API void sfFont_setSmooth(sfFont* font, sfBool smooth);
 /// \see setSmooth
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfBool sfFont_isSmooth(const sfFont* font);
+CSFML_GRAPHICS_API sfBool sfFont_isSmooth(const sfFont* font);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the font information
