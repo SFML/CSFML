@@ -1,4 +1,5 @@
 include(CMakeParseArguments)
+include(${PROJECT_SOURCE_DIR}/cmake/CompilerWarnings.cmake)
 
 # add a new target which is a CSFML library
 # ex: csfml_add_library(csfml-graphics
@@ -14,6 +15,9 @@ macro(csfml_add_library target)
 
     # add the CSFML header path
     target_include_directories(${target} PUBLIC ${PROJECT_SOURCE_DIR}/include)
+
+    # add warnings
+    set_file_warnings(${THIS_SOURCES})
 
     # define the export symbol of the module
     string(REPLACE "-" "_" NAME_UPPER "${target}")

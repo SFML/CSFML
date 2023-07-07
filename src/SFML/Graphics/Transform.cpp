@@ -165,7 +165,7 @@ sfBool sfTransform_equal(sfTransform* left, sfTransform* right)
     CSFML_CHECK_RETURN(right, false);
 
     for (int i = 0; i < 9; ++i) {
-        if (left->matrix[i] != left->matrix[i]) return sfFalse;
+        if (left->matrix[i] != right->matrix[i]) return sfFalse;
     }
     return sfTrue;
 }
