@@ -35,8 +35,8 @@ namespace
     // Helper function for converting a SFML address to a CSFML one
     sfIpAddress fromSFMLAddress(sf::IpAddress address)
     {
-        sfIpAddress result;
-        strncpy(result.address, address.toString().c_str(), 16);
+        sfIpAddress result = {0};
+        strncpy(result.address, address.toString().c_str(), 15);
 
         return result;
     }

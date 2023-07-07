@@ -113,7 +113,10 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t size,
         *received = sizeReceived;
 
     if (remoteAddress)
-        strncpy(remoteAddress->address, address.toString().c_str(), 16);
+    {
+        *remoteAddress = sfIpAddress_None;
+        strncpy(remoteAddress->address, address.toString().c_str(), 15);
+    }
 
     if (remotePort)
         *remotePort = port;
@@ -149,7 +152,10 @@ sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, 
         return static_cast<sfSocketStatus>(status);
 
     if (remoteAddress)
-        strncpy(remoteAddress->address, address.toString().c_str(), 16);
+    {
+        *remoteAddress = sfIpAddress_None;
+        strncpy(remoteAddress->address, address.toString().c_str(), 15);
+    }
 
     if (remotePort)
         *remotePort = port;
