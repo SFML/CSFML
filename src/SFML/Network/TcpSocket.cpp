@@ -75,7 +75,7 @@ sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
     CSFML_CHECK_RETURN(socket, result);
 
     sf::IpAddress address = socket->This.getRemoteAddress();
-    strncpy(result.address, address.toString().c_str(), 16);
+    strncpy(result.address, address.toString().c_str(), 15);
 
     return result;
 }
