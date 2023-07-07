@@ -388,12 +388,12 @@ CSFML_WINDOW_API sfScancode sfKeyboard_delocalize(sfKeyCode key);
 /// used in user interfaces, as the description for the key takes
 /// the users keyboard layout into consideration.
 ///
-/// \warning The result is OS-dependent: for example, sf::Keyboard::Scan::LSystem
+/// \warning The result is OS-dependent: for example, sfScanLSystem
 ///          is "Left Meta" on Linux, "Left Windows" on Windows and
 ///          "Left Command" on macOS.
 ///
 /// The current keyboard layout set by the operating system is used to
-/// interpret the scancode: for example, sf::Keyboard::Semicolon is
+/// interpret the scancode: for example, sfKeySemicolon is
 /// mapped to ";" for layout and to "é" for others.
 ///
 /// The returned const char* owns the string and must be freed to
@@ -409,7 +409,7 @@ CSFML_WINDOW_API const char* sfKeyboard_getDescription(sfScancode code);
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide the virtual keyboard.
 ///
-/// /warning The virtual keyboard is not supported on all
+/// \warning The virtual keyboard is not supported on all
 ///          systems. It will typically be implemented on mobile OSes
 ///          (Android, iOS) but not on desktop OSes (Windows, Linux, ...).
 ///
