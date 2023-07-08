@@ -84,6 +84,8 @@
 ////////////////////////////////////////////////////////////
 // Define helpers to create portable import / export macros for each module
 ////////////////////////////////////////////////////////////
+#if !defined(CSFML_STATIC)
+
 #if defined(CSFML_SYSTEM_WINDOWS)
 
 // Windows compilers need specific (and different) keywords for export and import
@@ -101,6 +103,14 @@
 
 #define CSFML_API_EXPORT extern "C" __attribute__((__visibility__("default")))
 #define CSFML_API_IMPORT CSFML_EXTERN_C __attribute__((__visibility__("default")))
+
+#endif
+
+#else
+
+// Static build doesn't need import/export macros
+#define CSFML_API_EXPORT extern "C"
+#define CSFML_API_IMPORT CSFML_EXTERN_C
 
 #endif
 
