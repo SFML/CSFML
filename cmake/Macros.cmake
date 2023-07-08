@@ -27,12 +27,17 @@ macro(csfml_add_library target)
     string(TOUPPER "${NAME_UPPER}" NAME_UPPER)
     set_target_properties(${target} PROPERTIES DEFINE_SYMBOL ${NAME_UPPER}_EXPORTS)
 
-    if(SFML_OS_WINDOWS)
-        # include the major version number in Windows shared library names (but not import library names)
+    if(BUILD_SHARED_LIBS)
         set_target_properties(${target} PROPERTIES DEBUG_POSTFIX -d)
-        set_target_properties(${target} PROPERTIES SUFFIX "-${PROJECT_VERSION_MAJOR}${CMAKE_SHARED_LIBRARY_SUFFIX}")
+        if(SFML_OS_WINDOWS)
+            # include the major version number in Windows shared library names (but not import library names)
+            set_target_properties(${target} PROPERTIES SUFFIX "-${PROJECT_VERSION_MAJOR}${CMAKE_SHARED_LIBRARY_SUFFIX}")
+        endif()
     else()
-        set_target_properties(${target} PROPERTIES DEBUG_POSTFIX -d)
+        set_target_properties(${target} PROPERTIES DEBUG_POSTFIX -s-d)
+        set_target_properties(${target} PROPERTIES RELEASE_POSTFIX -s)
+        set_target_properties(${target} PROPERTIES MINSIZEREL_POSTFIX -s)
+        set_target_properties(${target} PROPERTIES RELWITHDEBINFO_POSTFIX -s)
     endif()
     if (SFML_OS_WINDOWS AND SFML_COMPILER_GCC)
         # on Windows/gcc get rid of "lib" prefix for shared libraries,
@@ -74,5 +79,10 @@ macro(csfml_add_library target)
             RUNTIME DESTINATION bin COMPONENT bin
             LIBRARY DESTINATION lib${LIB_SUFFIX} COMPONENT bin
             ARCHIVE DESTINATION lib${LIB_SUFFIX} COMPONENT devel)
+
+    # define CSFML_STATIC if the build type is not set to 'shared'
+    if(NOT BUILD_SHARED_LIBS)
+        target_compile_definitions(${target} PUBLIC CSFML_STATIC)
+    endif()
 
 endmacro()

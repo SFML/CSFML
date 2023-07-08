@@ -12,7 +12,7 @@ defaults:
 
 jobs:
   build:
-    name: ${{ matrix.platform.name }} ${{ matrix.type.name }}
+    name: ${{ matrix.platform.name }} ${{ matrix.config.name }} ${{ matrix.type.name }}
     runs-on: ${{ matrix.platform.os }}
 
     strategy:
@@ -28,6 +28,9 @@ jobs:
         - { name: Linux GCC,           os: ubuntu-22.04, flags: -GNinja }
         - { name: Linux Clang,         os: ubuntu-22.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: MacOS,               os: macos-14,     flags: -GNinja }
+        config:
+        - { name: Shared, flags: -DBUILD_SHARED_LIBS=ON,  csfml_flags: -DCSFML_LINK_SFML_STATICALLY=OFF }
+        - { name: Static, flags: -DBUILD_SHARED_LIBS=OFF, csfml_flags: -DCSFML_LINK_SFML_STATICALLY=ON }
         type:
         - { name: Debug }
         - { name: Release }
@@ -50,7 +53,7 @@ jobs:
         path: SFML
 
     - name: Configure SFML CMake
-      run: cmake -S SFML -B SFML/build -DCMAKE_INSTALL_PREFIX=SFML/install -DBUILD_SHARED_LIBS=TRUE ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
+      run: cmake -S SFML -B SFML/build -DCMAKE_INSTALL_PREFIX=SFML/install ${{matrix.platform.flags}} ${{matrix.config.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
 
     - name: Build SFML
       run: cmake --build SFML/build --config ${{matrix.type.name}} --target install
@@ -61,7 +64,7 @@ jobs:
         path: CSFML
 
     - name: Configure CSFML CMake
-      run: cmake --preset dev -S CSFML -B CSFML/build -DCMAKE_INSTALL_PREFIX=CSFML/install -DCSFML_LINK_SFML_STATICALLY=FALSE -DSFML_ROOT=SFML/install -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
+      run: cmake --preset dev -S CSFML -B CSFML/build -DCMAKE_INSTALL_PREFIX=CSFML/install -DSFML_ROOT=SFML/install -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} ${{matrix.config.flags}} ${{matrix.config.csfml_flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
 
     - name: Build CSFML
       run: cmake --build CSFML/build --config ${{matrix.type.name}} --target install
