@@ -15,6 +15,7 @@ jobs:
         - { name: Windows VS2022, os: windows-2022 }
         - { name: Windows ClangCL, os: windows-2022, flags: -T ClangCL }
         - { name: Windows Clang,  os: windows-2022, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ -GNinja }
+        - { name: Windows MinGW,  os: windows-2022, flags: -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -GNinja }
         - { name: Linux GCC,      os: ubuntu-latest }
         - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: MacOS,          os: macos-12,      flags: -DSFML_BUILD_FRAMEWORKS=FALSE }
