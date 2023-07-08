@@ -77,4 +77,9 @@ macro(csfml_add_library target)
             LIBRARY DESTINATION lib${LIB_SUFFIX} COMPONENT bin 
             ARCHIVE DESTINATION lib${LIB_SUFFIX} COMPONENT devel)
 
+    # define CSFML_STATIC if the build type is not set to 'shared'
+    if(NOT BUILD_SHARED_LIBS)
+        target_compile_definitions(${target} PUBLIC "CSFML_STATIC")
+    endif()
+
 endmacro()
