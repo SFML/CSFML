@@ -74,7 +74,7 @@ macro(csfml_add_library target)
     # add the install rule
     install(TARGETS ${target}
             RUNTIME DESTINATION bin COMPONENT bin
-            LIBRARY DESTINATION lib${LIB_SUFFIX} COMPONENT bin 
+            LIBRARY DESTINATION lib${LIB_SUFFIX} COMPONENT bin
             ARCHIVE DESTINATION lib${LIB_SUFFIX} COMPONENT devel)
 
 endmacro()

@@ -127,7 +127,7 @@ cmake --build . --config Release
 
 # Copies one SFML and CSFML module into the NuGet package
 # The module name must be passed to this function as an argument, in lowercase
-# This function then copies $SFMLLibDir/libsfml-(module).so and 
+# This function then copies $SFMLLibDir/libsfml-(module).so and
 # $CSFMLLibDir/libcsfml-(module).so into $OutDir
 copymodule()
 {

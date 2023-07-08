@@ -46,7 +46,7 @@ jobs:
     - name: Configure SFML CMake
       shell: bash
       run: cmake -S $GITHUB_WORKSPACE/SFML -B $GITHUB_WORKSPACE/SFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/SFML/install -DBUILD_SHARED_LIBS=TRUE -DSFML_BUILD_EXAMPLES=FALSE -DSFML_BUILD_TEST_SUITE=FALSE -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
-    
+
     - name: Build SFML
       shell: bash
       run: cmake --build $GITHUB_WORKSPACE/SFML/build --config ${{matrix.type.name}} --target install

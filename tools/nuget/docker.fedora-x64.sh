@@ -18,5 +18,5 @@ dnf install -y \
     gcc-c++ \
     cmake \
     make
-    
+
 ./build.linux.sh fedora-x64

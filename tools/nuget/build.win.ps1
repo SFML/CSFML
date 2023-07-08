@@ -19,11 +19,11 @@ if (-not $RID) {
 $Generator = 'Visual Studio 16 2019'
 
 switch ($RID) {
-    'win-x86' { 
-        $Architecture = 'Win32' 
+    'win-x86' {
+        $Architecture = 'Win32'
     }
-    'win-x64' { 
-        $Architecture = 'x64' 
+    'win-x64' {
+        $Architecture = 'x64'
     }
     Default {
         Write-Error "Unknown RID '$RID'"
@@ -84,11 +84,11 @@ Push-Location "SFML"
 $SFMLDir = (Get-Item .).FullName
 
 switch ($RID) {
-    'win-x86' { 
+    'win-x86' {
         $SFMLExtLibs = (Get-Item ./extlibs/libs-msvc-universal/x86).FullName
         $SFMLAudioExtras = (Get-Item ./extlibs/bin/x86).FullName
     }
-    'win-x64' { 
+    'win-x64' {
         $SFMLExtLibs = (Get-Item ./extlibs/libs-msvc-universal/x64).FullName
         $SFMLAudioExtras = (Get-Item ./extlibs/bin/x64).FullName
     }
