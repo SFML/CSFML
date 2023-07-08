@@ -172,7 +172,7 @@ sfBool sfFont_isSmooth(const sfFont *font)
 {
     if (font->This.isSmooth())
     {
-        return sfTrue;        
+        return sfTrue;
     }
 
     return sfFalse;

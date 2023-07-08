@@ -18,39 +18,39 @@ $Image = $null
 $Shell = $null
 
 switch ($RID) {
-    'alpine-x64' { 
-        $Image = 'alpine:3.7' 
+    'alpine-x64' {
+        $Image = 'alpine:3.7'
         $Shell = '/bin/sh'
     }
-    'debian-x64' { 
-        $Image = 'debian:bullseye' 
+    'debian-x64' {
+        $Image = 'debian:bullseye'
         $Shell = '/bin/bash'
     }
-    'ubuntu-x64' { 
-        $Image = 'ubuntu:22.04' 
+    'ubuntu-x64' {
+        $Image = 'ubuntu:22.04'
         $Shell = '/bin/bash'
     }
-    'fedora-x64' { 
-        $Image = 'fedora:37' 
+    'fedora-x64' {
+        $Image = 'fedora:37'
         $Shell = '/bin/bash'
     }
-    'linux-x64' { 
-        $Image = 'ubuntu:22.04' 
+    'linux-x64' {
+        $Image = 'ubuntu:22.04'
         $Shell = '/bin/bash'
     }
-    'linux-musl-x64' { 
-        $Image = 'alpine:3.15' 
+    'linux-musl-x64' {
+        $Image = 'alpine:3.15'
         $Shell = '/bin/sh'
     }
-    'linux-arm' { 
-        $Image = 'arm32v7/ubuntu:22.04' 
+    'linux-arm' {
+        $Image = 'arm32v7/ubuntu:22.04'
         $Shell = '/bin/bash'
     }
-    'linux-arm64' { 
-        $Image = 'arm64v8/ubuntu:22.04' 
+    'linux-arm64' {
+        $Image = 'arm64v8/ubuntu:22.04'
         $Shell = '/bin/bash'
     }
-    Default { 
+    Default {
         Write-Error "Unknown Runtime Identifier $RID"
         exit
     }

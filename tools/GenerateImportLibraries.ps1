@@ -17,10 +17,10 @@ Function Create-ImportLib([string]$architecture)
     Move-Item -Path "lib\*.lib" -Destination "lib\msvc"
 
     $patharch = If($architecture -eq "x64") { "64" } Else { "32" }
-    
+
     $oldpath = $env:Path
     $env:Path += ";C:\tools\mingw$patharch\bin\"
-    
+
     Push-Location "lib\gcc"
     Convert-DLL("csfml-graphics")
     Convert-DLL("csfml-window")
