@@ -49,7 +49,7 @@
 #elif defined(CSFML_SYSTEM_MACOS)
 
     // Window handle is NSWindow (void*) on Mac OS X - Cocoa
-	typedef void* sfWindowHandle;
+    typedef void* sfWindowHandle;
 
 #endif
 

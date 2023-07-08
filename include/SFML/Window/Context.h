@@ -76,7 +76,7 @@ CSFML_WINDOW_API sfBool sfContext_setActive(sfContext* context, sfBool active);
 ////////////////////////////////////////////////////////////
 /// \brief Get the address of an OpenGL function.
 ///
-/// \param name	Name of the function to get the address of
+/// \param name Name of the function to get the address of
 ///
 /// \return Address of the OpenGL function, 0 on failure
 ///
