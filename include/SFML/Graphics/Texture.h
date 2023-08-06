@@ -285,7 +285,10 @@ CSFML_GRAPHICS_API sfBool sfTexture_isSmooth(const sfTexture* texture);
 ///
 /// \return True if the texture source is converted from sRGB, false if not
 ///
-/// \see sfTexture_setSrgb
+/// \see sfTexture_createSrgbFromFile
+/// \see sfTexture_createSrgbFromMemory
+/// \see sfTexture_createSrgbFromStream
+/// \see sfTexture_createSrgbFromImage
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfBool sfTexture_isSrgb(const sfTexture* texture);
