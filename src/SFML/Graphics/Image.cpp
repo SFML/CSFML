@@ -139,14 +139,10 @@ sfBool sfImage_saveToMemory(const sfImage* image, unsigned char** buffer, size_t
 {
     CSFML_CHECK_RETURN(image, sfFalse);
 
-    std::vector<sf::Uint8> output;
+    static std::vector<sf::Uint8> output;
     if (image->This.saveToMemory(output, format)){
-        // Create new buffer then return address and size to user
-        *buffer = reinterpret_cast<unsigned char*>(std::malloc(output.size()));
+        *buffer = &output[0];
         *size = output.size();
-
-        // Copy vector contents into buffer
-        std::memcpy(*buffer, &output[0], output.size());
         return sfTrue;
     }
 

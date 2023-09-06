@@ -169,9 +169,6 @@ CSFML_GRAPHICS_API sfBool sfImage_saveToFile(const sfImage* image, const char* f
 /// This function fails if the image is empty, or if
 /// the format was invalid.
 ///
-/// The array pointed to by \p buffer must be freed to prevent
-/// a memory leak.
-///
 /// \param image  Image object
 /// \param buffer Address of buffer to fill with encoded data
 /// \param size   Size of buffer
