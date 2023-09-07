@@ -27,8 +27,10 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Image.h>
 #include <SFML/Graphics/ImageStruct.h>
+#include <SFML/System/BufferStruct.h>
 #include <SFML/Internal.h>
 #include <SFML/CallbackStream.h>
+
 
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_create(unsigned int width, unsigned int height)
@@ -128,6 +130,14 @@ void sfImage_destroy(sfImage* image)
 sfBool sfImage_saveToFile(const sfImage* image, const char* filename)
 {
     CSFML_CALL_RETURN(image, saveToFile(filename), sfFalse);
+}
+
+
+////////////////////////////////////////////////////////////
+sfBool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* format)
+{
+    CSFML_CHECK_RETURN(output, sfFalse);
+    CSFML_CALL_RETURN(image, saveToMemory(output->buffer, format), sfFalse);
 }
 
 
