@@ -6,6 +6,9 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/SFML/System)
 set(SRC
     ${PROJECT_SOURCE_DIR}/include/SFML/GPUPreference.h
     ${INCROOT}/Export.h
+    ${SRCROOT}/Buffer.cpp
+    ${SRCROOT}/BufferStruct.h
+    ${INCROOT}/Buffer.h
     ${SRCROOT}/Clock.cpp
     ${SRCROOT}/ClockStruct.h
     ${INCROOT}/Clock.h

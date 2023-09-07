@@ -22,14 +22,39 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SYSTEM_TYPES_H
-#define SFML_SYSTEM_TYPES_H
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+#include <SFML/System/Buffer.h>
+#include <SFML/System/BufferStruct.h>
+#include <SFML/Internal.h>
 
 
-typedef struct sfBuffer sfBuffer;
-typedef struct sfClock sfClock;
-typedef struct sfMutex sfMutex;
-typedef struct sfThread sfThread;
+////////////////////////////////////////////////////////////
+sfBuffer* sfBuffer_create(void)
+{
+    return new sfBuffer;
+}
 
 
-#endif // SFML_SYSTEM_TYPES_H
+////////////////////////////////////////////////////////////
+void sfBuffer_destroy(sfBuffer* buffer)
+{
+    delete buffer;
+}
+
+
+////////////////////////////////////////////////////////////
+size_t sfBuffer_getSize(const sfBuffer* buffer)
+{
+    CSFML_CHECK_RETURN(buffer, 0);
+    return buffer->buffer.size();
+}
+
+
+////////////////////////////////////////////////////////////
+const sfUint8* sfBuffer_getData(const sfBuffer* buffer)
+{
+    CSFML_CHECK_RETURN(buffer, NULL);
+    return !buffer->buffer.empty() ? &buffer->buffer[0] : NULL;
+}
