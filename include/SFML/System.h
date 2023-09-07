@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 
 #include <SFML/Config.h>
+#include <SFML/System/Buffer.h>
 #include <SFML/System/Clock.h>
 #include <SFML/System/InputStream.h>
 #include <SFML/System/Mutex.h>

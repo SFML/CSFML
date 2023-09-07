@@ -22,14 +22,23 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SYSTEM_TYPES_H
-#define SFML_SYSTEM_TYPES_H
+#ifndef SFML_BUFFERSTRUCT_H
+#define SFML_BUFFERSTRUCT_H
+
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+#include <SFML/Config.hpp>
+#include <vector>
 
 
-typedef struct sfBuffer sfBuffer;
-typedef struct sfClock sfClock;
-typedef struct sfMutex sfMutex;
-typedef struct sfThread sfThread;
+////////////////////////////////////////////////////////////
+// Internal structure of sfBuffer
+////////////////////////////////////////////////////////////
+struct sfBuffer
+{
+    std::vector<sf::Uint8> buffer;
+};
 
 
-#endif // SFML_SYSTEM_TYPES_H
+#endif // SFML_BUFFERSTRUCT_H
