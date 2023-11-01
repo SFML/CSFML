@@ -19,7 +19,13 @@ jobs:
         - { name: Linux GCC,      os: ubuntu-latest }
         - { name: Linux Clang,    os: ubuntu-latest, flags: -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: MacOS,          os: macos-12,      flags: -DSFML_BUILD_FRAMEWORKS=FALSE }
+
     steps:
+    - name: Get CMake and Ninja
+      uses: lukka/get-cmake@latest
+      with:
+        ninjaVersion: latest
+
     - name: Install Linux Dependencies
       if: runner.os == 'Linux'
       run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libudev-dev libopenal-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
