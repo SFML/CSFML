@@ -35,88 +35,88 @@
 ////////////////////////////////////////////////////////////
 // Define a function to convert a sf::Event to a sfEvent
 ////////////////////////////////////////////////////////////
-inline void convertEvent(const sf::Event& SFMLEvent, sfEvent* event)
+inline void convertEvent(const sf::Event& sfmlEvent, sfEvent* event)
 {
     // Convert its type
-    event->type = static_cast<sfEventType>(SFMLEvent.type);
+    event->type = static_cast<sfEventType>(sfmlEvent.type);
 
     // Fill its fields
     switch (event->type)
     {
         case sfEvtResized :
-            event->size.width  = SFMLEvent.size.width;
-            event->size.height = SFMLEvent.size.height;
+            event->size.width  = sfmlEvent.size.width;
+            event->size.height = sfmlEvent.size.height;
             break;
 
         case sfEvtTextEntered :
-            event->text.unicode = SFMLEvent.text.unicode;
+            event->text.unicode = sfmlEvent.text.unicode;
             break;
 
         case sfEvtKeyReleased :
         case sfEvtKeyPressed :
-            event->key.code     = static_cast<sfKeyCode>(SFMLEvent.key.code);
-            event->key.scancode = static_cast<sfScancode>(SFMLEvent.key.scancode);
-            event->key.alt      = SFMLEvent.key.alt     ? sfTrue : sfFalse;
-            event->key.control  = SFMLEvent.key.control ? sfTrue : sfFalse;
-            event->key.shift    = SFMLEvent.key.shift   ? sfTrue : sfFalse;
-            event->key.system   = SFMLEvent.key.system  ? sfTrue : sfFalse;
+            event->key.code     = static_cast<sfKeyCode>(sfmlEvent.key.code);
+            event->key.scancode = static_cast<sfScancode>(sfmlEvent.key.scancode);
+            event->key.alt      = sfmlEvent.key.alt     ? sfTrue : sfFalse;
+            event->key.control  = sfmlEvent.key.control ? sfTrue : sfFalse;
+            event->key.shift    = sfmlEvent.key.shift   ? sfTrue : sfFalse;
+            event->key.system   = sfmlEvent.key.system  ? sfTrue : sfFalse;
             break;
 
         case sfEvtMouseWheelMoved :
-            event->mouseWheel.delta = SFMLEvent.mouseWheel.delta;
-            event->mouseWheel.x     = SFMLEvent.mouseWheel.x;
-            event->mouseWheel.y     = SFMLEvent.mouseWheel.y;
+            event->mouseWheel.delta = sfmlEvent.mouseWheel.delta;
+            event->mouseWheel.x     = sfmlEvent.mouseWheel.x;
+            event->mouseWheel.y     = sfmlEvent.mouseWheel.y;
             break;
 
         case sfEvtMouseWheelScrolled :
-            event->mouseWheelScroll.wheel = static_cast<sfMouseWheel>(SFMLEvent.mouseWheelScroll.wheel);
-            event->mouseWheelScroll.delta = SFMLEvent.mouseWheelScroll.delta;
-            event->mouseWheelScroll.x     = SFMLEvent.mouseWheelScroll.x;
-            event->mouseWheelScroll.y     = SFMLEvent.mouseWheelScroll.y;
+            event->mouseWheelScroll.wheel = static_cast<sfMouseWheel>(sfmlEvent.mouseWheelScroll.wheel);
+            event->mouseWheelScroll.delta = sfmlEvent.mouseWheelScroll.delta;
+            event->mouseWheelScroll.x     = sfmlEvent.mouseWheelScroll.x;
+            event->mouseWheelScroll.y     = sfmlEvent.mouseWheelScroll.y;
             break;
 
         case sfEvtMouseButtonPressed :
         case sfEvtMouseButtonReleased :
-            event->mouseButton.button = static_cast<sfMouseButton>(SFMLEvent.mouseButton.button);
-            event->mouseButton.x      = SFMLEvent.mouseButton.x;
-            event->mouseButton.y      = SFMLEvent.mouseButton.y;
+            event->mouseButton.button = static_cast<sfMouseButton>(sfmlEvent.mouseButton.button);
+            event->mouseButton.x      = sfmlEvent.mouseButton.x;
+            event->mouseButton.y      = sfmlEvent.mouseButton.y;
             break;
 
         case sfEvtMouseMoved :
-            event->mouseMove.x = SFMLEvent.mouseMove.x;
-            event->mouseMove.y = SFMLEvent.mouseMove.y;
+            event->mouseMove.x = sfmlEvent.mouseMove.x;
+            event->mouseMove.y = sfmlEvent.mouseMove.y;
             break;
 
         case sfEvtJoystickButtonPressed :
         case sfEvtJoystickButtonReleased :
-            event->joystickButton.joystickId = SFMLEvent.joystickButton.joystickId;
-            event->joystickButton.button     = SFMLEvent.joystickButton.button;
+            event->joystickButton.joystickId = sfmlEvent.joystickButton.joystickId;
+            event->joystickButton.button     = sfmlEvent.joystickButton.button;
             break;
 
         case sfEvtJoystickMoved :
-            event->joystickMove.joystickId = SFMLEvent.joystickMove.joystickId;
-            event->joystickMove.axis       = static_cast<sfJoystickAxis>(SFMLEvent.joystickMove.axis);
-            event->joystickMove.position   = SFMLEvent.joystickMove.position;
+            event->joystickMove.joystickId = sfmlEvent.joystickMove.joystickId;
+            event->joystickMove.axis       = static_cast<sfJoystickAxis>(sfmlEvent.joystickMove.axis);
+            event->joystickMove.position   = sfmlEvent.joystickMove.position;
             break;
 
         case sfEvtJoystickConnected :
         case sfEvtJoystickDisconnected :
-            event->joystickConnect.joystickId = SFMLEvent.joystickConnect.joystickId;
+            event->joystickConnect.joystickId = sfmlEvent.joystickConnect.joystickId;
             break;
 
         case sfEvtTouchBegan :
         case sfEvtTouchMoved :
         case sfEvtTouchEnded :
-            event->touch.finger = SFMLEvent.touch.finger;
-            event->touch.x = SFMLEvent.touch.x;
-            event->touch.y = SFMLEvent.touch.y;
+            event->touch.finger = sfmlEvent.touch.finger;
+            event->touch.x = sfmlEvent.touch.x;
+            event->touch.y = sfmlEvent.touch.y;
             break;
 
         case sfEvtSensorChanged :
-            event->sensor.sensorType = static_cast<sfSensorType>(SFMLEvent.sensor.type);
-            event->sensor.x = SFMLEvent.sensor.x;
-            event->sensor.y = SFMLEvent.sensor.y;
-            event->sensor.z = SFMLEvent.sensor.z;
+            event->sensor.sensorType = static_cast<sfSensorType>(sfmlEvent.sensor.type);
+            event->sensor.x = sfmlEvent.sensor.x;
+            event->sensor.y = sfmlEvent.sensor.y;
+            event->sensor.z = sfmlEvent.sensor.z;
             break;
 
         default :

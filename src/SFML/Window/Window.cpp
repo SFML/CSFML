@@ -132,15 +132,15 @@ sfBool sfWindow_pollEvent(sfWindow* window, sfEvent* event)
     CSFML_CHECK_RETURN(event, sfFalse);
 
     // Get the event
-    sf::Event SFMLEvent;
-    sfBool ret = window->This.pollEvent(SFMLEvent);
+    sf::Event sfmlEvent;
+    sfBool ret = window->This.pollEvent(sfmlEvent);
 
     // No event, return
     if (!ret)
         return sfFalse;
 
     // Convert the sf::Event event to a sfEvent
-    convertEvent(SFMLEvent, event);
+    convertEvent(sfmlEvent, event);
 
     return sfTrue;
 }
@@ -153,15 +153,15 @@ sfBool sfWindow_waitEvent(sfWindow* window, sfEvent* event)
     CSFML_CHECK_RETURN(event, sfFalse);
 
     // Get the event
-    sf::Event SFMLEvent;
-    sfBool ret = window->This.waitEvent(SFMLEvent);
+    sf::Event sfmlEvent;
+    sfBool ret = window->This.waitEvent(sfmlEvent);
 
     // Error, return
     if (!ret)
         return sfFalse;
 
     // Convert the sf::Event event to a sfEvent
-    convertEvent(SFMLEvent, event);
+    convertEvent(sfmlEvent, event);
 
     return sfTrue;
 }

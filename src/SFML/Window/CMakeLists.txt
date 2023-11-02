@@ -32,8 +32,11 @@ set(SRC
     ${SRCROOT}/Vulkan.cpp
     ${INCROOT}/Vulkan.h
     ${SRCROOT}/Window.cpp
+    ${SRCROOT}/WindowBase.cpp
     ${SRCROOT}/WindowStruct.h
+    ${SRCROOT}/WindowBaseStruct.h
     ${INCROOT}/Window.h
+    ${INCROOT}/WindowBase.h
     ${INCROOT}/WindowHandle.h
 )
 
