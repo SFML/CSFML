@@ -17,7 +17,7 @@ jobs:
         - { name: Windows Clang,  os: windows-2022, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: Linux GCC,      os: ubuntu-latest, flags: -GNinja }
         - { name: Linux Clang,    os: ubuntu-latest, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: MacOS,          os: macos-12,      flags: -GNinja -DSFML_BUILD_FRAMEWORKS=FALSE }
+        - { name: MacOS,          os: macos-12,      flags: -GNinja }
 
     steps:
     - name: Get CMake and Ninja
