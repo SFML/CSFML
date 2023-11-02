@@ -22,14 +22,22 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_WINDOW_TYPES_H
-#define SFML_WINDOW_TYPES_H
+#ifndef SFML_WINDOWBASESTRUCT_H
+#define SFML_WINDOWBASESTRUCT_H
+
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+#include <SFML/Window/WindowBase.hpp>
 
 
-typedef struct sfContext sfContext;
-typedef struct sfCursor sfCursor;
-typedef struct sfWindow sfWindow;
-typedef struct sfWindowBase sfWindowBase;
+////////////////////////////////////////////////////////////
+// Internal structure of sfWindowBase
+////////////////////////////////////////////////////////////
+struct sfWindowBase
+{
+    sf::WindowBase This;
+};
 
 
-#endif // SFML_WINDOW_TYPES_H
+#endif // SFML_WINDOWBASESTRUCT_H
