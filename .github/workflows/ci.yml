@@ -11,13 +11,13 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: Windows VS2019, os: windows-2019 }
-        - { name: Windows VS2022, os: windows-2022 }
+        - { name: Windows VS2019,  os: windows-2019 }
+        - { name: Windows VS2022,  os: windows-2022 }
         - { name: Windows ClangCL, os: windows-2022, flags: -T ClangCL }
-        - { name: Windows Clang,  os: windows-2022, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: Linux GCC,      os: ubuntu-latest, flags: -GNinja }
-        - { name: Linux Clang,    os: ubuntu-latest, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: MacOS,          os: macos-12,      flags: -GNinja }
+        - { name: Windows Clang,   os: windows-2022, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        - { name: Linux GCC,       os: ubuntu-22.04, flags: -GNinja }
+        - { name: Linux Clang,     os: ubuntu-22.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        - { name: MacOS,           os: macos-12,     flags: -GNinja }
 
     steps:
     - name: Get CMake and Ninja
