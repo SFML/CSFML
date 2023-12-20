@@ -248,7 +248,7 @@ CSFML_GRAPHICS_API void sfVertexBuffer_bind(const sfVertexBuffer* vertexBuffer);
 /// \return True if vertex buffers are supported, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfVertexBuffer_isAvailable();
+CSFML_GRAPHICS_API sfBool sfVertexBuffer_isAvailable(void);
 
 
 #endif // SFML_VERTEXBUFFER_H

@@ -68,7 +68,7 @@ CSFML_AUDIO_API void sfListener_setPosition(sfVector3f position);
 /// \return The listener's position
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfVector3f sfListener_getPosition();
+CSFML_AUDIO_API sfVector3f sfListener_getPosition(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the orientation of the forward vector in the scene
@@ -91,7 +91,7 @@ CSFML_AUDIO_API void sfListener_setDirection(sfVector3f direction);
 /// \return Listener's forward vector (not normalized)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfVector3f sfListener_getDirection();
+CSFML_AUDIO_API sfVector3f sfListener_getDirection(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the upward vector of the listener in the scene
@@ -114,7 +114,7 @@ CSFML_AUDIO_API void sfListener_setUpVector(sfVector3f upVector);
 /// \return Listener's upward vector (not normalized)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfVector3f sfListener_getUpVector();
+CSFML_AUDIO_API sfVector3f sfListener_getUpVector(void);
 
 
 #endif // SFML_LISTENER_H

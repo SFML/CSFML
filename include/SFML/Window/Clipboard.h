@@ -42,7 +42,7 @@
 /// \return Clipboard contents as a locale-dependent ANSI string
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API const char* sfClipboard_getString();
+CSFML_WINDOW_API const char* sfClipboard_getString(void);
 
 
 ////////////////////////////////////////////////////////////
@@ -55,7 +55,7 @@ CSFML_WINDOW_API const char* sfClipboard_getString();
 /// \return Clipboard contents as UTF-32
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API const sfUint32* sfClipboard_getUnicodeString();
+CSFML_WINDOW_API const sfUint32* sfClipboard_getUnicodeString(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the content of the clipboard as ANSI string data

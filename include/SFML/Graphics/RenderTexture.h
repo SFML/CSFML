@@ -326,7 +326,7 @@ CSFML_GRAPHICS_API const sfTexture* sfRenderTexture_getTexture(const sfRenderTex
 /// \return The maximum anti-aliasing level supported by the system
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfRenderTexture_getMaximumAntialiasingLevel();
+CSFML_GRAPHICS_API unsigned int sfRenderTexture_getMaximumAntialiasingLevel(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable the smooth filter on a render texture
