@@ -40,7 +40,7 @@ typedef uint64_t VkSurfaceKHR;
 
 #endif
 
-struct VkAllocationCallbacks;
+typedef struct VkAllocationCallbacks VkAllocationCallbacks;
 
 
 typedef void (*sfVulkanFunctionPointer)();
