@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 jobs:
   build:
-    name: ${{ matrix.platform.name }} ${{ matrix.config.name }}
+    name: ${{ matrix.platform.name }} ${{ matrix.type.name }}
     runs-on: ${{ matrix.platform.os }}
 
     strategy:
@@ -18,6 +18,9 @@ jobs:
         - { name: Linux GCC,       os: ubuntu-22.04, flags: -GNinja }
         - { name: Linux Clang,     os: ubuntu-22.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: MacOS,           os: macos-12,     flags: -GNinja }
+        type:
+        - { name: Debug }
+        - { name: Release }
 
     steps:
     - name: Get CMake and Ninja
@@ -38,11 +41,11 @@ jobs:
 
     - name: Configure SFML CMake
       shell: bash
-      run: cmake -S $GITHUB_WORKSPACE/SFML -B $GITHUB_WORKSPACE/SFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/SFML/install -DBUILD_SHARED_LIBS=TRUE -DSFML_BUILD_EXAMPLES=FALSE -DSFML_BUILD_TEST_SUITE=FALSE -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}}
+      run: cmake -S $GITHUB_WORKSPACE/SFML -B $GITHUB_WORKSPACE/SFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/SFML/install -DBUILD_SHARED_LIBS=TRUE -DSFML_BUILD_EXAMPLES=FALSE -DSFML_BUILD_TEST_SUITE=FALSE -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
     
     - name: Build SFML
       shell: bash
-      run: cmake --build $GITHUB_WORKSPACE/SFML/build --config Release --target install
+      run: cmake --build $GITHUB_WORKSPACE/SFML/build --config ${{matrix.type.name}} --target install
 
     - name: Checkout CSFML
       uses: actions/checkout@v3
@@ -51,8 +54,8 @@ jobs:
 
     - name: Configure CSFML CMake
       shell: bash
-      run: cmake -S $GITHUB_WORKSPACE/CSFML -B $GITHUB_WORKSPACE/CSFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/CSFML/install -DBUILD_SHARED_LIBS=TRUE -DCSFML_BUILD_EXAMPLES=TRUE -DCSFML_LINK_SFML_STATICALLY=FALSE -DSFML_DIR=$GITHUB_WORKSPACE/SFML/install/lib/cmake/SFML -DCMAKE_VERBOSE_MAKEFILE=ON -DWARNINGS_AS_ERRORS=TRUE ${{matrix.platform.flags}}
+      run: cmake -S $GITHUB_WORKSPACE/CSFML -B $GITHUB_WORKSPACE/CSFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/CSFML/install -DBUILD_SHARED_LIBS=TRUE -DCSFML_BUILD_EXAMPLES=TRUE -DCSFML_LINK_SFML_STATICALLY=FALSE -DSFML_DIR=$GITHUB_WORKSPACE/SFML/install/lib/cmake/SFML -DCMAKE_VERBOSE_MAKEFILE=ON -DWARNINGS_AS_ERRORS=TRUE ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
 
     - name: Build CSFML
       shell: bash
-      run: cmake --build $GITHUB_WORKSPACE/CSFML/build --config Release --target install
+      run: cmake --build $GITHUB_WORKSPACE/CSFML/build --config ${{matrix.type.name}} --target install
