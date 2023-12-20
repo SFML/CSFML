@@ -30,9 +30,6 @@
 ////////////////////////////////////////////////////////////
 #include <stdio.h>
 
-// this macro avoids the C4127 warning on VC++ ("conditional expression is constant")
-#define ASSERT_FALSE (__LINE__ == -1)
-
 #ifndef NDEBUG
 
     #define CSFML_CHECK(object_) \
@@ -44,7 +41,7 @@
                 return; \
             } \
         } \
-        while (ASSERT_FALSE)
+        while (0)
 
     #define CSFML_CALL(object_, function_) \
         do \
@@ -58,7 +55,7 @@
                 fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
             } \
         } \
-        while (ASSERT_FALSE)
+        while (0)
 
     #define CSFML_CALL_PTR(object_, function_) \
         do \
@@ -72,7 +69,7 @@
                 fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
             } \
         } \
-        while (ASSERT_FALSE)
+        while (0)
 
     #define CSFML_CHECK_RETURN(object_, default_) \
         do \
@@ -83,7 +80,7 @@
                 return default_; \
             } \
         } \
-        while (ASSERT_FALSE)
+        while (0)
 
     #define CSFML_CALL_RETURN(object_, function_, default_) \
         if (object_) \
