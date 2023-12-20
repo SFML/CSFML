@@ -52,6 +52,7 @@ function(set_file_warnings)
         -Wold-style-cast # warn for c-style casts
         -Wpedantic # warn if non-standard C++ is used
         -Wno-deprecated-declarations # do not warning about deprecated declarations
+        -Wno-language-extension-token # ignore use of __int64 compiler extension
     )
 
     # Disable warnings as errors when using Clang on Windows to work around deprecation warnings in Windows APIs
