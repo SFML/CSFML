@@ -87,3 +87,9 @@ install(DIRECTORY include
         PATTERN ".svn" EXCLUDE)
 install(FILES license.md DESTINATION ${INSTALL_MISC_DIR})
 install(FILES readme.md DESTINATION ${INSTALL_MISC_DIR})
+
+# add an option for building the examples
+csfml_set_option(CSFML_BUILD_EXAMPLES FALSE BOOL "TRUE to build the CSFML examples, FALSE to ignore them")
+if(CSFML_BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
