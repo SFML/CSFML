@@ -203,7 +203,7 @@ CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, 
 /// \return The maximum size of a UDP datagram (message)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API unsigned int sfUdpSocket_maxDatagramSize();
+CSFML_NETWORK_API unsigned int sfUdpSocket_maxDatagramSize(void);
 
 
 #endif // SFML_UDPSOCKET_H

@@ -119,7 +119,7 @@
 //     ...
 // };
 //
-// CSFML_DEPRECATED void globalFunc();
+// CSFML_DEPRECATED void globalFunc(void);
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_NO_DEPRECATED_WARNINGS)
 

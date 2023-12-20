@@ -43,7 +43,7 @@ typedef uint64_t VkSurfaceKHR;
 typedef struct VkAllocationCallbacks VkAllocationCallbacks;
 
 
-typedef void (*sfVulkanFunctionPointer)();
+typedef void (*sfVulkanFunctionPointer)(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not the system supports Vulkan
@@ -79,4 +79,4 @@ CSFML_WINDOW_API sfVulkanFunctionPointer sfVulkan_getFunction(const char* name);
 /// \return Vulkan instance extensions required for graphics
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API const char* const* sfVulkan_getGraphicsRequiredInstanceExtensions();
+CSFML_WINDOW_API const char* const* sfVulkan_getGraphicsRequiredInstanceExtensions(void);

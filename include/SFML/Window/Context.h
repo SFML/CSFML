@@ -32,7 +32,7 @@
 #include <SFML/Window/Types.h>
 #include <SFML/Window/Window.h>
 
-typedef void (*GlFunctionPointer)();
+typedef void (*GlFunctionPointer)(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new context
@@ -104,6 +104,6 @@ CSFML_WINDOW_API sfContextSettings sfContext_getSettings(const sfContext* contex
 /// \return The active context's ID or 0 if no context is currently active
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfUint64 sfContext_getActiveContextId();
+CSFML_WINDOW_API sfUint64 sfContext_getActiveContextId(void);
 
 #endif // SFML_CONTEXT_H

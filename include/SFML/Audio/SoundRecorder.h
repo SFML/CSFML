@@ -157,7 +157,7 @@ CSFML_AUDIO_API const char** sfSoundRecorder_getAvailableDevices(size_t* count);
 /// \return The name of the default audio capture device (null terminated)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API const char* sfSoundRecorder_getDefaultDevice();
+CSFML_AUDIO_API const char* sfSoundRecorder_getDefaultDevice(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the audio capture device

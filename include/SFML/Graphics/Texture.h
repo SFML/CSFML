@@ -403,7 +403,7 @@ CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture, sfTextureCoordi
 /// \return Maximum size allowed for textures, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfTexture_getMaximumSize();
+CSFML_GRAPHICS_API unsigned int sfTexture_getMaximumSize(void);
 
 
 #endif // SFML_TEXTURE_H
