@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/ConvexShape.h>
-#include <SFML/Graphics/ConvexShapeStruct.h>
+#include <SFML/Graphics/ConvexShapeStruct.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/ConvertTransform.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

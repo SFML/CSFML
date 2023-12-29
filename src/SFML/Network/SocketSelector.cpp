@@ -26,11 +26,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Network/SocketSelector.h>
-#include <SFML/Network/SocketSelectorStruct.h>
-#include <SFML/Network/TcpListenerStruct.h>
-#include <SFML/Network/TcpSocketStruct.h>
-#include <SFML/Network/UdpSocketStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Network/SocketSelectorStruct.hpp>
+#include <SFML/Network/TcpListenerStruct.hpp>
+#include <SFML/Network/TcpSocketStruct.hpp>
+#include <SFML/Network/UdpSocketStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

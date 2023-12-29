@@ -7,19 +7,19 @@ set(SRC
     ${PROJECT_SOURCE_DIR}/include/SFML/GPUPreference.h
     ${INCROOT}/Export.h
     ${SRCROOT}/Buffer.cpp
-    ${SRCROOT}/BufferStruct.h
+    ${SRCROOT}/BufferStruct.hpp
     ${INCROOT}/Buffer.h
     ${SRCROOT}/Clock.cpp
-    ${SRCROOT}/ClockStruct.h
+    ${SRCROOT}/ClockStruct.hpp
     ${INCROOT}/Clock.h
     ${INCROOT}/InputStream.h
     ${SRCROOT}/Mutex.cpp
-    ${SRCROOT}/MutexStruct.h
+    ${SRCROOT}/MutexStruct.hpp
     ${INCROOT}/Mutex.h
     ${SRCROOT}/Sleep.cpp
     ${INCROOT}/Sleep.h
     ${SRCROOT}/Thread.cpp
-    ${SRCROOT}/ThreadStruct.h
+    ${SRCROOT}/ThreadStruct.hpp
     ${INCROOT}/Thread.h
     ${SRCROOT}/Time.cpp
     ${INCROOT}/Time.h

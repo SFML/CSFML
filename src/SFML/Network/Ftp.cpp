@@ -26,9 +26,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Network/Ftp.h>
-#include <SFML/Network/FtpStruct.h>
+#include <SFML/Network/FtpStruct.hpp>
 #include <SFML/Network/IpAddress.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

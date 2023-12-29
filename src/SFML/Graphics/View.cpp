@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/View.h>
-#include <SFML/Graphics/ViewStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Graphics/ViewStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

@@ -8,23 +8,23 @@ set(SRC
     ${SRCROOT}/Listener.cpp
     ${INCROOT}/Listener.h
     ${SRCROOT}/Music.cpp
-    ${SRCROOT}/MusicStruct.h
+    ${SRCROOT}/MusicStruct.hpp
     ${INCROOT}/Music.h
     ${SRCROOT}/Sound.cpp
-    ${SRCROOT}/SoundStruct.h
+    ${SRCROOT}/SoundStruct.hpp
     ${INCROOT}/Sound.h
     ${SRCROOT}/SoundBuffer.cpp
-    ${SRCROOT}/SoundBufferStruct.h
+    ${SRCROOT}/SoundBufferStruct.hpp
     ${INCROOT}/SoundBuffer.h
     ${SRCROOT}/SoundBufferRecorder.cpp
-    ${SRCROOT}/SoundBufferRecorderStruct.h
+    ${SRCROOT}/SoundBufferRecorderStruct.hpp
     ${INCROOT}/SoundBufferRecorder.h
     ${SRCROOT}/SoundRecorder.cpp
-    ${SRCROOT}/SoundRecorderStruct.h
+    ${SRCROOT}/SoundRecorderStruct.hpp
     ${INCROOT}/SoundRecorder.h
     ${INCROOT}/SoundStatus.h
     ${SRCROOT}/SoundStream.cpp
-    ${SRCROOT}/SoundStreamStruct.h
+    ${SRCROOT}/SoundStreamStruct.hpp
     ${INCROOT}/SoundStream.h
     ${INCROOT}/Types.h
 )

@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Audio/SoundStream.h>
-#include <SFML/Audio/SoundStreamStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Audio/SoundStreamStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONVERTRENDERSTATES_H
-#define SFML_CONVERTRENDERSTATES_H
+#ifndef SFML_CONVERTRENDERSTATES_HPP
+#define SFML_CONVERTRENDERSTATES_HPP
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -31,8 +31,8 @@
 #include <SFML/Graphics/RenderStates.h>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <SFML/Graphics/ConvertTransform.hpp>
-#include <SFML/Graphics/TextureStruct.h>
-#include <SFML/Graphics/ShaderStruct.h>
+#include <SFML/Graphics/TextureStruct.hpp>
+#include <SFML/Graphics/ShaderStruct.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -59,4 +59,4 @@ inline sf::RenderStates convertRenderStates(const sfRenderStates* states)
 }
 
 
-#endif // SFML_CONVERTRENDERSTATES_H
+#endif // SFML_CONVERTRENDERSTATES_HPP

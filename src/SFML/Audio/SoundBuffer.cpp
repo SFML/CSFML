@@ -26,9 +26,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Audio/SoundBuffer.h>
-#include <SFML/Audio/SoundBufferStruct.h>
-#include <SFML/CallbackStream.h>
-#include <SFML/Internal.h>
+#include <SFML/Audio/SoundBufferStruct.hpp>
+#include <SFML/CallbackStream.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

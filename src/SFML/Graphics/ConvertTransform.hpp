@@ -22,8 +22,8 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONVERTTRANSFORM_H
-#define SFML_CONVERTTRANSFORM_H
+#ifndef SFML_CONVERTTRANSFORM_HPP
+#define SFML_CONVERTTRANSFORM_HPP
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -55,4 +55,4 @@ inline sf::Transform convertTransform(const sfTransform& transform)
 }
 
 
-#endif // SFML_CONVERTTRANSFORM_H
+#endif // SFML_CONVERTTRANSFORM_HPP

@@ -26,12 +26,12 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Texture.h>
-#include <SFML/Graphics/TextureStruct.h>
-#include <SFML/Graphics/ImageStruct.h>
-#include <SFML/Graphics/RenderWindowStruct.h>
-#include <SFML/Window/WindowStruct.h>
-#include <SFML/Internal.h>
-#include <SFML/CallbackStream.h>
+#include <SFML/Graphics/TextureStruct.hpp>
+#include <SFML/Graphics/ImageStruct.hpp>
+#include <SFML/Graphics/RenderWindowStruct.hpp>
+#include <SFML/Window/WindowStruct.hpp>
+#include <SFML/Internal.hpp>
+#include <SFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////

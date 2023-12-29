@@ -9,10 +9,10 @@ set(SRC
     ${SRCROOT}/Clipboard.cpp
     ${INCROOT}/Cursor.h
     ${SRCROOT}/Cursor.cpp
-    ${SRCROOT}/CursorStruct.h
+    ${SRCROOT}/CursorStruct.hpp
     ${SRCROOT}/Context.cpp
-    ${SRCROOT}/ContextSettingsInternal.h
-    ${SRCROOT}/ContextStruct.h
+    ${SRCROOT}/ContextSettingsInternal.hpp
+    ${SRCROOT}/ContextStruct.hpp
     ${INCROOT}/Context.h
     ${INCROOT}/Event.h
     ${SRCROOT}/Joystick.cpp
@@ -33,8 +33,8 @@ set(SRC
     ${INCROOT}/Vulkan.h
     ${SRCROOT}/Window.cpp
     ${SRCROOT}/WindowBase.cpp
-    ${SRCROOT}/WindowStruct.h
-    ${SRCROOT}/WindowBaseStruct.h
+    ${SRCROOT}/WindowStruct.hpp
+    ${SRCROOT}/WindowBaseStruct.hpp
     ${INCROOT}/Window.h
     ${INCROOT}/WindowBase.h
     ${INCROOT}/WindowHandle.h

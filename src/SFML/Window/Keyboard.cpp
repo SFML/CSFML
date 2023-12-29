@@ -27,7 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Keyboard.h>
 #include <SFML/Window/Keyboard.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal.hpp>
 #include <SFML/System/String.hpp>
 
 #include <string.h>

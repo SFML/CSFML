@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Mutex.h>
-#include <SFML/System/MutexStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/System/MutexStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

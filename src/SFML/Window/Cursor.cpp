@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Cursor.h>
-#include <SFML/Window/CursorStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Window/CursorStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -65,4 +65,3 @@ void sfCursor_destroy(sfCursor* cursor)
 {
     delete cursor;
 }
-

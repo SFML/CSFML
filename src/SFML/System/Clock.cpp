@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Clock.h>
-#include <SFML/System/ClockStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/System/ClockStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

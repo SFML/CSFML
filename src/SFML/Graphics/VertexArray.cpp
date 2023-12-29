@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/VertexArray.h>
-#include <SFML/Graphics/VertexArrayStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Graphics/VertexArrayStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

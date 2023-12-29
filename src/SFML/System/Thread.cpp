@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Thread.h>
-#include <SFML/System/ThreadStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/System/ThreadStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

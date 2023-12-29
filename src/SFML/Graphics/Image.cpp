@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Image.h>
-#include <SFML/Graphics/ImageStruct.h>
-#include <SFML/System/BufferStruct.h>
-#include <SFML/Internal.h>
-#include <SFML/CallbackStream.h>
+#include <SFML/Graphics/ImageStruct.hpp>
+#include <SFML/System/BufferStruct.hpp>
+#include <SFML/Internal.hpp>
+#include <SFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////

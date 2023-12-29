@@ -26,11 +26,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Text.h>
-#include <SFML/Graphics/TextStruct.h>
+#include <SFML/Graphics/TextStruct.hpp>
 #include <SFML/Graphics/Font.h>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/ConvertTransform.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

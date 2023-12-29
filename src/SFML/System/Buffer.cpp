@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Buffer.h>
-#include <SFML/System/BufferStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/System/BufferStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

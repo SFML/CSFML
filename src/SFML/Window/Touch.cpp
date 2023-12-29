@@ -27,8 +27,8 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Touch.h>
 #include <SFML/Window/Touch.hpp>
-#include <SFML/Window/WindowStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Window/WindowStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -50,4 +50,3 @@ sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo)
     sfVector2i position = {sfmlPosition.x, sfmlPosition.y};
     return position;
 }
-

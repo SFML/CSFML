@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/RectangleShape.h>
-#include <SFML/Graphics/RectangleShapeStruct.h>
+#include <SFML/Graphics/RectangleShapeStruct.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/ConvertTransform.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

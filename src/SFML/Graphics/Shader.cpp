@@ -26,11 +26,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Shader.h>
-#include <SFML/Graphics/ShaderStruct.h>
-#include <SFML/Graphics/TextureStruct.h>
+#include <SFML/Graphics/ShaderStruct.hpp>
+#include <SFML/Graphics/TextureStruct.hpp>
 #include <SFML/Graphics/ConvertTransform.hpp>
-#include <SFML/Internal.h>
-#include <SFML/CallbackStream.h>
+#include <SFML/Internal.hpp>
+#include <SFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////

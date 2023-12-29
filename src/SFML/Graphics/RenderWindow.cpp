@@ -26,22 +26,22 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/RenderWindow.h>
-#include <SFML/Graphics/RenderWindowStruct.h>
-#include <SFML/Graphics/ImageStruct.h>
-#include <SFML/Graphics/SpriteStruct.h>
-#include <SFML/Graphics/TextStruct.h>
-#include <SFML/Graphics/ShapeStruct.h>
-#include <SFML/Graphics/CircleShapeStruct.h>
-#include <SFML/Graphics/ConvexShapeStruct.h>
-#include <SFML/Graphics/RectangleShapeStruct.h>
-#include <SFML/Graphics/VertexArrayStruct.h>
-#include <SFML/Graphics/VertexBufferStruct.h>
+#include <SFML/Graphics/RenderWindowStruct.hpp>
+#include <SFML/Graphics/ImageStruct.hpp>
+#include <SFML/Graphics/SpriteStruct.hpp>
+#include <SFML/Graphics/TextStruct.hpp>
+#include <SFML/Graphics/ShapeStruct.hpp>
+#include <SFML/Graphics/CircleShapeStruct.hpp>
+#include <SFML/Graphics/ConvexShapeStruct.hpp>
+#include <SFML/Graphics/RectangleShapeStruct.hpp>
+#include <SFML/Graphics/VertexArrayStruct.hpp>
+#include <SFML/Graphics/VertexBufferStruct.hpp>
 #include <SFML/Graphics/ConvertRenderStates.hpp>
 #include <SFML/Window/Touch.hpp>
-#include <SFML/Internal.h>
-#include <SFML/Window/ContextSettingsInternal.h>
-#include <SFML/Window/CursorStruct.h>
-#include <SFML/ConvertEvent.h>
+#include <SFML/Internal.hpp>
+#include <SFML/Window/ContextSettingsInternal.hpp>
+#include <SFML/Window/CursorStruct.hpp>
+#include <SFML/ConvertEvent.hpp>
 
 
 ////////////////////////////////////////////////////////////

@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/VertexBuffer.h>
-#include <SFML/Graphics/VertexBufferStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Graphics/VertexBufferStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

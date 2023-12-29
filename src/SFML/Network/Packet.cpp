@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Network/Packet.h>
-#include <SFML/Network/PacketStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Network/PacketStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

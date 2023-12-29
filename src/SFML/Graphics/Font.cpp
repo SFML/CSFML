@@ -26,9 +26,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Graphics/Font.h>
-#include <SFML/Graphics/FontStruct.h>
-#include <SFML/Internal.h>
-#include <SFML/CallbackStream.h>
+#include <SFML/Graphics/FontStruct.hpp>
+#include <SFML/Internal.hpp>
+#include <SFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////

@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Network/TcpSocket.h>
-#include <SFML/Network/TcpSocketStruct.h>
-#include <SFML/Network/PacketStruct.h>
+#include <SFML/Network/TcpSocketStruct.hpp>
+#include <SFML/Network/PacketStruct.hpp>
 #include <SFML/Network/IpAddress.hpp>
-#include <SFML/Internal.h>
+#include <SFML/Internal.hpp>
 #include <string.h>
 
 

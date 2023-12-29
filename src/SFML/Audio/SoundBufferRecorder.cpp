@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Audio/SoundBufferRecorder.h>
-#include <SFML/Audio/SoundBufferRecorderStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Audio/SoundBufferRecorderStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

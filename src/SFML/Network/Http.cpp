@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Network/Http.h>
-#include <SFML/Network/HttpStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/Network/HttpStruct.hpp>
+#include <SFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

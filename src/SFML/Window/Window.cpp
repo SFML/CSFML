@@ -26,11 +26,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Window.h>
-#include <SFML/Window/WindowStruct.h>
-#include <SFML/Internal.h>
-#include <SFML/Window/ContextSettingsInternal.h>
-#include <SFML/Window/CursorStruct.h>
-#include <SFML/ConvertEvent.h>
+#include <SFML/Window/WindowStruct.hpp>
+#include <SFML/Internal.hpp>
+#include <SFML/Window/ContextSettingsInternal.hpp>
+#include <SFML/Window/CursorStruct.hpp>
+#include <SFML/ConvertEvent.hpp>
 
 
 ////////////////////////////////////////////////////////////

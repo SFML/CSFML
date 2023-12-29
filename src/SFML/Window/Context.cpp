@@ -26,9 +26,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Context.h>
-#include <SFML/Window/ContextStruct.h>
-#include <SFML/Internal.h>
-#include <SFML/Window/ContextSettingsInternal.h>
+#include <SFML/Window/ContextStruct.hpp>
+#include <SFML/Internal.hpp>
+#include <SFML/Window/ContextSettingsInternal.hpp>
 
 
 ////////////////////////////////////////////////////////////
