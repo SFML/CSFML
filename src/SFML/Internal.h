@@ -28,7 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Define macros to check the validity of CSFML objects in debug run
 ////////////////////////////////////////////////////////////
-#include <stdio.h>
+#include <SFML/System/Err.hpp>
 
 #ifndef NDEBUG
 
@@ -37,7 +37,7 @@
         { \
             if (object_ == NULL) \
             { \
-                fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+                sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
                 return; \
             } \
         } \
@@ -52,7 +52,7 @@
             } \
             else \
             { \
-                fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+                sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
             } \
         } \
         while (0)
@@ -66,7 +66,7 @@
             } \
             else \
             { \
-                fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+                sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
             } \
         } \
         while (0)
@@ -76,7 +76,7 @@
         { \
             if (object_ == NULL) \
             { \
-                fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+                sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
                 return default_; \
             } \
         } \
@@ -89,7 +89,7 @@
         } \
         else \
         { \
-            fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+            sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
             return default_; \
         }
 
@@ -100,7 +100,7 @@
         } \
         else \
         { \
-            fprintf(stderr, "SFML warning: trying to use a null " #object_ " object\n"); \
+            sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
             return default_; \
         }
 
