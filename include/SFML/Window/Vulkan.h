@@ -36,7 +36,7 @@ typedef struct VkSurfaceKHR_T* VkSurfaceKHR;
 
 #else
 
-typedef uint64_t VkSurfaceKHR;
+typedef sfUint64 VkSurfaceKHR;
 
 #endif
 
