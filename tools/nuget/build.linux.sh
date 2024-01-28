@@ -43,7 +43,7 @@ echo "Please note that all SFML dependencies must be installed and available to 
 RID="$1"
 
 SFMLBranch="2.6.1" # The branch or tag of the SFML repository to be cloned
-CSFMLDir="$(realpath "$(git rev-parse --show-toplevel)")"  # The directory of the source code of CSFML
+CSFMLDir="$(realpath ../../)"  # The directory of the source code of CSFML
 
 OutDir="./CSFML/runtimes/$RID/native" # The base directory of all CSFML modules, used to copy the final libraries
 mkdir -p "$OutDir"
@@ -93,6 +93,7 @@ cmake -E env LDFLAGS="-z origin" \
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$SFMLLibDir" \
     '-DCMAKE_BUILD_WITH_INSTALL_RPATH=1' \
     '-DCMAKE_INSTALL_RPATH=$ORIGIN' \
+    '-DSFML_BUILD_NETWORK=0' \
     "$SFMLDir"
 
 cmake --build . --config Release
@@ -118,6 +119,7 @@ cmake -E env LDFLAGS="-z origin" \
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" \
     '-DCMAKE_BUILD_WITH_INSTALL_RPATH=1' \
     '-DCMAKE_INSTALL_RPATH=$ORIGIN' \
+    '-DCSFML_BUILD_NETWORK=0' \
     "$CSFMLDir"
 cmake --build . --config Release
 

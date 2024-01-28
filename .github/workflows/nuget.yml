@@ -1,0 +1,252 @@
+name: NuGet Release
+
+on:
+    push:
+        branches:
+            - master
+            - 2.6.x
+    workflow_dispatch: {}
+
+concurrency:
+    group: nuget-${{github.ref}}
+    cancel-in-progress: true
+
+env:
+    DOTNET_CLI_TELEMETRY_OPTOUT: 1
+
+jobs:
+    windows:
+        name: Windows VS2022
+        runs-on: windows-2022
+
+        steps:
+            - name: Checkout CSFML
+              uses: actions/checkout@v4
+              with:
+                  path: CSFML
+
+            - name: Build x86
+              shell: pwsh
+              run: |
+                  cd CSFML/tools/nuget
+                  ./build.win.ps1 "win-x86"
+
+            - name: Build x64
+              shell: pwsh
+              run: |
+                  cd CSFML/tools/nuget
+                  ./build.win.ps1 "win-x64"
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: CSFML-win-x86-x64
+                  path: CSFML/tools/nuget/CSFML/runtimes
+
+    linux-x64:
+        name: Linux x64
+        runs-on: ubuntu-22.04
+        container:
+            image: ubuntu:22.04
+
+        steps:
+            - name: Checkout CSFML
+              uses: actions/checkout@v4
+              with:
+                  path: CSFML
+
+            - name: Build
+              shell: bash
+              run: |
+                  cd ./CSFML/tools/nuget
+                  chmod +x ./docker.linux-x64.sh
+                  ./docker.linux-x64.sh
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: CSFML-linux-x64
+                  path: CSFML/tools/nuget/CSFML/runtimes
+
+    linux-arm:
+        name: Linux ARM
+        runs-on: ubuntu-22.04
+
+        steps:
+            - name: Checkout CSFML
+              uses: actions/checkout@v4
+              with:
+                  path: CSFML
+
+            - name: Build in an ARM container
+              uses: uraimo/run-on-arch-action@v2.7.2
+              with:
+                  arch: armv7
+                  distro: ubuntu22.04
+                  githubToken: ${{ github.token }}
+                  dockerRunArgs: |
+                      --volume "${PWD}/CSFML:/CSFML"
+                  install: |
+                      apt-get update -y
+                      apt-get install -y git libfreetype6-dev xorg-dev libxrandr-dev libxcursor-dev libudev-dev libgl1-mesa-dev libflac-dev libogg-dev libvorbis-dev libopenal-dev cmake g++
+                  run: |
+                      cd /CSFML/tools/nuget
+                      chmod +x ./build.linux.sh
+                      ./build.linux.sh linux-arm
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: CSFML-linux-arm
+                  path: CSFML/tools/nuget/CSFML/runtimes
+
+    linux-arm64:
+        name: Linux ARM64
+        runs-on: ubuntu-22.04
+
+        steps:
+            - name: Checkout CSFML
+              uses: actions/checkout@v4
+              with:
+                  path: CSFML
+
+            - name: Build in an ARM64 container
+              uses: uraimo/run-on-arch-action@v2.7.2
+              with:
+                  arch: aarch64
+                  distro: ubuntu22.04
+                  githubToken: ${{ github.token }}
+                  dockerRunArgs: |
+                      --volume "${PWD}/CSFML:/CSFML"
+                  install: |
+                      apt-get update -y
+                      apt-get install -y git libfreetype6-dev xorg-dev libxrandr-dev libxcursor-dev libudev-dev libgl1-mesa-dev libflac-dev libogg-dev libvorbis-dev libopenal-dev cmake g++
+                  run: |
+                      cd /CSFML/tools/nuget
+                      chmod +x ./build.linux.sh
+                      ./build.linux.sh linux-arm64
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: CSFML-linux-arm64
+                  path: CSFML/tools/nuget/CSFML/runtimes
+
+    linux-musl-x64:
+        name: Linux MUSL x64
+        runs-on: ubuntu-22.04
+        container:
+            image: alpine:3.15
+
+        steps:
+            - name: Checkout CSFML
+              uses: actions/checkout@v4
+              with:
+                  path: CSFML
+
+            - name: Build
+              shell: sh
+              run: |
+                  cd ./CSFML/tools/nuget
+                  chmod +x ./docker.linux-musl-x64.sh
+                  ./docker.linux-musl-x64.sh
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: CSFML-linux-musl-x64
+                  path: CSFML/tools/nuget/CSFML/runtimes
+
+    fedora-x64:
+        name: Fedora x64
+        runs-on: ubuntu-22.04
+        container:
+            image: fedora:37
+
+        steps:
+            - name: Checkout CSFML
+              uses: actions/checkout@v4
+              with:
+                  path: CSFML
+
+            - name: Build
+              shell: bash
+              run: |
+                  cd ./CSFML/tools/nuget
+                  chmod +x ./docker.fedora-x64.sh
+                  ./docker.fedora-x64.sh
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: CSFML-fedora-x64
+                  path: CSFML/tools/nuget/CSFML/runtimes
+
+    macos:
+        name: macOS
+        runs-on: macos-14
+
+        steps:
+            - name: Checkout CSFML
+              uses: actions/checkout@v4
+              with:
+                  path: CSFML
+
+            - name: Install necessary tooling
+              run: brew install coreutils
+
+            - name: Build x64
+              run: |
+                  cd CSFML/tools/nuget
+                  ./build.macos.sh "osx-x64"
+
+            - name: Build ARM64
+              run: |
+                  cd CSFML/tools/nuget
+                  ./build.macos.sh "osx-arm64"
+
+            - name: Upload Artifact
+              uses: actions/upload-artifact@v4
+              with:
+                  name: CSFML-macOS-x64-arm64
+                  path: CSFML/tools/nuget/CSFML/runtimes
+
+    package:
+        name: Package Builds
+        runs-on: ubuntu-22.04
+        needs:
+            - windows
+            - linux-x64
+            - linux-arm
+            - linux-arm64
+            - linux-musl-x64
+            - fedora-x64
+            - macos
+        steps:
+            - name: Checkout CSFML
+              uses: actions/checkout@v4
+              with:
+                  path: CSFML
+            - name: Download Artifacts
+              uses: actions/download-artifact@v4
+              with:
+                  path: CSFML/tools/nuget/CSFML/runtimes
+                  merge-multiple: true
+            - name: Setup .NET 8 SDK
+              id: setup-dotnet
+              uses: actions/setup-dotnet@v4
+              with:
+                  dotnet-version: 8.0.x
+            - name: Enforce SDK Version
+              run: dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }} --force
+            - name: Verify SDK Installation
+              run: dotnet --info
+            - name: Build NuGet Package
+              run: |
+                  cd CSFML/tools/nuget
+                  dotnet build --configuration Release --verbosity detailed
+            - name: Upload NuGet Package
+              uses: actions/upload-artifact@v4
+              with:
+                  name: CSFML-NuGet-Package
+                  path: CSFML/tools/nuget/CSFML/bin/Release/*.nupkg

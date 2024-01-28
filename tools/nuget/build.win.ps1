@@ -48,7 +48,7 @@ Ensures that the last command run was a success, checking its exit code.
 #>
 function Ensure-Success() {
     if ($LastExitCode -ne 0) {
-        exit
+        exit -1
     }
 }
 
@@ -119,6 +119,7 @@ cmake `
     '-DCMAKE_BUILD_TYPE=Release' `
     '-DCMAKE_SYSTEM_VERSION=8.1' `
     '-DSFML_USE_STATIC_STD_LIBS=1' `
+    '-DSFML_BUILD_NETWORK=0' `
     "-G$Generator" `
     "-A$Architecture" `
     $SFMLDir
@@ -158,6 +159,7 @@ cmake `
     `
     "-DBUILD_SHARED_LIBS=1" `
     '-DCMAKE_BUILD_TYPE=Release' `
+    '-DCSFML_BUILD_NETWORK=0' `
     `
     "-G$generator" `
     "-A$Architecture" `

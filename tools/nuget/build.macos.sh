@@ -113,6 +113,7 @@ cmake -E env \
           -D "CMAKE_INSTALL_PREFIX=$SFMLLibDir" \
           -D "SFML_DEPENDENCIES_INSTALL_PREFIX=$SFMLLibDir" \
           -D "SFML_MISC_INSTALL_PREFIX=$SFMLLibDir" \
+          -D "SFML_BUILD_NETWORK=0" \
           "$SFMLDir"
 
 cmake --build . --config Release --target install
@@ -141,6 +142,7 @@ cmake -E env \
           -D 'CMAKE_INSTALL_RPATH=@loader_path' \
           -D "CMAKE_INSTALL_PREFIX=$CSFMLLibDir" \
           -D "INSTALL_MISC_DIR=$CSFMLLibDir" \
+          -D "CSFML_BUILD_NETWORK=0" \
           "$CSFMLDir"
 cmake --build . --config Release --target install
 
@@ -211,7 +213,7 @@ copymodule graphics
 copymodule system
 copymodule window
 
-cp -R "$SFMLLibDir/"*.framework "$OutDir"
+cp -R "$SFMLLibDir/lib/"*.framework "$OutDir"
 
 popd # Pop CSFML
 popd # Pop $RID
