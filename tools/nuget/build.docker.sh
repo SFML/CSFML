@@ -5,9 +5,10 @@ set -e
 
 if [[ -z "$1" ]]; then
     echo 'No Runtime Identifier specified, running all known RIDs'
-    ./build.docker.sh "alpine-x64"
-    ./build.docker.sh "debian-x64"
-    ./build.docker.sh "fedora-x64"
+    ./build.docker.sh "linux-x64"
+    ./build.docker.sh "linux-musl-x64"
+    ./build.docker.sh "linux-arm"
+    ./build.docker.sh "linux-arm64"
     exit 0
 fi
 
@@ -27,6 +28,26 @@ case "$RID" in
 
 'fedora-x64')
     Image='fedora'
+    Shell='/bin/bash'
+    ;;
+
+'linux-x64')
+    Image='ubuntu:22.04'
+    Shell='/bin/bash'
+    ;;
+
+'linux-musl-x64')
+    Image='alpine:3.15'
+    Shell='/bin/sh'
+    ;;
+
+'linux-arm')
+    Image='arm32v7/ubuntu:22.04'
+    Shell='/bin/bash'
+    ;;
+
+'linux-arm64')
+    Image='arm64v8/ubuntu:22.04'
     Shell='/bin/bash'
     ;;
 
