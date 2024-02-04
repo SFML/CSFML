@@ -376,73 +376,10 @@ void sfShader_setMat4UniformArray(sfShader* shader, const char* name, const sfGl
 
 
 ////////////////////////////////////////////////////////////
-void sfShader_setFloatParameter(sfShader* shader, const char* name, float x)
-{
-    CSFML_CALL(shader, setParameter(name, x));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfShader_setFloat2Parameter(sfShader* shader, const char* name, float x, float y)
-{
-    CSFML_CALL(shader, setParameter(name, x, y));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfShader_setFloat3Parameter(sfShader* shader, const char* name, float x, float y, float z)
-{
-    CSFML_CALL(shader, setParameter(name, x, y, z));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfShader_setFloat4Parameter(sfShader* shader, const char* name, float x, float y, float z, float w)
-{
-    CSFML_CALL(shader, setParameter(name, x, y, z, w));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfShader_setVector2Parameter(sfShader* shader, const char* name, sfVector2f vector)
-{
-    CSFML_CALL(shader, setParameter(name, sf::Vector2f(vector.x, vector.y)));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfShader_setVector3Parameter(sfShader* shader, const char* name, sfVector3f vector)
-{
-    CSFML_CALL(shader, setParameter(name, sf::Vector3f(vector.x, vector.y, vector.z)));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfShader_setColorParameter(sfShader* shader, const char* name, sfColor color)
-{
-    CSFML_CALL(shader, setParameter(name, sf::Color(color.r, color.g, color.b, color.a)));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfShader_setTransformParameter(sfShader* shader, const char* name, sfTransform transform)
-{
-    CSFML_CALL(shader, setParameter(name, convertTransform(transform)));
-}
-
-
-////////////////////////////////////////////////////////////
 void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTexture* texture)
 {
     CSFML_CHECK(texture);
     CSFML_CALL(shader, setParameter(name,*texture->This));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfShader_setCurrentTextureParameter(sfShader* shader, const char* name)
-{
-    CSFML_CALL(shader, setParameter(name, sf::Shader::CurrentTexture));
 }
 
 
