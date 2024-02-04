@@ -62,8 +62,8 @@ function(set_file_warnings)
     endif()
 
     if(WARNINGS_AS_ERRORS)
-        set(CLANG_AND_GCC_WARNINGS ${CLANG_AND_GCC_WARNINGS} -Werror)
-        set(MSVC_WARNINGS ${MSVC_WARNINGS} /WX)
+        list(APPEND CLANG_AND_GCC_WARNINGS -Werror)
+        list(APPEND MSVC_WARNINGS /WX)
     endif()
 
     set(CLANG_WARNINGS
@@ -82,8 +82,7 @@ function(set_file_warnings)
     # Don't enable -Wduplicated-branches for GCC < 8.1 since it will lead to false positives
     # https://github.com/gcc-mirror/gcc/commit/6bebae75035889a4844eb4d32a695bebf412bcd7
     if(CMAKE_CXX_COMPILER_VERSION VERSION_GREATER_EQUAL 8.1)
-        set(GCC_WARNINGS
-            ${GCC_WARNINGS}
+        list(APPEND GCC_WARNINGS
             -Wduplicated-branches # warn if if / else branches have duplicated code
         )
     endif()
