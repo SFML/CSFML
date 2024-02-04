@@ -48,8 +48,8 @@ macro(csfml_add_library target)
     # set the target's folder (for IDEs that support it, e.g. Visual Studio)
     set_target_properties(${target} PROPERTIES FOLDER "CSFML")
 
-    # for gcc >= 4.0 on Windows, apply the SFML_USE_STATIC_STD_LIBS option if it is enabled
-    if(SFML_OS_WINDOWS AND SFML_COMPILER_GCC AND NOT SFML_GCC_VERSION VERSION_LESS "4")
+    # apply the SFML_USE_STATIC_STD_LIBS option if it is enabled
+    if(SFML_OS_WINDOWS AND SFML_COMPILER_GCC)
         if(SFML_USE_STATIC_STD_LIBS AND NOT SFML_COMPILER_GCC_TDM)
             set_target_properties(${target} PROPERTIES LINK_FLAGS "-static-libgcc -static-libstdc++")
         elseif(NOT SFML_USE_STATIC_STD_LIBS AND SFML_COMPILER_GCC_TDM)
@@ -57,11 +57,8 @@ macro(csfml_add_library target)
         endif()
     endif()
 
-    # if using gcc >= 4.0 or clang >= 3.0 on a non-Windows platform, we must hide public symbols by default
-    # (exported ones are explicitely marked)
-    if(NOT SFML_OS_WINDOWS AND ((SFML_COMPILER_GCC AND NOT SFML_GCC_VERSION VERSION_LESS "4") OR (SFML_COMPILER_CLANG AND NOT SFML_CLANG_VERSION VERSION_LESS "3")))
-        set_target_properties(${target} PROPERTIES COMPILE_FLAGS -fvisibility=hidden)
-    endif()
+    # ensure public symbols are hidden by default (exported ones are explicitly marked)
+    set_target_properties(${target} PROPERTIES CXX_VISIBILITY_PRESET hidden VISIBILITY_INLINES_HIDDEN YES)
 
     # link the target to its external dependencies (C++ SFML libraries)
     target_link_libraries(${target} PRIVATE ${THIS_DEPENDS})
