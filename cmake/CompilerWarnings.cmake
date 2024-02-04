@@ -68,7 +68,6 @@ function(set_file_warnings)
     set(CLANG_WARNINGS
         ${CLANG_AND_GCC_WARNINGS}
         -Wno-unknown-warning-option # do not warn on GCC-specific warning diagnostic pragmas
-        -Wno-c++11-long-long # do not warn on uses of long long
     )
 
     set(GCC_WARNINGS
