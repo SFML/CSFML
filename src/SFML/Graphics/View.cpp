@@ -50,7 +50,7 @@ sfView* sfView_createFromRect(sfFloatRect rectangle)
 ////////////////////////////////////////////////////////////
 sfView* sfView_copy(const sfView* view)
 {
-    CSFML_CHECK_RETURN(view, NULL);
+    CSFML_CHECK_RETURN(view, nullptr);
 
     return new sfView(*view);
 }

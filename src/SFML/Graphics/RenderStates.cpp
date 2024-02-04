@@ -33,9 +33,8 @@ sfRenderStates sfRenderStates_default() {
     sfRenderStates states = {
         sfBlendAlpha,
         sfTransform_Identity,
-        0,
-        0,
+        nullptr,
+        nullptr,
     };
     return states;
 }
-

@@ -99,7 +99,7 @@ const char** sfSoundRecorder_getAvailableDevices(size_t* count)
     if (count)
         *count = cstringDevices.size();
 
-    return !cstringDevices.empty() ? &cstringDevices[0] : NULL;
+    return !cstringDevices.empty() ? &cstringDevices[0] : nullptr;
 }
 
 
@@ -108,7 +108,7 @@ const char* sfSoundRecorder_getDefaultDevice()
 {
     static std::string defaultDevice = sf::SoundRecorder::getDefaultDevice();
 
-    return !defaultDevice.empty() ? defaultDevice.c_str() : NULL;
+    return !defaultDevice.empty() ? defaultDevice.c_str() : nullptr;
 }
 
 
@@ -122,7 +122,7 @@ sfBool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* nam
 ////////////////////////////////////////////////////////////
 const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
 {
-    CSFML_CHECK_RETURN(soundRecorder, NULL);
+    CSFML_CHECK_RETURN(soundRecorder, nullptr);
 
     soundRecorder->DeviceName = soundRecorder->This.getDevice();
 

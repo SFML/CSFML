@@ -40,7 +40,7 @@ sfVertexArray* sfVertexArray_create(void)
 ////////////////////////////////////////////////////////////
 sfVertexArray* sfVertexArray_copy(const sfVertexArray* vertexArray)
 {
-    CSFML_CHECK_RETURN(vertexArray, NULL);
+    CSFML_CHECK_RETURN(vertexArray, nullptr);
 
     return new sfVertexArray(*vertexArray);
 }
@@ -63,7 +63,7 @@ size_t sfVertexArray_getVertexCount(const sfVertexArray* vertexArray)
 ////////////////////////////////////////////////////////////
 sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, size_t index)
 {
-    CSFML_CHECK_RETURN(vertexArray, NULL);
+    CSFML_CHECK_RETURN(vertexArray, nullptr);
 
     // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
     return reinterpret_cast<sfVertex*>(&vertexArray->This[index]);

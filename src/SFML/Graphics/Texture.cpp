@@ -42,7 +42,7 @@ sfTexture* sfTexture_create(unsigned int width, unsigned int height)
     if (!texture->This->create(width, height))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -61,7 +61,7 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
     if (!texture->This->loadFromFile(filename, rect))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -81,7 +81,7 @@ sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* a
     if (!texture->This->loadFromFile(filename, rect))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -99,7 +99,7 @@ sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, cons
     if (!texture->This->loadFromMemory(data, sizeInBytes, rect))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -119,7 +119,7 @@ sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, 
     if (!texture->This->loadFromMemory(data, sizeInBytes, rect))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -129,7 +129,7 @@ sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* area)
 {
-    CSFML_CHECK_RETURN(stream, NULL);
+    CSFML_CHECK_RETURN(stream, nullptr);
 
     sfTexture* texture = new sfTexture;
 
@@ -141,7 +141,7 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
     if (!texture->This->loadFromStream(sfmlStream, rect))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -150,7 +150,7 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect* area)
 {
-    CSFML_CHECK_RETURN(stream, NULL);
+    CSFML_CHECK_RETURN(stream, nullptr);
 
     sfTexture* texture = new sfTexture;
 
@@ -164,7 +164,7 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
     if (!texture->This->loadFromStream(sfmlStream, rect))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -174,7 +174,7 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area)
 {
-    CSFML_CHECK_RETURN(image, NULL);
+    CSFML_CHECK_RETURN(image, nullptr);
 
     sfTexture* texture = new sfTexture;
 
@@ -185,7 +185,7 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
     if (!texture->This->loadFromImage(image->This, rect))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -194,7 +194,7 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* area)
 {
-    CSFML_CHECK_RETURN(image, NULL);
+    CSFML_CHECK_RETURN(image, nullptr);
 
     sfTexture* texture = new sfTexture;
 
@@ -207,7 +207,7 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
     if (!texture->This->loadFromImage(image->This, rect))
     {
         delete texture;
-        texture = NULL;
+        texture = nullptr;
     }
 
     return texture;
@@ -216,7 +216,7 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_copy(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, NULL);
+    CSFML_CHECK_RETURN(texture, nullptr);
 
     return new sfTexture(*texture);
 }
@@ -247,8 +247,8 @@ sfVector2u sfTexture_getSize(const sfTexture* texture)
 ////////////////////////////////////////////////////////////
 sfImage* sfTexture_copyToImage(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, NULL);
-    CSFML_CHECK_RETURN(texture->This, NULL);
+    CSFML_CHECK_RETURN(texture, nullptr);
+    CSFML_CHECK_RETURN(texture->This, nullptr);
 
     sfImage* image = new sfImage;
     image->This = texture->This->copyToImage();
@@ -367,7 +367,7 @@ unsigned int sfTexture_getNativeHandle(const sfTexture* texture)
 ////////////////////////////////////////////////////////////
 void sfTexture_bind(const sfTexture* texture, sfTextureCoordinateType type)
 {
-    sf::Texture::bind(texture ? texture->This : NULL, static_cast<sf::Texture::CoordinateType>(type));
+    sf::Texture::bind(texture ? texture->This : nullptr, static_cast<sf::Texture::CoordinateType>(type));
 }
 
 

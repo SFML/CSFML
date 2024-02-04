@@ -55,7 +55,7 @@ private :
 
     virtual bool onGetData(Chunk& data)
     {
-        sfSoundStreamChunk chunk = {NULL, 0};
+        sfSoundStreamChunk chunk = {nullptr, 0};
         bool ok = (myGetDataCallback(&chunk, myUserData) == sfTrue);
 
         data.samples     = chunk.samples;

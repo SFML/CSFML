@@ -68,7 +68,7 @@ unsigned int sfSoundBufferRecorder_getSampleRate(const sfSoundBufferRecorder* so
 ////////////////////////////////////////////////////////////
 const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CHECK_RETURN(soundBufferRecorder, NULL);
+    CSFML_CHECK_RETURN(soundBufferRecorder, nullptr);
 
     soundBufferRecorder->SoundBuffer.This = soundBufferRecorder->This.getBuffer();
 
@@ -84,7 +84,7 @@ sfBool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorde
 ////////////////////////////////////////////////////////////
 const char* sfSoundBufferRecorder_getDevice(sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CHECK_RETURN(soundBufferRecorder, NULL);
+    CSFML_CHECK_RETURN(soundBufferRecorder, nullptr);
 
     soundBufferRecorder->DeviceName = soundBufferRecorder->This.getDevice();
 

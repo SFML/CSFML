@@ -38,7 +38,7 @@ sfVertexBuffer* sfVertexBuffer_create(unsigned int vertexCount, sfPrimitiveType 
     if (!buffer->This.create(vertexCount))
     {
         delete buffer;
-        buffer = NULL;
+        buffer = nullptr;
     }
     else
     {

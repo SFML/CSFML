@@ -91,9 +91,9 @@ void sfHttpResponse_destroy(sfHttpResponse* httpResponse)
 ////////////////////////////////////////////////////////////
 const char* sfHttpResponse_getField(const sfHttpResponse* httpResponse, const char* field)
 {
-    CSFML_CHECK_RETURN(httpResponse, NULL);
+    CSFML_CHECK_RETURN(httpResponse, nullptr);
     if (!field)
-        return NULL;
+        return nullptr;
 
     return httpResponse->This.getField(field).c_str();
 }
@@ -125,7 +125,7 @@ unsigned int sfHttpResponse_getMinorVersion(const sfHttpResponse* httpResponse)
 ////////////////////////////////////////////////////////////
 const char* sfHttpResponse_getBody(const sfHttpResponse* httpResponse)
 {
-    CSFML_CHECK_RETURN(httpResponse, NULL);
+    CSFML_CHECK_RETURN(httpResponse, nullptr);
 
     return httpResponse->This.getBody().c_str();
 }
@@ -155,8 +155,8 @@ void sfHttp_setHost(sfHttp* http, const char* host, unsigned short port)
 ////////////////////////////////////////////////////////////
 sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout)
 {
-    CSFML_CHECK_RETURN(http,    NULL);
-    CSFML_CHECK_RETURN(request, NULL);
+    CSFML_CHECK_RETURN(http,    nullptr);
+    CSFML_CHECK_RETURN(request, nullptr);
 
     sfHttpResponse* response = new sfHttpResponse;
     response->This = http->This.sendRequest(request->This, sf::microseconds(timeout.microseconds));

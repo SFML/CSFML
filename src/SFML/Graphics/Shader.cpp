@@ -76,7 +76,7 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* 
     if (!success)
     {
         delete shader;
-        shader = NULL;
+        shader = nullptr;
     }
 
     return shader;
@@ -126,7 +126,7 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
     if (!success)
     {
         delete shader;
-        shader = NULL;
+        shader = nullptr;
     }
 
     return shader;
@@ -183,7 +183,7 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputSt
     if (!success)
     {
         delete shader;
-        shader = NULL;
+        shader = nullptr;
     }
 
     return shader;
@@ -456,7 +456,7 @@ unsigned int sfShader_getNativeHandle(const sfShader* shader)
 ////////////////////////////////////////////////////////////
 void sfShader_bind(const sfShader* shader)
 {
-    sf::Shader::bind(shader ? &shader->This : NULL);
+    sf::Shader::bind(shader ? &shader->This : nullptr);
 }
 
 

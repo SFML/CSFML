@@ -70,7 +70,7 @@ sfImage* sfImage_createFromFile(const char* filename)
     if (!image->This.loadFromFile(filename))
     {
         delete image;
-        image = NULL;
+        image = nullptr;
     }
 
     return image;
@@ -85,7 +85,7 @@ sfImage* sfImage_createFromMemory(const void* data, size_t sizeInBytes)
     if (!image->This.loadFromMemory(data, sizeInBytes))
     {
         delete image;
-        image = NULL;
+        image = nullptr;
     }
 
     return image;
@@ -95,7 +95,7 @@ sfImage* sfImage_createFromMemory(const void* data, size_t sizeInBytes)
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromStream(sfInputStream* stream)
 {
-    CSFML_CHECK_RETURN(stream, NULL);
+    CSFML_CHECK_RETURN(stream, nullptr);
 
     sfImage* image = new sfImage;
 
@@ -103,7 +103,7 @@ sfImage* sfImage_createFromStream(sfInputStream* stream)
     if (!image->This.loadFromStream(sfmlStream))
     {
         delete image;
-        image = NULL;
+        image = nullptr;
     }
 
     return image;
@@ -113,7 +113,7 @@ sfImage* sfImage_createFromStream(sfInputStream* stream)
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_copy(const sfImage* image)
 {
-    CSFML_CHECK_RETURN(image, NULL);
+    CSFML_CHECK_RETURN(image, nullptr);
 
     return new sfImage(*image);
 }
@@ -179,7 +179,7 @@ sfColor sfImage_getPixel(const sfImage* image, unsigned int x, unsigned int y)
 ////////////////////////////////////////////////////////////
 const sfUint8* sfImage_getPixelsPtr(const sfImage* image)
 {
-    CSFML_CALL_RETURN(image, getPixelsPtr(), NULL);
+    CSFML_CALL_RETURN(image, getPixelsPtr(), nullptr);
 }
 
 

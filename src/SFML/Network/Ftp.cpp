@@ -57,7 +57,7 @@ sfFtpStatus sfFtpListingResponse_getStatus(const sfFtpListingResponse* ftpListin
 ////////////////////////////////////////////////////////////
 const char* sfFtpListingResponse_getMessage(const sfFtpListingResponse* ftpListingResponse)
 {
-    CSFML_CHECK_RETURN(ftpListingResponse, NULL);
+    CSFML_CHECK_RETURN(ftpListingResponse, nullptr);
 
     return ftpListingResponse->This.getMessage().c_str();
 }
@@ -75,7 +75,7 @@ size_t sfFtpListingResponse_getCount(const sfFtpListingResponse* ftpListingRespo
 ////////////////////////////////////////////////////////////
 const char* sfFtpListingResponse_getName(const sfFtpListingResponse* ftpListingResponse, size_t index)
 {
-    CSFML_CHECK_RETURN(ftpListingResponse, NULL);
+    CSFML_CHECK_RETURN(ftpListingResponse, nullptr);
 
     return ftpListingResponse->This.getListing()[index].c_str();
 }
@@ -107,7 +107,7 @@ sfFtpStatus sfFtpDirectoryResponse_getStatus(const sfFtpDirectoryResponse* ftpDi
 ////////////////////////////////////////////////////////////
 const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
-    CSFML_CHECK_RETURN(ftpDirectoryResponse, NULL);
+    CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
 
     return ftpDirectoryResponse->This.getMessage().c_str();
 }
@@ -116,7 +116,7 @@ const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirectoryResponse* ftpD
 ////////////////////////////////////////////////////////////
 const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
-    CSFML_CHECK_RETURN(ftpDirectoryResponse, NULL);
+    CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
 
     return ftpDirectoryResponse->This.getDirectory().c_str();
 }
@@ -148,7 +148,7 @@ sfFtpStatus sfFtpResponse_getStatus(const sfFtpResponse* ftpResponse)
 ////////////////////////////////////////////////////////////
 const char* sfFtpResponse_getMessage(const sfFtpResponse* ftpResponse)
 {
-    CSFML_CHECK_RETURN(ftpResponse, NULL);
+    CSFML_CHECK_RETURN(ftpResponse, nullptr);
 
     return ftpResponse->This.getMessage().c_str();
 }
@@ -171,7 +171,7 @@ void sfFtp_destroy(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port, sfTime timeout)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     sf::IpAddress SFMLServer(server.address);
 
@@ -182,7 +182,7 @@ sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.login());
 }
@@ -191,7 +191,7 @@ sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.login(name ? name : "", password ? password : ""));
 }
@@ -200,7 +200,7 @@ sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_disconnect(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.disconnect());
 }
@@ -209,7 +209,7 @@ sfFtpResponse* sfFtp_disconnect(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.keepAlive());
 }
@@ -218,7 +218,7 @@ sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpDirectoryResponse(ftp->This.getWorkingDirectory());
 }
@@ -227,7 +227,7 @@ sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, const char* directory)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpListingResponse(ftp->This.getDirectoryListing(directory ? directory : ""));
 }
@@ -236,7 +236,7 @@ sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, const char* director
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* directory)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.changeDirectory(directory ? directory : ""));
 }
@@ -245,7 +245,7 @@ sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* directory)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.parentDirectory());
 }
@@ -254,7 +254,7 @@ sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* name)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.createDirectory(name ? name : ""));
 }
@@ -263,7 +263,7 @@ sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* name)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* name)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.deleteDirectory(name ? name : ""));
 }
@@ -272,7 +272,7 @@ sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* name)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, const char* newName)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.renameFile(file ? file : "", newName ? newName : ""));
 }
@@ -281,7 +281,7 @@ sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, const char* newNam
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.deleteFile(name ? name : ""));
 }
@@ -290,7 +290,7 @@ sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* localPath, sfFtpTransferMode mode)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.download(remoteFile ? remoteFile : "",
                                                 localPath ? localPath : "",
@@ -301,7 +301,7 @@ sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* lo
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, sfBool append)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.upload(localFile ? localFile : "",
                                               remotePath ? remotePath : "",
@@ -313,7 +313,7 @@ sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remot
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_sendCommand(sfFtp* ftp, const char* command, const char* parameter)
 {
-    CSFML_CHECK_RETURN(ftp, NULL);
+    CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.sendCommand(command ? command : "", parameter ? parameter : ""));
 }

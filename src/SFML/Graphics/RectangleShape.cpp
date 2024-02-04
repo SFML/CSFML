@@ -42,7 +42,7 @@ sfRectangleShape* sfRectangleShape_create(void)
 ////////////////////////////////////////////////////////////
 sfRectangleShape* sfRectangleShape_copy(const sfRectangleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, nullptr);
 
     return new sfRectangleShape(*shape);
 }
@@ -176,7 +176,7 @@ sfTransform sfRectangleShape_getInverseTransform(const sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setTexture(sfRectangleShape* shape, const sfTexture* texture, sfBool resetRect)
 {
-    CSFML_CALL(shape, setTexture(texture ? texture->This : NULL, resetRect == sfTrue));
+    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect == sfTrue));
     shape->Texture = texture;
 }
 
@@ -212,7 +212,7 @@ void sfRectangleShape_setOutlineThickness(sfRectangleShape* shape, float thickne
 ////////////////////////////////////////////////////////////
 const sfTexture* sfRectangleShape_getTexture(const sfRectangleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, nullptr);
 
     return shape->Texture;
 }

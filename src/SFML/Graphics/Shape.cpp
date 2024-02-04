@@ -169,7 +169,7 @@ sfTransform sfShape_getInverseTransform(const sfShape* shape)
 ////////////////////////////////////////////////////////////
 void sfShape_setTexture(sfShape* shape, const sfTexture* texture, sfBool resetRect)
 {
-    CSFML_CALL(shape, setTexture(texture ? texture->This : NULL, resetRect == sfTrue));
+    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect == sfTrue));
     shape->Texture = texture;
 }
 
@@ -205,7 +205,7 @@ void sfShape_setOutlineThickness(sfShape* shape, float thickness)
 ////////////////////////////////////////////////////////////
 const sfTexture* sfShape_getTexture(const sfShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, nullptr);
 
     return shape->Texture;
 }

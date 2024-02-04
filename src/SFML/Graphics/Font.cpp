@@ -38,7 +38,7 @@ sfFont* sfFont_createFromFile(const char* filename)
     if (!font->This.loadFromFile(filename))
     {
         delete font;
-        font = NULL;
+        font = nullptr;
     }
 
     return font;
@@ -52,7 +52,7 @@ sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
     if (!font->This.loadFromMemory(data, sizeInBytes))
     {
         delete font;
-        font = NULL;
+        font = nullptr;
     }
 
     return font;
@@ -62,14 +62,14 @@ sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromStream(sfInputStream* stream)
 {
-    CSFML_CHECK_RETURN(stream, NULL);
+    CSFML_CHECK_RETURN(stream, nullptr);
 
     sfFont* font = new sfFont;
     font->Stream = CallbackStream(stream);
     if (!font->This.loadFromStream(font->Stream))
     {
         delete font;
-        font = NULL;
+        font = nullptr;
     }
 
     return font;
@@ -79,7 +79,7 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_copy(const sfFont* font)
 {
-    CSFML_CHECK_RETURN(font, NULL);
+    CSFML_CHECK_RETURN(font, nullptr);
 
     return new sfFont(*font);
 }
@@ -152,7 +152,7 @@ float sfFont_getUnderlineThickness(const sfFont* font, unsigned int characterSiz
 ////////////////////////////////////////////////////////////
 const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 {
-    CSFML_CHECK_RETURN(font, NULL);
+    CSFML_CHECK_RETURN(font, nullptr);
 
     *font->Textures[characterSize].This = font->This.getTexture(characterSize);
 
@@ -182,7 +182,7 @@ sfBool sfFont_isSmooth(const sfFont *font)
 ////////////////////////////////////////////////////////////
 sfFontInfo sfFont_getInfo(const sfFont* font)
 {
-    sfFontInfo info = {NULL};
+    sfFontInfo info = {nullptr};
     CSFML_CHECK_RETURN(font, info);
 
     info.family = font->This.getInfo().family.c_str();

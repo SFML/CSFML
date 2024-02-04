@@ -139,7 +139,7 @@ void sfRenderTexture_setView(sfRenderTexture* renderTexture, const sfView* view)
 ////////////////////////////////////////////////////////////
 const sfView* sfRenderTexture_getView(const sfRenderTexture* renderTexture)
 {
-    CSFML_CHECK_RETURN(renderTexture, NULL);
+    CSFML_CHECK_RETURN(renderTexture, nullptr);
 
     return &renderTexture->CurrentView;
 }
@@ -148,7 +148,7 @@ const sfView* sfRenderTexture_getView(const sfRenderTexture* renderTexture)
 ////////////////////////////////////////////////////////////
 const sfView* sfRenderTexture_getDefaultView(const sfRenderTexture* renderTexture)
 {
-    CSFML_CHECK_RETURN(renderTexture, NULL);
+    CSFML_CHECK_RETURN(renderTexture, nullptr);
 
     return &renderTexture->DefaultView;
 }
@@ -296,7 +296,7 @@ void sfRenderTexture_resetGLStates(sfRenderTexture* renderTexture)
 ////////////////////////////////////////////////////////////
 const sfTexture* sfRenderTexture_getTexture(const sfRenderTexture* renderTexture)
 {
-    CSFML_CHECK_RETURN(renderTexture, NULL);
+    CSFML_CHECK_RETURN(renderTexture, nullptr);
 
     return renderTexture->Target;
 }

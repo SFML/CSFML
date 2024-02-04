@@ -40,7 +40,7 @@ sfPacket* sfPacket_create(void)
 ////////////////////////////////////////////////////////////
 sfPacket* sfPacket_copy(const sfPacket* packet)
 {
-    CSFML_CHECK_RETURN(packet, NULL);
+    CSFML_CHECK_RETURN(packet, nullptr);
 
     return new sfPacket(*packet);
 }
@@ -77,7 +77,7 @@ void sfPacket_clear(sfPacket* packet)
 ////////////////////////////////////////////////////////////
 const void* sfPacket_getData(const sfPacket* packet)
 {
-    CSFML_CALL_RETURN(packet, getData(), NULL);
+    CSFML_CALL_RETURN(packet, getData(), nullptr);
 }
 
 

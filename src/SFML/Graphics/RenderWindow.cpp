@@ -372,7 +372,7 @@ void sfRenderWindow_setView(sfRenderWindow* renderWindow, const sfView* view)
 ////////////////////////////////////////////////////////////
 const sfView* sfRenderWindow_getView(const sfRenderWindow* renderWindow)
 {
-    CSFML_CHECK_RETURN(renderWindow, NULL);
+    CSFML_CHECK_RETURN(renderWindow, nullptr);
 
     return &renderWindow->CurrentView;
 }
@@ -381,7 +381,7 @@ const sfView* sfRenderWindow_getView(const sfRenderWindow* renderWindow)
 ////////////////////////////////////////////////////////////
 const sfView* sfRenderWindow_getDefaultView(const sfRenderWindow* renderWindow)
 {
-    CSFML_CHECK_RETURN(renderWindow, NULL);
+    CSFML_CHECK_RETURN(renderWindow, nullptr);
 
     return &renderWindow->DefaultView;
 }
@@ -529,7 +529,7 @@ void sfRenderWindow_resetGLStates(sfRenderWindow* renderWindow)
 ////////////////////////////////////////////////////////////
 sfImage* sfRenderWindow_capture(const sfRenderWindow* renderWindow)
 {
-    CSFML_CHECK_RETURN(renderWindow, NULL);
+    CSFML_CHECK_RETURN(renderWindow, nullptr);
 
     sfImage* image = new sfImage;
     image->This = renderWindow->This.capture();

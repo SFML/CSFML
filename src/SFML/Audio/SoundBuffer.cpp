@@ -39,7 +39,7 @@ sfSoundBuffer* sfSoundBuffer_createFromFile(const char* filename)
     if (!buffer->This.loadFromFile(filename))
     {
         delete buffer;
-        buffer = NULL;
+        buffer = nullptr;
     }
 
     return buffer;
@@ -54,7 +54,7 @@ sfSoundBuffer* sfSoundBuffer_createFromMemory(const void* data, size_t sizeInByt
     if (!buffer->This.loadFromMemory(data, sizeInBytes))
     {
         delete buffer;
-        buffer = NULL;
+        buffer = nullptr;
     }
 
     return buffer;
@@ -65,14 +65,14 @@ sfSoundBuffer* sfSoundBuffer_createFromMemory(const void* data, size_t sizeInByt
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 {
-    CSFML_CHECK_RETURN(stream, NULL);
+    CSFML_CHECK_RETURN(stream, nullptr);
 
     sfSoundBuffer* buffer = new sfSoundBuffer;
     CallbackStream sfmlStream(stream);
     if (!buffer->This.loadFromStream(sfmlStream))
     {
         delete buffer;
-        buffer = NULL;
+        buffer = nullptr;
     }
 
     return buffer;
@@ -87,7 +87,7 @@ sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, sfUint64 
     if (!buffer->This.loadFromSamples(samples, sampleCount, channelCount, sampleRate))
     {
         delete buffer;
-        buffer = NULL;
+        buffer = nullptr;
     }
 
     return buffer;
@@ -97,7 +97,7 @@ sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, sfUint64 
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_copy(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CHECK_RETURN(soundBuffer, NULL);
+    CSFML_CHECK_RETURN(soundBuffer, nullptr);
 
     return new sfSoundBuffer(*soundBuffer);
 }
@@ -120,7 +120,7 @@ sfBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* fi
 ////////////////////////////////////////////////////////////
 const sfInt16* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer)
 {
-    CSFML_CALL_RETURN(soundBuffer, getSamples(), NULL);
+    CSFML_CALL_RETURN(soundBuffer, getSamples(), nullptr);
 }
 
 
