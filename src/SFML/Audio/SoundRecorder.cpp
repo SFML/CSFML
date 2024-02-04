@@ -90,9 +90,9 @@ const char** sfSoundRecorder_getAvailableDevices(size_t* count)
 
     if (cstringDevices.empty() && !stringDevices.empty())
     {
-        for (std::vector<std::string>::const_iterator it = stringDevices.begin(); it != stringDevices.end(); ++it)
+        for (const auto& stringDevice : stringDevices)
         {
-            cstringDevices.push_back(it->c_str());
+            cstringDevices.push_back(stringDevice.c_str());
         }
     }
 

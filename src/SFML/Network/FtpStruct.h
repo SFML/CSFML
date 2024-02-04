@@ -81,8 +81,8 @@ struct sfFtpListingResponse
 
     ~sfFtpListingResponse()
     {
-        for (std::vector<const char*>::iterator it = Filenames.begin(); it != Filenames.end(); ++it)
-            delete[] *it;
+        for (const auto& filename : Filenames)
+            delete[] filename;
     }
 
     sf::Ftp::ListingResponse This;

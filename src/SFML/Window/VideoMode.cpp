@@ -51,13 +51,13 @@ const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count)
     // Populate the array on first call
     if (modes.empty())
     {
-        const std::vector<sf::VideoMode>& SFMLModes = sf::VideoMode::getFullscreenModes();
-        for (std::vector<sf::VideoMode>::const_iterator it = SFMLModes.begin(); it != SFMLModes.end(); ++it)
+        const std::vector<sf::VideoMode>& sfmlModes = sf::VideoMode::getFullscreenModes();
+        for (const auto& sfmlMode : sfmlModes)
         {
             sfVideoMode mode;
-            mode.width        = it->width;
-            mode.height       = it->height;
-            mode.bitsPerPixel = it->bitsPerPixel;
+            mode.width        = sfmlMode.width;
+            mode.height       = sfmlMode.height;
+            mode.bitsPerPixel = sfmlMode.bitsPerPixel;
             modes.push_back(mode);
         }
     }
