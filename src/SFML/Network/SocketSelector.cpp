@@ -43,7 +43,7 @@ sfSocketSelector* sfSocketSelector_create(void)
 ////////////////////////////////////////////////////////////
 sfSocketSelector* sfSocketSelector_copy(const sfSocketSelector* selector)
 {
-    CSFML_CHECK_RETURN(selector, NULL);
+    CSFML_CHECK_RETURN(selector, nullptr);
 
     return new sfSocketSelector(*selector);
 }

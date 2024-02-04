@@ -35,7 +35,7 @@
     #define CSFML_CHECK(object_) \
         do \
         { \
-            if (object_ == NULL) \
+            if (object_ == nullptr) \
             { \
                 sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
                 return; \
@@ -74,7 +74,7 @@
     #define CSFML_CHECK_RETURN(object_, default_) \
         do \
         { \
-            if (object_ == NULL) \
+            if (object_ == nullptr) \
             { \
                 sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
                 return default_; \

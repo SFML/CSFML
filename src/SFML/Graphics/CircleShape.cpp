@@ -36,7 +36,7 @@
 sfCircleShape* sfCircleShape_create(void)
 {
     sfCircleShape* shape = new sfCircleShape;
-    shape->Texture = NULL;
+    shape->Texture = nullptr;
 
     return shape;
 }
@@ -45,7 +45,7 @@ sfCircleShape* sfCircleShape_create(void)
 ////////////////////////////////////////////////////////////
 sfCircleShape* sfCircleShape_copy(const sfCircleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, nullptr);
 
     return new sfCircleShape(*shape);
 }
@@ -179,7 +179,7 @@ sfTransform sfCircleShape_getInverseTransform(const sfCircleShape* shape)
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setTexture(sfCircleShape* shape, const sfTexture* texture, sfBool resetRect)
 {
-    CSFML_CALL(shape, setTexture(texture ? texture->This : NULL, resetRect == sfTrue));
+    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect == sfTrue));
     shape->Texture = texture;
 }
 
@@ -215,7 +215,7 @@ void sfCircleShape_setOutlineThickness(sfCircleShape* shape, float thickness)
 ////////////////////////////////////////////////////////////
 const sfTexture* sfCircleShape_getTexture(const sfCircleShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, nullptr);
 
     return shape->Texture;
 }

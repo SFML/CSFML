@@ -51,8 +51,8 @@ inline sf::RenderStates convertRenderStates(const sfRenderStates* states)
         sfmlStates.blendMode.alphaDstFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaDstFactor);
         sfmlStates.blendMode.alphaEquation = static_cast<sf::BlendMode::Equation>(states->blendMode.alphaEquation);
         sfmlStates.transform = convertTransform(states->transform);
-        sfmlStates.texture = states->texture ? states->texture->This : NULL;
-        sfmlStates.shader = states->shader ? &states->shader->This : NULL;
+        sfmlStates.texture = states->texture ? states->texture->This : nullptr;
+        sfmlStates.shader = states->shader ? &states->shader->This : nullptr;
     }
 
     return sfmlStates;

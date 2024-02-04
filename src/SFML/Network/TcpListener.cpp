@@ -88,7 +88,7 @@ sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** conne
     if (status != sfSocketDone)
     {
         delete *connected;
-        *connected = NULL;
+        *connected = nullptr;
     }
 
     return status;

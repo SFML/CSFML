@@ -42,7 +42,7 @@ sfConvexShape* sfConvexShape_create(void)
 ////////////////////////////////////////////////////////////
 sfConvexShape* sfConvexShape_copy(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, nullptr);
 
     return new sfConvexShape(*shape);
 }
@@ -176,7 +176,7 @@ sfTransform sfConvexShape_getInverseTransform(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, sfBool resetRect)
 {
-    CSFML_CALL(shape, setTexture(texture ? texture->This : NULL, resetRect == sfTrue));
+    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect == sfTrue));
     shape->Texture = texture;
 }
 
@@ -212,7 +212,7 @@ void sfConvexShape_setOutlineThickness(sfConvexShape* shape, float thickness)
 ////////////////////////////////////////////////////////////
 const sfTexture* sfConvexShape_getTexture(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, NULL);
+    CSFML_CHECK_RETURN(shape, nullptr);
 
     return shape->Texture;
 }

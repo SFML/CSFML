@@ -38,7 +38,7 @@ sfCursor* sfCursor_createFromPixels(const sfUint8* pixels, sfVector2u size, sfVe
     if (!cursor->This.loadFromPixels(pixels, sf::Vector2u(size.x, size.y), sf::Vector2u(hotspot.x, hotspot.y)))
     {
         delete cursor;
-        cursor = NULL;
+        cursor = nullptr;
     }
 
     return cursor;
@@ -53,7 +53,7 @@ sfCursor* sfCursor_createFromSystem(sfCursorType type)
     if (!cursor->This.loadFromSystem(static_cast<sf::Cursor::Type>(type)))
     {
         delete cursor;
-        cursor = NULL;
+        cursor = nullptr;
     }
 
     return cursor;
@@ -65,4 +65,3 @@ void sfCursor_destroy(sfCursor* cursor)
 {
     delete cursor;
 }
-

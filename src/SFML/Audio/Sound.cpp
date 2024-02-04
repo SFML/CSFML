@@ -40,7 +40,7 @@ sfSound* sfSound_create(void)
 ////////////////////////////////////////////////////////////
 sfSound* sfSound_copy(const sfSound* sound)
 {
-    CSFML_CHECK_RETURN(sound, NULL);
+    CSFML_CHECK_RETURN(sound, nullptr);
 
     return new sfSound(*sound);
 }
@@ -88,7 +88,7 @@ void sfSound_setBuffer(sfSound* sound, const sfSoundBuffer* buffer)
 ////////////////////////////////////////////////////////////
 const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound)
 {
-    CSFML_CHECK_RETURN(sound, NULL);
+    CSFML_CHECK_RETURN(sound, nullptr);
 
     return sound->Buffer;
 }

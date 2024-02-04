@@ -37,7 +37,7 @@
 sfSprite* sfSprite_create(void)
 {
     sfSprite* sprite = new sfSprite;
-    sprite->Texture = NULL;
+    sprite->Texture = nullptr;
 
     return sprite;
 }
@@ -46,7 +46,7 @@ sfSprite* sfSprite_create(void)
 ////////////////////////////////////////////////////////////
 sfSprite* sfSprite_copy(const sfSprite* sprite)
 {
-    CSFML_CHECK_RETURN(sprite, NULL);
+    CSFML_CHECK_RETURN(sprite, nullptr);
 
     return new sfSprite(*sprite);
 }
@@ -205,7 +205,7 @@ void sfSprite_setColor(sfSprite* sprite, sfColor color)
 ////////////////////////////////////////////////////////////
 const sfTexture* sfSprite_getTexture(const sfSprite* sprite)
 {
-    CSFML_CHECK_RETURN(sprite, NULL);
+    CSFML_CHECK_RETURN(sprite, nullptr);
 
     return sprite->Texture;
 }

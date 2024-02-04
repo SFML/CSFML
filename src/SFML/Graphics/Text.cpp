@@ -37,7 +37,7 @@
 sfText* sfText_create(void)
 {
     sfText* text = new sfText;
-    text->Font = NULL;
+    text->Font = nullptr;
 
     return text;
 }
@@ -46,7 +46,7 @@ sfText* sfText_create(void)
 ////////////////////////////////////////////////////////////
 sfText* sfText_copy(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL);
+    CSFML_CHECK_RETURN(text, nullptr);
 
     return new sfText(*text);
 }
@@ -261,7 +261,7 @@ void sfText_setOutlineThickness(sfText* text, float thickness)
 ////////////////////////////////////////////////////////////
 const char* sfText_getString(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL);
+    CSFML_CHECK_RETURN(text, nullptr);
 
     text->String = text->This.getString().toAnsiString();
 
@@ -272,7 +272,7 @@ const char* sfText_getString(const sfText* text)
 ////////////////////////////////////////////////////////////
 const sfUint32* sfText_getUnicodeString(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL);
+    CSFML_CHECK_RETURN(text, nullptr);
 
     return text->This.getString().getData();
 }
@@ -281,7 +281,7 @@ const sfUint32* sfText_getUnicodeString(const sfText* text)
 ////////////////////////////////////////////////////////////
 const sfFont* sfText_getFont(const sfText* text)
 {
-    CSFML_CHECK_RETURN(text, NULL);
+    CSFML_CHECK_RETURN(text, nullptr);
 
     return text->Font;
 }

@@ -50,7 +50,7 @@ struct sfTexture
 
     sfTexture(const sfTexture& texture)
     {
-        This = texture.This ? new sf::Texture(*texture.This) : NULL;
+        This = texture.This ? new sf::Texture(*texture.This) : nullptr;
         OwnInstance = true;
     }
 

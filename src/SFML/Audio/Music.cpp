@@ -37,7 +37,7 @@ sfMusic* sfMusic_createFromFile(const char* filename)
     if (!music->This.openFromFile(filename))
     {
         delete music;
-        music = NULL;
+        music = nullptr;
     }
 
     return music;
@@ -51,7 +51,7 @@ sfMusic* sfMusic_createFromMemory(const void* data, size_t sizeInBytes)
     if (!music->This.openFromMemory(data, sizeInBytes))
     {
         delete music;
-        music = NULL;
+        music = nullptr;
     }
 
     return music;
@@ -61,14 +61,14 @@ sfMusic* sfMusic_createFromMemory(const void* data, size_t sizeInBytes)
 ////////////////////////////////////////////////////////////
 sfMusic* sfMusic_createFromStream(sfInputStream* stream)
 {
-    CSFML_CHECK_RETURN(stream, NULL);
+    CSFML_CHECK_RETURN(stream, nullptr);
 
     sfMusic* music = new sfMusic;
     music->Stream = CallbackStream(stream);
     if (!music->This.openFromStream(music->Stream))
     {
         delete music;
-        music = NULL;
+        music = nullptr;
     }
 
     return music;
