@@ -31,15 +31,15 @@
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSensor_isAvailable(sfSensorType sensor)
+bool sfSensor_isAvailable(sfSensorType sensor)
 {
     return sf::Sensor::isAvailable(static_cast<sf::Sensor::Type>(sensor));
 }
 
 ////////////////////////////////////////////////////////////
-void sfSensor_setEnabled(sfSensorType sensor, sfBool enabled)
+void sfSensor_setEnabled(sfSensorType sensor, bool enabled)
 {
-    sf::Sensor::setEnabled(static_cast<sf::Sensor::Type>(sensor), enabled == sfTrue);
+    sf::Sensor::setEnabled(static_cast<sf::Sensor::Type>(sensor), enabled);
 }
 
 ////////////////////////////////////////////////////////////

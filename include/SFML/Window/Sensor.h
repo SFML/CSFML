@@ -55,10 +55,10 @@ typedef enum
 ///
 /// \param sensor Sensor to check
 ///
-/// \return sfTrue if the sensor is available, sfFalse otherwise
+/// \return true if the sensor is available, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfSensor_isAvailable(sfSensorType sensor);
+CSFML_WINDOW_API bool sfSensor_isAvailable(sfSensorType sensor);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable a sensor
@@ -70,10 +70,10 @@ CSFML_WINDOW_API sfBool sfSensor_isAvailable(sfSensorType sensor);
 /// This function does nothing if the sensor is unavailable.
 ///
 /// \param sensor Sensor to enable
-/// \param enabled sfTrue to enable, sfFalse to disable
+/// \param enabled true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfSensor_setEnabled(sfSensorType sensor, sfBool enabled);
+CSFML_WINDOW_API void sfSensor_setEnabled(sfSensorType sensor, bool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current sensor value

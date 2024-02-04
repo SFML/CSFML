@@ -61,10 +61,10 @@ CSFML_AUDIO_API void sfSoundBufferRecorder_destroy(sfSoundBufferRecorder* soundB
 /// \param soundBufferRecorder Sound buffer recorder object
 /// \param sampleRate          Desired capture rate, in number of samples per second
 ///
-/// \return sfTrue, if it was able to start recording
+/// \return true, if it was able to start recording
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate);
+CSFML_AUDIO_API bool sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
 /// \brief Stop the capture of a sound recorder
@@ -114,10 +114,10 @@ CSFML_AUDIO_API const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSou
 /// \param soundBufferRecorder Sound buffer recorder object
 /// \param name                The name of the audio capture device
 ///
-/// \return sfTrue, if it was able to set the requested device
+/// \return true, if it was able to set the requested device
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorder, const char* name);
+CSFML_AUDIO_API bool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorder, const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the name of the current audio capture device

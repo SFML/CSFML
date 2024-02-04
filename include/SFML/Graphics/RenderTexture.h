@@ -53,7 +53,7 @@
 /// Use sfRenderTexture_createWithSettings instead.
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, sfBool depthBuffer);
+CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, bool depthBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new render texture
@@ -90,21 +90,21 @@ CSFML_GRAPHICS_API sfVector2u sfRenderTexture_getSize(const sfRenderTexture* ren
 ///
 /// \param renderTexture Render texture object
 ///
-/// \return sfTrue if the render texture use sRGB encoding, sfFalse otherwise
+/// \return true if the render texture use sRGB encoding, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderTexture_isSrgb(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API bool sfRenderTexture_isSrgb(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate a render texture as the current target for rendering
 ///
 /// \param renderTexture Render texture object
-/// \param active        sfTrue to activate, sfFalse to deactivate
+/// \param active        true to activate, false to deactivate
 ///
 /// \return True if operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderTexture_setActive(sfRenderTexture* renderTexture, sfBool active);
+CSFML_GRAPHICS_API bool sfRenderTexture_setActive(sfRenderTexture* renderTexture, bool active);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update the contents of the target texture
@@ -332,39 +332,39 @@ CSFML_GRAPHICS_API unsigned int sfRenderTexture_getMaximumAntialiasingLevel(void
 /// \brief Enable or disable the smooth filter on a render texture
 ///
 /// \param renderTexture Render texture object
-/// \param smooth        sfTrue to enable smoothing, sfFalse to disable it
+/// \param smooth        true to enable smoothing, false to disable it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture, sfBool smooth);
+CSFML_GRAPHICS_API void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture, bool smooth);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether the smooth filter is enabled or not for a render texture
 ///
 /// \param renderTexture Render texture object
 ///
-/// \return sfTrue if smoothing is enabled, sfFalse if it is disabled
+/// \return true if smoothing is enabled, false if it is disabled
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderTexture_isSmooth(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API bool sfRenderTexture_isSmooth(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable texture repeating
 ///
 /// \param renderTexture Render texture object
-/// \param repeated      sfTrue to enable repeating, sfFalse to disable it
+/// \param repeated      true to enable repeating, false to disable it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_setRepeated(sfRenderTexture* renderTexture, sfBool repeated);
+CSFML_GRAPHICS_API void sfRenderTexture_setRepeated(sfRenderTexture* renderTexture, bool repeated);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether the texture is repeated or not
 ///
 /// \param renderTexture Render texture object
 ///
-/// \return sfTrue if repeat mode is enabled, sfFalse if it is disabled
+/// \return true if repeat mode is enabled, false if it is disabled
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderTexture_isRepeated(const sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API bool sfRenderTexture_isRepeated(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Generate a mipmap using the current texture data
@@ -377,10 +377,10 @@ CSFML_GRAPHICS_API sfBool sfRenderTexture_isRepeated(const sfRenderTexture* rend
 /// after subsequent drawing will lead to undefined behavior if a mipmap
 /// had been previously generated.
 ///
-/// \return sfTrue if mipmap generation was successful, sfFalse if unsuccessful
+/// \return true if mipmap generation was successful, false if unsuccessful
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderTexture_generateMipmap(sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API bool sfRenderTexture_generateMipmap(sfRenderTexture* renderTexture);
 
 
 #endif // SFML_RENDERTEXTURE_H

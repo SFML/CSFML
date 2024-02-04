@@ -38,10 +38,10 @@
 ///
 /// \param finger Finger index
 ///
-/// \return sfTrue if \a finger is currently touching the screen, sfFalse otherwise
+/// \return true if \a finger is currently touching the screen, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfTouch_isDown(unsigned int finger);
+CSFML_WINDOW_API bool sfTouch_isDown(unsigned int finger);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of a touch in window coordinates

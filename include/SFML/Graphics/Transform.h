@@ -218,6 +218,6 @@ CSFML_GRAPHICS_API void sfTransform_scaleWithCenter(sfTransform* transform, floa
 /// \return true if the transforms are equal, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfTransform_equal(sfTransform* left, sfTransform* right);
+CSFML_GRAPHICS_API bool sfTransform_equal(sfTransform* left, sfTransform* right);
 
 #endif // SFML_TRANSFORM_H

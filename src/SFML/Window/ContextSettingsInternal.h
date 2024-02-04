@@ -38,7 +38,7 @@ namespace priv
     ////////////////////////////////////////////////////////////
     inline sfContextSettings sfContextSettings_null()
     {
-        sfContextSettings settings = {0, 0, 0, 0, 0, 0, sfFalse};
+        sfContextSettings settings = {0, 0, 0, 0, 0, 0, false};
 
         return settings;
     }
@@ -54,7 +54,7 @@ namespace priv
         to.majorVersion      = from.majorVersion;
         to.minorVersion      = from.minorVersion;
         to.attributeFlags    = from.attributeFlags;
-        to.sRgbCapable       = from.sRgbCapable ? sfTrue : sfFalse;
+        to.sRgbCapable       = from.sRgbCapable;
     }
 
     ////////////////////////////////////////////////////////////
@@ -68,7 +68,7 @@ namespace priv
         to.majorVersion      = from.majorVersion;
         to.minorVersion      = from.minorVersion;
         to.attributeFlags    = from.attributeFlags;
-        to.sRgbCapable       = from.sRgbCapable == sfTrue;
+        to.sRgbCapable       = from.sRgbCapable;
     }
 }
 

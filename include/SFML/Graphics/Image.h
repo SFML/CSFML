@@ -78,7 +78,7 @@ CSFML_GRAPHICS_API sfImage* sfImage_createFromColor(unsigned int width, unsigned
 /// \return A new sfImage object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const sfUint8* pixels);
+CSFML_GRAPHICS_API sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const uint8_t* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an image from a file on disk
@@ -155,12 +155,12 @@ CSFML_GRAPHICS_API void sfImage_destroy(sfImage* image);
 /// \param image    Image object
 /// \param filename Path of the file to save
 ///
-/// \return sfTrue if saving was successful
+/// \return true if saving was successful
 ///
 /// \see sfImage_saveToMemory
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfImage_saveToFile(const sfImage* image, const char* filename);
+CSFML_GRAPHICS_API bool sfImage_saveToFile(const sfImage* image, const char* filename);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save the image to a buffer in memory
@@ -174,12 +174,12 @@ CSFML_GRAPHICS_API sfBool sfImage_saveToFile(const sfImage* image, const char* f
 /// \param output Buffer to fill with encoded data
 /// \param format Encoding format to use
 ///
-/// \return sfTrue if saving was successful
+/// \return true if saving was successful
 ///
 /// \see sfImage_saveToFile
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* format);
+CSFML_GRAPHICS_API bool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* format);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the size of an image
@@ -203,7 +203,7 @@ CSFML_GRAPHICS_API sfVector2u sfImage_getSize(const sfImage* image);
 /// \param alpha Alpha value to assign to transparent pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfImage_createMaskFromColor(sfImage* image, sfColor color, sfUint8 alpha);
+CSFML_GRAPHICS_API void sfImage_createMaskFromColor(sfImage* image, sfColor color, uint8_t alpha);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy pixels from an image onto another
@@ -226,7 +226,7 @@ CSFML_GRAPHICS_API void sfImage_createMaskFromColor(sfImage* image, sfColor colo
 /// \param applyAlpha Should the copy take in account the source transparency?
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha);
+CSFML_GRAPHICS_API void sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, bool applyAlpha);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the color of a pixel in an image
@@ -274,7 +274,7 @@ CSFML_GRAPHICS_API sfColor sfImage_getPixel(const sfImage* image, unsigned int x
 /// \return Read-only pointer to the array of pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfUint8* sfImage_getPixelsPtr(const sfImage* image);
+CSFML_GRAPHICS_API const uint8_t* sfImage_getPixelsPtr(const sfImage* image);
 
 ////////////////////////////////////////////////////////////
 /// \brief Flip an image horizontally (left <-> right)

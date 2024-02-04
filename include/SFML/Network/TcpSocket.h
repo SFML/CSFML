@@ -65,20 +65,20 @@ CSFML_NETWORK_API void sfTcpSocket_destroy(sfTcpSocket* socket);
 /// By default, all sockets are blocking.
 ///
 /// \param socket   TCP socket object
-/// \param blocking sfTrue to set the socket as blocking, sfFalse for non-blocking
+/// \param blocking true to set the socket as blocking, false for non-blocking
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfTcpSocket_setBlocking(sfTcpSocket* socket, sfBool blocking);
+CSFML_NETWORK_API void sfTcpSocket_setBlocking(sfTcpSocket* socket, bool blocking);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a TCP socket is in blocking or non-blocking mode
 ///
 /// \param socket TCP socket object
 ///
-/// \return sfTrue if the socket is blocking, sfFalse otherwise
+/// \return true if the socket is blocking, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfTcpSocket_isBlocking(const sfTcpSocket* socket);
+CSFML_NETWORK_API bool sfTcpSocket_isBlocking(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the port to which a TCP socket is bound locally

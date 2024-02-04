@@ -37,10 +37,10 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    sfUint8 r;
-    sfUint8 g;
-    sfUint8 b;
-    sfUint8 a;
+    uint8_t r;
+    uint8_t g;
+    uint8_t b;
+    uint8_t a;
 } sfColor;
 
 
@@ -65,7 +65,7 @@ CSFML_GRAPHICS_API sfColor sfTransparent; ///< Transparent (black) predefined co
 /// \return sfColor constructed from the components
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfColor_fromRGB(sfUint8 red, sfUint8 green, sfUint8 blue);
+CSFML_GRAPHICS_API sfColor sfColor_fromRGB(uint8_t red, uint8_t green, uint8_t blue);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a color from its 4 RGBA components
@@ -78,7 +78,7 @@ CSFML_GRAPHICS_API sfColor sfColor_fromRGB(sfUint8 red, sfUint8 green, sfUint8 b
 /// \return sfColor constructed from the components
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfColor_fromRGBA(sfUint8 red, sfUint8 green, sfUint8 blue, sfUint8 alpha);
+CSFML_GRAPHICS_API sfColor sfColor_fromRGBA(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct the color from 32-bit unsigned integer
@@ -88,7 +88,7 @@ CSFML_GRAPHICS_API sfColor sfColor_fromRGBA(sfUint8 red, sfUint8 green, sfUint8 
 /// \return sfColor constructed from the 32-bit unsigned integer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfColor_fromInteger(sfUint32 color);
+CSFML_GRAPHICS_API sfColor sfColor_fromInteger(uint32_t color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Convert a color to a 32-bit unsigned integer
@@ -96,7 +96,7 @@ CSFML_GRAPHICS_API sfColor sfColor_fromInteger(sfUint32 color);
 /// \return Color represented as a 32-bit unsigned integer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfUint32 sfColor_toInteger(sfColor color);
+CSFML_GRAPHICS_API uint32_t sfColor_toInteger(sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Add two colors

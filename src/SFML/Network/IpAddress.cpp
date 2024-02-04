@@ -73,14 +73,14 @@ sfIpAddress sfIpAddress_fromString(const char* address)
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_fromBytes(sfUint8 byte0, sfUint8 byte1, sfUint8 byte2, sfUint8 byte3)
+sfIpAddress sfIpAddress_fromBytes(uint8_t byte0, uint8_t byte1, uint8_t byte2, uint8_t byte3)
 {
     return fromSFMLAddress(sf::IpAddress(byte0, byte1, byte2, byte3));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_fromInteger(sfUint32 address)
+sfIpAddress sfIpAddress_fromInteger(uint32_t address)
 {
     return fromSFMLAddress(sf::IpAddress(address));
 }
@@ -95,7 +95,7 @@ void sfIpAddress_toString(sfIpAddress address, char* string)
 
 
 ////////////////////////////////////////////////////////////
-sfUint32 sfIpAddress_toInteger(sfIpAddress address)
+uint32_t sfIpAddress_toInteger(sfIpAddress address)
 {
     return toSFMLAddress(address).toInteger();
 }

@@ -208,7 +208,7 @@ CSFML_GRAPHICS_API sfImage* sfTexture_copyToImage(const sfTexture* texture);
 /// \param y       Y offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_updateFromPixels(sfTexture* texture, const sfUint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromPixels(sfTexture* texture, const uint8_t* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a part of this texture from another texture
@@ -265,20 +265,20 @@ CSFML_GRAPHICS_API void sfTexture_updateFromRenderWindow(sfTexture* texture, con
 /// \brief Enable or disable the smooth filter on a texture
 ///
 /// \param texture The texture object
-/// \param smooth  sfTrue to enable smoothing, sfFalse to disable it
+/// \param smooth  true to enable smoothing, false to disable it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_setSmooth(sfTexture* texture, sfBool smooth);
+CSFML_GRAPHICS_API void sfTexture_setSmooth(sfTexture* texture, bool smooth);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether the smooth filter is enabled or not for a texture
 ///
 /// \param texture The texture object
 ///
-/// \return sfTrue if smoothing is enabled, sfFalse if it is disabled
+/// \return true if smoothing is enabled, false if it is disabled
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfTexture_isSmooth(const sfTexture* texture);
+CSFML_GRAPHICS_API bool sfTexture_isSmooth(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether the texture source is converted from sRGB or not
@@ -291,7 +291,7 @@ CSFML_GRAPHICS_API sfBool sfTexture_isSmooth(const sfTexture* texture);
 /// \see sfTexture_createSrgbFromImage
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfTexture_isSrgb(const sfTexture* texture);
+CSFML_GRAPHICS_API bool sfTexture_isSrgb(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable repeating for a texture
@@ -314,17 +314,17 @@ CSFML_GRAPHICS_API sfBool sfTexture_isSrgb(const sfTexture* texture);
 /// \param repeated True to repeat the texture, false to disable repeating
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_setRepeated(sfTexture* texture, sfBool repeated);
+CSFML_GRAPHICS_API void sfTexture_setRepeated(sfTexture* texture, bool repeated);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a texture is repeated or not
 ///
 /// \param texture The texture object
 ///
-/// \return sfTrue if repeat mode is enabled, sfFalse if it is disabled
+/// \return true if repeat mode is enabled, false if it is disabled
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfTexture_isRepeated(const sfTexture* texture);
+CSFML_GRAPHICS_API bool sfTexture_isRepeated(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Generate a mipmap using the current texture data
@@ -346,10 +346,10 @@ CSFML_GRAPHICS_API sfBool sfTexture_isRepeated(const sfTexture* texture);
 /// modified, at which point this function will have to be called again to
 /// regenerate it.
 ///
-/// \return sfTrue if mipmap generation was successful, sfFalse if unsuccessful
+/// \return true if mipmap generation was successful, false if unsuccessful
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfTexture_generateMipmap(sfTexture* texture);
+CSFML_GRAPHICS_API bool sfTexture_generateMipmap(sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Swap the contents of a texture with those of another

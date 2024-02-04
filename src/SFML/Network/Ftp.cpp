@@ -39,9 +39,9 @@ void sfFtpListingResponse_destroy(sfFtpListingResponse* ftpListingResponse)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfFtpListingResponse_isOk(const sfFtpListingResponse* ftpListingResponse)
+bool sfFtpListingResponse_isOk(const sfFtpListingResponse* ftpListingResponse)
 {
-    CSFML_CALL_RETURN(ftpListingResponse, isOk(), sfFalse);
+    CSFML_CALL_RETURN(ftpListingResponse, isOk(), false);
 }
 
 
@@ -89,9 +89,9 @@ void sfFtpDirectoryResponse_destroy(sfFtpDirectoryResponse* ftpDirectoryResponse
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfFtpDirectoryResponse_isOk(const sfFtpDirectoryResponse* ftpDirectoryResponse)
+bool sfFtpDirectoryResponse_isOk(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
-    CSFML_CALL_RETURN(ftpDirectoryResponse, isOk(), sfFalse);
+    CSFML_CALL_RETURN(ftpDirectoryResponse, isOk(), false);
 }
 
 
@@ -130,9 +130,9 @@ void sfFtpResponse_destroy(sfFtpResponse* ftpResponse)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfFtpResponse_isOk(const sfFtpResponse* ftpResponse)
+bool sfFtpResponse_isOk(const sfFtpResponse* ftpResponse)
 {
-    CSFML_CALL_RETURN(ftpResponse, isOk(), sfFalse);
+    CSFML_CALL_RETURN(ftpResponse, isOk(), false);
 }
 
 
@@ -299,14 +299,14 @@ sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* lo
 
 
 ////////////////////////////////////////////////////////////
-sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, sfBool append)
+sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, bool append)
 {
     CSFML_CHECK_RETURN(ftp, nullptr);
 
     return new sfFtpResponse(ftp->This.upload(localFile ? localFile : "",
                                               remotePath ? remotePath : "",
                                               static_cast<sf::Ftp::TransferMode>(mode),
-                                              append == sfTrue));
+                                              append));
 }
 
 

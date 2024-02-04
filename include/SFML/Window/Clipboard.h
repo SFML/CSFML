@@ -55,7 +55,7 @@ CSFML_WINDOW_API const char* sfClipboard_getString(void);
 /// \return Clipboard contents as UTF-32
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API const sfUint32* sfClipboard_getUnicodeString(void);
+CSFML_WINDOW_API const uint32_t* sfClipboard_getUnicodeString(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the content of the clipboard as ANSI string data
@@ -79,7 +79,7 @@ CSFML_WINDOW_API void sfClipboard_setString(const char* text);
 /// to the clipboard
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfClipboard_setUnicodeString(const sfUint32* text);
+CSFML_WINDOW_API void sfClipboard_setUnicodeString(const uint32_t* text);
 
 
 #endif // SFML_CURSOR_H

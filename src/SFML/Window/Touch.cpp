@@ -32,7 +32,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTouch_isDown(unsigned int finger)
+bool sfTouch_isDown(unsigned int finger)
 {
     return sf::Touch::isDown(finger);
 }
@@ -50,4 +50,3 @@ sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo)
     sfVector2i position = {sfmlPosition.x, sfmlPosition.y};
     return position;
 }
-

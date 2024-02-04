@@ -67,7 +67,7 @@ CSFML_SYSTEM_API size_t sfBuffer_getSize(const sfBuffer* buffer);
 /// \return Read-only pointer to the array of bytes
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API const sfUint8* sfBuffer_getData(const sfBuffer* buffer);
+CSFML_SYSTEM_API const uint8_t* sfBuffer_getData(const sfBuffer* buffer);
 
 
 #endif // SFML_BUFFER_H

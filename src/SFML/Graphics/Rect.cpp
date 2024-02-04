@@ -48,14 +48,14 @@ sfVector2i toCType(const sf::Vector2i& vector)
 ////////////////////////////////////////////////////////////
 /// Check if a point is inside a rectangle's area
 ////////////////////////////////////////////////////////////
-sfBool sfFloatRect_contains(const sfFloatRect* rect, float x, float y)
+bool sfFloatRect_contains(const sfFloatRect* rect, float x, float y)
 {
-    CSFML_CHECK_RETURN(rect, sfFalse);
+    CSFML_CHECK_RETURN(rect, false);
     return sf::FloatRect(rect->left, rect->top, rect->width, rect->height).contains(x, y);
 }
-sfBool sfIntRect_contains(const sfIntRect* rect, int x, int y)
+bool sfIntRect_contains(const sfIntRect* rect, int x, int y)
 {
-    CSFML_CHECK_RETURN(rect, sfFalse);
+    CSFML_CHECK_RETURN(rect, false);
     return sf::IntRect(rect->left, rect->top, rect->width, rect->height).contains(x, y);
 }
 
@@ -63,10 +63,10 @@ sfBool sfIntRect_contains(const sfIntRect* rect, int x, int y)
 ////////////////////////////////////////////////////////////
 /// Check intersection between two rectangles
 ////////////////////////////////////////////////////////////
-sfBool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, sfFloatRect* intersection)
+bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, sfFloatRect* intersection)
 {
-    CSFML_CHECK_RETURN(rect1, sfFalse);
-    CSFML_CHECK_RETURN(rect2, sfFalse);
+    CSFML_CHECK_RETURN(rect1, false);
+    CSFML_CHECK_RETURN(rect2, false);
 
     sf::FloatRect SFMLRect1(rect1->left, rect1->top, rect1->width, rect1->height);
     sf::FloatRect SFMLRect2(rect2->left, rect2->top, rect2->width, rect2->height);
@@ -88,10 +88,10 @@ sfBool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2
         return SFMLRect1.intersects(SFMLRect2);
     }
 }
-sfBool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection)
+bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection)
 {
-    CSFML_CHECK_RETURN(rect1, sfFalse);
-    CSFML_CHECK_RETURN(rect2, sfFalse);
+    CSFML_CHECK_RETURN(rect1, false);
+    CSFML_CHECK_RETURN(rect2, false);
 
     sf::IntRect SFMLRect1(rect1->left, rect1->top, rect1->width, rect1->height);
     sf::IntRect SFMLRect2(rect2->left, rect2->top, rect2->width, rect2->height);

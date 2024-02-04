@@ -46,7 +46,7 @@ const char* sfClipboard_getString()
 
 
 ////////////////////////////////////////////////////////////
-const sfUint32* sfClipboard_getUnicodeString()
+const uint32_t* sfClipboard_getUnicodeString()
 {
     ClipboardString = sf::Clipboard::getString();
     return ClipboardString.getData();
@@ -61,7 +61,7 @@ void sfClipboard_setString(const char* text)
 
 
 ////////////////////////////////////////////////////////////
-void sfClipboard_setUnicodeString(const sfUint32* text)
+void sfClipboard_setUnicodeString(const uint32_t* text)
 {
     sf::Clipboard::setString(text);
 }

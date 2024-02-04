@@ -66,10 +66,10 @@ typedef enum
 ///
 /// \param joystick Index of the joystick to check
 ///
-/// \return sfTrue if the joystick is connected, sfFalse otherwise
+/// \return true if the joystick is connected, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfJoystick_isConnected(unsigned int joystick);
+CSFML_WINDOW_API bool sfJoystick_isConnected(unsigned int joystick);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the number of buttons supported by a joystick
@@ -91,10 +91,10 @@ CSFML_WINDOW_API unsigned int sfJoystick_getButtonCount(unsigned int joystick);
 /// \param joystick Index of the joystick
 /// \param axis     Axis to check
 ///
-/// \return sfTrue if the joystick supports the axis, sfFalse otherwise
+/// \return true if the joystick supports the axis, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfJoystick_hasAxis(unsigned int joystick, sfJoystickAxis axis);
+CSFML_WINDOW_API bool sfJoystick_hasAxis(unsigned int joystick, sfJoystickAxis axis);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a joystick button is pressed
@@ -104,10 +104,10 @@ CSFML_WINDOW_API sfBool sfJoystick_hasAxis(unsigned int joystick, sfJoystickAxis
 /// \param joystick Index of the joystick
 /// \param button   Button to check
 ///
-/// \return sfTrue if the button is pressed, sfFalse otherwise
+/// \return true if the button is pressed, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfJoystick_isButtonPressed(unsigned int joystick, unsigned int button);
+CSFML_WINDOW_API bool sfJoystick_isButtonPressed(unsigned int joystick, unsigned int button);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of a joystick axis

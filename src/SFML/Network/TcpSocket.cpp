@@ -48,16 +48,16 @@ void sfTcpSocket_destroy(sfTcpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpSocket_setBlocking(sfTcpSocket* socket, sfBool blocking)
+void sfTcpSocket_setBlocking(sfTcpSocket* socket, bool blocking)
 {
-    CSFML_CALL(socket, setBlocking(blocking == sfTrue));
+    CSFML_CALL(socket, setBlocking(blocking));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTcpSocket_isBlocking(const sfTcpSocket* socket)
+bool sfTcpSocket_isBlocking(const sfTcpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, isBlocking(), sfFalse);
+    CSFML_CALL_RETURN(socket, isBlocking(), false);
 }
 
 

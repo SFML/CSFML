@@ -278,30 +278,30 @@ void sfShader_setIntColorUniform(sfShader* shader, const char* name, sfColor col
 }
 
 ////////////////////////////////////////////////////////////
-void sfShader_setBoolUniform(sfShader* shader, const char* name, sfBool x)
+void sfShader_setBoolUniform(sfShader* shader, const char* name, bool x)
 {
-    CSFML_CALL(shader, setUniform(name, x != sfFalse));
+    CSFML_CALL(shader, setUniform(name, x));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec2Uniform(sfShader* shader, const char* name, sfGlslBvec2 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec2(vector.x != sfFalse, vector.y != sfFalse)));
+    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec2(vector.x, vector.y)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec3Uniform(sfShader* shader, const char* name, sfGlslBvec3 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec3(vector.x != sfFalse, vector.y != sfFalse, vector.z != sfFalse)));
+    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec3(vector.x, vector.y, vector.z)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec4Uniform(sfShader* shader, const char* name, sfGlslBvec4 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec4(vector.x != sfFalse, vector.y != sfFalse, vector.z != sfFalse, vector.w != sfFalse)));
+    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec4(vector.x, vector.y, vector.z, vector.w)));
 }
 
 
@@ -461,14 +461,14 @@ void sfShader_bind(const sfShader* shader)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfShader_isAvailable(void)
+bool sfShader_isAvailable(void)
 {
-    return sf::Shader::isAvailable() ? sfTrue : sfFalse;
+    return sf::Shader::isAvailable();
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfShader_isGeometryAvailable(void)
+bool sfShader_isGeometryAvailable(void)
 {
-    return sf::Shader::isGeometryAvailable() ? sfTrue : sfFalse;
+    return sf::Shader::isGeometryAvailable();
 }

@@ -247,7 +247,7 @@ CSFML_GRAPHICS_API void sfText_setString(sfText* text, const char* string);
 /// \param string New string
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const sfUint32* string);
+CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const uint32_t* string);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the font of a text
@@ -322,7 +322,7 @@ CSFML_GRAPHICS_API void sfText_setLetterSpacing(sfText* text, float spacingFacto
 /// \param style New style
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfText_setStyle(sfText* text, sfUint32 style);
+CSFML_GRAPHICS_API void sfText_setStyle(sfText* text, uint32_t style);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the fill color of a text
@@ -397,7 +397,7 @@ CSFML_GRAPHICS_API const char* sfText_getString(const sfText* text);
 /// \return String as UTF-32
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfUint32* sfText_getUnicodeString(const sfText* text);
+CSFML_GRAPHICS_API const uint32_t* sfText_getUnicodeString(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the font used by a text
@@ -455,7 +455,7 @@ CSFML_GRAPHICS_API float sfText_getLineSpacing(const sfText* text);
 /// \return Current string style (see sfTextStyle enum)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfUint32 sfText_getStyle(const sfText* text);
+CSFML_GRAPHICS_API uint32_t sfText_getStyle(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the fill color of a text

@@ -118,7 +118,7 @@ typedef enum
 /// \return A new sfCursor object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfCursor* sfCursor_createFromPixels(const sfUint8* pixels, sfVector2u size, sfVector2u hotspot);
+CSFML_WINDOW_API sfCursor* sfCursor_createFromPixels(const uint8_t* pixels, sfVector2u size, sfVector2u hotspot);
 
 
 ////////////////////////////////////////////////////////////

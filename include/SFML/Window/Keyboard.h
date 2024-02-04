@@ -331,24 +331,24 @@ typedef enum
 ///
 /// \param key Key to check
 ///
-/// \return sfTrue if the key is pressed, sfFalse otherwise
+/// \return true if the key is pressed, false otherwise
 ///
 /// \see sfKeyboard_isScancodePressed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfKeyboard_isKeyPressed(sfKeyCode key);
+CSFML_WINDOW_API bool sfKeyboard_isKeyPressed(sfKeyCode key);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a key is pressed
 ///
 /// \param code Scancode to check
 ///
-/// \return sfTrue if the physical key is pressed, sfFalse otherwise
+/// \return true if the physical key is pressed, false otherwise
 ///
 /// \see sfKeyboard_isKeyPressed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfKeyboard_isScancodePressed(sfScancode code);
+CSFML_WINDOW_API bool sfKeyboard_isScancodePressed(sfScancode code);
 
 ////////////////////////////////////////////////////////////
 /// \brief Localize a physical key to a logical one
@@ -418,6 +418,6 @@ CSFML_WINDOW_API const char* sfKeyboard_getDescription(sfScancode code);
 /// \param visible True to show, false to hide
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfKeyboard_setVirtualKeyboardVisible(sfBool visible);
+CSFML_WINDOW_API void sfKeyboard_setVirtualKeyboardVisible(bool visible);
 
 #endif // SFML_KEYBOARD_H

@@ -80,7 +80,7 @@ sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, sfUint64 sampleCount, unsigned int channelCount, unsigned int sampleRate)
+sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t* samples, uint64_t sampleCount, unsigned int channelCount, unsigned int sampleRate)
 {
     sfSoundBuffer* buffer = new sfSoundBuffer;
 
@@ -111,21 +111,21 @@ void sfSoundBuffer_destroy(sfSoundBuffer* soundBuffer)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* filename)
+bool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* filename)
 {
-    CSFML_CALL_RETURN(soundBuffer, saveToFile(filename), sfFalse);
+    CSFML_CALL_RETURN(soundBuffer, saveToFile(filename), false);
 }
 
 
 ////////////////////////////////////////////////////////////
-const sfInt16* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer)
+const int16_t* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer)
 {
     CSFML_CALL_RETURN(soundBuffer, getSamples(), nullptr);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfUint64 sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
+uint64_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
 {
     CSFML_CALL_RETURN(soundBuffer, getSampleCount(), 0);
 }

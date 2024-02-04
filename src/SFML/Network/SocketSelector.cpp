@@ -100,25 +100,25 @@ void sfSocketSelector_clear(sfSocketSelector* selector)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSocketSelector_wait(sfSocketSelector* selector, sfTime timeout)
+bool sfSocketSelector_wait(sfSocketSelector* selector, sfTime timeout)
 {
-    CSFML_CALL_RETURN(selector, wait(sf::microseconds(timeout.microseconds)), sfFalse);
+    CSFML_CALL_RETURN(selector, wait(sf::microseconds(timeout.microseconds)), false);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSocketSelector_isTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket)
+bool sfSocketSelector_isTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket)
 {
-    CSFML_CHECK_RETURN(socket, sfFalse);
-    CSFML_CALL_RETURN(selector, isReady(socket->This), sfFalse);
+    CSFML_CHECK_RETURN(socket, false);
+    CSFML_CALL_RETURN(selector, isReady(socket->This), false);
 }
-sfBool sfSocketSelector_isTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket)
+bool sfSocketSelector_isTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket)
 {
-    CSFML_CHECK_RETURN(socket, sfFalse);
-    CSFML_CALL_RETURN(selector, isReady(socket->This), sfFalse);
+    CSFML_CHECK_RETURN(socket, false);
+    CSFML_CALL_RETURN(selector, isReady(socket->This), false);
 }
-sfBool sfSocketSelector_isUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket)
+bool sfSocketSelector_isUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket)
 {
-    CSFML_CHECK_RETURN(socket, sfFalse);
-    CSFML_CALL_RETURN(selector, isReady(socket->This), sfFalse);
+    CSFML_CHECK_RETURN(socket, false);
+    CSFML_CALL_RETURN(selector, isReady(socket->This), false);
 }

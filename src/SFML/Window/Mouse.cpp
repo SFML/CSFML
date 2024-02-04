@@ -32,9 +32,9 @@
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfMouse_isButtonPressed(sfMouseButton button)
+bool sfMouse_isButtonPressed(sfMouseButton button)
 {
-    return sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(button)) ? sfTrue : sfFalse;
+    return sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(button));
 }
 
 

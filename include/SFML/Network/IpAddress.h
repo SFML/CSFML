@@ -95,7 +95,7 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_fromString(const char* address);
 /// \return Resulting address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_fromBytes(sfUint8 byte0, sfUint8 byte1, sfUint8 byte2, sfUint8 byte3);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_fromBytes(uint8_t byte0, uint8_t byte1, uint8_t byte2, uint8_t byte3);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct an address from a 32-bits integer
@@ -110,7 +110,7 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_fromBytes(sfUint8 byte0, sfUint8 byte1
 /// \return Resulting address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfIpAddress sfIpAddress_fromInteger(sfUint32 address);
+CSFML_NETWORK_API sfIpAddress sfIpAddress_fromInteger(uint32_t address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a string representation of an address
@@ -139,7 +139,7 @@ CSFML_NETWORK_API void sfIpAddress_toString(sfIpAddress address, char* string);
 /// \return 32-bits unsigned integer representation of the address
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfUint32 sfIpAddress_toInteger(sfIpAddress address);
+CSFML_NETWORK_API uint32_t sfIpAddress_toInteger(sfIpAddress address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the computer's local address

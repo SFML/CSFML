@@ -64,10 +64,10 @@ typedef enum
 ///
 /// \param button Button to check
 ///
-/// \return sfTrue if the button is pressed, sfFalse otherwise
+/// \return true if the button is pressed, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfMouse_isButtonPressed(sfMouseButton button);
+CSFML_WINDOW_API bool sfMouse_isButtonPressed(sfMouseButton button);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of the mouse

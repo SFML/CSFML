@@ -258,7 +258,7 @@ sfImage* sfTexture_copyToImage(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_updateFromPixels(sfTexture* texture, const sfUint8* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y)
+void sfTexture_updateFromPixels(sfTexture* texture, const uint8_t* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y)
 {
     CSFML_CALL_PTR(texture, update(pixels, width, height, x, y));
 }
@@ -302,49 +302,49 @@ void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* 
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_setSmooth(sfTexture* texture, sfBool smooth)
+void sfTexture_setSmooth(sfTexture* texture, bool smooth)
 {
-    CSFML_CALL_PTR(texture, setSmooth(smooth == sfTrue));
+    CSFML_CALL_PTR(texture, setSmooth(smooth));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTexture_isSmooth(const sfTexture* texture)
+bool sfTexture_isSmooth(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, sfFalse);
-    CSFML_CHECK_RETURN(texture->This, sfFalse);
+    CSFML_CHECK_RETURN(texture, false);
+    CSFML_CHECK_RETURN(texture->This, false);
 
     return texture->This->isSmooth();
 }
 
 ////////////////////////////////////////////////////////////
-sfBool sfTexture_isSrgb(const sfTexture* texture)
+bool sfTexture_isSrgb(const sfTexture* texture)
 {
-    CSFML_CALL_PTR_RETURN(texture, isSrgb(), sfFalse);
+    CSFML_CALL_PTR_RETURN(texture, isSrgb(), false);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_setRepeated(sfTexture* texture, sfBool repeated)
+void sfTexture_setRepeated(sfTexture* texture, bool repeated)
 {
-    CSFML_CALL_PTR(texture, setRepeated(repeated == sfTrue));
+    CSFML_CALL_PTR(texture, setRepeated(repeated));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTexture_isRepeated(const sfTexture* texture)
+bool sfTexture_isRepeated(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, sfFalse);
-    CSFML_CHECK_RETURN(texture->This, sfFalse);
+    CSFML_CHECK_RETURN(texture, false);
+    CSFML_CHECK_RETURN(texture->This, false);
 
     return texture->This->isRepeated();
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTexture_generateMipmap(sfTexture* texture)
+bool sfTexture_generateMipmap(sfTexture* texture)
 {
-    CSFML_CALL_PTR_RETURN(texture, generateMipmap(), sfFalse);
+    CSFML_CALL_PTR_RETURN(texture, generateMipmap(), false);
 }
 
 

@@ -48,15 +48,15 @@ void sfUdpSocket_destroy(sfUdpSocket* socket)
 
 
 ////////////////////////////////////////////////////////////
-void sfUdpSocket_setBlocking(sfUdpSocket* socket, sfBool blocking)
+void sfUdpSocket_setBlocking(sfUdpSocket* socket, bool blocking)
 {
-    CSFML_CALL(socket, setBlocking(blocking == sfTrue));
+    CSFML_CALL(socket, setBlocking(blocking));
 }
 
 ////////////////////////////////////////////////////////////
-sfBool sfUdpSocket_isBlocking(const sfUdpSocket* socket)
+bool sfUdpSocket_isBlocking(const sfUdpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, isBlocking(), sfFalse);
+    CSFML_CALL_RETURN(socket, isBlocking(), false);
 }
 
 

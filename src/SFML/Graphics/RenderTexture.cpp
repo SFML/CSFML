@@ -41,10 +41,10 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, sfBool depthBuffer)
+sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, bool depthBuffer)
 {
     sfRenderTexture* renderTexture = new sfRenderTexture;
-    renderTexture->This.create(width, height, depthBuffer == sfTrue);
+    renderTexture->This.create(width, height, depthBuffer);
     renderTexture->Target = new sfTexture(const_cast<sf::Texture*>(&renderTexture->This.getTexture()));
     renderTexture->DefaultView.This = renderTexture->This.getDefaultView();
     renderTexture->CurrentView.This = renderTexture->This.getView();
@@ -97,17 +97,17 @@ sfVector2u sfRenderTexture_getSize(const sfRenderTexture* renderTexture)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderTexture_isSrgb(const sfRenderTexture* renderTexture)
+bool sfRenderTexture_isSrgb(const sfRenderTexture* renderTexture)
 {
-    CSFML_CHECK_RETURN(renderTexture, sfFalse);
+    CSFML_CHECK_RETURN(renderTexture, false);
     return renderTexture->This.isSrgb();
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderTexture_setActive(sfRenderTexture* renderTexture, sfBool active)
+bool sfRenderTexture_setActive(sfRenderTexture* renderTexture, bool active)
 {
-    CSFML_CALL_RETURN(renderTexture, setActive(active == sfTrue), sfFalse);
+    CSFML_CALL_RETURN(renderTexture, setActive(active), false);
 }
 
 
@@ -303,9 +303,9 @@ const sfTexture* sfRenderTexture_getTexture(const sfRenderTexture* renderTexture
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture, sfBool smooth)
+void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture, bool smooth)
 {
-    CSFML_CALL(renderTexture, setSmooth(smooth == sfTrue));
+    CSFML_CALL(renderTexture, setSmooth(smooth));
 }
 
 
@@ -317,27 +317,27 @@ unsigned int sfRenderTexture_getMaximumAntialiasingLevel()
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderTexture_isSmooth(const sfRenderTexture* renderTexture)
+bool sfRenderTexture_isSmooth(const sfRenderTexture* renderTexture)
 {
-    CSFML_CALL_RETURN(renderTexture, isSmooth(), sfFalse);
+    CSFML_CALL_RETURN(renderTexture, isSmooth(), false);
 }
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_setRepeated(sfRenderTexture* renderTexture, sfBool repeated)
+void sfRenderTexture_setRepeated(sfRenderTexture* renderTexture, bool repeated)
 {
-    CSFML_CALL(renderTexture, setRepeated(repeated == sfTrue));
-}
-
-
-////////////////////////////////////////////////////////////
-sfBool sfRenderTexture_isRepeated(const sfRenderTexture* renderTexture)
-{
-    CSFML_CALL_RETURN(renderTexture, isRepeated(), sfFalse);
+    CSFML_CALL(renderTexture, setRepeated(repeated));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderTexture_generateMipmap(sfRenderTexture* renderTexture)
+bool sfRenderTexture_isRepeated(const sfRenderTexture* renderTexture)
 {
-    CSFML_CALL_RETURN(renderTexture, generateMipmap(), sfFalse);
+    CSFML_CALL_RETURN(renderTexture, isRepeated(), false);
+}
+
+
+////////////////////////////////////////////////////////////
+bool sfRenderTexture_generateMipmap(sfRenderTexture* renderTexture)
+{
+    CSFML_CALL_RETURN(renderTexture, generateMipmap(), false);
 }

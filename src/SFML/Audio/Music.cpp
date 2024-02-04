@@ -83,16 +83,16 @@ void sfMusic_destroy(sfMusic* music)
 
 
 ////////////////////////////////////////////////////////////
-void sfMusic_setLoop(sfMusic* music, sfBool loop)
+void sfMusic_setLoop(sfMusic* music, bool loop)
 {
     CSFML_CALL(music, setLoop(loop != 0));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfMusic_getLoop(const sfMusic* music)
+bool sfMusic_getLoop(const sfMusic* music)
 {
-    CSFML_CALL_RETURN(music, getLoop(), sfFalse);
+    CSFML_CALL_RETURN(music, getLoop(), false);
 }
 
 
@@ -207,9 +207,9 @@ void sfMusic_setPosition(sfMusic* music, sfVector3f position)
 
 
 ////////////////////////////////////////////////////////////
-void sfMusic_setRelativeToListener(sfMusic* music, sfBool relative)
+void sfMusic_setRelativeToListener(sfMusic* music, bool relative)
 {
-    CSFML_CALL(music, setRelativeToListener(relative == sfTrue));
+    CSFML_CALL(music, setRelativeToListener(relative));
 }
 
 
@@ -264,9 +264,9 @@ sfVector3f sfMusic_getPosition(const sfMusic* music)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfMusic_isRelativeToListener(const sfMusic* music)
+bool sfMusic_isRelativeToListener(const sfMusic* music)
 {
-    CSFML_CALL_RETURN(music, isRelativeToListener(), sfFalse);
+    CSFML_CALL_RETURN(music, isRelativeToListener(), false);
 }
 
 
