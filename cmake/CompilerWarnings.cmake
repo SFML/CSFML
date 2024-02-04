@@ -34,6 +34,7 @@ function(set_file_warnings)
         /wd4068 # disable warnings about unknown pragmas (e.g. #pragma GCC)
         /wd4505 # disable warnings about unused functions that might be platform-specific
         /wd4800 # disable warnings regarding implicit conversions to bool
+        /wd5105 # disable warning about expansion of 'defined' keyword
     )
 
     set(CLANG_AND_GCC_WARNINGS
