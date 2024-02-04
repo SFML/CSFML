@@ -46,7 +46,7 @@ echo "Please note that all SFML dependencies must be installed and available to 
 
 RID="$1"
 
-SFMLBranch="2.5.x" # The branch or tag of the SFML repository to be cloned
+SFMLBranch="2.6.1" # The branch or tag of the SFML repository to be cloned
 CSFMLDir="$(grealpath "$(git rev-parse --show-toplevel)")" # The directory of the source code of CSFML
 
 OutDir="./CSFML/runtimes/$RID/native" # The base directory of all CSFML modules, used to copy the final libraries
@@ -92,20 +92,12 @@ SFMLLibDir="$(grealpath lib)"
 
 if [ $RID == "osx-x64" ]; then
     ARCHITECTURE="x86_64"
-    TARGET="10.12"
-    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.12.sdk/"
-elif [ $RID == "osx.11.0-x64" ]; then
-    ARCHITECTURE="x86_64"
-    TARGET="11.0"
-    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/"
-elif [ $RID == "osx.11.0-arm64" ]; then
+elif [ $RID == "osx-arm64" ]; then
     ARCHITECTURE="arm64"
-    TARGET="11.0"
-    SYSROOT="/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.0.sdk/"
 
     echo "Note: arm64 is only supported with SFML 2.6"
 else
-    echo "Unsupported RID provided. Use 'osx.10.15-x64', 'osx.11.0-x64' or 'osx.11.0-arm64'"
+    echo "Unsupported RID provided. Use 'osx-x64', 'osx-arm64'"
     exit 1
 fi
 
@@ -115,8 +107,6 @@ cmake -E env \
           -D 'SFML_BUILD_FRAMEWORKS=OFF' \
           -D 'CMAKE_BUILD_TYPE=Release' \
           -D "CMAKE_OSX_ARCHITECTURES=$ARCHITECTURE" \
-          -D "CMAKE_OSX_DEPLOYMENT_TARGET=$TARGET" \
-          -D "CMAKE_OSX_SYSROOT=$SYSROOT" \
           -D "CMAKE_LIBRARY_OUTPUT_DIRECTORY=$SFMLLibDir" \
           -D 'CMAKE_BUILD_WITH_INSTALL_RPATH=ON' \
           -D 'CMAKE_INSTALL_RPATH=@loader_path' \
@@ -146,8 +136,6 @@ cmake -E env \
           -D 'BUILD_SHARED_LIBS=ON' \
           -D 'CMAKE_BUILD_TYPE=Release' \
           -D "CMAKE_OSX_ARCHITECTURES=$ARCHITECTURE" \
-          -D "CMAKE_OSX_DEPLOYMENT_TARGET=$TARGET" \
-          -D "CMAKE_OSX_SYSROOT=$SYSROOT" \
           -D "CMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" \
           -D 'CMAKE_BUILD_WITH_INSTALL_RPATH=ON' \
           -D 'CMAKE_INSTALL_RPATH=@loader_path' \
@@ -160,7 +148,7 @@ cmake --build . --config Release --target install
 # STEP 5: Fix RPATH references #
 # ============================ #
 
-SFMLMajorMinor="2.5"
+SFMLMajorMinor="2.6"
 SFMLMajorMinorPatch="$SFMLMajorMinor.1"
 
 # SFML's framework dependencies will always reference @rpath/../Frameworks/<depedency>
@@ -190,8 +178,8 @@ fixrpath graphics "@rpath/../Frameworks/freetype.framework/Versions/A/freetype" 
 # STEP 6: Copy result to the NuGet folders #
 # ======================================== #
 
-CSFMLMajorMinor="2.5"
-CSFMLMajorMinorPatch="$CSFMLMajorMinor.2"
+CSFMLMajorMinor="2.6"
+CSFMLMajorMinorPatch="$CSFMLMajorMinor.0"
 
 # Copies one SFML and CSFML module into the NuGet package
 # The module name must be passed to this function as an argument, in lowercase
@@ -205,7 +193,7 @@ copymodule()
 
     # Note the wildcard at the end of the first argument
     # We are copying every versioned file here, not just the .dylib
-    # (libsfml-audio.dylib, libsfml-audio.2.dylib, libsfml-audio.2.5.dylib, etc)
+    # (libsfml-audio.dylib, libsfml-audio.2.dylib, libsfml-audio.2.6.dylib, etc)
     # This is needed because of the way macOS searches for libraries based
     # one their SONAME
     cp "$SFMLLibDir/libsfml-$MODULE."* "$OutDir"

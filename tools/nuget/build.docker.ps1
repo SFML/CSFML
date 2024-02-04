@@ -47,7 +47,7 @@ switch ($RID) {
         $Shell = '/bin/bash'
     }
     'linux-arm64' {
-        $Image = 'arm64v8/ubuntu:22.04'
+        $Image = 'arm64v8/ubuntu:24.04'
         $Shell = '/bin/bash'
     }
     Default {

@@ -16,7 +16,7 @@ if (-not $RID) {
     exit
 }
 
-$Generator = 'Visual Studio 16 2019'
+$Generator = 'Visual Studio 17 2022'
 
 switch ($RID) {
     'win-x86' {
@@ -35,7 +35,7 @@ Write-Output "Building $RID"
 Write-Output "Using $Generator as the cmake generator"
 Write-Output "Using architecture $Architecture"
 
-$SFMLBranch = "2.5.1" # The branch or tag of the SFML repository to be cloned
+$SFMLBranch = "2.6.1" # The branch or tag of the SFML repository to be cloned
 $CSFMLDir = (Get-Item (git rev-parse --show-toplevel)).FullName # The directory of the source code of CSFML
 
 $OutDir = "./CSFML/runtimes/$RID/native" # The directory of all CSFML modules, used to copy the final dlls

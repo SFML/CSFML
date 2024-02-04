@@ -16,7 +16,7 @@ All build scripts follow the same routine:
 
 * `build.linux.sh`
     * A [Bash](https://www.gnu.org/software/bash/) script to build libraries for a generic Linux distribution. The [Runtime Identifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) of the linux distribution must be specified as a parameter to the script.  
-    This generic script doesn't install any of its dependencies. As such, you must have cmake and make installed, as well as all [SFML Dependencies](https://www.sfml-dev.org/tutorials/2.5/compile-with-cmake.php#installing-dependencies) available to cmake.
+    This generic script doesn't install any of its dependencies. As such, you must have cmake and make installed, as well as all [SFML Dependencies](https://www.sfml-dev.org/tutorials/2.6/compile-with-cmake.php#installing-dependencies) available to cmake.
 
 * `build.macos.sh`
     * A [Bash](https://www.gnu.org/software/bash/) script to build libraries for macOS. The [Runtime Identifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog#macos-rids) of the macOS distribution must be specified as parameter to the script. Latest macOS SDKs can be downloaded [here](https://github.com/phracker/MacOSX-SDKs/releases).

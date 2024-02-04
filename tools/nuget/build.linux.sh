@@ -42,7 +42,7 @@ echo "Please note that all SFML dependencies must be installed and available to 
 
 RID="$1"
 
-SFMLBranch="2.5.1" # The branch or tag of the SFML repository to be cloned
+SFMLBranch="2.6.1" # The branch or tag of the SFML repository to be cloned
 CSFMLDir="$(realpath "$(git rev-parse --show-toplevel)")"  # The directory of the source code of CSFML
 
 OutDir="./CSFML/runtimes/$RID/native" # The base directory of all CSFML modules, used to copy the final libraries
@@ -137,7 +137,7 @@ copymodule()
 
     # Note the wildcard at the end of the first argument
     # We are copying every versioned file here, not just the .so
-    # (libsfml-audio.so, libsfml-audio.so.2, libsfml-audio.so.2.5, etc)
+    # (libsfml-audio.so, libsfml-audio.so.2, libsfml-audio.so.2.6, etc)
     # This is needed because of the way linux searches for libraries based
     # one their SONAME
     cp "$SFMLLibDir/libsfml-$MODULE.so"* "$OutDir"
