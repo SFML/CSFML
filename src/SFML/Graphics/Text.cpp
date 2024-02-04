@@ -185,7 +185,7 @@ void sfText_setString(sfText* text, const char* string)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_setUnicodeString(sfText* text, const sfUint32* string)
+void sfText_setUnicodeString(sfText* text, const uint32_t* string)
 {
     sf::String UTF32Text = string;
     CSFML_CALL(text, setString(UTF32Text));
@@ -224,7 +224,7 @@ void sfText_setLetterSpacing(sfText* text, float spacingFactor)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_setStyle(sfText* text, sfUint32 style)
+void sfText_setStyle(sfText* text, uint32_t style)
 {
     CSFML_CALL(text, setStyle(style));
 }
@@ -270,7 +270,7 @@ const char* sfText_getString(const sfText* text)
 
 
 ////////////////////////////////////////////////////////////
-const sfUint32* sfText_getUnicodeString(const sfText* text)
+const uint32_t* sfText_getUnicodeString(const sfText* text)
 {
     CSFML_CHECK_RETURN(text, nullptr);
 
@@ -310,7 +310,7 @@ float sfText_getLineSpacing(const sfText* text)
 
 
 ////////////////////////////////////////////////////////////
-sfUint32 sfText_getStyle(const sfText* text)
+uint32_t sfText_getStyle(const sfText* text)
 {
     CSFML_CALL_RETURN(text, getStyle(), 0);
 }

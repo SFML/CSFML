@@ -36,7 +36,7 @@
 ///     if (!texture)
 ///         return EXIT_FAILURE;
 ///     sprite = sfSprite_create();
-///     sfSprite_setTexture(sprite, texture, sfTrue);
+///     sfSprite_setTexture(sprite, texture, true);
 /// 
 ///     /* Create a graphical text to display */
 ///     font = sfFont_createFromFile("arial.ttf");

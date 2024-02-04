@@ -60,8 +60,8 @@ typedef struct
     unsigned int antialiasingLevel; ///< Level of antialiasing
     unsigned int majorVersion;      ///< Major number of the context version to create
     unsigned int minorVersion;      ///< Minor number of the context version to create
-    sfUint32     attributeFlags;    ///< The attribute flags to create the context with
-    sfBool       sRgbCapable;       ///< Whether the context framebuffer is sRGB capable
+    uint32_t     attributeFlags;    ///< The attribute flags to create the context with
+    bool         sRgbCapable;       ///< Whether the context framebuffer is sRGB capable
 } sfContextSettings;
 
 
@@ -86,7 +86,7 @@ typedef struct
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
+CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new window (with a UTF-32 title)
@@ -109,7 +109,7 @@ CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, 
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings);
+CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control
@@ -155,15 +155,15 @@ CSFML_WINDOW_API void sfWindow_close(sfWindow* window);
 /// \brief Tell whether or not a window is opened
 ///
 /// This function returns whether or not the window exists.
-/// Note that a hidden window (sfWindow_setVisible(sfFalse)) will return
-/// sfTrue.
+/// Note that a hidden window (sfWindow_setVisible(false)) will return
+/// true.
 ///
 /// \param window Window object
 ///
-/// \return sfTrue if the window is opened, sfFalse if it has been closed
+/// \return true if the window is opened, false if it has been closed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindow_isOpen(const sfWindow* window);
+CSFML_WINDOW_API bool sfWindow_isOpen(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the settings of the OpenGL context of a window
@@ -192,10 +192,10 @@ CSFML_WINDOW_API sfContextSettings sfWindow_getSettings(const sfWindow* window);
 /// \param window Window object
 /// \param event  Event to be returned
 ///
-/// \return sfTrue if an event was returned, or sfFalse if the event queue was empty
+/// \return true if an event was returned, or false if the event queue was empty
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindow_pollEvent(sfWindow* window, sfEvent* event);
+CSFML_WINDOW_API bool sfWindow_pollEvent(sfWindow* window, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Wait for an event and return it
@@ -211,10 +211,10 @@ CSFML_WINDOW_API sfBool sfWindow_pollEvent(sfWindow* window, sfEvent* event);
 /// \param window Window object
 /// \param event  Event to be returned
 ///
-/// \return sfFalse if any error occured
+/// \return false if any error occured
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindow_waitEvent(sfWindow* window, sfEvent* event);
+CSFML_WINDOW_API bool sfWindow_waitEvent(sfWindow* window, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a window
@@ -277,7 +277,7 @@ CSFML_WINDOW_API void sfWindow_setTitle(sfWindow* window, const char* title);
 /// \param title  New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const sfUint32* title);
+CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const uint32_t* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a window's icon
@@ -291,16 +291,16 @@ CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const sfUint32*
 /// \param pixels Pointer to the array of pixels in memory
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels);
+CSFML_WINDOW_API void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const uint8_t* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide a window
 ///
 /// \param window  Window object
-/// \param visible sfTrue to show the window, sfFalse to hide it
+/// \param visible true to show the window, false to hide it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setVisible(sfWindow* window, sfBool visible);
+CSFML_WINDOW_API void sfWindow_setVisible(sfWindow* window, bool visible);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable vertical synchronization
@@ -311,19 +311,19 @@ CSFML_WINDOW_API void sfWindow_setVisible(sfWindow* window, sfBool visible);
 /// to a good value (but not constant across different computers).
 ///
 /// \param window  Window object
-/// \param enabled sfTrue to enable v-sync, sfFalse to deactivate
+/// \param enabled true to enable v-sync, false to deactivate
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled);
+CSFML_WINDOW_API void sfWindow_setVerticalSyncEnabled(sfWindow* window, bool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide the mouse cursor
 ///
 /// \param window  Window object
-/// \param visible sfTrue to show, sfFalse to hide
+/// \param visible true to show, false to hide
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool visible);
+CSFML_WINDOW_API void sfWindow_setMouseCursorVisible(sfWindow* window, bool visible);
 
 ////////////////////////////////////////////////////////////
 /// \brief Grab or release the mouse cursor
@@ -335,10 +335,10 @@ CSFML_WINDOW_API void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool vi
 /// won't have any effect (fullscreen windows always grab the
 /// cursor).
 ///
-/// \param grabbed sfTrue to enable, sfFalse to disable
+/// \param grabbed true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed);
+CSFML_WINDOW_API void sfWindow_setMouseCursorGrabbed(sfWindow* window, bool grabbed);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the displayed cursor to a native system cursor
@@ -370,10 +370,10 @@ CSFML_WINDOW_API void sfWindow_setMouseCursor(sfWindow* window, const sfCursor* 
 /// Key repeat is enabled by default.
 ///
 /// \param window  Window object
-/// \param enabled sfTrue to enable, sfFalse to disable
+/// \param enabled true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enabled);
+CSFML_WINDOW_API void sfWindow_setKeyRepeatEnabled(sfWindow* window, bool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Limit the framerate to a maximum fixed frequency
@@ -412,12 +412,12 @@ CSFML_WINDOW_API void sfWindow_setJoystickThreshold(sfWindow* window, float thre
 /// This is not to be confused with sfWindow_requestFocus().
 ///
 /// \param window Window object
-/// \param active sfTrue to activate, sfFalse to deactivate
+/// \param active true to activate, false to deactivate
 ///
-/// \return sfTrue if operation was successful, sfFalse otherwise
+/// \return true if operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindow_setActive(sfWindow* window, sfBool active);
+CSFML_WINDOW_API bool sfWindow_setActive(sfWindow* window, bool active);
 
 ////////////////////////////////////////////////////////////
 /// \brief Request the current window to be made the active
@@ -443,7 +443,7 @@ CSFML_WINDOW_API void sfWindow_requestFocus(sfWindow* window);
 /// \return True if window has focus, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindow_hasFocus(const sfWindow* window);
+CSFML_WINDOW_API bool sfWindow_hasFocus(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
 /// \brief Display on screen what has been rendered to the

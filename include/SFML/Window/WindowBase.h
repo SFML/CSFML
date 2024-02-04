@@ -68,7 +68,7 @@ typedef enum
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, sfUint32 style);
+CSFML_WINDOW_API sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t style);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new window (with a UTF-32 title)
@@ -86,7 +86,7 @@ CSFML_WINDOW_API sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char*
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style);
+CSFML_WINDOW_API sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control
@@ -124,15 +124,15 @@ CSFML_WINDOW_API void sfWindowBase_close(sfWindowBase* windowBase);
 /// \brief Tell whether or not a window is opened
 ///
 /// This function returns whether or not the window exists.
-/// Note that a hidden window (sfWindowBase_setVisible(sfFalse)) will return
-/// sfTrue.
+/// Note that a hidden window (sfWindowBase_setVisible(false)) will return
+/// true.
 ///
 /// \param windowBase Window object
 ///
-/// \return sfTrue if the window is opened, sfFalse if it has been closed
+/// \return true if the window is opened, false if it has been closed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindowBase_isOpen(const sfWindowBase* windowBase);
+CSFML_WINDOW_API bool sfWindowBase_isOpen(const sfWindowBase* windowBase);
 
 ////////////////////////////////////////////////////////////
 /// \brief Pop the event on top of event queue, if any, and return it
@@ -146,10 +146,10 @@ CSFML_WINDOW_API sfBool sfWindowBase_isOpen(const sfWindowBase* windowBase);
 /// \param windowBase Window object
 /// \param event      Event to be returned
 ///
-/// \return sfTrue if an event was returned, or sfFalse if the event queue was empty
+/// \return true if an event was returned, or false if the event queue was empty
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event);
+CSFML_WINDOW_API bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Wait for an event and return it
@@ -165,10 +165,10 @@ CSFML_WINDOW_API sfBool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent
 /// \param windowBase Window object
 /// \param event      Event to be returned
 ///
-/// \return sfFalse if any error occured
+/// \return false if any error occured
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event);
+CSFML_WINDOW_API bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a window
@@ -231,7 +231,7 @@ CSFML_WINDOW_API void sfWindowBase_setTitle(sfWindowBase* windowBase, const char
 /// \param title      New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfUint32* title);
+CSFML_WINDOW_API void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const uint32_t* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a window's icon
@@ -245,25 +245,25 @@ CSFML_WINDOW_API void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, con
 /// \param pixels     Pointer to the array of pixels in memory
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindowBase_setIcon(sfWindowBase* windowBase, unsigned int width, unsigned int height, const sfUint8* pixels);
+CSFML_WINDOW_API void sfWindowBase_setIcon(sfWindowBase* windowBase, unsigned int width, unsigned int height, const uint8_t* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide a window
 ///
 /// \param windowBase Window object
-/// \param visible    sfTrue to show the windowBase, sfFalse to hide it
+/// \param visible    true to show the windowBase, false to hide it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindowBase_setVisible(sfWindowBase* windowBase, sfBool visible);
+CSFML_WINDOW_API void sfWindowBase_setVisible(sfWindowBase* windowBase, bool visible);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide the mouse cursor
 ///
 /// \param windowBase Window object
-/// \param visible    sfTrue to show, sfFalse to hide
+/// \param visible    true to show, false to hide
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBase, sfBool visible);
+CSFML_WINDOW_API void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBase, bool visible);
 
 ////////////////////////////////////////////////////////////
 /// \brief Grab or release the mouse cursor
@@ -275,10 +275,10 @@ CSFML_WINDOW_API void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBas
 /// won't have any effect (fullscreen windows always grab the
 /// cursor).
 ///
-/// \param grabbed sfTrue to enable, sfFalse to disable
+/// \param grabbed true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindowBase_setMouseCursorGrabbed(sfWindowBase* windowBase, sfBool grabbed);
+CSFML_WINDOW_API void sfWindowBase_setMouseCursorGrabbed(sfWindowBase* windowBase, bool grabbed);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the displayed cursor to a native system cursor
@@ -310,10 +310,10 @@ CSFML_WINDOW_API void sfWindowBase_setMouseCursor(sfWindowBase* windowBase, cons
 /// Key repeat is enabled by default.
 ///
 /// \param windowBase Window object
-/// \param enabled    sfTrue to enable, sfFalse to disable
+/// \param enabled    true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindowBase_setKeyRepeatEnabled(sfWindowBase* windowBase, sfBool enabled);
+CSFML_WINDOW_API void sfWindowBase_setKeyRepeatEnabled(sfWindowBase* windowBase, bool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the joystick threshold
@@ -350,7 +350,7 @@ CSFML_WINDOW_API void sfWindowBase_requestFocus(sfWindowBase* windowBase);
 /// \return True if window has focus, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindowBase_hasFocus(const sfWindowBase* windowBase);
+CSFML_WINDOW_API bool sfWindowBase_hasFocus(const sfWindowBase* windowBase);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the OS-specific handle of the window
@@ -379,6 +379,6 @@ CSFML_WINDOW_API sfWindowHandle sfWindowBase_getSystemHandle(const sfWindowBase*
 /// \return True if surface creation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfWindowBase_createVulkanSurface(sfWindowBase* windowBase, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
+CSFML_WINDOW_API bool sfWindowBase_createVulkanSurface(sfWindowBase* windowBase, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
 
 #endif // SFML_WINDOWBASE_H

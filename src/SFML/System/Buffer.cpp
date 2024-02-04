@@ -53,7 +53,7 @@ size_t sfBuffer_getSize(const sfBuffer* buffer)
 
 
 ////////////////////////////////////////////////////////////
-const sfUint8* sfBuffer_getData(const sfBuffer* buffer)
+const uint8_t* sfBuffer_getData(const sfBuffer* buffer)
 {
     CSFML_CHECK_RETURN(buffer, nullptr);
     return !buffer->buffer.empty() ? &buffer->buffer[0] : nullptr;

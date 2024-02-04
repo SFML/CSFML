@@ -97,7 +97,7 @@ CSFML_GRAPHICS_API void sfFont_destroy(sfFont* font);
 /// \return The corresponding glyph
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(const sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold, float outlineThickness);
+CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the kerning value corresponding to a given pair of characters in a font
@@ -110,7 +110,7 @@ CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(const sfFont* font, sfUint32 codePoin
 /// \return Kerning offset, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfFont_getKerning(const sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
+CSFML_GRAPHICS_API float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the bold kerning value corresponding to a given pair of characters in a font
@@ -123,7 +123,7 @@ CSFML_GRAPHICS_API float sfFont_getKerning(const sfFont* font, sfUint32 first, s
 /// \return Kerning offset, in pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API float sfFont_getBoldKerning(const sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize);
+CSFML_GRAPHICS_API float sfFont_getBoldKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the line spacing value
@@ -184,24 +184,24 @@ CSFML_GRAPHICS_API const sfTexture* sfFont_getTexture(sfFont* font, unsigned int
 /// The smooth filter is enabled by default.
 ///
 /// \param font          Source font
-/// \param smooth        sfTrue to enable smoothing, sfFalse to disable it
+/// \param smooth        true to enable smoothing, false to disable it
 ///
 /// \see isSmooth
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfFont_setSmooth(sfFont* font, sfBool smooth);
+CSFML_GRAPHICS_API void sfFont_setSmooth(sfFont* font, bool smooth);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether the smooth filter is enabled or disabled
 ///
 /// \param font          Source font
 ///
-/// \return sfTrue if smoothing is enabled, sfFalse if it is disabled
+/// \return true if smoothing is enabled, false if it is disabled
 ///
 /// \see setSmooth
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfFont_isSmooth(const sfFont* font);
+CSFML_GRAPHICS_API bool sfFont_isSmooth(const sfFont* font);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the font information

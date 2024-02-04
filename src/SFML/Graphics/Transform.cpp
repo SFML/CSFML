@@ -159,13 +159,13 @@ void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float sca
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTransform_equal(sfTransform* left, sfTransform* right)
+bool sfTransform_equal(sfTransform* left, sfTransform* right)
 {
     CSFML_CHECK_RETURN(left, false);
     CSFML_CHECK_RETURN(right, false);
 
     for (int i = 0; i < 9; ++i) {
-        if (left->matrix[i] != right->matrix[i]) return sfFalse;
+        if (left->matrix[i] != right->matrix[i]) return false;
     }
-    return sfTrue;
+    return true;
 }

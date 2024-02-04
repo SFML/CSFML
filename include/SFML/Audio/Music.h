@@ -110,24 +110,24 @@ CSFML_AUDIO_API void sfMusic_destroy(sfMusic* music);
 ///
 /// If set, the music will restart from beginning after
 /// reaching the end and so on, until it is stopped or
-/// sfMusic_setLoop(music, sfFalse) is called.
+/// sfMusic_setLoop(music, false) is called.
 /// The default looping state for musics is false.
 ///
 /// \param music Music object
-/// \param loop  sfTrue to play in loop, sfFalse to play once
+/// \param loop  true to play in loop, false to play once
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfMusic_setLoop(sfMusic* music, sfBool loop);
+CSFML_AUDIO_API void sfMusic_setLoop(sfMusic* music, bool loop);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a music is in loop mode
 ///
 /// \param music Music object
 ///
-/// \return sfTrue if the music is looping, sfFalse otherwise
+/// \return true if the music is looping, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfMusic_getLoop(const sfMusic* music);
+CSFML_AUDIO_API bool sfMusic_getLoop(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the total duration of a music
@@ -310,10 +310,10 @@ CSFML_AUDIO_API void sfMusic_setPosition(sfMusic* music, sfVector3f position);
 /// The default value is false (position is absolute).
 ///
 /// \param music    Music object
-/// \param relative sfTrue to set the position relative, sfFalse to set it absolute
+/// \param relative true to set the position relative, false to set it absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfMusic_setRelativeToListener(sfMusic* music, sfBool relative);
+CSFML_AUDIO_API void sfMusic_setRelativeToListener(sfMusic* music, bool relative);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the minimum distance of a music
@@ -397,10 +397,10 @@ CSFML_AUDIO_API sfVector3f sfMusic_getPosition(const sfMusic* music);
 ///
 /// \param music Music object
 ///
-/// \return sfTrue if the position is relative, sfFalse if it's absolute
+/// \return true if the position is relative, false if it's absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfMusic_isRelativeToListener(const sfMusic* music);
+CSFML_AUDIO_API bool sfMusic_isRelativeToListener(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the minimum distance of a music

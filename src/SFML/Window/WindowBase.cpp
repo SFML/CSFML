@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, sfUint32 style)
+sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t style)
 {
     // Convert video mode
     sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
@@ -47,7 +47,7 @@ sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, sfUint32 
 
 
 ////////////////////////////////////////////////////////////
-sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style)
+sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style)
 {
     // Convert video mode
     sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
@@ -86,51 +86,51 @@ void sfWindowBase_close(sfWindowBase* windowBase)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindowBase_isOpen(const sfWindowBase* windowBase)
+bool sfWindowBase_isOpen(const sfWindowBase* windowBase)
 {
-    CSFML_CALL_RETURN(windowBase, isOpen(), sfFalse);
+    CSFML_CALL_RETURN(windowBase, isOpen(), false);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event)
+bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event)
 {
-    CSFML_CHECK_RETURN(windowBase, sfFalse);
-    CSFML_CHECK_RETURN(event, sfFalse);
+    CSFML_CHECK_RETURN(windowBase, false);
+    CSFML_CHECK_RETURN(event, false);
 
     // Get the event
     sf::Event sfmlEvent;
-    sfBool ret = windowBase->This.pollEvent(sfmlEvent);
+    bool ret = windowBase->This.pollEvent(sfmlEvent);
 
     // No event, return
     if (!ret)
-        return sfFalse;
+        return false;
 
     // Convert the sf::Event event to a sfEvent
     convertEvent(sfmlEvent, event);
 
-    return sfTrue;
+    return true;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event)
+bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event)
 {
-    CSFML_CHECK_RETURN(windowBase, sfFalse);
-    CSFML_CHECK_RETURN(event, sfFalse);
+    CSFML_CHECK_RETURN(windowBase, false);
+    CSFML_CHECK_RETURN(event, false);
 
     // Get the event
     sf::Event sfmlEvent;
-    sfBool ret = windowBase->This.waitEvent(sfmlEvent);
+    bool ret = windowBase->This.waitEvent(sfmlEvent);
 
     // Error, return
     if (!ret)
-        return sfFalse;
+        return false;
 
     // Convert the sf::Event event to a sfEvent
     convertEvent(sfmlEvent, event);
 
-    return sfTrue;
+    return true;
 }
 
 
@@ -184,37 +184,37 @@ void sfWindowBase_setTitle(sfWindowBase* windowBase, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfUint32* title)
+void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const uint32_t* title)
 {
     CSFML_CALL(windowBase, setTitle(title));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setIcon(sfWindowBase* windowBase, unsigned int width, unsigned int height, const sfUint8* pixels)
+void sfWindowBase_setIcon(sfWindowBase* windowBase, unsigned int width, unsigned int height, const uint8_t* pixels)
 {
     CSFML_CALL(windowBase, setIcon(width, height, pixels));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setVisible(sfWindowBase* windowBase, sfBool visible)
+void sfWindowBase_setVisible(sfWindowBase* windowBase, bool visible)
 {
-    CSFML_CALL(windowBase, setVisible(visible == sfTrue));
+    CSFML_CALL(windowBase, setVisible(visible));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBase, sfBool visible)
+void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBase, bool visible)
 {
-    CSFML_CALL(windowBase, setMouseCursorVisible(visible == sfTrue));
+    CSFML_CALL(windowBase, setMouseCursorVisible(visible));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setMouseCursorGrabbed(sfWindowBase* windowBase, sfBool grabbed)
+void sfWindowBase_setMouseCursorGrabbed(sfWindowBase* windowBase, bool grabbed)
 {
-    CSFML_CALL(windowBase, setMouseCursorGrabbed(grabbed == sfTrue));
+    CSFML_CALL(windowBase, setMouseCursorGrabbed(grabbed));
 }
 
 
@@ -228,9 +228,9 @@ void sfWindowBase_setMouseCursor(sfWindowBase* windowBase, const sfCursor* curso
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setKeyRepeatEnabled(sfWindowBase* windowBase, sfBool enabled)
+void sfWindowBase_setKeyRepeatEnabled(sfWindowBase* windowBase, bool enabled)
 {
-    CSFML_CALL(windowBase, setKeyRepeatEnabled(enabled == sfTrue));
+    CSFML_CALL(windowBase, setKeyRepeatEnabled(enabled));
 }
 
 
@@ -249,9 +249,9 @@ void sfWindowBase_requestFocus(sfWindowBase* windowBase)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindowBase_hasFocus(const sfWindowBase* windowBase)
+bool sfWindowBase_hasFocus(const sfWindowBase* windowBase)
 {
-    CSFML_CALL_RETURN(windowBase, hasFocus(), sfFalse);
+    CSFML_CALL_RETURN(windowBase, hasFocus(), false);
 }
 
 
@@ -264,9 +264,9 @@ sfWindowHandle sfWindowBase_getSystemHandle(const sfWindowBase* windowBase)
 }
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindowBase_createVulkanSurface(sfWindowBase* windowBase, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator)
+bool sfWindowBase_createVulkanSurface(sfWindowBase* windowBase, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator)
 {
-    CSFML_CHECK_RETURN(instance, sfFalse);
-    CSFML_CHECK_RETURN(surface, sfFalse);
-    CSFML_CALL_RETURN(windowBase, createVulkanSurface(*instance, *surface, allocator), sfFalse);
+    CSFML_CHECK_RETURN(instance, false);
+    CSFML_CHECK_RETURN(surface, false);
+    CSFML_CALL_RETURN(windowBase, createVulkanSurface(*instance, *surface, allocator), false);
 }

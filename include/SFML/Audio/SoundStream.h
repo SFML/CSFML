@@ -41,12 +41,12 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    sfInt16*     samples;     ///< Pointer to the audio samples
+    int16_t*     samples;     ///< Pointer to the audio samples
     unsigned int sampleCount; ///< Number of samples pointed by Samples
 } sfSoundStreamChunk;
 
-typedef sfBool (*sfSoundStreamGetDataCallback)(sfSoundStreamChunk*, void*); ///< Type of the callback used to get a sound stream data
-typedef void   (*sfSoundStreamSeekCallback)(sfTime, void*);                 ///< Type of the callback used to seek in a sound stream
+typedef bool (*sfSoundStreamGetDataCallback)(sfSoundStreamChunk*, void*); ///< Type of the callback used to get a sound stream data
+typedef void (*sfSoundStreamSeekCallback)(sfTime, void*);                 ///< Type of the callback used to seek in a sound stream
 
 
 ////////////////////////////////////////////////////////////
@@ -197,10 +197,10 @@ CSFML_AUDIO_API void sfSoundStream_setPosition(sfSoundStream* soundStream, sfVec
 /// The default value is false (position is absolute).
 ///
 /// \param soundStream Sound stream object
-/// \param relative    sfTrue to set the position relative, sfFalse to set it absolute
+/// \param relative    true to set the position relative, false to set it absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_setRelativeToListener(sfSoundStream* soundStream, sfBool relative);
+CSFML_AUDIO_API void sfSoundStream_setRelativeToListener(sfSoundStream* soundStream, bool relative);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the minimum distance of a sound stream
@@ -253,14 +253,14 @@ CSFML_AUDIO_API void sfSoundStream_setPlayingOffset(sfSoundStream* soundStream, 
 ///
 /// If set, the stream will restart from beginning after
 /// reaching the end and so on, until it is stopped or
-/// sfSoundStream_setLoop(stream, sfFalse) is called.
+/// sfSoundStream_setLoop(stream, false) is called.
 /// The default looping state for sound streams is false.
 ///
 /// \param soundStream Sound stream object
-/// \param loop        sfTrue to play in loop, sfFalse to play once
+/// \param loop        true to play in loop, false to play once
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_setLoop(sfSoundStream* soundStream, sfBool loop);
+CSFML_AUDIO_API void sfSoundStream_setLoop(sfSoundStream* soundStream, bool loop);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the pitch of a sound stream
@@ -298,10 +298,10 @@ CSFML_AUDIO_API sfVector3f sfSoundStream_getPosition(const sfSoundStream* soundS
 ///
 /// \param soundStream Sound stream object
 ///
-/// \return sfTrue if the position is relative, sfFalse if it's absolute
+/// \return true if the position is relative, false if it's absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundStream_isRelativeToListener(const sfSoundStream* soundStream);
+CSFML_AUDIO_API bool sfSoundStream_isRelativeToListener(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the minimum distance of a sound stream
@@ -328,10 +328,10 @@ CSFML_AUDIO_API float sfSoundStream_getAttenuation(const sfSoundStream* soundStr
 ///
 /// \param soundStream Sound stream object
 ///
-/// \return sfTrue if the music is looping, sfFalse otherwise
+/// \return true if the music is looping, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundStream_getLoop(const sfSoundStream* soundStream);
+CSFML_AUDIO_API bool sfSoundStream_getLoop(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current playing position of a sound stream

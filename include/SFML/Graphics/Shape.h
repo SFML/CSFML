@@ -234,7 +234,7 @@ CSFML_GRAPHICS_API sfTransform sfShape_getInverseTransform(const sfShape* shape)
 /// \param resetRect Should the texture rect be reset to the size of the new texture?
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShape_setTexture(sfShape* shape, const sfTexture* texture, sfBool resetRect);
+CSFML_GRAPHICS_API void sfShape_setTexture(sfShape* shape, const sfTexture* texture, bool resetRect);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the sub-rectangle of the texture that a shape will display

@@ -114,9 +114,9 @@ void sfSoundStream_setPosition(sfSoundStream* soundStream, sfVector3f position)
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_setRelativeToListener(sfSoundStream* soundStream, sfBool relative)
+void sfSoundStream_setRelativeToListener(sfSoundStream* soundStream, bool relative)
 {
-    CSFML_CALL(soundStream, setRelativeToListener(relative == sfTrue));
+    CSFML_CALL(soundStream, setRelativeToListener(relative));
 }
 
 
@@ -142,9 +142,9 @@ void sfSoundStream_setPlayingOffset(sfSoundStream* soundStream, sfTime timeOffse
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_setLoop(sfSoundStream* soundStream, sfBool loop)
+void sfSoundStream_setLoop(sfSoundStream* soundStream, bool loop)
 {
-    CSFML_CALL(soundStream, setLoop(loop == sfTrue));
+    CSFML_CALL(soundStream, setLoop(loop));
 }
 
 
@@ -178,9 +178,9 @@ sfVector3f sfSoundStream_getPosition(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSoundStream_isRelativeToListener(const sfSoundStream* soundStream)
+bool sfSoundStream_isRelativeToListener(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, isRelativeToListener(), sfFalse);
+    CSFML_CALL_RETURN(soundStream, isRelativeToListener(), false);
 }
 
 
@@ -199,9 +199,9 @@ float sfSoundStream_getAttenuation(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSoundStream_getLoop(const sfSoundStream* soundStream)
+bool sfSoundStream_getLoop(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, getLoop(), sfFalse);
+    CSFML_CALL_RETURN(soundStream, getLoop(), false);
 }
 
 

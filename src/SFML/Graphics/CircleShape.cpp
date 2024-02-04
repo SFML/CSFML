@@ -177,9 +177,9 @@ sfTransform sfCircleShape_getInverseTransform(const sfCircleShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfCircleShape_setTexture(sfCircleShape* shape, const sfTexture* texture, sfBool resetRect)
+void sfCircleShape_setTexture(sfCircleShape* shape, const sfTexture* texture, bool resetRect)
 {
-    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect == sfTrue));
+    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect));
     shape->Texture = texture;
 }
 

@@ -37,7 +37,7 @@ typedef struct VkSurfaceKHR_T* VkSurfaceKHR;
 
 #else
 
-typedef sfUint64 VkSurfaceKHR;
+typedef uint64_t VkSurfaceKHR;
 
 #endif
 
@@ -62,7 +62,7 @@ typedef void (*sfVulkanFunctionPointer)(void);
 /// \return True if Vulkan is supported, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfVulkan_isAvailable(sfBool requireGraphics);
+CSFML_WINDOW_API bool sfVulkan_isAvailable(bool requireGraphics);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the address of a Vulkan function

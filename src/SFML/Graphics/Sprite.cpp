@@ -178,11 +178,11 @@ sfTransform sfSprite_getInverseTransform(const sfSprite* sprite)
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_setTexture(sfSprite* sprite, const sfTexture* texture, sfBool resetRect)
+void sfSprite_setTexture(sfSprite* sprite, const sfTexture* texture, bool resetRect)
 {
     if (texture && texture->This)
     {
-        CSFML_CALL(sprite, setTexture(*texture->This, resetRect == sfTrue));
+        CSFML_CALL(sprite, setTexture(*texture->This, resetRect));
         sprite->Texture = texture;
     }
 }

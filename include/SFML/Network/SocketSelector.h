@@ -107,15 +107,15 @@ CSFML_NETWORK_API void sfSocketSelector_clear(sfSocketSelector* selector);
 /// some data available to be received. To know which sockets are
 /// ready, use the sfSocketSelector_isXxxReady functions.
 /// If you use a timeout and no socket is ready before the timeout
-/// is over, the function returns sfFalse.
+/// is over, the function returns false.
 ///
 /// \param selector Socket selector object
 /// \param timeout  Maximum time to wait (use sfTimeZero for infinity)
 ///
-/// \return sfTrue if there are sockets ready, sfFalse otherwise
+/// \return true if there are sockets ready, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfSocketSelector_wait(sfSocketSelector* selector, sfTime timeout);
+CSFML_NETWORK_API bool sfSocketSelector_wait(sfSocketSelector* selector, sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Test a socket to know if it is ready to receive data
@@ -124,18 +124,18 @@ CSFML_NETWORK_API sfBool sfSocketSelector_wait(sfSocketSelector* selector, sfTim
 /// sfSocketSelector_wait, to know which sockets are ready to
 /// receive data. If a socket is ready, a call to Receive will
 /// never block because we know that there is data available to read.
-/// Note that if this function returns sfTrue for a sfTcpListener,
+/// Note that if this function returns true for a sfTcpListener,
 /// this means that it is ready to accept a new connection.
 ///
 /// \param selector Socket selector object
 /// \param socket   Socket to test
 ///
-/// \return sfTrue if the socket is ready to read, sfFalse otherwise
+/// \return true if the socket is ready to read, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfSocketSelector_isTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket);
-CSFML_NETWORK_API sfBool sfSocketSelector_isTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket);
-CSFML_NETWORK_API sfBool sfSocketSelector_isUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket);
+CSFML_NETWORK_API bool sfSocketSelector_isTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket);
+CSFML_NETWORK_API bool sfSocketSelector_isTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket);
+CSFML_NETWORK_API bool sfSocketSelector_isUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket);
 
 
 #endif // SFML_SOCKETSELECTOR_H

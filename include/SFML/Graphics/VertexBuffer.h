@@ -126,10 +126,10 @@ CSFML_GRAPHICS_API unsigned int sfVertexBuffer_getVertexCount(const sfVertexBuff
 /// \param vertexCount Number of vertices to copy
 /// \param offset      Offset in the buffer to copy to
 ///
-/// \return sfTrue if the update was successful
+/// \return true if the update was successful
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfVertexBuffer_update(sfVertexBuffer* vertexBuffer, const sfVertex* vertices, unsigned int vertexCount, unsigned int offset);
+CSFML_GRAPHICS_API bool sfVertexBuffer_update(sfVertexBuffer* vertexBuffer, const sfVertex* vertices, unsigned int vertexCount, unsigned int offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy the contents of another buffer into this buffer
@@ -137,10 +137,10 @@ CSFML_GRAPHICS_API sfBool sfVertexBuffer_update(sfVertexBuffer* vertexBuffer, co
 /// \param vertexBuffer Vertex buffer object
 /// \param other Vertex buffer whose contents to copy into first vertex buffer
 ///
-/// \return sfTrue if the copy was successful
+/// \return true if the copy was successful
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfVertexBuffer_updateFromVertexBuffer(sfVertexBuffer* vertexBuffer, const sfVertexBuffer* other);
+CSFML_GRAPHICS_API bool sfVertexBuffer_updateFromVertexBuffer(sfVertexBuffer* vertexBuffer, const sfVertexBuffer* other);
 
 ////////////////////////////////////////////////////////////
 /// \brief Swap the contents of this vertex buffer with those of another
@@ -248,7 +248,7 @@ CSFML_GRAPHICS_API void sfVertexBuffer_bind(const sfVertexBuffer* vertexBuffer);
 /// \return True if vertex buffers are supported, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfVertexBuffer_isAvailable(void);
+CSFML_GRAPHICS_API bool sfVertexBuffer_isAvailable(void);
 
 
 #endif // SFML_VERTEXBUFFER_H

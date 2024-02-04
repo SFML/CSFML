@@ -19,7 +19,7 @@ int main(void)
         return EXIT_FAILURE;
     }
     sfSprite* sprite = sfSprite_create();
-    sfSprite_setTexture(sprite, texture, sfTrue);
+    sfSprite_setTexture(sprite, texture, true);
     const sfVector2f spritePosition = {200, 200};
     sfSprite_setPosition(sprite, spritePosition);
 

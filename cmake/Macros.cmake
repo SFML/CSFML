@@ -19,8 +19,8 @@ macro(csfml_add_library target)
     # add warnings
     set_file_warnings(${THIS_SOURCES})
 
-    # require C++17
-    target_compile_features(${target} PUBLIC cxx_std_17)
+    # require C99 and C++17
+    target_compile_features(${target} PUBLIC c_std_99 cxx_std_17)
 
     # define the export symbol of the module
     string(REPLACE "-" "_" NAME_UPPER "${target}")

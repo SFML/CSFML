@@ -221,7 +221,7 @@ CSFML_GRAPHICS_API void sfShader_setIntColorUniform(sfShader* shader, const char
 /// \param x      Value of the bool scalar
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_setBoolUniform(sfShader* shader, const char* name, sfBool x);
+CSFML_GRAPHICS_API void sfShader_setBoolUniform(sfShader* shader, const char* name, bool x);
 
 ////////////////////////////////////////////////////////////
 /// \brief Specify value for \p bvec2 uniform
@@ -689,10 +689,10 @@ CSFML_GRAPHICS_API void sfShader_bind(const sfShader* shader);
 /// the shader features. If it returns false, then
 /// any attempt to use sfShader will fail.
 ///
-/// \return sfTrue if the system can use shaders, sfFalse otherwise
+/// \return true if the system can use shaders, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfShader_isAvailable(void);
+CSFML_GRAPHICS_API bool sfShader_isAvailable(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not the system supports geometry shaders
@@ -711,6 +711,6 @@ CSFML_GRAPHICS_API sfBool sfShader_isAvailable(void);
 /// \return True if geometry shaders are supported, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfShader_isGeometryAvailable(void);
+CSFML_GRAPHICS_API bool sfShader_isGeometryAvailable(void);
 
 #endif // SFML_SHADER_H

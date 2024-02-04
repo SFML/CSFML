@@ -40,14 +40,14 @@ float sfTime_asSeconds(sfTime time)
 
 
 ////////////////////////////////////////////////////////////
-sfInt32 sfTime_asMilliseconds(sfTime time)
+int32_t sfTime_asMilliseconds(sfTime time)
 {
-    return static_cast<sfInt32>(time.microseconds / 1000);
+    return static_cast<int32_t>(time.microseconds / 1000);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfInt64 sfTime_asMicroseconds(sfTime time)
+int64_t sfTime_asMicroseconds(sfTime time)
 {
     return time.microseconds;
 }
@@ -57,22 +57,22 @@ sfInt64 sfTime_asMicroseconds(sfTime time)
 sfTime sfSeconds(float amount)
 {
     sfTime time;
-    time.microseconds = static_cast<sfInt64>(amount * 1000000);
+    time.microseconds = static_cast<int64_t>(amount * 1000000);
     return time;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTime sfMilliseconds(sfInt32 amount)
+sfTime sfMilliseconds(int32_t amount)
 {
     sfTime time;
-    time.microseconds = static_cast<sfInt64>(amount) * 1000;
+    time.microseconds = static_cast<int64_t>(amount) * 1000;
     return time;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfTime sfMicroseconds(sfInt64 amount)
+sfTime sfMicroseconds(int64_t amount)
 {
     sfTime time;
     time.microseconds = amount;

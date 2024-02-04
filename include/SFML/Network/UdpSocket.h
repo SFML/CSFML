@@ -64,20 +64,20 @@ CSFML_NETWORK_API void sfUdpSocket_destroy(sfUdpSocket* socket);
 /// By default, all sockets are blocking.
 ///
 /// \param socket   UDP socket object
-/// \param blocking sfTrue to set the socket as blocking, sfFalse for non-blocking
+/// \param blocking true to set the socket as blocking, false for non-blocking
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfUdpSocket_setBlocking(sfUdpSocket* socket, sfBool blocking);
+CSFML_NETWORK_API void sfUdpSocket_setBlocking(sfUdpSocket* socket, bool blocking);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a UDP socket is in blocking or non-blocking mode
 ///
 /// \param socket UDP socket object
 ///
-/// \return sfTrue if the socket is blocking, sfFalse otherwise
+/// \return true if the socket is blocking, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfUdpSocket_isBlocking(const sfUdpSocket* socket);
+CSFML_NETWORK_API bool sfUdpSocket_isBlocking(const sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the port to which a UDP socket is bound locally

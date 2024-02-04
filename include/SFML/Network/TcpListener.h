@@ -63,20 +63,20 @@ CSFML_NETWORK_API void sfTcpListener_destroy(sfTcpListener* listener);
 /// By default, all sockets are blocking.
 ///
 /// \param listener TCP listener object
-/// \param blocking sfTrue to set the socket as blocking, sfFalse for non-blocking
+/// \param blocking true to set the socket as blocking, false for non-blocking
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfTcpListener_setBlocking(sfTcpListener* listener, sfBool blocking);
+CSFML_NETWORK_API void sfTcpListener_setBlocking(sfTcpListener* listener, bool blocking);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a TCP listener is in blocking or non-blocking mode
 ///
 /// \param listener TCP listener object
 ///
-/// \return sfTrue if the socket is blocking, sfFalse otherwise
+/// \return true if the socket is blocking, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfTcpListener_isBlocking(const sfTcpListener* listener);
+CSFML_NETWORK_API bool sfTcpListener_isBlocking(const sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the port to which a TCP listener is bound locally

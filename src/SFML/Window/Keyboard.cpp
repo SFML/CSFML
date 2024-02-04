@@ -34,14 +34,14 @@
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfKeyboard_isKeyPressed(sfKeyCode key)
+bool sfKeyboard_isKeyPressed(sfKeyCode key)
 {
     return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfKeyboard_isScancodePressed(sfScancode code)
+bool sfKeyboard_isScancodePressed(sfScancode code)
 {
     return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Scancode>(code));
 }
@@ -69,7 +69,7 @@ const char* sfKeyboard_getDescription(sfScancode code)
 
 
 ////////////////////////////////////////////////////////////
-void sfKeyboard_setVirtualKeyboardVisible(sfBool visible)
+void sfKeyboard_setVirtualKeyboardVisible(bool visible)
 {
-    sf::Keyboard::setVirtualKeyboardVisible(visible == sfTrue);
+    sf::Keyboard::setVirtualKeyboardVisible(visible);
 }

@@ -95,16 +95,16 @@ const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound)
 
 
 ////////////////////////////////////////////////////////////
-void sfSound_setLoop(sfSound* sound, sfBool loop)
+void sfSound_setLoop(sfSound* sound, bool loop)
 {
-    CSFML_CALL(sound, setLoop(loop == sfTrue));
+    CSFML_CALL(sound, setLoop(loop));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSound_getLoop(const sfSound* sound)
+bool sfSound_getLoop(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, getLoop(), sfFalse);
+    CSFML_CALL_RETURN(sound, getLoop(), false);
 }
 
 
@@ -139,9 +139,9 @@ void sfSound_setPosition(sfSound* sound, sfVector3f position)
 
 
 ////////////////////////////////////////////////////////////
-void sfSound_setRelativeToListener(sfSound* sound, sfBool relative)
+void sfSound_setRelativeToListener(sfSound* sound, bool relative)
 {
-    CSFML_CALL(sound, setRelativeToListener(relative == sfTrue));
+    CSFML_CALL(sound, setRelativeToListener(relative));
 }
 
 
@@ -196,9 +196,9 @@ sfVector3f sfSound_getPosition(const sfSound* sound)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSound_isRelativeToListener(const sfSound* sound)
+bool sfSound_isRelativeToListener(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, isRelativeToListener(), sfFalse);
+    CSFML_CALL_RETURN(sound, isRelativeToListener(), false);
 }
 
 

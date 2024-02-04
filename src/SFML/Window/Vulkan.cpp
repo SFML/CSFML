@@ -34,7 +34,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfVulkan_isAvailable(sfBool requireGraphics)
+bool sfVulkan_isAvailable(bool requireGraphics)
 {
     return sf::Vulkan::isAvailable(requireGraphics);
 }

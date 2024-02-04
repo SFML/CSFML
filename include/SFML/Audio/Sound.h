@@ -126,24 +126,24 @@ CSFML_AUDIO_API const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound);
 ///
 /// If set, the sound will restart from beginning after
 /// reaching the end and so on, until it is stopped or
-/// sfSound_setLoop(sound, sfFalse) is called.
+/// sfSound_setLoop(sound, false) is called.
 /// The default looping state for sounds is false.
 ///
 /// \param sound Sound object
-/// \param loop  sfTrue to play in loop, sfFalse to play once
+/// \param loop  true to play in loop, false to play once
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSound_setLoop(sfSound* sound, sfBool loop);
+CSFML_AUDIO_API void sfSound_setLoop(sfSound* sound, bool loop);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a sound is in loop mode
 ///
 /// \param sound Sound object
 ///
-/// \return sfTrue if the sound is looping, sfFalse otherwise
+/// \return true if the sound is looping, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSound_getLoop(const sfSound* sound);
+CSFML_AUDIO_API bool sfSound_getLoop(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current status of a sound (stopped, paused, playing)
@@ -205,10 +205,10 @@ CSFML_AUDIO_API void sfSound_setPosition(sfSound* sound, sfVector3f position);
 /// The default value is false (position is absolute).
 ///
 /// \param sound    Sound object
-/// \param relative sfTrue to set the position relative, sfFalse to set it absolute
+/// \param relative true to set the position relative, false to set it absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSound_setRelativeToListener(sfSound* sound, sfBool relative);
+CSFML_AUDIO_API void sfSound_setRelativeToListener(sfSound* sound, bool relative);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the minimum distance of a sound
@@ -292,10 +292,10 @@ CSFML_AUDIO_API sfVector3f sfSound_getPosition(const sfSound* sound);
 ///
 /// \param sound Sound object
 ///
-/// \return sfTrue if the position is relative, sfFalse if it's absolute
+/// \return true if the position is relative, false if it's absolute
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSound_isRelativeToListener(const sfSound* sound);
+CSFML_AUDIO_API bool sfSound_isRelativeToListener(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the minimum distance of a sound

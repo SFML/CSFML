@@ -167,9 +167,9 @@ sfTransform sfShape_getInverseTransform(const sfShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_setTexture(sfShape* shape, const sfTexture* texture, sfBool resetRect)
+void sfShape_setTexture(sfShape* shape, const sfTexture* texture, bool resetRect)
 {
-    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect == sfTrue));
+    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect));
     shape->Texture = texture;
 }
 

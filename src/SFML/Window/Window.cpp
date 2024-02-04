@@ -34,7 +34,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings)
+sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, const sfContextSettings* settings)
 {
     // Convert video mode
     sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
@@ -54,7 +54,7 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, sfUint32 style, c
 }
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings)
+sfWindow* sfWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style, const sfContextSettings* settings)
 {
     // Convert video mode
     sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
@@ -106,9 +106,9 @@ void sfWindow_close(sfWindow* window)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_isOpen(const sfWindow* window)
+bool sfWindow_isOpen(const sfWindow* window)
 {
-    CSFML_CALL_RETURN(window, isOpen(), sfFalse);
+    CSFML_CALL_RETURN(window, isOpen(), false);
 }
 
 
@@ -126,44 +126,44 @@ sfContextSettings sfWindow_getSettings(const sfWindow* window)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_pollEvent(sfWindow* window, sfEvent* event)
+bool sfWindow_pollEvent(sfWindow* window, sfEvent* event)
 {
-    CSFML_CHECK_RETURN(window, sfFalse);
-    CSFML_CHECK_RETURN(event, sfFalse);
+    CSFML_CHECK_RETURN(window, false);
+    CSFML_CHECK_RETURN(event, false);
 
     // Get the event
     sf::Event sfmlEvent;
-    sfBool ret = window->This.pollEvent(sfmlEvent);
+    bool ret = window->This.pollEvent(sfmlEvent);
 
     // No event, return
     if (!ret)
-        return sfFalse;
+        return false;
 
     // Convert the sf::Event event to a sfEvent
     convertEvent(sfmlEvent, event);
 
-    return sfTrue;
+    return true;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_waitEvent(sfWindow* window, sfEvent* event)
+bool sfWindow_waitEvent(sfWindow* window, sfEvent* event)
 {
-    CSFML_CHECK_RETURN(window, sfFalse);
-    CSFML_CHECK_RETURN(event, sfFalse);
+    CSFML_CHECK_RETURN(window, false);
+    CSFML_CHECK_RETURN(event, false);
 
     // Get the event
     sf::Event sfmlEvent;
-    sfBool ret = window->This.waitEvent(sfmlEvent);
+    bool ret = window->This.waitEvent(sfmlEvent);
 
     // Error, return
     if (!ret)
-        return sfFalse;
+        return false;
 
     // Convert the sf::Event event to a sfEvent
     convertEvent(sfmlEvent, event);
 
-    return sfTrue;
+    return true;
 }
 
 
@@ -217,37 +217,37 @@ void sfWindow_setTitle(sfWindow* window, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setUnicodeTitle(sfWindow* window, const sfUint32* title)
+void sfWindow_setUnicodeTitle(sfWindow* window, const uint32_t* title)
 {
     CSFML_CALL(window, setTitle(title));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const sfUint8* pixels)
+void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const uint8_t* pixels)
 {
     CSFML_CALL(window, setIcon(width, height, pixels));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setVisible(sfWindow* window, sfBool visible)
+void sfWindow_setVisible(sfWindow* window, bool visible)
 {
-    CSFML_CALL(window, setVisible(visible == sfTrue));
+    CSFML_CALL(window, setVisible(visible));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setMouseCursorVisible(sfWindow* window, sfBool visible)
+void sfWindow_setMouseCursorVisible(sfWindow* window, bool visible)
 {
-    CSFML_CALL(window, setMouseCursorVisible(visible == sfTrue));
+    CSFML_CALL(window, setMouseCursorVisible(visible));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setMouseCursorGrabbed(sfWindow* window, sfBool grabbed)
+void sfWindow_setMouseCursorGrabbed(sfWindow* window, bool grabbed)
 {
-    CSFML_CALL(window, setMouseCursorGrabbed(grabbed == sfTrue));
+    CSFML_CALL(window, setMouseCursorGrabbed(grabbed));
 }
 
 
@@ -260,23 +260,23 @@ void sfWindow_setMouseCursor(sfWindow* window, const sfCursor* cursor)
 }
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setVerticalSyncEnabled(sfWindow* window, sfBool enabled)
+void sfWindow_setVerticalSyncEnabled(sfWindow* window, bool enabled)
 {
-    CSFML_CALL(window, setVerticalSyncEnabled(enabled == sfTrue));
+    CSFML_CALL(window, setVerticalSyncEnabled(enabled));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setKeyRepeatEnabled(sfWindow* window, sfBool enabled)
+void sfWindow_setKeyRepeatEnabled(sfWindow* window, bool enabled)
 {
-    CSFML_CALL(window, setKeyRepeatEnabled(enabled == sfTrue));
+    CSFML_CALL(window, setKeyRepeatEnabled(enabled));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_setActive(sfWindow* window, sfBool active)
+bool sfWindow_setActive(sfWindow* window, bool active)
 {
-    CSFML_CALL_RETURN(window, setActive(active == sfTrue), sfFalse);
+    CSFML_CALL_RETURN(window, setActive(active), false);
 }
 
 
@@ -288,9 +288,9 @@ void sfWindow_requestFocus(sfWindow* window)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfWindow_hasFocus(const sfWindow* window)
+bool sfWindow_hasFocus(const sfWindow* window)
 {
-    CSFML_CALL_RETURN(window, hasFocus(), sfFalse);
+    CSFML_CALL_RETURN(window, hasFocus(), false);
 }
 
 

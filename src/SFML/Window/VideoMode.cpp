@@ -70,8 +70,8 @@ const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfVideoMode_isValid(sfVideoMode mode)
+bool sfVideoMode_isValid(sfVideoMode mode)
 {
     sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
-    return videoMode.isValid() ? sfTrue : sfFalse;
+    return videoMode.isValid();
 }

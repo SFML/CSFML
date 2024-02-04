@@ -60,18 +60,18 @@ CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
 /// \return True if available, false if unavailable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfContext_isExtensionAvailable(const char* name);
+CSFML_WINDOW_API bool sfContext_isExtensionAvailable(const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Activate or deactivate explicitely a context
 ///
 /// \param context Context object
-/// \param active  sfTrue to activate, sfFalse to deactivate
+/// \param active  true to activate, false to deactivate
 ///
-/// \return sfTrue on success, sfFalse on failure
+/// \return true on success, false on failure
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfContext_setActive(sfContext* context, sfBool active);
+CSFML_WINDOW_API bool sfContext_setActive(sfContext* context, bool active);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the address of an OpenGL function.
@@ -106,6 +106,6 @@ CSFML_WINDOW_API sfContextSettings sfContext_getSettings(const sfContext* contex
 /// \return The active context's ID or 0 if no context is currently active
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfUint64 sfContext_getActiveContextId(void);
+CSFML_WINDOW_API uint64_t sfContext_getActiveContextId(void);
 
 #endif // SFML_CONTEXT_H

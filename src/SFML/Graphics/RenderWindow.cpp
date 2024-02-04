@@ -45,7 +45,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings)
+sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, const sfContextSettings* settings)
 {
     // Convert video mode
     sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
@@ -67,7 +67,7 @@ sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, sfUin
 }
 
 ////////////////////////////////////////////////////////////
-sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings)
+sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style, const sfContextSettings* settings)
 {
     // Convert video mode
     sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
@@ -124,9 +124,9 @@ void sfRenderWindow_close(sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow)
+bool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow)
 {
-    CSFML_CALL_RETURN(renderWindow, isOpen(), sfFalse);
+    CSFML_CALL_RETURN(renderWindow, isOpen(), false);
 }
 
 
@@ -144,44 +144,44 @@ sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
+bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
-    CSFML_CHECK_RETURN(renderWindow, sfFalse);
-    CSFML_CHECK_RETURN(event,        sfFalse);
+    CSFML_CHECK_RETURN(renderWindow, false);
+    CSFML_CHECK_RETURN(event,        false);
 
     // Get the event
     sf::Event sfmlEvent;
-    sfBool ret = renderWindow->This.pollEvent(sfmlEvent);
+    bool ret = renderWindow->This.pollEvent(sfmlEvent);
 
     // No event, return
     if (!ret)
-        return sfFalse;
+        return false;
 
     // Convert the sf::Event event to a sfEvent
     convertEvent(sfmlEvent, event);
 
-    return sfTrue;
+    return true;
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event)
+bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
-    CSFML_CHECK_RETURN(renderWindow, sfFalse);
-    CSFML_CHECK_RETURN(event,        sfFalse);
+    CSFML_CHECK_RETURN(renderWindow, false);
+    CSFML_CHECK_RETURN(event,        false);
 
     // Get the event
     sf::Event sfmlEvent;
-    sfBool ret = renderWindow->This.waitEvent(sfmlEvent);
+    bool ret = renderWindow->This.waitEvent(sfmlEvent);
 
     // Error, return
     if (!ret)
-        return sfFalse;
+        return false;
 
     // Convert the sf::Event event to a sfEvent
     convertEvent(sfmlEvent, event);
 
-    return sfTrue;
+    return true;
 }
 
 
@@ -221,9 +221,9 @@ sfVector2u sfRenderWindow_getSize(const sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_isSrgb(const sfRenderWindow* renderWindow)
+bool sfRenderWindow_isSrgb(const sfRenderWindow* renderWindow)
 {
-    CSFML_CHECK_RETURN(renderWindow, sfFalse);
+    CSFML_CHECK_RETURN(renderWindow, false);
     return renderWindow->This.isSrgb();
 }
 
@@ -243,44 +243,44 @@ void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const sfUint32* title)
+void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const uint32_t* title)
 {
     CSFML_CALL(renderWindow, setTitle(title));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels)
+void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const uint8_t* pixels)
 {
     CSFML_CALL(renderWindow, setIcon(width, height, pixels));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, sfBool visible)
+void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, bool visible)
 {
-    CSFML_CALL(renderWindow, setVisible(visible == sfTrue));
+    CSFML_CALL(renderWindow, setVisible(visible));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled)
+void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, bool enabled)
 {
-    CSFML_CALL(renderWindow, setVerticalSyncEnabled(enabled == sfTrue));
+    CSFML_CALL(renderWindow, setVerticalSyncEnabled(enabled));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, sfBool visible)
+void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, bool visible)
 {
-    CSFML_CALL(renderWindow, setMouseCursorVisible(visible == sfTrue));
+    CSFML_CALL(renderWindow, setMouseCursorVisible(visible));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, sfBool grabbed)
+void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, bool grabbed)
 {
-    CSFML_CALL(renderWindow, setMouseCursorGrabbed(grabbed == sfTrue));
+    CSFML_CALL(renderWindow, setMouseCursorGrabbed(grabbed));
 }
 
 
@@ -294,16 +294,16 @@ void sfRenderWindow_setMouseCursor(sfRenderWindow* window, const sfCursor* curso
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled)
+void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* renderWindow, bool enabled)
 {
-    CSFML_CALL(renderWindow, setKeyRepeatEnabled(enabled == sfTrue));
+    CSFML_CALL(renderWindow, setKeyRepeatEnabled(enabled));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_setActive(sfRenderWindow* renderWindow, sfBool active)
+bool sfRenderWindow_setActive(sfRenderWindow* renderWindow, bool active)
 {
-    CSFML_CALL_RETURN(renderWindow, setActive(active == sfTrue), sfFalse);
+    CSFML_CALL_RETURN(renderWindow, setActive(active), false);
 }
 
 
@@ -315,9 +315,9 @@ void sfRenderWindow_requestFocus(sfRenderWindow* renderWindow)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfRenderWindow_hasFocus(const sfRenderWindow* renderWindow)
+bool sfRenderWindow_hasFocus(const sfRenderWindow* renderWindow)
 {
-    CSFML_CALL_RETURN(renderWindow, hasFocus(), sfFalse);
+    CSFML_CALL_RETURN(renderWindow, hasFocus(), false);
 }
 
 

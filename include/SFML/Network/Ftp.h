@@ -129,10 +129,10 @@ CSFML_NETWORK_API void sfFtpListingResponse_destroy(sfFtpListingResponse* ftpLis
 ///
 /// \param ftpListingResponse Ftp listing response
 ///
-/// \return sfTrue if the status is a success, sfFalse if it is a failure
+/// \return true if the status is a success, false if it is a failure
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfFtpListingResponse_isOk(const sfFtpListingResponse* ftpListingResponse);
+CSFML_NETWORK_API bool sfFtpListingResponse_isOk(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the status code of a FTP listing response
@@ -191,10 +191,10 @@ CSFML_NETWORK_API void sfFtpDirectoryResponse_destroy(sfFtpDirectoryResponse* ft
 ///
 /// \param ftpDirectoryResponse Ftp directory response
 ///
-/// \return sfTrue if the status is a success, sfFalse if it is a failure
+/// \return true if the status is a success, false if it is a failure
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfFtpDirectoryResponse_isOk(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API bool sfFtpDirectoryResponse_isOk(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the status code of a FTP directory response
@@ -243,10 +243,10 @@ CSFML_NETWORK_API void sfFtpResponse_destroy(sfFtpResponse* ftpResponse);
 ///
 /// \param ftpResponse Ftp response object
 ///
-/// \return sfTrue if the status is a success, sfFalse if it is a failure
+/// \return true if the status is a success, false if it is a failure
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfBool sfFtpResponse_isOk(const sfFtpResponse* ftpResponse);
+CSFML_NETWORK_API bool sfFtpResponse_isOk(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the status code of a FTP response
@@ -500,12 +500,12 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFi
 /// \param localFile  Path of the local file to upload
 /// \param remotePath Where to put to file on the server
 /// \param mode       Transfer mode
-/// \param append     Pass sfTrue to append to or sfFalse to overwrite the remote file if it already exists
+/// \param append     Pass true to append to or false to overwrite the remote file if it already exists
 ///
 /// \return Server response to the request
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, sfBool append);
+CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, bool append);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a command to the FTP server

@@ -53,7 +53,7 @@ sfImage* sfImage_createFromColor(unsigned int width, unsigned int height, sfColo
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const sfUint8* data)
+sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const uint8_t* data)
 {
     sfImage* image = new sfImage;
     image->This.create(width, height, data);
@@ -127,33 +127,33 @@ void sfImage_destroy(sfImage* image)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfImage_saveToFile(const sfImage* image, const char* filename)
+bool sfImage_saveToFile(const sfImage* image, const char* filename)
 {
-    CSFML_CALL_RETURN(image, saveToFile(filename), sfFalse);
+    CSFML_CALL_RETURN(image, saveToFile(filename), false);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* format)
+bool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* format)
 {
-    CSFML_CHECK_RETURN(output, sfFalse);
-    CSFML_CALL_RETURN(image, saveToMemory(output->buffer, format), sfFalse);
+    CSFML_CHECK_RETURN(output, false);
+    CSFML_CALL_RETURN(image, saveToMemory(output->buffer, format), false);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_createMaskFromColor(sfImage* image, sfColor colorKey, sfUint8 alpha)
+void sfImage_createMaskFromColor(sfImage* image, sfColor colorKey, uint8_t alpha)
 {
     CSFML_CALL(image, createMaskFromColor(sf::Color(colorKey.r, colorKey.g, colorKey.b, colorKey.a), alpha));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, sfBool applyAlpha)
+void sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, bool applyAlpha)
 {
     CSFML_CHECK(source);
     sf::IntRect sfmlRect(sourceRect.left, sourceRect.top, sourceRect.width, sourceRect.height);
-    CSFML_CALL(image, copy(source->This, destX, destY, sfmlRect, applyAlpha == sfTrue));
+    CSFML_CALL(image, copy(source->This, destX, destY, sfmlRect, applyAlpha));
 }
 
 
@@ -177,7 +177,7 @@ sfColor sfImage_getPixel(const sfImage* image, unsigned int x, unsigned int y)
 
 
 ////////////////////////////////////////////////////////////
-const sfUint8* sfImage_getPixelsPtr(const sfImage* image)
+const uint8_t* sfImage_getPixelsPtr(const sfImage* image)
 {
     CSFML_CALL_RETURN(image, getPixelsPtr(), nullptr);
 }

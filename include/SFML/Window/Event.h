@@ -78,10 +78,10 @@ typedef struct
     sfEventType type;
     sfKeyCode   code;
     sfScancode  scancode;
-    sfBool      alt;
-    sfBool      control;
-    sfBool      shift;
-    sfBool      system;
+    bool        alt;
+    bool        control;
+    bool        shift;
+    bool        system;
 } sfKeyEvent;
 
 ////////////////////////////////////////////////////////////
@@ -91,7 +91,7 @@ typedef struct
 typedef struct
 {
     sfEventType type;
-    sfUint32    unicode;
+    uint32_t    unicode;
 } sfTextEvent;
 
 ////////////////////////////////////////////////////////////

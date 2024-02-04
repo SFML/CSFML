@@ -34,9 +34,9 @@
 #include <stddef.h>
 
 
-typedef sfBool (*sfSoundRecorderStartCallback)(void*);                           ///< Type of the callback used when starting a capture
-typedef sfBool (*sfSoundRecorderProcessCallback)(const sfInt16*, size_t, void*); ///< Type of the callback used to process audio data
-typedef void   (*sfSoundRecorderStopCallback)(void*);                            ///< Type of the callback used when stopping a capture
+typedef bool (*sfSoundRecorderStartCallback)(void*);                           ///< Type of the callback used when starting a capture
+typedef bool (*sfSoundRecorderProcessCallback)(const int16_t*, size_t, void*); ///< Type of the callback used to process audio data
+typedef void (*sfSoundRecorderStopCallback)(void*);                            ///< Type of the callback used when stopping a capture
 
 
 ////////////////////////////////////////////////////////////
@@ -79,7 +79,7 @@ CSFML_AUDIO_API void sfSoundRecorder_destroy(sfSoundRecorder* soundRecorder);
 /// \return True, if start of capture was successful
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate);
+CSFML_AUDIO_API bool sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
 /// \brief Stop the capture of a sound recorder
@@ -110,10 +110,10 @@ CSFML_AUDIO_API unsigned int sfSoundRecorder_getSampleRate(const sfSoundRecorder
 /// the audio capture features. If it returns false, then
 /// any attempt to use sfSoundRecorder will fail.
 ///
-/// \return sfTrue if audio capture is supported, sfFalse otherwise
+/// \return true if audio capture is supported, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundRecorder_isAvailable(void);
+CSFML_AUDIO_API bool sfSoundRecorder_isAvailable(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the processing interval
@@ -170,10 +170,10 @@ CSFML_AUDIO_API const char* sfSoundRecorder_getDefaultDevice(void);
 /// \param soundRecorder Sound recorder object
 /// \param name          The name of the audio capture device
 ///
-/// \return sfTrue, if it was able to set the requested device
+/// \return true, if it was able to set the requested device
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* name);
+CSFML_AUDIO_API bool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the name of the current audio capture device

@@ -82,7 +82,7 @@ CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* str
 /// \brief Create a new sound buffer and load it from an array of samples in memory
 ///
 /// The assumed format of the audio samples is 16 bits signed integer
-/// (sfInt16).
+/// (int16_t).
 ///
 /// \param samples      Pointer to the array of samples in memory
 /// \param sampleCount  Number of samples in the array
@@ -92,7 +92,7 @@ CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* str
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(const sfInt16* samples, sfUint64 sampleCount, unsigned int channelCount, unsigned int sampleRate);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t* samples, uint64_t sampleCount, unsigned int channelCount, unsigned int sampleRate);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound buffer by copying an existing one
@@ -122,16 +122,16 @@ CSFML_AUDIO_API void sfSoundBuffer_destroy(sfSoundBuffer* soundBuffer);
 /// \param soundBuffer Sound buffer object
 /// \param filename    Path of the sound file to write
 ///
-/// \return sfTrue if saving succeeded, sfFalse if it failed
+/// \return true if saving succeeded, false if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* filename);
+CSFML_AUDIO_API bool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* filename);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the array of audio samples stored in a sound buffer
 ///
 /// The format of the returned samples is 16 bits signed integer
-/// (sfInt16). The total number of samples in this array
+/// (int16_t). The total number of samples in this array
 /// is given by the sfSoundBuffer_getSampleCount function.
 ///
 /// \param soundBuffer Sound buffer object
@@ -139,7 +139,7 @@ CSFML_AUDIO_API sfBool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer
 /// \return Read-only pointer to the array of sound samples
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API const sfInt16* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API const int16_t* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the number of samples stored in a sound buffer
@@ -152,7 +152,7 @@ CSFML_AUDIO_API const sfInt16* sfSoundBuffer_getSamples(const sfSoundBuffer* sou
 /// \return Number of samples
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfUint64 sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API uint64_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the sample rate of a sound buffer

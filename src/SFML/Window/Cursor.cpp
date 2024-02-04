@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfCursor* sfCursor_createFromPixels(const sfUint8* pixels, sfVector2u size, sfVector2u hotspot)
+sfCursor* sfCursor_createFromPixels(const uint8_t* pixels, sfVector2u size, sfVector2u hotspot)
 {
     sfCursor* cursor = new sfCursor;
 

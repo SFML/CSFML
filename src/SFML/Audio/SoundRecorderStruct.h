@@ -61,7 +61,7 @@ private :
     virtual bool onStart()
     {
         if (myStartCallback)
-            return myStartCallback(myUserData) == sfTrue;
+            return myStartCallback(myUserData);
         else
             return true;
     }
@@ -69,7 +69,7 @@ private :
     virtual bool onProcessSamples(const sf::Int16* samples, std::size_t sampleCount)
     {
         if (myProcessCallback)
-            return myProcessCallback(samples, sampleCount, myUserData) == sfTrue;
+            return myProcessCallback(samples, sampleCount, myUserData);
         else
             return true;
     }

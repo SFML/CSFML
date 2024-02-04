@@ -46,16 +46,16 @@ void sfContext_destroy(sfContext* context)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfContext_isExtensionAvailable(const char* name)
+bool sfContext_isExtensionAvailable(const char* name)
 {
     return sf::Context::isExtensionAvailable(name);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfContext_setActive(sfContext* context, sfBool active)
+bool sfContext_setActive(sfContext* context, bool active)
 {
-    CSFML_CALL_RETURN(context, setActive(active == sfTrue), false)
+    CSFML_CALL_RETURN(context, setActive(active), false)
 }
 
 
@@ -80,7 +80,7 @@ sfContextSettings sfContext_getSettings(const sfContext* context)
 
 
 ////////////////////////////////////////////////////////////
-sfUint64 sfContext_getActiveContextId()
+uint64_t sfContext_getActiveContextId()
 {
     return sf::Context::getActiveContextId();
 }

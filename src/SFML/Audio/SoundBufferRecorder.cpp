@@ -45,9 +45,9 @@ void sfSoundBufferRecorder_destroy(sfSoundBufferRecorder* soundBufferRecorder)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate)
+bool sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate)
 {
-    CSFML_CALL_RETURN(soundBufferRecorder, start(sampleRate), sfFalse);
+    CSFML_CALL_RETURN(soundBufferRecorder, start(sampleRate), false);
 }
 
 
@@ -76,9 +76,9 @@ const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder
 }
 
 ////////////////////////////////////////////////////////////
-sfBool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorder, const char* name)
+bool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorder, const char* name)
 {
-    CSFML_CALL_RETURN(soundBufferRecorder, setDevice(name), sfFalse);
+    CSFML_CALL_RETURN(soundBufferRecorder, setDevice(name), false);
 }
 
 ////////////////////////////////////////////////////////////

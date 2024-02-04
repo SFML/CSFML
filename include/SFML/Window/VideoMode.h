@@ -81,10 +81,10 @@ CSFML_WINDOW_API const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count
 ///
 /// \param mode Video mode
 ///
-/// \return sfTrue if the video mode is valid for fullscreen mode
+/// \return true if the video mode is valid for fullscreen mode
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfBool sfVideoMode_isValid(sfVideoMode mode);
+CSFML_WINDOW_API bool sfVideoMode_isValid(sfVideoMode mode);
 
 
 #endif // SFML_VIDEOMODE_H

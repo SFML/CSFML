@@ -93,12 +93,12 @@ void sfFont_destroy(sfFont* font)
 
 
 ////////////////////////////////////////////////////////////
-sfGlyph sfFont_getGlyph(const sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold, float outlineThickness)
+sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness)
 {
     sfGlyph glyph = {0, {0, 0, 0, 0}, {0, 0, 0, 0}};
     CSFML_CHECK_RETURN(font, glyph);
 
-    sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold == sfTrue, outlineThickness);
+    sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold, outlineThickness);
 
     glyph.advance            = SFMLGlyph.advance;
     glyph.bounds.left        = SFMLGlyph.bounds.left;
@@ -115,14 +115,14 @@ sfGlyph sfFont_getGlyph(const sfFont* font, sfUint32 codePoint, unsigned int cha
 
 
 ////////////////////////////////////////////////////////////
-float sfFont_getKerning(const sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize)
+float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     CSFML_CALL_RETURN(font, getKerning(first, second, characterSize), 0);
 }
 
 
 ////////////////////////////////////////////////////////////
-float sfFont_getBoldKerning(const sfFont* font, sfUint32 first, sfUint32 second, unsigned int characterSize)
+float sfFont_getBoldKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     CSFML_CALL_RETURN(font, getKerning(first, second, characterSize, true), 0);
 }
@@ -161,21 +161,16 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 
 
 ////////////////////////////////////////////////////////////
-void sfFont_setSmooth(sfFont* font, sfBool smooth)
+void sfFont_setSmooth(sfFont* font, bool smooth)
 {
-    font->This.setSmooth(smooth == sfTrue);
+    font->This.setSmooth(smooth);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfFont_isSmooth(const sfFont *font)
+bool sfFont_isSmooth(const sfFont *font)
 {
-    if (font->This.isSmooth())
-    {
-        return sfTrue;
-    }
-
-    return sfFalse;
+    return font->This.isSmooth();
 }
 
 

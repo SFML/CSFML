@@ -46,16 +46,16 @@ void sfTcpListener_destroy(sfTcpListener* listener)
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpListener_setBlocking(sfTcpListener* listener, sfBool blocking)
+void sfTcpListener_setBlocking(sfTcpListener* listener, bool blocking)
 {
-    CSFML_CALL(listener, setBlocking(blocking == sfTrue));
+    CSFML_CALL(listener, setBlocking(blocking));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfTcpListener_isBlocking(const sfTcpListener* listener)
+bool sfTcpListener_isBlocking(const sfTcpListener* listener)
 {
-    CSFML_CALL_RETURN(listener, isBlocking(), sfFalse);
+    CSFML_CALL_RETURN(listener, isBlocking(), false);
 }
 
 

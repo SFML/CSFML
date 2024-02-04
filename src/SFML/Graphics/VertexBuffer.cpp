@@ -75,17 +75,17 @@ unsigned int sfVertexBuffer_getVertexCount(const sfVertexBuffer* vertexBuffer)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfVertexBuffer_update(sfVertexBuffer* vertexBuffer, const sfVertex* vertices, unsigned int vertexCount, unsigned int offset)
+bool sfVertexBuffer_update(sfVertexBuffer* vertexBuffer, const sfVertex* vertices, unsigned int vertexCount, unsigned int offset)
 {
     // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
-    CSFML_CALL_RETURN(vertexBuffer, update(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount, offset), sfFalse);
+    CSFML_CALL_RETURN(vertexBuffer, update(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount, offset), false);
 }
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfVertexBuffer_updateFromVertexBuffer(sfVertexBuffer* vertexBuffer, const sfVertexBuffer* other)
+bool sfVertexBuffer_updateFromVertexBuffer(sfVertexBuffer* vertexBuffer, const sfVertexBuffer* other)
 {
-    CSFML_CALL_RETURN(vertexBuffer, update(other->This), sfFalse);
+    CSFML_CALL_RETURN(vertexBuffer, update(other->This), false);
 }
 
 
@@ -143,7 +143,7 @@ void sfVertexBuffer_bind(const sfVertexBuffer* vertexBuffer)
 
 
 ////////////////////////////////////////////////////////////
-sfBool sfVertexBuffer_isAvailable()
+bool sfVertexBuffer_isAvailable()
 {
-    return sf::VertexBuffer::isAvailable() ? sfTrue : sfFalse;
+    return sf::VertexBuffer::isAvailable();
 }

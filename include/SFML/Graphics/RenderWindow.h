@@ -52,7 +52,7 @@
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, sfUint32 style, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new render window (with a UTF-32 title)
@@ -63,7 +63,7 @@ CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfUint32* title, sfUint32 style, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a render window from an existing control
@@ -96,7 +96,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_close(sfRenderWindow* renderWindow);
 /// \param renderWindow Render window object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API bool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the creation settings of a render window
@@ -114,10 +114,10 @@ CSFML_GRAPHICS_API sfContextSettings sfRenderWindow_getSettings(const sfRenderWi
 /// \param renderWindow Render window object
 /// \param event        Event to fill, if any
 ///
-/// \return sfTrue if an event was returned, sfFalse if event queue was empty
+/// \return true if an event was returned, false if event queue was empty
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event);
+CSFML_GRAPHICS_API bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Wait for an event and return it
@@ -125,10 +125,10 @@ CSFML_GRAPHICS_API sfBool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow,
 /// \param renderWindow Render window object
 /// \param event        Event to fill
 ///
-/// \return sfFalse if an error occured
+/// \return false if an error occured
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event);
+CSFML_GRAPHICS_API bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a render window
@@ -166,10 +166,10 @@ CSFML_GRAPHICS_API sfVector2u sfRenderWindow_getSize(const sfRenderWindow* rende
 ///
 /// \param renderWindow Render window object
 ///
-/// \return sfTrue if the render window use sRGB encoding, sfFalse otherwise
+/// \return true if the render window use sRGB encoding, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_isSrgb(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API bool sfRenderWindow_isSrgb(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the size of the rendering region of a render window
@@ -196,7 +196,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, co
 /// \param title        New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const sfUint32* title);
+CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const uint32_t* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a render window's icon
@@ -207,34 +207,34 @@ CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWin
 /// \param pixels       Pointer to the pixels in memory, format must be RGBA 32 bits
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const sfUint8* pixels);
+CSFML_GRAPHICS_API void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const uint8_t* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide a render window
 ///
 /// \param renderWindow Render window object
-/// \param visible      sfTrue to show the window, sfFalse to hide it
+/// \param visible      true to show the window, false to hide it
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, sfBool visible);
+CSFML_GRAPHICS_API void sfRenderWindow_setVisible(sfRenderWindow* renderWindow, bool visible);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable / disable vertical synchronization on a render window
 ///
 /// \param renderWindow Render window object
-/// \param enabled      sfTrue to enable v-sync, sfFalse to deactivate
+/// \param enabled      true to enable v-sync, false to deactivate
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, sfBool enabled);
+CSFML_GRAPHICS_API void sfRenderWindow_setVerticalSyncEnabled(sfRenderWindow* renderWindow, bool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide the mouse cursor on a render window
 ///
 /// \param renderWindow Render window object
-/// \param show         sfTrue to show, sfFalse to hide
+/// \param show         true to show, false to hide
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, sfBool show);
+CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* renderWindow, bool show);
 
 ////////////////////////////////////////////////////////////
 /// \brief Grab or release the mouse cursor
@@ -246,10 +246,10 @@ CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* ren
 /// won't have any effect (fullscreen windows always grab the
 /// cursor).
 ///
-/// \param grabbed sfTrue to enable, sfFalse to disable
+/// \param grabbed true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, sfBool grabbed);
+CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, bool grabbed);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the displayed cursor to a native system cursor
@@ -276,10 +276,10 @@ CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursor(sfRenderWindow* window, co
 /// Automatic key-repeat is enabled by default
 ///
 /// \param renderWindow Render window object
-/// \param enabled      sfTrue to enable, sfFalse to disable
+/// \param enabled      true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* renderWindow, sfBool enabled);
+CSFML_GRAPHICS_API void sfRenderWindow_setKeyRepeatEnabled(sfRenderWindow* renderWindow, bool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Limit the framerate to a maximum fixed frequency for a render window
@@ -303,12 +303,12 @@ CSFML_GRAPHICS_API void sfRenderWindow_setJoystickThreshold(sfRenderWindow* rend
 /// \brief Activate or deactivate a render window as the current target for rendering
 ///
 /// \param renderWindow Render window object
-/// \param active       sfTrue to activate, sfFalse to deactivate
+/// \param active       true to activate, false to deactivate
 ///
 /// \return True if operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_setActive(sfRenderWindow* renderWindow, sfBool active);
+CSFML_GRAPHICS_API bool sfRenderWindow_setActive(sfRenderWindow* renderWindow, bool active);
 
 ///////////////////////////////////////////////////////////
 /// \brief Request the current render window to be made the active
@@ -334,7 +334,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_requestFocus(sfRenderWindow* renderWindow
 /// \return True if window has focus, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfBool sfRenderWindow_hasFocus(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API bool sfRenderWindow_hasFocus(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Display a render window on screen

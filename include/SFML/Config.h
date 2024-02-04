@@ -25,6 +25,13 @@
 #ifndef SFML_CONFIG_H
 #define SFML_CONFIG_H
 
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+
+#include <stdint.h>
+#include <stdbool.h>
+
 
 ////////////////////////////////////////////////////////////
 // Define the CSFML version
@@ -134,43 +141,5 @@
     #define CSFML_DEPRECATED
 
 #endif
-
-////////////////////////////////////////////////////////////
-// Define a portable boolean type
-////////////////////////////////////////////////////////////
-typedef int sfBool;
-#define sfFalse 0
-#define sfTrue  1
-
-
-////////////////////////////////////////////////////////////
-// Define portable fixed-size types
-////////////////////////////////////////////////////////////
-
-// All "common" platforms use the same size for char, short and int
-// (basically there are 3 types for 3 sizes, so no other match is possible),
-// we can use them without doing any kind of check
-
-// 8 bits integer types
-typedef signed   char sfInt8;
-typedef unsigned char sfUint8;
-
-// 16 bits integer types
-typedef signed   short sfInt16;
-typedef unsigned short sfUint16;
-
-// 32 bits integer types
-typedef signed   int sfInt32;
-typedef unsigned int sfUint32;
-
-// 64 bits integer types
-#if defined(_MSC_VER)
-    typedef signed   __int64 sfInt64;
-    typedef unsigned __int64 sfUint64;
-#else
-    typedef signed   long long sfInt64;
-    typedef unsigned long long sfUint64;
-#endif
-
 
 #endif // SFML_CONFIG_H

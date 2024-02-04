@@ -235,7 +235,7 @@ CSFML_GRAPHICS_API sfTransform sfConvexShape_getInverseTransform(const sfConvexS
 /// \param resetRect Should the texture rect be reset to the size of the new texture?
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, sfBool resetRect);
+CSFML_GRAPHICS_API void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bool resetRect);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the sub-rectangle of the texture that a convex shape will display
