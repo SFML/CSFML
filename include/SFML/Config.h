@@ -29,8 +29,8 @@
 ////////////////////////////////////////////////////////////
 // Define the CSFML version
 ////////////////////////////////////////////////////////////
-#define CSFML_VERSION_MAJOR 2
-#define CSFML_VERSION_MINOR 6
+#define CSFML_VERSION_MAJOR 3
+#define CSFML_VERSION_MINOR 0
 #define CSFML_VERSION_PATCH 0
 
 
