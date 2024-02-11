@@ -55,7 +55,7 @@ CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
 ////////////////////////////////////////////////////////////
 /// \brief Check whether a given OpenGL extension is available.
 ///
-/// \param Name of the extension to check for
+/// \param name Name of the extension to check for
 ///
 /// \return True if available, false if unavailable
 ///
@@ -85,6 +85,8 @@ CSFML_WINDOW_API GlFunctionPointer sfContext_getFunction(const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the settings of the context.
+///
+/// \param context Context object
 ///
 /// Note that these settings may be different than the ones passed to the
 /// constructor; they are indeed adjusted if the original settings are not

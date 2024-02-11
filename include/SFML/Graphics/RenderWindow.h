@@ -479,8 +479,8 @@ CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWi
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by a vertex buffer.
 ///
-/// \param renderWindow render window object
-/// \param vertexBuffer Vertex buffer object to draw
+/// \param renderWindow Render window object
+/// \param object       Vertex buffer object to draw
 /// \param firstVertex  Index of the first vertex to render
 /// \param vertexCount  Number of vertices to render
 /// \param states       Render states to use for drawing

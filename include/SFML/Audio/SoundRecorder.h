@@ -135,11 +135,11 @@ CSFML_AUDIO_API sfBool sfSoundRecorder_isAvailable(void);
 CSFML_AUDIO_API void sfSoundRecorder_setProcessingInterval(sfSoundRecorder* soundRecorder, sfTime interval);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get a list of the names of all availabe audio capture devices
+/// \brief Get a list of the names of all available audio capture devices
 ///
 /// This function returns an array of strings (null terminated),
-/// containing the names of all availabe audio capture devices.
-/// If no devices are available then NULL is returned.
+/// containing the names of all available audio capture devices.
+/// If no devices are available, then NULL is returned.
 ///
 /// \param count Pointer to a variable that will be filled with the number of modes in the array
 ///

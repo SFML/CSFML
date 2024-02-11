@@ -237,7 +237,7 @@ CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBuffer(sfRenderTexture* render
 /// \brief Draw primitives defined by a vertex buffer.
 ///
 /// \param renderTexture render texture object
-/// \param vertexBuffer  Vertex buffer object to draw
+/// \param object        Vertex buffer object to draw
 /// \param firstVertex   Index of the first vertex to render
 /// \param vertexCount   Number of vertices to render
 /// \param states        Render states to use for drawing
