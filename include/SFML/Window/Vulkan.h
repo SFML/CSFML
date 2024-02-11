@@ -26,6 +26,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Export.h>
+#include <stddef.h>
 
 
 typedef struct VkInstance_T* VkInstance;
@@ -76,7 +77,9 @@ CSFML_WINDOW_API sfVulkanFunctionPointer sfVulkan_getFunction(const char* name);
 ////////////////////////////////////////////////////////////
 /// \brief Get Vulkan instance extensions required for graphics
 ///
+/// \param count Pointer to a variable that will be filled with the number of modes in the array
+///
 /// \return Vulkan instance extensions required for graphics
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API const char* const* sfVulkan_getGraphicsRequiredInstanceExtensions(void);
+CSFML_WINDOW_API const char* const* sfVulkan_getGraphicsRequiredInstanceExtensions(size_t* count);
