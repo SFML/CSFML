@@ -77,7 +77,7 @@ CSFML_WINDOW_API sfVulkanFunctionPointer sfVulkan_getFunction(const char* name);
 ////////////////////////////////////////////////////////////
 /// \brief Get Vulkan instance extensions required for graphics
 ///
-/// \param count Pointer to a variable that will be filled with the number of modes in the array
+/// \param count Pointer to a variable that will be filled with the number of instance extensions in the array
 ///
 /// \return Vulkan instance extensions required for graphics
 ///
