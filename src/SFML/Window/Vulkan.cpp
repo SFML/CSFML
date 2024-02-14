@@ -48,7 +48,12 @@ sfVulkanFunctionPointer sfVulkan_getFunction(const char* name)
 
 
 ////////////////////////////////////////////////////////////
-const char* const* sfVulkan_getGraphicsRequiredInstanceExtensions()
+const char* const* sfVulkan_getGraphicsRequiredInstanceExtensions(size_t* count)
 {
-    return &sf::Vulkan::getGraphicsRequiredInstanceExtensions()[0];
+    static std::vector<const char*> extensions = sf::Vulkan::getGraphicsRequiredInstanceExtensions();
+
+    if (count)
+        *count = extensions.size();
+
+    return !extensions.empty() ? &extensions[0] : NULL;
 }
