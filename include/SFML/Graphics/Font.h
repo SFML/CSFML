@@ -100,6 +100,25 @@ CSFML_GRAPHICS_API void sfFont_destroy(sfFont* font);
 CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(const sfFont* font, sfUint32 codePoint, unsigned int characterSize, sfBool bold, float outlineThickness);
 
 ////////////////////////////////////////////////////////////
+/// \brief Determine if this font has a glyph representing the requested code point
+///
+/// Most fonts only include a very limited selection of glyphs from
+/// specific Unicode subsets, like Latin, Cyrillic, or Asian characters.
+///
+/// While code points without representation will return a font specific
+/// default character, it might be useful to verify whether specific
+/// code points are included to determine whether a font is suited
+/// to display text in a specific language.
+///
+/// \param font      Source font
+/// \param codePoint Unicode code point to check
+///
+/// \return sfTrue if the codepoint has a glyph representation, sfFalse otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfBool sfFont_hasGlyph(const sfFont* font, sfUint32 codePoint);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the kerning value corresponding to a given pair of characters in a font
 ///
 /// \param font          Source font
