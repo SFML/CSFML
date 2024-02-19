@@ -65,7 +65,7 @@ const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count)
     if (count)
         *count = modes.size();
 
-    return !modes.empty() ? &modes[0] : nullptr;
+    return !modes.empty() ? modes.data() : nullptr;
 }
 
 

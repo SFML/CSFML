@@ -99,7 +99,7 @@ const char** sfSoundRecorder_getAvailableDevices(size_t* count)
     if (count)
         *count = cstringDevices.size();
 
-    return !cstringDevices.empty() ? &cstringDevices[0] : nullptr;
+    return !cstringDevices.empty() ? cstringDevices.data() : nullptr;
 }
 
 
