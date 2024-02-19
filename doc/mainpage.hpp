@@ -14,7 +14,7 @@
 ///
 /// #include <SFML/Audio.h>
 /// #include <SFML/Graphics.h>
-/// 
+///
 /// int main()
 /// {
 ///     sfVideoMode mode = {800, 600, 32};
@@ -37,7 +37,7 @@
 ///         return EXIT_FAILURE;
 ///     sprite = sfSprite_create();
 ///     sfSprite_setTexture(sprite, texture, true);
-/// 
+///
 ///     /* Create a graphical text to display */
 ///     font = sfFont_createFromFile("arial.ttf");
 ///     if (!font)
@@ -46,7 +46,7 @@
 ///     sfText_setString(text, "Hello SFML");
 ///     sfText_setFont(text, font);
 ///     sfText_setCharacterSize(text, 50);
-/// 
+///
 ///     /* Load a music to play */
 ///     music = sfMusic_createFromFile("nice_music.ogg");
 ///     if (!music)
@@ -54,7 +54,7 @@
 ///
 ///     /* Play the music */
 ///     sfMusic_play(music);
-/// 
+///
 ///     /* Start the game loop */
 ///     while (sfRenderWindow_isOpen(window))
 ///     {
@@ -65,20 +65,20 @@
 ///             if (event.type == sfEvtClosed)
 ///                 sfRenderWindow_close(window);
 ///         }
-/// 
+///
 ///         /* Clear the screen */
 ///         sfRenderWindow_clear(window, sfBlack);
-/// 
+///
 ///         /* Draw the sprite */
 ///         sfRenderWindow_drawSprite(window, sprite, NULL);
-/// 
+///
 ///         /* Draw the text */
 ///         sfRenderWindow_drawText(window, text, NULL);
-/// 
+///
 ///         /* Update the window */
 ///         sfRenderWindow_display(window);
 ///     }
-/// 
+///
 ///     /* Cleanup resources */
 ///     sfMusic_destroy(music);
 ///     sfText_destroy(text);
@@ -86,7 +86,7 @@
 ///     sfSprite_destroy(sprite);
 ///     sfTexture_destroy(texture);
 ///     sfRenderWindow_destroy(window);
-/// 
+///
 ///     return EXIT_SUCCESS;
 /// }
 /// \endcode
