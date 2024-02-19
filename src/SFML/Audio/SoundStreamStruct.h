@@ -53,7 +53,7 @@ public :
 
 private :
 
-    virtual bool onGetData(Chunk& data)
+    bool onGetData(Chunk& data) override
     {
         sfSoundStreamChunk chunk = {nullptr, 0};
         bool ok = myGetDataCallback(&chunk, myUserData);
@@ -64,7 +64,7 @@ private :
         return ok;
     }
 
-    virtual void onSeek(sf::Time timeOffset)
+    void onSeek(sf::Time timeOffset) override
     {
         if (mySeekCallback)
         {

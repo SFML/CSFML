@@ -58,7 +58,7 @@ public :
 
 private :
 
-    virtual bool onStart()
+    bool onStart() override
     {
         if (myStartCallback)
             return myStartCallback(myUserData);
@@ -66,7 +66,7 @@ private :
             return true;
     }
 
-    virtual bool onProcessSamples(const sf::Int16* samples, std::size_t sampleCount)
+    bool onProcessSamples(const sf::Int16* samples, std::size_t sampleCount) override
     {
         if (myProcessCallback)
             return myProcessCallback(samples, sampleCount, myUserData);
@@ -74,7 +74,7 @@ private :
             return true;
     }
 
-    virtual void onStop()
+    void onStop() override
     {
         if (myStopCallback)
             myStopCallback(myUserData);
