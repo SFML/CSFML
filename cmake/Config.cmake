@@ -1,18 +1,6 @@
 # detect the OS
 if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     set(SFML_OS_WINDOWS 1)
-
-    # detect the architecture (note: this test won't work for cross-compilation)
-    include(CheckTypeSize)
-    check_type_size(void* SIZEOF_VOID_PTR)
-    if("${SIZEOF_VOID_PTR}" STREQUAL "4")
-        set(ARCH_32BITS 1)
-    elseif("${SIZEOF_VOID_PTR}" STREQUAL "8")
-        set(ARCH_64BITS 1)
-    else()
-        message(FATAL_ERROR "Unsupported architecture")
-        return()
-    endif()
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set(SFML_OS_LINUX 1)
 elseif(${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
