@@ -51,12 +51,12 @@ public :
     {
     }
 
-    virtual std::size_t getPointCount() const
+    std::size_t getPointCount() const override
     {
         return myGetPointCountCallback(myUserData);
     }
 
-    virtual sf::Vector2f getPoint(std::size_t index) const
+    sf::Vector2f getPoint(std::size_t index) const override
     {
         sfVector2f point = myGetPointCallback(index, myUserData);
         return sf::Vector2f(point.x, point.y);

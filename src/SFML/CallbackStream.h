@@ -68,7 +68,7 @@ public:
     /// \return The number of bytes actually read
     ///
     ////////////////////////////////////////////////////////////
-    virtual sf::Int64 read(void* data, sf::Int64 size)
+    sf::Int64 read(void* data, sf::Int64 size) override
     {
         return myStream.read ? myStream.read(data, size, myStream.userData) : -1;
     }
@@ -81,7 +81,7 @@ public:
     /// \return The position actually seeked to, or -1 on error
     ///
     ////////////////////////////////////////////////////////////
-    virtual sf::Int64 seek(sf::Int64 position)
+    sf::Int64 seek(sf::Int64 position) override
     {
         return myStream.seek ? myStream.seek(position, myStream.userData) : -1;
     }
@@ -92,7 +92,7 @@ public:
     /// \return The current position, or -1 on error.
     ///
     ////////////////////////////////////////////////////////////
-    virtual sf::Int64 tell()
+    sf::Int64 tell() override
     {
         return myStream.tell ? myStream.tell(myStream.userData) : -1;
     }
@@ -103,7 +103,7 @@ public:
     /// \return The total number of bytes available in the stream, or -1 on error
     ///
     ////////////////////////////////////////////////////////////
-    virtual sf::Int64 getSize()
+    sf::Int64 getSize() override
     {
         return myStream.getSize ? myStream.getSize(myStream.userData) : -1;
     }
