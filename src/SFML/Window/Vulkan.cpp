@@ -55,5 +55,5 @@ const char* const* sfVulkan_getGraphicsRequiredInstanceExtensions(size_t* count)
     if (count)
         *count = extensions.size();
 
-    return !extensions.empty() ? &extensions[0] : nullptr;
+    return !extensions.empty() ? extensions.data() : nullptr;
 }
