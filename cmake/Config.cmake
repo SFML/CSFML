@@ -50,7 +50,7 @@ elseif(CMAKE_COMPILER_IS_GNUCXX)
     execute_process(COMMAND "${CMAKE_CXX_COMPILER}" "--version" OUTPUT_VARIABLE GCC_COMPILER_VERSION)
     string(REGEX MATCHALL ".*(tdm[64]*-[1-9]).*" SFML_COMPILER_GCC_TDM "${GCC_COMPILER_VERSION}")
 else()
-    message(FATAL_ERROR "Unsupported compiler")
+    message(WARNING "Unsupported compiler")
     return()
 endif()
 
