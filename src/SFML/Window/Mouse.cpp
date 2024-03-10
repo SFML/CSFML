@@ -76,6 +76,7 @@ sfVector2i sfMouse_getPositionWindowBase(const sfWindowBase* relativeTo)
     return position;
 }
 
+
 ////////////////////////////////////////////////////////////
 void sfMouse_setPositionWindowBase(sfVector2i position, const sfWindowBase* relativeTo)
 {
