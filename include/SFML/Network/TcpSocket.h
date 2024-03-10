@@ -95,7 +95,7 @@ CSFML_NETWORK_API unsigned short sfTcpSocket_getLocalPort(const sfTcpSocket* soc
 ////////////////////////////////////////////////////////////
 /// \brief Get the address of the connected peer of a TCP socket
 ///
-/// It the socket is not connected, this function returns
+/// If the socket is not connected, this function returns
 /// sfIpAddress_None.
 ///
 /// \param socket TCP socket object
