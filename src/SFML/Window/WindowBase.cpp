@@ -29,6 +29,7 @@
 #include <SFML/Window/WindowBaseStruct.h>
 #include <SFML/Internal.h>
 #include <SFML/Window/CursorStruct.h>
+#include <SFML/Window/VideoMode.hpp>
 #include <SFML/ConvertEvent.h>
 
 
@@ -36,7 +37,7 @@
 sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t style)
 {
     // Convert video mode
-    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
 
     // Create the window
     sfWindowBase* windowBase = new sfWindowBase;
@@ -47,14 +48,14 @@ sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t 
 
 
 ////////////////////////////////////////////////////////////
-sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style)
+sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style)
 {
     // Convert video mode
-    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
 
     // Create the window
     sfWindowBase* windowBase = new sfWindowBase;
-    windowBase->This.create(videoMode, title, style);
+    windowBase->This.create(videoMode, reinterpret_cast<const char32_t*>(title), style);
 
     return windowBase;
 }
@@ -184,16 +185,16 @@ void sfWindowBase_setTitle(sfWindowBase* windowBase, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const uint32_t* title)
+void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfChar32* title)
 {
-    CSFML_CALL(windowBase, setTitle(title));
+    CSFML_CALL(windowBase, setTitle(reinterpret_cast<const char32_t*>(title)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setIcon(sfWindowBase* windowBase, unsigned int width, unsigned int height, const uint8_t* pixels)
 {
-    CSFML_CALL(windowBase, setIcon(width, height, pixels));
+    CSFML_CALL(windowBase, setIcon({ width, height }, pixels));
 }
 
 
@@ -256,11 +257,11 @@ bool sfWindowBase_hasFocus(const sfWindowBase* windowBase)
 
 
 ////////////////////////////////////////////////////////////
-sfWindowHandle sfWindowBase_getSystemHandle(const sfWindowBase* windowBase)
+sfWindowHandle sfWindowBase_getNativeHandle(const sfWindowBase* windowBase)
 {
     CSFML_CHECK_RETURN(windowBase, 0);
 
-    return static_cast<sfWindowHandle>(windowBase->This.getSystemHandle());
+    return static_cast<sfWindowHandle>(windowBase->This.getNativeHandle());
 }
 
 ////////////////////////////////////////////////////////////

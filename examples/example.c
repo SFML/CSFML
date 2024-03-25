@@ -7,7 +7,7 @@ int main(void)
 {
     // Create the main window
     const sfVideoMode mode = {800, 600, 32};
-    sfRenderWindow* window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, NULL);
+    sfRenderWindow* window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, sfWindowed, NULL);
     if (!window)
         return EXIT_FAILURE;
 
@@ -18,8 +18,7 @@ int main(void)
         sfRenderWindow_destroy(window);
         return EXIT_FAILURE;
     }
-    sfSprite* sprite = sfSprite_create();
-    sfSprite_setTexture(sprite, texture, true);
+    sfSprite* sprite = sfSprite_create(texture);
     const sfVector2f spritePosition = {200, 200};
     sfSprite_setPosition(sprite, spritePosition);
 
@@ -32,9 +31,8 @@ int main(void)
         sfRenderWindow_destroy(window);
         return EXIT_FAILURE;
     }
-    sfText* text = sfText_create();
+    sfText* text = sfText_create(font);
     sfText_setString(text, "Hello, SFML!");
-    sfText_setFont(text, font);
     sfText_setCharacterSize(text, 50);
 
     // Load a music to play

@@ -61,28 +61,28 @@ void sfCircleShape_destroy(sfCircleShape* shape)
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setPosition(sfCircleShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, setPosition(position.x, position.y));
+    CSFML_CALL(shape, setPosition({ position.x, position.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setRotation(sfCircleShape* shape, float angle)
 {
-    CSFML_CALL(shape, setRotation(angle));
+    CSFML_CALL(shape, setRotation(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setScale(sfCircleShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, setScale(scale.x, scale.y));
+    CSFML_CALL(shape, setScale({ scale.x, scale.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setOrigin(sfCircleShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, setOrigin(origin.x, origin.y));
+    CSFML_CALL(shape, setOrigin({ origin.x, origin.y }));
 }
 
 
@@ -103,7 +103,7 @@ sfVector2f sfCircleShape_getPosition(const sfCircleShape* shape)
 ////////////////////////////////////////////////////////////
 float sfCircleShape_getRotation(const sfCircleShape* shape)
 {
-    CSFML_CALL_RETURN(shape, getRotation(), 0.f);
+    CSFML_CALL_RETURN(shape, getRotation().asDegrees(), 0.f);
 }
 
 
@@ -138,21 +138,21 @@ sfVector2f sfCircleShape_getOrigin(const sfCircleShape* shape)
 ////////////////////////////////////////////////////////////
 void sfCircleShape_move(sfCircleShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, move(offset.x, offset.y));
+    CSFML_CALL(shape, move({ offset.x, offset.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_rotate(sfCircleShape* shape, float angle)
 {
-    CSFML_CALL(shape, rotate(angle));
+    CSFML_CALL(shape, rotate(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_scale(sfCircleShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, scale(factors.x, factors.y));
+    CSFML_CALL(shape, scale({ factors.x, factors.y }));
 }
 
 
@@ -187,7 +187,7 @@ void sfCircleShape_setTexture(sfCircleShape* shape, const sfTexture* texture, bo
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setTextureRect(sfCircleShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect(rect.left, rect.top, rect.width, rect.height)));
+    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.left, rect.top }, { rect.width, rect.height })));
 }
 
 

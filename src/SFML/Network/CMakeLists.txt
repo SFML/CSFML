@@ -35,4 +35,4 @@ set(SRC
 # define the csfml-network target
 csfml_add_library(csfml-network
                   SOURCES ${SRC}
-                  DEPENDS sfml-network)
+                  DEPENDS SFML::Network)

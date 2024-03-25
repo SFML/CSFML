@@ -34,10 +34,10 @@
 
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, const sfContextSettings* settings)
+sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
 {
     // Convert video mode
-    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
 
     // Convert context settings
     sf::ContextSettings params;
@@ -48,16 +48,16 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, c
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.create(videoMode, title, style, params);
+    window->This.create(videoMode, title, style, static_cast<sf::State>(state), params);
 
     return window;
 }
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style, const sfContextSettings* settings)
+sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
 {
     // Convert video mode
-    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
 
     // Convert context settings
     sf::ContextSettings params;
@@ -68,7 +68,7 @@ sfWindow* sfWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.create(videoMode, title, style, params);
+    window->This.create(videoMode, reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state), params);
 
     return window;
 }
@@ -217,16 +217,16 @@ void sfWindow_setTitle(sfWindow* window, const char* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setUnicodeTitle(sfWindow* window, const uint32_t* title)
+void sfWindow_setUnicodeTitle(sfWindow* window, const sfChar32* title)
 {
-    CSFML_CALL(window, setTitle(title));
+    CSFML_CALL(window, setTitle(reinterpret_cast<const char32_t*>(title)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const uint8_t* pixels)
 {
-    CSFML_CALL(window, setIcon(width, height, pixels));
+    CSFML_CALL(window, setIcon({ width, height }, pixels));
 }
 
 
@@ -316,9 +316,9 @@ void sfWindow_setJoystickThreshold(sfWindow* window, float threshold)
 
 
 ////////////////////////////////////////////////////////////
-sfWindowHandle sfWindow_getSystemHandle(const sfWindow* window)
+sfWindowHandle sfWindow_getNativeHandle(const sfWindow* window)
 {
     CSFML_CHECK_RETURN(window, 0);
 
-    return static_cast<sfWindowHandle>(window->This.getSystemHandle());
+    return static_cast<sfWindowHandle>(window->This.getNativeHandle());
 }

@@ -66,7 +66,7 @@ private :
             return true;
     }
 
-    bool onProcessSamples(const sf::Int16* samples, std::size_t sampleCount) override
+    bool onProcessSamples(const std::int16_t* samples, std::size_t sampleCount) override
     {
         if (myProcessCallback)
             return myProcessCallback(samples, sampleCount, myUserData);

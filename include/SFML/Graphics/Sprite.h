@@ -39,11 +39,13 @@
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sprite
+/// 
+/// \param texture Source texture
 ///
 /// \return A new sfSprite object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfSprite* sfSprite_create(void);
+CSFML_GRAPHICS_API sfSprite* sfSprite_create(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing sprite

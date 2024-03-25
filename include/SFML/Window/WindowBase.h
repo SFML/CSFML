@@ -47,9 +47,20 @@ typedef enum
     sfTitlebar     = 1 << 0, ///< Title bar + fixed border
     sfResize       = 1 << 1, ///< Titlebar + resizable border + maximize button
     sfClose        = 1 << 2, ///< Titlebar + close button
-    sfFullscreen   = 1 << 3, ///< Fullscreen mode (this flag and all others are mutually exclusive)
+
     sfDefaultStyle = sfTitlebar | sfResize | sfClose ///< Default window style
 } sfWindowStyle;
+
+
+////////////////////////////////////////////////////////////
+/// \brief Enumeration of the window states
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfWindowed,  //!< Floating window
+    sfFullscreen //!< Fullscreen window
+} sfWindowState;
 
 
 ////////////////////////////////////////////////////////////
@@ -86,7 +97,7 @@ CSFML_WINDOW_API sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char*
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style);
+CSFML_WINDOW_API sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control
@@ -231,7 +242,7 @@ CSFML_WINDOW_API void sfWindowBase_setTitle(sfWindowBase* windowBase, const char
 /// \param title      New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const uint32_t* title);
+CSFML_WINDOW_API void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfChar32* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a window's icon
@@ -366,7 +377,7 @@ CSFML_WINDOW_API bool sfWindowBase_hasFocus(const sfWindowBase* windowBase);
 /// \return System handle of the window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindowHandle sfWindowBase_getSystemHandle(const sfWindowBase* windowBase);
+CSFML_WINDOW_API sfWindowHandle sfWindowBase_getNativeHandle(const sfWindowBase* windowBase);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a Vulkan rendering surface

@@ -47,7 +47,7 @@ float sfListener_getGlobalVolume(void)
 ////////////////////////////////////////////////////////////
 void sfListener_setPosition(sfVector3f position)
 {
-    sf::Listener::setPosition(position.x, position.y, position.z);
+    sf::Listener::setPosition({ position.x, position.y, position.z });
 }
 
 
@@ -63,7 +63,7 @@ sfVector3f sfListener_getPosition()
 ////////////////////////////////////////////////////////////
 void sfListener_setDirection(sfVector3f direction)
 {
-    sf::Listener::setDirection(direction.x, direction.y, direction.z);
+    sf::Listener::setDirection({ direction.x, direction.y, direction.z });
 }
 
 
@@ -79,7 +79,7 @@ sfVector3f sfListener_getDirection()
 ////////////////////////////////////////////////////////////
 void sfListener_setUpVector(sfVector3f upVector)
 {
-    sf::Listener::setUpVector(upVector.x, upVector.y, upVector.z);
+    sf::Listener::setUpVector({ upVector.x, upVector.y, upVector.z });
 }
 
 

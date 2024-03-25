@@ -224,9 +224,11 @@ CSFML_GRAPHICS_API void sfImage_createMaskFromColor(sfImage* image, sfColor colo
 /// \param destY      Y coordinate of the destination position
 /// \param sourceRect Sub-rectangle of the source image to copy
 /// \param applyAlpha Should the copy take in account the source transparency?
+/// 
+/// \return True if the operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, bool applyAlpha);
+CSFML_GRAPHICS_API bool sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, bool applyAlpha);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the color of a pixel in an image

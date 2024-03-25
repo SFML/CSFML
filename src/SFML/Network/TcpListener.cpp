@@ -71,8 +71,14 @@ sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port
 {
     CSFML_CHECK_RETURN(listener, sfSocketError);
 
-    sf::IpAddress sfmlAddress(address.address);
-    return static_cast<sfSocketStatus>(listener->This.listen(port, sfmlAddress));
+    std::optional<sf::IpAddress> sfmlAddress = sf::IpAddress::resolve(address.address);
+
+    if (!sfmlAddress)
+    {
+        return sfSocketError;
+    }
+
+    return static_cast<sfSocketStatus>(listener->This.listen(port, *sfmlAddress));
 }
 
 

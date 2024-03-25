@@ -45,12 +45,12 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* 
             if (!vertexShaderFilename)
             {
                 // fragment shader only
-                success = shader->This.loadFromFile(fragmentShaderFilename, sf::Shader::Fragment);
+                success = shader->This.loadFromFile(fragmentShaderFilename, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShaderFilename)
             {
                 // vertex shader only
-                success = shader->This.loadFromFile(vertexShaderFilename, sf::Shader::Vertex);
+                success = shader->This.loadFromFile(vertexShaderFilename, sf::Shader::Type::Vertex);
             }
             else
             {
@@ -63,7 +63,7 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* 
             if (!vertexShaderFilename && !fragmentShaderFilename)
             {
                 // geometry shader only
-                success = shader->This.loadFromFile(geometryShaderFilename, sf::Shader::Geometry);
+                success = shader->This.loadFromFile(geometryShaderFilename, sf::Shader::Type::Geometry);
             }
             else
             {
@@ -95,12 +95,12 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
             if (!vertexShader)
             {
                 // fragment shader only
-                success = shader->This.loadFromMemory(fragmentShader, sf::Shader::Fragment);
+                success = shader->This.loadFromMemory(fragmentShader, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShader)
             {
                 // vertex shader only
-                success = shader->This.loadFromMemory(vertexShader, sf::Shader::Vertex);
+                success = shader->This.loadFromMemory(vertexShader, sf::Shader::Type::Vertex);
             }
             else
             {
@@ -113,7 +113,7 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
             if (!vertexShader && !fragmentShader)
             {
                 // geometry shader only
-                success = shader->This.loadFromMemory(geometryShader, sf::Shader::Geometry);
+                success = shader->This.loadFromMemory(geometryShader, sf::Shader::Type::Geometry);
             }
             else
             {
@@ -146,13 +146,13 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputSt
             {
                 // fragment shader only
                 CallbackStream stream(fragmentShaderStream);
-                success = shader->This.loadFromStream(stream, sf::Shader::Fragment);
+                success = shader->This.loadFromStream(stream, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShaderStream)
             {
                 // vertex shader only
                 CallbackStream stream(vertexShaderStream);
-                success = shader->This.loadFromStream(stream, sf::Shader::Vertex);
+                success = shader->This.loadFromStream(stream, sf::Shader::Type::Vertex);
             }
             else
             {
@@ -168,7 +168,7 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputSt
             if (!vertexShaderStream && !fragmentShaderStream)
             {
                 // geometry shader only
-                success = shader->This.loadFromStream(geometryStream, sf::Shader::Geometry);
+                success = shader->This.loadFromStream(geometryStream, sf::Shader::Type::Geometry);
             }
             else
             {
@@ -379,7 +379,7 @@ void sfShader_setMat4UniformArray(sfShader* shader, const char* name, const sfGl
 void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTexture* texture)
 {
     CSFML_CHECK(texture);
-    CSFML_CALL(shader, setParameter(name,*texture->This));
+    CSFML_CALL(shader, setUniform(name, *texture->This));
 }
 
 

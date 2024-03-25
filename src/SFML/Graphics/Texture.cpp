@@ -39,7 +39,7 @@ sfTexture* sfTexture_create(unsigned int width, unsigned int height)
 {
     sfTexture* texture = new sfTexture;
 
-    if (!texture->This->create(width, height))
+    if (!texture->This->create({ width, height }))
     {
         delete texture;
         texture = nullptr;
@@ -56,7 +56,7 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
 
     if (!texture->This->loadFromFile(filename, rect))
     {
@@ -74,7 +74,7 @@ sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* a
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
 
     texture->This->setSrgb(true);
 
@@ -94,7 +94,7 @@ sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, cons
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
 
     if (!texture->This->loadFromMemory(data, sizeInBytes, rect))
     {
@@ -112,7 +112,7 @@ sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, 
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
 
     texture->This->setSrgb(true);
 
@@ -135,7 +135,7 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
 
     CallbackStream sfmlStream(stream);
     if (!texture->This->loadFromStream(sfmlStream, rect))
@@ -156,7 +156,7 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
 
      texture->This->setSrgb(true);
 
@@ -180,7 +180,7 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
 
     if (!texture->This->loadFromImage(image->This, rect))
     {
@@ -200,7 +200,7 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect(area->left, area->top, area->width, area->height);
+        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
 
     texture->This->setSrgb(true);
 
@@ -260,7 +260,7 @@ sfImage* sfTexture_copyToImage(const sfTexture* texture)
 ////////////////////////////////////////////////////////////
 void sfTexture_updateFromPixels(sfTexture* texture, const uint8_t* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y)
 {
-    CSFML_CALL_PTR(texture, update(pixels, width, height, x, y));
+    CSFML_CALL_PTR(texture, update(pixels, { width, height }, { x, y }));
 }
 
 
@@ -270,7 +270,7 @@ void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* textur
     CSFML_CHECK(texture);
     CSFML_CHECK(texture->This);
 
-    CSFML_CALL_PTR(destination, update(*texture->This, x, y));
+    CSFML_CALL_PTR(destination, update(*texture->This, { x, y }));
 }
 
 
@@ -279,7 +279,7 @@ void sfTexture_updateFromImage(sfTexture* texture, const sfImage* image, unsigne
 {
     CSFML_CHECK(image);
 
-    CSFML_CALL_PTR(texture, update(image->This, x, y));
+    CSFML_CALL_PTR(texture, update(image->This, { x, y }));
 }
 
 
@@ -288,7 +288,7 @@ void sfTexture_updateFromWindow(sfTexture* texture, const sfWindow* window, unsi
 {
     CSFML_CHECK(window);
 
-    CSFML_CALL_PTR(texture, update(window->This, x, y));
+    CSFML_CALL_PTR(texture, update(window->This, { x, y }));
 }
 
 
@@ -297,7 +297,7 @@ void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* 
 {
     CSFML_CHECK(renderWindow);
 
-    CSFML_CALL_PTR(texture, update(renderWindow->This, x, y));
+    CSFML_CALL_PTR(texture, update(renderWindow->This, { x, y }));
 }
 
 
@@ -367,7 +367,7 @@ unsigned int sfTexture_getNativeHandle(const sfTexture* texture)
 ////////////////////////////////////////////////////////////
 void sfTexture_bind(const sfTexture* texture, sfTextureCoordinateType type)
 {
-    sf::Texture::bind(texture ? texture->This : nullptr, static_cast<sf::Texture::CoordinateType>(type));
+    sf::Texture::bind(texture ? texture->This : nullptr, static_cast<sf::CoordinateType>(type));
 }
 
 

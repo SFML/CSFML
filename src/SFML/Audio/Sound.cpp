@@ -31,9 +31,11 @@
 
 
 ////////////////////////////////////////////////////////////
-sfSound* sfSound_create(void)
+sfSound* sfSound_create(const sfSoundBuffer* buffer)
 {
-    return new sfSound;
+    CSFML_CHECK_RETURN(buffer, nullptr);
+
+    return new sfSound{ sf::Sound{ buffer->This }, buffer };
 }
 
 

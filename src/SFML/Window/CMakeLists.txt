@@ -43,4 +43,4 @@ set(SRC
 # define the csfml-window target
 csfml_add_library(csfml-window
                   SOURCES ${SRC}
-                  DEPENDS sfml-window)
+                  DEPENDS SFML::Window)
