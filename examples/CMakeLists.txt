@@ -1,5 +1,3 @@
-set(SRC example.c)
-
-add_executable(example ${SRC})
+add_executable(example example.c)
 target_link_libraries(example PRIVATE csfml-graphics csfml-audio)
-set_file_warnings(${SRC})
+set_target_warnings(example)
