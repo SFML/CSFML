@@ -22,27 +22,28 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_THREADSTRUCT_H
-#define SFML_THREADSTRUCT_H
+#ifndef SFML_CHAR32_HPP
+#define SFML_CHAR32_HPP
 
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/System/Thread.hpp>
+#include <SFML/System/String.hpp>
+#include <SFML/Config.h>
+#include <string.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfThread
+// Define utils to copy from / to sfChar32 and sf::String
 ////////////////////////////////////////////////////////////
-struct sfThread
+inline sfChar32* copyToChar32(const sf::String& str)
 {
-    sfThread(void (*function)(void*), void* userData) :
-    This(function, userData)
-    {
-    }
+    std::size_t byteCount = sizeof(sfChar32) * str.getSize();
+    sfChar32* utf32 = static_cast<sfChar32*>(malloc(byteCount + sizeof(sfChar32)));
+    memcpy(utf32, str.getData(), byteCount);
+    utf32[str.getSize()] = 0;
 
-    sf::Thread This;
-};
+    return utf32;
+}
 
-
-#endif // SFML_THREADSTRUCT_H
+#endif // SFML_CHAR32_HPP

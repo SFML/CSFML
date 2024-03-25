@@ -73,4 +73,4 @@ set(SRC
 # define the csfml-graphics target
 csfml_add_library(csfml-graphics
                   SOURCES ${SRC}
-                  DEPENDS sfml-graphics)
+                  DEPENDS SFML::Graphics)

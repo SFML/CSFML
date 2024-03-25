@@ -52,11 +52,13 @@ typedef enum
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new text
+/// 
+/// \param font Font used to draw the string
 ///
 /// \return A new sfText object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfText* sfText_create(void);
+CSFML_GRAPHICS_API sfText* sfText_create(const sfFont* font);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing text
@@ -247,7 +249,7 @@ CSFML_GRAPHICS_API void sfText_setString(sfText* text, const char* string);
 /// \param string New string
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const uint32_t* string);
+CSFML_GRAPHICS_API void sfText_setUnicodeString(sfText* text, const sfChar32* string);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the font of a text
@@ -391,13 +393,13 @@ CSFML_GRAPHICS_API const char* sfText_getString(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the string of a text (returns a unicode string)
-///
+/// 
 /// \param text Text object
 ///
 /// \return String as UTF-32
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const uint32_t* sfText_getUnicodeString(const sfText* text);
+CSFML_GRAPHICS_API const sfChar32* sfText_getUnicodeString(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the font used by a text

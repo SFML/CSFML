@@ -37,11 +37,13 @@
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound
+/// 
+/// \param soundBuffer Sound buffer containing the audio data to play with the sound
 ///
 /// \return A new sfSound object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSound* sfSound_create(void);
+CSFML_AUDIO_API sfSound* sfSound_create(const sfSoundBuffer* buffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound by copying an existing one

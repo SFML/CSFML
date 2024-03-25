@@ -41,5 +41,8 @@ cmake-build-*/
 .idea/
 .vs/
 
+# CMake User Presets
+CMakeUserPresets.json
+
 # System files
 .DS_Store

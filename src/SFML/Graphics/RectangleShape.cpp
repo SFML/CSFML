@@ -58,28 +58,28 @@ void sfRectangleShape_destroy(sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setPosition(sfRectangleShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, setPosition(position.x, position.y));
+    CSFML_CALL(shape, setPosition({ position.x, position.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setRotation(sfRectangleShape* shape, float angle)
 {
-    CSFML_CALL(shape, setRotation(angle));
+    CSFML_CALL(shape, setRotation(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setScale(sfRectangleShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, setScale(scale.x, scale.y));
+    CSFML_CALL(shape, setScale({ scale.x, scale.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setOrigin(sfRectangleShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, setOrigin(origin.x, origin.y));
+    CSFML_CALL(shape, setOrigin({ origin.x, origin.y }));
 }
 
 
@@ -100,7 +100,7 @@ sfVector2f sfRectangleShape_getPosition(const sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 float sfRectangleShape_getRotation(const sfRectangleShape* shape)
 {
-    CSFML_CALL_RETURN(shape, getRotation(), 0.f);
+    CSFML_CALL_RETURN(shape, getRotation().asDegrees(), 0.f);
 }
 
 
@@ -135,21 +135,21 @@ sfVector2f sfRectangleShape_getOrigin(const sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_move(sfRectangleShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, move(offset.x, offset.y));
+    CSFML_CALL(shape, move({ offset.x, offset.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_rotate(sfRectangleShape* shape, float angle)
 {
-    CSFML_CALL(shape, rotate(angle));
+    CSFML_CALL(shape, rotate(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_scale(sfRectangleShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, scale(factors.x, factors.y));
+    CSFML_CALL(shape, scale({ factors.x, factors.y }));
 }
 
 
@@ -184,7 +184,7 @@ void sfRectangleShape_setTexture(sfRectangleShape* shape, const sfTexture* textu
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setTextureRect(sfRectangleShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect(rect.left, rect.top, rect.width, rect.height)));
+    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.left, rect.top }, { rect.width, rect.height })));
 }
 
 

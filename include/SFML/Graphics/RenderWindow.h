@@ -52,7 +52,7 @@
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new render window (with a UTF-32 title)
@@ -63,7 +63,7 @@ CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a render window from an existing control
@@ -196,7 +196,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, co
 /// \param title        New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const uint32_t* title);
+CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const sfChar32* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a render window's icon
@@ -352,7 +352,7 @@ CSFML_GRAPHICS_API void sfRenderWindow_display(sfRenderWindow* renderWindow);
 /// \return Window handle
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfWindowHandle sfRenderWindow_getSystemHandle(const sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API sfWindowHandle sfRenderWindow_getNativeHandle(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Clear a render window with the given color

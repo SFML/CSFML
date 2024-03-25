@@ -59,28 +59,28 @@ void sfTransformable_destroy(sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 void sfTransformable_setPosition(sfTransformable* transformable, sfVector2f position)
 {
-    CSFML_CALL(transformable, setPosition(position.x, position.y));
+    CSFML_CALL(transformable, setPosition({ position.x, position.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_setRotation(sfTransformable* transformable, float angle)
 {
-    CSFML_CALL(transformable, setRotation(angle));
+    CSFML_CALL(transformable, setRotation(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_setScale(sfTransformable* transformable, sfVector2f scale)
 {
-    CSFML_CALL(transformable, setScale(scale.x, scale.y));
+    CSFML_CALL(transformable, setScale({ scale.x, scale.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_setOrigin(sfTransformable* transformable, sfVector2f origin)
 {
-    CSFML_CALL(transformable, setOrigin(origin.x, origin.y));
+    CSFML_CALL(transformable, setOrigin({ origin.x, origin.y }));
 }
 
 
@@ -101,7 +101,7 @@ sfVector2f sfTransformable_getPosition(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 float sfTransformable_getRotation(const sfTransformable* transformable)
 {
-    CSFML_CALL_RETURN(transformable, getRotation(), 0.f);
+    CSFML_CALL_RETURN(transformable, getRotation().asDegrees(), 0.f);
 }
 
 
@@ -136,21 +136,21 @@ sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 void sfTransformable_move(sfTransformable* transformable, sfVector2f offset)
 {
-    CSFML_CALL(transformable, move(offset.x, offset.y));
+    CSFML_CALL(transformable, move({ offset.x, offset.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_rotate(sfTransformable* transformable, float angle)
 {
-    CSFML_CALL(transformable, rotate(angle));
+    CSFML_CALL(transformable, rotate(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors)
 {
-    CSFML_CALL(transformable, scale(factors.x, factors.y));
+    CSFML_CALL(transformable, scale({ factors.x, factors.y }));
 }
 
 
