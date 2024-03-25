@@ -66,9 +66,7 @@ macro(csfml_add_library target)
     # build dylibs
     if(SFML_OS_MACOSX AND BUILD_SHARED_LIBS)
         # adapt install directory to allow distributing dylibs in user’s application bundle
-        set_target_properties(${target} PROPERTIES
-                              BUILD_WITH_INSTALL_RPATH 1
-                              INSTALL_NAME_DIR "@rpath")
+        set_target_properties(${target} PROPERTIES INSTALL_NAME_DIR "@rpath")
     endif()
 
     # add the install rule
