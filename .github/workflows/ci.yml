@@ -61,7 +61,10 @@ jobs:
         path: CSFML
 
     - name: Configure CSFML CMake
-      run: cmake -S CSFML -B CSFML/build -DCMAKE_INSTALL_PREFIX=CSFML/install -DBUILD_SHARED_LIBS=TRUE -DCSFML_BUILD_EXAMPLES=TRUE -DCSFML_LINK_SFML_STATICALLY=FALSE -DSFML_DIR=$GITHUB_WORKSPACE/SFML/install/lib/cmake/SFML -DCMAKE_VERBOSE_MAKEFILE=ON -DWARNINGS_AS_ERRORS=TRUE ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
+      run: cmake -S CSFML -B CSFML/build -DCMAKE_INSTALL_PREFIX=CSFML/install -DBUILD_SHARED_LIBS=TRUE -DCSFML_BUILD_EXAMPLES=TRUE -DCSFML_BUILD_TEST_SUITE=TRUE -DCSFML_LINK_SFML_STATICALLY=FALSE -DSFML_DIR=$GITHUB_WORKSPACE/SFML/install/lib/cmake/SFML -DCMAKE_VERBOSE_MAKEFILE=ON -DWARNINGS_AS_ERRORS=TRUE ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
 
     - name: Build CSFML
       run: cmake --build CSFML/build --config ${{matrix.type.name}} --target install
+
+    - name: Test
+      run: ctest --test-dir CSFML/build -C ${{matrix.type.name}} --output-on-failure
