@@ -38,9 +38,6 @@ else()
 endif()
 csfml_set_option(CSFML_LINK_SFML_STATICALLY ${LINK_STATICALLY_DEFAULT} BOOL "TRUE to link to a static version of SFML, FALSE to link dynamically")
 
-# disable the rpath stuff
-set(CMAKE_SKIP_BUILD_RPATH TRUE)
-
 # define an option for choosing between static and dynamic C runtime (Windows only)
 if(SFML_OS_WINDOWS)
     set(STATIC_STD_LIBS FALSE CACHE BOOL "TRUE to statically link to the standard libraries, FALSE to use them as DLLs")
@@ -96,4 +93,11 @@ install(FILES readme.md DESTINATION ${INSTALL_MISC_DIR})
 csfml_set_option(CSFML_BUILD_EXAMPLES FALSE BOOL "TRUE to build the CSFML examples, FALSE to ignore them")
 if(CSFML_BUILD_EXAMPLES)
     add_subdirectory(examples)
+endif()
+
+# add an option for building the tests
+csfml_set_option(CSFML_BUILD_TEST_SUITE FALSE BOOL "TRUE to build the CSFML test suite, FALSE to ignore it")
+if(CSFML_BUILD_TEST_SUITE)
+    enable_testing()
+    add_subdirectory(test)
 endif()
