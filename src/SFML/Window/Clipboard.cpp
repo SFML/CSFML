@@ -25,9 +25,11 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <SFML/System/String.hpp>
 #include <SFML/Window/Clipboard.h>
 #include <SFML/Window/Clipboard.hpp>
 #include <SFML/Internal.h>
+#include <string>
 
 
 namespace
@@ -46,10 +48,10 @@ const char* sfClipboard_getString()
 
 
 ////////////////////////////////////////////////////////////
-const uint32_t* sfClipboard_getUnicodeString()
+const sfChar32* sfClipboard_getUnicodeString()
 {
     ClipboardString = sf::Clipboard::getString();
-    return ClipboardString.getData();
+    return reinterpret_cast<const sfChar32*>(ClipboardString.getData());
 }
 
 
@@ -61,7 +63,7 @@ void sfClipboard_setString(const char* text)
 
 
 ////////////////////////////////////////////////////////////
-void sfClipboard_setUnicodeString(const uint32_t* text)
+void sfClipboard_setUnicodeString(const sfChar32* text)
 {
-    sf::Clipboard::setString(text);
+    sf::Clipboard::setString(reinterpret_cast<const char32_t*>(text));
 }

@@ -66,35 +66,35 @@ void sfView_destroy(sfView* view)
 ////////////////////////////////////////////////////////////
 void sfView_setCenter(sfView* view, sfVector2f center)
 {
-    CSFML_CALL(view, setCenter(center.x, center.y));
+    CSFML_CALL(view, setCenter({ center.x, center.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_setSize(sfView* view, sfVector2f size)
 {
-    CSFML_CALL(view, setSize(size.x, size.y));
+    CSFML_CALL(view, setSize({ size.x, size.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_setRotation(sfView* view, float angle)
 {
-    CSFML_CALL(view, setRotation(angle));
+    CSFML_CALL(view, setRotation(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_setViewport(sfView* view, sfFloatRect viewport)
 {
-    CSFML_CALL(view, setViewport(sf::FloatRect(viewport.left, viewport.top, viewport.width, viewport.height)));
+    CSFML_CALL(view, setViewport(sf::FloatRect({ viewport.left, viewport.top }, { viewport.width, viewport.height })));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_reset(sfView* view, sfFloatRect rectangle)
 {
-    CSFML_CALL(view, reset(sf::FloatRect(rectangle.left, rectangle.top, rectangle.width, rectangle.height)));
+    CSFML_CALL(view, reset(sf::FloatRect({ rectangle.left, rectangle.top }, { rectangle.width, rectangle.height })));
 }
 
 
@@ -129,7 +129,7 @@ sfVector2f sfView_getSize(const sfView* view)
 ////////////////////////////////////////////////////////////
 float sfView_getRotation(const sfView* view)
 {
-    CSFML_CALL_RETURN(view, getRotation(), 0.f);
+    CSFML_CALL_RETURN(view, getRotation().asDegrees(), 0.f);
 }
 
 
@@ -152,14 +152,14 @@ sfFloatRect sfView_getViewport(const sfView* view)
 ////////////////////////////////////////////////////////////
 void sfView_move(sfView* view, sfVector2f offset)
 {
-    CSFML_CALL(view, move(offset.x, offset.y));
+    CSFML_CALL(view, move({ offset.x, offset.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_rotate(sfView* view, float angle)
 {
-    CSFML_CALL(view, rotate(angle));
+    CSFML_CALL(view, rotate(sf::degrees(angle)));
 }
 
 

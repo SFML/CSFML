@@ -109,7 +109,7 @@ void sfSoundStream_setVolume(sfSoundStream* soundStream, float volume)
 ////////////////////////////////////////////////////////////
 void sfSoundStream_setPosition(sfSoundStream* soundStream, sfVector3f position)
 {
-    CSFML_CALL(soundStream, setPosition(position.x, position.y, position.z));
+    CSFML_CALL(soundStream, setPosition({ position.x, position.y, position.z }));
 }
 
 

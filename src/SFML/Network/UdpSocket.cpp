@@ -72,8 +72,14 @@ sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port, sfIpAd
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    sf::IpAddress sfmlAddress(address.address);
-    return static_cast<sfSocketStatus>(socket->This.bind(port, sfmlAddress));
+    std::optional<sf::IpAddress> sfmlAddress = sf::IpAddress::resolve(address.address);
+
+    if (!sfmlAddress)
+    {
+        return sfSocketError;
+    }
+
+    return static_cast<sfSocketStatus>(socket->This.bind(port, *sfmlAddress));
 }
 
 
@@ -90,9 +96,14 @@ sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t si
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
     // Convert the address
-    sf::IpAddress address(remoteAddress.address);
+    std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
 
-    return static_cast<sfSocketStatus>(socket->This.send(data, size, address, remotePort));
+    if (!address)
+    {
+        return sfSocketError;
+    }
+
+    return static_cast<sfSocketStatus>(socket->This.send(data, size, *address, remotePort));
 }
 
 
@@ -101,12 +112,12 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t size,
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    sf::IpAddress address;
+    std::optional<sf::IpAddress> address;
     unsigned short port;
     std::size_t sizeReceived;
 
     sf::Socket::Status status = socket->This.receive(data, size, sizeReceived, address, port);
-    if (status != sf::Socket::Done)
+    if (status != sf::Socket::Status::Done)
         return static_cast<sfSocketStatus>(status);
 
     if (received)
@@ -115,7 +126,11 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t size,
     if (remoteAddress)
     {
         *remoteAddress = sfIpAddress_None;
-        strncpy(remoteAddress->address, address.toString().c_str(), 15);
+
+        if (address)
+        {
+            strncpy(remoteAddress->address, address->toString().c_str(), 15);
+        }
     }
 
     if (remotePort)
@@ -132,9 +147,14 @@ sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfI
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
     // Convert the address
-    sf::IpAddress address(remoteAddress.address);
+    std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
 
-    return static_cast<sfSocketStatus>(socket->This.send(packet->This, address, remotePort));
+    if (!address)
+    {
+        return sfSocketError;
+    }
+
+    return static_cast<sfSocketStatus>(socket->This.send(packet->This, *address, remotePort));
 }
 
 
@@ -144,17 +164,21 @@ sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, 
     CSFML_CHECK_RETURN(socket, sfSocketError);
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
-    sf::IpAddress address;
+    std::optional<sf::IpAddress> address;
     unsigned short port;
 
     sf::Socket::Status status = socket->This.receive(packet->This, address, port);
-    if (status != sf::Socket::Done)
+    if (status != sf::Socket::Status::Done)
         return static_cast<sfSocketStatus>(status);
 
     if (remoteAddress)
     {
         *remoteAddress = sfIpAddress_None;
-        strncpy(remoteAddress->address, address.toString().c_str(), 15);
+
+        if (address)
+        {
+            strncpy(remoteAddress->address, address->toString().c_str(), 15);
+        }
     }
 
     if (remotePort)

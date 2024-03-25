@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Clock.h>
 #include <SFML/System/ClockStruct.h>
+#include <SFML/System/Time.hpp>
 #include <SFML/Internal.h>
 
 

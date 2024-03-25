@@ -81,12 +81,13 @@ typedef struct
 /// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the window)
 /// \param title    Title of the window
 /// \param style    Window style
+/// \param state    Window state
 /// \param settings Additional settings for the underlying OpenGL context
 ///
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, const sfContextSettings* settings);
+CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new window (with a UTF-32 title)
@@ -104,12 +105,13 @@ CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, 
 /// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the window)
 /// \param title    Title of the window (UTF-32)
 /// \param style    Window style
+/// \param state    Window state
 /// \param settings Additional settings for the underlying OpenGL context
 ///
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(sfVideoMode mode, const uint32_t* title, uint32_t style, const sfContextSettings* settings);
+CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control
@@ -277,7 +279,7 @@ CSFML_WINDOW_API void sfWindow_setTitle(sfWindow* window, const char* title);
 /// \param title  New title
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const uint32_t* title);
+CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const sfChar32* title);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change a window's icon
@@ -472,7 +474,7 @@ CSFML_WINDOW_API void sfWindow_display(sfWindow* window);
 /// \return System handle of the window
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindowHandle sfWindow_getSystemHandle(const sfWindow* window);
+CSFML_WINDOW_API sfWindowHandle sfWindow_getNativeHandle(const sfWindow* window);
 
 
 #endif // SFML_WINDOW_H

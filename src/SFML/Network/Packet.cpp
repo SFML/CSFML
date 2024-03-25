@@ -99,7 +99,7 @@ bool sfPacket_endOfPacket(const sfPacket* packet)
 bool sfPacket_canRead(const sfPacket* packet)
 {
     CSFML_CHECK_RETURN(packet, false);
-    return packet->This;
+    return static_cast<bool>(packet->This);
 }
 
 

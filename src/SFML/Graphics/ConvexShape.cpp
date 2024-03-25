@@ -58,28 +58,28 @@ void sfConvexShape_destroy(sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setPosition(sfConvexShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, setPosition(position.x, position.y));
+    CSFML_CALL(shape, setPosition({ position.x, position.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setRotation(sfConvexShape* shape, float angle)
 {
-    CSFML_CALL(shape, setRotation(angle));
+    CSFML_CALL(shape, setRotation(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setScale(sfConvexShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, setScale(scale.x, scale.y));
+    CSFML_CALL(shape, setScale({ scale.x, scale.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setOrigin(sfConvexShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, setOrigin(origin.x, origin.y));
+    CSFML_CALL(shape, setOrigin({ origin.x, origin.y }));
 }
 
 
@@ -100,7 +100,7 @@ sfVector2f sfConvexShape_getPosition(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 float sfConvexShape_getRotation(const sfConvexShape* shape)
 {
-    CSFML_CALL_RETURN(shape, getRotation(), 0.f);
+    CSFML_CALL_RETURN(shape, getRotation().asDegrees(), 0.f);
 }
 
 
@@ -135,21 +135,21 @@ sfVector2f sfConvexShape_getOrigin(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_move(sfConvexShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, move(offset.x, offset.y));
+    CSFML_CALL(shape, move({ offset.x, offset.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_rotate(sfConvexShape* shape, float angle)
 {
-    CSFML_CALL(shape, rotate(angle));
+    CSFML_CALL(shape, rotate(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_scale(sfConvexShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, scale(factors.x, factors.y));
+    CSFML_CALL(shape, scale({ factors.x, factors.y }));
 }
 
 
@@ -184,7 +184,7 @@ void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bo
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setTextureRect(sfConvexShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect(rect.left, rect.top, rect.width, rect.height)));
+    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.left, rect.top }, { rect.width, rect.height })));
 }
 
 

@@ -219,12 +219,29 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirec
 ////////////////////////////////////////////////////////////
 /// \brief Get the directory returned in a FTP directory response
 ///
+/// The returned const char* owns the string and must be freed to
+/// avoid memory leaks.
+/// 
 /// \param ftpDirectoryResponse Ftp directory response
 ///
 /// \return Directory name
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+
+
+////////////////////////////////////////////////////////////
+/// \brief Get the directory returned in a FTP directory response
+///
+/// The returned const sfChar32* owns the string and must be freed to
+/// avoid memory leaks.
+/// 
+/// \param ftpDirectoryResponse Ftp directory response
+///
+/// \return Directory name
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 
 ////////////////////////////////////////////////////////////

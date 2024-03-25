@@ -34,12 +34,12 @@
 
 
 ////////////////////////////////////////////////////////////
-sfSprite* sfSprite_create(void)
+sfSprite* sfSprite_create(const sfTexture* texture)
 {
-    sfSprite* sprite = new sfSprite;
-    sprite->Texture = nullptr;
+    CSFML_CHECK_RETURN(texture, nullptr);
+    CSFML_CHECK_RETURN(texture->This, nullptr);
 
-    return sprite;
+    return new sfSprite{ sf::Sprite{*texture->This}, texture, {}, {} };
 }
 
 
@@ -62,28 +62,28 @@ void sfSprite_destroy(sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 void sfSprite_setPosition(sfSprite* sprite, sfVector2f position)
 {
-    CSFML_CALL(sprite, setPosition(position.x, position.y));
+    CSFML_CALL(sprite, setPosition({ position.x, position.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSprite_setRotation(sfSprite* sprite, float angle)
 {
-    CSFML_CALL(sprite, setRotation(angle));
+    CSFML_CALL(sprite, setRotation(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSprite_setScale(sfSprite* sprite, sfVector2f scale)
 {
-    CSFML_CALL(sprite, setScale(scale.x, scale.y));
+    CSFML_CALL(sprite, setScale({ scale.x, scale.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSprite_setOrigin(sfSprite* sprite, sfVector2f origin)
 {
-    CSFML_CALL(sprite, setOrigin(origin.x, origin.y));
+    CSFML_CALL(sprite, setOrigin({ origin.x, origin.y }));
 }
 
 
@@ -104,7 +104,7 @@ sfVector2f sfSprite_getPosition(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 float sfSprite_getRotation(const sfSprite* sprite)
 {
-    CSFML_CALL_RETURN(sprite, getRotation(), 0.f);
+    CSFML_CALL_RETURN(sprite, getRotation().asDegrees(), 0.f);
 }
 
 
@@ -139,21 +139,21 @@ sfVector2f sfSprite_getOrigin(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 void sfSprite_move(sfSprite* sprite, sfVector2f offset)
 {
-    CSFML_CALL(sprite, move(offset.x, offset.y));
+    CSFML_CALL(sprite, move({ offset.x, offset.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSprite_rotate(sfSprite* sprite, float angle)
 {
-    CSFML_CALL(sprite, rotate(angle));
+    CSFML_CALL(sprite, rotate(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSprite_scale(sfSprite* sprite, sfVector2f factors)
 {
-    CSFML_CALL(sprite, scale(factors.x, factors.y));
+    CSFML_CALL(sprite, scale({ factors.x, factors.y }));
 }
 
 
@@ -191,7 +191,7 @@ void sfSprite_setTexture(sfSprite* sprite, const sfTexture* texture, bool resetR
 ////////////////////////////////////////////////////////////
 void sfSprite_setTextureRect(sfSprite* sprite, sfIntRect rectangle)
 {
-    CSFML_CALL(sprite, setTextureRect(sf::IntRect(rectangle.left, rectangle.top, rectangle.width, rectangle.height)));
+    CSFML_CALL(sprite, setTextureRect(sf::IntRect({ rectangle.left, rectangle.top }, { rectangle.width, rectangle.height })));
 }
 
 

@@ -28,7 +28,10 @@
 #include <SFML/Network/Ftp.h>
 #include <SFML/Network/FtpStruct.h>
 #include <SFML/Network/IpAddress.hpp>
+#include <SFML/System/String.hpp>
 #include <SFML/Internal.h>
+#include <string.h>
+#include <SFML/Char32.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -117,8 +120,17 @@ const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirectoryResponse* ftpD
 const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
     CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
+    return strdup(ftpDirectoryResponse->This.getDirectory().string().c_str());
+}
 
-    return ftpDirectoryResponse->This.getDirectory().c_str();
+
+////////////////////////////////////////////////////////////
+const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse)
+{
+    CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
+
+    sf::String str = sf::String(ftpDirectoryResponse->This.getDirectory().c_str());
+    return copyToChar32(str);
 }
 
 
@@ -173,9 +185,12 @@ sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port
 {
     CSFML_CHECK_RETURN(ftp, nullptr);
 
-    sf::IpAddress SFMLServer(server.address);
+    std::optional<sf::IpAddress> SFMLServer = sf::IpAddress::resolve(server.address);
 
-    return new sfFtpResponse(ftp->This.connect(SFMLServer, port, sf::microseconds(timeout.microseconds)));
+    if (!SFMLServer)
+        return nullptr;
+
+    return new sfFtpResponse(ftp->This.connect(*SFMLServer, port, sf::microseconds(timeout.microseconds)));
 }
 
 

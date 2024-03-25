@@ -35,8 +35,8 @@ sfVideoMode sfVideoMode_getDesktopMode(void)
 {
     sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     sfVideoMode ret;
-    ret.width        = desktop.width;
-    ret.height       = desktop.height;
+    ret.width        = desktop.size.x;
+    ret.height       = desktop.size.y;
     ret.bitsPerPixel = desktop.bitsPerPixel;
 
     return ret;
@@ -55,8 +55,8 @@ const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count)
         for (const auto& sfmlMode : sfmlModes)
         {
             sfVideoMode mode;
-            mode.width        = sfmlMode.width;
-            mode.height       = sfmlMode.height;
+            mode.width        = sfmlMode.size.x;
+            mode.height       = sfmlMode.size.y;
             mode.bitsPerPixel = sfmlMode.bitsPerPixel;
             modes.push_back(mode);
         }
@@ -72,6 +72,6 @@ const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count)
 ////////////////////////////////////////////////////////////
 bool sfVideoMode_isValid(sfVideoMode mode)
 {
-    sf::VideoMode videoMode(mode.width, mode.height, mode.bitsPerPixel);
+    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
     return videoMode.isValid();
 }

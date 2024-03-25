@@ -34,12 +34,11 @@
 
 
 ////////////////////////////////////////////////////////////
-sfText* sfText_create(void)
+sfText* sfText_create(const sfFont* font)
 {
-    sfText* text = new sfText;
-    text->Font = nullptr;
+    CSFML_CHECK_RETURN(font, nullptr);
 
-    return text;
+    return new sfText{ sf::Text{font->This}, font, {}, {}, {} };
 }
 
 
@@ -62,28 +61,28 @@ void sfText_destroy(sfText* text)
 ////////////////////////////////////////////////////////////
 void sfText_setPosition(sfText* text, sfVector2f position)
 {
-    CSFML_CALL(text, setPosition(position.x, position.y));
+    CSFML_CALL(text, setPosition({ position.x, position.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_setRotation(sfText* text, float angle)
 {
-    CSFML_CALL(text, setRotation(angle));
+    CSFML_CALL(text, setRotation(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_setScale(sfText* text, sfVector2f scale)
 {
-    CSFML_CALL(text, setScale(scale.x, scale.y));
+    CSFML_CALL(text, setScale({ scale.x, scale.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_setOrigin(sfText* text, sfVector2f origin)
 {
-    CSFML_CALL(text, setOrigin(origin.x, origin.y));
+    CSFML_CALL(text, setOrigin({ origin.x, origin.y }));
 }
 
 
@@ -104,7 +103,7 @@ sfVector2f sfText_getPosition(const sfText* text)
 ////////////////////////////////////////////////////////////
 float sfText_getRotation(const sfText* text)
 {
-    CSFML_CALL_RETURN(text, getRotation(), 0.f);
+    CSFML_CALL_RETURN(text, getRotation().asDegrees(), 0.f);
 }
 
 
@@ -139,21 +138,21 @@ sfVector2f sfText_getOrigin(const sfText* text)
 ////////////////////////////////////////////////////////////
 void sfText_move(sfText* text, sfVector2f offset)
 {
-    CSFML_CALL(text, move(offset.x, offset.y));
+    CSFML_CALL(text, move({ offset.x, offset.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_rotate(sfText* text, float angle)
 {
-    CSFML_CALL(text, rotate(angle));
+    CSFML_CALL(text, rotate(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_scale(sfText* text, sfVector2f factors)
 {
-    CSFML_CALL(text, scale(factors.x, factors.y));
+    CSFML_CALL(text, scale({ factors.x, factors.y }));
 }
 
 
@@ -185,9 +184,9 @@ void sfText_setString(sfText* text, const char* string)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_setUnicodeString(sfText* text, const uint32_t* string)
+void sfText_setUnicodeString(sfText* text, const sfChar32* string)
 {
-    sf::String UTF32Text = string;
+    sf::String UTF32Text = reinterpret_cast<const char32_t*>(string);
     CSFML_CALL(text, setString(UTF32Text));
 }
 
@@ -270,11 +269,11 @@ const char* sfText_getString(const sfText* text)
 
 
 ////////////////////////////////////////////////////////////
-const uint32_t* sfText_getUnicodeString(const sfText* text)
+const sfChar32* sfText_getUnicodeString(const sfText* text)
 {
     CSFML_CHECK_RETURN(text, nullptr);
 
-    return text->This.getString().getData();
+    return reinterpret_cast<const sfChar32*>(text->This.getString().getData());
 }
 
 

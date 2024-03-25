@@ -125,8 +125,8 @@ sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music)
 ////////////////////////////////////////////////////////////
 void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints)
 {
-    CSFML_CALL(music, setLoopPoints(sf::Music::TimeSpan(sf::microseconds(timePoints.offset.microseconds),
-                                                        sf::microseconds(timePoints.length.microseconds))));
+    CSFML_CALL(music, setLoopPoints(sf::Music::TimeSpan({ sf::microseconds(timePoints.offset.microseconds),
+                                                          sf::microseconds(timePoints.length.microseconds)})));
 }
 
 

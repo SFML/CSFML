@@ -51,28 +51,28 @@ void sfShape_destroy(sfShape* shape)
 ////////////////////////////////////////////////////////////
 void sfShape_setPosition(sfShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, setPosition(position.x, position.y));
+    CSFML_CALL(shape, setPosition({ position.x, position.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShape_setRotation(sfShape* shape, float angle)
 {
-    CSFML_CALL(shape, setRotation(angle));
+    CSFML_CALL(shape, setRotation(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShape_setScale(sfShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, setScale(scale.x, scale.y));
+    CSFML_CALL(shape, setScale({ scale.x, scale.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShape_setOrigin(sfShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, setOrigin(origin.x, origin.y));
+    CSFML_CALL(shape, setOrigin({ origin.x, origin.y }));
 }
 
 
@@ -93,7 +93,7 @@ sfVector2f sfShape_getPosition(const sfShape* shape)
 ////////////////////////////////////////////////////////////
 float sfShape_getRotation(const sfShape* shape)
 {
-    CSFML_CALL_RETURN(shape, getRotation(), 0.f);
+    CSFML_CALL_RETURN(shape, getRotation().asDegrees(), 0.f);
 }
 
 
@@ -128,21 +128,21 @@ sfVector2f sfShape_getOrigin(const sfShape* shape)
 ////////////////////////////////////////////////////////////
 void sfShape_move(sfShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, move(offset.x, offset.y));
+    CSFML_CALL(shape, move({ offset.x, offset.y }));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShape_rotate(sfShape* shape, float angle)
 {
-    CSFML_CALL(shape, rotate(angle));
+    CSFML_CALL(shape, rotate(sf::degrees(angle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShape_scale(sfShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, scale(factors.x, factors.y));
+    CSFML_CALL(shape, scale({ factors.x, factors.y }));
 }
 
 
@@ -177,7 +177,7 @@ void sfShape_setTexture(sfShape* shape, const sfTexture* texture, bool resetRect
 ////////////////////////////////////////////////////////////
 void sfShape_setTextureRect(sfShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect(rect.left, rect.top, rect.width, rect.height)));
+    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.left, rect.top }, { rect.width, rect.height })));
 }
 
 

@@ -77,7 +77,7 @@ sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f p
     sfVector2f p = {0, 0};
     CSFML_CHECK_RETURN(transform, p);
 
-    sf::Vector2f sfmlPoint = convertTransform(*transform).transformPoint(point.x, point.y);
+    sf::Vector2f sfmlPoint = convertTransform(*transform).transformPoint({ point.x, point.y });
 
     p.x = sfmlPoint.x;
     p.y = sfmlPoint.y;
@@ -92,7 +92,7 @@ sfFloatRect sfTransform_transformRect(const sfTransform* transform, sfFloatRect 
     sfFloatRect rect = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(transform, rect);
 
-    sf::FloatRect sfmlRect = convertTransform(*transform).transformRect(sf::FloatRect(rectangle.left, rectangle.top, rectangle.width, rectangle.height));
+    sf::FloatRect sfmlRect = convertTransform(*transform).transformRect(sf::FloatRect({ rectangle.left, rectangle.top }, { rectangle.width, rectangle.height }));
 
     rect.left = sfmlRect.left;
     rect.top = sfmlRect.top;
@@ -118,7 +118,7 @@ void sfTransform_translate(sfTransform* transform, float x, float y)
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).translate(x, y));
+    *transform = convertTransform(convertTransform(*transform).translate({ x, y }));
 }
 
 
@@ -127,7 +127,7 @@ void sfTransform_rotate(sfTransform* transform, float angle)
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).rotate(angle));
+    *transform = convertTransform(convertTransform(*transform).rotate(sf::degrees(angle)));
 }
 
 
@@ -136,7 +136,7 @@ void sfTransform_rotateWithCenter(sfTransform* transform, float angle, float cen
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).rotate(angle, centerX, centerY));
+    *transform = convertTransform(convertTransform(*transform).rotate(sf::degrees(angle), { centerX, centerY }));
 }
 
 
@@ -145,7 +145,7 @@ void sfTransform_scale(sfTransform* transform, float scaleX, float scaleY)
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).scale(scaleX, scaleY));
+    *transform = convertTransform(convertTransform(*transform).scale({ scaleX, scaleY }));
 }
 
 
@@ -154,7 +154,7 @@ void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float sca
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).scale(scaleX, scaleY, centerX, centerY));
+    *transform = convertTransform(convertTransform(*transform).scale({ scaleX, scaleY }, { centerX, centerY }));
 }
 
 

@@ -74,8 +74,12 @@ sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
     sfIpAddress result = sfIpAddress_None;
     CSFML_CHECK_RETURN(socket, result);
 
-    sf::IpAddress address = socket->This.getRemoteAddress();
-    strncpy(result.address, address.toString().c_str(), 15);
+    std::optional<sf::IpAddress> address = socket->This.getRemoteAddress();
+
+    if (address)
+    {
+        strncpy(result.address, address->toString().c_str(), 15);
+    }
 
     return result;
 }
@@ -91,11 +95,16 @@ unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* socket)
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddress, unsigned short remotePort, sfTime timeout)
 {
-    sf::IpAddress address(remoteAddress.address);
+    std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
+
+    if (!address)
+    {
+        return sfSocketError;
+    }
 
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
-    return static_cast<sfSocketStatus>(socket->This.connect(address, remotePort, sf::microseconds(timeout.microseconds)));
+    return static_cast<sfSocketStatus>(socket->This.connect(*address, remotePort, sf::microseconds(timeout.microseconds)));
 }
 
 

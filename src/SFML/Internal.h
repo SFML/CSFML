@@ -25,10 +25,13 @@
 #ifndef SFML_INTERNAL_H
 #define SFML_INTERNAL_H
 
+
 ////////////////////////////////////////////////////////////
 // Define macros to check the validity of CSFML objects in debug run
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Err.hpp>
+#include <SFML/Config.h>
+#include <ostream>
 
 #ifndef NDEBUG
 
@@ -130,5 +133,13 @@
         }
 
 #endif
+
+////////////////////////////////////////////////////////////
+// Ensure char32_t has the same size as sfChar32 (uint32_t)
+// Identical alignment and size is required because we're type punning 
+// when doing sfChar32* <-> char32_t* casts
+////////////////////////////////////////////////////////////
+static_assert(sizeof(sfChar32) == sizeof(char32_t));
+static_assert(alignof(sfChar32) == alignof(char32_t));
 
 #endif // SFML_INTERNAL_H

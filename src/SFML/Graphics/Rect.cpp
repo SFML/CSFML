@@ -51,12 +51,12 @@ sfVector2i toCType(const sf::Vector2i& vector)
 bool sfFloatRect_contains(const sfFloatRect* rect, float x, float y)
 {
     CSFML_CHECK_RETURN(rect, false);
-    return sf::FloatRect(rect->left, rect->top, rect->width, rect->height).contains(x, y);
+    return sf::FloatRect({ rect->left, rect->top }, { rect->width, rect->height }).contains({ x, y });
 }
 bool sfIntRect_contains(const sfIntRect* rect, int x, int y)
 {
     CSFML_CHECK_RETURN(rect, false);
-    return sf::IntRect(rect->left, rect->top, rect->width, rect->height).contains(x, y);
+    return sf::IntRect({ rect->left, rect->top }, { rect->width, rect->height }).contains({ x, y });
 }
 
 
@@ -68,24 +68,26 @@ bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, 
     CSFML_CHECK_RETURN(rect1, false);
     CSFML_CHECK_RETURN(rect2, false);
 
-    sf::FloatRect SFMLRect1(rect1->left, rect1->top, rect1->width, rect1->height);
-    sf::FloatRect SFMLRect2(rect2->left, rect2->top, rect2->width, rect2->height);
+    sf::FloatRect SFMLRect1({ rect1->left, rect1->top }, { rect1->width, rect1->height });
+    sf::FloatRect SFMLRect2({ rect2->left, rect2->top }, { rect2->width, rect2->height });
 
     if (intersection)
     {
-        sf::FloatRect overlap;
-        bool intersects = SFMLRect1.intersects(SFMLRect2, overlap);
+        std::optional<sf::FloatRect> overlap = SFMLRect1.findIntersection(SFMLRect2);
 
-        intersection->left   = overlap.left;
-        intersection->top    = overlap.top;
-        intersection->width  = overlap.width;
-        intersection->height = overlap.height;
+        if (overlap)
+        {
+            intersection->left = overlap->left;
+            intersection->top = overlap->top;
+            intersection->width = overlap->width;
+            intersection->height = overlap->height;
+        }
 
-        return intersects;
+        return overlap.has_value();
     }
     else
     {
-        return SFMLRect1.intersects(SFMLRect2);
+        return SFMLRect1.findIntersection(SFMLRect2).has_value();
     }
 }
 bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection)
@@ -93,24 +95,26 @@ bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntR
     CSFML_CHECK_RETURN(rect1, false);
     CSFML_CHECK_RETURN(rect2, false);
 
-    sf::IntRect SFMLRect1(rect1->left, rect1->top, rect1->width, rect1->height);
-    sf::IntRect SFMLRect2(rect2->left, rect2->top, rect2->width, rect2->height);
+    sf::IntRect SFMLRect1({ rect1->left, rect1->top }, { rect1->width, rect1->height });
+    sf::IntRect SFMLRect2({ rect2->left, rect2->top }, { rect2->width, rect2->height });
 
     if (intersection)
     {
-        sf::IntRect overlap;
-        bool intersects = SFMLRect1.intersects(SFMLRect2, overlap);
+        std::optional<sf::IntRect> overlap = SFMLRect1.findIntersection(SFMLRect2);
 
-        intersection->left   = overlap.left;
-        intersection->top    = overlap.top;
-        intersection->width  = overlap.width;
-        intersection->height = overlap.height;
+        if (overlap)
+        {
+            intersection->left = overlap->left;
+            intersection->top = overlap->top;
+            intersection->width = overlap->width;
+            intersection->height = overlap->height;
+        }
 
-        return intersects;
+        return overlap.has_value();
     }
     else
     {
-        return SFMLRect1.intersects(SFMLRect2);
+        return SFMLRect1.findIntersection(SFMLRect2).has_value();
     }
 }
 
@@ -120,11 +124,11 @@ bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntR
 ////////////////////////////////////////////////////////////
 sfVector2f sfFloatRect_getPosition(const sfFloatRect* rect)
 {
-    return toCType(sf::FloatRect(rect->left, rect->top, rect->width, rect->height).getPosition());
+    return toCType(sf::FloatRect({ rect->left, rect->top }, { rect->width, rect->height }).getPosition());
 }
 sfVector2i sfIntRect_getPosition(const sfIntRect* rect)
 {
-    return toCType(sf::IntRect(rect->left, rect->top, rect->width, rect->height).getPosition());
+    return toCType(sf::IntRect({ rect->left, rect->top }, { rect->width, rect->height }).getPosition());
 }
 
 
@@ -133,9 +137,9 @@ sfVector2i sfIntRect_getPosition(const sfIntRect* rect)
 ////////////////////////////////////////////////////////////
 sfVector2f sfFloatRect_getSize(const sfFloatRect* rect)
 {
-    return toCType(sf::FloatRect(rect->left, rect->top, rect->width, rect->height).getSize());
+    return toCType(sf::FloatRect({ rect->left, rect->top }, { rect->width, rect->height }).getSize());
 }
 sfVector2i sfIntRect_getSize(const sfIntRect* rect)
 {
-    return toCType(sf::IntRect(rect->left, rect->top, rect->width, rect->height).getSize());
+    return toCType(sf::IntRect({ rect->left, rect->top }, { rect->width, rect->height }).getSize());
 }
