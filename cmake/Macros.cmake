@@ -17,7 +17,7 @@ macro(csfml_add_library target)
     target_include_directories(${target} PUBLIC ${PROJECT_SOURCE_DIR}/include)
 
     # add warnings
-    set_file_warnings(${THIS_SOURCES})
+    set_target_warnings(${target})
 
     # require C11 and C++17
     target_compile_features(${target} PUBLIC c_std_11 cxx_std_17)
