@@ -47,11 +47,11 @@ jobs:
 
     - name: Configure SFML CMake
       shell: bash
-      run: cmake -S $GITHUB_WORKSPACE/SFML -B $GITHUB_WORKSPACE/SFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/SFML/install -DBUILD_SHARED_LIBS=TRUE -DSFML_BUILD_EXAMPLES=FALSE -DSFML_BUILD_TEST_SUITE=FALSE -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
+      run: cmake -S SFML -B SFML/build -DCMAKE_INSTALL_PREFIX=SFML/install -DBUILD_SHARED_LIBS=TRUE -DSFML_BUILD_EXAMPLES=FALSE -DSFML_BUILD_TEST_SUITE=FALSE -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
 
     - name: Build SFML
       shell: bash
-      run: cmake --build $GITHUB_WORKSPACE/SFML/build --config ${{matrix.type.name}} --target install
+      run: cmake --build SFML/build --config ${{matrix.type.name}} --target install
 
     - name: Checkout CSFML
       uses: actions/checkout@v4
@@ -60,8 +60,8 @@ jobs:
 
     - name: Configure CSFML CMake
       shell: bash
-      run: cmake -S $GITHUB_WORKSPACE/CSFML -B $GITHUB_WORKSPACE/CSFML/build -DCMAKE_INSTALL_PREFIX=$GITHUB_WORKSPACE/CSFML/install -DBUILD_SHARED_LIBS=TRUE -DCSFML_BUILD_EXAMPLES=TRUE -DCSFML_LINK_SFML_STATICALLY=FALSE -DSFML_DIR=$GITHUB_WORKSPACE/SFML/install/lib/cmake/SFML -DCMAKE_VERBOSE_MAKEFILE=ON -DWARNINGS_AS_ERRORS=TRUE ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
+      run: cmake -S CSFML -B CSFML/build -DCMAKE_INSTALL_PREFIX=CSFML/install -DBUILD_SHARED_LIBS=TRUE -DCSFML_BUILD_EXAMPLES=TRUE -DCSFML_LINK_SFML_STATICALLY=FALSE -DSFML_DIR=$GITHUB_WORKSPACE/SFML/install/lib/cmake/SFML -DCMAKE_VERBOSE_MAKEFILE=ON -DWARNINGS_AS_ERRORS=TRUE ${{matrix.platform.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
 
     - name: Build CSFML
       shell: bash
-      run: cmake --build $GITHUB_WORKSPACE/CSFML/build --config ${{matrix.type.name}} --target install
+      run: cmake --build CSFML/build --config ${{matrix.type.name}} --target install
