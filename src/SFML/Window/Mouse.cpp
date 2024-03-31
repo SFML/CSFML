@@ -26,6 +26,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Window/Mouse.h>
+#include <SFML/Window/WindowBaseStruct.h>
 #include <SFML/Window/WindowStruct.h>
 #include <SFML/Window/Mouse.hpp>
 #include <SFML/Internal.h>
@@ -54,6 +55,30 @@ sfVector2i sfMouse_getPosition(const sfWindow* relativeTo)
 
 ////////////////////////////////////////////////////////////
 void sfMouse_setPosition(sfVector2i position, const sfWindow* relativeTo)
+{
+    if (relativeTo)
+        sf::Mouse::setPosition(sf::Vector2i(position.x, position.y), relativeTo->This);
+    else
+        sf::Mouse::setPosition(sf::Vector2i(position.x, position.y));
+}
+
+
+////////////////////////////////////////////////////////////
+sfVector2i sfMouse_getPositionWindowBase(const sfWindowBase* relativeTo)
+{
+    sf::Vector2i sfmlPos;
+    if (relativeTo)
+        sfmlPos = sf::Mouse::getPosition(relativeTo->This);
+    else
+        sfmlPos = sf::Mouse::getPosition();
+
+    sfVector2i position = { sfmlPos.x, sfmlPos.y };
+    return position;
+}
+
+
+////////////////////////////////////////////////////////////
+void sfMouse_setPositionWindowBase(sfVector2i position, const sfWindowBase* relativeTo)
 {
     if (relativeTo)
         sf::Mouse::setPosition(sf::Vector2i(position.x, position.y), relativeTo->This);

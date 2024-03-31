@@ -322,3 +322,12 @@ sfWindowHandle sfWindow_getNativeHandle(const sfWindow* window)
 
     return static_cast<sfWindowHandle>(window->This.getNativeHandle());
 }
+
+
+////////////////////////////////////////////////////////////
+bool sfWindow_createVulkanSurface(sfWindow* window, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator)
+{
+    CSFML_CHECK_RETURN(instance, false);
+    CSFML_CHECK_RETURN(surface, false);
+    CSFML_CALL_RETURN(window, createVulkanSurface(*instance, *surface, allocator), false);
+}

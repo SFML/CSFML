@@ -14,10 +14,10 @@ endif()
 
 # set pkgconfig install directory
 # this could be e.g. macports on mac or msys2 on windows etc.
-set(CSFML_PKGCONFIG_DIR "/${CMAKE_INSTALL_LIBDIR}/pkgconfig")
+set(CSFML_PKGCONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
 
 if(SFML_OS_FREEBSD OR SFML_OS_OPENBSD OR SFML_OS_NETBSD)
-    set(CSFML_PKGCONFIG_DIR "/libdata/pkgconfig")
+    set(CSFML_PKGCONFIG_DIR "libdata/pkgconfig")
 endif()
 
 # detect the compiler and its version

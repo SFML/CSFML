@@ -22,46 +22,28 @@
 //
 ////////////////////////////////////////////////////////////
 
+#ifndef SFML_ALLOC_H
+#define SFML_ALLOC_H
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Window/Touch.h>
-#include <SFML/Window/Touch.hpp>
-#include <SFML/Window/WindowBaseStruct.h>
-#include <SFML/Window/WindowStruct.h>
-#include <SFML/Internal.h>
+#include <SFML/System/Export.h>
 
 
 ////////////////////////////////////////////////////////////
-bool sfTouch_isDown(unsigned int finger)
-{
-    return sf::Touch::isDown(finger);
-}
-
+/// \brief Deallocates memory
+///
+/// This function deallocates the memory being pointed to
+/// using the free function from the C standard library.
+/// 
+/// The memory must have been previously allocated using a call
+/// to malloc.
+/// 
+/// \param ptr Pointer to the memory to deallocate 
+///
 ////////////////////////////////////////////////////////////
-sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo)
-{
-    sf::Vector2i sfmlPosition;
+CSFML_SYSTEM_API void sfFree(void* ptr);
 
-    if (relativeTo)
-        sfmlPosition = sf::Touch::getPosition(finger, relativeTo->This);
-    else
-        sfmlPosition = sf::Touch::getPosition(finger);
 
-    sfVector2i position = {sfmlPosition.x, sfmlPosition.y};
-    return position;
-}
-
-////////////////////////////////////////////////////////////
-sfVector2i sfTouch_getPositionWindowBase(unsigned int finger, const sfWindowBase* relativeTo)
-{
-    sf::Vector2i sfmlPosition;
-
-    if (relativeTo)
-        sfmlPosition = sf::Touch::getPosition(finger, relativeTo->This);
-    else
-        sfmlPosition = sf::Touch::getPosition(finger);
-
-    sfVector2i position = { sfmlPosition.x, sfmlPosition.y };
-    return position;
-}
+#endif // SFML_ALLOC_H

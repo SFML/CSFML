@@ -115,6 +115,13 @@ sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int cha
 
 
 ////////////////////////////////////////////////////////////
+bool sfFont_hasGlyph(const sfFont* font, uint32_t codePoint)
+{
+    CSFML_CALL_RETURN(font, hasGlyph(codePoint), false);
+}
+
+
+////////////////////////////////////////////////////////////
 float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     CSFML_CALL_RETURN(font, getKerning(first, second, characterSize), 0);

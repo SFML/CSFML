@@ -15,6 +15,11 @@ csfml_set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debu
 # project name
 project(CSFML VERSION 3.0.0)
 
+# we use the paths from the cmake GNUInstallDirs module as defaults
+# you can override these if you like
+# https://cmake.org/cmake/help/latest/module/GNUInstallDirs.html
+include(GNUInstallDirs)
+
 # include the configuration file
 include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 
@@ -68,7 +73,7 @@ endif()
 csfml_set_option(CSFML_INSTALL_PKGCONFIG_FILES ${CSFML_INSTALL_PKGCONFIG_DEFAULT} BOOL "TRUE to automatically install pkg-config files so other projects can find SFML")
 
 if(CSFML_INSTALL_PKGCONFIG_FILES)
-    csfml_set_option(CSFML_PKGCONFIG_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}/${CSFML_PKGCONFIG_DIR}" PATH "Install directory for CSFML's pkg-config .pc files")
+    csfml_set_option(CSFML_PKGCONFIG_INSTALL_DIR "${CSFML_PKGCONFIG_DIR}" PATH "Install directory for CSFML's pkg-config .pc files")
 
     foreach(csfml_module IN ITEMS all system window graphics audio network)
         configure_file(
@@ -76,7 +81,7 @@ if(CSFML_INSTALL_PKGCONFIG_FILES)
             "tools/pkg-config/csfml-${csfml_module}.pc"
             @ONLY)
         install(FILES "${CMAKE_CURRENT_BINARY_DIR}/tools/pkg-config/csfml-${csfml_module}.pc"
-            DESTINATION "${CSFML_PKGCONFIG_INSTALL_PREFIX}")
+            DESTINATION "${CSFML_PKGCONFIG_INSTALL_DIR}")
     endforeach()
 endif()
 

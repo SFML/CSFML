@@ -6,6 +6,8 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/SFML/System)
 set(SRC
     ${PROJECT_SOURCE_DIR}/include/SFML/GPUPreference.h
     ${INCROOT}/Export.h
+    ${SRCROOT}/Alloc.cpp
+    ${INCROOT}/Alloc.h
     ${SRCROOT}/Buffer.cpp
     ${SRCROOT}/BufferStruct.h
     ${INCROOT}/Buffer.h
