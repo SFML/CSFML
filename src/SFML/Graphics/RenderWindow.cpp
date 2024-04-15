@@ -549,6 +549,7 @@ void sfMouse_setPositionRenderWindow(sfVector2i position, const sfRenderWindow* 
         sf::Mouse::setPosition(sf::Vector2i(position.x, position.y));
 }
 
+
 ////////////////////////////////////////////////////////////
 sfVector2i sfTouch_getPositionRenderWindow(unsigned int finger, const sfRenderWindow* relativeTo)
 {
@@ -561,4 +562,13 @@ sfVector2i sfTouch_getPositionRenderWindow(unsigned int finger, const sfRenderWi
 
     sfVector2i position = { sfmlPosition.x, sfmlPosition.y };
     return position;
+}
+
+
+////////////////////////////////////////////////////////////
+bool sfRenderWindow_createVulkanSurface(sfRenderWindow* renderWindow, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator)
+{
+    CSFML_CHECK_RETURN(instance, false);
+    CSFML_CHECK_RETURN(surface, false);
+    CSFML_CALL_RETURN(renderWindow, createVulkanSurface(*instance, *surface, allocator), false);
 }

@@ -476,5 +476,18 @@ CSFML_WINDOW_API void sfWindow_display(sfWindow* window);
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfWindowHandle sfWindow_getNativeHandle(const sfWindow* window);
 
+////////////////////////////////////////////////////////////
+/// \brief Create a Vulkan rendering surface
+///
+/// \param window    Window object
+/// \param instance  Vulkan instance
+/// \param surface   Created surface
+/// \param allocator Allocator to use
+///
+/// \return True if surface creation was successful, false otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API bool sfWindow_createVulkanSurface(sfWindow* window, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
+
 
 #endif // SFML_WINDOW_H

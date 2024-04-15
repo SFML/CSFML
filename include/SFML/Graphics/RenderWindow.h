@@ -591,5 +591,18 @@ CSFML_GRAPHICS_API void sfMouse_setPositionRenderWindow(sfVector2i position, con
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfVector2i sfTouch_getPositionRenderWindow(unsigned int finger, const sfRenderWindow* relativeTo);
 
+////////////////////////////////////////////////////////////
+/// \brief Create a Vulkan rendering surface
+///
+/// \param renderWindow RenderWindow object
+/// \param instance     Vulkan instance
+/// \param surface      Created surface
+/// \param allocator    Allocator to use
+///
+/// \return True if surface creation was successful, false otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API bool sfRenderWindow_createVulkanSurface(sfRenderWindow* renderWindow, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
+
 
 #endif // SFML_RENDERWINDOW_H
