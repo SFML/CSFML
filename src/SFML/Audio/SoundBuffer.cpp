@@ -80,11 +80,19 @@ sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t* samples, uint64_t sampleCount, unsigned int channelCount, unsigned int sampleRate)
+sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t*    samples,
+                                               uint64_t          sampleCount,
+                                               unsigned int      channelCount,
+                                               unsigned int      sampleRate,
+                                               sfSoundChannel*   channelMapData,
+                                               size_t            channelMapSize)
 {
     sfSoundBuffer* buffer = new sfSoundBuffer;
 
-    if (!buffer->This.loadFromSamples(samples, sampleCount, channelCount, sampleRate))
+    std::vector<sf::SoundChannel> channelMap(channelMapSize);
+    for (std::size_t i = 0; i < channelMap.size(); ++i)
+        channelMap[i] = static_cast<sf::SoundChannel>(channelMapData[i]);
+    if (!buffer->This.loadFromSamples(samples, sampleCount, channelCount, sampleRate, channelMap))
     {
         delete buffer;
         buffer = nullptr;

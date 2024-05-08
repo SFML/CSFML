@@ -35,9 +35,11 @@ sfSoundStream* sfSoundStream_create(sfSoundStreamGetDataCallback onGetData,
                                     sfSoundStreamSeekCallback    onSeek,
                                     unsigned int                 channelCount,
                                     unsigned int                 sampleRate,
+                                    sfSoundChannel*              channelMapData,
+                                    size_t                       channelMapSize,
                                     void*                        userData)
 {
-    return new sfSoundStream(onGetData, onSeek, channelCount, sampleRate, userData);
+    return new sfSoundStream(onGetData, onSeek, channelCount, sampleRate, channelMapData, channelMapSize, userData);
 }
 
 

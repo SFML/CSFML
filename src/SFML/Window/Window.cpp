@@ -132,11 +132,10 @@ bool sfWindow_pollEvent(sfWindow* window, sfEvent* event)
     CSFML_CHECK_RETURN(event, false);
 
     // Get the event
-    sf::Event sfmlEvent;
-    bool ret = window->This.pollEvent(sfmlEvent);
+    const sf::Event sfmlEvent = window->This.pollEvent();
 
     // No event, return
-    if (!ret)
+    if (!sfmlEvent)
         return false;
 
     // Convert the sf::Event event to a sfEvent
@@ -153,11 +152,10 @@ bool sfWindow_waitEvent(sfWindow* window, sfEvent* event)
     CSFML_CHECK_RETURN(event, false);
 
     // Get the event
-    sf::Event sfmlEvent;
-    bool ret = window->This.waitEvent(sfmlEvent);
+    const sf::Event sfmlEvent = window->This.waitEvent();
 
     // Error, return
-    if (!ret)
+    if (!sfmlEvent)
         return false;
 
     // Convert the sf::Event event to a sfEvent

@@ -43,8 +43,8 @@ typedef enum
 {
     sfEvtClosed,                 ///< The window requested to be closed (no data)
     sfEvtResized,                ///< The window was resized (data in event.size)
-    sfEvtLostFocus,              ///< The window lost the focus (no data)
-    sfEvtGainedFocus,            ///< The window gained the focus (no data)
+    sfEvtFocusLost,              ///< The window lost the focus (no data)
+    sfEvtFocusGained,            ///< The window gained the focus (no data)
     sfEvtTextEntered,            ///< A character was entered (data in event.text)
     sfEvtKeyPressed,             ///< A key was pressed (data in event.key)
     sfEvtKeyReleased,            ///< A key was released (data in event.key)
