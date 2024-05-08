@@ -3,7 +3,7 @@
 ///
 /// \section welcome Welcome
 /// Welcome to the official SFML documentation for C. Here you will find a detailed
-/// view of all the SFML <a href="./globals_func.htm">functions</a>.<br/>
+/// view of all the SFML <a href="./globals_func.html">functions</a>.<br/>
 /// If you are looking for tutorials, you can visit the official website
 /// at <a href="https://www.sfml-dev.org/">www.sfml-dev.org</a>.
 ///
