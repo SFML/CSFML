@@ -28,6 +28,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <SFML/Audio/SoundChannel.h>
 #include <SFML/Audio/SoundStream.hpp>
 
 
@@ -43,12 +44,17 @@ public :
                       sfSoundStreamSeekCallback    onSeek,
                       unsigned int                 channelCount,
                       unsigned int                 sampleRate,
+                      sfSoundChannel*              channelMapData,
+                      size_t                       channelMapSize,
                       void*                        userData) :
     myGetDataCallback(onGetData),
     mySeekCallback   (onSeek),
     myUserData       (userData)
     {
-        initialize(channelCount, sampleRate);
+        std::vector<sf::SoundChannel> channelMap(channelMapSize);
+        for (std::size_t i = 0; i < channelMap.size(); ++i)
+            channelMap[i] = static_cast<sf::SoundChannel>(channelMapData[i]);
+        initialize(channelCount, sampleRate, channelMap);
     }
 
 private :
@@ -88,8 +94,10 @@ struct sfSoundStream
                   sfSoundStreamSeekCallback    onSeek,
                   unsigned int                 channelCount,
                   unsigned int                 sampleRate,
+                  sfSoundChannel*              channelMapData,
+                  size_t                       channelMapSize,
                   void*                        userData) :
-    This(onGetData, onSeek, channelCount, sampleRate, userData)
+    This(onGetData, onSeek, channelCount, sampleRate, channelMapData, channelMapSize, userData)
     {
     }
 

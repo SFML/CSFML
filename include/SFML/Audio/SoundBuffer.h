@@ -30,6 +30,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Audio/Export.h>
 #include <SFML/Audio/Types.h>
+#include <SFML/Audio/SoundChannel.h>
 #include <SFML/System/InputStream.h>
 #include <SFML/System/Time.h>
 #include <stddef.h>
@@ -84,15 +85,22 @@ CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* str
 /// The assumed format of the audio samples is 16 bits signed integer
 /// (int16_t).
 ///
-/// \param samples      Pointer to the array of samples in memory
-/// \param sampleCount  Number of samples in the array
-/// \param channelCount Number of channels (1 = mono, 2 = stereo, ...)
-/// \param sampleRate   Sample rate (number of samples to play per second)
+/// \param samples        Pointer to the array of samples in memory
+/// \param sampleCount    Number of samples in the array
+/// \param channelCount   Number of channels (1 = mono, 2 = stereo, ...)
+/// \param sampleRate     Sample rate (number of samples to play per second)
+/// \param channelMapData Pointer to the array of channel map data
+/// \param channelMapSize Size of channel map data array
 ///
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t* samples, uint64_t sampleCount, unsigned int channelCount, unsigned int sampleRate);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t*  samples,
+                                                               uint64_t        sampleCount,
+                                                               unsigned int    channelCount,
+                                                               unsigned int    sampleRate,
+                                                               sfSoundChannel* channelMapData,
+                                                               size_t          channelMapSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound buffer by copying an existing one

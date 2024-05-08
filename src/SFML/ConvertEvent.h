@@ -37,84 +37,142 @@
 ////////////////////////////////////////////////////////////
 inline void convertEvent(const sf::Event& sfmlEvent, sfEvent* event)
 {
-    // Convert its type
-    event->type = static_cast<sfEventType>(sfmlEvent.type);
-
-    // Fill its fields
-    switch (event->type)
+    if (sfmlEvent.is<sf::Event::Closed>())
     {
-        case sfEvtResized :
-            event->size.width  = sfmlEvent.size.width;
-            event->size.height = sfmlEvent.size.height;
-            break;
-
-        case sfEvtTextEntered :
-            event->text.unicode = sfmlEvent.text.unicode;
-            break;
-
-        case sfEvtKeyReleased :
-        case sfEvtKeyPressed :
-            event->key.code     = static_cast<sfKeyCode>(sfmlEvent.key.code);
-            event->key.scancode = static_cast<sfScancode>(sfmlEvent.key.scancode);
-            event->key.alt      = sfmlEvent.key.alt;
-            event->key.control  = sfmlEvent.key.control;
-            event->key.shift    = sfmlEvent.key.shift;
-            event->key.system   = sfmlEvent.key.system;
-            break;
-
-        case sfEvtMouseWheelScrolled :
-            event->mouseWheelScroll.wheel = static_cast<sfMouseWheel>(sfmlEvent.mouseWheelScroll.wheel);
-            event->mouseWheelScroll.delta = sfmlEvent.mouseWheelScroll.delta;
-            event->mouseWheelScroll.x     = sfmlEvent.mouseWheelScroll.x;
-            event->mouseWheelScroll.y     = sfmlEvent.mouseWheelScroll.y;
-            break;
-
-        case sfEvtMouseButtonPressed :
-        case sfEvtMouseButtonReleased :
-            event->mouseButton.button = static_cast<sfMouseButton>(sfmlEvent.mouseButton.button);
-            event->mouseButton.x      = sfmlEvent.mouseButton.x;
-            event->mouseButton.y      = sfmlEvent.mouseButton.y;
-            break;
-
-        case sfEvtMouseMoved :
-            event->mouseMove.x = sfmlEvent.mouseMove.x;
-            event->mouseMove.y = sfmlEvent.mouseMove.y;
-            break;
-
-        case sfEvtJoystickButtonPressed :
-        case sfEvtJoystickButtonReleased :
-            event->joystickButton.joystickId = sfmlEvent.joystickButton.joystickId;
-            event->joystickButton.button     = sfmlEvent.joystickButton.button;
-            break;
-
-        case sfEvtJoystickMoved :
-            event->joystickMove.joystickId = sfmlEvent.joystickMove.joystickId;
-            event->joystickMove.axis       = static_cast<sfJoystickAxis>(sfmlEvent.joystickMove.axis);
-            event->joystickMove.position   = sfmlEvent.joystickMove.position;
-            break;
-
-        case sfEvtJoystickConnected :
-        case sfEvtJoystickDisconnected :
-            event->joystickConnect.joystickId = sfmlEvent.joystickConnect.joystickId;
-            break;
-
-        case sfEvtTouchBegan :
-        case sfEvtTouchMoved :
-        case sfEvtTouchEnded :
-            event->touch.finger = sfmlEvent.touch.finger;
-            event->touch.x = sfmlEvent.touch.x;
-            event->touch.y = sfmlEvent.touch.y;
-            break;
-
-        case sfEvtSensorChanged :
-            event->sensor.sensorType = static_cast<sfSensorType>(sfmlEvent.sensor.type);
-            event->sensor.x = sfmlEvent.sensor.x;
-            event->sensor.y = sfmlEvent.sensor.y;
-            event->sensor.z = sfmlEvent.sensor.z;
-            break;
-
-        default :
-            break;
+        event->type = sfEvtClosed;
+    }
+    else if (const auto* resized = sfmlEvent.getIf<sf::Event::Resized>())
+    {
+        event->type        = sfEvtResized;
+        event->size.width  = resized->size.x;
+        event->size.height = resized->size.y;
+    }
+    else if (sfmlEvent.is<sf::Event::FocusLost>())
+    {
+        event->type = sfEvtFocusLost;
+    }
+    else if (sfmlEvent.is<sf::Event::FocusGained>())
+    {
+        event->type = sfEvtFocusGained;
+    }
+    else if (const auto* textEntered = sfmlEvent.getIf<sf::Event::TextEntered>())
+    {
+        event->type         = sfEvtTextEntered;
+        event->text.unicode = textEntered->unicode;
+    }
+    else if (const auto* keyReleased = sfmlEvent.getIf<sf::Event::KeyReleased>())
+    {
+        event->type         = sfEvtKeyReleased;
+        event->key.code     = static_cast<sfKeyCode>(keyReleased->code);
+        event->key.scancode = static_cast<sfScancode>(keyReleased->scancode);
+        event->key.alt      = keyReleased->alt;
+        event->key.control  = keyReleased->control;
+        event->key.shift    = keyReleased->shift;
+        event->key.system   = keyReleased->system;
+    }
+    else if (const auto* keyPressed = sfmlEvent.getIf<sf::Event::KeyPressed>())
+    {
+        event->type         = sfEvtKeyPressed;
+        event->key.code     = static_cast<sfKeyCode>(keyPressed->code);
+        event->key.scancode = static_cast<sfScancode>(keyPressed->scancode);
+        event->key.alt      = keyPressed->alt;
+        event->key.control  = keyPressed->control;
+        event->key.shift    = keyPressed->shift;
+        event->key.system   = keyPressed->system;
+    }
+    else if (const auto* mouseWheelScrolled = sfmlEvent.getIf<sf::Event::MouseWheelScrolled>())
+    {
+        event->type                   = sfEvtMouseWheelScrolled;
+        event->mouseWheelScroll.wheel = static_cast<sfMouseWheel>(mouseWheelScrolled->wheel);
+        event->mouseWheelScroll.delta = mouseWheelScrolled->delta;
+        event->mouseWheelScroll.x     = mouseWheelScrolled->position.x;
+        event->mouseWheelScroll.y     = mouseWheelScrolled->position.y;
+    }
+    else if (const auto* mouseButtonPressed = sfmlEvent.getIf<sf::Event::MouseButtonPressed>())
+    {
+        event->type               = sfEvtMouseButtonPressed;
+        event->mouseButton.button = static_cast<sfMouseButton>(mouseButtonPressed->button);
+        event->mouseButton.x      = mouseButtonPressed->position.x;
+        event->mouseButton.y      = mouseButtonPressed->position.y;
+    }
+    else if (const auto* mouseButtonReleased = sfmlEvent.getIf<sf::Event::MouseButtonReleased>())
+    {
+        event->type               = sfEvtMouseButtonReleased;
+        event->mouseButton.button = static_cast<sfMouseButton>(mouseButtonReleased->button);
+        event->mouseButton.x      = mouseButtonReleased->position.x;
+        event->mouseButton.y      = mouseButtonReleased->position.y;
+    }
+    else if (const auto* mouseMoved = sfmlEvent.getIf<sf::Event::MouseMoved>())
+    {
+        event->type        = sfEvtMouseMoved;
+        event->mouseMove.x = mouseMoved->position.x;
+        event->mouseMove.y = mouseMoved->position.y;
+    }
+    else if (sfmlEvent.is<sf::Event::MouseEntered>())
+    {
+        event->type = sfEvtMouseEntered;
+    }
+    else if (sfmlEvent.is<sf::Event::MouseLeft>())
+    {
+        event->type = sfEvtMouseLeft;
+    }
+    else if (const auto* joystickButtonPressed = sfmlEvent.getIf<sf::Event::JoystickButtonPressed>())
+    {
+        event->type                      = sfEvtJoystickButtonPressed;
+        event->joystickButton.joystickId = joystickButtonPressed->joystickId;
+        event->joystickButton.button     = joystickButtonPressed->button;
+    }
+    else if (const auto* joystickButtonReleased = sfmlEvent.getIf<sf::Event::JoystickButtonReleased>())
+    {
+        event->type                      = sfEvtJoystickButtonReleased;
+        event->joystickButton.joystickId = joystickButtonReleased->joystickId;
+        event->joystickButton.button     = joystickButtonReleased->button;
+    }
+    else if (const auto* joystickMoved = sfmlEvent.getIf<sf::Event::JoystickMoved>())
+    {
+        event->type                    = sfEvtJoystickMoved;
+        event->joystickMove.joystickId = joystickMoved->joystickId;
+        event->joystickMove.axis       = static_cast<sfJoystickAxis>(joystickMoved->axis);
+        event->joystickMove.position   = joystickMoved->position;
+    }
+    else if (const auto* joystickConnected = sfmlEvent.getIf<sf::Event::JoystickConnected>())
+    {
+        event->type                       = sfEvtJoystickConnected;
+        event->joystickConnect.joystickId = joystickConnected->joystickId;
+    }
+    else if (const auto* joystickDisconnected = sfmlEvent.getIf<sf::Event::JoystickDisconnected>())
+    {
+        event->type                       = sfEvtJoystickDisconnected;
+        event->joystickConnect.joystickId = joystickDisconnected->joystickId;
+    }
+    else if (const auto* touchBegan = sfmlEvent.getIf<sf::Event::TouchBegan>())
+    {
+        event->type         = sfEvtTouchBegan;
+        event->touch.finger = touchBegan->finger;
+        event->touch.x      = touchBegan->position.x;
+        event->touch.y      = touchBegan->position.y;
+    }
+    else if (const auto* touchMoved = sfmlEvent.getIf<sf::Event::TouchMoved>())
+    {
+        event->type         = sfEvtTouchMoved;
+        event->touch.finger = touchMoved->finger;
+        event->touch.x      = touchMoved->position.x;
+        event->touch.y      = touchMoved->position.y;
+    }
+    else if (const auto* touchEnded = sfmlEvent.getIf<sf::Event::TouchEnded>())
+    {
+        event->type         = sfEvtTouchEnded;
+        event->touch.finger = touchEnded->finger;
+        event->touch.x      = touchEnded->position.x;
+        event->touch.y      = touchEnded->position.y;
+    }
+    else if (const auto* sensorChanged = sfmlEvent.getIf<sf::Event::SensorChanged>())
+    {
+        event->type              = sfEvtSensorChanged;
+        event->sensor.sensorType = static_cast<sfSensorType>(sensorChanged->type);
+        event->sensor.x          = sensorChanged->value.x;
+        event->sensor.y          = sensorChanged->value.y;
+        event->sensor.z          = sensorChanged->value.z;
     }
 }
 

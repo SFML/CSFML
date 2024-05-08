@@ -31,8 +31,10 @@
 #include <SFML/Audio/Export.h>
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/Types.h>
+#include <SFML/Audio/SoundChannel.h>
 #include <SFML/System/Time.h>
 #include <SFML/System/Vector3.h>
+#include <stddef.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -52,20 +54,24 @@ typedef void (*sfSoundStreamSeekCallback)(sfTime, void*);                 ///< T
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound stream
 ///
-/// \param onGetData    Function called when the stream needs more data (can't be NULL)
-/// \param onSeek       Function called when the stream seeks (can't be NULL)
-/// \param channelCount Number of channels to use (1 = mono, 2 = stereo)
-/// \param sampleRate   Sample rate of the sound (44100 = CD quality)
-/// \param userData     Data to pass to the callback functions
+/// \param onGetData      Function called when the stream needs more data (can't be NULL)
+/// \param onSeek         Function called when the stream seeks (can't be NULL)
+/// \param channelCount   Number of channels to use (1 = mono, 2 = stereo)
+/// \param sampleRate     Sample rate of the sound (44100 = CD quality)
+/// \param channelMapData Pointer to the array of channel map data
+/// \param channelMapSize Size of channel map data array
+/// \param userData       Data to pass to the callback functions
 ///
 /// \return A new sfSoundStream object
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfSoundStream* sfSoundStream_create(sfSoundStreamGetDataCallback onGetData,
-                                              sfSoundStreamSeekCallback    onSeek,
-                                              unsigned int                 channelCount,
-                                              unsigned int                 sampleRate,
-                                              void*                        userData);
+                                                    sfSoundStreamSeekCallback    onSeek,
+                                                    unsigned int                 channelCount,
+                                                    unsigned int                 sampleRate,
+                                                    sfSoundChannel*              channelMapData,
+                                                    size_t                       channelMapSize,
+                                                    void*                        userData);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a sound stream

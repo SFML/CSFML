@@ -51,11 +51,6 @@ public :
     {
     }
 
-    void setProcessingInterval(sfTime interval)
-    {
-        sf::SoundRecorder::setProcessingInterval(sf::microseconds(interval.microseconds));
-    }
-
 private :
 
     bool onStart() override

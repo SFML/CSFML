@@ -76,13 +76,6 @@ bool sfSoundRecorder_isAvailable(void)
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundRecorder_setProcessingInterval(sfSoundRecorder* soundRecorder, sfTime interval)
-{
-    CSFML_CALL(soundRecorder, setProcessingInterval(interval));
-}
-
-
-////////////////////////////////////////////////////////////
 const char** sfSoundRecorder_getAvailableDevices(size_t* count)
 {
     static std::vector<std::string> stringDevices = sf::SoundRecorder::getAvailableDevices();
