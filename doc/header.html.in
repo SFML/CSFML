@@ -20,7 +20,7 @@
     <body>
         <div id="banner-container">
             <div id="banner">
-                <span id="sfml">CSFML</span>
+                <span id="sfml">CSFML @PROJECT_VERSION@</span>
             </div>
         </div>
         <div id="content">
