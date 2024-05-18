@@ -127,6 +127,9 @@ cmake --build . --config Release
 # STEP 5: Copy result to the NuGet folders #
 # ======================================== #
 
+SFMLMajorMinor="2.6"
+CSFMLMajorMinor="2.6"
+
 # Copies one SFML and CSFML module into the NuGet package
 # The module name must be passed to this function as an argument, in lowercase
 # This function then copies $SFMLLibDir/libsfml-(module).so and
@@ -137,14 +140,15 @@ copymodule()
 
     mkdir -p "$OutDir"
 
-    # Note the wildcard at the end of the first argument
-    # We are copying every versioned file here, not just the .so
-    # (libsfml-audio.so, libsfml-audio.so.2, libsfml-audio.so.2.6, etc)
-    # This is needed because of the way linux searches for libraries based
-    # one their SONAME
-    cp "$SFMLLibDir/libsfml-$MODULE.so"* "$OutDir"
-
+    # SFML.Net only searches for the name with common pre- and suffixes
+    # As such we need to ship e.g. libcsfml-graphics.so
+    # But the CSFML libs will look for the major.minor version
+    # As such we also need to ship e.g. libcsfml-graphics.so.2.6
+    # Unfortunately NuGet package don't support symlinks: https://github.com/NuGet/Home/issues/10734
+    # For SFML, we can just ship one version that CSFML will be looking for
+    cp "$SFMLLibDir/libsfml-$MODULE.so.$SFMLMajorMinor" "$OutDir"
     cp "$CSFMLLibDir/libcsfml-$MODULE.so" "$OutDir"
+    cp "$CSFMLLibDir/libcsfml-$MODULE.so.$CSFMLMajorMinor" "$OutDir"
 }
 
 copymodule audio
