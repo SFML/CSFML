@@ -28,6 +28,9 @@ endif()
 if(CSFML_BUILD_GRAPHICS)
     list(PREPEND SFML_MODULES "graphics")
 endif()
+if(CSFML_BUILD_WINDOW)
+    list(PREPEND SFML_MODULES "window")
+endif()
 if(CSFML_BUILD_NETWORK)
     list(PREPEND SFML_MODULES "network")
 endif()
@@ -36,7 +39,7 @@ find_package(SFML 2.6 COMPONENTS ${SFML_MODULES} REQUIRED)
 # add the modules subdirectories
 add_subdirectory(System)
 
-if(CSFML_BUILD_WINDOW OR SFML_BUILD_GRAPHICS)
+if(CSFML_BUILD_WINDOW OR CSFML_BUILD_GRAPHICS)
     add_subdirectory(Window)
 endif()
 
