@@ -2,5 +2,7 @@
 <Project ToolsVersion="16.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <CSFMLIgnoreAnyCPU>true</CSFMLIgnoreAnyCPU>
+        <!-- Silence warning about the fedora-x64 libraries -->
+        <NoWarn>NETSDK1206</NoWarn>
     </PropertyGroup>
 </Project>

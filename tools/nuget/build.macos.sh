@@ -193,19 +193,15 @@ copymodule()
 
     mkdir -p "$OutDir"
 
-    # Note the wildcard at the end of the first argument
-    # We are copying every versioned file here, not just the .dylib
-    # (libsfml-audio.dylib, libsfml-audio.2.dylib, libsfml-audio.2.6.dylib, etc)
-    # This is needed because of the way macOS searches for libraries based
-    # one their SONAME
-    cp "$SFMLLibDir/libsfml-$MODULE."* "$OutDir"
-
-    cp "$CSFMLLibDir/libcsfml-$MODULE."* "$OutDir"
-
-    # Fix naming for expected filename
-    mv "$OutDir/libcsfml-$MODULE.dylib" "$OutDir/libcsfml-$MODULE"
-    mv "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinor.dylib" "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinor"
-    mv "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinorPatch.dylib" "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinorPatch"
+    # SFML.Net only searches for the name with common pre- and suffixes
+    # As such we need to ship e.g. libcsfml-graphics.dylib
+    # But the CSFML libs will look for the major.minor version
+    # As such we also need to ship e.g. libcsfml-graphics.2.6.dylib
+    # Unfortunately NuGet package don't support symlinks: https://github.com/NuGet/Home/issues/10734
+    # For SFML, we can just ship one version that CSFML will be looking for
+    cp "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinor.dylib" "$OutDir"
+    cp "$CSFMLLibDir/libcsfml-$MODULE.dylib" "$OutDir"
+    cp "$CSFMLLibDir/libcsfml-$MODULE.$CSFMLMajorMinor.dylib" "$OutDir"
 }
 
 copymodule audio
