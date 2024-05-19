@@ -13,7 +13,7 @@ endmacro()
 csfml_set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or Release)")
 
 # project name
-project(CSFML VERSION 2.6.0)
+project(CSFML VERSION 2.6.1)
 
 # we use the paths from the cmake GNUInstallDirs module as defaults
 # you can override these if you like

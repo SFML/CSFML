@@ -181,7 +181,7 @@ fixrpath graphics "@rpath/../Frameworks/freetype.framework/Versions/A/freetype" 
 # ======================================== #
 
 CSFMLMajorMinor="2.6"
-CSFMLMajorMinorPatch="$CSFMLMajorMinor.0"
+CSFMLMajorMinorPatch="$CSFMLMajorMinor.1"
 
 # Copies one SFML and CSFML module into the NuGet package
 # The module name must be passed to this function as an argument, in lowercase
