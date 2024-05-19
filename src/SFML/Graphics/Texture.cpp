@@ -250,10 +250,7 @@ sfImage* sfTexture_copyToImage(const sfTexture* texture)
     CSFML_CHECK_RETURN(texture, nullptr);
     CSFML_CHECK_RETURN(texture->This, nullptr);
 
-    sfImage* image = new sfImage;
-    image->This = texture->This->copyToImage();
-
-    return image;
+    return new sfImage{texture->This->copyToImage()};
 }
 
 

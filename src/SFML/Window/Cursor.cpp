@@ -33,30 +33,22 @@
 ////////////////////////////////////////////////////////////
 sfCursor* sfCursor_createFromPixels(const uint8_t* pixels, sfVector2u size, sfVector2u hotspot)
 {
-    sfCursor* cursor = new sfCursor;
+    auto cursor = sf::Cursor::loadFromPixels(pixels, sf::Vector2u(size.x, size.y), sf::Vector2u(hotspot.x, hotspot.y));
+    if (!cursor)
+        return nullptr;
 
-    if (!cursor->This.loadFromPixels(pixels, sf::Vector2u(size.x, size.y), sf::Vector2u(hotspot.x, hotspot.y)))
-    {
-        delete cursor;
-        cursor = nullptr;
-    }
-
-    return cursor;
+    return new sfCursor{std::move(*cursor)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfCursor* sfCursor_createFromSystem(sfCursorType type)
 {
-    sfCursor* cursor = new sfCursor;
+    auto cursor = sf::Cursor::loadFromSystem(static_cast<sf::Cursor::Type>(type));
+    if (!cursor)
+        return nullptr;
 
-    if (!cursor->This.loadFromSystem(static_cast<sf::Cursor::Type>(type)))
-    {
-        delete cursor;
-        cursor = nullptr;
-    }
-
-    return cursor;
+    return new sfCursor{std::move(*cursor)};
 }
 
 

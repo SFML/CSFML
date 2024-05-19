@@ -51,19 +51,14 @@ sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height,
     }
 
     // Create the render texture
-    sfRenderTexture* renderTexture = new sfRenderTexture;
-
-    if (!renderTexture->This.create({ width, height }, params))
-    {
-        delete renderTexture;
+    auto renderTexture = sf::RenderTexture::create({ width, height }, params);
+    if (!renderTexture)
         return nullptr;
-    }
 
-    renderTexture->Target = new sfTexture(const_cast<sf::Texture*>(&renderTexture->This.getTexture()));
-    renderTexture->DefaultView.This = renderTexture->This.getDefaultView();
-    renderTexture->CurrentView.This = renderTexture->This.getView();
-
-    return renderTexture;
+    return new sfRenderTexture{std::move(*renderTexture),
+                               new sfTexture(const_cast<sf::Texture*>(&renderTexture->getTexture())),
+                               {renderTexture->getDefaultView()},
+                               {renderTexture->getView()}};
 }
 
 
