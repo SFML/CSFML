@@ -35,7 +35,7 @@ Write-Output "Building $RID"
 Write-Output "Using $Generator as the cmake generator"
 Write-Output "Using architecture $Architecture"
 
-$SFMLBranch = "2.6.1" # The branch or tag of the SFML repository to be cloned
+$SFMLBranch = "master" # The branch or tag of the SFML repository to be cloned
 $CSFMLDir = (Get-Item (git rev-parse --show-toplevel)).FullName # The directory of the source code of CSFML
 
 $OutDir = "./CSFML/runtimes/$RID/native" # The directory of all CSFML modules, used to copy the final dlls
@@ -48,7 +48,7 @@ Ensures that the last command run was a success, checking its exit code.
 #>
 function Ensure-Success() {
     if ($LastExitCode -ne 0) {
-        exit
+        exit -1
     }
 }
 
@@ -119,6 +119,7 @@ cmake `
     '-DCMAKE_BUILD_TYPE=Release' `
     '-DCMAKE_SYSTEM_VERSION=8.1' `
     '-DSFML_USE_STATIC_STD_LIBS=1' `
+    '-DSFML_BUILD_NETWORK=0' `
     "-G$Generator" `
     "-A$Architecture" `
     $SFMLDir
@@ -158,6 +159,7 @@ cmake `
     `
     "-DBUILD_SHARED_LIBS=1" `
     '-DCMAKE_BUILD_TYPE=Release' `
+    '-DCSFML_BUILD_NETWORK=0' `
     `
     "-G$generator" `
     "-A$Architecture" `
@@ -179,10 +181,10 @@ Write-Output "Copying CSFML modules"
 Copies a specific CSFML module into its proper NuGet project
 
 .DESCRIPTION
-This function locates a file named csfml-(module)-2.dll inside of the
+This function locates a file named csfml-(module)-3.dll inside of the
 folder specified by $CSFMLLibDir and copies it to $OutDir/csfml-(module).dll.
 
-Notice how it removes the "-2" at the end, to make the name compatible with other platforms.
+Notice how it removes the "-3" at the end, to make the name compatible with other platforms.
 
 .PARAMETER module
 The case-insensitive name of the module to copy.
@@ -191,7 +193,7 @@ function Copy-Module($module) {
     Write-Output "Copying CSFML $module"
 
     New-Item -ItemType Directory $OutDir -ErrorAction Ignore > $null
-    Copy-Item "$CSFMLLibDir/csfml-$module-2.dll" "$OutDir/csfml-$module.dll" -Force > $null
+    Copy-Item "$CSFMLLibDir/csfml-$module-3.dll" "$OutDir/csfml-$module.dll" -Force > $null
 }
 
 Copy-Module 'audio'

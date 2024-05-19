@@ -42,8 +42,8 @@ echo "Please note that all SFML dependencies must be installed and available to 
 
 RID="$1"
 
-SFMLBranch="2.6.1" # The branch or tag of the SFML repository to be cloned
-CSFMLDir="$(realpath "$(git rev-parse --show-toplevel)")"  # The directory of the source code of CSFML
+SFMLBranch="master" # The branch or tag of the SFML repository to be cloned
+CSFMLDir="$(realpath ../../)"  # The directory of the source code of CSFML
 
 OutDir="./CSFML/runtimes/$RID/native" # The base directory of all CSFML modules, used to copy the final libraries
 mkdir -p "$OutDir"
@@ -93,6 +93,7 @@ cmake -E env LDFLAGS="-z origin" \
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$SFMLLibDir" \
     '-DCMAKE_BUILD_WITH_INSTALL_RPATH=1' \
     '-DCMAKE_INSTALL_RPATH=$ORIGIN' \
+    '-DSFML_BUILD_NETWORK=0' \
     "$SFMLDir"
 
 cmake --build . --config Release
@@ -118,12 +119,16 @@ cmake -E env LDFLAGS="-z origin" \
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" \
     '-DCMAKE_BUILD_WITH_INSTALL_RPATH=1' \
     '-DCMAKE_INSTALL_RPATH=$ORIGIN' \
+    '-DCSFML_BUILD_NETWORK=0' \
     "$CSFMLDir"
 cmake --build . --config Release
 
 # ======================================== #
 # STEP 5: Copy result to the NuGet folders #
 # ======================================== #
+
+SFMLMajorMinor="3.0"
+CSFMLMajorMinor="3.0"
 
 # Copies one SFML and CSFML module into the NuGet package
 # The module name must be passed to this function as an argument, in lowercase
@@ -135,14 +140,15 @@ copymodule()
 
     mkdir -p "$OutDir"
 
-    # Note the wildcard at the end of the first argument
-    # We are copying every versioned file here, not just the .so
-    # (libsfml-audio.so, libsfml-audio.so.2, libsfml-audio.so.2.6, etc)
-    # This is needed because of the way linux searches for libraries based
-    # one their SONAME
-    cp "$SFMLLibDir/libsfml-$MODULE.so"* "$OutDir"
-
+    # SFML.Net only searches for the name with common pre- and suffixes
+    # As such we need to ship e.g. libcsfml-graphics.so
+    # But the CSFML libs will look for the major.minor version
+    # As such we also need to ship e.g. libcsfml-graphics.so.2.6
+    # Unfortunately NuGet package don't support symlinks: https://github.com/NuGet/Home/issues/10734
+    # For SFML, we can just ship one version that CSFML will be looking for
+    cp "$SFMLLibDir/libsfml-$MODULE.so.$SFMLMajorMinor" "$OutDir"
     cp "$CSFMLLibDir/libcsfml-$MODULE.so" "$OutDir"
+    cp "$CSFMLLibDir/libcsfml-$MODULE.so.$CSFMLMajorMinor" "$OutDir"
 }
 
 copymodule audio

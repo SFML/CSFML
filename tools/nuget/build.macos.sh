@@ -46,7 +46,7 @@ echo "Please note that all SFML dependencies must be installed and available to 
 
 RID="$1"
 
-SFMLBranch="2.6.1" # The branch or tag of the SFML repository to be cloned
+SFMLBranch="master" # The branch or tag of the SFML repository to be cloned
 CSFMLDir="$(grealpath "$(git rev-parse --show-toplevel)")" # The directory of the source code of CSFML
 
 OutDir="./CSFML/runtimes/$RID/native" # The base directory of all CSFML modules, used to copy the final libraries
@@ -113,6 +113,7 @@ cmake -E env \
           -D "CMAKE_INSTALL_PREFIX=$SFMLLibDir" \
           -D "SFML_DEPENDENCIES_INSTALL_PREFIX=$SFMLLibDir" \
           -D "SFML_MISC_INSTALL_PREFIX=$SFMLLibDir" \
+          -D "SFML_BUILD_NETWORK=0" \
           "$SFMLDir"
 
 cmake --build . --config Release --target install
@@ -141,6 +142,7 @@ cmake -E env \
           -D 'CMAKE_INSTALL_RPATH=@loader_path' \
           -D "CMAKE_INSTALL_PREFIX=$CSFMLLibDir" \
           -D "INSTALL_MISC_DIR=$CSFMLLibDir" \
+          -D "CSFML_BUILD_NETWORK=0" \
           "$CSFMLDir"
 cmake --build . --config Release --target install
 
@@ -148,8 +150,8 @@ cmake --build . --config Release --target install
 # STEP 5: Fix RPATH references #
 # ============================ #
 
-SFMLMajorMinor="2.6"
-SFMLMajorMinorPatch="$SFMLMajorMinor.1"
+SFMLMajorMinor="3.0"
+SFMLMajorMinorPatch="$SFMLMajorMinor.0"
 
 # SFML's framework dependencies will always reference @rpath/../Frameworks/<depedency>
 # Which is not where we place the frameworks and where SFML should look for them
@@ -178,7 +180,7 @@ fixrpath graphics "@rpath/../Frameworks/freetype.framework/Versions/A/freetype" 
 # STEP 6: Copy result to the NuGet folders #
 # ======================================== #
 
-CSFMLMajorMinor="2.6"
+CSFMLMajorMinor="3.0"
 CSFMLMajorMinorPatch="$CSFMLMajorMinor.0"
 
 # Copies one SFML and CSFML module into the NuGet package
@@ -191,19 +193,15 @@ copymodule()
 
     mkdir -p "$OutDir"
 
-    # Note the wildcard at the end of the first argument
-    # We are copying every versioned file here, not just the .dylib
-    # (libsfml-audio.dylib, libsfml-audio.2.dylib, libsfml-audio.2.6.dylib, etc)
-    # This is needed because of the way macOS searches for libraries based
-    # one their SONAME
-    cp "$SFMLLibDir/libsfml-$MODULE."* "$OutDir"
-
-    cp "$CSFMLLibDir/libcsfml-$MODULE."* "$OutDir"
-
-    # Fix naming for expected filename
-    mv "$OutDir/libcsfml-$MODULE.dylib" "$OutDir/libcsfml-$MODULE"
-    mv "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinor.dylib" "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinor"
-    mv "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinorPatch.dylib" "$OutDir/libcsfml-$MODULE.$CSFMLMajorMinorPatch"
+    # SFML.Net only searches for the name with common pre- and suffixes
+    # As such we need to ship e.g. libcsfml-graphics.dylib
+    # But the CSFML libs will look for the major.minor version
+    # As such we also need to ship e.g. libcsfml-graphics.2.6.dylib
+    # Unfortunately NuGet package don't support symlinks: https://github.com/NuGet/Home/issues/10734
+    # For SFML, we can just ship one version that CSFML will be looking for
+    cp "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinor.dylib" "$OutDir"
+    cp "$CSFMLLibDir/libcsfml-$MODULE.dylib" "$OutDir"
+    cp "$CSFMLLibDir/libcsfml-$MODULE.$CSFMLMajorMinor.dylib" "$OutDir"
 }
 
 copymodule audio
@@ -211,7 +209,7 @@ copymodule graphics
 copymodule system
 copymodule window
 
-cp -R "$SFMLLibDir/"*.framework "$OutDir"
+cp -R "$SFMLLibDir/lib/"*.framework "$OutDir"
 
 popd # Pop CSFML
 popd # Pop $RID

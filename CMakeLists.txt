@@ -23,6 +23,12 @@ include(GNUInstallDirs)
 # include the configuration file
 include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 
+# add options to select which modules to build
+csfml_set_option(CSFML_BUILD_WINDOW TRUE BOOL "TRUE to build CSFML's Window module. This setting is ignored, if the graphics module is built.")
+csfml_set_option(CSFML_BUILD_GRAPHICS TRUE BOOL "TRUE to build CSFML's Graphics module.")
+csfml_set_option(CSFML_BUILD_AUDIO TRUE BOOL "TRUE to build CSFML's Audio module.")
+csfml_set_option(CSFML_BUILD_NETWORK TRUE BOOL "TRUE to build CSFML's Network module.")
+
 # add an option for choosing the build type (shared or static)
 csfml_set_option(BUILD_SHARED_LIBS TRUE BOOL "TRUE to build CSFML as shared libraries, FALSE to build it as static libraries")
 
