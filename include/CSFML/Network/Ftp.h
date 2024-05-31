@@ -169,7 +169,7 @@ CSFML_NETWORK_API size_t sfFtpListingResponse_getCount(const sfFtpListingRespons
 /// \brief Return a directory/file name contained in a FTP listing response
 ///
 /// \param ftpListingResponse Ftp listing response
-/// \param index              Index of the name to get (in range [0 .. getCount])
+/// \param index              Index of the name to get, in range [0 .. getCount() - 1]
 ///
 /// \return The requested name
 ///
