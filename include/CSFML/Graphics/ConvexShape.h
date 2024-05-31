@@ -390,7 +390,7 @@ CSFML_GRAPHICS_API void sfConvexShape_setPointCount(sfConvexShape* shape, size_t
 /// of the valid range.
 ///
 /// \param shape Shape object
-/// \param index Index of the point to change, in range [0 .. GetPointCount() - 1]
+/// \param index Index of the point to change, in range [0 .. getPointCount() - 1]
 /// \param point New point
 ///
 ////////////////////////////////////////////////////////////
