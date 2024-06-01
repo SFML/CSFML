@@ -35,60 +35,43 @@
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_create(unsigned int width, unsigned int height)
 {
-    sfImage* image = new sfImage;
-    image->This.create({ width, height });
-
-    return image;
+    return new sfImage{sf::Image({width, height})};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromColor(unsigned int width, unsigned int height, sfColor color)
 {
-    sfImage* image = new sfImage;
-    image->This.create({ width, height }, sf::Color(color.r, color.g, color.b, color.a));
-
-    return image;
+    return new sfImage{sf::Image({ width, height }, sf::Color(color.r, color.g, color.b, color.a))};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const uint8_t* data)
 {
-    sfImage* image = new sfImage;
-    image->This.create({ width, height }, data);
-
-    return image;
+    return new sfImage{sf::Image({ width, height }, data)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromFile(const char* filename)
 {
-    sfImage* image = new sfImage;
+    auto image = sf::Image::loadFromFile(filename);
+    if (!image)
+        return nullptr;
 
-    if (!image->This.loadFromFile(filename))
-    {
-        delete image;
-        image = nullptr;
-    }
-
-    return image;
+    return new sfImage{std::move(*image)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sfImage* image = new sfImage;
+    auto image = sf::Image::loadFromMemory(data, sizeInBytes);
+    if (!image)
+        return nullptr;
 
-    if (!image->This.loadFromMemory(data, sizeInBytes))
-    {
-        delete image;
-        image = nullptr;
-    }
-
-    return image;
+    return new sfImage{std::move(*image)};
 }
 
 
@@ -97,16 +80,12 @@ sfImage* sfImage_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, nullptr);
 
-    sfImage* image = new sfImage;
-
     CallbackStream sfmlStream(stream);
-    if (!image->This.loadFromStream(sfmlStream))
-    {
-        delete image;
-        image = nullptr;
-    }
+    auto image = sf::Image::loadFromStream(sfmlStream);
+    if (!image)
+        return nullptr;
 
-    return image;
+    return new sfImage{std::move(*image)};
 }
 
 

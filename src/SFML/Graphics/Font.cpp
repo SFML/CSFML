@@ -34,28 +34,22 @@
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromFile(const char* filename)
 {
-    sfFont* font = new sfFont;
-    if (!font->This.loadFromFile(filename))
-    {
-        delete font;
-        font = nullptr;
-    }
+    auto font = sf::Font::loadFromFile(filename);
+    if (!font)
+        return nullptr;
 
-    return font;
+    return new sfFont{std::move(*font), {}, {}};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sfFont* font = new sfFont;
-    if (!font->This.loadFromMemory(data, sizeInBytes))
-    {
-        delete font;
-        font = nullptr;
-    }
+    auto font = sf::Font::loadFromMemory(data, sizeInBytes);
+    if (!font)
+        return nullptr;
 
-    return font;
+    return new sfFont{std::move(*font), {}, {}};
 }
 
 
@@ -64,15 +58,12 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, nullptr);
 
-    sfFont* font = new sfFont;
-    font->Stream = CallbackStream(stream);
-    if (!font->This.loadFromStream(font->Stream))
-    {
-        delete font;
-        font = nullptr;
-    }
+    auto sfmlStream = std::make_shared<CallbackStream>(stream);
+    auto font = sf::Font::loadFromStream(*sfmlStream);
+    if (!font)
+        return nullptr;
 
-    return font;
+    return new sfFont{std::move(*font), {}, std::move(sfmlStream)};
 }
 
 

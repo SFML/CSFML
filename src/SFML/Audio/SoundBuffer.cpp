@@ -34,30 +34,22 @@
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromFile(const char* filename)
 {
-    sfSoundBuffer* buffer = new sfSoundBuffer;
+    auto soundBuffer = sf::SoundBuffer::loadFromFile(filename);
+    if (!soundBuffer)
+        return nullptr;
 
-    if (!buffer->This.loadFromFile(filename))
-    {
-        delete buffer;
-        buffer = nullptr;
-    }
-
-    return buffer;
+    return new sfSoundBuffer{std::move(*soundBuffer)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sfSoundBuffer* buffer = new sfSoundBuffer;
+    auto soundBuffer = sf::SoundBuffer::loadFromMemory(data, sizeInBytes);
+    if (!soundBuffer)
+        return nullptr;
 
-    if (!buffer->This.loadFromMemory(data, sizeInBytes))
-    {
-        delete buffer;
-        buffer = nullptr;
-    }
-
-    return buffer;
+    return new sfSoundBuffer{std::move(*soundBuffer)};
 }
 
 
@@ -67,15 +59,12 @@ sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, nullptr);
 
-    sfSoundBuffer* buffer = new sfSoundBuffer;
     CallbackStream sfmlStream(stream);
-    if (!buffer->This.loadFromStream(sfmlStream))
-    {
-        delete buffer;
-        buffer = nullptr;
-    }
+    auto soundBuffer = sf::SoundBuffer::loadFromStream(sfmlStream);
+    if (!soundBuffer)
+        return nullptr;
 
-    return buffer;
+    return new sfSoundBuffer{std::move(*soundBuffer)};
 }
 
 
@@ -87,18 +76,15 @@ sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t*    samples,
                                                sfSoundChannel*   channelMapData,
                                                size_t            channelMapSize)
 {
-    sfSoundBuffer* buffer = new sfSoundBuffer;
-
     std::vector<sf::SoundChannel> channelMap(channelMapSize);
     for (std::size_t i = 0; i < channelMap.size(); ++i)
         channelMap[i] = static_cast<sf::SoundChannel>(channelMapData[i]);
-    if (!buffer->This.loadFromSamples(samples, sampleCount, channelCount, sampleRate, channelMap))
-    {
-        delete buffer;
-        buffer = nullptr;
-    }
 
-    return buffer;
+    auto soundBuffer = sf::SoundBuffer::loadFromSamples(samples, sampleCount, channelCount, sampleRate, channelMap);
+    if (!soundBuffer)
+        return nullptr;
+
+    return new sfSoundBuffer{std::move(*soundBuffer)};
 }
 
 
