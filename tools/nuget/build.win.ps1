@@ -115,10 +115,10 @@ New-Push SFML
 $SFMLBuiltDir = Get-Location # The directory where SFML was built to. Used later to direct cmake when building CSFML
 
 cmake `
-    '-DBUILD_SHARED_LIBS=0' `
+    '-DBUILD_SHARED_LIBS=1' `
     '-DCMAKE_BUILD_TYPE=Release' `
     '-DCMAKE_SYSTEM_VERSION=8.1' `
-    '-DSFML_USE_STATIC_STD_LIBS=1' `
+    '-DSFML_USE_STATIC_STD_LIBS=0' `
     '-DSFML_BUILD_NETWORK=0' `
     "-G$Generator" `
     "-A$Architecture" `
@@ -142,7 +142,7 @@ $CSFMLLibDir = (Get-Item lib).FullName; # The directory where the final CSFML dl
 
 cmake `
     "-DSFML_DIR=$SFMLBuiltDir" `
-    '-DCSFML_LINK_SFML_STATICALLY=1' `
+    '-DCSFML_LINK_SFML_STATICALLY=0' `
     "-DCMAKE_LIBRARY_PATH=$SFMLExtLibs" `
     `
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" `
@@ -193,6 +193,7 @@ function Copy-Module($module) {
     Write-Output "Copying CSFML $module"
 
     New-Item -ItemType Directory $OutDir -ErrorAction Ignore > $null
+    Copy-Item "$SFMLBuiltDir/bin/sfml-$module-2.dll" "$OutDir" -Force > $null
     Copy-Item "$CSFMLLibDir/csfml-$module-2.dll" "$OutDir/csfml-$module.dll" -Force > $null
 }
 

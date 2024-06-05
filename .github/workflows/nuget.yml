@@ -1,10 +1,7 @@
 name: NuGet Release
 
 on:
-    push:
-        branches:
-            - master
-            - 2.6.x
+    push: {}
     workflow_dispatch: {}
 
 concurrency:

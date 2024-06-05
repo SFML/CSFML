@@ -1,12 +1,7 @@
 name: Release Builds
 
 on:
-    push:
-        branches:
-            - master
-            - 2.6.x
-        tags:
-            - "**"
+    push: {}
     workflow_dispatch: {}
 
 concurrency:
@@ -51,12 +46,12 @@ jobs:
 
             - name: Build SFML
               run: |
-                  cmake -S SFML -B SFML-build -A Win32 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=FALSE -DSFML_USE_STATIC_STD_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+                  cmake -S SFML -B SFML-build -A Win32 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build SFML-build --config Release --target install
 
             - name: Build CSFML
               run: |
-                  cmake -S CSFML -B CSFML-build -A Win32 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DSTATIC_STD_LIBS=TRUE -DCSFML_LINK_SFML_STATICALLY=TRUE -DCMAKE_BUILD_TYPE=Release -DSFML_DIR=${{ github.workspace }}/SFML-install/lib/cmake/SFML -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+                  cmake -S CSFML -B CSFML-build -A Win32 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DCSFML_LINK_SFML_STATICALLY=FALSE -DCMAKE_BUILD_TYPE=Release -DSFML_DIR=${{ github.workspace }}/SFML-install/lib/cmake/SFML -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build CSFML-build --config Release --target install
             
             - name: Add MinGW to PATH
@@ -93,6 +88,7 @@ jobs:
                   Pop-Location
 
                   New-Item -ItemType "directory" -PATH "install"
+                  Move-Item -Path "SFML-install\bin\*" -Destination "install\CSFML"
                   Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
 
             - name: Upload Artifact
@@ -138,12 +134,12 @@ jobs:
 
             - name: Build SFML
               run: |
-                  cmake -S SFML -B SFML-build -A x64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=FALSE -DSFML_USE_STATIC_STD_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+                  cmake -S SFML -B SFML-build -A x64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build SFML-build --config Release --target install
 
             - name: Build CSFML
               run: |
-                  cmake -S CSFML -B CSFML-build -A x64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DSTATIC_STD_LIBS=TRUE -DCSFML_LINK_SFML_STATICALLY=TRUE -DCMAKE_BUILD_TYPE=Release -DSFML_DIR=${{ github.workspace }}/SFML-install/lib/cmake/SFML -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+                  cmake -S CSFML -B CSFML-build -A x64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DCSFML_LINK_SFML_STATICALLY=FALSE -DCMAKE_BUILD_TYPE=Release -DSFML_DIR=${{ github.workspace }}/SFML-install/lib/cmake/SFML -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build CSFML-build --config Release --target install
 
             - name: Add MinGW to PATH
@@ -180,6 +176,7 @@ jobs:
                   Pop-Location
 
                   New-Item -ItemType "directory" -PATH "install"
+                  Move-Item -Path "SFML-install\bin\*" -Destination "install\CSFML"
                   Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
 
             - name: Upload Artifact
