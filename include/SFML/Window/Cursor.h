@@ -97,8 +97,7 @@ typedef enum
 /// in 32-bit RGBA format. If not, this will cause undefined behavior.
 ///
 /// If \a pixels is null or either \a width or \a height are 0,
-/// the current cursor is left unchanged and the function will
-/// return false.
+/// the function will return no new cursor (nullptr).
 ///
 /// In addition to specifying the pixel data, you can also
 /// specify the location of the hotspot of the cursor. The
