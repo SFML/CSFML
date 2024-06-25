@@ -29,10 +29,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/System/Export.h>
+#include <stdlib.h>
 
 
-typedef int64_t (*sfInputStreamReadFunc)(void* data, int64_t size, void* userData);
-typedef int64_t (*sfInputStreamSeekFunc)(int64_t position, void* userData);
+typedef int64_t (*sfInputStreamReadFunc)(void* data, size_t size, void* userData);
+typedef int64_t (*sfInputStreamSeekFunc)(size_t position, void* userData);
 typedef int64_t (*sfInputStreamTellFunc)(void* userData);
 typedef int64_t (*sfInputStreamGetSizeFunc)(void* userData);
 

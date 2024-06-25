@@ -36,15 +36,15 @@
 ////////////////////////////////////////////////////////////
 struct sfTexture
 {
-    sfTexture()
-    {
-        This = new sf::Texture;
-        OwnInstance = true;
-    }
-
     sfTexture(sf::Texture* texture)
     {
         This = texture;
+        OwnInstance = true;
+    }
+
+    sfTexture(const sf::Texture& texture)
+    {
+        This = const_cast<sf::Texture*>(&texture);
         OwnInstance = false;
     }
 

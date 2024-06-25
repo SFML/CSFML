@@ -33,28 +33,22 @@
 ////////////////////////////////////////////////////////////
 sfMusic* sfMusic_createFromFile(const char* filename)
 {
-    sfMusic* music = new sfMusic;
-    if (!music->This.openFromFile(filename))
-    {
-        delete music;
-        music = nullptr;
-    }
+    auto music = sf::Music::openFromFile(filename);
+    if (!music)
+        return nullptr;
 
-    return music;
+    return new sfMusic{{}, std::move(*music)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfMusic* sfMusic_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sfMusic* music = new sfMusic;
-    if (!music->This.openFromMemory(data, sizeInBytes))
-    {
-        delete music;
-        music = nullptr;
-    }
+    auto music = sf::Music::openFromMemory(data, sizeInBytes);
+    if (!music)
+        return nullptr;
 
-    return music;
+    return new sfMusic{{}, std::move(*music)};
 }
 
 
@@ -63,15 +57,12 @@ sfMusic* sfMusic_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, nullptr);
 
-    sfMusic* music = new sfMusic;
-    music->Stream = CallbackStream(stream);
-    if (!music->This.openFromStream(music->Stream))
-    {
-        delete music;
-        music = nullptr;
-    }
+    auto sfmlStream = std::make_unique<CallbackStream>(stream);
+    auto music = sf::Music::openFromStream(*sfmlStream);
+    if (!music)
+        return nullptr;
 
-    return music;
+    return new sfMusic{std::move(sfmlStream), std::move(*music)};
 }
 
 

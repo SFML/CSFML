@@ -31,13 +31,15 @@
 #include <SFML/Audio/Music.hpp>
 #include <SFML/CallbackStream.h>
 
+#include <memory>
+
 
 ////////////////////////////////////////////////////////////
 // Internal structure of sfMusic
 ////////////////////////////////////////////////////////////
 struct sfMusic
 {
-    CallbackStream Stream;
+    std::unique_ptr<CallbackStream> Stream;
     sf::Music This;
 };
 

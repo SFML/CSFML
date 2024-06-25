@@ -56,7 +56,7 @@ sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height,
         return nullptr;
 
     return new sfRenderTexture{std::move(*renderTexture),
-                               new sfTexture(const_cast<sf::Texture*>(&renderTexture->getTexture())),
+                               new sfTexture(renderTexture->getTexture()),
                                {renderTexture->getDefaultView()},
                                {renderTexture->getView()}};
 }
@@ -145,15 +145,15 @@ const sfView* sfRenderTexture_getDefaultView(const sfRenderTexture* renderTextur
 ////////////////////////////////////////////////////////////
 sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, const sfView* view)
 {
-    sfIntRect rect = {0, 0, 0, 0};
+    sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(view, rect);
     CSFML_CHECK_RETURN(renderTexture, rect);
 
     sf::IntRect SFMLrect = renderTexture->This.getViewport(view->This);
-    rect.left   = SFMLrect.left;
-    rect.top    = SFMLrect.top;
-    rect.width  = SFMLrect.width;
-    rect.height = SFMLrect.height;
+    rect.position.x = SFMLrect.position.x;
+    rect.position.y = SFMLrect.position.y;
+    rect.size.x = SFMLrect.size.x;
+    rect.size.y = SFMLrect.size.y;
 
     return rect;
 }

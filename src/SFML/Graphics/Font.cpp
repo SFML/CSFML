@@ -86,20 +86,20 @@ void sfFont_destroy(sfFont* font)
 ////////////////////////////////////////////////////////////
 sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness)
 {
-    sfGlyph glyph = {0, {0, 0, 0, 0}, {0, 0, 0, 0}};
+    sfGlyph glyph = {0, {{0, 0}, {0, 0}}, {{0, 0}, {0, 0}}};
     CSFML_CHECK_RETURN(font, glyph);
 
     sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold, outlineThickness);
 
-    glyph.advance            = SFMLGlyph.advance;
-    glyph.bounds.left        = SFMLGlyph.bounds.left;
-    glyph.bounds.top         = SFMLGlyph.bounds.top;
-    glyph.bounds.width       = SFMLGlyph.bounds.width;
-    glyph.bounds.height      = SFMLGlyph.bounds.height;
-    glyph.textureRect.left   = SFMLGlyph.textureRect.left;
-    glyph.textureRect.top    = SFMLGlyph.textureRect.top;
-    glyph.textureRect.width  = SFMLGlyph.textureRect.width;
-    glyph.textureRect.height = SFMLGlyph.textureRect.height;
+    glyph.advance                = SFMLGlyph.advance;
+    glyph.bounds.position.x      = SFMLGlyph.bounds.position.x;
+    glyph.bounds.position.y      = SFMLGlyph.bounds.position.y;
+    glyph.bounds.size.x          = SFMLGlyph.bounds.size.x;
+    glyph.bounds.size.y          = SFMLGlyph.bounds.size.y;
+    glyph.textureRect.position.x = SFMLGlyph.textureRect.position.x;
+    glyph.textureRect.position.y = SFMLGlyph.textureRect.position.y;
+    glyph.textureRect.size.x     = SFMLGlyph.textureRect.size.x;
+    glyph.textureRect.size.y     = SFMLGlyph.textureRect.size.y;
 
     return glyph;
 }
@@ -152,9 +152,9 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 {
     CSFML_CHECK_RETURN(font, nullptr);
 
-    *font->Textures[characterSize].This = font->This.getTexture(characterSize);
+    font->Textures.emplace(std::make_pair(characterSize, sfTexture(new sf::Texture(font->This.getTexture(characterSize)))));
 
-    return &font->Textures[characterSize];
+    return &font->Textures.at(characterSize);
 }
 
 

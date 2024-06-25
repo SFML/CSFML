@@ -191,7 +191,7 @@ void sfSprite_setTexture(sfSprite* sprite, const sfTexture* texture, bool resetR
 ////////////////////////////////////////////////////////////
 void sfSprite_setTextureRect(sfSprite* sprite, sfIntRect rectangle)
 {
-    CSFML_CALL(sprite, setTextureRect(sf::IntRect({ rectangle.left, rectangle.top }, { rectangle.width, rectangle.height })));
+    CSFML_CALL(sprite, setTextureRect(sf::IntRect({ rectangle.position.x, rectangle.position.y }, { rectangle.size.x, rectangle.size.y })));
 }
 
 
@@ -214,14 +214,14 @@ const sfTexture* sfSprite_getTexture(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfIntRect sfSprite_getTextureRect(const sfSprite* sprite)
 {
-    sfIntRect rect = {0, 0, 0, 0};
+    sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(sprite, rect);
 
     sf::IntRect sfmlRect = sprite->This.getTextureRect();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
@@ -246,14 +246,14 @@ sfColor sfSprite_getColor(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfSprite_getLocalBounds(const sfSprite* sprite)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(sprite, rect);
 
     sf::FloatRect sfmlRect = sprite->This.getLocalBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
@@ -262,14 +262,14 @@ sfFloatRect sfSprite_getLocalBounds(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfSprite_getGlobalBounds(const sfSprite* sprite)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(sprite, rect);
 
     sf::FloatRect sfmlRect = sprite->This.getGlobalBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
