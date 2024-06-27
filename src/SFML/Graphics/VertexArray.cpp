@@ -110,14 +110,14 @@ sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(vertexArray, rect);
 
     sf::FloatRect sfmlRect = vertexArray->This.getBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }

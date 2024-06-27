@@ -184,7 +184,7 @@ void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bo
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setTextureRect(sfConvexShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.left, rect.top }, { rect.width, rect.height })));
+    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.position.x, rect.position.y }, { rect.size.x, rect.size.y })));
 }
 
 
@@ -221,14 +221,14 @@ const sfTexture* sfConvexShape_getTexture(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfIntRect sfConvexShape_getTextureRect(const sfConvexShape* shape)
 {
-    sfIntRect rect = {0, 0, 0, 0};
+    sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
     sf::IntRect sfmlRect = shape->This.getTextureRect();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
@@ -311,14 +311,14 @@ void sfConvexShape_setPoint(sfConvexShape* shape, size_t index, sfVector2f point
 ////////////////////////////////////////////////////////////
 sfFloatRect sfConvexShape_getLocalBounds(const sfConvexShape* shape)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
     sf::FloatRect sfmlRect = shape->This.getLocalBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
@@ -327,14 +327,14 @@ sfFloatRect sfConvexShape_getLocalBounds(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfConvexShape_getGlobalBounds(const sfConvexShape* shape)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
     sf::FloatRect sfmlRect = shape->This.getGlobalBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }

@@ -143,7 +143,7 @@ bool sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX
     CSFML_CHECK_RETURN(image, false);
     CSFML_CHECK_RETURN(source, false);
 
-    sf::IntRect sfmlRect({ sourceRect.left, sourceRect.top }, { sourceRect.width, sourceRect.height });
+    sf::IntRect sfmlRect({ sourceRect.position.x, sourceRect.position.y }, { sourceRect.size.x, sourceRect.size.y });
 
     return image->This.copy(source->This, { destX, destY }, sfmlRect, applyAlpha);
 }
