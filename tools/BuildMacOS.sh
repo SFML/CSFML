@@ -492,7 +492,6 @@ create_dir "$sfml_package1070/extlibs/"
 copy "$installdir/Library/Frameworks/FLAC.framework" \
      "$installdir/Library/Frameworks/freetype.framework" \
      "$installdir/Library/Frameworks/ogg.framework" \
-     "$installdir/Library/Frameworks/OpenAL.framework" \
      "$installdir/Library/Frameworks/vorbis.framework" \
      "$installdir/Library/Frameworks/vorbisenc.framework" \
      "$installdir/Library/Frameworks/vorbisfile.framework" \
@@ -606,4 +605,3 @@ archive "$csfml_package1070" "$csfml_archive1070"
 
 
 ### End Of Script
-

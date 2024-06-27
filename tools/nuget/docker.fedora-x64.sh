@@ -14,7 +14,6 @@ dnf install -y \
     flac-devel \
     libogg-devel \
     libvorbis-devel \
-    openal-soft-devel \
     gcc-c++ \
     cmake \
     make

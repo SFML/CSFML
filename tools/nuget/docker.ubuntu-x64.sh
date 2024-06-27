@@ -16,7 +16,6 @@ apt-get install -y \
     libflac-dev \
     libogg-dev \
     libvorbis-dev \
-    libopenal-dev \
     cmake \
     g++
 
