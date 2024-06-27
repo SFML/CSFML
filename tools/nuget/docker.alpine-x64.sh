@@ -16,7 +16,6 @@ apk add \
     flac-dev \
     libogg-dev \
     libvorbis-dev \
-    openal-soft-dev \
     libpthread-stubs \
     cmake \
     make \

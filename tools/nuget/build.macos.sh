@@ -167,7 +167,6 @@ fixrpath()
     install_name_tool -change $OLD $NEW "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinorPatch.dylib"
 }
 
-fixrpath audio "@rpath/../Frameworks/OpenAL.framework/Versions/A/OpenAL" "@rpath/OpenAL.framework/Versions/A/OpenAL"
 fixrpath audio "@rpath/../Frameworks/vorbisenc.framework/Versions/A/vorbisenc" "@rpath/vorbisenc.framework/Versions/A/vorbisen"
 fixrpath audio "@rpath/../Frameworks/vorbisfile.framework/Versions/A/vorbisfile" "@rpath/vorbisfile.framework/Versions/A/vorbisfile"
 fixrpath audio "@rpath/../Frameworks/vorbis.framework/Versions/A/vorbis" "@rpath/vorbis.framework/Versions/A/vorbis"

@@ -88,7 +88,7 @@ jobs:
                       --volume "${PWD}/CSFML:/CSFML"
                   install: |
                       apt-get update -y
-                      apt-get install -y git libfreetype6-dev xorg-dev libxrandr-dev libxcursor-dev libudev-dev libgl1-mesa-dev libflac-dev libogg-dev libvorbis-dev libopenal-dev cmake g++
+                      apt-get install -y git libfreetype6-dev xorg-dev libxrandr-dev libxcursor-dev libudev-dev libgl1-mesa-dev libflac-dev libogg-dev libvorbis-dev cmake g++
                   run: |
                       cd /CSFML/tools/nuget
                       chmod +x ./build.linux.sh
@@ -120,7 +120,7 @@ jobs:
                       --volume "${PWD}/CSFML:/CSFML"
                   install: |
                       apt-get update -y
-                      apt-get install -y git libfreetype6-dev xorg-dev libxrandr-dev libxcursor-dev libudev-dev libgl1-mesa-dev libflac-dev libogg-dev libvorbis-dev libopenal-dev cmake g++
+                      apt-get install -y git libfreetype6-dev xorg-dev libxrandr-dev libxcursor-dev libudev-dev libgl1-mesa-dev libflac-dev libogg-dev libvorbis-dev cmake g++
                   run: |
                       cd /CSFML/tools/nuget
                       chmod +x ./build.linux.sh
