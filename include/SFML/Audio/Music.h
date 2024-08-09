@@ -110,14 +110,14 @@ CSFML_AUDIO_API void sfMusic_destroy(sfMusic* music);
 ///
 /// If set, the music will restart from beginning after
 /// reaching the end and so on, until it is stopped or
-/// sfMusic_setLoop(music, false) is called.
+/// sfMusic_setLooping(music, false) is called.
 /// The default looping state for musics is false.
 ///
 /// \param music Music object
 /// \param loop  true to play in loop, false to play once
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfMusic_setLoop(sfMusic* music, bool loop);
+CSFML_AUDIO_API void sfMusic_setLooping(sfMusic* music, bool loop);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a music is in loop mode
@@ -127,7 +127,7 @@ CSFML_AUDIO_API void sfMusic_setLoop(sfMusic* music, bool loop);
 /// \return true if the music is looping, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API bool sfMusic_getLoop(const sfMusic* music);
+CSFML_AUDIO_API bool sfMusic_isLooping(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the total duration of a music

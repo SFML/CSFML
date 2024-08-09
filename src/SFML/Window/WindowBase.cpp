@@ -100,14 +100,14 @@ bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event)
     CSFML_CHECK_RETURN(event, false);
 
     // Get the event
-    const sf::Event sfmlEvent = windowBase->This.pollEvent();
+    const std::optional sfmlEvent = windowBase->This.pollEvent();
 
     // No event, return
     if (!sfmlEvent)
         return false;
 
     // Convert the sf::Event event to a sfEvent
-    convertEvent(sfmlEvent, event);
+    convertEvent(*sfmlEvent, event);
 
     return true;
 }
@@ -120,14 +120,14 @@ bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event)
     CSFML_CHECK_RETURN(event, false);
 
     // Get the event
-    const sf::Event sfmlEvent = windowBase->This.waitEvent();
+    const std::optional sfmlEvent = windowBase->This.waitEvent();
 
     // Error, return
     if (!sfmlEvent)
         return false;
 
     // Convert the sf::Event event to a sfEvent
-    convertEvent(sfmlEvent, event);
+    convertEvent(*sfmlEvent, event);
 
     return true;
 }

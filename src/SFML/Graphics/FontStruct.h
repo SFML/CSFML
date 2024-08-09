@@ -32,7 +32,6 @@
 #include <SFML/Graphics/TextureStruct.h>
 #include <SFML/CallbackStream.h>
 #include <map>
-#include <memory>
 
 
 ////////////////////////////////////////////////////////////
@@ -42,7 +41,7 @@ struct sfFont
 {
     sf::Font This;
     std::map<unsigned int, sfTexture> Textures;
-    std::shared_ptr<CallbackStream> Stream;
+    CallbackStream Stream;
 };
 
 

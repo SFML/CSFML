@@ -184,7 +184,7 @@ void sfRectangleShape_setTexture(sfRectangleShape* shape, const sfTexture* textu
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setTextureRect(sfRectangleShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.left, rect.top }, { rect.width, rect.height })));
+    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.position.x, rect.position.y }, { rect.size.x, rect.size.y })));
 }
 
 
@@ -221,14 +221,14 @@ const sfTexture* sfRectangleShape_getTexture(const sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 sfIntRect sfRectangleShape_getTextureRect(const sfRectangleShape* shape)
 {
-    sfIntRect rect = {0, 0, 0, 0};
+    sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
     sf::IntRect sfmlRect = shape->This.getTextureRect();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
@@ -318,14 +318,14 @@ sfVector2f sfRectangleShape_getSize(const sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfRectangleShape_getLocalBounds(const sfRectangleShape* shape)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
     sf::FloatRect sfmlRect = shape->This.getLocalBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
@@ -334,14 +334,14 @@ sfFloatRect sfRectangleShape_getLocalBounds(const sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfRectangleShape_getGlobalBounds(const sfRectangleShape* shape)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
     sf::FloatRect sfmlRect = shape->This.getGlobalBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }

@@ -39,7 +39,7 @@ sfTexture* sfTexture_create(unsigned int width, unsigned int height)
 {
     sfTexture* texture = new sfTexture;
 
-    if (!texture->This->create({ width, height }))
+    if (!texture->This->resize({ width, height }))
     {
         delete texture;
         texture = nullptr;
@@ -56,9 +56,9 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
+        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
 
-    if (!texture->This->loadFromFile(filename, rect))
+    if (!texture->This->loadFromFile(filename, false, rect))
     {
         delete texture;
         texture = nullptr;
@@ -74,11 +74,9 @@ sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* a
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
+        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
 
-    texture->This->setSrgb(true);
-
-    if (!texture->This->loadFromFile(filename, rect))
+    if (!texture->This->loadFromFile(filename, true, rect))
     {
         delete texture;
         texture = nullptr;
@@ -94,9 +92,9 @@ sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, cons
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
+        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
 
-    if (!texture->This->loadFromMemory(data, sizeInBytes, rect))
+    if (!texture->This->loadFromMemory(data, sizeInBytes, false, rect))
     {
         delete texture;
         texture = nullptr;
@@ -112,11 +110,9 @@ sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, 
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
+        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
 
-    texture->This->setSrgb(true);
-
-    if (!texture->This->loadFromMemory(data, sizeInBytes, rect))
+    if (!texture->This->loadFromMemory(data, sizeInBytes, true, rect))
     {
         delete texture;
         texture = nullptr;
@@ -135,10 +131,10 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
+        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
 
     CallbackStream sfmlStream(stream);
-    if (!texture->This->loadFromStream(sfmlStream, rect))
+    if (!texture->This->loadFromStream(sfmlStream, false, rect))
     {
         delete texture;
         texture = nullptr;
@@ -156,12 +152,10 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
-
-     texture->This->setSrgb(true);
+        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
 
     CallbackStream sfmlStream(stream);
-    if (!texture->This->loadFromStream(sfmlStream, rect))
+    if (!texture->This->loadFromStream(sfmlStream, true, rect))
     {
         delete texture;
         texture = nullptr;
@@ -180,9 +174,9 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
+        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
 
-    if (!texture->This->loadFromImage(image->This, rect))
+    if (!texture->This->loadFromImage(image->This, false, rect))
     {
         delete texture;
         texture = nullptr;
@@ -200,11 +194,9 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
 
     sf::IntRect rect;
     if (area)
-        rect = sf::IntRect({ area->left, area->top }, { area->width, area->height });
+        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
 
-    texture->This->setSrgb(true);
-
-    if (!texture->This->loadFromImage(image->This, rect))
+    if (!texture->This->loadFromImage(image->This, true, rect))
     {
         delete texture;
         texture = nullptr;

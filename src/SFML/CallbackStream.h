@@ -63,12 +63,19 @@ public:
     /// \param data Buffer where to copy the read data
     /// \param size Desired number of bytes to read
     ///
-    /// \return The number of bytes actually read
+    /// \return The number of bytes actually read, or `std::nullopt` on error
     ///
     ////////////////////////////////////////////////////////////
-    std::int64_t read(void* data, std::int64_t size) override
+    std::optional<std::size_t> read(void* data, std::size_t size) override
     {
-        return myStream.read ? myStream.read(data, size, myStream.userData) : -1;
+        if (!myStream.read)
+            return std::nullopt;
+
+        const auto bytesRead = myStream.read(data, size, myStream.userData);
+        if (bytesRead != -1)
+            return static_cast<std::size_t>(bytesRead);
+
+        return std::nullopt;
     }
 
     ////////////////////////////////////////////////////////////
@@ -76,23 +83,37 @@ public:
     ///
     /// \param position The position to seek to, from the beginning
     ///
-    /// \return The position actually seeked to, or -1 on error
+    /// \return The position actually seeked to, or `std::nullopt` on error
     ///
     ////////////////////////////////////////////////////////////
-    std::int64_t seek(std::int64_t position) override
+    std::optional<std::size_t> seek(std::size_t position) override
     {
-        return myStream.seek ? myStream.seek(position, myStream.userData) : -1;
+        if (!myStream.seek)
+            return std::nullopt;
+
+        const auto actualPosition = myStream.seek(position, myStream.userData);
+        if (actualPosition != -1)
+            return static_cast<std::size_t>(actualPosition);
+
+        return std::nullopt;
     }
 
     ////////////////////////////////////////////////////////////
     /// \brief Return the current reading position in the stream
     ///
-    /// \return The current position, or -1 on error.
+    /// \return The current position, or `std::nullopt` on error
     ///
     ////////////////////////////////////////////////////////////
-    std::int64_t tell() override
+    std::optional<std::size_t> tell() override
     {
-        return myStream.tell ? myStream.tell(myStream.userData) : -1;
+        if (!myStream.tell)
+            return std::nullopt;
+
+        const auto position = myStream.tell(myStream.userData);
+        if (position != -1)
+            return static_cast<std::size_t>(position);
+
+        return std::nullopt;
     }
 
     ////////////////////////////////////////////////////////////
@@ -101,9 +122,16 @@ public:
     /// \return The total number of bytes available in the stream, or -1 on error
     ///
     ////////////////////////////////////////////////////////////
-    std::int64_t getSize() override
+    std::optional<std::size_t> getSize() override
     {
-        return myStream.getSize ? myStream.getSize(myStream.userData) : -1;
+        if (!myStream.getSize)
+            return std::nullopt;
+
+        const auto bytesAvailable = myStream.getSize(myStream.userData);
+        if (bytesAvailable != -1)
+            return static_cast<std::size_t>(bytesAvailable);
+
+        return std::nullopt;
     }
 
 private:

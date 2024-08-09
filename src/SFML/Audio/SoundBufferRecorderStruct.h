@@ -31,17 +31,15 @@
 #include <SFML/Audio/SoundBufferRecorder.hpp>
 #include <SFML/Audio/SoundBufferStruct.h>
 
-#include <optional>
-
 
 ////////////////////////////////////////////////////////////
 // Internal structure of sfSoundBufferRecorder
 ////////////////////////////////////////////////////////////
 struct sfSoundBufferRecorder
 {
-    sf::SoundBufferRecorder              This;
-    mutable std::optional<sfSoundBuffer> SoundBuffer;
-    std::string                          DeviceName;
+    sf::SoundBufferRecorder This;
+    mutable sfSoundBuffer   SoundBuffer;
+    std::string             DeviceName;
 };
 
 

@@ -30,33 +30,18 @@
 #include <SFML/Internal.h>
 
 
-namespace
-{
-sfVector2f toCType(const sf::Vector2f& vector)
-{
-    sfVector2f vec = {vector.x, vector.y};
-    return vec;
-}
-
-sfVector2i toCType(const sf::Vector2i& vector)
-{
-    sfVector2i vec = {vector.x, vector.y};
-    return vec;
-}
-}
-
 ////////////////////////////////////////////////////////////
 /// Check if a point is inside a rectangle's area
 ////////////////////////////////////////////////////////////
 bool sfFloatRect_contains(const sfFloatRect* rect, float x, float y)
 {
     CSFML_CHECK_RETURN(rect, false);
-    return sf::FloatRect({ rect->left, rect->top }, { rect->width, rect->height }).contains({ x, y });
+    return sf::FloatRect({ rect->position.x, rect->position.y }, { rect->size.x, rect->size.y }).contains({ x, y });
 }
 bool sfIntRect_contains(const sfIntRect* rect, int x, int y)
 {
     CSFML_CHECK_RETURN(rect, false);
-    return sf::IntRect({ rect->left, rect->top }, { rect->width, rect->height }).contains({ x, y });
+    return sf::IntRect({ rect->position.x, rect->position.y }, { rect->size.x, rect->size.y }).contains({ x, y });
 }
 
 
@@ -68,8 +53,8 @@ bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, 
     CSFML_CHECK_RETURN(rect1, false);
     CSFML_CHECK_RETURN(rect2, false);
 
-    sf::FloatRect SFMLRect1({ rect1->left, rect1->top }, { rect1->width, rect1->height });
-    sf::FloatRect SFMLRect2({ rect2->left, rect2->top }, { rect2->width, rect2->height });
+    sf::FloatRect SFMLRect1({ rect1->position.x, rect1->position.y }, { rect1->size.x, rect1->size.y });
+    sf::FloatRect SFMLRect2({ rect2->position.x, rect2->position.y }, { rect2->size.x, rect2->size.y });
 
     if (intersection)
     {
@@ -77,10 +62,10 @@ bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, 
 
         if (overlap)
         {
-            intersection->left = overlap->left;
-            intersection->top = overlap->top;
-            intersection->width = overlap->width;
-            intersection->height = overlap->height;
+            intersection->position.x = overlap->position.x;
+            intersection->position.y = overlap->position.y;
+            intersection->size.x = overlap->size.x;
+            intersection->size.y = overlap->size.y;
         }
 
         return overlap.has_value();
@@ -95,8 +80,8 @@ bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntR
     CSFML_CHECK_RETURN(rect1, false);
     CSFML_CHECK_RETURN(rect2, false);
 
-    sf::IntRect SFMLRect1({ rect1->left, rect1->top }, { rect1->width, rect1->height });
-    sf::IntRect SFMLRect2({ rect2->left, rect2->top }, { rect2->width, rect2->height });
+    sf::IntRect SFMLRect1({ rect1->position.x, rect1->position.y }, { rect1->size.x, rect1->size.y });
+    sf::IntRect SFMLRect2({ rect2->position.x, rect2->position.y }, { rect2->size.x, rect2->size.y });
 
     if (intersection)
     {
@@ -104,10 +89,10 @@ bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntR
 
         if (overlap)
         {
-            intersection->left = overlap->left;
-            intersection->top = overlap->top;
-            intersection->width = overlap->width;
-            intersection->height = overlap->height;
+            intersection->position.x = overlap->position.x;
+            intersection->position.y = overlap->position.y;
+            intersection->size.x = overlap->size.x;
+            intersection->size.y = overlap->size.y;
         }
 
         return overlap.has_value();
@@ -116,30 +101,4 @@ bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntR
     {
         return SFMLRect1.findIntersection(SFMLRect2).has_value();
     }
-}
-
-
-////////////////////////////////////////////////////////////
-/// Get the position of the rectangle's top-left corner
-////////////////////////////////////////////////////////////
-sfVector2f sfFloatRect_getPosition(const sfFloatRect* rect)
-{
-    return toCType(sf::FloatRect({ rect->left, rect->top }, { rect->width, rect->height }).getPosition());
-}
-sfVector2i sfIntRect_getPosition(const sfIntRect* rect)
-{
-    return toCType(sf::IntRect({ rect->left, rect->top }, { rect->width, rect->height }).getPosition());
-}
-
-
-////////////////////////////////////////////////////////////
-/// Get the size of the rectangle
-////////////////////////////////////////////////////////////
-sfVector2f sfFloatRect_getSize(const sfFloatRect* rect)
-{
-    return toCType(sf::FloatRect({ rect->left, rect->top }, { rect->width, rect->height }).getSize());
-}
-sfVector2i sfIntRect_getSize(const sfIntRect* rect)
-{
-    return toCType(sf::IntRect({ rect->left, rect->top }, { rect->width, rect->height }).getSize());
 }

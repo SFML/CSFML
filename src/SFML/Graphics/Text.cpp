@@ -378,14 +378,14 @@ sfVector2f sfText_findCharacterPos(const sfText* text, size_t index)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfText_getLocalBounds(const sfText* text)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(text, rect);
 
     sf::FloatRect sfmlRect = text->This.getLocalBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
@@ -394,14 +394,14 @@ sfFloatRect sfText_getLocalBounds(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfText_getGlobalBounds(const sfText* text)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(text, rect);
 
     sf::FloatRect sfmlRect = text->This.getGlobalBounds();
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }

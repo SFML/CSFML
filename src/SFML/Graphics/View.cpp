@@ -40,10 +40,7 @@ sfView* sfView_create(void)
 ////////////////////////////////////////////////////////////
 sfView* sfView_createFromRect(sfFloatRect rectangle)
 {
-    sfView* view = new sfView;
-    sfView_reset(view, rectangle);
-
-    return view;
+    return new sfView{sf::View(sf::FloatRect({rectangle.position.x, rectangle.position.y}, {rectangle.size.x, rectangle.size.y}))};
 }
 
 
@@ -87,14 +84,7 @@ void sfView_setRotation(sfView* view, float angle)
 ////////////////////////////////////////////////////////////
 void sfView_setViewport(sfView* view, sfFloatRect viewport)
 {
-    CSFML_CALL(view, setViewport(sf::FloatRect({ viewport.left, viewport.top }, { viewport.width, viewport.height })));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfView_reset(sfView* view, sfFloatRect rectangle)
-{
-    CSFML_CALL(view, reset(sf::FloatRect({ rectangle.left, rectangle.top }, { rectangle.width, rectangle.height })));
+    CSFML_CALL(view, setViewport(sf::FloatRect({ viewport.position.x, viewport.position.y }, { viewport.size.x, viewport.size.y })));
 }
 
 
@@ -136,14 +126,14 @@ float sfView_getRotation(const sfView* view)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfView_getViewport(const sfView* view)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(view, rect);
 
     sf::FloatRect SFMLRect = view->This.getViewport();
-    rect.left   = SFMLRect.left;
-    rect.top    = SFMLRect.top;
-    rect.width  = SFMLRect.width;
-    rect.height = SFMLRect.height;
+    rect.position.x = SFMLRect.position.x;
+    rect.position.y = SFMLRect.position.y;
+    rect.size.x     = SFMLRect.size.x;
+    rect.size.y     = SFMLRect.size.y;
 
     return rect;
 }

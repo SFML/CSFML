@@ -70,9 +70,9 @@ const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder
 {
     CSFML_CHECK_RETURN(soundBufferRecorder, nullptr);
 
-    soundBufferRecorder->SoundBuffer = sfSoundBuffer{soundBufferRecorder->This.getBuffer()};
+    soundBufferRecorder->SoundBuffer.This = soundBufferRecorder->This.getBuffer();
 
-    return &*soundBufferRecorder->SoundBuffer;
+    return &soundBufferRecorder->SoundBuffer;
 }
 
 ////////////////////////////////////////////////////////////

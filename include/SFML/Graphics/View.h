@@ -118,17 +118,6 @@ CSFML_GRAPHICS_API void sfView_setRotation(sfView* view, float angle);
 CSFML_GRAPHICS_API void sfView_setViewport(sfView* view, sfFloatRect viewport);
 
 ////////////////////////////////////////////////////////////
-/// \brief Reset a view to the given rectangle
-///
-/// Note that this function resets the rotation angle to 0.
-///
-/// \param view      View object
-/// \param rectangle Rectangle defining the zone to display
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfView_reset(sfView* view, sfFloatRect rectangle);
-
-////////////////////////////////////////////////////////////
 /// \brief Get the center of a view
 ///
 /// \param view View object

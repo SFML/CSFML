@@ -36,7 +36,8 @@
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* geometryShaderFilename, const char* fragmentShaderFilename)
 {
-    std::optional<sf::Shader> shader;
+    bool success = false;
+    sf::Shader shader;
     if (vertexShaderFilename || geometryShaderFilename || fragmentShaderFilename)
     {
         if (!geometryShaderFilename)
@@ -44,17 +45,17 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* 
             if (!vertexShaderFilename)
             {
                 // fragment shader only
-                shader = sf::Shader::loadFromFile(fragmentShaderFilename, sf::Shader::Type::Fragment);
+                success = shader.loadFromFile(fragmentShaderFilename, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShaderFilename)
             {
                 // vertex shader only
-                shader = sf::Shader::loadFromFile(vertexShaderFilename, sf::Shader::Type::Vertex);
+                success = shader.loadFromFile(vertexShaderFilename, sf::Shader::Type::Vertex);
             }
             else
             {
                 // vertex + fragment shaders
-                shader = sf::Shader::loadFromFile(vertexShaderFilename, fragmentShaderFilename);
+                success = shader.loadFromFile(vertexShaderFilename, fragmentShaderFilename);
             }
         }
         else
@@ -62,27 +63,28 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* 
             if (!vertexShaderFilename && !fragmentShaderFilename)
             {
                 // geometry shader only
-                shader = sf::Shader::loadFromFile(geometryShaderFilename, sf::Shader::Type::Geometry);
+                success = shader.loadFromFile(geometryShaderFilename, sf::Shader::Type::Geometry);
             }
             else
             {
                 // vertex + geometry + fragment shaders
-                shader = sf::Shader::loadFromFile(vertexShaderFilename, geometryShaderFilename, fragmentShaderFilename);
+                success = shader.loadFromFile(vertexShaderFilename, geometryShaderFilename, fragmentShaderFilename);
             }
         }
     }
 
-    if (!shader)
+    if (!success)
         return nullptr;
 
-    return new sfShader{std::move(*shader)};
+    return new sfShader{std::move(shader)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geometryShader, const char* fragmentShader)
 {
-    std::optional<sf::Shader> shader;
+    bool success = false;
+    sf::Shader shader;
     if (vertexShader || geometryShader || fragmentShader)
     {
         if (!geometryShader)
@@ -90,17 +92,17 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
             if (!vertexShader)
             {
                 // fragment shader only
-                shader = sf::Shader::loadFromMemory(fragmentShader, sf::Shader::Type::Fragment);
+                success = shader.loadFromMemory(fragmentShader, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShader)
             {
                 // vertex shader only
-                shader = sf::Shader::loadFromMemory(vertexShader, sf::Shader::Type::Vertex);
+                success = shader.loadFromMemory(vertexShader, sf::Shader::Type::Vertex);
             }
             else
             {
                 // vertex + fragment shaders
-                shader = sf::Shader::loadFromMemory(vertexShader, fragmentShader);
+                success = shader.loadFromMemory(vertexShader, fragmentShader);
             }
         }
         else
@@ -108,27 +110,28 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
             if (!vertexShader && !fragmentShader)
             {
                 // geometry shader only
-                shader = sf::Shader::loadFromMemory(geometryShader, sf::Shader::Type::Geometry);
+                success = shader.loadFromMemory(geometryShader, sf::Shader::Type::Geometry);
             }
             else
             {
                 // vertex + geometry + fragment shaders
-                shader = sf::Shader::loadFromMemory(vertexShader, geometryShader, fragmentShader);
+                success = shader.loadFromMemory(vertexShader, geometryShader, fragmentShader);
             }
         }
     }
 
-    if (!shader)
+    if (!success)
         return nullptr;
 
-    return new sfShader{std::move(*shader)};
+    return new sfShader{std::move(shader)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* geometryShaderStream, sfInputStream* fragmentShaderStream)
 {
-    std::optional<sf::Shader> shader;
+    bool success = false;
+    sf::Shader shader;
     if (vertexShaderStream || geometryShaderStream || fragmentShaderStream)
     {
         if (!geometryShaderStream)
@@ -137,20 +140,20 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputSt
             {
                 // fragment shader only
                 CallbackStream stream(fragmentShaderStream);
-                shader = sf::Shader::loadFromStream(stream, sf::Shader::Type::Fragment);
+                success = shader.loadFromStream(stream, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShaderStream)
             {
                 // vertex shader only
                 CallbackStream stream(vertexShaderStream);
-                shader = sf::Shader::loadFromStream(stream, sf::Shader::Type::Vertex);
+                success = shader.loadFromStream(stream, sf::Shader::Type::Vertex);
             }
             else
             {
                 // vertex + fragment shaders
                 CallbackStream vertexStream(vertexShaderStream);
                 CallbackStream fragmentStream(fragmentShaderStream);
-                shader = sf::Shader::loadFromStream(vertexStream, fragmentStream);
+                success = shader.loadFromStream(vertexStream, fragmentStream);
             }
         }
         else
@@ -159,22 +162,22 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputSt
             if (!vertexShaderStream && !fragmentShaderStream)
             {
                 // geometry shader only
-                shader = sf::Shader::loadFromStream(geometryStream, sf::Shader::Type::Geometry);
+                success = shader.loadFromStream(geometryStream, sf::Shader::Type::Geometry);
             }
             else
             {
                 // vertex + geometry + fragment shaders
                 CallbackStream vertexStream(vertexShaderStream);
                 CallbackStream fragmentStream(fragmentShaderStream);
-                shader = sf::Shader::loadFromStream(vertexStream, geometryStream, fragmentStream);
+                success = shader.loadFromStream(vertexStream, geometryStream, fragmentStream);
             }
         }
     }
 
-    if (!shader)
+    if (!success)
         return nullptr;
 
-    return new sfShader{std::move(*shader)};
+    return new sfShader{std::move(shader)};
 }
 
 

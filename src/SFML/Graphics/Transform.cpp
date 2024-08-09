@@ -89,15 +89,15 @@ sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f p
 ////////////////////////////////////////////////////////////
 sfFloatRect sfTransform_transformRect(const sfTransform* transform, sfFloatRect rectangle)
 {
-    sfFloatRect rect = {0, 0, 0, 0};
+    sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(transform, rect);
 
-    sf::FloatRect sfmlRect = convertTransform(*transform).transformRect(sf::FloatRect({ rectangle.left, rectangle.top }, { rectangle.width, rectangle.height }));
+    sf::FloatRect sfmlRect = convertTransform(*transform).transformRect(sf::FloatRect({ rectangle.position.x, rectangle.position.y }, { rectangle.size.x, rectangle.size.y }));
 
-    rect.left = sfmlRect.left;
-    rect.top = sfmlRect.top;
-    rect.width = sfmlRect.width;
-    rect.height = sfmlRect.height;
+    rect.position.x = sfmlRect.position.x;
+    rect.position.y = sfmlRect.position.y;
+    rect.size.x = sfmlRect.size.x;
+    rect.size.y = sfmlRect.size.y;
 
     return rect;
 }
