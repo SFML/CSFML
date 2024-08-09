@@ -35,7 +35,7 @@
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_create(unsigned int width, unsigned int height)
 {
-    return new sfImage{sf::Image({width, height})};
+    return new sfImage{sf::Image(sf::Vector2u(width, height))};
 }
 
 
@@ -56,22 +56,22 @@ sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromFile(const char* filename)
 {
-    auto image = sf::Image::loadFromFile(filename);
-    if (!image)
+    sf::Image image;
+    if (!image.loadFromFile(filename))
         return nullptr;
 
-    return new sfImage{std::move(*image)};
+    return new sfImage{std::move(image)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    auto image = sf::Image::loadFromMemory(data, sizeInBytes);
-    if (!image)
+    sf::Image image;
+    if (!image.loadFromMemory(data, sizeInBytes))
         return nullptr;
 
-    return new sfImage{std::move(*image)};
+    return new sfImage{std::move(image)};
 }
 
 
@@ -81,11 +81,11 @@ sfImage* sfImage_createFromStream(sfInputStream* stream)
     CSFML_CHECK_RETURN(stream, nullptr);
 
     CallbackStream sfmlStream(stream);
-    auto image = sf::Image::loadFromStream(sfmlStream);
-    if (!image)
+    sf::Image image;
+    if (!image.loadFromStream(sfmlStream))
         return nullptr;
 
-    return new sfImage{std::move(*image)};
+    return new sfImage{std::move(image)};
 }
 
 
@@ -143,7 +143,7 @@ bool sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX
     CSFML_CHECK_RETURN(image, false);
     CSFML_CHECK_RETURN(source, false);
 
-    sf::IntRect sfmlRect({ sourceRect.left, sourceRect.top }, { sourceRect.width, sourceRect.height });
+    sf::IntRect sfmlRect({ sourceRect.position.x, sourceRect.position.y }, { sourceRect.size.x, sourceRect.size.y });
 
     return image->This.copy(source->This, { destX, destY }, sfmlRect, applyAlpha);
 }

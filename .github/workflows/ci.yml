@@ -40,13 +40,13 @@ jobs:
 
     - name: Install Linux Dependencies
       if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
+      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev
 
     - name: Checkout SFML
       uses: actions/checkout@v4
       with:
         repository: SFML/SFML
-        ref: b583eaf1606e54e5f443b094b3b2a6e3af72a5a4
+        ref: 8096ba24fccb6b76a7d9e8cc71a3afb7b02e517c
         path: SFML
 
     - name: Configure SFML CMake

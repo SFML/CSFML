@@ -34,22 +34,22 @@
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromFile(const char* filename)
 {
-    auto font = sf::Font::loadFromFile(filename);
-    if (!font)
+    sf::Font font;
+    if (!font.openFromFile(filename))
         return nullptr;
 
-    return new sfFont{std::move(*font), {}, {}};
+    return new sfFont{std::move(font), {}, {}};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    auto font = sf::Font::loadFromMemory(data, sizeInBytes);
-    if (!font)
+    sf::Font font;
+    if (!font.openFromMemory(data, sizeInBytes))
         return nullptr;
 
-    return new sfFont{std::move(*font), {}, {}};
+    return new sfFont{std::move(font), {}, {}};
 }
 
 
@@ -58,12 +58,15 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, nullptr);
 
-    auto sfmlStream = std::make_shared<CallbackStream>(stream);
-    auto font = sf::Font::loadFromStream(*sfmlStream);
-    if (!font)
-        return nullptr;
+    sfFont* font = new sfFont;
+    font->Stream = CallbackStream(stream);
+    if (!font->This.openFromStream(font->Stream))
+    {
+        delete font;
+        font = nullptr;
+    }
 
-    return new sfFont{std::move(*font), {}, std::move(sfmlStream)};
+    return font;
 }
 
 
@@ -86,20 +89,20 @@ void sfFont_destroy(sfFont* font)
 ////////////////////////////////////////////////////////////
 sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness)
 {
-    sfGlyph glyph = {0, {0, 0, 0, 0}, {0, 0, 0, 0}};
+    sfGlyph glyph = {0, {{0, 0}, {0, 0}}, {{0, 0}, {0, 0}}};
     CSFML_CHECK_RETURN(font, glyph);
 
     sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold, outlineThickness);
 
-    glyph.advance            = SFMLGlyph.advance;
-    glyph.bounds.left        = SFMLGlyph.bounds.left;
-    glyph.bounds.top         = SFMLGlyph.bounds.top;
-    glyph.bounds.width       = SFMLGlyph.bounds.width;
-    glyph.bounds.height      = SFMLGlyph.bounds.height;
-    glyph.textureRect.left   = SFMLGlyph.textureRect.left;
-    glyph.textureRect.top    = SFMLGlyph.textureRect.top;
-    glyph.textureRect.width  = SFMLGlyph.textureRect.width;
-    glyph.textureRect.height = SFMLGlyph.textureRect.height;
+    glyph.advance                = SFMLGlyph.advance;
+    glyph.bounds.position.x      = SFMLGlyph.bounds.position.x;
+    glyph.bounds.position.y      = SFMLGlyph.bounds.position.y;
+    glyph.bounds.size.x          = SFMLGlyph.bounds.size.x;
+    glyph.bounds.size.y          = SFMLGlyph.bounds.size.y;
+    glyph.textureRect.position.x = SFMLGlyph.textureRect.position.x;
+    glyph.textureRect.position.y = SFMLGlyph.textureRect.position.y;
+    glyph.textureRect.size.x     = SFMLGlyph.textureRect.size.x;
+    glyph.textureRect.size.y     = SFMLGlyph.textureRect.size.y;
 
     return glyph;
 }

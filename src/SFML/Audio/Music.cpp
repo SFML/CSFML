@@ -83,16 +83,16 @@ void sfMusic_destroy(sfMusic* music)
 
 
 ////////////////////////////////////////////////////////////
-void sfMusic_setLoop(sfMusic* music, bool loop)
+void sfMusic_setLooping(sfMusic* music, bool loop)
 {
-    CSFML_CALL(music, setLoop(loop != 0));
+    CSFML_CALL(music, setLooping(loop != 0));
 }
 
 
 ////////////////////////////////////////////////////////////
-bool sfMusic_getLoop(const sfMusic* music)
+bool sfMusic_isLooping(const sfMusic* music)
 {
-    CSFML_CALL_RETURN(music, getLoop(), false);
+    CSFML_CALL_RETURN(music, isLooping(), false);
 }
 
 

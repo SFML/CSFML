@@ -97,16 +97,16 @@ const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound)
 
 
 ////////////////////////////////////////////////////////////
-void sfSound_setLoop(sfSound* sound, bool loop)
+void sfSound_setLooping(sfSound* sound, bool loop)
 {
-    CSFML_CALL(sound, setLoop(loop));
+    CSFML_CALL(sound, setLooping(loop));
 }
 
 
 ////////////////////////////////////////////////////////////
-bool sfSound_getLoop(const sfSound* sound)
+bool sfSound_isLooping(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, getLoop(), false);
+    CSFML_CALL_RETURN(sound, isLooping(), false);
 }
 
 
