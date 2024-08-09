@@ -150,14 +150,14 @@ bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
     CSFML_CHECK_RETURN(event,        false);
 
     // Get the event
-    const sf::Event sfmlEvent = renderWindow->This.pollEvent();
+    const std::optional sfmlEvent = renderWindow->This.pollEvent();
 
     // No event, return
     if (!sfmlEvent)
         return false;
 
     // Convert the sf::Event event to a sfEvent
-    convertEvent(sfmlEvent, event);
+    convertEvent(*sfmlEvent, event);
 
     return true;
 }
@@ -170,14 +170,14 @@ bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event)
     CSFML_CHECK_RETURN(event,        false);
 
     // Get the event
-    const sf::Event sfmlEvent = renderWindow->This.waitEvent();
+    const std::optional sfmlEvent = renderWindow->This.waitEvent();
 
     // Error, return
     if (!sfmlEvent)
         return false;
 
     // Convert the sf::Event event to a sfEvent
-    convertEvent(sfmlEvent, event);
+    convertEvent(*sfmlEvent, event);
 
     return true;
 }
@@ -388,15 +388,15 @@ const sfView* sfRenderWindow_getDefaultView(const sfRenderWindow* renderWindow)
 ////////////////////////////////////////////////////////////
 sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const sfView* view)
 {
-    sfIntRect rect = {0, 0, 0, 0};
+    sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(view, rect);
     CSFML_CHECK_RETURN(renderWindow, rect);
 
     sf::IntRect SFMLrect = renderWindow->This.getViewport(view->This);
-    rect.left   = SFMLrect.left;
-    rect.top    = SFMLrect.top;
-    rect.width  = SFMLrect.width;
-    rect.height = SFMLrect.height;
+    rect.position.x = SFMLrect.position.x;
+    rect.position.y = SFMLrect.position.y;
+    rect.size.x     = SFMLrect.size.x;
+    rect.size.y     = SFMLrect.size.y;
 
     return rect;
 }

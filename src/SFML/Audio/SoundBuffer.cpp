@@ -34,22 +34,22 @@
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromFile(const char* filename)
 {
-    auto soundBuffer = sf::SoundBuffer::loadFromFile(filename);
-    if (!soundBuffer)
+    sf::SoundBuffer soundBuffer;
+    if (!soundBuffer.loadFromFile(filename))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(*soundBuffer)};
+    return new sfSoundBuffer{std::move(soundBuffer)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    auto soundBuffer = sf::SoundBuffer::loadFromMemory(data, sizeInBytes);
-    if (!soundBuffer)
+    sf::SoundBuffer soundBuffer;
+    if (!soundBuffer.loadFromMemory(data, sizeInBytes))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(*soundBuffer)};
+    return new sfSoundBuffer{std::move(soundBuffer)};
 }
 
 
@@ -60,11 +60,11 @@ sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
     CSFML_CHECK_RETURN(stream, nullptr);
 
     CallbackStream sfmlStream(stream);
-    auto soundBuffer = sf::SoundBuffer::loadFromStream(sfmlStream);
-    if (!soundBuffer)
+    sf::SoundBuffer soundBuffer;
+    if (!soundBuffer.loadFromStream(sfmlStream))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(*soundBuffer)};
+    return new sfSoundBuffer{std::move(soundBuffer)};
 }
 
 
@@ -80,11 +80,11 @@ sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t*    samples,
     for (std::size_t i = 0; i < channelMap.size(); ++i)
         channelMap[i] = static_cast<sf::SoundChannel>(channelMapData[i]);
 
-    auto soundBuffer = sf::SoundBuffer::loadFromSamples(samples, sampleCount, channelCount, sampleRate, channelMap);
-    if (!soundBuffer)
+    sf::SoundBuffer soundBuffer;
+    if (!soundBuffer.loadFromSamples(samples, sampleCount, channelCount, sampleRate, channelMap))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(*soundBuffer)};
+    return new sfSoundBuffer{std::move(soundBuffer)};
 }
 
 

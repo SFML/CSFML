@@ -144,9 +144,9 @@ void sfSoundStream_setPlayingOffset(sfSoundStream* soundStream, sfTime timeOffse
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_setLoop(sfSoundStream* soundStream, bool loop)
+void sfSoundStream_setLooping(sfSoundStream* soundStream, bool loop)
 {
-    CSFML_CALL(soundStream, setLoop(loop));
+    CSFML_CALL(soundStream, setLooping(loop));
 }
 
 
@@ -201,9 +201,9 @@ float sfSoundStream_getAttenuation(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
-bool sfSoundStream_getLoop(const sfSoundStream* soundStream)
+bool sfSoundStream_isLooping(const sfSoundStream* soundStream)
 {
-    CSFML_CALL_RETURN(soundStream, getLoop(), false);
+    CSFML_CALL_RETURN(soundStream, isLooping(), false);
 }
 
 

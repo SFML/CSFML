@@ -259,14 +259,14 @@ CSFML_AUDIO_API void sfSoundStream_setPlayingOffset(sfSoundStream* soundStream, 
 ///
 /// If set, the stream will restart from beginning after
 /// reaching the end and so on, until it is stopped or
-/// sfSoundStream_setLoop(stream, false) is called.
+/// sfSoundStream_setLooping(stream, false) is called.
 /// The default looping state for sound streams is false.
 ///
 /// \param soundStream Sound stream object
 /// \param loop        true to play in loop, false to play once
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_setLoop(sfSoundStream* soundStream, bool loop);
+CSFML_AUDIO_API void sfSoundStream_setLooping(sfSoundStream* soundStream, bool loop);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the pitch of a sound stream
@@ -337,7 +337,7 @@ CSFML_AUDIO_API float sfSoundStream_getAttenuation(const sfSoundStream* soundStr
 /// \return true if the music is looping, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API bool sfSoundStream_getLoop(const sfSoundStream* soundStream);
+CSFML_AUDIO_API bool sfSoundStream_isLooping(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current playing position of a sound stream

@@ -128,14 +128,14 @@ CSFML_AUDIO_API const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound);
 ///
 /// If set, the sound will restart from beginning after
 /// reaching the end and so on, until it is stopped or
-/// sfSound_setLoop(sound, false) is called.
+/// sfSound_setLooping(sound, false) is called.
 /// The default looping state for sounds is false.
 ///
 /// \param sound Sound object
 /// \param loop  true to play in loop, false to play once
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSound_setLoop(sfSound* sound, bool loop);
+CSFML_AUDIO_API void sfSound_setLooping(sfSound* sound, bool loop);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether or not a sound is in loop mode
@@ -145,7 +145,7 @@ CSFML_AUDIO_API void sfSound_setLoop(sfSound* sound, bool loop);
 /// \return true if the sound is looping, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API bool sfSound_getLoop(const sfSound* sound);
+CSFML_AUDIO_API bool sfSound_isLooping(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current status of a sound (stopped, paused, playing)
