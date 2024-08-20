@@ -18,6 +18,8 @@ set_target_properties(Catch2WithMain PROPERTIES EXPORT_COMPILE_COMMANDS OFF)
 get_target_property(CATCH2_INCLUDE_DIRS Catch2 INTERFACE_INCLUDE_DIRECTORIES)
 target_include_directories(Catch2 SYSTEM INTERFACE ${CATCH2_INCLUDE_DIRS})
 
+set(CMAKE_CATCH_DISCOVER_TESTS_DISCOVERY_MODE PRE_TEST)
+
 add_executable(test-csfml-system
     System/Buffer.test.cpp
     System/Clock.test.cpp
@@ -39,6 +41,6 @@ catch_discover_tests(test-csfml-window)
 
 # Copy DLLs into the same directory
 if(SFML_OS_WINDOWS AND NOT CSFML_LINK_SFML_STATICALLY)
-    add_custom_command(TARGET test-csfml-system PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-system> $<TARGET_FILE_DIR:test-csfml-system> COMMAND_EXPAND_LISTS)
-    add_custom_command(TARGET test-csfml-window PRE_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-window> $<TARGET_FILE_DIR:test-csfml-window> COMMAND_EXPAND_LISTS)
+    add_custom_command(TARGET test-csfml-system POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-system> $<TARGET_FILE_DIR:test-csfml-system> COMMAND_EXPAND_LISTS)
+    add_custom_command(TARGET test-csfml-window POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-window> $<TARGET_FILE_DIR:test-csfml-window> COMMAND_EXPAND_LISTS)
 endif()
