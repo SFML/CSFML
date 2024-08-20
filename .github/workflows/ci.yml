@@ -46,7 +46,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: SFML/SFML
-        ref: 8096ba24fccb6b76a7d9e8cc71a3afb7b02e517c
+        ref: master
         path: SFML
 
     - name: Configure SFML CMake
