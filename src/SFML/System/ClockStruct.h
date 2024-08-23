@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CLOCKSTRUCT_H
-#define SFML_CLOCKSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfClock
 {
     sf::Clock This;
 };
-
-
-#endif // SFML_CLOCKSTRUCT_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONVERTRENDERSTATES_H
-#define SFML_CONVERTRENDERSTATES_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -57,6 +56,3 @@ inline sf::RenderStates convertRenderStates(const sfRenderStates* states)
 
     return sfmlStates;
 }
-
-
-#endif // SFML_CONVERTRENDERSTATES_H

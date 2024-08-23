@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONVERTEVENT_H
-#define SFML_CONVERTEVENT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -175,5 +174,3 @@ inline void convertEvent(const sf::Event& sfmlEvent, sfEvent* event)
         event->sensor.z          = sensorChanged->value.z;
     }
 }
-
-#endif // SFML_CONVERTEVENT_H

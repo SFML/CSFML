@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_EVENT_H
-#define SFML_EVENT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -217,6 +216,3 @@ typedef union
     sfTouchEvent            touch;            ///< Touch events parameters
     sfSensorEvent           sensor;           ///< Sensor event parameters
 } sfEvent;
-
-
-#endif // SFML_EVENT_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_WINDOW_EXPORT_H
-#define SFML_WINDOW_EXPORT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@
     #define CSFML_WINDOW_API CSFML_API_IMPORT
 
 #endif
-
-
-#endif // SFML_WINDOW_EXPORT_H

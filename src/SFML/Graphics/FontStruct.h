@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_FONTSTRUCT_H
-#define SFML_FONTSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@ struct sfFont
     std::map<unsigned int, sfTexture> Textures;
     CallbackStream Stream;
 };
-
-
-#endif // SFML_FONTSTRUCT_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_FTP_H
-#define SFML_FTP_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -543,6 +542,3 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile,
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfFtpResponse* sfFtp_sendCommand(sfFtp* ftp, const char* command, const char* parameter);
-
-
-#endif // SFML_FTP_H

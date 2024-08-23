@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_BUFFERSTRUCT_H
-#define SFML_BUFFERSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -40,6 +39,3 @@ struct sfBuffer
 {
     std::vector<std::uint8_t> buffer;
 };
-
-
-#endif // SFML_BUFFERSTRUCT_H

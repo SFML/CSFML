@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONVEXSHAPE_H
-#define SFML_CONVEXSHAPE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -426,6 +425,3 @@ CSFML_GRAPHICS_API sfFloatRect sfConvexShape_getLocalBounds(const sfConvexShape*
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfFloatRect sfConvexShape_getGlobalBounds(const sfConvexShape* shape);
-
-
-#endif // SFML_CONVEXSHAPE_H

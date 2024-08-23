@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONVEXSHAPESTRUCT_H
-#define SFML_CONVEXSHAPESTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@ struct sfConvexShape
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;
 };
-
-
-#endif // SFML_CONVEXSHAPESTRUCT_H

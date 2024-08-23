@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SPRITE_H
-#define SFML_SPRITE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -330,6 +329,3 @@ CSFML_GRAPHICS_API sfFloatRect sfSprite_getLocalBounds(const sfSprite* sprite);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfFloatRect sfSprite_getGlobalBounds(const sfSprite* sprite);
-
-
-#endif // SFML_SPRITE_H

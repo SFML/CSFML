@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RECTANGLESHAPE_H
-#define SFML_RECTANGLESHAPE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -418,6 +417,3 @@ CSFML_GRAPHICS_API sfFloatRect sfRectangleShape_getLocalBounds(const sfRectangle
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfFloatRect sfRectangleShape_getGlobalBounds(const sfRectangleShape* shape);
-
-
-#endif // SFML_RECTANGLESHAPE_H

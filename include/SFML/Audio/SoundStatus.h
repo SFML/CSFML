@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDSTATUS_H
-#define SFML_SOUNDSTATUS_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -41,6 +40,3 @@ typedef enum
     sfPaused,  ///< Sound / music is paused
     sfPlaying  ///< Sound / music is playing
 } sfSoundStatus;
-
-
-#endif // SFML_SOUNDSTATUS_H

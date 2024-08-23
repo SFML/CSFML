@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_GRAPHICS_EXPORT_H
-#define SFML_GRAPHICS_EXPORT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@
     #define CSFML_GRAPHICS_API CSFML_API_IMPORT
 
 #endif
-
-
-#endif // SFML_GRAPHICS_EXPORT_H

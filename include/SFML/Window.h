@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SFML_WINDOW_H
-#define SFML_SFML_WINDOW_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -42,6 +41,3 @@
 #include <SFML/Window/Touch.h>
 #include <SFML/Window/VideoMode.h>
 #include <SFML/Window/Window.h>
-
-
-#endif // SFML_SFML_WINDOW_H

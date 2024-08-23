@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_AUDIO_EXPORT_H
-#define SFML_AUDIO_EXPORT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@
     #define CSFML_AUDIO_API CSFML_API_IMPORT
 
 #endif
-
-
-#endif // SFML_AUDIO_EXPORT_H

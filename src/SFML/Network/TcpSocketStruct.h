@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TCPSOCKETSTRUCT_H
-#define SFML_TCPSOCKETSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfTcpSocket
 {
     sf::TcpSocket This;
 };
-
-
-#endif // SFML_TCPSOCKETSTRUCT_H

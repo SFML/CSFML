@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VERTEXARRAY_H
-#define SFML_VERTEXARRAY_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -163,6 +162,3 @@ CSFML_GRAPHICS_API sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray*
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray);
-
-
-#endif // SFML_VERTEXARRAY_H

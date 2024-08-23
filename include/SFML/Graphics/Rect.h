@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RECT_H
-#define SFML_RECT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -74,6 +73,3 @@ CSFML_GRAPHICS_API bool sfIntRect_contains(const sfIntRect* rect, int x, int y);
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, sfFloatRect* intersection);
 CSFML_GRAPHICS_API bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection);
-
-
-#endif // SFML_RECT_H

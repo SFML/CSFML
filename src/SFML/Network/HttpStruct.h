@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_HTTPSTRUCT_H
-#define SFML_HTTPSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -56,6 +55,3 @@ struct sfHttpResponse
 {
     sf::Http::Response This;
 };
-
-
-#endif // SFML_HTTPSTRUCT_H

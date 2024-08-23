@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TRANSFORM_H
-#define SFML_TRANSFORM_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -219,5 +218,3 @@ CSFML_GRAPHICS_API void sfTransform_scaleWithCenter(sfTransform* transform, floa
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API bool sfTransform_equal(sfTransform* left, sfTransform* right);
-
-#endif // SFML_TRANSFORM_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_NETWORK_TYPES_H
-#define SFML_NETWORK_TYPES_H
+#pragma once
 
 
 typedef struct sfFtpDirectoryResponse sfFtpDirectoryResponse;
@@ -38,6 +37,3 @@ typedef struct sfSocketSelector sfSocketSelector;
 typedef struct sfTcpListener sfTcpListener;
 typedef struct sfTcpSocket sfTcpSocket;
 typedef struct sfUdpSocket sfUdpSocket;
-
-
-#endif // SFML_NETWORK_TYPES_H

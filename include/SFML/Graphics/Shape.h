@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SHAPE_H
-#define SFML_SHAPE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -408,6 +407,3 @@ CSFML_GRAPHICS_API sfFloatRect sfShape_getGlobalBounds(const sfShape* shape);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfShape_update(sfShape* shape);
-
-
-#endif // SFML_SHAPE_H

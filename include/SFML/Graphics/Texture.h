@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTURE_H
-#define SFML_TEXTURE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -404,6 +403,3 @@ CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture, sfTextureCoordi
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API unsigned int sfTexture_getMaximumSize(void);
-
-
-#endif // SFML_TEXTURE_H

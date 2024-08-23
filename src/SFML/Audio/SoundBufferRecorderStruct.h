@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDBUFFERRECORDERSTRUCT_H
-#define SFML_SOUNDBUFFERRECORDERSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -41,6 +40,3 @@ struct sfSoundBufferRecorder
     mutable sfSoundBuffer   SoundBuffer;
     std::string             DeviceName;
 };
-
-
-#endif // SFML_SOUNDBUFFERRECORDERSTRUCT_H

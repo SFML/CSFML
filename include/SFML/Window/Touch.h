@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TOUCH_H
-#define SFML_TOUCH_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -70,6 +69,3 @@ CSFML_WINDOW_API sfVector2i sfTouch_getPosition(unsigned int finger, const sfWin
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfVector2i sfTouch_getPositionWindowBase(unsigned int finger, const sfWindowBase* relativeTo);
-
-
-#endif // SFML_TOUCH_H

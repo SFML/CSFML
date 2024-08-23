@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SHADERSTRUCT_H
-#define SFML_SHADERSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfShader
 {
     sf::Shader This;
 };
-
-
-#endif // SFML_SHADERSTRUCT_H

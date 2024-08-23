@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CURSORSTRUCT_H
-#define SFML_CURSORSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfCursor
 {
     sf::Cursor This;
 };
-
-
-#endif // SFML_CURSORSTRUCT_H

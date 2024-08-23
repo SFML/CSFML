@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VECTOR2_H
-#define SFML_VECTOR2_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -62,6 +61,3 @@ typedef struct
     float x;
     float y;
 } sfVector2f;
-
-
-#endif // SFML_VECTOR2_H

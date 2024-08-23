@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDRECORDERSTRUCT_H
-#define SFML_SOUNDRECORDERSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -98,6 +97,3 @@ struct sfSoundRecorder
     sfSoundRecorderImpl This;
     std::string DeviceName;
 };
-
-
-#endif // SFML_SOUNDRECORDERSTRUCT_H

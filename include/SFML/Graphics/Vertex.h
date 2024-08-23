@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VERTEX_H
-#define SFML_VERTEX_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -42,6 +41,3 @@ typedef struct
     sfColor    color;     ///< Color of the vertex
     sfVector2f texCoords; ///< Coordinates of the texture's pixel to map to the vertex
 } sfVertex;
-
-
-#endif // SFML_VERTEX_H

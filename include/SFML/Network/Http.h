@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_HTTP_H
-#define SFML_HTTP_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -299,6 +298,3 @@ CSFML_NETWORK_API void sfHttp_setHost(sfHttp* http, const char* host, unsigned s
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout);
-
-
-#endif // SFML_HTTP_H

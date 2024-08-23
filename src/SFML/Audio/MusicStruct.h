@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_MUSICSTRUCT_H
-#define SFML_MUSICSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -40,6 +39,3 @@ struct sfMusic
     CallbackStream Stream;
     sf::Music This;
 };
-
-
-#endif // SFML_MUSICSTRUCT_H

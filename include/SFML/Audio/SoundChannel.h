@@ -22,9 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDCHANNEL_H
-#define SFML_SOUNDCHANNEL_H
-
+#pragma once
 
 ////////////////////////////////////////////////////////////
 /// \brief Types of sound channels that can be read/written from sound buffers/files
@@ -60,6 +58,3 @@ typedef enum
     sfSoundChannelTopBackRight,
     sfSoundChannelTopBackCenter
 } sfSoundChannel;
-
-
-#endif // SFML_SOUNDCHANNEL_H

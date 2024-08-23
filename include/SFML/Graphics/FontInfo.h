@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_FONTINFO_H
-#define SFML_FONTINFO_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -37,6 +36,3 @@ typedef struct
 {
     const char* family;
 } sfFontInfo;
-
-
-#endif // SFML_FONTINFO_H

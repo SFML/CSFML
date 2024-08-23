@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_FTPSTRUCT_H
-#define SFML_FTPSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -88,6 +87,3 @@ struct sfFtpListingResponse
     sf::Ftp::ListingResponse This;
     std::vector<const char*> Filenames;
 };
-
-
-#endif // SFML_FTPSTRUCT_H

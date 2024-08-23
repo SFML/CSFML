@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_GLYPH_H
-#define SFML_GLYPH_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -41,6 +40,3 @@ typedef struct
     sfFloatRect bounds;      ///< Bounding rectangle of the glyph, in coordinates relative to the baseline
     sfIntRect   textureRect; ///< Texture coordinates of the glyph inside the font's image
 } sfGlyph;
-
-
-#endif // SFML_GLYPH_H

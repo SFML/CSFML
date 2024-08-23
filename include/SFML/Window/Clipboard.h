@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CLIPBOARD_H
-#define SFML_CLIPBOARD_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -80,5 +79,3 @@ CSFML_WINDOW_API void sfClipboard_setString(const char* text);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfClipboard_setUnicodeString(const sfChar32* text);
-
-#endif // SFML_CLIPBOARD_H

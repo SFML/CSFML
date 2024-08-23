@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONTEXT_H
-#define SFML_CONTEXT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -107,5 +106,3 @@ CSFML_WINDOW_API sfContextSettings sfContext_getSettings(const sfContext* contex
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API uint64_t sfContext_getActiveContextId(void);
-
-#endif // SFML_CONTEXT_H

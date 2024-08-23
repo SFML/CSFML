@@ -22,9 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOCKETSTATUS_H
-#define SFML_SOCKETSTATUS_H
-
+#pragma once
 
 ////////////////////////////////////////////////////////////
 /// \brief Define the status that can be returned by the socket functions
@@ -39,6 +37,3 @@ typedef enum
     sfSocketError         ///< An unexpected error happened
 
 } sfSocketStatus;
-
-
-#endif // SFML_SOCKETSTATUS_H

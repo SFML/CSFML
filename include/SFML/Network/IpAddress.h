@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_IPADDRESS_H
-#define SFML_IPADDRESS_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -176,6 +175,3 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_getLocalAddress(void);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfIpAddress sfIpAddress_getPublicAddress(sfTime timeout);
-
-
-#endif // SFML_IPADDRESS_H

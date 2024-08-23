@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RENDERTEXTURE_H
-#define SFML_RENDERTEXTURE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -366,6 +365,3 @@ CSFML_GRAPHICS_API bool sfRenderTexture_isRepeated(const sfRenderTexture* render
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API bool sfRenderTexture_generateMipmap(sfRenderTexture* renderTexture);
-
-
-#endif // SFML_RENDERTEXTURE_H

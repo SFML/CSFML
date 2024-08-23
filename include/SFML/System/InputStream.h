@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_INPUTSTREAM_H
-#define SFML_INPUTSTREAM_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -50,6 +49,3 @@ typedef struct sfInputStream
     sfInputStreamGetSizeFunc getSize;  ///< Function to get the total number of bytes in the stream
     void*                    userData; ///< User data that will be passed to the callbacks
 } sfInputStream;
-
-
-#endif // SFML_INPUTSTREAM_H

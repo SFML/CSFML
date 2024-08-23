@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_NETWORK_H
-#define SFML_NETWORK_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -39,6 +38,3 @@
 #include <SFML/Network/TcpListener.h>
 #include <SFML/Network/TcpSocket.h>
 #include <SFML/Network/UdpSocket.h>
-
-
-#endif // SFML_NETWORK_H

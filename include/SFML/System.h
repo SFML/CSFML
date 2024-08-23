@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SYSTEM_H
-#define SFML_SYSTEM_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -37,6 +36,3 @@
 #include <SFML/System/Time.h>
 #include <SFML/System/Vector2.h>
 #include <SFML/System/Vector3.h>
-
-
-#endif // SFML_SYSTEM_H

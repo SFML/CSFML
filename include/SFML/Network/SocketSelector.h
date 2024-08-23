@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOCKETSELECTOR_H
-#define SFML_SOCKETSELECTOR_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -136,6 +135,3 @@ CSFML_NETWORK_API bool sfSocketSelector_wait(sfSocketSelector* selector, sfTime 
 CSFML_NETWORK_API bool sfSocketSelector_isTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket);
 CSFML_NETWORK_API bool sfSocketSelector_isTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket);
 CSFML_NETWORK_API bool sfSocketSelector_isUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket);
-
-
-#endif // SFML_SOCKETSELECTOR_H

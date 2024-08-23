@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXT_H
-#define SFML_TEXT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -551,6 +550,3 @@ CSFML_GRAPHICS_API sfFloatRect sfText_getLocalBounds(const sfText* text);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfFloatRect sfText_getGlobalBounds(const sfText* text);
-
-
-#endif // SFML_TEXT_H

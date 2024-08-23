@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RENDERWINDOW_H
-#define SFML_RENDERWINDOW_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -603,6 +602,3 @@ CSFML_GRAPHICS_API sfVector2i sfTouch_getPositionRenderWindow(unsigned int finge
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API bool sfRenderWindow_createVulkanSurface(sfRenderWindow* renderWindow, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
-
-
-#endif // SFML_RENDERWINDOW_H
