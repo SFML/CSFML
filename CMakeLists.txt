@@ -61,7 +61,7 @@ if(SFML_OS_WINDOWS)
 endif()
 
 # add the subdirectories
-add_subdirectory(src/SFML)
+add_subdirectory(src/CSFML)
 if(CSFML_BUILD_DOC)
     add_subdirectory(doc)
 endif()

@@ -1,4 +1,4 @@
-#include <SFML/System/Sleep.h>
+#include <CSFML/System/Sleep.h>
 
 #include <catch2/catch_test_macros.hpp>
 
