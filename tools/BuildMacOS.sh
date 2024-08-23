@@ -573,7 +573,7 @@ minimal_install_package "$sfml_package1070"
 build_csfml 'clang' 'doc' '10.7 SDK'
 
 create_dir "$csfml_package1070/include/"
-copy "$installdir/usr/local/include/SFML" \
+copy "$installdir/usr/local/include/CSFML" \
      "$csfml_package1070/include/"
 
 create_dir "$csfml_package1070/lib/"

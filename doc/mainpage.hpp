@@ -12,8 +12,8 @@
 ///
 /// \code
 ///
-/// #include <SFML/Audio.h>
-/// #include <SFML/Graphics.h>
+/// #include <CSFML/Audio.h>
+/// #include <CSFML/Graphics.h>
 ///
 /// int main()
 /// {

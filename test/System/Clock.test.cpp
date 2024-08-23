@@ -1,4 +1,4 @@
-#include <SFML/System/Clock.h>
+#include <CSFML/System/Clock.h>
 
 #include <catch2/catch_test_macros.hpp>
 
