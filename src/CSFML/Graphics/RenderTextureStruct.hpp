@@ -27,21 +27,18 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
-#include <CSFML/Graphics/FontStruct.h>
-#include <CSFML/Graphics/Rect.h>
-#include <CSFML/Graphics/Transform.h>
-#include <string>
+#include <SFML/Graphics/RenderTexture.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
+#include <CSFML/Graphics/ViewStruct.hpp>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfText
+// Internal structure of sfRenderTexture
 ////////////////////////////////////////////////////////////
-struct sfText
+struct sfRenderTexture
 {
-    sf::Text            This;
-    const sfFont*       Font;
-    mutable std::string String;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
+    sf::RenderTexture This;
+    const sfTexture*  Target;
+    sfView            DefaultView;
+    sfView            CurrentView;
 };

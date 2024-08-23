@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Mouse.h>
-#include <CSFML/Window/WindowBaseStruct.h>
-#include <CSFML/Window/WindowStruct.h>
+#include <CSFML/Window/WindowBaseStruct.hpp>
+#include <CSFML/Window/WindowStruct.hpp>
 #include <SFML/Window/Mouse.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

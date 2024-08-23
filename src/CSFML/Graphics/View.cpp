@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/View.h>
-#include <CSFML/Graphics/ViewStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/Graphics/ViewStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

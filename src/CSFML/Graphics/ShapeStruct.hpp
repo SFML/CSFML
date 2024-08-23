@@ -27,17 +27,63 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/ConvexShape.hpp>
-#include <CSFML/Graphics/TextureStruct.h>
+#include <CSFML/Graphics/Shape.h>
+#include <SFML/Graphics/Shape.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
 #include <CSFML/Graphics/Transform.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfConvexShape
+// Helper class implementing the callback forwarding from
+// C++ to C in sfShape
 ////////////////////////////////////////////////////////////
-struct sfConvexShape
+class sfShapeImpl : public sf::Shape
 {
-    sf::ConvexShape     This;
+public :
+
+    sfShapeImpl(sfShapeGetPointCountCallback getPointCount,
+                sfShapeGetPointCallback      getPoint,
+                void*                        userData) :
+    myGetPointCountCallback(getPointCount),
+    myGetPointCallback     (getPoint),
+    myUserData             (userData)
+    {
+    }
+
+    std::size_t getPointCount() const override
+    {
+        return myGetPointCountCallback(myUserData);
+    }
+
+    sf::Vector2f getPoint(std::size_t index) const override
+    {
+        sfVector2f point = myGetPointCallback(index, myUserData);
+        return sf::Vector2f(point.x, point.y);
+    }
+
+    using sf::Shape::update;
+
+private:
+
+    sfShapeGetPointCountCallback myGetPointCountCallback;
+    sfShapeGetPointCallback      myGetPointCallback;
+    void*                        myUserData;
+};
+
+
+////////////////////////////////////////////////////////////
+// Internal structure of sfShape
+////////////////////////////////////////////////////////////
+struct sfShape
+{
+    sfShape(sfShapeGetPointCountCallback getPointCount,
+            sfShapeGetPointCallback      getPoint,
+            void*                        userData) :
+    This(getPointCount, getPoint, userData)
+    {
+    }
+
+    sfShapeImpl         This;
     const sfTexture*    Texture;
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;

@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/CircleShape.h>
-#include <CSFML/Graphics/CircleShapeStruct.h>
+#include <CSFML/Graphics/CircleShapeStruct.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

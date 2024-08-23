@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/SoundStream.h>
-#include <CSFML/Audio/SoundStreamStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/Audio/SoundStreamStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

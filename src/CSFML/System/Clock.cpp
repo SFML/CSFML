@@ -26,9 +26,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/System/Clock.h>
-#include <CSFML/System/ClockStruct.h>
+#include <CSFML/System/ClockStruct.hpp>
 #include <SFML/System/Time.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

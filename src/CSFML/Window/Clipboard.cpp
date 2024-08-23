@@ -28,7 +28,7 @@
 #include <SFML/System/String.hpp>
 #include <CSFML/Window/Clipboard.h>
 #include <SFML/Window/Clipboard.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 #include <string>
 
 

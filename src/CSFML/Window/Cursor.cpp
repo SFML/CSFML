@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Cursor.h>
-#include <CSFML/Window/CursorStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/Window/CursorStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

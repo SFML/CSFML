@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/ConvexShape.h>
-#include <CSFML/Graphics/ConvexShapeStruct.h>
+#include <CSFML/Graphics/ConvexShapeStruct.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

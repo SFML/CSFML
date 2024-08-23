@@ -26,11 +26,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Text.h>
-#include <CSFML/Graphics/TextStruct.h>
+#include <CSFML/Graphics/TextStruct.hpp>
 #include <CSFML/Graphics/Font.h>
 #include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

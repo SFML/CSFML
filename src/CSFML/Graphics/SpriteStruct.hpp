@@ -27,15 +27,18 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Audio/Music.hpp>
-#include <CSFML/CallbackStream.h>
+#include <SFML/Graphics/Sprite.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
+#include <CSFML/Graphics/Transform.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfMusic
+// Internal structure of sfSprite
 ////////////////////////////////////////////////////////////
-struct sfMusic
+struct sfSprite
 {
-    CallbackStream Stream;
-    sf::Music This;
+    sf::Sprite          This;
+    const sfTexture*    Texture;
+    mutable sfTransform Transform;
+    mutable sfTransform InverseTransform;
 };

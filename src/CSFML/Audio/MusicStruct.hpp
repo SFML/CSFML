@@ -27,18 +27,15 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Font.hpp>
-#include <CSFML/Graphics/TextureStruct.h>
-#include <CSFML/CallbackStream.h>
-#include <map>
+#include <SFML/Audio/Music.hpp>
+#include <CSFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfFont
+// Internal structure of sfMusic
 ////////////////////////////////////////////////////////////
-struct sfFont
+struct sfMusic
 {
-    sf::Font This;
-    std::map<unsigned int, sfTexture> Textures;
     CallbackStream Stream;
+    sf::Music This;
 };

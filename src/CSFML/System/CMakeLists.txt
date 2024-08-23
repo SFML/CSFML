@@ -9,10 +9,10 @@ set(SRC
     ${SRCROOT}/Alloc.cpp
     ${INCROOT}/Alloc.h
     ${SRCROOT}/Buffer.cpp
-    ${SRCROOT}/BufferStruct.h
+    ${SRCROOT}/BufferStruct.hpp
     ${INCROOT}/Buffer.h
     ${SRCROOT}/Clock.cpp
-    ${SRCROOT}/ClockStruct.h
+    ${SRCROOT}/ClockStruct.hpp
     ${INCROOT}/Clock.h
     ${INCROOT}/InputStream.h
     ${SRCROOT}/Sleep.cpp

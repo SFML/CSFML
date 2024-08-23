@@ -25,22 +25,22 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/ConvertEvent.h>
-#include <CSFML/Graphics/CircleShapeStruct.h>
+#include <CSFML/ConvertEvent.hpp>
+#include <CSFML/Graphics/CircleShapeStruct.hpp>
 #include <CSFML/Graphics/ConvertRenderStates.hpp>
-#include <CSFML/Graphics/ConvexShapeStruct.h>
-#include <CSFML/Graphics/ImageStruct.h>
-#include <CSFML/Graphics/RectangleShapeStruct.h>
+#include <CSFML/Graphics/ConvexShapeStruct.hpp>
+#include <CSFML/Graphics/ImageStruct.hpp>
+#include <CSFML/Graphics/RectangleShapeStruct.hpp>
 #include <CSFML/Graphics/RenderWindow.h>
-#include <CSFML/Graphics/RenderWindowStruct.h>
-#include <CSFML/Graphics/ShapeStruct.h>
-#include <CSFML/Graphics/SpriteStruct.h>
-#include <CSFML/Graphics/TextStruct.h>
-#include <CSFML/Graphics/VertexArrayStruct.h>
-#include <CSFML/Graphics/VertexBufferStruct.h>
-#include <CSFML/Internal.h>
-#include <CSFML/Window/ContextSettingsInternal.h>
-#include <CSFML/Window/CursorStruct.h>
+#include <CSFML/Graphics/RenderWindowStruct.hpp>
+#include <CSFML/Graphics/ShapeStruct.hpp>
+#include <CSFML/Graphics/SpriteStruct.hpp>
+#include <CSFML/Graphics/TextStruct.hpp>
+#include <CSFML/Graphics/VertexArrayStruct.hpp>
+#include <CSFML/Graphics/VertexBufferStruct.hpp>
+#include <CSFML/Internal.hpp>
+#include <CSFML/Window/ContextSettingsInternal.hpp>
+#include <CSFML/Window/CursorStruct.hpp>
 #include <SFML/Window/Touch.hpp>
 
 

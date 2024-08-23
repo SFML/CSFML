@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/UdpSocket.h>
-#include <CSFML/Network/UdpSocketStruct.h>
-#include <CSFML/Network/PacketStruct.h>
+#include <CSFML/Network/UdpSocketStruct.hpp>
+#include <CSFML/Network/PacketStruct.hpp>
 #include <SFML/Network/IpAddress.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 #include <string.h>
 
 

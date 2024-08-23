@@ -26,11 +26,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Sprite.h>
-#include <CSFML/Graphics/SpriteStruct.h>
+#include <CSFML/Graphics/SpriteStruct.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Image.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

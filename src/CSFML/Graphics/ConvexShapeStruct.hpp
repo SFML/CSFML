@@ -27,17 +27,17 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Sprite.hpp>
-#include <CSFML/Graphics/TextureStruct.h>
+#include <SFML/Graphics/ConvexShape.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
 #include <CSFML/Graphics/Transform.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfSprite
+// Internal structure of sfConvexShape
 ////////////////////////////////////////////////////////////
-struct sfSprite
+struct sfConvexShape
 {
-    sf::Sprite          This;
+    sf::ConvexShape     This;
     const sfTexture*    Texture;
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;

@@ -8,65 +8,65 @@ set(SRC
     ${SRCROOT}/BlendMode.cpp
     ${INCROOT}/BlendMode.h
     ${SRCROOT}/CircleShape.cpp
-    ${SRCROOT}/CircleShapeStruct.h
+    ${SRCROOT}/CircleShapeStruct.hpp
     ${INCROOT}/CircleShape.h
     ${SRCROOT}/Color.cpp
     ${INCROOT}/Color.h
     ${SRCROOT}/ConvertRenderStates.hpp
     ${SRCROOT}/ConvertTransform.hpp
     ${SRCROOT}/ConvexShape.cpp
-    ${SRCROOT}/ConvexShapeStruct.h
+    ${SRCROOT}/ConvexShapeStruct.hpp
     ${INCROOT}/ConvexShape.h
     ${SRCROOT}/Font.cpp
-    ${SRCROOT}/FontStruct.h
+    ${SRCROOT}/FontStruct.hpp
     ${INCROOT}/Font.h
     ${INCROOT}/FontInfo.h
     ${INCROOT}/Glyph.h
     ${SRCROOT}/Image.cpp
-    ${SRCROOT}/ImageStruct.h
+    ${SRCROOT}/ImageStruct.hpp
     ${INCROOT}/Image.h
     ${SRCROOT}/Rect.cpp
     ${INCROOT}/Rect.h
     ${SRCROOT}/RectangleShape.cpp
-    ${SRCROOT}/RectangleShapeStruct.h
+    ${SRCROOT}/RectangleShapeStruct.hpp
     ${INCROOT}/RectangleShape.h
     ${SRCROOT}/RenderStates.cpp
     ${SRCROOT}/RenderTexture.cpp
-    ${SRCROOT}/RenderTextureStruct.h
+    ${SRCROOT}/RenderTextureStruct.hpp
     ${INCROOT}/RenderTexture.h
     ${SRCROOT}/RenderWindow.cpp
-    ${SRCROOT}/RenderWindowStruct.h
+    ${SRCROOT}/RenderWindowStruct.hpp
     ${INCROOT}/RenderWindow.h
     ${SRCROOT}/Shader.cpp
-    ${SRCROOT}/ShaderStruct.h
+    ${SRCROOT}/ShaderStruct.hpp
     ${INCROOT}/Shader.h
     ${SRCROOT}/Shape.cpp
-    ${SRCROOT}/ShapeStruct.h
+    ${SRCROOT}/ShapeStruct.hpp
     ${INCROOT}/Shape.h
     ${SRCROOT}/Sprite.cpp
-    ${SRCROOT}/SpriteStruct.h
+    ${SRCROOT}/SpriteStruct.hpp
     ${INCROOT}/Sprite.h
     ${SRCROOT}/Text.cpp
-    ${SRCROOT}/TextStruct.h
+    ${SRCROOT}/TextStruct.hpp
     ${INCROOT}/Text.h
     ${SRCROOT}/Texture.cpp
-    ${SRCROOT}/TextureStruct.h
+    ${SRCROOT}/TextureStruct.hpp
     ${INCROOT}/Texture.h
     ${SRCROOT}/Transform.cpp
     ${INCROOT}/Transform.h
     ${SRCROOT}/Transformable.cpp
-    ${SRCROOT}/TransformableStruct.h
+    ${SRCROOT}/TransformableStruct.hpp
     ${INCROOT}/Transformable.h
     ${INCROOT}/Types.h
     ${INCROOT}/Vertex.h
     ${SRCROOT}/VertexArray.cpp
-    ${SRCROOT}/VertexArrayStruct.h
+    ${SRCROOT}/VertexArrayStruct.hpp
     ${INCROOT}/VertexArray.h
     ${INCROOT}/VertexBuffer.h
     ${SRCROOT}/VertexBuffer.cpp
-    ${SRCROOT}/VertexBufferStruct.h
+    ${SRCROOT}/VertexBufferStruct.hpp
     ${SRCROOT}/View.cpp
-    ${SRCROOT}/ViewStruct.h
+    ${SRCROOT}/ViewStruct.hpp
     ${INCROOT}/View.h
 )
 

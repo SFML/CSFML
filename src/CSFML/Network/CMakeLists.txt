@@ -6,29 +6,29 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/CSFML/Network)
 set(SRC
     ${INCROOT}/Export.h
     ${SRCROOT}/Ftp.cpp
-    ${SRCROOT}/FtpStruct.h
+    ${SRCROOT}/FtpStruct.hpp
     ${INCROOT}/Ftp.h
     ${SRCROOT}/Http.cpp
-    ${SRCROOT}/HttpStruct.h
+    ${SRCROOT}/HttpStruct.hpp
     ${INCROOT}/Http.h
     ${SRCROOT}/IpAddress.cpp
     ${INCROOT}/IpAddress.h
     ${SRCROOT}/Packet.cpp
-    ${SRCROOT}/PacketStruct.h
+    ${SRCROOT}/PacketStruct.hpp
     ${INCROOT}/Packet.h
     ${SRCROOT}/SocketSelector.cpp
-    ${SRCROOT}/SocketSelectorStruct.h
+    ${SRCROOT}/SocketSelectorStruct.hpp
     ${INCROOT}/SocketSelector.h
     ${INCROOT}/SocketStatus.h
     ${SRCROOT}/TcpListener.cpp
-    ${SRCROOT}/TcpListenerStruct.h
+    ${SRCROOT}/TcpListenerStruct.hpp
     ${INCROOT}/TcpListener.h
     ${SRCROOT}/TcpSocket.cpp
-    ${SRCROOT}/TcpSocketStruct.h
+    ${SRCROOT}/TcpSocketStruct.hpp
     ${INCROOT}/TcpSocket.h
     ${INCROOT}/Types.h
     ${SRCROOT}/UdpSocket.cpp
-    ${SRCROOT}/UdpSocketStruct.h
+    ${SRCROOT}/UdpSocketStruct.hpp
     ${INCROOT}/UdpSocket.h
 )
 

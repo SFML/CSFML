@@ -26,9 +26,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/TcpListener.h>
-#include <CSFML/Network/TcpListenerStruct.h>
-#include <CSFML/Network/TcpSocketStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/Network/TcpListenerStruct.hpp>
+#include <CSFML/Network/TcpSocketStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

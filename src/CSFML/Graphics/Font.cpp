@@ -26,9 +26,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Font.h>
-#include <CSFML/Graphics/FontStruct.h>
-#include <CSFML/Internal.h>
-#include <CSFML/CallbackStream.h>
+#include <CSFML/Graphics/FontStruct.hpp>
+#include <CSFML/Internal.hpp>
+#include <CSFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////

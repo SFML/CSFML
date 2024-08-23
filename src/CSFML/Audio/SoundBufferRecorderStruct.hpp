@@ -27,18 +27,16 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/RenderTexture.hpp>
-#include <CSFML/Graphics/TextureStruct.h>
-#include <CSFML/Graphics/ViewStruct.h>
+#include <SFML/Audio/SoundBufferRecorder.hpp>
+#include <CSFML/Audio/SoundBufferStruct.hpp>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfRenderTexture
+// Internal structure of sfSoundBufferRecorder
 ////////////////////////////////////////////////////////////
-struct sfRenderTexture
+struct sfSoundBufferRecorder
 {
-    sf::RenderTexture This;
-    const sfTexture*  Target;
-    sfView            DefaultView;
-    sfView            CurrentView;
+    sf::SoundBufferRecorder This;
+    mutable sfSoundBuffer   SoundBuffer;
+    std::string             DeviceName;
 };
