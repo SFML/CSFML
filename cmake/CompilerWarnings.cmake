@@ -31,9 +31,6 @@ function(set_target_warnings target)
 
         # Disables, remove when appropriate
         /wd4996 # disable warnings about deprecated functions
-        /wd4068 # disable warnings about unknown pragmas (e.g. #pragma GCC)
-        /wd4505 # disable warnings about unused functions that might be platform-specific
-        /wd4800 # disable warnings regarding implicit conversions to bool
         /wd5105 # disable warning about expansion of 'defined' keyword
     )
 
