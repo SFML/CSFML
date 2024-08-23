@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/System/Buffer.h>
-#include <CSFML/System/BufferStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/System/BufferStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

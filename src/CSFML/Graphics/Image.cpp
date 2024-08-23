@@ -26,10 +26,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Image.h>
-#include <CSFML/Graphics/ImageStruct.h>
-#include <CSFML/System/BufferStruct.h>
-#include <CSFML/Internal.h>
-#include <CSFML/CallbackStream.h>
+#include <CSFML/Graphics/ImageStruct.hpp>
+#include <CSFML/System/BufferStruct.hpp>
+#include <CSFML/Internal.hpp>
+#include <CSFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////

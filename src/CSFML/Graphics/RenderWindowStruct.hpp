@@ -27,18 +27,16 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/RectangleShape.hpp>
-#include <CSFML/Graphics/TextureStruct.h>
-#include <CSFML/Graphics/Transform.h>
+#include <SFML/Graphics/RenderWindow.hpp>
+#include <CSFML/Graphics/ViewStruct.hpp>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfRectangleShape
+// Internal structure of sfRenderWindow
 ////////////////////////////////////////////////////////////
-struct sfRectangleShape
+struct sfRenderWindow
 {
-    sf::RectangleShape  This;
-    const sfTexture*    Texture;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
+    sf::RenderWindow This;
+    sfView           DefaultView;
+    sfView           CurrentView;
 };

@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/VertexBuffer.h>
-#include <CSFML/Graphics/VertexBufferStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/Graphics/VertexBufferStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

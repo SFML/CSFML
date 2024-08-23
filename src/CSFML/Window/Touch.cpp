@@ -27,9 +27,9 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Touch.h>
 #include <SFML/Window/Touch.hpp>
-#include <CSFML/Window/WindowBaseStruct.h>
-#include <CSFML/Window/WindowStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/Window/WindowBaseStruct.hpp>
+#include <CSFML/Window/WindowStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

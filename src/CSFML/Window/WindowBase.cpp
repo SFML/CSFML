@@ -26,11 +26,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/WindowBase.h>
-#include <CSFML/Window/WindowBaseStruct.h>
-#include <CSFML/Internal.h>
-#include <CSFML/Window/CursorStruct.h>
+#include <CSFML/Window/WindowBaseStruct.hpp>
+#include <CSFML/Internal.hpp>
+#include <CSFML/Window/CursorStruct.hpp>
 #include <SFML/Window/VideoMode.hpp>
-#include <CSFML/ConvertEvent.h>
+#include <CSFML/ConvertEvent.hpp>
 
 
 ////////////////////////////////////////////////////////////

@@ -28,7 +28,7 @@
 #include <CSFML/System/Sleep.h>
 #include <SFML/System/Sleep.hpp>
 #include <SFML/System/Time.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

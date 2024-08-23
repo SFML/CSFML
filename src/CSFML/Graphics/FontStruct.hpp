@@ -27,18 +27,18 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/CircleShape.hpp>
-#include <CSFML/Graphics/TextureStruct.h>
-#include <CSFML/Graphics/Transform.h>
+#include <SFML/Graphics/Font.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
+#include <CSFML/CallbackStream.hpp>
+#include <map>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfCircleShape
+// Internal structure of sfFont
 ////////////////////////////////////////////////////////////
-struct sfCircleShape
+struct sfFont
 {
-    sf::CircleShape     This;
-    const sfTexture*    Texture;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
+    sf::Font This;
+    std::map<unsigned int, sfTexture> Textures;
+    CallbackStream Stream;
 };

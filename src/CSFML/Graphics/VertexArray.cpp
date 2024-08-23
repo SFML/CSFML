@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/VertexArray.h>
-#include <CSFML/Graphics/VertexArrayStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/Graphics/VertexArrayStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

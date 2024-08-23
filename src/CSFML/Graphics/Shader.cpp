@@ -26,11 +26,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Shader.h>
-#include <CSFML/Graphics/ShaderStruct.h>
-#include <CSFML/Graphics/TextureStruct.h>
+#include <CSFML/Graphics/ShaderStruct.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/Internal.h>
-#include <CSFML/CallbackStream.h>
+#include <CSFML/Internal.hpp>
+#include <CSFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////

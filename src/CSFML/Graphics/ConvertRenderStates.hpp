@@ -30,8 +30,8 @@
 #include <CSFML/Graphics/RenderStates.h>
 #include <SFML/Graphics/RenderStates.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/Graphics/TextureStruct.h>
-#include <CSFML/Graphics/ShaderStruct.h>
+#include <CSFML/Graphics/TextureStruct.hpp>
+#include <CSFML/Graphics/ShaderStruct.hpp>
 
 
 ////////////////////////////////////////////////////////////

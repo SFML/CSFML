@@ -28,7 +28,7 @@
 #include <CSFML/Graphics/Transform.h>
 #include <SFML/Graphics/Transform.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/Internal.h>
+#include <CSFML/Internal.hpp>
 #include <cstring>
 
 

@@ -27,16 +27,18 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/RenderWindow.hpp>
-#include <CSFML/Graphics/ViewStruct.h>
+#include <SFML/Graphics/CircleShape.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
+#include <CSFML/Graphics/Transform.h>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfRenderWindow
+// Internal structure of sfCircleShape
 ////////////////////////////////////////////////////////////
-struct sfRenderWindow
+struct sfCircleShape
 {
-    sf::RenderWindow This;
-    sfView           DefaultView;
-    sfView           CurrentView;
+    sf::CircleShape     This;
+    const sfTexture*    Texture;
+    mutable sfTransform Transform;
+    mutable sfTransform InverseTransform;
 };

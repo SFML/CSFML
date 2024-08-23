@@ -26,8 +26,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/Http.h>
-#include <CSFML/Network/HttpStruct.h>
-#include <CSFML/Internal.h>
+#include <CSFML/Network/HttpStruct.hpp>
+#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

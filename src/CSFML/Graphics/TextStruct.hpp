@@ -27,16 +27,21 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Audio/SoundBufferRecorder.hpp>
-#include <CSFML/Audio/SoundBufferStruct.h>
+#include <SFML/Graphics/Text.hpp>
+#include <CSFML/Graphics/FontStruct.hpp>
+#include <CSFML/Graphics/Rect.h>
+#include <CSFML/Graphics/Transform.h>
+#include <string>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfSoundBufferRecorder
+// Internal structure of sfText
 ////////////////////////////////////////////////////////////
-struct sfSoundBufferRecorder
+struct sfText
 {
-    sf::SoundBufferRecorder This;
-    mutable sfSoundBuffer   SoundBuffer;
-    std::string             DeviceName;
+    sf::Text            This;
+    const sfFont*       Font;
+    mutable std::string String;
+    mutable sfTransform Transform;
+    mutable sfTransform InverseTransform;
 };

@@ -26,18 +26,18 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/RenderTexture.h>
-#include <CSFML/Graphics/RenderTextureStruct.h>
-#include <CSFML/Graphics/SpriteStruct.h>
-#include <CSFML/Graphics/TextStruct.h>
-#include <CSFML/Graphics/ShapeStruct.h>
-#include <CSFML/Graphics/CircleShapeStruct.h>
-#include <CSFML/Graphics/ConvexShapeStruct.h>
-#include <CSFML/Graphics/RectangleShapeStruct.h>
-#include <CSFML/Graphics/VertexArrayStruct.h>
-#include <CSFML/Graphics/VertexBufferStruct.h>
+#include <CSFML/Graphics/RenderTextureStruct.hpp>
+#include <CSFML/Graphics/SpriteStruct.hpp>
+#include <CSFML/Graphics/TextStruct.hpp>
+#include <CSFML/Graphics/ShapeStruct.hpp>
+#include <CSFML/Graphics/CircleShapeStruct.hpp>
+#include <CSFML/Graphics/ConvexShapeStruct.hpp>
+#include <CSFML/Graphics/RectangleShapeStruct.hpp>
+#include <CSFML/Graphics/VertexArrayStruct.hpp>
+#include <CSFML/Graphics/VertexBufferStruct.hpp>
 #include <CSFML/Graphics/ConvertRenderStates.hpp>
-#include <CSFML/Internal.h>
-#include <CSFML/Window/ContextSettingsInternal.h>
+#include <CSFML/Internal.hpp>
+#include <CSFML/Window/ContextSettingsInternal.hpp>
 
 
 ////////////////////////////////////////////////////////////
