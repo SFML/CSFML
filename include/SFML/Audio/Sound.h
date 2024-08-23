@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUND_H
-#define SFML_SOUND_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -328,6 +327,3 @@ CSFML_AUDIO_API float sfSound_getAttenuation(const sfSound* sound);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfTime sfSound_getPlayingOffset(const sfSound* sound);
-
-
-#endif // SFML_SOUND_H

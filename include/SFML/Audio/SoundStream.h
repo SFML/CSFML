@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDSTREAM_H
-#define SFML_SOUNDSTREAM_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -348,6 +347,3 @@ CSFML_AUDIO_API bool sfSoundStream_isLooping(const sfSoundStream* soundStream);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfTime sfSoundStream_getPlayingOffset(const sfSoundStream* soundStream);
-
-
-#endif // SFML_SOUNDSTREAM_H

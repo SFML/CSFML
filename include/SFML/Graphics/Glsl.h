@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_GLSL_H
-#define SFML_GLSL_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -95,6 +94,3 @@ typedef struct
 {
     float array[4 * 4];
 } sfGlslMat4;
-
-
-#endif // SFML_GLSL_H

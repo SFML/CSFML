@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_MUSIC_H
-#define SFML_MUSIC_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -421,6 +420,3 @@ CSFML_AUDIO_API float sfMusic_getMinDistance(const sfMusic* music);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API float sfMusic_getAttenuation(const sfMusic* music);
-
-
-#endif // SFML_MUSIC_H

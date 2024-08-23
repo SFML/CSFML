@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TCPSOCKET_H
-#define SFML_TCPSOCKET_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -227,6 +226,3 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_sendPacket(sfTcpSocket* socket, sfP
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receivePacket(sfTcpSocket* socket, sfPacket* packet);
-
-
-#endif // SFML_TCPSOCKET_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CIRCLESHAPE_H
-#define SFML_CIRCLESHAPE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -427,6 +426,3 @@ CSFML_GRAPHICS_API sfFloatRect sfCircleShape_getLocalBounds(const sfCircleShape*
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfFloatRect sfCircleShape_getGlobalBounds(const sfCircleShape* shape);
-
-
-#endif // SFML_CIRCLESHAPE_H

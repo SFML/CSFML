@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_BUFFER_H
-#define SFML_BUFFER_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -68,6 +67,3 @@ CSFML_SYSTEM_API size_t sfBuffer_getSize(const sfBuffer* buffer);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_SYSTEM_API const uint8_t* sfBuffer_getData(const sfBuffer* buffer);
-
-
-#endif // SFML_BUFFER_H

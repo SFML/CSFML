@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_JOYSTICKIDENDIFICATION_H
-#define SFML_JOYSTICKIDENDIFICATION_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -40,6 +39,3 @@ typedef struct
     unsigned int vendorId;
     unsigned int productId;
 } sfJoystickIdentification;
-
-
-#endif // SFML_JOYSTICKIDENDIFICATION_H

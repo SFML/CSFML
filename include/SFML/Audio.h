@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_AUDIO_H
-#define SFML_AUDIO_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@
 #include <SFML/Audio/SoundRecorder.h>
 #include <SFML/Audio/SoundStatus.h>
 #include <SFML/Audio/SoundStream.h>
-
-
-#endif // SFML_AUDIO_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VERTEXBUFFERSTRUCT_H
-#define SFML_VERTEXBUFFERSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfVertexBuffer
 {
     sf::VertexBuffer This;
 };
-
-
-#endif // SFML_VERTEXBUFFERSTRUCT_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_UDPSOCKETSTRUCT_H
-#define SFML_UDPSOCKETSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfUdpSocket
 {
     sf::UdpSocket This;
 };
-
-
-#endif // SFML_UDPSOCKETSTRUCT_H

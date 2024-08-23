@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_GRAPHICS_TYPES_H
-#define SFML_GRAPHICS_TYPES_H
+#pragma once
 
 
 typedef struct sfCircleShape sfCircleShape;
@@ -42,6 +41,3 @@ typedef struct sfTransformable sfTransformable;
 typedef struct sfVertexArray sfVertexArray;
 typedef struct sfVertexBuffer sfVertexBuffer;
 typedef struct sfView sfView;
-
-
-#endif // SFML_GRAPHICS_TYPES_H

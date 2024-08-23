@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDSTREAMSTRUCT_H
-#define SFML_SOUNDSTREAMSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -103,6 +102,3 @@ struct sfSoundStream
 
     sfSoundStreamImpl This;
 };
-
-
-#endif // SFML_SOUNDSTREAMSTRUCT_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_JOYSTICK_H
-#define SFML_JOYSTICK_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -145,6 +144,3 @@ CSFML_WINDOW_API sfJoystickIdentification sfJoystick_getIdentification(unsigned 
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfJoystick_update(void);
-
-
-#endif // SFML_JOYSTICK_H

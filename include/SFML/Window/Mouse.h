@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_MOUSE_H
-#define SFML_MOUSE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -118,6 +117,3 @@ CSFML_WINDOW_API sfVector2i sfMouse_getPositionWindowBase(const sfWindowBase* re
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfMouse_setPositionWindowBase(sfVector2i position, const sfWindowBase* relativeTo);
-
-
-#endif // SFML_MOUSE_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTSTRUCT_H
-#define SFML_TEXTSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -46,6 +45,3 @@ struct sfText
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;
 };
-
-
-#endif // SFML_TEXTSTRUCT_H

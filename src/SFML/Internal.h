@@ -22,9 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_INTERNAL_H
-#define SFML_INTERNAL_H
-
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Define macros to check the validity of CSFML objects in debug run
@@ -141,5 +139,3 @@
 ////////////////////////////////////////////////////////////
 static_assert(sizeof(sfChar32) == sizeof(char32_t));
 static_assert(alignof(sfChar32) == alignof(char32_t));
-
-#endif // SFML_INTERNAL_H

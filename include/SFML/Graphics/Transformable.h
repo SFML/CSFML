@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TRANSFORMABLE_H
-#define SFML_TRANSFORMABLE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -212,6 +211,3 @@ CSFML_GRAPHICS_API sfTransform sfTransformable_getTransform(const sfTransformabl
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfTransform sfTransformable_getInverseTransform(const sfTransformable* transformable);
-
-
-#endif // SFML_TRANSFORMABLE_H

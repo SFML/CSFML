@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_PACKETSTRUCT_H
-#define SFML_PACKETSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfPacket
 {
     sf::Packet This;
 };
-
-
-#endif // SFML_PACKETSTRUCT_H

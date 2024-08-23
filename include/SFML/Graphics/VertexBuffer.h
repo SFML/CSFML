@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VERTEXBUFFER_H
-#define SFML_VERTEXBUFFER_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -249,6 +248,3 @@ CSFML_GRAPHICS_API void sfVertexBuffer_bind(const sfVertexBuffer* vertexBuffer);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API bool sfVertexBuffer_isAvailable(void);
-
-
-#endif // SFML_VERTEXBUFFER_H

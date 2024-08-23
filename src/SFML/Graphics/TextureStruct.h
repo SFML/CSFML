@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TEXTURESTRUCT_H
-#define SFML_TEXTURESTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -63,6 +62,3 @@ struct sfTexture
     sf::Texture* This;
     bool OwnInstance;
 };
-
-
-#endif // SFML_TEXTURESTRUCT_H

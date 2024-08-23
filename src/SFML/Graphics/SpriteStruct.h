@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SPRITESTRUCT_H
-#define SFML_SPRITESTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@ struct sfSprite
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;
 };
-
-
-#endif // SFML_SPRITESTRUCT_H

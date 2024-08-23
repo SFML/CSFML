@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_UDPSOCKET_H
-#define SFML_UDPSOCKET_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -204,6 +203,3 @@ CSFML_NETWORK_API sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, 
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API unsigned int sfUdpSocket_maxDatagramSize(void);
-
-
-#endif // SFML_UDPSOCKET_H

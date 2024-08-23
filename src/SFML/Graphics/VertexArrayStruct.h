@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VERTEXARRAYSTRUCT_H
-#define SFML_VERTEXARRAYSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfVertexArray
 {
     sf::VertexArray This;
 };
-
-
-#endif // SFML_VERTEXARRAYSTRUCT_H

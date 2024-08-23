@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RENDERWINDOWSTRUCT_H
-#define SFML_RENDERWINDOWSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -41,6 +40,3 @@ struct sfRenderWindow
     sfView           DefaultView;
     sfView           CurrentView;
 };
-
-
-#endif // SFML_RENDERWINDOWSTRUCT_H

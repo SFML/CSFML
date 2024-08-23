@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONTEXTSETTINGSINTERNAL_H
-#define SFML_CONTEXTSETTINGSINTERNAL_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -71,5 +70,3 @@ namespace priv
         to.sRgbCapable       = from.sRgbCapable;
     }
 }
-
-#endif // SFML_CONTEXTSETTINGSINTERNAL_H

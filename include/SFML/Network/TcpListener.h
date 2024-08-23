@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TCPLISTENER_H
-#define SFML_TCPLISTENER_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -127,6 +126,3 @@ CSFML_NETWORK_API sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, u
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** connected);
-
-
-#endif // SFML_TCPLISTENER_H

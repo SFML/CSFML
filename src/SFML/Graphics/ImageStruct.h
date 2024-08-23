@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_IMAGESTRUCT_H
-#define SFML_IMAGESTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfImage
 {
     sf::Image This;
 };
-
-
-#endif // SFML_IMAGESTRUCT_H

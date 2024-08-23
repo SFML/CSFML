@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CIRCLESHAPESTRUCT_H
-#define SFML_CIRCLESHAPESTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@ struct sfCircleShape
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;
 };
-
-
-#endif // SFML_CIRCLESHAPESTRUCT_H

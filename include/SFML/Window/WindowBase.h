@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_WINDOWBASE_H
-#define SFML_WINDOWBASE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -391,5 +390,3 @@ CSFML_WINDOW_API sfWindowHandle sfWindowBase_getNativeHandle(const sfWindowBase*
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API bool sfWindowBase_createVulkanSurface(sfWindowBase* windowBase, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
-
-#endif // SFML_WINDOWBASE_H

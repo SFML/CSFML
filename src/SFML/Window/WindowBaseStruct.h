@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_WINDOWBASESTRUCT_H
-#define SFML_WINDOWBASESTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfWindowBase
 {
     sf::WindowBase This;
 };
-
-
-#endif // SFML_WINDOWBASESTRUCT_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_WINDOWSTRUCT_H
-#define SFML_WINDOWSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfWindow
 {
     sf::Window This;
 };
-
-
-#endif // SFML_WINDOWSTRUCT_H

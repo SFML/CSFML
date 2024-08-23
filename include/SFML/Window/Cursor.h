@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CURSOR_H
-#define SFML_CURSOR_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -142,6 +141,3 @@ CSFML_WINDOW_API sfCursor* sfCursor_createFromSystem(sfCursorType type);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfCursor_destroy(sfCursor* cursor);
-
-
-#endif // SFML_CURSOR_H

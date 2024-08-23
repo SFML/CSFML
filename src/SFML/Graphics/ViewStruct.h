@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VIEWSTRUCT_H
-#define SFML_VIEWSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfView
 {
     sf::View This;
 };
-
-
-#endif // SFML_VIEWSTRUCT_H

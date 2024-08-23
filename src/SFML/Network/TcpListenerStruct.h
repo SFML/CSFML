@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TCPLISTENERSTRUCT_H
-#define SFML_TCPLISTENERSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfTcpListener
 {
     sf::TcpListener This;
 };
-
-
-#endif // SFML_TCPLISTENERSTRUCT_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDBUFFERRECORDER_H
-#define SFML_SOUNDBUFFERRECORDER_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -128,6 +127,3 @@ CSFML_AUDIO_API bool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soun
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API const char* sfSoundBufferRecorder_getDevice(sfSoundBufferRecorder* soundBufferRecorder);
-
-
-#endif // SFML_SOUNDBUFFERRECORDER_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDBUFFER_H
-#define SFML_SOUNDBUFFER_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -198,6 +197,3 @@ CSFML_AUDIO_API unsigned int sfSoundBuffer_getChannelCount(const sfSoundBuffer* 
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfTime sfSoundBuffer_getDuration(const sfSoundBuffer* soundBuffer);
-
-
-#endif // SFML_SOUNDBUFFER_H

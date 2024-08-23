@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_PRIMITIVETYPE_H
-#define SFML_PRIMITIVETYPE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -53,6 +52,3 @@ typedef enum
     sfTrianglesStrip = sfTriangleStrip, ///< \deprecated Use sfTriangleStrip instead
     sfTrianglesFan   = sfTriangleFan    ///< \deprecated Use sfTriangleFan instead
 } sfPrimitiveType;
-
-
-#endif // SFML_BLENDMODE_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_GRAPHICS_H
-#define SFML_GRAPHICS_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -55,6 +54,3 @@
 #include <SFML/Graphics/VertexArray.h>
 #include <SFML/Graphics/VertexBuffer.h>
 #include <SFML/Graphics/View.h>
-
-
-#endif // SFML_GRAPHICS_H

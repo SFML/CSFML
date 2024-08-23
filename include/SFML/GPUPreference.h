@@ -22,9 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_GPUPREFERENCE_H
-#define SFML_GPUPREFERENCE_H
-
+#pragma once
 
 ////////////////////////////////////////////////////////////
 /// Headers
@@ -69,6 +67,3 @@
     #define SFML_DEFINE_DISCRETE_GPU_PREFERENCE
 
 #endif
-
-
-#endif // SFML_GPUPREFERENCE_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_KEYBOARD_H
-#define SFML_KEYBOARD_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -419,5 +418,3 @@ CSFML_WINDOW_API const char* sfKeyboard_getDescription(sfScancode code);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfKeyboard_setVirtualKeyboardVisible(bool visible);
-
-#endif // SFML_KEYBOARD_H

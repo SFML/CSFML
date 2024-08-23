@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CHAR32_HPP
-#define SFML_CHAR32_HPP
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -45,5 +44,3 @@ inline sfChar32* copyToChar32(const sf::String& str)
 
     return utf32;
 }
-
-#endif // SFML_CHAR32_HPP

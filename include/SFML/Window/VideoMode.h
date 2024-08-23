@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_VIDEOMODE_H
-#define SFML_VIDEOMODE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -85,6 +84,3 @@ CSFML_WINDOW_API const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API bool sfVideoMode_isValid(sfVideoMode mode);
-
-
-#endif // SFML_VIDEOMODE_H

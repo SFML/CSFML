@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_BLENDMODE_H
-#define SFML_BLENDMODE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -85,6 +84,3 @@ CSFML_GRAPHICS_API const sfBlendMode sfBlendMultiply; ///< Multiply source and d
 CSFML_GRAPHICS_API const sfBlendMode sfBlendMin;      ///< Take minimum between source and dest
 CSFML_GRAPHICS_API const sfBlendMode sfBlendMax;      ///< Take maximum between source and dest
 CSFML_GRAPHICS_API const sfBlendMode sfBlendNone;     ///< Overwrite dest with source
-
-
-#endif // SFML_BLENDMODE_H

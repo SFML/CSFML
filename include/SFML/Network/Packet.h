@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_PACKET_H
-#define SFML_PACKET_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -184,6 +183,3 @@ CSFML_NETWORK_API void sfPacket_writeFloat(sfPacket* packet, float);
 CSFML_NETWORK_API void sfPacket_writeDouble(sfPacket* packet, double);
 CSFML_NETWORK_API void sfPacket_writeString(sfPacket* packet, const char* string);
 CSFML_NETWORK_API void sfPacket_writeWideString(sfPacket* packet, const wchar_t* string);
-
-
-#endif // SFML_PACKET_H

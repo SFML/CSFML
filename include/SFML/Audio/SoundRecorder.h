@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDRECORDER_H
-#define SFML_SOUNDRECORDER_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -193,6 +192,3 @@ CSFML_AUDIO_API void sfSoundRecorder_setChannelCount(sfSoundRecorder* soundRecor
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API unsigned int sfSoundRecorder_getChannelCount(const sfSoundRecorder* soundRecorder);
-
-
-#endif // SFML_SOUNDRECORDER_H

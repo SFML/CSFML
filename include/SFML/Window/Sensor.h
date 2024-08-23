@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SENSOR_H
-#define SFML_SENSOR_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -84,6 +83,3 @@ CSFML_WINDOW_API void sfSensor_setEnabled(sfSensorType sensor, bool enabled);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API sfVector3f sfSensor_getValue(sfSensorType sensor);
-
-
-#endif // SFML_SENSOR_H

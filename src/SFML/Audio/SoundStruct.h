@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOUNDSTRUCT_H
-#define SFML_SOUNDSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -40,6 +39,3 @@ struct sfSound
     sf::Sound            This;
     const sfSoundBuffer* Buffer;
 };
-
-
-#endif // SFML_SOUNDSTRUCT_H

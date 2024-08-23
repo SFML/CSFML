@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_TRANSFORMABLESTRUCT_H
-#define SFML_TRANSFORMABLESTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -41,6 +40,3 @@ struct sfTransformable
     mutable sfTransform Transform;
     mutable sfTransform InverseTransform;
 };
-
-
-#endif // SFML_TRANSFORMABLESTRUCT_H

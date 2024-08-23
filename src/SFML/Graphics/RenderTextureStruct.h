@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_RENDERTEXTURESTRUCT_H
-#define SFML_RENDERTEXTURESTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@ struct sfRenderTexture
     sfView            DefaultView;
     sfView            CurrentView;
 };
-
-
-#endif // SFML_RENDERTEXTURESTRUCT_H

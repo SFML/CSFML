@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONTEXTSTRUCT_H
-#define SFML_CONTEXTSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfContext
 {
     sf::Context This;
 };
-
-
-#endif // SFML_CONTEXTSTRUCT_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_NETWORK_EXPORT_H
-#define SFML_NETWORK_EXPORT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -43,6 +42,3 @@
     #define CSFML_NETWORK_API CSFML_API_IMPORT
 
 #endif
-
-
-#endif // SFML_NETWORK_EXPORT_H

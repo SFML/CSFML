@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_WINDOWHANDLE_H
-#define SFML_WINDOWHANDLE_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -52,6 +51,3 @@
     typedef void* sfWindowHandle;
 
 #endif
-
-
-#endif // SFML_WINDOWHANDLE_H

@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_SOCKETSELECTORSTRUCT_H
-#define SFML_SOCKETSELECTORSTRUCT_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -38,6 +37,3 @@ struct sfSocketSelector
 {
     sf::SocketSelector This;
 };
-
-
-#endif // SFML_SOCKETSELECTORSTRUCT_H

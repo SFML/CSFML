@@ -22,8 +22,7 @@
 //
 ////////////////////////////////////////////////////////////
 
-#ifndef SFML_CONVERTTRANSFORM_H
-#define SFML_CONVERTTRANSFORM_H
+#pragma once
 
 ////////////////////////////////////////////////////////////
 // Headers
@@ -53,6 +52,3 @@ inline sf::Transform convertTransform(const sfTransform& transform)
                          m[3], m[4], m[5],
                          m[6], m[7], m[8]);
 }
-
-
-#endif // SFML_CONVERTTRANSFORM_H
