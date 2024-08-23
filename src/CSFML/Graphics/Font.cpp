@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Font.h>
 #include <CSFML/Graphics/FontStruct.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Internal.hpp>
 #include <CSFML/CallbackStream.hpp>
 
@@ -94,15 +95,9 @@ sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int cha
 
     sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold, outlineThickness);
 
-    glyph.advance                = SFMLGlyph.advance;
-    glyph.bounds.position.x      = SFMLGlyph.bounds.position.x;
-    glyph.bounds.position.y      = SFMLGlyph.bounds.position.y;
-    glyph.bounds.size.x          = SFMLGlyph.bounds.size.x;
-    glyph.bounds.size.y          = SFMLGlyph.bounds.size.y;
-    glyph.textureRect.position.x = SFMLGlyph.textureRect.position.x;
-    glyph.textureRect.position.y = SFMLGlyph.textureRect.position.y;
-    glyph.textureRect.size.x     = SFMLGlyph.textureRect.size.x;
-    glyph.textureRect.size.y     = SFMLGlyph.textureRect.size.y;
+    glyph.advance     = SFMLGlyph.advance;
+    glyph.bounds      = convertRect(SFMLGlyph.bounds);
+    glyph.textureRect = convertRect(SFMLGlyph.textureRect);
 
     return glyph;
 }

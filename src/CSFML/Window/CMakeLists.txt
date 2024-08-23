@@ -11,9 +11,10 @@ set(SRC
     ${SRCROOT}/Cursor.cpp
     ${SRCROOT}/CursorStruct.hpp
     ${SRCROOT}/Context.cpp
-    ${SRCROOT}/ContextSettingsInternal.hpp
     ${SRCROOT}/ContextStruct.hpp
     ${INCROOT}/Context.h
+    ${SRCROOT}/ConvertContextSettings.hpp
+    ${SRCROOT}/ConvertVideoMode.hpp
     ${INCROOT}/Event.h
     ${SRCROOT}/Joystick.cpp
     ${INCROOT}/Joystick.h

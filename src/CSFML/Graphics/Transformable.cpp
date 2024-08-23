@@ -28,6 +28,7 @@
 #include <CSFML/Graphics/Transformable.h>
 #include <CSFML/Graphics/TransformableStruct.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -59,7 +60,7 @@ void sfTransformable_destroy(sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 void sfTransformable_setPosition(sfTransformable* transformable, sfVector2f position)
 {
-    CSFML_CALL(transformable, setPosition({ position.x, position.y }));
+    CSFML_CALL(transformable, setPosition(convertVector2(position)));
 }
 
 
@@ -73,14 +74,14 @@ void sfTransformable_setRotation(sfTransformable* transformable, float angle)
 ////////////////////////////////////////////////////////////
 void sfTransformable_setScale(sfTransformable* transformable, sfVector2f scale)
 {
-    CSFML_CALL(transformable, setScale({ scale.x, scale.y }));
+    CSFML_CALL(transformable, setScale(convertVector2(scale)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_setOrigin(sfTransformable* transformable, sfVector2f origin)
 {
-    CSFML_CALL(transformable, setOrigin({ origin.x, origin.y }));
+    CSFML_CALL(transformable, setOrigin(convertVector2(origin)));
 }
 
 
@@ -90,11 +91,7 @@ sfVector2f sfTransformable_getPosition(const sfTransformable* transformable)
     sfVector2f position = {0, 0};
     CSFML_CHECK_RETURN(transformable, position);
 
-    sf::Vector2f sfmlPos = transformable->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(transformable->This.getPosition());
 }
 
 
@@ -111,11 +108,7 @@ sfVector2f sfTransformable_getScale(const sfTransformable* transformable)
     sfVector2f scale = {0, 0};
     CSFML_CHECK_RETURN(transformable, scale);
 
-    sf::Vector2f sfmlScale = transformable->This.getScale();
-    scale.x = sfmlScale.x;
-    scale.y = sfmlScale.y;
-
-    return scale;
+    return convertVector2(transformable->This.getScale());
 }
 
 
@@ -125,18 +118,14 @@ sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable)
     sfVector2f origin = {0, 0};
     CSFML_CHECK_RETURN(transformable, origin);
 
-    sf::Vector2f sfmlOrigin = transformable->This.getOrigin();
-    origin.x = sfmlOrigin.x;
-    origin.y = sfmlOrigin.y;
-
-    return origin;
+    return convertVector2(transformable->This.getOrigin());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_move(sfTransformable* transformable, sfVector2f offset)
 {
-    CSFML_CALL(transformable, move({ offset.x, offset.y }));
+    CSFML_CALL(transformable, move(convertVector2(offset)));
 }
 
 
@@ -150,7 +139,7 @@ void sfTransformable_rotate(sfTransformable* transformable, float angle)
 ////////////////////////////////////////////////////////////
 void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors)
 {
-    CSFML_CALL(transformable, scale({ factors.x, factors.y }));
+    CSFML_CALL(transformable, scale(convertVector2(factors)));
 }
 
 

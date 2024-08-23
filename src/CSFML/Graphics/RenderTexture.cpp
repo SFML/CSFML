@@ -36,19 +36,18 @@
 #include <CSFML/Graphics/VertexArrayStruct.hpp>
 #include <CSFML/Graphics/VertexBufferStruct.hpp>
 #include <CSFML/Graphics/ConvertRenderStates.hpp>
+#include <CSFML/Graphics/ConvertColor.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
-#include <CSFML/Window/ContextSettingsInternal.hpp>
+#include <CSFML/Window/ConvertContextSettings.hpp>
 
 
 ////////////////////////////////////////////////////////////
 sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, const sfContextSettings* settings)
 {
     // Convert context settings
-    sf::ContextSettings params;
-    if (settings)
-    {
-        priv::sfContextSettings_writeToCpp(*settings, params);
-    }
+    const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the render texture
     sf::RenderTexture renderTexture;
@@ -77,11 +76,7 @@ sfVector2u sfRenderTexture_getSize(const sfRenderTexture* renderTexture)
     sfVector2u size = {0, 0};
     CSFML_CHECK_RETURN(renderTexture, size);
 
-    sf::Vector2u sfmlSize = renderTexture->This.getSize();
-    size.x = sfmlSize.x;
-    size.y = sfmlSize.y;
-
-    return size;
+    return convertVector2(renderTexture->This.getSize());
 }
 
 
@@ -110,9 +105,7 @@ void sfRenderTexture_display(sfRenderTexture* renderTexture)
 ////////////////////////////////////////////////////////////
 void sfRenderTexture_clear(sfRenderTexture* renderTexture, sfColor color)
 {
-    sf::Color SFMLColor(color.r, color.g, color.b, color.a);
-
-    CSFML_CALL(renderTexture, clear(SFMLColor));
+    CSFML_CALL(renderTexture, clear(convertColor(color)));
 }
 
 
@@ -150,13 +143,7 @@ sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, cons
     CSFML_CHECK_RETURN(view, rect);
     CSFML_CHECK_RETURN(renderTexture, rect);
 
-    sf::IntRect SFMLrect = renderTexture->This.getViewport(view->This);
-    rect.position.x = SFMLrect.position.x;
-    rect.position.y = SFMLrect.position.y;
-    rect.size.x     = SFMLrect.size.x;
-    rect.size.y     = SFMLrect.size.y;
-
-    return rect;
+    return convertRect(renderTexture->This.getViewport(view->This));
 }
 
 
@@ -166,16 +153,10 @@ sfVector2f sfRenderTexture_mapPixelToCoords(const sfRenderTexture* renderTexture
     sfVector2f result = {0, 0};
     CSFML_CHECK_RETURN(renderTexture, result);
 
-    sf::Vector2f sfmlPoint;
     if (targetView)
-        sfmlPoint = renderTexture->This.mapPixelToCoords(sf::Vector2i(point.x, point.y), targetView->This);
-    else
-        sfmlPoint = renderTexture->This.mapPixelToCoords(sf::Vector2i(point.x, point.y));
+        return convertVector2(renderTexture->This.mapPixelToCoords(convertVector2(point), targetView->This));
 
-    result.x = sfmlPoint.x;
-    result.y = sfmlPoint.y;
-
-    return result;
+    return convertVector2(renderTexture->This.mapPixelToCoords(convertVector2(point)));
 }
 
 
@@ -185,16 +166,10 @@ sfVector2i sfRenderTexture_mapCoordsToPixel(const sfRenderTexture* renderTexture
     sfVector2i result = {0, 0};
     CSFML_CHECK_RETURN(renderTexture, result);
 
-    sf::Vector2i sfmlPoint;
     if (targetView)
-        sfmlPoint = renderTexture->This.mapCoordsToPixel(sf::Vector2f(point.x, point.y), targetView->This);
-    else
-        sfmlPoint = renderTexture->This.mapCoordsToPixel(sf::Vector2f(point.x, point.y));
+        return convertVector2(renderTexture->This.mapCoordsToPixel(convertVector2(point), targetView->This));
 
-    result.x = sfmlPoint.x;
-    result.y = sfmlPoint.y;
-
-    return result;
+    return convertVector2(renderTexture->This.mapCoordsToPixel(convertVector2(point)));
 }
 
 

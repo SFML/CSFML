@@ -29,19 +29,18 @@
 #include <CSFML/Window/WindowBaseStruct.hpp>
 #include <CSFML/Internal.hpp>
 #include <CSFML/Window/CursorStruct.hpp>
+#include <CSFML/Window/ConvertVideoMode.hpp>
 #include <SFML/Window/VideoMode.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/ConvertEvent.hpp>
 
 
 ////////////////////////////////////////////////////////////
 sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t style)
 {
-    // Convert video mode
-    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
-
     // Create the window
     sfWindowBase* windowBase = new sfWindowBase;
-    windowBase->This.create(videoMode, title, style);
+    windowBase->This.create(convertVideoMode(mode), title, style);
 
     return windowBase;
 }
@@ -50,12 +49,9 @@ sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t 
 ////////////////////////////////////////////////////////////
 sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style)
 {
-    // Convert video mode
-    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
-
     // Create the window
     sfWindowBase* windowBase = new sfWindowBase;
-    windowBase->This.create(videoMode, reinterpret_cast<const char32_t*>(title), style);
+    windowBase->This.create(convertVideoMode(mode), reinterpret_cast<const char32_t*>(title), style);
 
     return windowBase;
 }
@@ -139,18 +135,14 @@ sfVector2i sfWindowBase_getPosition(const sfWindowBase* windowBase)
     sfVector2i position = {0, 0};
     CSFML_CHECK_RETURN(windowBase, position);
 
-    sf::Vector2i sfmlPos = windowBase->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(windowBase->This.getPosition());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setPosition(sfWindowBase* windowBase, sfVector2i position)
 {
-    CSFML_CALL(windowBase, setPosition(sf::Vector2i(position.x, position.y)));
+    CSFML_CALL(windowBase, setPosition(convertVector2(position)));
 }
 
 
@@ -160,18 +152,14 @@ sfVector2u sfWindowBase_getSize(const sfWindowBase* windowBase)
     sfVector2u size = {0, 0};
     CSFML_CHECK_RETURN(windowBase, size);
 
-    sf::Vector2u sfmlSize = windowBase->This.getSize();
-    size.x = sfmlSize.x;
-    size.y = sfmlSize.y;
-
-    return size;
+    return convertVector2(windowBase->This.getSize());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setSize(sfWindowBase* windowBase, sfVector2u size)
 {
-    CSFML_CALL(windowBase, setSize(sf::Vector2u(size.x, size.y)));
+    CSFML_CALL(windowBase, setSize(convertVector2(size)));
 }
 
 

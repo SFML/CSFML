@@ -22,59 +22,28 @@
 //
 ////////////////////////////////////////////////////////////
 
+#pragma once
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Window/Mouse.h>
-#include <CSFML/Window/WindowBaseStruct.hpp>
-#include <CSFML/Window/WindowStruct.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/Internal.hpp>
+#include <SFML/Graphics/Color.hpp>
+#include <CSFML/Graphics/Color.h>
 
 
 ////////////////////////////////////////////////////////////
-bool sfMouse_isButtonPressed(sfMouseButton button)
+// Convert sf::Color to sfColor
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sfColor convertColor(const sf::Color color)
 {
-    return sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(button));
+    return {color.r, color.g, color.b, color.a};
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2i sfMouse_getPosition(const sfWindow* relativeTo)
-{
-    if (relativeTo)
-        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
-
-    return convertVector2(sf::Mouse::getPosition());
-}
-
-
+// Convert sfColor to sf::Color
 ////////////////////////////////////////////////////////////
-void sfMouse_setPosition(sfVector2i position, const sfWindow* relativeTo)
+[[nodiscard]] inline sf::Color convertColor(const sfColor color)
 {
-    if (relativeTo)
-        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
-    else
-        sf::Mouse::setPosition(convertVector2(position));
-}
-
-
-////////////////////////////////////////////////////////////
-sfVector2i sfMouse_getPositionWindowBase(const sfWindowBase* relativeTo)
-{
-    if (relativeTo)
-        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
-
-    return convertVector2(sf::Mouse::getPosition());
-}
-
-
-////////////////////////////////////////////////////////////
-void sfMouse_setPositionWindowBase(sfVector2i position, const sfWindowBase* relativeTo)
-{
-    if (relativeTo)
-        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
-    else
-        sf::Mouse::setPosition(convertVector2(position));
+    return {color.r, color.g, color.b, color.a};
 }

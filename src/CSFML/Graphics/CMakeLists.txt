@@ -12,6 +12,8 @@ set(SRC
     ${INCROOT}/CircleShape.h
     ${SRCROOT}/Color.cpp
     ${INCROOT}/Color.h
+    ${SRCROOT}/ConvertColor.hpp
+    ${SRCROOT}/ConvertRect.hpp
     ${SRCROOT}/ConvertRenderStates.hpp
     ${SRCROOT}/ConvertTransform.hpp
     ${SRCROOT}/ConvexShape.cpp

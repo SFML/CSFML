@@ -28,7 +28,7 @@
 #include <CSFML/Window/Context.h>
 #include <CSFML/Window/ContextStruct.hpp>
 #include <CSFML/Internal.hpp>
-#include <CSFML/Window/ContextSettingsInternal.hpp>
+#include <CSFML/Window/ConvertContextSettings.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -69,13 +69,9 @@ GlFunctionPointer sfContext_getFunction(const char* name)
 ////////////////////////////////////////////////////////////
 sfContextSettings sfContext_getSettings(const sfContext* context)
 {
-    sfContextSettings settings = priv::sfContextSettings_null();
-    CSFML_CHECK_RETURN(context, settings);
+    CSFML_CHECK_RETURN(context, sfContextSettings{});
 
-    const sf::ContextSettings& params = context->This.getSettings();
-    priv::sfContextSettings_readFromCpp(params, settings);
-
-    return settings;
+    return convertContextSettings(context->This.getSettings());
 }
 
 

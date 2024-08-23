@@ -22,59 +22,39 @@
 //
 ////////////////////////////////////////////////////////////
 
+#pragma once
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Window/Mouse.h>
-#include <CSFML/Window/WindowBaseStruct.hpp>
-#include <CSFML/Window/WindowStruct.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/Internal.hpp>
+#include <CSFML/Window.h>
+#include <SFML/Window.hpp>
 
 
 ////////////////////////////////////////////////////////////
-bool sfMouse_isButtonPressed(sfMouseButton button)
+// Convert sf::ContextSettings to sfContextSettings
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sfContextSettings convertContextSettings(const sf::ContextSettings& settings)
 {
-    return sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(button));
+    return {settings.depthBits,
+            settings.stencilBits,
+            settings.antialiasingLevel,
+            settings.majorVersion,
+            settings.minorVersion,
+            settings.attributeFlags,
+            settings.sRgbCapable};
 }
 
-
 ////////////////////////////////////////////////////////////
-sfVector2i sfMouse_getPosition(const sfWindow* relativeTo)
-{
-    if (relativeTo)
-        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
-
-    return convertVector2(sf::Mouse::getPosition());
-}
-
-
+// Convert sfContextSettings to sf::ContextSettings
 ////////////////////////////////////////////////////////////
-void sfMouse_setPosition(sfVector2i position, const sfWindow* relativeTo)
+[[nodiscard]] inline sf::ContextSettings convertContextSettings(const sfContextSettings& settings)
 {
-    if (relativeTo)
-        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
-    else
-        sf::Mouse::setPosition(convertVector2(position));
-}
-
-
-////////////////////////////////////////////////////////////
-sfVector2i sfMouse_getPositionWindowBase(const sfWindowBase* relativeTo)
-{
-    if (relativeTo)
-        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
-
-    return convertVector2(sf::Mouse::getPosition());
-}
-
-
-////////////////////////////////////////////////////////////
-void sfMouse_setPositionWindowBase(sfVector2i position, const sfWindowBase* relativeTo)
-{
-    if (relativeTo)
-        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
-    else
-        sf::Mouse::setPosition(convertVector2(position));
+    return {settings.depthBits,
+            settings.stencilBits,
+            settings.antialiasingLevel,
+            settings.majorVersion,
+            settings.minorVersion,
+            settings.attributeFlags,
+            settings.sRgbCapable};
 }

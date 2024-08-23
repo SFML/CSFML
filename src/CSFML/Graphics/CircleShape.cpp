@@ -27,6 +27,9 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/CircleShape.h>
 #include <CSFML/Graphics/CircleShapeStruct.hpp>
+#include <CSFML/Graphics/ConvertColor.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Internal.hpp>
@@ -61,7 +64,7 @@ void sfCircleShape_destroy(sfCircleShape* shape)
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setPosition(sfCircleShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, setPosition({ position.x, position.y }));
+    CSFML_CALL(shape, setPosition(convertVector2(position)));
 }
 
 
@@ -75,14 +78,14 @@ void sfCircleShape_setRotation(sfCircleShape* shape, float angle)
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setScale(sfCircleShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, setScale({ scale.x, scale.y }));
+    CSFML_CALL(shape, setScale(convertVector2(scale)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setOrigin(sfCircleShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, setOrigin({ origin.x, origin.y }));
+    CSFML_CALL(shape, setOrigin(convertVector2(origin)));
 }
 
 
@@ -92,11 +95,7 @@ sfVector2f sfCircleShape_getPosition(const sfCircleShape* shape)
     sfVector2f position = {0, 0};
     CSFML_CHECK_RETURN(shape, position);
 
-    sf::Vector2f sfmlPos = shape->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(shape->This.getPosition());
 }
 
 
@@ -113,11 +112,7 @@ sfVector2f sfCircleShape_getScale(const sfCircleShape* shape)
     sfVector2f scale = {0, 0};
     CSFML_CHECK_RETURN(shape, scale);
 
-    sf::Vector2f sfmlScale = shape->This.getScale();
-    scale.x = sfmlScale.x;
-    scale.y = sfmlScale.y;
-
-    return scale;
+    return convertVector2(shape->This.getScale());
 }
 
 
@@ -127,18 +122,14 @@ sfVector2f sfCircleShape_getOrigin(const sfCircleShape* shape)
     sfVector2f origin = {0, 0};
     CSFML_CHECK_RETURN(shape, origin);
 
-    sf::Vector2f sfmlOrigin = shape->This.getOrigin();
-    origin.x = sfmlOrigin.x;
-    origin.y = sfmlOrigin.y;
-
-    return origin;
+    return convertVector2(shape->This.getOrigin());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_move(sfCircleShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, move({ offset.x, offset.y }));
+    CSFML_CALL(shape, move(convertVector2(offset)));
 }
 
 
@@ -152,7 +143,7 @@ void sfCircleShape_rotate(sfCircleShape* shape, float angle)
 ////////////////////////////////////////////////////////////
 void sfCircleShape_scale(sfCircleShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, scale({ factors.x, factors.y }));
+    CSFML_CALL(shape, scale(convertVector2(factors)));
 }
 
 
@@ -187,21 +178,21 @@ void sfCircleShape_setTexture(sfCircleShape* shape, const sfTexture* texture, bo
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setTextureRect(sfCircleShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.position.x, rect.position.y }, { rect.size.x, rect.size.y })));
+    CSFML_CALL(shape, setTextureRect(convertRect(rect)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setFillColor(sfCircleShape* shape, sfColor color)
 {
-    CSFML_CALL(shape, setFillColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(shape, setFillColor(convertColor(color)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfCircleShape_setOutlineColor(sfCircleShape* shape, sfColor color)
 {
-    CSFML_CALL(shape, setOutlineColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(shape, setOutlineColor(convertColor(color)));
 }
 
 
@@ -227,13 +218,7 @@ sfIntRect sfCircleShape_getTextureRect(const sfCircleShape* shape)
     sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::IntRect sfmlRect = shape->This.getTextureRect();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getTextureRect());
 }
 
 
@@ -243,13 +228,7 @@ sfColor sfCircleShape_getFillColor(const sfCircleShape* shape)
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(shape, color);
 
-    sf::Color sfmlColor = shape->This.getFillColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(shape->This.getFillColor());
 }
 
 
@@ -259,13 +238,7 @@ sfColor sfCircleShape_getOutlineColor(const sfCircleShape* shape)
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(shape, color);
 
-    sf::Color sfmlColor = shape->This.getOutlineColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(shape->This.getOutlineColor());
 }
 
 
@@ -289,11 +262,7 @@ sfVector2f sfCircleShape_getPoint(const sfCircleShape* shape, size_t index)
     sfVector2f point = {0, 0};
     CSFML_CHECK_RETURN(shape, point);
 
-    sf::Vector2f sfmlPoint = shape->This.getPoint(index);
-    point.x = sfmlPoint.x;
-    point.y = sfmlPoint.y;
-
-    return point;
+    return convertVector2(shape->This.getPoint(index));
 }
 
 
@@ -324,13 +293,7 @@ sfFloatRect sfCircleShape_getLocalBounds(const sfCircleShape* shape)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::FloatRect sfmlRect = shape->This.getLocalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getLocalBounds());
 }
 
 
@@ -340,11 +303,5 @@ sfFloatRect sfCircleShape_getGlobalBounds(const sfCircleShape* shape)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::FloatRect sfmlRect = shape->This.getGlobalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getGlobalBounds());
 }

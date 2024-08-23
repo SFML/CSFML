@@ -28,6 +28,8 @@
 #include <CSFML/Graphics/Transform.h>
 #include <SFML/Graphics/Transform.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 #include <cstring>
 
@@ -77,12 +79,7 @@ sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f p
     sfVector2f p = {0, 0};
     CSFML_CHECK_RETURN(transform, p);
 
-    sf::Vector2f sfmlPoint = convertTransform(*transform).transformPoint({ point.x, point.y });
-
-    p.x = sfmlPoint.x;
-    p.y = sfmlPoint.y;
-
-    return p;
+    return convertVector2(convertTransform(*transform).transformPoint(convertVector2(point)));
 }
 
 
@@ -92,14 +89,7 @@ sfFloatRect sfTransform_transformRect(const sfTransform* transform, sfFloatRect 
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(transform, rect);
 
-    sf::FloatRect sfmlRect = convertTransform(*transform).transformRect(sf::FloatRect({ rectangle.position.x, rectangle.position.y }, { rectangle.size.x, rectangle.size.y }));
-
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(convertTransform(*transform).transformRect(convertRect(rectangle)));
 }
 
 

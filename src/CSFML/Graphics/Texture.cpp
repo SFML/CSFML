@@ -29,7 +29,9 @@
 #include <CSFML/Graphics/TextureStruct.hpp>
 #include <CSFML/Graphics/ImageStruct.hpp>
 #include <CSFML/Graphics/RenderWindowStruct.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Window/WindowStruct.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 #include <CSFML/CallbackStream.hpp>
 
@@ -54,9 +56,7 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 {
     sfTexture* texture = new sfTexture;
 
-    sf::IntRect rect;
-    if (area)
-        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
+    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
     if (!texture->This->loadFromFile(filename, false, rect))
     {
@@ -72,9 +72,7 @@ sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* a
 {
     sfTexture* texture = new sfTexture;
 
-    sf::IntRect rect;
-    if (area)
-        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
+    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
     if (!texture->This->loadFromFile(filename, true, rect))
     {
@@ -90,9 +88,7 @@ sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, cons
 {
     sfTexture* texture = new sfTexture;
 
-    sf::IntRect rect;
-    if (area)
-        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
+    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
     if (!texture->This->loadFromMemory(data, sizeInBytes, false, rect))
     {
@@ -108,9 +104,7 @@ sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, 
 {
     sfTexture* texture = new sfTexture;
 
-    sf::IntRect rect;
-    if (area)
-        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
+    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
     if (!texture->This->loadFromMemory(data, sizeInBytes, true, rect))
     {
@@ -129,9 +123,7 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
 
     sfTexture* texture = new sfTexture;
 
-    sf::IntRect rect;
-    if (area)
-        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
+    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
     CallbackStream sfmlStream(stream);
     if (!texture->This->loadFromStream(sfmlStream, false, rect))
@@ -150,9 +142,7 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
 
     sfTexture* texture = new sfTexture;
 
-    sf::IntRect rect;
-    if (area)
-        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
+    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
     CallbackStream sfmlStream(stream);
     if (!texture->This->loadFromStream(sfmlStream, true, rect))
@@ -172,9 +162,7 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 
     sfTexture* texture = new sfTexture;
 
-    sf::IntRect rect;
-    if (area)
-        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
+    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
     if (!texture->This->loadFromImage(image->This, false, rect))
     {
@@ -192,9 +180,7 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
 
     sfTexture* texture = new sfTexture;
 
-    sf::IntRect rect;
-    if (area)
-        rect = sf::IntRect({ area->position.x, area->position.y }, { area->size.x, area->size.y });
+    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
     if (!texture->This->loadFromImage(image->This, true, rect))
     {
@@ -227,12 +213,7 @@ sfVector2u sfTexture_getSize(const sfTexture* texture)
     sfVector2u size = {0, 0};
     CSFML_CHECK_RETURN(texture, size);
 
-    sf::Vector2u sfmlSize = texture->This->getSize();
-
-    size.x = sfmlSize.x;
-    size.y = sfmlSize.y;
-
-    return size;
+    return convertVector2(texture->This->getSize());
 }
 
 

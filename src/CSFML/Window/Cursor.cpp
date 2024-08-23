@@ -27,13 +27,14 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Cursor.h>
 #include <CSFML/Window/CursorStruct.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
 sfCursor* sfCursor_createFromPixels(const uint8_t* pixels, sfVector2u size, sfVector2u hotspot)
 {
-    auto cursor = sf::Cursor::createFromPixels(pixels, sf::Vector2u(size.x, size.y), sf::Vector2u(hotspot.x, hotspot.y));
+    auto cursor = sf::Cursor::createFromPixels(pixels, convertVector2(size), convertVector2(hotspot));
     if (!cursor)
         return nullptr;
 

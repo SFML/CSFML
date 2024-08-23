@@ -27,64 +27,39 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Shape.h>
-#include <SFML/Graphics/Shape.hpp>
-#include <CSFML/Graphics/TextureStruct.hpp>
-#include <CSFML/Graphics/Transform.h>
-#include <CSFML/System/ConvertVector2.hpp>
+#include <SFML/System/Vector2.hpp>
+#include <CSFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
-// Helper class implementing the callback forwarding from
-// C++ to C in sfShape
+// Convert sf::Vector2 to sfVector2
 ////////////////////////////////////////////////////////////
-class sfShapeImpl : public sf::Shape
+[[nodiscard]] inline sfVector2i convertVector2(const sf::Vector2i vector)
 {
-public :
-
-    sfShapeImpl(sfShapeGetPointCountCallback getPointCount,
-                sfShapeGetPointCallback      getPoint,
-                void*                        userData) :
-    myGetPointCountCallback(getPointCount),
-    myGetPointCallback     (getPoint),
-    myUserData             (userData)
-    {
-    }
-
-    std::size_t getPointCount() const override
-    {
-        return myGetPointCountCallback(myUserData);
-    }
-
-    sf::Vector2f getPoint(std::size_t index) const override
-    {
-        return convertVector2(myGetPointCallback(index, myUserData));
-    }
-
-    using sf::Shape::update;
-
-private:
-
-    sfShapeGetPointCountCallback myGetPointCountCallback;
-    sfShapeGetPointCallback      myGetPointCallback;
-    void*                        myUserData;
-};
-
-
-////////////////////////////////////////////////////////////
-// Internal structure of sfShape
-////////////////////////////////////////////////////////////
-struct sfShape
+    return {vector.x, vector.y};
+}
+[[nodiscard]] inline sfVector2u convertVector2(const sf::Vector2u vector)
 {
-    sfShape(sfShapeGetPointCountCallback getPointCount,
-            sfShapeGetPointCallback      getPoint,
-            void*                        userData) :
-    This(getPointCount, getPoint, userData)
-    {
-    }
+    return {vector.x, vector.y};
+}
+[[nodiscard]] inline sfVector2f convertVector2(const sf::Vector2f vector)
+{
+    return {vector.x, vector.y};
+}
 
-    sfShapeImpl         This;
-    const sfTexture*    Texture;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
-};
+
+////////////////////////////////////////////////////////////
+// Convert sfVector2 to sf::Vector2
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sf::Vector2i convertVector2(const sfVector2i vector)
+{
+    return {vector.x, vector.y};
+}
+[[nodiscard]] inline sf::Vector2u convertVector2(const sfVector2u vector)
+{
+    return {vector.x, vector.y};
+}
+[[nodiscard]] inline sf::Vector2f convertVector2(const sfVector2f vector)
+{
+    return {vector.x, vector.y};
+}

@@ -22,59 +22,28 @@
 //
 ////////////////////////////////////////////////////////////
 
+#pragma once
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Window/Mouse.h>
-#include <CSFML/Window/WindowBaseStruct.hpp>
-#include <CSFML/Window/WindowStruct.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/Internal.hpp>
+#include <SFML/System/Vector3.hpp>
+#include <CSFML/System/Vector3.h>
 
 
 ////////////////////////////////////////////////////////////
-bool sfMouse_isButtonPressed(sfMouseButton button)
+// Convert sf::Vector3f to sfVector3f
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sfVector3f convertVector3(const sf::Vector3f vector)
 {
-    return sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(button));
+    return {vector.x, vector.y, vector.z};
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2i sfMouse_getPosition(const sfWindow* relativeTo)
-{
-    if (relativeTo)
-        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
-
-    return convertVector2(sf::Mouse::getPosition());
-}
-
-
+// Convert sfVector3f to sf::Vector3f
 ////////////////////////////////////////////////////////////
-void sfMouse_setPosition(sfVector2i position, const sfWindow* relativeTo)
+[[nodiscard]] inline sf::Vector3f convertVector3(const sfVector3f vector)
 {
-    if (relativeTo)
-        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
-    else
-        sf::Mouse::setPosition(convertVector2(position));
-}
-
-
-////////////////////////////////////////////////////////////
-sfVector2i sfMouse_getPositionWindowBase(const sfWindowBase* relativeTo)
-{
-    if (relativeTo)
-        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
-
-    return convertVector2(sf::Mouse::getPosition());
-}
-
-
-////////////////////////////////////////////////////////////
-void sfMouse_setPositionWindowBase(sfVector2i position, const sfWindowBase* relativeTo)
-{
-    if (relativeTo)
-        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
-    else
-        sf::Mouse::setPosition(convertVector2(position));
+    return {vector.x, vector.y, vector.z};
 }

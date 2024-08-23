@@ -34,21 +34,20 @@
 ////////////////////////////////////////////////////////////
 // Convert sf::Transform to sfTransform
 ////////////////////////////////////////////////////////////
-inline sfTransform convertTransform(const sf::Transform& transform)
+[[nodiscard]] inline sfTransform convertTransform(const sf::Transform& transform)
 {
     const float* m = transform.getMatrix();
-    sfTransform converted = {m[0], m[4], m[12], m[1], m[5], m[13], m[3], m[7], m[15]};
-    return converted;
+    return {m[0], m[4], m[12], m[1], m[5], m[13], m[3], m[7], m[15]};
 }
 
 
 ////////////////////////////////////////////////////////////
 // Convert sfTransform to sf::Transform
 ////////////////////////////////////////////////////////////
-inline sf::Transform convertTransform(const sfTransform& transform)
+[[nodiscard]] inline sf::Transform convertTransform(const sfTransform& transform)
 {
     const float* m = transform.matrix;
-    return sf::Transform(m[0], m[1], m[2],
-                         m[3], m[4], m[5],
-                         m[6], m[7], m[8]);
+    return {m[0], m[1], m[2],
+            m[3], m[4], m[5],
+            m[6], m[7], m[8]};
 }

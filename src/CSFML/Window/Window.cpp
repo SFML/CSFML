@@ -28,27 +28,22 @@
 #include <CSFML/Window/Window.h>
 #include <CSFML/Window/WindowStruct.hpp>
 #include <CSFML/Internal.hpp>
-#include <CSFML/Window/ContextSettingsInternal.hpp>
+#include <CSFML/Window/ConvertContextSettings.hpp>
 #include <CSFML/Window/CursorStruct.hpp>
+#include <CSFML/Window/ConvertVideoMode.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/ConvertEvent.hpp>
 
 
 ////////////////////////////////////////////////////////////
 sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
 {
-    // Convert video mode
-    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
-
     // Convert context settings
-    sf::ContextSettings params;
-    if (settings)
-    {
-        priv::sfContextSettings_writeToCpp(*settings, params);
-    }
+    const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.create(videoMode, title, style, static_cast<sf::State>(state), params);
+    window->This.create(convertVideoMode(mode), title, style, static_cast<sf::State>(state), params);
 
     return window;
 }
@@ -56,19 +51,12 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, s
 ////////////////////////////////////////////////////////////
 sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
 {
-    // Convert video mode
-    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
-
     // Convert context settings
-    sf::ContextSettings params;
-    if (settings)
-    {
-        priv::sfContextSettings_writeToCpp(*settings, params);
-    }
+    const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.create(videoMode, reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state), params);
+    window->This.create(convertVideoMode(mode), reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state), params);
 
     return window;
 }
@@ -78,11 +66,7 @@ sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32
 sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings)
 {
     // Convert context settings
-    sf::ContextSettings params;
-    if (settings)
-    {
-        priv::sfContextSettings_writeToCpp(*settings, params);
-    }
+    const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
     sfWindow* window = new sfWindow;
@@ -115,13 +99,9 @@ bool sfWindow_isOpen(const sfWindow* window)
 ////////////////////////////////////////////////////////////
 sfContextSettings sfWindow_getSettings(const sfWindow* window)
 {
-    sfContextSettings settings = priv::sfContextSettings_null();
-    CSFML_CHECK_RETURN(window, settings);
+    CSFML_CHECK_RETURN(window, sfContextSettings{});
 
-    const sf::ContextSettings& params = window->This.getSettings();
-    priv::sfContextSettings_readFromCpp(params, settings);
-
-    return settings;
+    return convertContextSettings(window->This.getSettings());
 }
 
 
@@ -171,18 +151,14 @@ sfVector2i sfWindow_getPosition(const sfWindow* window)
     sfVector2i position = {0, 0};
     CSFML_CHECK_RETURN(window, position);
 
-    sf::Vector2i sfmlPos = window->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(window->This.getPosition());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_setPosition(sfWindow* window, sfVector2i position)
 {
-    CSFML_CALL(window, setPosition(sf::Vector2i(position.x, position.y)));
+    CSFML_CALL(window, setPosition(convertVector2(position)));
 }
 
 
@@ -192,18 +168,14 @@ sfVector2u sfWindow_getSize(const sfWindow* window)
     sfVector2u size = {0, 0};
     CSFML_CHECK_RETURN(window, size);
 
-    sf::Vector2u sfmlSize = window->This.getSize();
-    size.x = sfmlSize.x;
-    size.y = sfmlSize.y;
-
-    return size;
+    return convertVector2(window->This.getSize());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindow_setSize(sfWindow* window, sfVector2u size)
 {
-    CSFML_CALL(window, setSize(sf::Vector2u(size.x, size.y)));
+    CSFML_CALL(window, setSize(convertVector2(size)));
 }
 
 

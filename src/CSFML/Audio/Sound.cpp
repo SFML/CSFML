@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Sound.h>
 #include <CSFML/Audio/SoundStruct.hpp>
+#include <CSFML/System/ConvertVector3.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -136,7 +137,7 @@ void sfSound_setVolume(sfSound* sound, float volume)
 ////////////////////////////////////////////////////////////
 void sfSound_setPosition(sfSound* sound, sfVector3f position)
 {
-    CSFML_CALL(sound, setPosition(sf::Vector3f(position.x, position.y, position.z)));
+    CSFML_CALL(sound, setPosition(convertVector3(position)));
 }
 
 
@@ -188,12 +189,7 @@ sfVector3f sfSound_getPosition(const sfSound* sound)
     sfVector3f position = {0, 0, 0};
     CSFML_CHECK_RETURN(sound, position);
 
-    sf::Vector3f sfmlPos = sound->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-    position.z = sfmlPos.z;
-
-    return position;
+    return convertVector3(sound->This.getPosition());
 }
 
 
