@@ -29,6 +29,8 @@
 #include <CSFML/Graphics/CircleShapeStruct.hpp>
 #include <CSFML/Graphics/ConvertRenderStates.hpp>
 #include <CSFML/Graphics/ConvexShapeStruct.hpp>
+#include <CSFML/Graphics/ConvertColor.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/ImageStruct.hpp>
 #include <CSFML/Graphics/RectangleShapeStruct.hpp>
 #include <CSFML/Graphics/RenderWindow.h>
@@ -39,27 +41,22 @@
 #include <CSFML/Graphics/VertexArrayStruct.hpp>
 #include <CSFML/Graphics/VertexBufferStruct.hpp>
 #include <CSFML/Internal.hpp>
-#include <CSFML/Window/ContextSettingsInternal.hpp>
+#include <CSFML/Window/ConvertContextSettings.hpp>
 #include <CSFML/Window/CursorStruct.hpp>
+#include <CSFML/Window/ConvertVideoMode.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <SFML/Window/Touch.hpp>
 
 
 ////////////////////////////////////////////////////////////
 sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
 {
-    // Convert video mode
-    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
-
     // Convert context settings
-    sf::ContextSettings params;
-    if (settings)
-    {
-        priv::sfContextSettings_writeToCpp(*settings, params);
-    }
+    const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.create(videoMode, title, style, static_cast<sf::State>(state), params);
+    renderWindow->This.create(convertVideoMode(mode), title, style, static_cast<sf::State>(state), params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
 
@@ -69,19 +66,12 @@ sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint3
 ////////////////////////////////////////////////////////////
 sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
 {
-    // Convert video mode
-    sf::VideoMode videoMode({ mode.width, mode.height }, mode.bitsPerPixel);
-
     // Convert context settings
-    sf::ContextSettings params;
-    if (settings)
-    {
-        priv::sfContextSettings_writeToCpp(*settings, params);
-    }
+    const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.create(videoMode, reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state), params);
+    renderWindow->This.create(convertVideoMode(mode), reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state), params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
 
@@ -93,11 +83,7 @@ sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfChar32* t
 sfRenderWindow* sfRenderWindow_createFromHandle(sfWindowHandle handle, const sfContextSettings* settings)
 {
     // Convert context settings
-    sf::ContextSettings params;
-    if (settings)
-    {
-        priv::sfContextSettings_writeToCpp(*settings, params);
-    }
+    const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
@@ -133,13 +119,9 @@ bool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow)
 ////////////////////////////////////////////////////////////
 sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow)
 {
-    sfContextSettings settings = priv::sfContextSettings_null();
-    CSFML_CHECK_RETURN(renderWindow, settings);
+    CSFML_CHECK_RETURN(renderWindow, sfContextSettings{});
 
-    const sf::ContextSettings& params = renderWindow->This.getSettings();
-    priv::sfContextSettings_readFromCpp(params, settings);
-
-    return settings;
+    return convertContextSettings(renderWindow->This.getSettings());
 }
 
 
@@ -189,18 +171,14 @@ sfVector2i sfRenderWindow_getPosition(const sfRenderWindow* renderWindow)
     sfVector2i position = {0, 0};
     CSFML_CHECK_RETURN(renderWindow, position);
 
-    sf::Vector2i sfmlPos = renderWindow->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(renderWindow->This.getPosition());;
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRenderWindow_setPosition(sfRenderWindow* renderWindow, sfVector2i position)
 {
-    CSFML_CALL(renderWindow, setPosition(sf::Vector2i(position.x, position.y)));
+    CSFML_CALL(renderWindow, setPosition(convertVector2(position)));
 }
 
 
@@ -210,11 +188,7 @@ sfVector2u sfRenderWindow_getSize(const sfRenderWindow* renderWindow)
     sfVector2u size = {0, 0};
     CSFML_CHECK_RETURN(renderWindow, size);
 
-    sf::Vector2u sfmlSize = renderWindow->This.getSize();
-    size.x = sfmlSize.x;
-    size.y = sfmlSize.y;
-
-    return size;
+    return convertVector2(renderWindow->This.getSize());
 }
 
 
@@ -229,7 +203,7 @@ bool sfRenderWindow_isSrgb(const sfRenderWindow* renderWindow)
 ////////////////////////////////////////////////////////////
 void sfRenderWindow_setSize(sfRenderWindow* renderWindow, sfVector2u size)
 {
-    CSFML_CALL(renderWindow, setSize(sf::Vector2u(size.x, size.y)));
+    CSFML_CALL(renderWindow, setSize(convertVector2(size)));
 }
 
 
@@ -352,9 +326,7 @@ sfWindowHandle sfRenderWindow_getNativeHandle(const sfRenderWindow* renderWindow
 ////////////////////////////////////////////////////////////
 void sfRenderWindow_clear(sfRenderWindow* renderWindow, sfColor color)
 {
-    sf::Color SFMLColor(color.r, color.g, color.b, color.a);
-
-    CSFML_CALL(renderWindow, clear(SFMLColor));
+    CSFML_CALL(renderWindow, clear(convertColor(color)));
 }
 
 
@@ -392,13 +364,7 @@ sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const s
     CSFML_CHECK_RETURN(view, rect);
     CSFML_CHECK_RETURN(renderWindow, rect);
 
-    sf::IntRect SFMLrect = renderWindow->This.getViewport(view->This);
-    rect.position.x = SFMLrect.position.x;
-    rect.position.y = SFMLrect.position.y;
-    rect.size.x     = SFMLrect.size.x;
-    rect.size.y     = SFMLrect.size.y;
-
-    return rect;
+    return convertRect(renderWindow->This.getViewport(view->This));
 }
 
 
@@ -408,16 +374,10 @@ sfVector2f sfRenderWindow_mapPixelToCoords(const sfRenderWindow* renderWindow, s
     sfVector2f result = {0, 0};
     CSFML_CHECK_RETURN(renderWindow, result);
 
-    sf::Vector2f sfmlPoint;
     if (targetView)
-        sfmlPoint = renderWindow->This.mapPixelToCoords(sf::Vector2i(point.x, point.y), targetView->This);
-    else
-        sfmlPoint = renderWindow->This.mapPixelToCoords(sf::Vector2i(point.x, point.y));
+        return convertVector2(renderWindow->This.mapPixelToCoords(convertVector2(point), targetView->This));
 
-    result.x = sfmlPoint.x;
-    result.y = sfmlPoint.y;
-
-    return result;
+    return convertVector2(renderWindow->This.mapPixelToCoords(convertVector2(point)));
 }
 
 
@@ -427,16 +387,10 @@ sfVector2i sfRenderWindow_mapCoordsToPixel(const sfRenderWindow* renderWindow, s
     sfVector2i result = {0, 0};
     CSFML_CHECK_RETURN(renderWindow, result);
 
-    sf::Vector2i sfmlPoint;
     if (targetView)
-        sfmlPoint = renderWindow->This.mapCoordsToPixel(sf::Vector2f(point.x, point.y), targetView->This);
-    else
-        sfmlPoint = renderWindow->This.mapCoordsToPixel(sf::Vector2f(point.x, point.y));
+        return convertVector2(renderWindow->This.mapCoordsToPixel(convertVector2(point), targetView->This));
 
-    result.x = sfmlPoint.x;
-    result.y = sfmlPoint.y;
-
-    return result;
+    return convertVector2(renderWindow->This.mapCoordsToPixel(convertVector2(point)));
 }
 
 
@@ -527,14 +481,10 @@ void sfRenderWindow_resetGLStates(sfRenderWindow* renderWindow)
 ////////////////////////////////////////////////////////////
 sfVector2i sfMouse_getPositionRenderWindow(const sfRenderWindow* relativeTo)
 {
-    sf::Vector2i sfmlPos;
     if (relativeTo)
-        sfmlPos = sf::Mouse::getPosition(relativeTo->This);
-    else
-        sfmlPos = sf::Mouse::getPosition();
+        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
 
-    sfVector2i position = {sfmlPos.x, sfmlPos.y};
-    return position;
+    return convertVector2(sf::Mouse::getPosition());
 }
 
 
@@ -542,24 +492,19 @@ sfVector2i sfMouse_getPositionRenderWindow(const sfRenderWindow* relativeTo)
 void sfMouse_setPositionRenderWindow(sfVector2i position, const sfRenderWindow* relativeTo)
 {
     if (relativeTo)
-        sf::Mouse::setPosition(sf::Vector2i(position.x, position.y), relativeTo->This);
+        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
     else
-        sf::Mouse::setPosition(sf::Vector2i(position.x, position.y));
+        sf::Mouse::setPosition(convertVector2(position));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2i sfTouch_getPositionRenderWindow(unsigned int finger, const sfRenderWindow* relativeTo)
 {
-    sf::Vector2i sfmlPosition;
-
     if (relativeTo)
-        sfmlPosition = sf::Touch::getPosition(finger, relativeTo->This);
-    else
-        sfmlPosition = sf::Touch::getPosition(finger);
+        return convertVector2(sf::Touch::getPosition(finger, relativeTo->This));
 
-    sfVector2i position = { sfmlPosition.x, sfmlPosition.y };
-    return position;
+    return convertVector2(sf::Touch::getPosition(finger));
 }
 
 

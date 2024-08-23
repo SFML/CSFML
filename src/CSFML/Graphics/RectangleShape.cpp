@@ -27,8 +27,11 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/RectangleShape.h>
 #include <CSFML/Graphics/RectangleShapeStruct.hpp>
+#include <CSFML/Graphics/ConvertColor.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -58,7 +61,7 @@ void sfRectangleShape_destroy(sfRectangleShape* shape)
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setPosition(sfRectangleShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, setPosition({ position.x, position.y }));
+    CSFML_CALL(shape, setPosition(convertVector2(position)));
 }
 
 
@@ -72,14 +75,14 @@ void sfRectangleShape_setRotation(sfRectangleShape* shape, float angle)
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setScale(sfRectangleShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, setScale({ scale.x, scale.y }));
+    CSFML_CALL(shape, setScale(convertVector2(scale)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setOrigin(sfRectangleShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, setOrigin({ origin.x, origin.y }));
+    CSFML_CALL(shape, setOrigin(convertVector2(origin)));
 }
 
 
@@ -89,11 +92,7 @@ sfVector2f sfRectangleShape_getPosition(const sfRectangleShape* shape)
     sfVector2f position = {0, 0};
     CSFML_CHECK_RETURN(shape, position);
 
-    sf::Vector2f sfmlPos = shape->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(shape->This.getPosition());
 }
 
 
@@ -110,11 +109,7 @@ sfVector2f sfRectangleShape_getScale(const sfRectangleShape* shape)
     sfVector2f scale = {0, 0};
     CSFML_CHECK_RETURN(shape, scale);
 
-    sf::Vector2f sfmlScale = shape->This.getScale();
-    scale.x = sfmlScale.x;
-    scale.y = sfmlScale.y;
-
-    return scale;
+    return convertVector2(shape->This.getScale());
 }
 
 
@@ -124,18 +119,14 @@ sfVector2f sfRectangleShape_getOrigin(const sfRectangleShape* shape)
     sfVector2f origin = {0, 0};
     CSFML_CHECK_RETURN(shape, origin);
 
-    sf::Vector2f sfmlOrigin = shape->This.getOrigin();
-    origin.x = sfmlOrigin.x;
-    origin.y = sfmlOrigin.y;
-
-    return origin;
+    return convertVector2(shape->This.getOrigin());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_move(sfRectangleShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, move({ offset.x, offset.y }));
+    CSFML_CALL(shape, move(convertVector2(offset)));
 }
 
 
@@ -149,7 +140,7 @@ void sfRectangleShape_rotate(sfRectangleShape* shape, float angle)
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_scale(sfRectangleShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, scale({ factors.x, factors.y }));
+    CSFML_CALL(shape, scale(convertVector2(factors)));
 }
 
 
@@ -184,21 +175,21 @@ void sfRectangleShape_setTexture(sfRectangleShape* shape, const sfTexture* textu
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setTextureRect(sfRectangleShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.position.x, rect.position.y }, { rect.size.x, rect.size.y })));
+    CSFML_CALL(shape, setTextureRect(convertRect(rect)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setFillColor(sfRectangleShape* shape, sfColor color)
 {
-    CSFML_CALL(shape, setFillColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(shape, setFillColor(convertColor(color)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setOutlineColor(sfRectangleShape* shape, sfColor color)
 {
-    CSFML_CALL(shape, setOutlineColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(shape, setOutlineColor(convertColor(color)));
 }
 
 
@@ -224,13 +215,7 @@ sfIntRect sfRectangleShape_getTextureRect(const sfRectangleShape* shape)
     sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::IntRect sfmlRect = shape->This.getTextureRect();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getTextureRect());
 }
 
 
@@ -240,13 +225,7 @@ sfColor sfRectangleShape_getFillColor(const sfRectangleShape* shape)
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(shape, color);
 
-    sf::Color sfmlColor = shape->This.getFillColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(shape->This.getFillColor());
 }
 
 
@@ -256,13 +235,7 @@ sfColor sfRectangleShape_getOutlineColor(const sfRectangleShape* shape)
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(shape, color);
 
-    sf::Color sfmlColor = shape->This.getOutlineColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(shape->This.getOutlineColor());
 }
 
 
@@ -286,18 +259,14 @@ sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, size_t index
     sfVector2f point = {0, 0};
     CSFML_CHECK_RETURN(shape, point);
 
-    sf::Vector2f sfmlPoint = shape->This.getPoint(index);
-    point.x = sfmlPoint.x;
-    point.y = sfmlPoint.y;
-
-    return point;
+    return convertVector2(shape->This.getPoint(index));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfRectangleShape_setSize(sfRectangleShape* shape, sfVector2f size)
 {
-    CSFML_CALL(shape, setSize(sf::Vector2f(size.x, size.y)));
+    CSFML_CALL(shape, setSize(convertVector2(size)));
 }
 
 
@@ -307,11 +276,7 @@ sfVector2f sfRectangleShape_getSize(const sfRectangleShape* shape)
     sfVector2f size = {0, 0};
     CSFML_CHECK_RETURN(shape, size);
 
-    sf::Vector2f sfmlSize = shape->This.getSize();
-    size.x = sfmlSize.x;
-    size.y = sfmlSize.y;
-
-    return size;
+    return convertVector2(shape->This.getSize());
 }
 
 
@@ -321,13 +286,7 @@ sfFloatRect sfRectangleShape_getLocalBounds(const sfRectangleShape* shape)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::FloatRect sfmlRect = shape->This.getLocalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getLocalBounds());
 }
 
 
@@ -337,11 +296,5 @@ sfFloatRect sfRectangleShape_getGlobalBounds(const sfRectangleShape* shape)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::FloatRect sfmlRect = shape->This.getGlobalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getGlobalBounds());
 }

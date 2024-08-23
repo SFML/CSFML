@@ -22,59 +22,36 @@
 //
 ////////////////////////////////////////////////////////////
 
+#pragma once
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Window/Mouse.h>
-#include <CSFML/Window/WindowBaseStruct.hpp>
-#include <CSFML/Window/WindowStruct.hpp>
-#include <SFML/Window/Mouse.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/Internal.hpp>
+#include <SFML/Graphics/Rect.hpp>
+#include <CSFML/Graphics/Rect.h>
 
 
 ////////////////////////////////////////////////////////////
-bool sfMouse_isButtonPressed(sfMouseButton button)
+// Convert sf::Rect<T> to CSFML Rect
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sfFloatRect convertRect(const sf::FloatRect& rect)
 {
-    return sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(button));
+    return {{rect.position.x, rect.position.y}, {rect.size.x, rect.size.y}};
+}
+[[nodiscard]] inline sfIntRect convertRect(const sf::IntRect& rect)
+{
+    return {{rect.position.x, rect.position.y}, {rect.size.x, rect.size.y}};
 }
 
 
 ////////////////////////////////////////////////////////////
-sfVector2i sfMouse_getPosition(const sfWindow* relativeTo)
-{
-    if (relativeTo)
-        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
-
-    return convertVector2(sf::Mouse::getPosition());
-}
-
-
+// Convert CSFML Rect to sf::Rect<T>
 ////////////////////////////////////////////////////////////
-void sfMouse_setPosition(sfVector2i position, const sfWindow* relativeTo)
+[[nodiscard]] inline sf::FloatRect convertRect(const sfFloatRect& rect)
 {
-    if (relativeTo)
-        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
-    else
-        sf::Mouse::setPosition(convertVector2(position));
+    return {{rect.position.x, rect.position.y}, {rect.size.x, rect.size.y}};
 }
-
-
-////////////////////////////////////////////////////////////
-sfVector2i sfMouse_getPositionWindowBase(const sfWindowBase* relativeTo)
+[[nodiscard]] inline sf::IntRect convertRect(const sfIntRect& rect)
 {
-    if (relativeTo)
-        return convertVector2(sf::Mouse::getPosition(relativeTo->This));
-
-    return convertVector2(sf::Mouse::getPosition());
-}
-
-
-////////////////////////////////////////////////////////////
-void sfMouse_setPositionWindowBase(sfVector2i position, const sfWindowBase* relativeTo)
-{
-    if (relativeTo)
-        sf::Mouse::setPosition(convertVector2(position), relativeTo->This);
-    else
-        sf::Mouse::setPosition(convertVector2(position));
+    return {{rect.position.x, rect.position.y}, {rect.size.x, rect.size.y}};
 }

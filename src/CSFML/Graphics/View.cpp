@@ -27,6 +27,8 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/View.h>
 #include <CSFML/Graphics/ViewStruct.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -40,7 +42,7 @@ sfView* sfView_create()
 ////////////////////////////////////////////////////////////
 sfView* sfView_createFromRect(sfFloatRect rectangle)
 {
-    return new sfView{sf::View(sf::FloatRect({rectangle.position.x, rectangle.position.y}, {rectangle.size.x, rectangle.size.y}))};
+    return new sfView{sf::View(convertRect(rectangle))};
 }
 
 
@@ -63,14 +65,14 @@ void sfView_destroy(sfView* view)
 ////////////////////////////////////////////////////////////
 void sfView_setCenter(sfView* view, sfVector2f center)
 {
-    CSFML_CALL(view, setCenter({ center.x, center.y }));
+    CSFML_CALL(view, setCenter(convertVector2(center)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_setSize(sfView* view, sfVector2f size)
 {
-    CSFML_CALL(view, setSize({ size.x, size.y }));
+    CSFML_CALL(view, setSize(convertVector2(size)));
 }
 
 
@@ -84,7 +86,7 @@ void sfView_setRotation(sfView* view, float angle)
 ////////////////////////////////////////////////////////////
 void sfView_setViewport(sfView* view, sfFloatRect viewport)
 {
-    CSFML_CALL(view, setViewport(sf::FloatRect({ viewport.position.x, viewport.position.y }, { viewport.size.x, viewport.size.y })));
+    CSFML_CALL(view, setViewport(convertRect(viewport)));
 }
 
 
@@ -94,11 +96,7 @@ sfVector2f sfView_getCenter(const sfView* view)
     sfVector2f center = {0, 0};
     CSFML_CHECK_RETURN(view, center);
 
-    sf::Vector2f sfmlCenter = view->This.getCenter();
-    center.x = sfmlCenter.x;
-    center.y = sfmlCenter.y;
-
-    return center;
+    return convertVector2(view->This.getCenter());
 }
 
 
@@ -108,11 +106,7 @@ sfVector2f sfView_getSize(const sfView* view)
     sfVector2f size = {0, 0};
     CSFML_CHECK_RETURN(view, size);
 
-    sf::Vector2f sfmlSize = view->This.getSize();
-    size.x = sfmlSize.x;
-    size.y = sfmlSize.y;
-
-    return size;
+    return convertVector2(view->This.getSize());
 }
 
 
@@ -129,20 +123,14 @@ sfFloatRect sfView_getViewport(const sfView* view)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(view, rect);
 
-    sf::FloatRect SFMLRect = view->This.getViewport();
-    rect.position.x = SFMLRect.position.x;
-    rect.position.y = SFMLRect.position.y;
-    rect.size.x     = SFMLRect.size.x;
-    rect.size.y     = SFMLRect.size.y;
-
-    return rect;
+    return convertRect(view->This.getViewport());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_move(sfView* view, sfVector2f offset)
 {
-    CSFML_CALL(view, move({ offset.x, offset.y }));
+    CSFML_CALL(view, move(convertVector2(offset)));
 }
 
 

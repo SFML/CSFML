@@ -30,6 +30,9 @@
 #include <CSFML/Graphics/Font.h>
 #include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/Graphics/ConvertColor.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -61,7 +64,7 @@ void sfText_destroy(sfText* text)
 ////////////////////////////////////////////////////////////
 void sfText_setPosition(sfText* text, sfVector2f position)
 {
-    CSFML_CALL(text, setPosition({ position.x, position.y }));
+    CSFML_CALL(text, setPosition(convertVector2(position)));
 }
 
 
@@ -75,14 +78,14 @@ void sfText_setRotation(sfText* text, float angle)
 ////////////////////////////////////////////////////////////
 void sfText_setScale(sfText* text, sfVector2f scale)
 {
-    CSFML_CALL(text, setScale({ scale.x, scale.y }));
+    CSFML_CALL(text, setScale(convertVector2(scale)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_setOrigin(sfText* text, sfVector2f origin)
 {
-    CSFML_CALL(text, setOrigin({ origin.x, origin.y }));
+    CSFML_CALL(text, setOrigin(convertVector2(origin)));
 }
 
 
@@ -92,11 +95,7 @@ sfVector2f sfText_getPosition(const sfText* text)
     sfVector2f position = {0, 0};
     CSFML_CHECK_RETURN(text, position);
 
-    sf::Vector2f sfmlPos = text->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(text->This.getPosition());
 }
 
 
@@ -113,11 +112,7 @@ sfVector2f sfText_getScale(const sfText* text)
     sfVector2f scale = {0, 0};
     CSFML_CHECK_RETURN(text, scale);
 
-    sf::Vector2f sfmlScale = text->This.getScale();
-    scale.x = sfmlScale.x;
-    scale.y = sfmlScale.y;
-
-    return scale;
+    return convertVector2(text->This.getScale());
 }
 
 
@@ -127,18 +122,14 @@ sfVector2f sfText_getOrigin(const sfText* text)
     sfVector2f origin = {0, 0};
     CSFML_CHECK_RETURN(text, origin);
 
-    sf::Vector2f sfmlOrigin = text->This.getOrigin();
-    origin.x = sfmlOrigin.x;
-    origin.y = sfmlOrigin.y;
-
-    return origin;
+    return convertVector2(text->This.getOrigin());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_move(sfText* text, sfVector2f offset)
 {
-    CSFML_CALL(text, move({ offset.x, offset.y }));
+    CSFML_CALL(text, move(convertVector2(offset)));
 }
 
 
@@ -152,7 +143,7 @@ void sfText_rotate(sfText* text, float angle)
 ////////////////////////////////////////////////////////////
 void sfText_scale(sfText* text, sfVector2f factors)
 {
-    CSFML_CALL(text, scale({ factors.x, factors.y }));
+    CSFML_CALL(text, scale(convertVector2(factors)));
 }
 
 
@@ -232,14 +223,14 @@ void sfText_setStyle(sfText* text, uint32_t style)
 ////////////////////////////////////////////////////////////
 void sfText_setFillColor(sfText* text, sfColor color)
 {
-    CSFML_CALL(text, setFillColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(text, setFillColor(convertColor(color)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfText_setOutlineColor(sfText* text, sfColor color)
 {
-    CSFML_CALL(text, setOutlineColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(text, setOutlineColor(convertColor(color)));
 }
 
 
@@ -314,13 +305,7 @@ sfColor sfText_getFillColor(const sfText* text)
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(text, color);
 
-    sf::Color sfmlColor = text->This.getFillColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(text->This.getFillColor());
 }
 
 
@@ -330,13 +315,7 @@ sfColor sfText_getOutlineColor(const sfText* text)
     sfColor color = { 0, 0, 0, 0 };
     CSFML_CHECK_RETURN(text, color);
 
-    sf::Color sfmlColor = text->This.getOutlineColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(text->This.getOutlineColor());
 }
 
 
@@ -353,11 +332,7 @@ sfVector2f sfText_findCharacterPos(const sfText* text, size_t index)
     sfVector2f position = {0, 0};
     CSFML_CHECK_RETURN(text, position);
 
-    sf::Vector2f sfmlPos = text->This.findCharacterPos(index);
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(text->This.findCharacterPos(index));
 }
 
 
@@ -367,13 +342,7 @@ sfFloatRect sfText_getLocalBounds(const sfText* text)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(text, rect);
 
-    sf::FloatRect sfmlRect = text->This.getLocalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(text->This.getLocalBounds());
 }
 
 
@@ -383,11 +352,5 @@ sfFloatRect sfText_getGlobalBounds(const sfText* text)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(text, rect);
 
-    sf::FloatRect sfmlRect = text->This.getGlobalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(text->This.getGlobalBounds());
 }

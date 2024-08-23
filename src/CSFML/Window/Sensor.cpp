@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Sensor.h>
 #include <SFML/Window/Sensor.hpp>
+#include <CSFML/System/ConvertVector3.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -45,8 +46,5 @@ void sfSensor_setEnabled(sfSensorType sensor, bool enabled)
 ////////////////////////////////////////////////////////////
 sfVector3f sfSensor_getValue(sfSensorType sensor)
 {
-    sf::Vector3f sfmlValue = sf::Sensor::getValue(static_cast<sf::Sensor::Type>(sensor));
-
-    sfVector3f value = {sfmlValue.x, sfmlValue.y, sfmlValue.z};
-    return value;
+    return convertVector3(sf::Sensor::getValue(static_cast<sf::Sensor::Type>(sensor)));
 }

@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Listener.h>
 #include <SFML/Audio/Listener.hpp>
+#include <CSFML/System/ConvertVector3.hpp>
 
 
 
@@ -47,46 +48,40 @@ float sfListener_getGlobalVolume()
 ////////////////////////////////////////////////////////////
 void sfListener_setPosition(sfVector3f position)
 {
-    sf::Listener::setPosition({ position.x, position.y, position.z });
+    sf::Listener::setPosition(convertVector3(position));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector3f sfListener_getPosition()
 {
-    sf::Vector3f sfmlPos = sf::Listener::getPosition();
-    sfVector3f position = {sfmlPos.x, sfmlPos.y, sfmlPos.z};
-    return position;
+    return convertVector3(sf::Listener::getPosition());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfListener_setDirection(sfVector3f direction)
 {
-    sf::Listener::setDirection({ direction.x, direction.y, direction.z });
+    sf::Listener::setDirection(convertVector3(direction));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector3f sfListener_getDirection()
 {
-    sf::Vector3f sfmlDirection = sf::Listener::getDirection();
-    sfVector3f direction = {sfmlDirection.x, sfmlDirection.y, sfmlDirection.z};
-    return direction;
+    return convertVector3(sf::Listener::getDirection());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfListener_setUpVector(sfVector3f upVector)
 {
-    sf::Listener::setUpVector({ upVector.x, upVector.y, upVector.z });
+    sf::Listener::setUpVector(convertVector3(upVector));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector3f sfListener_getUpVector()
 {
-    sf::Vector3f sfmlUpVector = sf::Listener::getUpVector();
-    sfVector3f upVector = {sfmlUpVector.x, sfmlUpVector.y, sfmlUpVector.z};
-    return upVector;
+    return convertVector3(sf::Listener::getUpVector());
 }

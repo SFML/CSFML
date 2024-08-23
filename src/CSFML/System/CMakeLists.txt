@@ -14,6 +14,8 @@ set(SRC
     ${SRCROOT}/Clock.cpp
     ${SRCROOT}/ClockStruct.hpp
     ${INCROOT}/Clock.h
+    ${SRCROOT}/ConvertVector2.hpp
+    ${SRCROOT}/ConvertVector3.hpp
     ${INCROOT}/InputStream.h
     ${SRCROOT}/Sleep.cpp
     ${INCROOT}/Sleep.h

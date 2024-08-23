@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/VertexArray.h>
 #include <CSFML/Graphics/VertexArrayStruct.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -113,11 +114,5 @@ sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(vertexArray, rect);
 
-    sf::FloatRect sfmlRect = vertexArray->This.getBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(vertexArray->This.getBounds());
 }

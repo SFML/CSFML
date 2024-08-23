@@ -30,6 +30,9 @@
 #include <SFML/Graphics/Color.hpp>
 #include <SFML/Graphics/Image.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/Graphics/ConvertColor.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -62,7 +65,7 @@ void sfSprite_destroy(sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 void sfSprite_setPosition(sfSprite* sprite, sfVector2f position)
 {
-    CSFML_CALL(sprite, setPosition({ position.x, position.y }));
+    CSFML_CALL(sprite, setPosition(convertVector2(position)));
 }
 
 
@@ -76,14 +79,14 @@ void sfSprite_setRotation(sfSprite* sprite, float angle)
 ////////////////////////////////////////////////////////////
 void sfSprite_setScale(sfSprite* sprite, sfVector2f scale)
 {
-    CSFML_CALL(sprite, setScale({ scale.x, scale.y }));
+    CSFML_CALL(sprite, setScale(convertVector2(scale)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSprite_setOrigin(sfSprite* sprite, sfVector2f origin)
 {
-    CSFML_CALL(sprite, setOrigin({ origin.x, origin.y }));
+    CSFML_CALL(sprite, setOrigin(convertVector2(origin)));
 }
 
 
@@ -93,11 +96,7 @@ sfVector2f sfSprite_getPosition(const sfSprite* sprite)
     sfVector2f position = {0, 0};
     CSFML_CHECK_RETURN(sprite, position);
 
-    sf::Vector2f sfmlPos = sprite->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(sprite->This.getPosition());
 }
 
 
@@ -114,11 +113,7 @@ sfVector2f sfSprite_getScale(const sfSprite* sprite)
     sfVector2f scale = {0, 0};
     CSFML_CHECK_RETURN(sprite, scale);
 
-    sf::Vector2f sfmlScale = sprite->This.getScale();
-    scale.x = sfmlScale.x;
-    scale.y = sfmlScale.y;
-
-    return scale;
+    return convertVector2(sprite->This.getScale());
 }
 
 
@@ -128,18 +123,14 @@ sfVector2f sfSprite_getOrigin(const sfSprite* sprite)
     sfVector2f origin = {0, 0};
     CSFML_CHECK_RETURN(sprite, origin);
 
-    sf::Vector2f sfmlOrigin = sprite->This.getOrigin();
-    origin.x = sfmlOrigin.x;
-    origin.y = sfmlOrigin.y;
-
-    return origin;
+    return convertVector2(sprite->This.getOrigin());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSprite_move(sfSprite* sprite, sfVector2f offset)
 {
-    CSFML_CALL(sprite, move({ offset.x, offset.y }));
+    CSFML_CALL(sprite, move(convertVector2(offset)));
 }
 
 
@@ -153,7 +144,7 @@ void sfSprite_rotate(sfSprite* sprite, float angle)
 ////////////////////////////////////////////////////////////
 void sfSprite_scale(sfSprite* sprite, sfVector2f factors)
 {
-    CSFML_CALL(sprite, scale({ factors.x, factors.y }));
+    CSFML_CALL(sprite, scale(convertVector2(factors)));
 }
 
 
@@ -191,14 +182,14 @@ void sfSprite_setTexture(sfSprite* sprite, const sfTexture* texture, bool resetR
 ////////////////////////////////////////////////////////////
 void sfSprite_setTextureRect(sfSprite* sprite, sfIntRect rectangle)
 {
-    CSFML_CALL(sprite, setTextureRect(sf::IntRect({ rectangle.position.x, rectangle.position.y }, { rectangle.size.x, rectangle.size.y })));
+    CSFML_CALL(sprite, setTextureRect(convertRect(rectangle)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSprite_setColor(sfSprite* sprite, sfColor color)
 {
-    CSFML_CALL(sprite, setColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(sprite, setColor(convertColor(color)));
 }
 
 
@@ -217,13 +208,7 @@ sfIntRect sfSprite_getTextureRect(const sfSprite* sprite)
     sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(sprite, rect);
 
-    sf::IntRect sfmlRect = sprite->This.getTextureRect();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(sprite->This.getTextureRect());
 }
 
 
@@ -233,13 +218,7 @@ sfColor sfSprite_getColor(const sfSprite* sprite)
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(sprite, color);
 
-    sf::Color sfmlColor = sprite->This.getColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(sprite->This.getColor());
 }
 
 
@@ -249,13 +228,7 @@ sfFloatRect sfSprite_getLocalBounds(const sfSprite* sprite)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(sprite, rect);
 
-    sf::FloatRect sfmlRect = sprite->This.getLocalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(sprite->This.getLocalBounds());
 }
 
 
@@ -265,11 +238,5 @@ sfFloatRect sfSprite_getGlobalBounds(const sfSprite* sprite)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(sprite, rect);
 
-    sf::FloatRect sfmlRect = sprite->This.getGlobalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(sprite->This.getGlobalBounds());
 }

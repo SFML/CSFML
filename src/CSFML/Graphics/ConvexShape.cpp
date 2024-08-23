@@ -29,6 +29,9 @@
 #include <CSFML/Graphics/ConvexShapeStruct.hpp>
 #include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/Graphics/ConvertColor.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -58,7 +61,7 @@ void sfConvexShape_destroy(sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setPosition(sfConvexShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, setPosition({ position.x, position.y }));
+    CSFML_CALL(shape, setPosition(convertVector2(position)));
 }
 
 
@@ -72,14 +75,14 @@ void sfConvexShape_setRotation(sfConvexShape* shape, float angle)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setScale(sfConvexShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, setScale({ scale.x, scale.y }));
+    CSFML_CALL(shape, setScale(convertVector2(scale)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setOrigin(sfConvexShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, setOrigin({ origin.x, origin.y }));
+    CSFML_CALL(shape, setOrigin(convertVector2(origin)));
 }
 
 
@@ -89,11 +92,7 @@ sfVector2f sfConvexShape_getPosition(const sfConvexShape* shape)
     sfVector2f position = {0, 0};
     CSFML_CHECK_RETURN(shape, position);
 
-    sf::Vector2f sfmlPos = shape->This.getPosition();
-    position.x = sfmlPos.x;
-    position.y = sfmlPos.y;
-
-    return position;
+    return convertVector2(shape->This.getPosition());
 }
 
 
@@ -110,11 +109,7 @@ sfVector2f sfConvexShape_getScale(const sfConvexShape* shape)
     sfVector2f scale = {0, 0};
     CSFML_CHECK_RETURN(shape, scale);
 
-    sf::Vector2f sfmlScale = shape->This.getScale();
-    scale.x = sfmlScale.x;
-    scale.y = sfmlScale.y;
-
-    return scale;
+    return convertVector2(shape->This.getScale());
 }
 
 
@@ -124,18 +119,14 @@ sfVector2f sfConvexShape_getOrigin(const sfConvexShape* shape)
     sfVector2f origin = {0, 0};
     CSFML_CHECK_RETURN(shape, origin);
 
-    sf::Vector2f sfmlOrigin = shape->This.getOrigin();
-    origin.x = sfmlOrigin.x;
-    origin.y = sfmlOrigin.y;
-
-    return origin;
+    return convertVector2(shape->This.getOrigin());
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_move(sfConvexShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, move({ offset.x, offset.y }));
+    CSFML_CALL(shape, move(convertVector2(offset)));
 }
 
 
@@ -149,7 +140,7 @@ void sfConvexShape_rotate(sfConvexShape* shape, float angle)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_scale(sfConvexShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, scale({ factors.x, factors.y }));
+    CSFML_CALL(shape, scale(convertVector2(factors)));
 }
 
 
@@ -184,21 +175,21 @@ void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bo
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setTextureRect(sfConvexShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(sf::IntRect({ rect.position.x, rect.position.y }, { rect.size.x, rect.size.y })));
+    CSFML_CALL(shape, setTextureRect(convertRect(rect)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setFillColor(sfConvexShape* shape, sfColor color)
 {
-    CSFML_CALL(shape, setFillColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(shape, setFillColor(convertColor(color)));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setOutlineColor(sfConvexShape* shape, sfColor color)
 {
-    CSFML_CALL(shape, setOutlineColor(sf::Color(color.r, color.g, color.b, color.a)));
+    CSFML_CALL(shape, setOutlineColor(convertColor(color)));
 }
 
 
@@ -224,13 +215,7 @@ sfIntRect sfConvexShape_getTextureRect(const sfConvexShape* shape)
     sfIntRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::IntRect sfmlRect = shape->This.getTextureRect();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getTextureRect());
 }
 
 
@@ -240,13 +225,7 @@ sfColor sfConvexShape_getFillColor(const sfConvexShape* shape)
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(shape, color);
 
-    sf::Color sfmlColor = shape->This.getFillColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(shape->This.getFillColor());
 }
 
 
@@ -256,13 +235,7 @@ sfColor sfConvexShape_getOutlineColor(const sfConvexShape* shape)
     sfColor color = {0, 0, 0, 0};
     CSFML_CHECK_RETURN(shape, color);
 
-    sf::Color sfmlColor = shape->This.getOutlineColor();
-    color.r = sfmlColor.r;
-    color.g = sfmlColor.g;
-    color.b = sfmlColor.b;
-    color.a = sfmlColor.a;
-
-    return color;
+    return convertColor(shape->This.getOutlineColor());
 }
 
 
@@ -286,11 +259,7 @@ sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index)
     sfVector2f point = {0, 0};
     CSFML_CHECK_RETURN(shape, point);
 
-    sf::Vector2f sfmlPoint = shape->This.getPoint(index);
-    point.x = sfmlPoint.x;
-    point.y = sfmlPoint.y;
-
-    return point;
+    return convertVector2(shape->This.getPoint(index));
 }
 
 
@@ -304,7 +273,7 @@ void sfConvexShape_setPointCount(sfConvexShape* shape, size_t count)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setPoint(sfConvexShape* shape, size_t index, sfVector2f point)
 {
-    CSFML_CALL(shape, setPoint(index, sf::Vector2f(point.x, point.y)));
+    CSFML_CALL(shape, setPoint(index, convertVector2(point)));
 }
 
 
@@ -314,13 +283,7 @@ sfFloatRect sfConvexShape_getLocalBounds(const sfConvexShape* shape)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::FloatRect sfmlRect = shape->This.getLocalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getLocalBounds());
 }
 
 
@@ -330,11 +293,5 @@ sfFloatRect sfConvexShape_getGlobalBounds(const sfConvexShape* shape)
     sfFloatRect rect = {{0, 0}, {0, 0}};
     CSFML_CHECK_RETURN(shape, rect);
 
-    sf::FloatRect sfmlRect = shape->This.getGlobalBounds();
-    rect.position.x = sfmlRect.position.x;
-    rect.position.y = sfmlRect.position.y;
-    rect.size.x = sfmlRect.size.x;
-    rect.size.y = sfmlRect.size.y;
-
-    return rect;
+    return convertRect(shape->This.getGlobalBounds());
 }

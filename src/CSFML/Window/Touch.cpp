@@ -29,6 +29,7 @@
 #include <SFML/Window/Touch.hpp>
 #include <CSFML/Window/WindowBaseStruct.hpp>
 #include <CSFML/Window/WindowStruct.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -41,27 +42,17 @@ bool sfTouch_isDown(unsigned int finger)
 ////////////////////////////////////////////////////////////
 sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo)
 {
-    sf::Vector2i sfmlPosition;
-
     if (relativeTo)
-        sfmlPosition = sf::Touch::getPosition(finger, relativeTo->This);
-    else
-        sfmlPosition = sf::Touch::getPosition(finger);
+        return convertVector2(sf::Touch::getPosition(finger, relativeTo->This));
 
-    sfVector2i position = {sfmlPosition.x, sfmlPosition.y};
-    return position;
+    return convertVector2(sf::Touch::getPosition(finger));
 }
 
 ////////////////////////////////////////////////////////////
 sfVector2i sfTouch_getPositionWindowBase(unsigned int finger, const sfWindowBase* relativeTo)
 {
-    sf::Vector2i sfmlPosition;
-
     if (relativeTo)
-        sfmlPosition = sf::Touch::getPosition(finger, relativeTo->This);
-    else
-        sfmlPosition = sf::Touch::getPosition(finger);
+        return convertVector2(sf::Touch::getPosition(finger, relativeTo->This));
 
-    sfVector2i position = { sfmlPosition.x, sfmlPosition.y };
-    return position;
+    return convertVector2(sf::Touch::getPosition(finger));
 }

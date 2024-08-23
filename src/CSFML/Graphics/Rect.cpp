@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Rect.h>
 #include <SFML/Graphics/Rect.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Internal.hpp>
 
 
@@ -36,12 +37,12 @@
 bool sfFloatRect_contains(const sfFloatRect* rect, float x, float y)
 {
     CSFML_CHECK_RETURN(rect, false);
-    return sf::FloatRect({ rect->position.x, rect->position.y }, { rect->size.x, rect->size.y }).contains({ x, y });
+    return convertRect(*rect).contains({ x, y });
 }
 bool sfIntRect_contains(const sfIntRect* rect, int x, int y)
 {
     CSFML_CHECK_RETURN(rect, false);
-    return sf::IntRect({ rect->position.x, rect->position.y }, { rect->size.x, rect->size.y }).contains({ x, y });
+    return convertRect(*rect).contains({ x, y });
 }
 
 
@@ -53,20 +54,15 @@ bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, 
     CSFML_CHECK_RETURN(rect1, false);
     CSFML_CHECK_RETURN(rect2, false);
 
-    sf::FloatRect SFMLRect1({ rect1->position.x, rect1->position.y }, { rect1->size.x, rect1->size.y });
-    sf::FloatRect SFMLRect2({ rect2->position.x, rect2->position.y }, { rect2->size.x, rect2->size.y });
+    sf::FloatRect SFMLRect1 = convertRect(*rect1);
+    sf::FloatRect SFMLRect2 = convertRect(*rect2);
 
     if (intersection)
     {
         std::optional<sf::FloatRect> overlap = SFMLRect1.findIntersection(SFMLRect2);
 
         if (overlap)
-        {
-            intersection->position.x = overlap->position.x;
-            intersection->position.y = overlap->position.y;
-            intersection->size.x = overlap->size.x;
-            intersection->size.y = overlap->size.y;
-        }
+            *intersection = convertRect(*overlap);
 
         return overlap.has_value();
     }
@@ -80,20 +76,15 @@ bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntR
     CSFML_CHECK_RETURN(rect1, false);
     CSFML_CHECK_RETURN(rect2, false);
 
-    sf::IntRect SFMLRect1({ rect1->position.x, rect1->position.y }, { rect1->size.x, rect1->size.y });
-    sf::IntRect SFMLRect2({ rect2->position.x, rect2->position.y }, { rect2->size.x, rect2->size.y });
+    sf::IntRect SFMLRect1 = convertRect(*rect1);
+    sf::IntRect SFMLRect2 = convertRect(*rect2);
 
     if (intersection)
     {
         std::optional<sf::IntRect> overlap = SFMLRect1.findIntersection(SFMLRect2);
 
         if (overlap)
-        {
-            intersection->position.x = overlap->position.x;
-            intersection->position.y = overlap->position.y;
-            intersection->size.x = overlap->size.x;
-            intersection->size.y = overlap->size.y;
-        }
+            *intersection = convertRect(*overlap);
 
         return overlap.has_value();
     }
