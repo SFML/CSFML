@@ -1,0 +1,18 @@
+{
+  "version": 3,
+  "configurePresets":[
+    {
+      "name": "dev",
+      "binaryDir": "build",
+      "installDir": "${sourceDir}/build/install",
+      "cacheVariables": {
+        "CMAKE_C_EXTENSIONS": "OFF",
+        "CMAKE_CXX_EXTENSIONS": "OFF",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CSFML_BUILD_EXAMPLES": "ON",
+        "CSFML_BUILD_TEST_SUITE": "ON",
+        "WARNINGS_AS_ERRORS": "ON"
+      }
+    }
+  ]
+}
