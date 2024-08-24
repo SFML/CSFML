@@ -27,5 +27,3 @@
 
 typedef struct sfBuffer sfBuffer;
 typedef struct sfClock sfClock;
-typedef struct sfMutex sfMutex;
-typedef struct sfThread sfThread;
