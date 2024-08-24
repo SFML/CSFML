@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfView* sfView_create(void)
+sfView* sfView_create()
 {
     return new sfView;
 }

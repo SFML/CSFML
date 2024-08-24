@@ -167,7 +167,7 @@ const char* sfFtpResponse_getMessage(const sfFtpResponse* ftpResponse)
 
 
 ////////////////////////////////////////////////////////////
-sfFtp* sfFtp_create(void)
+sfFtp* sfFtp_create()
 {
     return new sfFtp;
 }

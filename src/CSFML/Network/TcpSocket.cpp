@@ -34,7 +34,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTcpSocket* sfTcpSocket_create(void)
+sfTcpSocket* sfTcpSocket_create()
 {
     return new sfTcpSocket;
 }

@@ -32,7 +32,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTcpListener* sfTcpListener_create(void)
+sfTcpListener* sfTcpListener_create()
 {
     return new sfTcpListener;
 }

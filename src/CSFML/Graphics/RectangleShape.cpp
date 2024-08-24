@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRectangleShape* sfRectangleShape_create(void)
+sfRectangleShape* sfRectangleShape_create()
 {
     return new sfRectangleShape;
 }

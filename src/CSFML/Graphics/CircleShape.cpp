@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfCircleShape* sfCircleShape_create(void)
+sfCircleShape* sfCircleShape_create()
 {
     sfCircleShape* shape = new sfCircleShape;
     shape->Texture = nullptr;

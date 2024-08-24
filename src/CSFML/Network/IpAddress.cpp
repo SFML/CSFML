@@ -107,7 +107,7 @@ uint32_t sfIpAddress_toInteger(sfIpAddress address)
 
 
 ////////////////////////////////////////////////////////////
-sfIpAddress sfIpAddress_getLocalAddress(void)
+sfIpAddress sfIpAddress_getLocalAddress()
 {
     return fromSFMLAddress(sf::IpAddress::getLocalAddress());
 }

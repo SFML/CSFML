@@ -69,7 +69,7 @@ unsigned int sfSoundRecorder_getSampleRate(const sfSoundRecorder* soundRecorder)
 
 
 ////////////////////////////////////////////////////////////
-bool sfSoundRecorder_isAvailable(void)
+bool sfSoundRecorder_isAvailable()
 {
     return sf::SoundRecorder::isAvailable();
 }

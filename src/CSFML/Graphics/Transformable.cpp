@@ -32,7 +32,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTransformable* sfTransformable_create(void)
+sfTransformable* sfTransformable_create()
 {
     sfTransformable* transformable = new sfTransformable;
 

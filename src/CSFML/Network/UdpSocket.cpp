@@ -34,7 +34,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfUdpSocket* sfUdpSocket_create(void)
+sfUdpSocket* sfUdpSocket_create()
 {
     return new sfUdpSocket;
 }

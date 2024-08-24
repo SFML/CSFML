@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfBuffer* sfBuffer_create(void)
+sfBuffer* sfBuffer_create()
 {
     return new sfBuffer;
 }

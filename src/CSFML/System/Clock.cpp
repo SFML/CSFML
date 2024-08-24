@@ -32,7 +32,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfClock* sfClock_create(void)
+sfClock* sfClock_create()
 {
     return new sfClock;
 }

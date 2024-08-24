@@ -32,7 +32,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfContext* sfContext_create(void)
+sfContext* sfContext_create()
 {
     return new sfContext;
 }
