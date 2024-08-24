@@ -230,13 +230,6 @@ void sfText_setStyle(sfText* text, uint32_t style)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_setColor(sfText* text, sfColor color)
-{
-    sfText_setFillColor(text, color);
-}
-
-
-////////////////////////////////////////////////////////////
 void sfText_setFillColor(sfText* text, sfColor color)
 {
     CSFML_CALL(text, setFillColor(sf::Color(color.r, color.g, color.b, color.a)));
@@ -312,13 +305,6 @@ float sfText_getLineSpacing(const sfText* text)
 uint32_t sfText_getStyle(const sfText* text)
 {
     CSFML_CALL_RETURN(text, getStyle(), 0);
-}
-
-
-////////////////////////////////////////////////////////////
-sfColor sfText_getColor(const sfText* text)
-{
-    return sfText_getFillColor(text);
 }
 
 
