@@ -335,22 +335,6 @@ CSFML_GRAPHICS_API void sfText_setStyle(sfText* text, uint32_t style);
 /// \param text  Text object
 /// \param color New fill color of the text
 ///
-/// \deprecated This function is deprecated and may be removed in future releases.
-/// Use sfText_setFillColor instead.
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfText_setColor(sfText* text, sfColor color);
-
-////////////////////////////////////////////////////////////
-/// \brief Set the fill color of a text
-///
-/// By default, the text's fill color is opaque white.
-/// Setting the fill color to a transparent color with an outline
-/// will cause the outline to be displayed in the fill area of the text.
-///
-/// \param text  Text object
-/// \param color New fill color of the text
-///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfText_setFillColor(sfText* text, sfColor color);
 
@@ -457,19 +441,6 @@ CSFML_GRAPHICS_API float sfText_getLineSpacing(const sfText* text);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API uint32_t sfText_getStyle(const sfText* text);
-
-////////////////////////////////////////////////////////////
-/// \brief Get the fill color of a text
-///
-/// \param text Text object
-///
-/// \return Fill color of the text
-///
-/// \deprecated This function is deprecated and may be removed in future releases.
-/// Use sfText_getFillColor instead.
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfText_getColor(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the fill color of a text

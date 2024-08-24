@@ -144,16 +144,6 @@ typedef enum
     sfKeyPause,        ///< The Pause key
 
     sfKeyCount,      ///< Keep last -- the total number of keyboard keys
-
-    // Deprecated values:
-
-    sfKeyTilde     = sfKeyGrave,     ///< \deprecated Use Grave instead
-    sfKeyDash      = sfKeyHyphen,    ///< \deprecated Use Hyphen instead
-    sfKeyBack      = sfKeyBackspace, ///< \deprecated Use Backspace instead
-    sfKeyBackSlash = sfKeyBackslash, ///< \deprecated Use Backslash instead
-    sfKeySemiColon = sfKeySemicolon, ///< \deprecated Use Semicolon instead
-    sfKeyReturn    = sfKeyEnter,     ///< \deprecated Use Enter instead
-    sfKeyQuote     = sfKeyApostrophe ///< \deprecated Use Apostrophe instead
 } sfKeyCode;
 
 
