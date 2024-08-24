@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfVertexArray* sfVertexArray_create(void)
+sfVertexArray* sfVertexArray_create()
 {
     return new sfVertexArray;
 }

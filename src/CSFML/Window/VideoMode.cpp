@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfVideoMode sfVideoMode_getDesktopMode(void)
+sfVideoMode sfVideoMode_getDesktopMode()
 {
     sf::VideoMode desktop = sf::VideoMode::getDesktopMode();
     sfVideoMode ret;

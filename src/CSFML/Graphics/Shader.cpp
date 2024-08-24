@@ -389,14 +389,14 @@ void sfShader_bind(const sfShader* shader)
 
 
 ////////////////////////////////////////////////////////////
-bool sfShader_isAvailable(void)
+bool sfShader_isAvailable()
 {
     return sf::Shader::isAvailable();
 }
 
 
 ////////////////////////////////////////////////////////////
-bool sfShader_isGeometryAvailable(void)
+bool sfShader_isGeometryAvailable()
 {
     return sf::Shader::isGeometryAvailable();
 }

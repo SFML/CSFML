@@ -38,7 +38,7 @@ void sfListener_setGlobalVolume(float volume)
 
 
 ////////////////////////////////////////////////////////////
-float sfListener_getGlobalVolume(void)
+float sfListener_getGlobalVolume()
 {
     return sf::Listener::getGlobalVolume();
 }

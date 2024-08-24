@@ -34,7 +34,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfSocketSelector* sfSocketSelector_create(void)
+sfSocketSelector* sfSocketSelector_create()
 {
     return new sfSocketSelector;
 }

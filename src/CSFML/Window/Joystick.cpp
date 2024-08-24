@@ -82,7 +82,7 @@ sfJoystickIdentification sfJoystick_getIdentification(unsigned int joystick)
 }
 
 ////////////////////////////////////////////////////////////
-void sfJoystick_update(void)
+void sfJoystick_update()
 {
     sf::Joystick::update();
 }

@@ -33,7 +33,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfConvexShape* sfConvexShape_create(void)
+sfConvexShape* sfConvexShape_create()
 {
     return new sfConvexShape;
 }

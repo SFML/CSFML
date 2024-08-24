@@ -31,7 +31,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfPacket* sfPacket_create(void)
+sfPacket* sfPacket_create()
 {
     return new sfPacket;
 }
