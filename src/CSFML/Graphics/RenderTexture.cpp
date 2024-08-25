@@ -73,8 +73,7 @@ void sfRenderTexture_destroy(sfRenderTexture* renderTexture)
 ////////////////////////////////////////////////////////////
 sfVector2u sfRenderTexture_getSize(const sfRenderTexture* renderTexture)
 {
-    sfVector2u size = {0, 0};
-    CSFML_CHECK_RETURN(renderTexture, size);
+    CSFML_CHECK_RETURN(renderTexture, {});
 
     return convertVector2(renderTexture->This.getSize());
 }
@@ -139,9 +138,8 @@ const sfView* sfRenderTexture_getDefaultView(const sfRenderTexture* renderTextur
 ////////////////////////////////////////////////////////////
 sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, const sfView* view)
 {
-    sfIntRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(view, rect);
-    CSFML_CHECK_RETURN(renderTexture, rect);
+    CSFML_CHECK_RETURN(view, {});
+    CSFML_CHECK_RETURN(renderTexture, {});
 
     return convertRect(renderTexture->This.getViewport(view->This));
 }
@@ -150,8 +148,7 @@ sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, cons
 ////////////////////////////////////////////////////////////
 sfVector2f sfRenderTexture_mapPixelToCoords(const sfRenderTexture* renderTexture, sfVector2i point, const sfView* targetView)
 {
-    sfVector2f result = {0, 0};
-    CSFML_CHECK_RETURN(renderTexture, result);
+    CSFML_CHECK_RETURN(renderTexture, {});
 
     if (targetView)
         return convertVector2(renderTexture->This.mapPixelToCoords(convertVector2(point), targetView->This));
@@ -163,8 +160,7 @@ sfVector2f sfRenderTexture_mapPixelToCoords(const sfRenderTexture* renderTexture
 ////////////////////////////////////////////////////////////
 sfVector2i sfRenderTexture_mapCoordsToPixel(const sfRenderTexture* renderTexture, sfVector2f point, const sfView* targetView)
 {
-    sfVector2i result = {0, 0};
-    CSFML_CHECK_RETURN(renderTexture, result);
+    CSFML_CHECK_RETURN(renderTexture, {});
 
     if (targetView)
         return convertVector2(renderTexture->This.mapCoordsToPixel(convertVector2(point), targetView->This));

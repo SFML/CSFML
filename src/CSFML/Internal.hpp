@@ -115,20 +115,13 @@
     #define CSFML_CALL_PTR(object_, function_) \
         ((object_)->This->function_)
 
-    #define CSFML_CHECK_RETURN(object_, default_) \
-        (void)(default_);
+    #define CSFML_CHECK_RETURN(object_, default_)
 
     #define CSFML_CALL_RETURN(object_, function_, default_) \
-        { \
-            (void)(default_); \
-            return ((object_)->This.function_); \
-        }
+        return ((object_)->This.function_);
 
     #define CSFML_CALL_PTR_RETURN(object_, function_, default_) \
-        { \
-            (void)(default_); \
-            return ((object_)->This->function_); \
-        }
+        return ((object_)->This->function_);
 
 #endif
 

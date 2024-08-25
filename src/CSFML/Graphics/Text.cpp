@@ -92,8 +92,7 @@ void sfText_setOrigin(sfText* text, sfVector2f origin)
 ////////////////////////////////////////////////////////////
 sfVector2f sfText_getPosition(const sfText* text)
 {
-    sfVector2f position = {0, 0};
-    CSFML_CHECK_RETURN(text, position);
+    CSFML_CHECK_RETURN(text, {});
 
     return convertVector2(text->This.getPosition());
 }
@@ -109,8 +108,7 @@ float sfText_getRotation(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfVector2f sfText_getScale(const sfText* text)
 {
-    sfVector2f scale = {0, 0};
-    CSFML_CHECK_RETURN(text, scale);
+    CSFML_CHECK_RETURN(text, {});
 
     return convertVector2(text->This.getScale());
 }
@@ -119,8 +117,7 @@ sfVector2f sfText_getScale(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfVector2f sfText_getOrigin(const sfText* text)
 {
-    sfVector2f origin = {0, 0};
-    CSFML_CHECK_RETURN(text, origin);
+    CSFML_CHECK_RETURN(text, {});
 
     return convertVector2(text->This.getOrigin());
 }
@@ -302,8 +299,7 @@ uint32_t sfText_getStyle(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfColor sfText_getFillColor(const sfText* text)
 {
-    sfColor color = {0, 0, 0, 0};
-    CSFML_CHECK_RETURN(text, color);
+    CSFML_CHECK_RETURN(text, {});
 
     return convertColor(text->This.getFillColor());
 }
@@ -312,8 +308,7 @@ sfColor sfText_getFillColor(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfColor sfText_getOutlineColor(const sfText* text)
 {
-    sfColor color = { 0, 0, 0, 0 };
-    CSFML_CHECK_RETURN(text, color);
+    CSFML_CHECK_RETURN(text, {});
 
     return convertColor(text->This.getOutlineColor());
 }
@@ -329,8 +324,7 @@ float sfText_getOutlineThickness(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfVector2f sfText_findCharacterPos(const sfText* text, size_t index)
 {
-    sfVector2f position = {0, 0};
-    CSFML_CHECK_RETURN(text, position);
+    CSFML_CHECK_RETURN(text, {});
 
     return convertVector2(text->This.findCharacterPos(index));
 }
@@ -339,8 +333,7 @@ sfVector2f sfText_findCharacterPos(const sfText* text, size_t index)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfText_getLocalBounds(const sfText* text)
 {
-    sfFloatRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(text, rect);
+    CSFML_CHECK_RETURN(text, {});
 
     return convertRect(text->This.getLocalBounds());
 }
@@ -349,8 +342,7 @@ sfFloatRect sfText_getLocalBounds(const sfText* text)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfText_getGlobalBounds(const sfText* text)
 {
-    sfFloatRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(text, rect);
+    CSFML_CHECK_RETURN(text, {});
 
     return convertRect(text->This.getGlobalBounds());
 }

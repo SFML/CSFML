@@ -93,8 +93,7 @@ void sfSprite_setOrigin(sfSprite* sprite, sfVector2f origin)
 ////////////////////////////////////////////////////////////
 sfVector2f sfSprite_getPosition(const sfSprite* sprite)
 {
-    sfVector2f position = {0, 0};
-    CSFML_CHECK_RETURN(sprite, position);
+    CSFML_CHECK_RETURN(sprite, {});
 
     return convertVector2(sprite->This.getPosition());
 }
@@ -110,8 +109,7 @@ float sfSprite_getRotation(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfVector2f sfSprite_getScale(const sfSprite* sprite)
 {
-    sfVector2f scale = {0, 0};
-    CSFML_CHECK_RETURN(sprite, scale);
+    CSFML_CHECK_RETURN(sprite, {});
 
     return convertVector2(sprite->This.getScale());
 }
@@ -120,8 +118,7 @@ sfVector2f sfSprite_getScale(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfVector2f sfSprite_getOrigin(const sfSprite* sprite)
 {
-    sfVector2f origin = {0, 0};
-    CSFML_CHECK_RETURN(sprite, origin);
+    CSFML_CHECK_RETURN(sprite, {});
 
     return convertVector2(sprite->This.getOrigin());
 }
@@ -205,8 +202,7 @@ const sfTexture* sfSprite_getTexture(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfIntRect sfSprite_getTextureRect(const sfSprite* sprite)
 {
-    sfIntRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(sprite, rect);
+    CSFML_CHECK_RETURN(sprite, {});
 
     return convertRect(sprite->This.getTextureRect());
 }
@@ -215,8 +211,7 @@ sfIntRect sfSprite_getTextureRect(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfColor sfSprite_getColor(const sfSprite* sprite)
 {
-    sfColor color = {0, 0, 0, 0};
-    CSFML_CHECK_RETURN(sprite, color);
+    CSFML_CHECK_RETURN(sprite, {});
 
     return convertColor(sprite->This.getColor());
 }
@@ -225,8 +220,7 @@ sfColor sfSprite_getColor(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfSprite_getLocalBounds(const sfSprite* sprite)
 {
-    sfFloatRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(sprite, rect);
+    CSFML_CHECK_RETURN(sprite, {});
 
     return convertRect(sprite->This.getLocalBounds());
 }
@@ -235,8 +229,7 @@ sfFloatRect sfSprite_getLocalBounds(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfSprite_getGlobalBounds(const sfSprite* sprite)
 {
-    sfFloatRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(sprite, rect);
+    CSFML_CHECK_RETURN(sprite, {});
 
     return convertRect(sprite->This.getGlobalBounds());
 }
