@@ -210,8 +210,7 @@ void sfTexture_destroy(sfTexture* texture)
 ////////////////////////////////////////////////////////////
 sfVector2u sfTexture_getSize(const sfTexture* texture)
 {
-    sfVector2u size = {0, 0};
-    CSFML_CHECK_RETURN(texture, size);
+    CSFML_CHECK_RETURN(texture, {});
 
     return convertVector2(texture->This->getSize());
 }

@@ -168,8 +168,7 @@ float sfSoundStream_getVolume(const sfSoundStream* soundStream)
 ////////////////////////////////////////////////////////////
 sfVector3f sfSoundStream_getPosition(const sfSoundStream* soundStream)
 {
-    sfVector3f position = {0, 0, 0};
-    CSFML_CHECK_RETURN(soundStream, position);
+    CSFML_CHECK_RETURN(soundStream, {});
 
     return convertVector3(soundStream->This.getPosition());
 }

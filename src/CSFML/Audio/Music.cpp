@@ -252,8 +252,7 @@ float sfMusic_getVolume(const sfMusic* music)
 ////////////////////////////////////////////////////////////
 sfVector3f sfMusic_getPosition(const sfMusic* music)
 {
-    sfVector3f position = {0, 0, 0};
-    CSFML_CHECK_RETURN(music, position);
+    CSFML_CHECK_RETURN(music, {});
 
     return convertVector3(music->This.getPosition());
 }

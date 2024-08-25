@@ -160,8 +160,7 @@ void sfImage_setPixel(sfImage* image, unsigned int x, unsigned int y, sfColor co
 ////////////////////////////////////////////////////////////
 sfColor sfImage_getPixel(const sfImage* image, unsigned int x, unsigned int y)
 {
-    sfColor color = {0, 0, 0, 0};
-    CSFML_CHECK_RETURN(image, color);
+    CSFML_CHECK_RETURN(image, {});
 
     return convertColor(image->This.getPixel({ x, y }));
 }
@@ -177,8 +176,7 @@ const uint8_t* sfImage_getPixelsPtr(const sfImage* image)
 ////////////////////////////////////////////////////////////
 sfVector2u sfImage_getSize(const sfImage* image)
 {
-    sfVector2u size = {0, 0};
-    CSFML_CHECK_RETURN(image, size);
+    CSFML_CHECK_RETURN(image, {});
 
     return convertVector2(image->This.getSize());
 }

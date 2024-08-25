@@ -88,8 +88,7 @@ void sfTransformable_setOrigin(sfTransformable* transformable, sfVector2f origin
 ////////////////////////////////////////////////////////////
 sfVector2f sfTransformable_getPosition(const sfTransformable* transformable)
 {
-    sfVector2f position = {0, 0};
-    CSFML_CHECK_RETURN(transformable, position);
+    CSFML_CHECK_RETURN(transformable, {});
 
     return convertVector2(transformable->This.getPosition());
 }
@@ -105,8 +104,7 @@ float sfTransformable_getRotation(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 sfVector2f sfTransformable_getScale(const sfTransformable* transformable)
 {
-    sfVector2f scale = {0, 0};
-    CSFML_CHECK_RETURN(transformable, scale);
+    CSFML_CHECK_RETURN(transformable, {});
 
     return convertVector2(transformable->This.getScale());
 }
@@ -115,8 +113,7 @@ sfVector2f sfTransformable_getScale(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable)
 {
-    sfVector2f origin = {0, 0};
-    CSFML_CHECK_RETURN(transformable, origin);
+    CSFML_CHECK_RETURN(transformable, {});
 
     return convertVector2(transformable->This.getOrigin());
 }

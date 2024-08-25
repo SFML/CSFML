@@ -168,8 +168,7 @@ bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event)
 ////////////////////////////////////////////////////////////
 sfVector2i sfRenderWindow_getPosition(const sfRenderWindow* renderWindow)
 {
-    sfVector2i position = {0, 0};
-    CSFML_CHECK_RETURN(renderWindow, position);
+    CSFML_CHECK_RETURN(renderWindow, {});
 
     return convertVector2(renderWindow->This.getPosition());;
 }
@@ -185,8 +184,7 @@ void sfRenderWindow_setPosition(sfRenderWindow* renderWindow, sfVector2i positio
 ////////////////////////////////////////////////////////////
 sfVector2u sfRenderWindow_getSize(const sfRenderWindow* renderWindow)
 {
-    sfVector2u size = {0, 0};
-    CSFML_CHECK_RETURN(renderWindow, size);
+    CSFML_CHECK_RETURN(renderWindow, {});
 
     return convertVector2(renderWindow->This.getSize());
 }
@@ -360,9 +358,8 @@ const sfView* sfRenderWindow_getDefaultView(const sfRenderWindow* renderWindow)
 ////////////////////////////////////////////////////////////
 sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const sfView* view)
 {
-    sfIntRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(view, rect);
-    CSFML_CHECK_RETURN(renderWindow, rect);
+    CSFML_CHECK_RETURN(view, {});
+    CSFML_CHECK_RETURN(renderWindow, {});
 
     return convertRect(renderWindow->This.getViewport(view->This));
 }
@@ -371,8 +368,7 @@ sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const s
 ////////////////////////////////////////////////////////////
 sfVector2f sfRenderWindow_mapPixelToCoords(const sfRenderWindow* renderWindow, sfVector2i point, const sfView* targetView)
 {
-    sfVector2f result = {0, 0};
-    CSFML_CHECK_RETURN(renderWindow, result);
+    CSFML_CHECK_RETURN(renderWindow, {});
 
     if (targetView)
         return convertVector2(renderWindow->This.mapPixelToCoords(convertVector2(point), targetView->This));
@@ -384,8 +380,7 @@ sfVector2f sfRenderWindow_mapPixelToCoords(const sfRenderWindow* renderWindow, s
 ////////////////////////////////////////////////////////////
 sfVector2i sfRenderWindow_mapCoordsToPixel(const sfRenderWindow* renderWindow, sfVector2f point, const sfView* targetView)
 {
-    sfVector2i result = {0, 0};
-    CSFML_CHECK_RETURN(renderWindow, result);
+    CSFML_CHECK_RETURN(renderWindow, {});
 
     if (targetView)
         return convertVector2(renderWindow->This.mapCoordsToPixel(convertVector2(point), targetView->This));

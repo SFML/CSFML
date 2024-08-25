@@ -76,8 +76,7 @@ sfTransform sfTransform_getInverse(const sfTransform* transform)
 ////////////////////////////////////////////////////////////
 sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f point)
 {
-    sfVector2f p = {0, 0};
-    CSFML_CHECK_RETURN(transform, p);
+    CSFML_CHECK_RETURN(transform, {});
 
     return convertVector2(convertTransform(*transform).transformPoint(convertVector2(point)));
 }
@@ -86,8 +85,7 @@ sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f p
 ////////////////////////////////////////////////////////////
 sfFloatRect sfTransform_transformRect(const sfTransform* transform, sfFloatRect rectangle)
 {
-    sfFloatRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(transform, rect);
+    CSFML_CHECK_RETURN(transform, {});
 
     return convertRect(convertTransform(*transform).transformRect(convertRect(rectangle)));
 }

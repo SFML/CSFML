@@ -93,8 +93,7 @@ void sfView_setViewport(sfView* view, sfFloatRect viewport)
 ////////////////////////////////////////////////////////////
 sfVector2f sfView_getCenter(const sfView* view)
 {
-    sfVector2f center = {0, 0};
-    CSFML_CHECK_RETURN(view, center);
+    CSFML_CHECK_RETURN(view, {});
 
     return convertVector2(view->This.getCenter());
 }
@@ -103,8 +102,7 @@ sfVector2f sfView_getCenter(const sfView* view)
 ////////////////////////////////////////////////////////////
 sfVector2f sfView_getSize(const sfView* view)
 {
-    sfVector2f size = {0, 0};
-    CSFML_CHECK_RETURN(view, size);
+    CSFML_CHECK_RETURN(view, {});
 
     return convertVector2(view->This.getSize());
 }
@@ -120,8 +118,7 @@ float sfView_getRotation(const sfView* view)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfView_getViewport(const sfView* view)
 {
-    sfFloatRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(view, rect);
+    CSFML_CHECK_RETURN(view, {});
 
     return convertRect(view->This.getViewport());
 }

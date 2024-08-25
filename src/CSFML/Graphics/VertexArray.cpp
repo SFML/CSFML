@@ -111,8 +111,7 @@ sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray)
 {
-    sfFloatRect rect = {{0, 0}, {0, 0}};
-    CSFML_CHECK_RETURN(vertexArray, rect);
+    CSFML_CHECK_RETURN(vertexArray, {});
 
     return convertRect(vertexArray->This.getBounds());
 }

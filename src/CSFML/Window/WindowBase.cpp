@@ -132,8 +132,7 @@ bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event)
 ////////////////////////////////////////////////////////////
 sfVector2i sfWindowBase_getPosition(const sfWindowBase* windowBase)
 {
-    sfVector2i position = {0, 0};
-    CSFML_CHECK_RETURN(windowBase, position);
+    CSFML_CHECK_RETURN(windowBase, {});
 
     return convertVector2(windowBase->This.getPosition());
 }
@@ -149,8 +148,7 @@ void sfWindowBase_setPosition(sfWindowBase* windowBase, sfVector2i position)
 ////////////////////////////////////////////////////////////
 sfVector2u sfWindowBase_getSize(const sfWindowBase* windowBase)
 {
-    sfVector2u size = {0, 0};
-    CSFML_CHECK_RETURN(windowBase, size);
+    CSFML_CHECK_RETURN(windowBase, {});
 
     return convertVector2(windowBase->This.getSize());
 }
