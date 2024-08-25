@@ -185,7 +185,7 @@ sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port
     if (!SFMLServer)
         return nullptr;
 
-    return new sfFtpResponse(ftp->This.connect(*SFMLServer, port, sf::microseconds(timeout.microseconds)));
+    return new sfFtpResponse{ftp->This.connect(*SFMLServer, port, sf::microseconds(timeout.microseconds))};
 }
 
 
@@ -193,7 +193,7 @@ sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port
 sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.login());
+    return new sfFtpResponse{ftp->This.login()};
 }
 
 
@@ -201,7 +201,7 @@ sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp)
 sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.login(name ? name : "", password ? password : ""));
+    return new sfFtpResponse{ftp->This.login(name ? name : "", password ? password : "")};
 }
 
 
@@ -209,7 +209,7 @@ sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password)
 sfFtpResponse* sfFtp_disconnect(sfFtp* ftp)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.disconnect());
+    return new sfFtpResponse{ftp->This.disconnect()};
 }
 
 
@@ -217,7 +217,7 @@ sfFtpResponse* sfFtp_disconnect(sfFtp* ftp)
 sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.keepAlive());
+    return new sfFtpResponse{ftp->This.keepAlive()};
 }
 
 
@@ -225,7 +225,7 @@ sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp)
 sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp)
 {
     assert(ftp);
-    return new sfFtpDirectoryResponse(ftp->This.getWorkingDirectory());
+    return new sfFtpDirectoryResponse{ftp->This.getWorkingDirectory()};
 }
 
 
@@ -233,7 +233,7 @@ sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp)
 sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, const char* directory)
 {
     assert(ftp);
-    return new sfFtpListingResponse(ftp->This.getDirectoryListing(directory ? directory : ""));
+    return new sfFtpListingResponse{ftp->This.getDirectoryListing(directory ? directory : "")};
 }
 
 
@@ -241,7 +241,7 @@ sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, const char* director
 sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* directory)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.changeDirectory(directory ? directory : ""));
+    return new sfFtpResponse{ftp->This.changeDirectory(directory ? directory : "")};
 }
 
 
@@ -249,7 +249,7 @@ sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* directory)
 sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.parentDirectory());
+    return new sfFtpResponse{ftp->This.parentDirectory()};
 }
 
 
@@ -257,7 +257,7 @@ sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp)
 sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* name)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.createDirectory(name ? name : ""));
+    return new sfFtpResponse{ftp->This.createDirectory(name ? name : "")};
 }
 
 
@@ -265,7 +265,7 @@ sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* name)
 sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* name)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.deleteDirectory(name ? name : ""));
+    return new sfFtpResponse{ftp->This.deleteDirectory(name ? name : "")};
 }
 
 
@@ -273,7 +273,7 @@ sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* name)
 sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, const char* newName)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.renameFile(file ? file : "", newName ? newName : ""));
+    return new sfFtpResponse{ftp->This.renameFile(file ? file : "", newName ? newName : "")};
 }
 
 
@@ -281,7 +281,7 @@ sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, const char* newNam
 sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.deleteFile(name ? name : ""));
+    return new sfFtpResponse{ftp->This.deleteFile(name ? name : "")};
 }
 
 
@@ -289,9 +289,9 @@ sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name)
 sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* localPath, sfFtpTransferMode mode)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.download(remoteFile ? remoteFile : "",
+    return new sfFtpResponse{ftp->This.download(remoteFile ? remoteFile : "",
                                                 localPath ? localPath : "",
-                                                static_cast<sf::Ftp::TransferMode>(mode)));
+                                                static_cast<sf::Ftp::TransferMode>(mode))};
 }
 
 
@@ -299,10 +299,10 @@ sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* lo
 sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, bool append)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.upload(localFile ? localFile : "",
+    return new sfFtpResponse{ftp->This.upload(localFile ? localFile : "",
                                               remotePath ? remotePath : "",
                                               static_cast<sf::Ftp::TransferMode>(mode),
-                                              append));
+                                              append)};
 }
 
 
@@ -310,5 +310,5 @@ sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remot
 sfFtpResponse* sfFtp_sendCommand(sfFtp* ftp, const char* command, const char* parameter)
 {
     assert(ftp);
-    return new sfFtpResponse(ftp->This.sendCommand(command ? command : "", parameter ? parameter : ""));
+    return new sfFtpResponse{ftp->This.sendCommand(command ? command : "", parameter ? parameter : "")};
 }

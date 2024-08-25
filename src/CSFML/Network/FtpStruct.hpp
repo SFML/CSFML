@@ -47,10 +47,6 @@ struct sfFtp
 ////////////////////////////////////////////////////////////
 struct sfFtpResponse
 {
-    sfFtpResponse(sf::Ftp::Response Response) : This(std::move(Response))
-    {
-    }
-
     sf::Ftp::Response This;
 };
 
@@ -60,10 +56,6 @@ struct sfFtpResponse
 ////////////////////////////////////////////////////////////
 struct sfFtpDirectoryResponse
 {
-    sfFtpDirectoryResponse(sf::Ftp::DirectoryResponse Response) : This(std::move(Response))
-    {
-    }
-
     sf::Ftp::DirectoryResponse This;
 };
 
@@ -73,16 +65,5 @@ struct sfFtpDirectoryResponse
 ////////////////////////////////////////////////////////////
 struct sfFtpListingResponse
 {
-    sfFtpListingResponse(sf::Ftp::ListingResponse Response) : This(std::move(Response))
-    {
-    }
-
-    ~sfFtpListingResponse()
-    {
-        for (const auto& filename : Filenames)
-            delete[] filename;
-    }
-
     sf::Ftp::ListingResponse This;
-    std::vector<const char*> Filenames;
 };
