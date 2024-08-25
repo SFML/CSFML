@@ -60,15 +60,11 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
 {
     assert(stream);
 
-    auto* font   = new sfFont;
-    font->Stream = CallbackStream(stream);
+    auto font = std::make_unique<sfFont>(sfFont{{}, {}, {stream}});
     if (!font->This.openFromStream(font->Stream))
-    {
-        delete font;
-        font = nullptr;
-    }
+        return nullptr;
 
-    return font;
+    return font.release();
 }
 
 

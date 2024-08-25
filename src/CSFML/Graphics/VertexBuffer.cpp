@@ -32,20 +32,14 @@
 ////////////////////////////////////////////////////////////
 sfVertexBuffer* sfVertexBuffer_create(unsigned int vertexCount, sfPrimitiveType type, sfVertexBufferUsage usage)
 {
-    auto* buffer = new sfVertexBuffer;
+    sf::VertexBuffer buffer;
+    if (!buffer.create(vertexCount))
+        return nullptr;
 
-    if (!buffer->This.create(vertexCount))
-    {
-        delete buffer;
-        buffer = nullptr;
-    }
-    else
-    {
-        buffer->This.setPrimitiveType(static_cast<sf::PrimitiveType>(type));
-        buffer->This.setUsage(static_cast<sf::VertexBuffer::Usage>(usage));
-    }
+    buffer.setPrimitiveType(static_cast<sf::PrimitiveType>(type));
+    buffer.setUsage(static_cast<sf::VertexBuffer::Usage>(usage));
 
-    return buffer;
+    return new sfVertexBuffer{std::move(buffer)};
 }
 
 
