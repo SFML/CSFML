@@ -166,7 +166,7 @@ CSFML_WINDOW_API bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* 
 ///
 /// This function is blocking: if there's no pending event then
 /// it will wait until an event is received.
-/// After this function returns (and no error occured),
+/// After this function returns (and no error occurred),
 /// the \a event object is always valid and filled properly.
 /// This function is typically used when you have a thread that
 /// is dedicated to events handling: you want to make this thread
@@ -175,7 +175,7 @@ CSFML_WINDOW_API bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* 
 /// \param windowBase Window object
 /// \param event      Event to be returned
 ///
-/// \return false if any error occured
+/// \return false if any error occurred
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event);

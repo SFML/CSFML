@@ -124,7 +124,7 @@ CSFML_GRAPHICS_API bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, s
 /// \param renderWindow Render window object
 /// \param event        Event to fill
 ///
-/// \return false if an error occured
+/// \return false if an error occurred
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event);

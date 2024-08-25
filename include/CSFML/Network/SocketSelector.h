@@ -80,7 +80,7 @@ CSFML_NETWORK_API void sfSocketSelector_addUdpSocket(sfSocketSelector* selector,
 /// removes the pointer that the selector has to it.
 ///
 /// \param selector Socket selector object
-/// \param socket   POointer to the socket to remove
+/// \param socket   Pointer to the socket to remove
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API void sfSocketSelector_removeTcpListener(sfSocketSelector* selector, sfTcpListener* socket);

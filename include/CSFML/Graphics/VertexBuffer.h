@@ -56,7 +56,7 @@ typedef enum
 /// \brief Create a new vertex buffer with a specific
 /// sfPrimitiveType and usage specifier.
 ///
-/// Creates the vertex buffer, allocating enough graphcis
+/// Creates the vertex buffer, allocating enough graphics
 /// memory to hold \p vertexCount vertices, and sets its
 /// primitive type to \p type and usage to \p usage.
 ///

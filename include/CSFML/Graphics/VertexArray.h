@@ -108,7 +108,7 @@ CSFML_GRAPHICS_API void sfVertexArray_clear(sfVertexArray* vertexArray);
 /// If \a vertexCount is less than the current size, existing vertices
 /// are removed from the array.
 ///
-/// \param vertexArray Vertex array objet
+/// \param vertexArray Vertex array object
 /// \param vertexCount New size of the array (number of vertices)
 ///
 ////////////////////////////////////////////////////////////
@@ -117,7 +117,7 @@ CSFML_GRAPHICS_API void sfVertexArray_resize(sfVertexArray* vertexArray, size_t 
 ////////////////////////////////////////////////////////////
 /// \brief Add a vertex to a vertex array array
 ///
-/// \param vertexArray Vertex array objet
+/// \param vertexArray Vertex array object
 /// \param vertex      Vertex to add
 ///
 ////////////////////////////////////////////////////////////
@@ -134,7 +134,7 @@ CSFML_GRAPHICS_API void sfVertexArray_append(sfVertexArray* vertexArray, sfVerte
 /// \li As quads
 /// The default primitive type is sfPoints.
 ///
-/// \param vertexArray Vertex array objet
+/// \param vertexArray Vertex array object
 /// \param type        Type of primitive
 ///
 ////////////////////////////////////////////////////////////
@@ -143,7 +143,7 @@ CSFML_GRAPHICS_API void sfVertexArray_setPrimitiveType(sfVertexArray* vertexArra
 ////////////////////////////////////////////////////////////
 /// \brief Get the type of primitives drawn by a vertex array
 ///
-/// \param vertexArray Vertex array objet
+/// \param vertexArray Vertex array object
 ///
 /// \return Primitive type
 ///
@@ -156,7 +156,7 @@ CSFML_GRAPHICS_API sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray*
 /// This function returns the axis-aligned rectangle that
 /// contains all the vertices of the array.
 ///
-/// \param vertexArray Vertex array objet
+/// \param vertexArray Vertex array object
 ///
 /// \return Bounding rectangle of the vertex array
 ///

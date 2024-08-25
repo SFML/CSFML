@@ -39,7 +39,7 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfFtpBinary, ///< Binary mode (file is transfered as a sequence of bytes)
+    sfFtpBinary, ///< Binary mode (file is transferred as a sequence of bytes)
     sfFtpAscii,  ///< Text mode using ASCII encoding
     sfFtpEbcdic  ///< Text mode using EBCDIC encoding
 } sfFtpTransferMode;
