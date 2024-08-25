@@ -1,0 +1,10 @@
+Checks: >
+  bugprone-*,
+  clang-analyzer-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-narrowing-conversions,
+  -clang-analyzer-core.NonNullParamChecker,
+  -clang-analyzer-security.insecureAPI.strcpy,
+HeaderFilterRegex: '.*'
+WarningsAsErrors: '*'
+UseColor: true

@@ -95,6 +95,11 @@ install(DIRECTORY include/
 install(FILES license.md DESTINATION ${INSTALL_MISC_DIR})
 install(FILES readme.md DESTINATION ${INSTALL_MISC_DIR})
 
+# stop configuration if consuming CSFML as a subdirectory
+if(NOT PROJECT_IS_TOP_LEVEL)
+    return()
+endif()
+
 # add an option for building the examples
 csfml_set_option(CSFML_BUILD_EXAMPLES FALSE BOOL "TRUE to build the CSFML examples, FALSE to ignore them")
 if(CSFML_BUILD_EXAMPLES)
@@ -107,3 +112,8 @@ if(CSFML_BUILD_TEST_SUITE)
     enable_testing()
     add_subdirectory(test)
 endif()
+
+csfml_set_option(CLANG_TIDY_EXECUTABLE clang-tidy STRING "Override clang-tidy executable, requires minimum version 14")
+add_custom_target(tidy
+    COMMAND ${CMAKE_COMMAND} -DCLANG_TIDY_EXECUTABLE=${CLANG_TIDY_EXECUTABLE} -DPROJECT_BINARY_DIR=${PROJECT_BINARY_DIR} -P ./cmake/Tidy.cmake
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} VERBATIM)
