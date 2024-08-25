@@ -117,7 +117,7 @@ public:
     ////////////////////////////////////////////////////////////
     /// \brief Return the size of the stream
     ///
-    /// \return The total number of bytes available in the stream, or -1 on error
+    /// \return The total number of bytes available in the stream, or `std::nullopt` on error
     ///
     ////////////////////////////////////////////////////////////
     std::optional<std::size_t> getSize() override
