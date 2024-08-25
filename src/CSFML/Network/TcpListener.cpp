@@ -29,6 +29,8 @@
 #include <CSFML/Network/TcpListenerStruct.hpp>
 #include <CSFML/Network/TcpSocketStruct.hpp>
 
+#include <memory>
+
 
 ////////////////////////////////////////////////////////////
 sfTcpListener* sfTcpListener_create()
@@ -90,14 +92,13 @@ sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** conne
     assert(listener);
     assert(connected);
 
-    *connected  = new sfTcpSocket;
-    auto status = static_cast<sfSocketStatus>(listener->This.accept((*connected)->This));
+    auto socket = std::make_unique<sfTcpSocket>();
+    auto status = static_cast<sfSocketStatus>(listener->This.accept(socket->This));
 
     if (status != sfSocketDone)
-    {
-        delete *connected;
         *connected = nullptr;
-    }
+    else
+        *connected = socket.release();
 
     return status;
 }

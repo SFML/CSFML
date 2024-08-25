@@ -34,19 +34,17 @@
 #include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Window/WindowStruct.hpp>
 
+#include <memory>
+
 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_create(sfVector2u size)
 {
-    auto* texture = new sfTexture;
-
+    auto texture = std::make_unique<sfTexture>();
     if (!texture->This->resize(convertVector2(size)))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 
@@ -55,17 +53,12 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 {
     assert(filename);
 
-    auto* texture = new sfTexture;
-
-    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
-
+    const auto rect    = area ? convertRect(*area) : sf::IntRect();
+    auto       texture = std::make_unique<sfTexture>();
     if (!texture->This->loadFromFile(filename, false, rect))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 ////////////////////////////////////////////////////////////
@@ -73,49 +66,34 @@ sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* a
 {
     assert(filename);
 
-    auto* texture = new sfTexture;
-
-    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
-
+    const auto rect    = area ? convertRect(*area) : sf::IntRect();
+    auto       texture = std::make_unique<sfTexture>();
     if (!texture->This->loadFromFile(filename, true, rect))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
 {
-    auto* texture = new sfTexture;
-
-    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
-
+    const auto rect    = area ? convertRect(*area) : sf::IntRect();
+    auto       texture = std::make_unique<sfTexture>();
     if (!texture->This->loadFromMemory(data, sizeInBytes, false, rect))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
 {
-    auto* texture = new sfTexture;
-
-    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
-
+    const auto rect    = area ? convertRect(*area) : sf::IntRect();
+    auto       texture = std::make_unique<sfTexture>();
     if (!texture->This->loadFromMemory(data, sizeInBytes, true, rect))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 
@@ -124,18 +102,13 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
 {
     assert(stream);
 
-    auto* texture = new sfTexture;
-
-    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
-
+    const auto     rect = area ? convertRect(*area) : sf::IntRect();
     CallbackStream sfmlStream(stream);
+    auto           texture = std::make_unique<sfTexture>();
     if (!texture->This->loadFromStream(sfmlStream, false, rect))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 ////////////////////////////////////////////////////////////
@@ -143,18 +116,13 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
 {
     assert(stream);
 
-    auto* texture = new sfTexture;
-
-    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
-
+    const auto     rect = area ? convertRect(*area) : sf::IntRect();
     CallbackStream sfmlStream(stream);
+    auto           texture = std::make_unique<sfTexture>();
     if (!texture->This->loadFromStream(sfmlStream, true, rect))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 
@@ -163,17 +131,12 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 {
     assert(image);
 
-    auto* texture = new sfTexture;
-
-    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
-
+    const auto rect    = area ? convertRect(*area) : sf::IntRect();
+    auto       texture = std::make_unique<sfTexture>();
     if (!texture->This->loadFromImage(image->This, false, rect))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 ////////////////////////////////////////////////////////////
@@ -181,17 +144,12 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
 {
     assert(image);
 
-    auto* texture = new sfTexture;
-
-    const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
-
+    const auto rect    = area ? convertRect(*area) : sf::IntRect();
+    auto       texture = std::make_unique<sfTexture>();
     if (!texture->This->loadFromImage(image->This, true, rect))
-    {
-        delete texture;
-        texture = nullptr;
-    }
+        return nullptr;
 
-    return texture;
+    return texture.release();
 }
 
 ////////////////////////////////////////////////////////////
