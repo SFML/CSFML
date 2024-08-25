@@ -402,7 +402,7 @@ CSFML_GRAPHICS_API sfFloatRect sfShape_getGlobalBounds(const sfShape* shape);
 /// \brief Recompute the internal geometry of a shape
 ///
 /// This function must be called by specialized shape objects
-/// everytime their points change (ie. the result of either
+/// every time their points change (ie. the result of either
 /// the getPointCount or getPoint callbacks is different).
 ///
 ////////////////////////////////////////////////////////////

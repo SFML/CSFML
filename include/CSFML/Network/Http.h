@@ -123,7 +123,7 @@ CSFML_NETWORK_API void sfHttpRequest_setField(sfHttpRequest* httpRequest, const 
 /// \brief Set a HTTP request method
 ///
 /// See the sfHttpMethod enumeration for a complete list of all
-/// the availale methods.
+/// the available methods.
 /// The method is sfHttpGet by default.
 ///
 /// \param httpRequest HTTP request
@@ -194,7 +194,7 @@ CSFML_NETWORK_API void sfHttpResponse_destroy(sfHttpResponse* httpResponse);
 CSFML_NETWORK_API const char* sfHttpResponse_getField(const sfHttpResponse* httpResponse, const char* field);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the status code of a HTTP reponse
+/// \brief Get the status code of a HTTP response
 ///
 /// The status code should be the first thing to be checked
 /// after receiving a response, it defines whether it is a
@@ -287,7 +287,7 @@ CSFML_NETWORK_API void sfHttp_setHost(sfHttp* http, const char* host, unsigned s
 /// Warning: this function waits for the server's response and may
 /// not return instantly; use a thread if you don't want to block your
 /// application, or use a timeout to limit the time to wait. A value
-/// of 0 means that the client will use the system defaut timeout
+/// of 0 means that the client will use the system default timeout
 /// (which is usually pretty long).
 ///
 /// \param http    Http object

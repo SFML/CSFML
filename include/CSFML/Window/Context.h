@@ -62,7 +62,7 @@ CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
 CSFML_WINDOW_API bool sfContext_isExtensionAvailable(const char* name);
 
 ////////////////////////////////////////////////////////////
-/// \brief Activate or deactivate explicitely a context
+/// \brief Activate or deactivate explicitly a context
 ///
 /// \param context Context object
 /// \param active  true to activate, false to deactivate
