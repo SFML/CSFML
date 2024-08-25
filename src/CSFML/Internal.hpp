@@ -36,7 +36,7 @@
     #define CSFML_CHECK(object_) \
         do \
         { \
-            if (object_ == nullptr) \
+            if ((object_) == nullptr) \
             { \
                 sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
                 return; \
@@ -49,7 +49,7 @@
         { \
             if (object_) \
             { \
-                (object_->This.function_); \
+                ((object_)->This.function_); \
             } \
             else \
             { \
@@ -63,7 +63,7 @@
         { \
             if (object_) \
             { \
-                (object_->This->function_); \
+                ((object_)->This->function_); \
             } \
             else \
             { \
@@ -75,7 +75,7 @@
     #define CSFML_CHECK_RETURN(object_, default_) \
         do \
         { \
-            if (object_ == nullptr) \
+            if ((object_) == nullptr) \
             { \
                 sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
                 return default_; \
@@ -86,7 +86,7 @@
     #define CSFML_CALL_RETURN(object_, function_, default_) \
         if (object_) \
         { \
-            return (object_->This.function_); \
+            return ((object_)->This.function_); \
         } \
         else \
         { \
@@ -97,7 +97,7 @@
     #define CSFML_CALL_PTR_RETURN(object_, function_, default_) \
         if (object_) \
         { \
-            return (object_->This->function_); \
+            return ((object_)->This->function_); \
         } \
         else \
         { \
@@ -110,24 +110,24 @@
     #define CSFML_CHECK(object_)
 
     #define CSFML_CALL(object_, function_) \
-        (object_->This.function_)
+        ((object_)->This.function_)
 
     #define CSFML_CALL_PTR(object_, function_) \
-        (object_->This->function_)
+        ((object_)->This->function_)
 
     #define CSFML_CHECK_RETURN(object_, default_) \
-        (void)default_;
+        (void)(default_);
 
     #define CSFML_CALL_RETURN(object_, function_, default_) \
         { \
-            (void)default_; \
-            return (object_->This.function_); \
+            (void)(default_); \
+            return ((object_)->This.function_); \
         }
 
     #define CSFML_CALL_PTR_RETURN(object_, function_, default_) \
         { \
-            (void)default_; \
-            return (object_->This->function_); \
+            (void)(default_); \
+            return ((object_)->This->function_); \
         }
 
 #endif

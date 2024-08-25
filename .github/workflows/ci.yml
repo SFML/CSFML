@@ -68,3 +68,38 @@ jobs:
 
     - name: Test
       run: ctest --test-dir CSFML/build -C ${{matrix.type.name}} --output-on-failure
+
+  tidy:
+    name: Analyze
+    runs-on: macos-14
+
+    steps:
+    - name: Install Dependencies
+      run: |
+        brew update
+        brew install llvm ninja
+        echo /opt/homebrew/opt/llvm/bin >> $GITHUB_PATH
+
+    - name: Checkout SFML
+      uses: actions/checkout@v4
+      with:
+        repository: SFML/SFML
+        ref: master
+        path: SFML
+
+    - name: Configure SFML CMake
+      run: cmake -S SFML -B SFML/build -GNinja -DCMAKE_INSTALL_PREFIX=SFML/install -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Debug
+
+    - name: Build SFML
+      run: cmake --build SFML/build --target install
+
+    - name: Checkout CSFML
+      uses: actions/checkout@v4
+      with:
+        path: CSFML
+
+    - name: Configure CSFML CMake
+      run: cmake -S CSFML -B CSFML/build -DBUILD_SHARED_LIBS=TRUE -DCSFML_BUILD_EXAMPLES=TRUE -DCSFML_BUILD_TEST_SUITE=TRUE -DSFML_DIR=$GITHUB_WORKSPACE/SFML/install/lib/cmake/SFML -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=TRUE
+
+    - name: Tidy
+      run: cmake --build CSFML/build --target tidy
