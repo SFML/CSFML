@@ -96,18 +96,7 @@ bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event)
 {
     assert(windowBase);
     assert(event);
-
-    // Get the event
-    const std::optional sfmlEvent = windowBase->This.pollEvent();
-
-    // No event, return
-    if (!sfmlEvent)
-        return false;
-
-    // Convert the sf::Event event to a sfEvent
-    convertEvent(*sfmlEvent, event);
-
-    return true;
+    return convertEvent(windowBase->This.pollEvent(), event);
 }
 
 
@@ -116,18 +105,7 @@ bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event)
 {
     assert(windowBase);
     assert(event);
-
-    // Get the event
-    const std::optional sfmlEvent = windowBase->This.waitEvent();
-
-    // Error, return
-    if (!sfmlEvent)
-        return false;
-
-    // Convert the sf::Event event to a sfEvent
-    convertEvent(*sfmlEvent, event);
-
-    return true;
+    return convertEvent(windowBase->This.waitEvent(), event);
 }
 
 
