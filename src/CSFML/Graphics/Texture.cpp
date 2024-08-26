@@ -37,11 +37,11 @@
 
 
 ////////////////////////////////////////////////////////////
-sfTexture* sfTexture_create(unsigned int width, unsigned int height)
+sfTexture* sfTexture_create(sfVector2u size)
 {
     sfTexture* texture = new sfTexture;
 
-    if (!texture->This->resize({ width, height }))
+    if (!texture->This->resize(convertVector2(size)))
     {
         delete texture;
         texture = nullptr;
@@ -227,46 +227,46 @@ sfImage* sfTexture_copyToImage(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_updateFromPixels(sfTexture* texture, const uint8_t* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y)
+void sfTexture_updateFromPixels(sfTexture* texture, const uint8_t* pixels, sfVector2u size, sfVector2u offset)
 {
-    CSFML_CALL_PTR(texture, update(pixels, { width, height }, { x, y }));
+    CSFML_CALL_PTR(texture, update(pixels, convertVector2(size), convertVector2(offset)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* texture, unsigned int x, unsigned int y)
+void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* texture, sfVector2u offset)
 {
     CSFML_CHECK(texture);
     CSFML_CHECK(texture->This);
 
-    CSFML_CALL_PTR(destination, update(*texture->This, { x, y }));
+    CSFML_CALL_PTR(destination, update(*texture->This, convertVector2(offset)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_updateFromImage(sfTexture* texture, const sfImage* image, unsigned int x, unsigned int y)
+void sfTexture_updateFromImage(sfTexture* texture, const sfImage* image, sfVector2u offset)
 {
     CSFML_CHECK(image);
 
-    CSFML_CALL_PTR(texture, update(image->This, { x, y }));
+    CSFML_CALL_PTR(texture, update(image->This, convertVector2(offset)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_updateFromWindow(sfTexture* texture, const sfWindow* window, unsigned int x, unsigned int y)
+void sfTexture_updateFromWindow(sfTexture* texture, const sfWindow* window, sfVector2u offset)
 {
     CSFML_CHECK(window);
 
-    CSFML_CALL_PTR(texture, update(window->This, { x, y }));
+    CSFML_CALL_PTR(texture, update(window->This, convertVector2(offset)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, unsigned int x, unsigned int y)
+void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, sfVector2u offset)
 {
     CSFML_CHECK(renderWindow);
 
-    CSFML_CALL_PTR(texture, update(renderWindow->This, { x, y }));
+    CSFML_CALL_PTR(texture, update(renderWindow->This, convertVector2(offset)));
 }
 
 

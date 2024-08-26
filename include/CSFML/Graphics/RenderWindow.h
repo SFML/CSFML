@@ -201,12 +201,11 @@ CSFML_GRAPHICS_API void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWin
 /// \brief Change a render window's icon
 ///
 /// \param renderWindow Render window object
-/// \param width        Icon's width, in pixels
-/// \param height       Icon's height, in pixels
+/// \param size         Icon's size, in pixels
 /// \param pixels       Pointer to the pixels in memory, format must be RGBA 32 bits
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const uint8_t* pixels);
+CSFML_GRAPHICS_API void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, sfVector2u size, const uint8_t* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide a render window

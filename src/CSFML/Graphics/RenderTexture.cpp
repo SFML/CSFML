@@ -44,14 +44,14 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, const sfContextSettings* settings)
+sfRenderTexture* sfRenderTexture_create(sfVector2u size, const sfContextSettings* settings)
 {
     // Convert context settings
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the render texture
     sf::RenderTexture renderTexture;
-    if (!renderTexture.resize({ width, height }, params))
+    if (!renderTexture.resize(convertVector2(size), params))
         return nullptr;
 
     auto* texture  = new sfTexture(const_cast<sf::Texture*>(&renderTexture.getTexture()));

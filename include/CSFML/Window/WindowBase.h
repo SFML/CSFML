@@ -250,12 +250,11 @@ CSFML_WINDOW_API void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, con
 /// in 32-bits RGBA format.
 ///
 /// \param windowBase Window object
-/// \param width      Icon's width, in pixels
-/// \param height     Icon's height, in pixels
+/// \param size       Icon's size, in pixels
 /// \param pixels     Pointer to the array of pixels in memory
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindowBase_setIcon(sfWindowBase* windowBase, unsigned int width, unsigned int height, const uint8_t* pixels);
+CSFML_WINDOW_API void sfWindowBase_setIcon(sfWindowBase* windowBase, sfVector2u size, const uint8_t* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide a window

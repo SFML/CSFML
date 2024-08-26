@@ -51,15 +51,14 @@ typedef struct
 ////////////////////////////////////////////////////////////
 /// \brief Check if a point is inside a rectangle's area
 ///
-/// \param rect Rectangle to test
-/// \param x    X coordinate of the point to test
-/// \param y    Y coordinate of the point to test
+/// \param rect  Rectangle to test
+/// \param point Coordinates of the point to test
 ///
 /// \return true if the point is inside
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API bool sfFloatRect_contains(const sfFloatRect* rect, float x, float y);
-CSFML_GRAPHICS_API bool sfIntRect_contains(const sfIntRect* rect, int x, int y);
+CSFML_GRAPHICS_API bool sfFloatRect_contains(const sfFloatRect* rect, sfVector2f point);
+CSFML_GRAPHICS_API bool sfIntRect_contains(const sfIntRect* rect, sfVector2i point);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check intersection between two rectangles

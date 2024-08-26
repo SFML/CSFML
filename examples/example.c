@@ -6,7 +6,7 @@
 int main(void)
 {
     // Create the main window
-    const sfVideoMode mode = {800, 600, 32};
+    const sfVideoMode mode = {{800, 600}, 32};
     sfRenderWindow* window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, sfWindowed, NULL);
     if (!window)
         return EXIT_FAILURE;

@@ -36,7 +36,7 @@
 ////////////////////////////////////////////////////////////
 [[nodiscard]] inline sfVideoMode convertVideoMode(const sf::VideoMode& videoMode)
 {
-    return {videoMode.size.x, videoMode.size.y, videoMode.bitsPerPixel};
+    return {{videoMode.size.x, videoMode.size.y}, videoMode.bitsPerPixel};
 }
 
 
@@ -45,5 +45,5 @@
 ////////////////////////////////////////////////////////////
 [[nodiscard]] inline sf::VideoMode convertVideoMode(const sfVideoMode& videoMode)
 {
-    return sf::VideoMode({videoMode.width, videoMode.height}, videoMode.bitsPerPixel);
+    return sf::VideoMode({videoMode.size.x, videoMode.size.y}, videoMode.bitsPerPixel);
 }

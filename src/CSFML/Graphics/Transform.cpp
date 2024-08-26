@@ -102,11 +102,11 @@ void sfTransform_combine(sfTransform* transform, const sfTransform* other)
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_translate(sfTransform* transform, float x, float y)
+void sfTransform_translate(sfTransform* transform, sfVector2f offset)
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).translate({ x, y }));
+    *transform = convertTransform(convertTransform(*transform).translate(convertVector2(offset)));
 }
 
 
@@ -120,29 +120,29 @@ void sfTransform_rotate(sfTransform* transform, float angle)
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_rotateWithCenter(sfTransform* transform, float angle, float centerX, float centerY)
+void sfTransform_rotateWithCenter(sfTransform* transform, float angle, sfVector2f center)
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).rotate(sf::degrees(angle), { centerX, centerY }));
+    *transform = convertTransform(convertTransform(*transform).rotate(sf::degrees(angle), convertVector2(center)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_scale(sfTransform* transform, float scaleX, float scaleY)
+void sfTransform_scale(sfTransform* transform, sfVector2f scale)
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).scale({ scaleX, scaleY }));
+    *transform = convertTransform(convertTransform(*transform).scale(convertVector2(scale)));
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float scaleY, float centerX, float centerY)
+void sfTransform_scaleWithCenter(sfTransform* transform, sfVector2f scale, sfVector2f center)
 {
     CSFML_CHECK(transform);
 
-    *transform = convertTransform(convertTransform(*transform).scale({ scaleX, scaleY }, { centerX, centerY }));
+    *transform = convertTransform(convertTransform(*transform).scale(convertVector2(scale), convertVector2(center)));
 }
 
 

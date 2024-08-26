@@ -28,21 +28,22 @@
 #include <CSFML/Graphics/Rect.h>
 #include <SFML/Graphics/Rect.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
 /// Check if a point is inside a rectangle's area
 ////////////////////////////////////////////////////////////
-bool sfFloatRect_contains(const sfFloatRect* rect, float x, float y)
+bool sfFloatRect_contains(const sfFloatRect* rect, sfVector2f point)
 {
     CSFML_CHECK_RETURN(rect, false);
-    return convertRect(*rect).contains({ x, y });
+    return convertRect(*rect).contains(convertVector2(point));
 }
-bool sfIntRect_contains(const sfIntRect* rect, int x, int y)
+bool sfIntRect_contains(const sfIntRect* rect, sfVector2i point)
 {
     CSFML_CHECK_RETURN(rect, false);
-    return convertRect(*rect).contains({ x, y });
+    return convertRect(*rect).contains(convertVector2(point));
 }
 
 

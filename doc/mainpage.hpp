@@ -17,7 +17,7 @@
 ///
 /// int main()
 /// {
-///     sfVideoMode mode = {800, 600, 32};
+///     sfVideoMode mode = {{800, 600}, 32};
 ///     sfRenderWindow* window;
 ///     sfTexture* texture;
 ///     sfSprite* sprite;

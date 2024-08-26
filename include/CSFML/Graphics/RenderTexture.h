@@ -42,14 +42,13 @@
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new render texture
 ///
-/// \param width    Width of the render texture
-/// \param height   Height of the render texture
+/// \param size     Size of the render texture
 /// \param settings Settings of the render texture
 ///
 /// \return A new sfRenderTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_create(unsigned int width, unsigned int height, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_create(sfVector2u size, const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing render texture

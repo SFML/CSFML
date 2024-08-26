@@ -176,9 +176,9 @@ void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfChar32* titl
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_setIcon(sfWindowBase* windowBase, unsigned int width, unsigned int height, const uint8_t* pixels)
+void sfWindowBase_setIcon(sfWindowBase* windowBase, sfVector2u size, const uint8_t* pixels)
 {
-    CSFML_CALL(windowBase, setIcon({ width, height }, pixels));
+    CSFML_CALL(windowBase, setIcon(convertVector2(size), pixels));
 }
 
 
