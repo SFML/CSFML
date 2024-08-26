@@ -37,9 +37,11 @@
 ////////////////////////////////////////////////////////////
 const sfTransform sfTransform_Identity =
 {
+    // clang-format off
     1, 0, 0,
     0, 1, 0,
     0, 0, 1,
+    // clang-format on
 };
 
 

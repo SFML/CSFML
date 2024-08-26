@@ -47,7 +47,10 @@
 [[nodiscard]] inline sf::Transform convertTransform(const sfTransform& transform)
 {
     const float* m = transform.matrix;
+
+    // clang-format off
     return {m[0], m[1], m[2],
             m[3], m[4], m[5],
             m[6], m[7], m[8]};
+    // clang-format on
 }

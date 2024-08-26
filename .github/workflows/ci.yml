@@ -69,6 +69,20 @@ jobs:
     - name: Test
       run: ctest --test-dir CSFML/build -C ${{matrix.type.name}} --output-on-failure
 
+  format:
+    name: Formatting
+    runs-on: ubuntu-22.04
+
+    steps:
+    - name: Checkout Code
+      uses: actions/checkout@v4
+
+    - name: Format Code
+      run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-14 -P cmake/Format.cmake
+
+    - name: Check Formatting
+      run: git diff --exit-code
+
   tidy:
     name: Analyze
     runs-on: macos-14
