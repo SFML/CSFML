@@ -56,42 +56,22 @@ bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, 
     CSFML_CHECK_RETURN(rect1, false);
     CSFML_CHECK_RETURN(rect2, false);
 
-    sf::FloatRect SFMLRect1 = convertRect(*rect1);
-    sf::FloatRect SFMLRect2 = convertRect(*rect2);
+    const std::optional overlap = convertRect(*rect1).findIntersection(convertRect(*rect2));
 
-    if (intersection)
-    {
-        std::optional<sf::FloatRect> overlap = SFMLRect1.findIntersection(SFMLRect2);
+    if (intersection && overlap)
+        *intersection = convertRect(*overlap);
 
-        if (overlap)
-            *intersection = convertRect(*overlap);
-
-        return overlap.has_value();
-    }
-    else
-    {
-        return SFMLRect1.findIntersection(SFMLRect2).has_value();
-    }
+    return overlap.has_value();
 }
 bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection)
 {
     CSFML_CHECK_RETURN(rect1, false);
     CSFML_CHECK_RETURN(rect2, false);
 
-    sf::IntRect SFMLRect1 = convertRect(*rect1);
-    sf::IntRect SFMLRect2 = convertRect(*rect2);
+    const std::optional overlap = convertRect(*rect1).findIntersection(convertRect(*rect2));
 
-    if (intersection)
-    {
-        std::optional<sf::IntRect> overlap = SFMLRect1.findIntersection(SFMLRect2);
+    if (intersection && overlap)
+        *intersection = convertRect(*overlap);
 
-        if (overlap)
-            *intersection = convertRect(*overlap);
-
-        return overlap.has_value();
-    }
-    else
-    {
-        return SFMLRect1.findIntersection(SFMLRect2).has_value();
-    }
+    return overlap.has_value();
 }
