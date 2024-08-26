@@ -144,18 +144,7 @@ bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
     assert(renderWindow);
     assert(event);
-
-    // Get the event
-    const std::optional sfmlEvent = renderWindow->This.pollEvent();
-
-    // No event, return
-    if (!sfmlEvent)
-        return false;
-
-    // Convert the sf::Event event to a sfEvent
-    convertEvent(*sfmlEvent, event);
-
-    return true;
+    return convertEvent(renderWindow->This.pollEvent(), event);
 }
 
 
@@ -164,18 +153,7 @@ bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
     assert(renderWindow);
     assert(event);
-
-    // Get the event
-    const std::optional sfmlEvent = renderWindow->This.waitEvent();
-
-    // Error, return
-    if (!sfmlEvent)
-        return false;
-
-    // Convert the sf::Event event to a sfEvent
-    convertEvent(*sfmlEvent, event);
-
-    return true;
+    return convertEvent(renderWindow->This.waitEvent(), event);
 }
 
 
