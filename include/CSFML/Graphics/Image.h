@@ -42,25 +42,23 @@
 ///
 /// This image is filled with black pixels.
 ///
-/// \param width  Width of the image
-/// \param height Height of the image
+/// \param size Size of the image
 ///
 /// \return A new sfImage object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfImage* sfImage_create(unsigned int width, unsigned int height);
+CSFML_GRAPHICS_API sfImage* sfImage_create(sfVector2u size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an image and fill it with a unique color
 ///
-/// \param width  Width of the image
-/// \param height Height of the image
-/// \param color  Fill color
+/// \param size  Size of the image
+/// \param color Fill color
 ///
 /// \return A new sfImage object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfImage* sfImage_createFromColor(unsigned int width, unsigned int height, sfColor color);
+CSFML_GRAPHICS_API sfImage* sfImage_createFromColor(sfVector2u size, sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an image from an array of pixels
@@ -70,14 +68,13 @@ CSFML_GRAPHICS_API sfImage* sfImage_createFromColor(unsigned int width, unsigned
 /// an undefined behaviour.
 /// If \a pixels is null, an empty image is created.
 ///
-/// \param width  Width of the image
-/// \param height Height of the image
+/// \param size   Size of the image
 /// \param pixels Array of pixels to copy to the image
 ///
 /// \return A new sfImage object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const uint8_t* pixels);
+CSFML_GRAPHICS_API sfImage* sfImage_createFromPixels(sfVector2u size, const uint8_t* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an image from a file on disk
@@ -219,15 +216,14 @@ CSFML_GRAPHICS_API void sfImage_createMaskFromColor(sfImage* image, sfColor colo
 ///
 /// \param image      Image object
 /// \param source     Source image to copy
-/// \param destX      X coordinate of the destination position
-/// \param destY      Y coordinate of the destination position
+/// \param dest       Coordinates of the destination position
 /// \param sourceRect Sub-rectangle of the source image to copy
 /// \param applyAlpha Should the copy take in account the source transparency?
 /// 
 /// \return True if the operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API bool sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, bool applyAlpha);
+CSFML_GRAPHICS_API bool sfImage_copyImage(sfImage* image, const sfImage* source, sfVector2u dest, sfIntRect sourceRect, bool applyAlpha);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the color of a pixel in an image
@@ -236,13 +232,12 @@ CSFML_GRAPHICS_API bool sfImage_copyImage(sfImage* image, const sfImage* source,
 /// coordinates, using out-of-range values will result in
 /// an undefined behaviour.
 ///
-/// \param image Image object
-/// \param x     X coordinate of pixel to change
-/// \param y     Y coordinate of pixel to change
-/// \param color New color of the pixel
+/// \param image  Image object
+/// \param coords Coordinates of pixel to change
+/// \param color  New color of the pixel
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfImage_setPixel(sfImage* image, unsigned int x, unsigned int y, sfColor color);
+CSFML_GRAPHICS_API void sfImage_setPixel(sfImage* image, sfVector2u coords, sfColor color);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the color of a pixel in an image
@@ -251,14 +246,13 @@ CSFML_GRAPHICS_API void sfImage_setPixel(sfImage* image, unsigned int x, unsigne
 /// coordinates, using out-of-range values will result in
 /// an undefined behaviour.
 ///
-/// \param image Image object
-/// \param x     X coordinate of pixel to get
-/// \param y     Y coordinate of pixel to get
+/// \param image  Image object
+/// \param coords Coordinates of pixel to get
 ///
 /// \return Color of the pixel at coordinates (x, y)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfColor sfImage_getPixel(const sfImage* image, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API sfColor sfImage_getPixel(const sfImage* image, sfVector2u coords);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a read-only pointer to the array of pixels of an image

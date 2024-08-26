@@ -36,23 +36,23 @@
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_create(unsigned int width, unsigned int height)
+sfImage* sfImage_create(sfVector2u size)
 {
-    return new sfImage{sf::Image(sf::Vector2u(width, height))};
+    return new sfImage{sf::Image(convertVector2(size))};
 }
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_createFromColor(unsigned int width, unsigned int height, sfColor color)
+sfImage* sfImage_createFromColor(sfVector2u size, sfColor color)
 {
-    return new sfImage{sf::Image({ width, height }, convertColor(color))};
+    return new sfImage{sf::Image(convertVector2(size), convertColor(color))};
 }
 
 
 ////////////////////////////////////////////////////////////
-sfImage* sfImage_createFromPixels(unsigned int width, unsigned int height, const uint8_t* data)
+sfImage* sfImage_createFromPixels(sfVector2u size, const uint8_t* data)
 {
-    return new sfImage{sf::Image({ width, height }, data)};
+    return new sfImage{sf::Image(convertVector2(size), data)};
 }
 
 
@@ -141,28 +141,28 @@ void sfImage_createMaskFromColor(sfImage* image, sfColor colorKey, uint8_t alpha
 
 
 ////////////////////////////////////////////////////////////
-bool sfImage_copyImage(sfImage* image, const sfImage* source, unsigned int destX, unsigned int destY, sfIntRect sourceRect, bool applyAlpha)
+bool sfImage_copyImage(sfImage* image, const sfImage* source, sfVector2u dest, sfIntRect sourceRect, bool applyAlpha)
 {
     CSFML_CHECK_RETURN(image, false);
     CSFML_CHECK_RETURN(source, false);
 
-    return image->This.copy(source->This, { destX, destY }, convertRect(sourceRect), applyAlpha);
+    return image->This.copy(source->This, convertVector2(dest), convertRect(sourceRect), applyAlpha);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_setPixel(sfImage* image, unsigned int x, unsigned int y, sfColor color)
+void sfImage_setPixel(sfImage* image, sfVector2u coords, sfColor color)
 {
-    CSFML_CALL(image, setPixel({ x, y }, convertColor(color)));
+    CSFML_CALL(image, setPixel(convertVector2(coords), convertColor(color)));
 }
 
 
 ////////////////////////////////////////////////////////////
-sfColor sfImage_getPixel(const sfImage* image, unsigned int x, unsigned int y)
+sfColor sfImage_getPixel(const sfImage* image, sfVector2u coords)
 {
     CSFML_CHECK_RETURN(image, {});
 
-    return convertColor(image->This.getPixel({ x, y }));
+    return convertColor(image->This.getPixel(convertVector2(coords)));
 }
 
 

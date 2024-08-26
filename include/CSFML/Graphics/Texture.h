@@ -48,13 +48,12 @@ typedef enum
 ////////////////////////////////////////////////////////////
 /// \brief Create a new texture
 ///
-/// \param width  Texture width
-/// \param height Texture height
+/// \param size Texture size
 ///
 /// \return A new sfTexture object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTexture* sfTexture_create(unsigned int width, unsigned int height);
+CSFML_GRAPHICS_API sfTexture* sfTexture_create(sfVector2u size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new texture from a file
@@ -201,13 +200,11 @@ CSFML_GRAPHICS_API sfImage* sfTexture_copyToImage(const sfTexture* texture);
 ///
 /// \param texture Texture to update
 /// \param pixels  Array of pixels to copy to the texture
-/// \param width   Width of the pixel region contained in \a pixels
-/// \param height  Height of the pixel region contained in \a pixels
-/// \param x       X offset in the texture where to copy the source pixels
-/// \param y       Y offset in the texture where to copy the source pixels
+/// \param size    size of the pixel region contained in \a pixels
+/// \param offset  Offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_updateFromPixels(sfTexture* texture, const uint8_t* pixels, unsigned int width, unsigned int height, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromPixels(sfTexture* texture, const uint8_t* pixels, sfVector2u size, sfVector2u offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a part of this texture from another texture
@@ -221,44 +218,40 @@ CSFML_GRAPHICS_API void sfTexture_updateFromPixels(sfTexture* texture, const uin
 ///
 /// \param destination Destination texture to copy source texture to
 /// \param source      Source texture to copy to destination texture
-/// \param x           X offset in this texture where to copy the source texture
-/// \param y           Y offset in this texture where to copy the source texture
+/// \param offset      Offset in this texture where to copy the source texture
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* source, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* source, sfVector2u offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a texture from an image
 ///
 /// \param texture Texture to update
 /// \param image   Image to copy to the texture
-/// \param x       X offset in the texture where to copy the source pixels
-/// \param y       Y offset in the texture where to copy the source pixels
+/// \param offset  Offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_updateFromImage(sfTexture* texture, const sfImage* image, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromImage(sfTexture* texture, const sfImage* image, sfVector2u offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a texture from the contents of a window
 ///
 /// \param texture Texture to update
 /// \param window  Window to copy to the texture
-/// \param x       X offset in the texture where to copy the source pixels
-/// \param y       Y offset in the texture where to copy the source pixels
+/// \param offset  Offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_updateFromWindow(sfTexture* texture, const sfWindow* window, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromWindow(sfTexture* texture, const sfWindow* window, sfVector2u offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a texture from the contents of a render-window
 ///
 /// \param texture      Texture to update
 /// \param renderWindow Render-window to copy to the texture
-/// \param x            X offset in the texture where to copy the source pixels
-/// \param y            Y offset in the texture where to copy the source pixels
+/// \param offset       Offset in the texture where to copy the source pixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, unsigned int x, unsigned int y);
+CSFML_GRAPHICS_API void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, sfVector2u offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable the smooth filter on a texture

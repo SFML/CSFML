@@ -220,9 +220,9 @@ void sfRenderWindow_setUnicodeTitle(sfRenderWindow* renderWindow, const sfChar32
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, unsigned int width, unsigned int height, const uint8_t* pixels)
+void sfRenderWindow_setIcon(sfRenderWindow* renderWindow, sfVector2u size, const uint8_t* pixels)
 {
-    CSFML_CALL(renderWindow, setIcon({ width, height }, pixels));
+    CSFML_CALL(renderWindow, setIcon(convertVector2(size), pixels));
 }
 
 

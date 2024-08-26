@@ -147,11 +147,10 @@ CSFML_GRAPHICS_API void sfTransform_combine(sfTransform* transform, const sfTran
 /// \brief Combine a transform with a translation
 ///
 /// \param transform Transform object
-/// \param x         Offset to apply on X axis
-/// \param y         Offset to apply on Y axis
+/// \param offset    Offset to apply
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_translate(sfTransform* transform, float x, float y);
+CSFML_GRAPHICS_API void sfTransform_translate(sfTransform* transform, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine the current transform with a rotation
@@ -172,21 +171,19 @@ CSFML_GRAPHICS_API void sfTransform_rotate(sfTransform* transform, float angle);
 ///
 /// \param transform Transform object
 /// \param angle     Rotation angle, in degrees
-/// \param centerX   X coordinate of the center of rotation
-/// \param centerY   Y coordinate of the center of rotation
+/// \param center    Coordinates of the center of rotation
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_rotateWithCenter(sfTransform* transform, float angle, float centerX, float centerY);
+CSFML_GRAPHICS_API void sfTransform_rotateWithCenter(sfTransform* transform, float angle, sfVector2f center);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine the current transform with a scaling
 ///
 /// \param transform Transform object
-/// \param scaleX    Scaling factor on the X axis
-/// \param scaleY    Scaling factor on the Y axis
+/// \param scale     Scaling factor
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_scale(sfTransform* transform, float scaleX, float scaleY);
+CSFML_GRAPHICS_API void sfTransform_scale(sfTransform* transform, sfVector2f scale);
 
 ////////////////////////////////////////////////////////////
 /// \brief Combine the current transform with a scaling
@@ -197,13 +194,11 @@ CSFML_GRAPHICS_API void sfTransform_scale(sfTransform* transform, float scaleX, 
 /// [translate(-center), scale(factors), translate(center)]
 ///
 /// \param transform Transform object
-/// \param scaleX    Scaling factor on X axis
-/// \param scaleY    Scaling factor on Y axis
-/// \param centerX   X coordinate of the center of scaling
-/// \param centerY   Y coordinate of the center of scaling
+/// \param scale     Scaling factor
+/// \param center    Coordinates of the center of scaling
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransform_scaleWithCenter(sfTransform* transform, float scaleX, float scaleY, float centerX, float centerY);
+CSFML_GRAPHICS_API void sfTransform_scaleWithCenter(sfTransform* transform, sfVector2f scale, sfVector2f center);
 
 ////////////////////////////////////////////////////////////
 /// \brief Compare two transforms for equality

@@ -287,12 +287,11 @@ CSFML_WINDOW_API void sfWindow_setUnicodeTitle(sfWindow* window, const sfChar32*
 /// in 32-bits RGBA format.
 ///
 /// \param window Window object
-/// \param width  Icon's width, in pixels
-/// \param height Icon's height, in pixels
+/// \param size   Icon's size, in pixels
 /// \param pixels Pointer to the array of pixels in memory
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const uint8_t* pixels);
+CSFML_WINDOW_API void sfWindow_setIcon(sfWindow* window, sfVector2u size, const uint8_t* pixels);
 
 ////////////////////////////////////////////////////////////
 /// \brief Show or hide a window

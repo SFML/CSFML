@@ -192,9 +192,9 @@ void sfWindow_setUnicodeTitle(sfWindow* window, const sfChar32* title)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_setIcon(sfWindow* window, unsigned int width, unsigned int height, const uint8_t* pixels)
+void sfWindow_setIcon(sfWindow* window, sfVector2u size, const uint8_t* pixels)
 {
-    CSFML_CALL(window, setIcon({ width, height }, pixels));
+    CSFML_CALL(window, setIcon(convertVector2(size), pixels));
 }
 
 

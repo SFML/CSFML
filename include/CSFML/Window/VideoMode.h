@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
+#include <CSFML/System/Vector2.h>
 #include <stddef.h>
 
 
@@ -39,8 +40,7 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    unsigned int width;        ///< Video mode width, in pixels
-    unsigned int height;       ///< Video mode height, in pixels
+    sfVector2u   size;         ///< Video mode size, in pixels
     unsigned int bitsPerPixel; ///< Video mode pixel depth, in bits per pixels
 } sfVideoMode;
 
