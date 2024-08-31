@@ -34,6 +34,7 @@ catch_discover_tests(test-csfml-system)
 
 add_executable(test-csfml-window
     Window/Joystick.test.cpp
+    Window/VideoMode.test.cpp
 )
 target_link_libraries(test-csfml-window PRIVATE csfml-window Catch2::Catch2WithMain)
 set_target_warnings(test-csfml-window)
