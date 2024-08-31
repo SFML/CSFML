@@ -37,6 +37,7 @@ add_executable(test-csfml-window
     Window/Keyboard.test.cpp
     Window/Mouse.test.cpp
     Window/Sensor.test.cpp
+    Window/VideoMode.test.cpp
     Window/Window.test.cpp
     Window/WindowBase.test.cpp
 )
