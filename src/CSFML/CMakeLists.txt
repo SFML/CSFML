@@ -5,7 +5,7 @@ include(${PROJECT_SOURCE_DIR}/cmake/Macros.cmake)
 include_directories(${PROJECT_SOURCE_DIR}/src)
 
 # set the output directory for CSFML libraries
-set(LIBRARY_OUTPUT_PATH "${CMAKE_BINARY_DIR}/lib")
+set(LIBRARY_OUTPUT_PATH "${PROJECT_BINARY_DIR}/lib")
 
 # define the export symbol
 add_definitions(-DCSFML_EXPORTS)
