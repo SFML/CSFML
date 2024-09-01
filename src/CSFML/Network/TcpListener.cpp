@@ -90,8 +90,8 @@ sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** conne
     assert(listener);
     assert(connected);
 
-    *connected            = new sfTcpSocket;
-    sfSocketStatus status = static_cast<sfSocketStatus>(listener->This.accept((*connected)->This));
+    *connected  = new sfTcpSocket;
+    auto status = static_cast<sfSocketStatus>(listener->This.accept((*connected)->This));
 
     if (status != sfSocketDone)
     {

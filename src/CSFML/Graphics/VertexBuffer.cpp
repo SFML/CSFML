@@ -32,7 +32,7 @@
 ////////////////////////////////////////////////////////////
 sfVertexBuffer* sfVertexBuffer_create(unsigned int vertexCount, sfPrimitiveType type, sfVertexBufferUsage usage)
 {
-    sfVertexBuffer* buffer = new sfVertexBuffer;
+    auto* buffer = new sfVertexBuffer;
 
     if (!buffer->This.create(vertexCount))
     {
@@ -52,8 +52,8 @@ sfVertexBuffer* sfVertexBuffer_create(unsigned int vertexCount, sfPrimitiveType 
 ////////////////////////////////////////////////////////////
 sfVertexBuffer* sfVertexBuffer_copy(const sfVertexBuffer* vertexBuffer)
 {
-    sfVertexBuffer* buffer = new sfVertexBuffer;
-    buffer->This           = sf::VertexBuffer(vertexBuffer->This);
+    auto* buffer = new sfVertexBuffer;
+    buffer->This = sf::VertexBuffer(vertexBuffer->This);
     return buffer;
 }
 

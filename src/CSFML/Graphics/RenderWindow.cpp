@@ -59,7 +59,7 @@ sfRenderWindow* sfRenderWindow_create(sfVideoMode              mode,
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
-    sfRenderWindow* renderWindow = new sfRenderWindow;
+    auto* renderWindow = new sfRenderWindow;
     renderWindow->This.create(convertVideoMode(mode), title, style, static_cast<sf::State>(state), params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
@@ -79,7 +79,7 @@ sfRenderWindow* sfRenderWindow_createUnicode(
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
-    sfRenderWindow* renderWindow = new sfRenderWindow;
+    auto* renderWindow = new sfRenderWindow;
     renderWindow->This.create(convertVideoMode(mode),
                               reinterpret_cast<const char32_t*>(title),
                               style,
@@ -99,7 +99,7 @@ sfRenderWindow* sfRenderWindow_createFromHandle(sfWindowHandle handle, const sfC
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
-    sfRenderWindow* renderWindow = new sfRenderWindow;
+    auto* renderWindow = new sfRenderWindow;
     renderWindow->This.create(handle, params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();

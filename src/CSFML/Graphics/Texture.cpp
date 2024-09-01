@@ -38,7 +38,7 @@
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_create(sfVector2u size)
 {
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     if (!texture->This->resize(convertVector2(size)))
     {
@@ -53,7 +53,7 @@ sfTexture* sfTexture_create(sfVector2u size)
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 {
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
@@ -69,7 +69,7 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* area)
 {
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
@@ -85,7 +85,7 @@ sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* a
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
 {
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
@@ -101,7 +101,7 @@ sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, cons
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
 {
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
@@ -120,7 +120,7 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
 {
     assert(stream);
 
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
@@ -139,7 +139,7 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
 {
     assert(stream);
 
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
@@ -159,7 +159,7 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 {
     assert(image);
 
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 
@@ -177,7 +177,7 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
 {
     assert(image);
 
-    sfTexture* texture = new sfTexture;
+    auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
 

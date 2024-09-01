@@ -29,6 +29,7 @@
 ////////////////////////////////////////////////////////////
 #include <SFML/Network/Ftp.hpp>
 
+#include <utility>
 #include <vector>
 
 
@@ -46,7 +47,7 @@ struct sfFtp
 ////////////////////////////////////////////////////////////
 struct sfFtpResponse
 {
-    sfFtpResponse(const sf::Ftp::Response& Response) : This(Response)
+    sfFtpResponse(sf::Ftp::Response Response) : This(std::move(Response))
     {
     }
 
@@ -59,7 +60,7 @@ struct sfFtpResponse
 ////////////////////////////////////////////////////////////
 struct sfFtpDirectoryResponse
 {
-    sfFtpDirectoryResponse(const sf::Ftp::DirectoryResponse& Response) : This(Response)
+    sfFtpDirectoryResponse(sf::Ftp::DirectoryResponse Response) : This(std::move(Response))
     {
     }
 
@@ -72,7 +73,7 @@ struct sfFtpDirectoryResponse
 ////////////////////////////////////////////////////////////
 struct sfFtpListingResponse
 {
-    sfFtpListingResponse(const sf::Ftp::ListingResponse& Response) : This(Response)
+    sfFtpListingResponse(sf::Ftp::ListingResponse Response) : This(std::move(Response))
     {
     }
 

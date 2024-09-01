@@ -39,7 +39,7 @@
 sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t style)
 {
     // Create the window
-    sfWindowBase* windowBase = new sfWindowBase;
+    auto* windowBase = new sfWindowBase;
     windowBase->This.create(convertVideoMode(mode), title, style);
 
     return windowBase;
@@ -50,7 +50,7 @@ sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t 
 sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style)
 {
     // Create the window
-    sfWindowBase* windowBase = new sfWindowBase;
+    auto* windowBase = new sfWindowBase;
     windowBase->This.create(convertVideoMode(mode), reinterpret_cast<const char32_t*>(title), style);
 
     return windowBase;
@@ -61,7 +61,7 @@ sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title
 sfWindowBase* sfWindowBase_createFromHandle(sfWindowHandle handle)
 {
     // Create the window
-    sfWindowBase* windowBase = new sfWindowBase;
+    auto* windowBase = new sfWindowBase;
     windowBase->This.create(handle);
 
     return windowBase;

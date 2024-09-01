@@ -41,7 +41,7 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, s
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
-    sfWindow* window = new sfWindow;
+    auto* window = new sfWindow;
     window->This.create(convertVideoMode(mode), title, style, static_cast<sf::State>(state), params);
 
     return window;
@@ -58,7 +58,7 @@ sfWindow* sfWindow_createUnicode(sfVideoMode              mode,
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
-    sfWindow* window = new sfWindow;
+    auto* window = new sfWindow;
     window->This.create(convertVideoMode(mode),
                         reinterpret_cast<const char32_t*>(title),
                         style,
@@ -76,7 +76,7 @@ sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettin
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
-    sfWindow* window = new sfWindow;
+    auto* window = new sfWindow;
     window->This.create(handle, params);
 
     return window;
