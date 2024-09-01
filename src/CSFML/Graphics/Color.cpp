@@ -66,10 +66,10 @@ sfColor sfColor_fromRGBA(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha
 ////////////////////////////////////////////////////////////
 sfColor sfColor_fromInteger(uint32_t color)
 {
-    uint8_t red   = static_cast<uint8_t>((color & 0xff000000) >> 24);
-    uint8_t green = static_cast<uint8_t>((color & 0x00ff0000) >> 16);
-    uint8_t blue  = static_cast<uint8_t>((color & 0x0000ff00) >> 8);
-    uint8_t alpha = static_cast<uint8_t>((color & 0x000000ff) >> 0);
+    auto red   = static_cast<uint8_t>((color & 0xff000000) >> 24);
+    auto green = static_cast<uint8_t>((color & 0x00ff0000) >> 16);
+    auto blue  = static_cast<uint8_t>((color & 0x0000ff00) >> 8);
+    auto alpha = static_cast<uint8_t>((color & 0x000000ff) >> 0);
 
     return sfColor_fromRGBA(red, green, blue, alpha);
 }

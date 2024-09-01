@@ -31,8 +31,8 @@
 
 #include <SFML/Window/Vulkan.hpp>
 
-#include <stdlib.h>
-#include <string.h>
+#include <cstdlib>
+#include <cstring>
 
 
 ////////////////////////////////////////////////////////////

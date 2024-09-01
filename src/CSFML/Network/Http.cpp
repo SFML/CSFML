@@ -162,8 +162,8 @@ sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, s
     assert(http);
     assert(request);
 
-    sfHttpResponse* response = new sfHttpResponse;
-    response->This           = http->This.sendRequest(request->This, sf::microseconds(timeout.microseconds));
+    auto* response = new sfHttpResponse;
+    response->This = http->This.sendRequest(request->This, sf::microseconds(timeout.microseconds));
 
     return response;
 }

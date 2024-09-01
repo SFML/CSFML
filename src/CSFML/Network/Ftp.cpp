@@ -32,7 +32,7 @@
 #include <SFML/Network/IpAddress.hpp>
 #include <SFML/System/String.hpp>
 
-#include <string.h>
+#include <cstring>
 
 
 ////////////////////////////////////////////////////////////

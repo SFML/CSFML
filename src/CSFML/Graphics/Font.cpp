@@ -58,7 +58,7 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
 {
     assert(stream);
 
-    sfFont* font = new sfFont;
+    auto* font   = new sfFont;
     font->Stream = CallbackStream(stream);
     if (!font->This.openFromStream(font->Stream))
     {

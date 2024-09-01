@@ -33,7 +33,7 @@
 ////////////////////////////////////////////////////////////
 sfMusic* sfMusic_createFromFile(const char* filename)
 {
-    sfMusic* music = new sfMusic;
+    auto* music = new sfMusic;
     if (!music->This.openFromFile(filename))
     {
         delete music;
@@ -47,7 +47,7 @@ sfMusic* sfMusic_createFromFile(const char* filename)
 ////////////////////////////////////////////////////////////
 sfMusic* sfMusic_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sfMusic* music = new sfMusic;
+    auto* music = new sfMusic;
     if (!music->This.openFromMemory(data, sizeInBytes))
     {
         delete music;
@@ -63,8 +63,8 @@ sfMusic* sfMusic_createFromStream(sfInputStream* stream)
 {
     assert(stream);
 
-    sfMusic* music = new sfMusic;
-    music->Stream  = CallbackStream(stream);
+    auto* music   = new sfMusic;
+    music->Stream = CallbackStream(stream);
     if (!music->This.openFromStream(music->Stream))
     {
         delete music;

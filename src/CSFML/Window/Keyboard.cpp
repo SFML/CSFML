@@ -30,7 +30,7 @@
 #include <SFML/System/String.hpp>
 #include <SFML/Window/Keyboard.hpp>
 
-#include <string.h>
+#include <cstring>
 
 
 ////////////////////////////////////////////////////////////

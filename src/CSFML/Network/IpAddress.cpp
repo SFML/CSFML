@@ -29,7 +29,7 @@
 
 #include <SFML/Network/IpAddress.hpp>
 
-#include <string.h>
+#include <cstring>
 
 
 namespace
