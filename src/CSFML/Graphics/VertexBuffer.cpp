@@ -54,7 +54,7 @@ sfVertexBuffer* sfVertexBuffer_create(unsigned int vertexCount, sfPrimitiveType 
 sfVertexBuffer* sfVertexBuffer_copy(const sfVertexBuffer* vertexBuffer)
 {
     sfVertexBuffer* buffer = new sfVertexBuffer;
-    buffer->This = sf::VertexBuffer( vertexBuffer->This );
+    buffer->This           = sf::VertexBuffer(vertexBuffer->This);
     return buffer;
 }
 

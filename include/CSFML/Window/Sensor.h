@@ -28,8 +28,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
-#include <CSFML/Window/Types.h>
+
 #include <CSFML/System/Vector3.h>
+#include <CSFML/Window/Types.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -38,14 +39,14 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfSensorAccelerometer,    ///< Measures the raw acceleration (m/s^2)
-    sfSensorGyroscope,        ///< Measures the raw rotation rates (degrees/s)
-    sfSensorMagnetometer,     ///< Measures the ambient magnetic field (micro-teslas)
-    sfSensorGravity,          ///< Measures the direction and intensity of gravity, independent of device acceleration (m/s^2)
+    sfSensorAccelerometer, ///< Measures the raw acceleration (m/s^2)
+    sfSensorGyroscope,     ///< Measures the raw rotation rates (degrees/s)
+    sfSensorMagnetometer,  ///< Measures the ambient magnetic field (micro-teslas)
+    sfSensorGravity, ///< Measures the direction and intensity of gravity, independent of device acceleration (m/s^2)
     sfSensorUserAcceleration, ///< Measures the direction and intensity of device acceleration, independent of the gravity (m/s^2)
-    sfSensorOrientation,      ///< Measures the absolute 3D orientation (degrees)
+    sfSensorOrientation, ///< Measures the absolute 3D orientation (degrees)
 
-    sfSensorCount             ///< Keep last -- the total number of sensor types
+    sfSensorCount ///< Keep last -- the total number of sensor types
 } sfSensorType;
 
 

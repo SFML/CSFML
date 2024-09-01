@@ -35,11 +35,11 @@
 ///
 /// This function deallocates the memory being pointed to
 /// using the free function from the C standard library.
-/// 
+///
 /// The memory must have been previously allocated using a call
 /// to malloc.
-/// 
-/// \param ptr Pointer to the memory to deallocate 
+///
+/// \param ptr Pointer to the memory to deallocate
 ///
 ////////////////////////////////////////////////////////////
 CSFML_SYSTEM_API void sfFree(void* ptr);

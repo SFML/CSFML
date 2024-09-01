@@ -53,13 +53,12 @@ sfSoundBuffer* sfSoundBuffer_createFromMemory(const void* data, size_t sizeInByt
 }
 
 
-
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 {
     CSFML_CHECK_RETURN(stream, nullptr);
 
-    CallbackStream sfmlStream(stream);
+    CallbackStream  sfmlStream(stream);
     sf::SoundBuffer soundBuffer;
     if (!soundBuffer.loadFromStream(sfmlStream))
         return nullptr;
@@ -69,12 +68,13 @@ sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t*    samples,
-                                               uint64_t          sampleCount,
-                                               unsigned int      channelCount,
-                                               unsigned int      sampleRate,
-                                               sfSoundChannel*   channelMapData,
-                                               size_t            channelMapSize)
+sfSoundBuffer* sfSoundBuffer_createFromSamples(
+    const int16_t*  samples,
+    uint64_t        sampleCount,
+    unsigned int    channelCount,
+    unsigned int    sampleRate,
+    sfSoundChannel* channelMapData,
+    size_t          channelMapSize)
 {
     std::vector<sf::SoundChannel> channelMap(channelMapSize);
     for (std::size_t i = 0; i < channelMap.size(); ++i)

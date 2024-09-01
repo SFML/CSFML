@@ -28,17 +28,19 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/Color.h>
-#include <CSFML/Graphics/Rect.h>
-#include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/PrimitiveType.h>
+#include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/RenderStates.h>
+#include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/Vertex.h>
+#include <CSFML/System/Vector2.h>
 #include <CSFML/Window/Event.h>
 #include <CSFML/Window/VideoMode.h>
-#include <CSFML/Window/WindowHandle.h>
 #include <CSFML/Window/Window.h>
-#include <CSFML/System/Vector2.h>
+#include <CSFML/Window/WindowHandle.h>
+
 #include <stddef.h>
 
 
@@ -51,7 +53,12 @@
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(
+    sfVideoMode              mode,
+    const char*              title,
+    uint32_t                 style,
+    sfWindowState            state,
+    const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new render window (with a UTF-32 title)
@@ -62,7 +69,12 @@ CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings);
+CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createUnicode(
+    sfVideoMode              mode,
+    const sfChar32*          title,
+    uint32_t                 style,
+    sfWindowState            state,
+    const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a render window from an existing control
@@ -429,7 +441,8 @@ CSFML_GRAPHICS_API sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* re
 /// \return The converted point, in "world" units
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRenderWindow_mapPixelToCoords(const sfRenderWindow* renderWindow, sfVector2i point, const sfView* view);
+CSFML_GRAPHICS_API sfVector2f
+    sfRenderWindow_mapPixelToCoords(const sfRenderWindow* renderWindow, sfVector2i point, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Convert a point from world coordinates to window coordinates
@@ -455,7 +468,8 @@ CSFML_GRAPHICS_API sfVector2f sfRenderWindow_mapPixelToCoords(const sfRenderWind
 /// \return The converted point, in target coordinates (pixels)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2i sfRenderWindow_mapCoordsToPixel(const sfRenderWindow* renderWindow, sfVector2f point, const sfView* view);
+CSFML_GRAPHICS_API sfVector2i
+    sfRenderWindow_mapCoordsToPixel(const sfRenderWindow* renderWindow, sfVector2f point, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw a drawable object to the render-target
@@ -465,14 +479,26 @@ CSFML_GRAPHICS_API sfVector2i sfRenderWindow_mapCoordsToPixel(const sfRenderWind
 /// \param states       Render states to use for drawing (NULL to use the default states)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_drawSprite(sfRenderWindow* renderWindow, const sfSprite* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawSprite(sfRenderWindow*       renderWindow,
+                                                  const sfSprite*       object,
+                                                  const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_drawText(sfRenderWindow* renderWindow, const sfText* object, const sfRenderStates* states);
 CSFML_GRAPHICS_API void sfRenderWindow_drawShape(sfRenderWindow* renderWindow, const sfShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_drawCircleShape(sfRenderWindow* renderWindow, const sfCircleShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_drawConvexShape(sfRenderWindow* renderWindow, const sfConvexShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_drawRectangleShape(sfRenderWindow* renderWindow, const sfRectangleShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_drawVertexArray(sfRenderWindow* renderWindow, const sfVertexArray* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWindow, const sfVertexBuffer* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawCircleShape(sfRenderWindow*       renderWindow,
+                                                       const sfCircleShape*  object,
+                                                       const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawConvexShape(sfRenderWindow*       renderWindow,
+                                                       const sfConvexShape*  object,
+                                                       const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawRectangleShape(sfRenderWindow*         renderWindow,
+                                                          const sfRectangleShape* object,
+                                                          const sfRenderStates*   states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawVertexArray(sfRenderWindow*       renderWindow,
+                                                       const sfVertexArray*  object,
+                                                       const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBuffer(sfRenderWindow*       renderWindow,
+                                                        const sfVertexBuffer* object,
+                                                        const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by a vertex buffer.
@@ -484,9 +510,12 @@ CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWi
 /// \param states       Render states to use for drawing
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBufferRange(sfRenderWindow* renderWindow,
-                                                             const sfVertexBuffer* object, size_t firstVertex,
-                                                             size_t vertexCount, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBufferRange(
+    sfRenderWindow*       renderWindow,
+    const sfVertexBuffer* object,
+    size_t                firstVertex,
+    size_t                vertexCount,
+    const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render window
@@ -498,9 +527,12 @@ CSFML_GRAPHICS_API void sfRenderWindow_drawVertexBufferRange(sfRenderWindow* ren
 /// \param states       Render states to use for drawing (NULL to use the default states)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_drawPrimitives(sfRenderWindow* renderWindow,
-                                                      const sfVertex* vertices, size_t vertexCount,
-                                                      sfPrimitiveType type, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderWindow_drawPrimitives(
+    sfRenderWindow*       renderWindow,
+    const sfVertex*       vertices,
+    size_t                vertexCount,
+    sfPrimitiveType       type,
+    const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save the current OpenGL render states and matrices
@@ -600,4 +632,8 @@ CSFML_GRAPHICS_API sfVector2i sfTouch_getPositionRenderWindow(unsigned int finge
 /// \return True if surface creation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API bool sfRenderWindow_createVulkanSurface(sfRenderWindow* renderWindow, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
+CSFML_GRAPHICS_API bool sfRenderWindow_createVulkanSurface(
+    sfRenderWindow*              renderWindow,
+    const VkInstance*            instance,
+    VkSurfaceKHR*                surface,
+    const VkAllocationCallbacks* allocator);

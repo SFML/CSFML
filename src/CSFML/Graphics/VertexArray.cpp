@@ -25,9 +25,9 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/VertexArray.h>
 #include <CSFML/Graphics/VertexArrayStruct.hpp>
-#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Internal.hpp>
 
 

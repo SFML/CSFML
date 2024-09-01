@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
+
 #include <CSFML/Audio/Types.h>
 
 

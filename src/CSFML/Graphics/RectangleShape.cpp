@@ -25,14 +25,15 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/RectangleShape.h>
-#include <CSFML/Graphics/RectangleShapeStruct.hpp>
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
-#include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Graphics/RectangleShape.h>
+#include <CSFML/Graphics/RectangleShapeStruct.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
+
+#include <SFML/Graphics/Color.hpp>
 
 
 ////////////////////////////////////////////////////////////

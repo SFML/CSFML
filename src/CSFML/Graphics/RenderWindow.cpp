@@ -27,10 +27,10 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/ConvertEvent.hpp>
 #include <CSFML/Graphics/CircleShapeStruct.hpp>
-#include <CSFML/Graphics/ConvertRenderStates.hpp>
-#include <CSFML/Graphics/ConvexShapeStruct.hpp>
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/Graphics/ConvertRenderStates.hpp>
+#include <CSFML/Graphics/ConvexShapeStruct.hpp>
 #include <CSFML/Graphics/ImageStruct.hpp>
 #include <CSFML/Graphics/RectangleShapeStruct.hpp>
 #include <CSFML/Graphics/RenderWindow.h>
@@ -41,15 +41,20 @@
 #include <CSFML/Graphics/VertexArrayStruct.hpp>
 #include <CSFML/Graphics/VertexBufferStruct.hpp>
 #include <CSFML/Internal.hpp>
-#include <CSFML/Window/ConvertContextSettings.hpp>
-#include <CSFML/Window/CursorStruct.hpp>
-#include <CSFML/Window/ConvertVideoMode.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Window/ConvertContextSettings.hpp>
+#include <CSFML/Window/ConvertVideoMode.hpp>
+#include <CSFML/Window/CursorStruct.hpp>
+
 #include <SFML/Window/Touch.hpp>
 
 
 ////////////////////////////////////////////////////////////
-sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
+sfRenderWindow* sfRenderWindow_create(sfVideoMode              mode,
+                                      const char*              title,
+                                      uint32_t                 style,
+                                      sfWindowState            state,
+                                      const sfContextSettings* settings)
 {
     // Convert context settings
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
@@ -64,14 +69,23 @@ sfRenderWindow* sfRenderWindow_create(sfVideoMode mode, const char* title, uint3
 }
 
 ////////////////////////////////////////////////////////////
-sfRenderWindow* sfRenderWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
+sfRenderWindow* sfRenderWindow_createUnicode(
+    sfVideoMode              mode,
+    const sfChar32*          title,
+    uint32_t                 style,
+    sfWindowState            state,
+    const sfContextSettings* settings)
 {
     // Convert context settings
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
     sfRenderWindow* renderWindow = new sfRenderWindow;
-    renderWindow->This.create(convertVideoMode(mode), reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state), params);
+    renderWindow->This.create(convertVideoMode(mode),
+                              reinterpret_cast<const char32_t*>(title),
+                              style,
+                              static_cast<sf::State>(state),
+                              params);
     renderWindow->DefaultView.This = renderWindow->This.getDefaultView();
     renderWindow->CurrentView.This = renderWindow->This.getView();
 
@@ -129,7 +143,7 @@ sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow)
 bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
     CSFML_CHECK_RETURN(renderWindow, false);
-    CSFML_CHECK_RETURN(event,        false);
+    CSFML_CHECK_RETURN(event, false);
 
     // Get the event
     const std::optional sfmlEvent = renderWindow->This.pollEvent();
@@ -149,7 +163,7 @@ bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
 bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
     CSFML_CHECK_RETURN(renderWindow, false);
-    CSFML_CHECK_RETURN(event,        false);
+    CSFML_CHECK_RETURN(event, false);
 
     // Get the event
     const std::optional sfmlEvent = renderWindow->This.waitEvent();
@@ -170,7 +184,8 @@ sfVector2i sfRenderWindow_getPosition(const sfRenderWindow* renderWindow)
 {
     CSFML_CHECK_RETURN(renderWindow, {});
 
-    return convertVector2(renderWindow->This.getPosition());;
+    return convertVector2(renderWindow->This.getPosition());
+    ;
 }
 
 
@@ -433,9 +448,11 @@ void sfRenderWindow_drawVertexBuffer(sfRenderWindow* renderWindow, const sfVerte
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_drawVertexBufferRange(sfRenderWindow* renderWindow,
-                                          const sfVertexBuffer* object, size_t firstVertex,
-                                          size_t vertexCount, const sfRenderStates* states)
+void sfRenderWindow_drawVertexBufferRange(sfRenderWindow*       renderWindow,
+                                          const sfVertexBuffer* object,
+                                          size_t                firstVertex,
+                                          size_t                vertexCount,
+                                          const sfRenderStates* states)
 {
     CSFML_CHECK(object);
     CSFML_CALL(renderWindow, draw(object->This, firstVertex, vertexCount, convertRenderStates(states)));
@@ -443,12 +460,17 @@ void sfRenderWindow_drawVertexBufferRange(sfRenderWindow* renderWindow,
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_drawPrimitives(sfRenderWindow* renderWindow,
-                                   const sfVertex* vertices, size_t vertexCount,
-                                   sfPrimitiveType type, const sfRenderStates* states)
+void sfRenderWindow_drawPrimitives(sfRenderWindow*       renderWindow,
+                                   const sfVertex*       vertices,
+                                   size_t                vertexCount,
+                                   sfPrimitiveType       type,
+                                   const sfRenderStates* states)
 {
-    CSFML_CALL(renderWindow, draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount,
-               static_cast<sf::PrimitiveType>(type), convertRenderStates(states)));
+    CSFML_CALL(renderWindow,
+               draw(reinterpret_cast<const sf::Vertex*>(vertices),
+                    vertexCount,
+                    static_cast<sf::PrimitiveType>(type),
+                    convertRenderStates(states)));
 }
 
 
@@ -504,7 +526,10 @@ sfVector2i sfTouch_getPositionRenderWindow(unsigned int finger, const sfRenderWi
 
 
 ////////////////////////////////////////////////////////////
-bool sfRenderWindow_createVulkanSurface(sfRenderWindow* renderWindow, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator)
+bool sfRenderWindow_createVulkanSurface(sfRenderWindow*              renderWindow,
+                                        const VkInstance*            instance,
+                                        VkSurfaceKHR*                surface,
+                                        const VkAllocationCallbacks* allocator)
 {
     CSFML_CHECK_RETURN(instance, false);
     CSFML_CHECK_RETURN(surface, false);

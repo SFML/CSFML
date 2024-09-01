@@ -25,11 +25,13 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Internal.hpp>
+#include <CSFML/Network/PacketStruct.hpp>
 #include <CSFML/Network/TcpSocket.h>
 #include <CSFML/Network/TcpSocketStruct.hpp>
-#include <CSFML/Network/PacketStruct.hpp>
+
 #include <SFML/Network/IpAddress.hpp>
-#include <CSFML/Internal.hpp>
+
 #include <string.h>
 
 

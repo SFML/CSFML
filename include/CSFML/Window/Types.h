@@ -25,7 +25,7 @@
 #pragma once
 
 
-typedef struct sfContext sfContext;
-typedef struct sfCursor sfCursor;
-typedef struct sfWindow sfWindow;
+typedef struct sfContext    sfContext;
+typedef struct sfCursor     sfCursor;
+typedef struct sfWindow     sfWindow;
 typedef struct sfWindowBase sfWindowBase;

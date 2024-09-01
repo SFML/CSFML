@@ -25,9 +25,10 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Window/Joystick.h>
-#include <SFML/Window/Joystick.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/Window/Joystick.h>
+
+#include <SFML/Window/Joystick.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -70,13 +71,13 @@ sfJoystickIdentification sfJoystick_getIdentification(unsigned int joystick)
     static std::string name;
 
     sf::Joystick::Identification identification = sf::Joystick::getIdentification(joystick);
-    name = identification.name;
+    name                                        = identification.name;
 
     sfJoystickIdentification result;
 
-    result.name = name.c_str();
+    result.name      = name.c_str();
     result.productId = identification.productId;
-    result.vendorId = identification.vendorId;
+    result.vendorId  = identification.vendorId;
 
     return result;
 }

@@ -28,11 +28,13 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
+
+#include <CSFML/Audio/SoundChannel.h>
 #include <CSFML/Audio/SoundStatus.h>
 #include <CSFML/Audio/Types.h>
-#include <CSFML/Audio/SoundChannel.h>
 #include <CSFML/System/Time.h>
 #include <CSFML/System/Vector3.h>
+
 #include <stddef.h>
 
 
@@ -47,7 +49,7 @@ typedef struct
 } sfSoundStreamChunk;
 
 typedef bool (*sfSoundStreamGetDataCallback)(sfSoundStreamChunk*, void*); ///< Type of the callback used to get a sound stream data
-typedef void (*sfSoundStreamSeekCallback)(sfTime, void*);                 ///< Type of the callback used to seek in a sound stream
+typedef void (*sfSoundStreamSeekCallback)(sfTime, void*); ///< Type of the callback used to seek in a sound stream
 
 
 ////////////////////////////////////////////////////////////
@@ -64,13 +66,14 @@ typedef void (*sfSoundStreamSeekCallback)(sfTime, void*);                 ///< T
 /// \return A new sfSoundStream object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundStream* sfSoundStream_create(sfSoundStreamGetDataCallback onGetData,
-                                                    sfSoundStreamSeekCallback    onSeek,
-                                                    unsigned int                 channelCount,
-                                                    unsigned int                 sampleRate,
-                                                    sfSoundChannel*              channelMapData,
-                                                    size_t                       channelMapSize,
-                                                    void*                        userData);
+CSFML_AUDIO_API sfSoundStream* sfSoundStream_create(
+    sfSoundStreamGetDataCallback onGetData,
+    sfSoundStreamSeekCallback    onSeek,
+    unsigned int                 channelCount,
+    unsigned int                 sampleRate,
+    sfSoundChannel*              channelMapData,
+    size_t                       channelMapSize,
+    void*                        userData);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a sound stream

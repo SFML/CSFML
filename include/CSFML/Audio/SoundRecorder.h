@@ -28,14 +28,16 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
+
 #include <CSFML/Audio/Types.h>
 #include <CSFML/System/Time.h>
+
 #include <stddef.h>
 
 
-typedef bool (*sfSoundRecorderStartCallback)(void*);                           ///< Type of the callback used when starting a capture
+typedef bool (*sfSoundRecorderStartCallback)(void*); ///< Type of the callback used when starting a capture
 typedef bool (*sfSoundRecorderProcessCallback)(const int16_t*, size_t, void*); ///< Type of the callback used to process audio data
-typedef void (*sfSoundRecorderStopCallback)(void*);                            ///< Type of the callback used when stopping a capture
+typedef void (*sfSoundRecorderStopCallback)(void*); ///< Type of the callback used when stopping a capture
 
 
 ////////////////////////////////////////////////////////////

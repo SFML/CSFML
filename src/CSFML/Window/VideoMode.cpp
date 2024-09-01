@@ -25,10 +25,11 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Window/VideoMode.h>
-#include <CSFML/Window/ConvertVideoMode.hpp>
-#include <SFML/Window/VideoMode.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/Window/ConvertVideoMode.hpp>
+#include <CSFML/Window/VideoMode.h>
+
+#include <SFML/Window/VideoMode.hpp>
 
 
 ////////////////////////////////////////////////////////////

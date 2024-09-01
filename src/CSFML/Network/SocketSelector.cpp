@@ -25,12 +25,12 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Internal.hpp>
 #include <CSFML/Network/SocketSelector.h>
 #include <CSFML/Network/SocketSelectorStruct.hpp>
 #include <CSFML/Network/TcpListenerStruct.hpp>
 #include <CSFML/Network/TcpSocketStruct.hpp>
 #include <CSFML/Network/UdpSocketStruct.hpp>
-#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

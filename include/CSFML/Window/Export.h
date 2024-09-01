@@ -35,10 +35,10 @@
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_WINDOW_EXPORTS)
 
-    #define CSFML_WINDOW_API CSFML_API_EXPORT
+#define CSFML_WINDOW_API CSFML_API_EXPORT
 
 #else
 
-    #define CSFML_WINDOW_API CSFML_API_IMPORT
+#define CSFML_WINDOW_API CSFML_API_IMPORT
 
 #endif

@@ -28,12 +28,13 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
-#include <CSFML/Window/Event.h>
-#include <CSFML/Window/VideoMode.h>
-#include <CSFML/Window/WindowHandle.h>
-#include <CSFML/Window/Types.h>
-#include <CSFML/Window/Vulkan.h>
+
 #include <CSFML/System/Vector2.h>
+#include <CSFML/Window/Event.h>
+#include <CSFML/Window/Types.h>
+#include <CSFML/Window/VideoMode.h>
+#include <CSFML/Window/Vulkan.h>
+#include <CSFML/Window/WindowHandle.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -42,10 +43,10 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfNone         = 0,      ///< No border / title bar (this flag and all others are mutually exclusive)
-    sfTitlebar     = 1 << 0, ///< Title bar + fixed border
-    sfResize       = 1 << 1, ///< Titlebar + resizable border + maximize button
-    sfClose        = 1 << 2, ///< Titlebar + close button
+    sfNone     = 0,      ///< No border / title bar (this flag and all others are mutually exclusive)
+    sfTitlebar = 1 << 0, ///< Title bar + fixed border
+    sfResize   = 1 << 1, ///< Titlebar + resizable border + maximize button
+    sfClose    = 1 << 2, ///< Titlebar + close button
 
     sfDefaultStyle = sfTitlebar | sfResize | sfClose ///< Default window style
 } sfWindowStyle;
@@ -388,4 +389,7 @@ CSFML_WINDOW_API sfWindowHandle sfWindowBase_getNativeHandle(const sfWindowBase*
 /// \return True if surface creation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API bool sfWindowBase_createVulkanSurface(sfWindowBase* windowBase, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
+CSFML_WINDOW_API bool sfWindowBase_createVulkanSurface(sfWindowBase*                windowBase,
+                                                       const VkInstance*            instance,
+                                                       VkSurfaceKHR*                surface,
+                                                       const VkAllocationCallbacks* allocator);

@@ -28,10 +28,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/System/Vector2.h>
-
 
 
 ////////////////////////////////////////////////////////////
@@ -66,9 +66,8 @@ CSFML_GRAPHICS_API const sfTransform sfTransform_Identity;
 /// \return A new sfTransform object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfTransform sfTransform_fromMatrix(float a00, float a01, float a02,
-                                                      float a10, float a11, float a12,
-                                                      float a20, float a21, float a22);
+CSFML_GRAPHICS_API sfTransform
+    sfTransform_fromMatrix(float a00, float a01, float a02, float a10, float a11, float a12, float a20, float a21, float a22);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the 4x4 matrix of a transform

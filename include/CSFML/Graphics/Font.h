@@ -28,10 +28,12 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/FontInfo.h>
 #include <CSFML/Graphics/Glyph.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/System/InputStream.h>
+
 #include <stddef.h>
 
 
@@ -96,7 +98,8 @@ CSFML_GRAPHICS_API void sfFont_destroy(sfFont* font);
 /// \return The corresponding glyph
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness);
+CSFML_GRAPHICS_API sfGlyph
+    sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness);
 
 ////////////////////////////////////////////////////////////
 /// \brief Determine if this font has a glyph representing the requested code point

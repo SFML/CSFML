@@ -36,18 +36,18 @@
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_SYSTEM_WINDOWS)
 
-    // Window handle is HWND (HWND__*) on Windows
-    struct HWND__;
-    typedef struct HWND__* sfWindowHandle;
+// Window handle is HWND (HWND__*) on Windows
+struct HWND__;
+typedef struct HWND__* sfWindowHandle;
 
 #elif defined(CSFML_SYSTEM_LINUX) || defined(CSFML_SYSTEM_FREEBSD)
 
-    // Window handle is Window (unsigned long) on Unix - X11
-    typedef unsigned long sfWindowHandle;
+// Window handle is Window (unsigned long) on Unix - X11
+typedef unsigned long sfWindowHandle;
 
 #elif defined(CSFML_SYSTEM_MACOS)
 
-    // Window handle is NSWindow (void*) on Mac OS X - Cocoa
-    typedef void* sfWindowHandle;
+// Window handle is NSWindow (void*) on Mac OS X - Cocoa
+typedef void* sfWindowHandle;
 
 #endif

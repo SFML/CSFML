@@ -37,19 +37,19 @@ struct sfTexture
 {
     sfTexture()
     {
-        This = new sf::Texture;
+        This        = new sf::Texture;
         OwnInstance = true;
     }
 
     sfTexture(sf::Texture* texture)
     {
-        This = texture;
+        This        = texture;
         OwnInstance = false;
     }
 
     sfTexture(const sfTexture& texture)
     {
-        This = texture.This ? new sf::Texture(*texture.This) : nullptr;
+        This        = texture.This ? new sf::Texture(*texture.This) : nullptr;
         OwnInstance = true;
     }
 
@@ -60,5 +60,5 @@ struct sfTexture
     }
 
     sf::Texture* This;
-    bool OwnInstance;
+    bool         OwnInstance;
 };

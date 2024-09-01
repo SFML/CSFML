@@ -28,7 +28,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
-#include <CSFML/System.h>
 #include <CSFML/Network/Ftp.h>
 #include <CSFML/Network/Http.h>
 #include <CSFML/Network/IpAddress.h>
@@ -38,3 +37,4 @@
 #include <CSFML/Network/TcpListener.h>
 #include <CSFML/Network/TcpSocket.h>
 #include <CSFML/Network/UdpSocket.h>
+#include <CSFML/System.h>

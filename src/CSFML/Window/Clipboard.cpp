@@ -25,18 +25,20 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/System/String.hpp>
-#include <CSFML/Window/Clipboard.h>
-#include <SFML/Window/Clipboard.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/Window/Clipboard.h>
+
+#include <SFML/System/String.hpp>
+#include <SFML/Window/Clipboard.hpp>
+
 #include <string>
 
 
 namespace
 {
-    sf::String ClipboardString;
-    std::string ClipboardStringAnsi;
-}
+sf::String  ClipboardString;
+std::string ClipboardStringAnsi;
+} // namespace
 
 
 ////////////////////////////////////////////////////////////

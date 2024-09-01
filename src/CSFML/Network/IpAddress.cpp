@@ -26,31 +26,33 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/IpAddress.h>
+
 #include <SFML/Network/IpAddress.hpp>
+
 #include <string.h>
 
 
 namespace
 {
-    // Helper function for converting a SFML address to a CSFML one
-    sfIpAddress fromSFMLAddress(std::optional<sf::IpAddress> address)
+// Helper function for converting a SFML address to a CSFML one
+sfIpAddress fromSFMLAddress(std::optional<sf::IpAddress> address)
+{
+    sfIpAddress result = {0};
+
+    if (address)
     {
-        sfIpAddress result = {0};
-
-        if (address)
-        {
-            strncpy(result.address, address->toString().c_str(), 15);
-        }
-
-        return result;
+        strncpy(result.address, address->toString().c_str(), 15);
     }
 
-    // Helper function for converting a CSFML address to a SFML one
-    std::optional<sf::IpAddress> toSFMLAddress(sfIpAddress address)
-    {
-        return sf::IpAddress::resolve(address.address);
-    }
+    return result;
 }
+
+// Helper function for converting a CSFML address to a SFML one
+std::optional<sf::IpAddress> toSFMLAddress(sfIpAddress address)
+{
+    return sf::IpAddress::resolve(address.address);
+}
+} // namespace
 
 
 ////////////////////////////////////////////////////////////

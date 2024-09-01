@@ -28,8 +28,10 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/Export.h>
+
 #include <CSFML/Network/IpAddress.h>
 #include <CSFML/Network/Types.h>
+
 #include <stddef.h>
 
 
@@ -59,13 +61,13 @@ typedef enum
     sfFtpOpeningDataConnection       = 150, ///< File status ok, about to open data connection
 
     // 2xx: the requested action has been successfully completed
-    sfFtpOk                    = 200, ///< Command ok
-    sfFtpPointlessCommand      = 202, ///< Command not implemented
-    sfFtpSystemStatus          = 211, ///< System status, or system help reply
-    sfFtpDirectoryStatus       = 212, ///< Directory status
-    sfFtpFileStatus            = 213, ///< File status
-    sfFtpHelpMessage           = 214, ///< Help message
-    sfFtpSystemType            = 215, ///< NAME system type, where NAME is an official system name from the list in the Assigned Numbers document
+    sfFtpOk               = 200, ///< Command ok
+    sfFtpPointlessCommand = 202, ///< Command not implemented
+    sfFtpSystemStatus     = 211, ///< System status, or system help reply
+    sfFtpDirectoryStatus  = 212, ///< Directory status
+    sfFtpFileStatus       = 213, ///< File status
+    sfFtpHelpMessage      = 214, ///< Help message
+    sfFtpSystemType = 215, ///< NAME system type, where NAME is an official system name from the list in the Assigned Numbers document
     sfFtpServiceReady          = 220, ///< Service ready for new user
     sfFtpClosingConnection     = 221, ///< Service closing control connection
     sfFtpDataConnectionOpened  = 225, ///< Data connection open, no transfer in progress
@@ -88,7 +90,7 @@ typedef enum
     sfFtpTransferAborted           = 426, ///< Connection closed, transfer aborted
     sfFtpFileActionAborted         = 450, ///< Requested file action not taken
     sfFtpLocalError                = 451, ///< Requested action aborted, local error in processing
-    sfFtpInsufficientStorageSpace  = 452, ///< Requested action not taken; insufficient storage space in system, file unavailable
+    sfFtpInsufficientStorageSpace = 452, ///< Requested action not taken; insufficient storage space in system, file unavailable
 
     // 5xx: the command was not accepted and
     // the requested action did not take place
@@ -220,7 +222,7 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirec
 ///
 /// The returned const char* owns the string and must be freed to
 /// avoid memory leaks.
-/// 
+///
 /// \param ftpDirectoryResponse Ftp directory response
 ///
 /// \return Directory name
@@ -234,7 +236,7 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDir
 ///
 /// The returned const sfChar32* owns the string and must be freed to
 /// avoid memory leaks.
-/// 
+///
 /// \param ftpDirectoryResponse Ftp directory response
 ///
 /// \return Directory name
@@ -521,7 +523,12 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFi
 /// \return Server response to the request
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, bool append);
+CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(
+    sfFtp*            ftp,
+    const char*       localFile,
+    const char*       remotePath,
+    sfFtpTransferMode mode,
+    bool              append);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a command to the FTP server

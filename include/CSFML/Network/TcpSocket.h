@@ -28,10 +28,12 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/Export.h>
+
 #include <CSFML/Network/IpAddress.h>
 #include <CSFML/Network/SocketStatus.h>
 #include <CSFML/Network/Types.h>
 #include <CSFML/System/Time.h>
+
 #include <stddef.h>
 
 
@@ -133,7 +135,8 @@ CSFML_NETWORK_API unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* so
 /// \return Status code
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddress, unsigned short remotePort, sfTime timeout);
+CSFML_NETWORK_API sfSocketStatus
+    sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddress, unsigned short remotePort, sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Disconnect a TCP socket from its remote peer

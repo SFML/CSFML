@@ -25,9 +25,9 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Internal.hpp>
 #include <CSFML/Window/Context.h>
 #include <CSFML/Window/ContextStruct.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/Window/ConvertContextSettings.hpp>
 
 
@@ -53,10 +53,7 @@ bool sfContext_isExtensionAvailable(const char* name)
 
 
 ////////////////////////////////////////////////////////////
-bool sfContext_setActive(sfContext* context, bool active)
-{
-    CSFML_CALL_RETURN(context, setActive(active), false)
-}
+bool sfContext_setActive(sfContext* context, bool active){CSFML_CALL_RETURN(context, setActive(active), false)}
 
 
 ////////////////////////////////////////////////////////////

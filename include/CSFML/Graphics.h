@@ -28,7 +28,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
-#include <CSFML/Window.h>
 #include <CSFML/Graphics/BlendMode.h>
 #include <CSFML/Graphics/CircleShape.h>
 #include <CSFML/Graphics/Color.h>
@@ -54,3 +53,4 @@
 #include <CSFML/Graphics/VertexArray.h>
 #include <CSFML/Graphics/VertexBuffer.h>
 #include <CSFML/Graphics/View.h>
+#include <CSFML/Window.h>

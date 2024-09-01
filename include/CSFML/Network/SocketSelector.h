@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/Export.h>
+
 #include <CSFML/Network/Types.h>
 #include <CSFML/System/Time.h>
 

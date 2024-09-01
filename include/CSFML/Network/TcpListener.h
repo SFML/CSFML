@@ -28,8 +28,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/Export.h>
-#include <CSFML/Network/SocketStatus.h>
+
 #include <CSFML/Network/IpAddress.h>
+#include <CSFML/Network/SocketStatus.h>
 #include <CSFML/Network/Types.h>
 
 

@@ -28,8 +28,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
-#include <CSFML/Window/Types.h>
+
 #include <CSFML/System/Vector2.h>
+#include <CSFML/Window/Types.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -38,11 +39,11 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfMouseLeft,       ///< The left mouse button
-    sfMouseRight,      ///< The right mouse button
-    sfMouseMiddle,     ///< The middle (wheel) mouse button
-    sfMouseXButton1,   ///< The first extra mouse button
-    sfMouseXButton2,   ///< The second extra mouse button
+    sfMouseLeft,     ///< The left mouse button
+    sfMouseRight,    ///< The right mouse button
+    sfMouseMiddle,   ///< The middle (wheel) mouse button
+    sfMouseXButton1, ///< The first extra mouse button
+    sfMouseXButton2, ///< The second extra mouse button
 
     sfMouseButtonCount ///< Keep last -- the total number of mouse buttons
 } sfMouseButton;

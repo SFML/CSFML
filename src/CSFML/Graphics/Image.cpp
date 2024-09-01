@@ -25,14 +25,14 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Image.h>
-#include <CSFML/Graphics/ImageStruct.hpp>
+#include <CSFML/CallbackStream.hpp>
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/System/BufferStruct.hpp>
+#include <CSFML/Graphics/Image.h>
+#include <CSFML/Graphics/ImageStruct.hpp>
 #include <CSFML/Internal.hpp>
-#include <CSFML/CallbackStream.hpp>
+#include <CSFML/System/BufferStruct.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -84,7 +84,7 @@ sfImage* sfImage_createFromStream(sfInputStream* stream)
     CSFML_CHECK_RETURN(stream, nullptr);
 
     CallbackStream sfmlStream(stream);
-    sf::Image image;
+    sf::Image      image;
     if (!image.loadFromStream(sfmlStream))
         return nullptr;
 
@@ -123,7 +123,7 @@ bool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* fo
 
     auto data = image->This.saveToMemory(format);
 
-    if (data) 
+    if (data)
     {
         output->buffer = std::move(*data);
         return true;

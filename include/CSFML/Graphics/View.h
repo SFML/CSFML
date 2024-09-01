@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/System/Vector2.h>

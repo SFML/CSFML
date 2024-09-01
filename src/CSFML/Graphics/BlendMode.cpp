@@ -29,25 +29,29 @@
 
 
 ////////////////////////////////////////////////////////////
-const sfBlendMode sfBlendAlpha = { sfBlendFactorSrcAlpha, sfBlendFactorOneMinusSrcAlpha, sfBlendEquationAdd,
-                                 sfBlendFactorOne, sfBlendFactorOneMinusSrcAlpha, sfBlendEquationAdd };
+const sfBlendMode sfBlendAlpha = {sfBlendFactorSrcAlpha,
+                                  sfBlendFactorOneMinusSrcAlpha,
+                                  sfBlendEquationAdd,
+                                  sfBlendFactorOne,
+                                  sfBlendFactorOneMinusSrcAlpha,
+                                  sfBlendEquationAdd};
 
 ////////////////////////////////////////////////////////////
-const sfBlendMode sfBlendAdd = { sfBlendFactorSrcAlpha, sfBlendFactorOne, sfBlendEquationAdd,
-                                 sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationAdd };
+const sfBlendMode sfBlendAdd =
+    {sfBlendFactorSrcAlpha, sfBlendFactorOne, sfBlendEquationAdd, sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationAdd};
 
 ////////////////////////////////////////////////////////////
-const sfBlendMode sfBlendMultiply = { sfBlendFactorDstColor, sfBlendFactorZero, sfBlendEquationAdd,
-                                      sfBlendFactorDstColor, sfBlendFactorZero, sfBlendEquationAdd };
+const sfBlendMode sfBlendMultiply =
+    {sfBlendFactorDstColor, sfBlendFactorZero, sfBlendEquationAdd, sfBlendFactorDstColor, sfBlendFactorZero, sfBlendEquationAdd};
 
 ////////////////////////////////////////////////////////////
-const sfBlendMode sfBlendMin = { sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMin,
-                                 sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMin };
+const sfBlendMode sfBlendMin =
+    {sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMin, sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMin};
 
 ////////////////////////////////////////////////////////////
-const sfBlendMode sfBlendMax = { sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMax,
-                                 sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMax };
+const sfBlendMode sfBlendMax =
+    {sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMax, sfBlendFactorOne, sfBlendFactorOne, sfBlendEquationMax};
 
 ////////////////////////////////////////////////////////////
-const sfBlendMode sfBlendNone = { sfBlendFactorOne, sfBlendFactorZero, sfBlendEquationAdd,
-                                  sfBlendFactorOne, sfBlendFactorZero, sfBlendEquationAdd };
+const sfBlendMode sfBlendNone =
+    {sfBlendFactorOne, sfBlendFactorZero, sfBlendEquationAdd, sfBlendFactorOne, sfBlendFactorZero, sfBlendEquationAdd};

@@ -28,11 +28,13 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/Color.h>
 #include <CSFML/Graphics/Rect.h>
-#include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/Transform.h>
+#include <CSFML/Graphics/Types.h>
 #include <CSFML/System/Vector2.h>
+
 #include <stddef.h>
 
 
@@ -51,7 +53,7 @@ typedef enum
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new text
-/// 
+///
 /// \param font Font used to draw the string
 ///
 /// \return A new sfText object, or NULL if it failed
@@ -277,7 +279,7 @@ CSFML_GRAPHICS_API void sfText_setFont(sfText* text, const sfFont* font);
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfText_setCharacterSize(sfText* text, unsigned int size);
 
-    ////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////
 /// \brief Set the line spacing factor
 ///
 /// The default spacing between lines is defined by the font.
@@ -376,7 +378,7 @@ CSFML_GRAPHICS_API const char* sfText_getString(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the string of a text (returns a unicode string)
-/// 
+///
 /// \param text Text object
 ///
 /// \return String as UTF-32

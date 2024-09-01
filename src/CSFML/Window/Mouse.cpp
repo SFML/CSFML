@@ -25,12 +25,13 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Window/Mouse.h>
 #include <CSFML/Window/WindowBaseStruct.hpp>
 #include <CSFML/Window/WindowStruct.hpp>
+
 #include <SFML/Window/Mouse.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////

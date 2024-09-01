@@ -28,9 +28,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/PrimitiveType.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/Vertex.h>
+
 #include <stddef.h>
 
 
@@ -128,7 +130,10 @@ CSFML_GRAPHICS_API unsigned int sfVertexBuffer_getVertexCount(const sfVertexBuff
 /// \return true if the update was successful
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API bool sfVertexBuffer_update(sfVertexBuffer* vertexBuffer, const sfVertex* vertices, unsigned int vertexCount, unsigned int offset);
+CSFML_GRAPHICS_API bool sfVertexBuffer_update(sfVertexBuffer* vertexBuffer,
+                                              const sfVertex* vertices,
+                                              unsigned int    vertexCount,
+                                              unsigned int    offset);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy the contents of another buffer into this buffer

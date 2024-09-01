@@ -35,10 +35,10 @@
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_AUDIO_EXPORTS)
 
-    #define CSFML_AUDIO_API CSFML_API_EXPORT
+#define CSFML_AUDIO_API CSFML_API_EXPORT
 
 #else
 
-    #define CSFML_AUDIO_API CSFML_API_IMPORT
+#define CSFML_AUDIO_API CSFML_API_IMPORT
 
 #endif

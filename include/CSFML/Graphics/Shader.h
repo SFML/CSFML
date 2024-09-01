@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/Color.h>
 #include <CSFML/Graphics/Glsl.h>
 #include <CSFML/Graphics/Transform.h>
@@ -35,6 +36,7 @@
 #include <CSFML/System/InputStream.h>
 #include <CSFML/System/Vector2.h>
 #include <CSFML/System/Vector3.h>
+
 #include <stddef.h>
 
 
@@ -56,7 +58,9 @@
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* geometryShaderFilename, const char* fragmentShaderFilename);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromFile(const char* vertexShaderFilename,
+                                                     const char* geometryShaderFilename,
+                                                     const char* fragmentShaderFilename);
 
 ////////////////////////////////////////////////////////////
 /// \brief Load the vertex, geometry and fragment shaders from source code in memory
@@ -76,7 +80,9 @@ CSFML_GRAPHICS_API sfShader* sfShader_createFromFile(const char* vertexShaderFil
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geometryShader, const char* fragmentShader);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromMemory(const char* vertexShader,
+                                                       const char* geometryShader,
+                                                       const char* fragmentShader);
 
 ////////////////////////////////////////////////////////////
 /// \brief Load the vertex, geometry and fragment shaders from custom streams
@@ -96,7 +102,9 @@ CSFML_GRAPHICS_API sfShader* sfShader_createFromMemory(const char* vertexShader,
 /// \return A new sfShader object, or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* geometryShaderStream, sfInputStream* fragmentShaderStream);
+CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream,
+                                                       sfInputStream* geometryShaderStream,
+                                                       sfInputStream* fragmentShaderStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing shader

@@ -27,8 +27,8 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Music.h>
 #include <CSFML/Audio/MusicStruct.hpp>
-#include <CSFML/System/ConvertVector3.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector3.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -65,7 +65,7 @@ sfMusic* sfMusic_createFromStream(sfInputStream* stream)
     CSFML_CHECK_RETURN(stream, nullptr);
 
     sfMusic* music = new sfMusic;
-    music->Stream = CallbackStream(stream);
+    music->Stream  = CallbackStream(stream);
     if (!music->This.openFromStream(music->Stream))
     {
         delete music;
@@ -126,8 +126,9 @@ sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music)
 ////////////////////////////////////////////////////////////
 void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints)
 {
-    CSFML_CALL(music, setLoopPoints(sf::Music::TimeSpan({ sf::microseconds(timePoints.offset.microseconds),
-                                                          sf::microseconds(timePoints.length.microseconds)})));
+    CSFML_CALL(music,
+               setLoopPoints(sf::Music::TimeSpan(
+                   {sf::microseconds(timePoints.offset.microseconds), sf::microseconds(timePoints.length.microseconds)})));
 }
 
 

@@ -6,8 +6,8 @@
 int main(void)
 {
     // Create the main window
-    const sfVideoMode mode = {{800, 600}, 32};
-    sfRenderWindow* window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, sfWindowed, NULL);
+    const sfVideoMode mode   = {{800, 600}, 32};
+    sfRenderWindow*   window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, sfWindowed, NULL);
     if (!window)
         return EXIT_FAILURE;
 
@@ -18,7 +18,7 @@ int main(void)
         sfRenderWindow_destroy(window);
         return EXIT_FAILURE;
     }
-    sfSprite* sprite = sfSprite_create(texture);
+    sfSprite*        sprite         = sfSprite_create(texture);
     const sfVector2f spritePosition = {200, 200};
     sfSprite_setPosition(sprite, spritePosition);
 

@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/SoundChannel.h>
+
 #include <SFML/Audio/SoundStream.hpp>
 
 
@@ -37,8 +38,7 @@
 ////////////////////////////////////////////////////////////
 class sfSoundStreamImpl : public sf::SoundStream
 {
-public :
-
+public:
     sfSoundStreamImpl(sfSoundStreamGetDataCallback onGetData,
                       sfSoundStreamSeekCallback    onSeek,
                       unsigned int                 channelCount,
@@ -47,8 +47,8 @@ public :
                       size_t                       channelMapSize,
                       void*                        userData) :
     myGetDataCallback(onGetData),
-    mySeekCallback   (onSeek),
-    myUserData       (userData)
+    mySeekCallback(onSeek),
+    myUserData(userData)
     {
         std::vector<sf::SoundChannel> channelMap(channelMapSize);
         for (std::size_t i = 0; i < channelMap.size(); ++i)
@@ -56,12 +56,11 @@ public :
         initialize(channelCount, sampleRate, channelMap);
     }
 
-private :
-
+private:
     bool onGetData(Chunk& data) override
     {
         sfSoundStreamChunk chunk = {nullptr, 0};
-        bool ok = myGetDataCallback(&chunk, myUserData);
+        bool               ok    = myGetDataCallback(&chunk, myUserData);
 
         data.samples     = chunk.samples;
         data.sampleCount = chunk.sampleCount;

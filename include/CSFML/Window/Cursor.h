@@ -27,8 +27,9 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/System/Vector2.h>
 #include <CSFML/Window/Export.h>
+
+#include <CSFML/System/Vector2.h>
 #include <CSFML/Window/Types.h>
 
 
@@ -78,14 +79,14 @@ typedef enum
     sfCursorSizeRight,              ///< Right arrow cursor on Linux, same as SizeHorizontal on other platforms
     sfCursorSizeTop,                ///< Up arrow cursor on Linux, same as SizeVertical on other platforms
     sfCursorSizeBottom,             ///< Down arrow cursor on Linux, same as SizeVertical on other platforms
-    sfCursorSizeTopLeft,            ///< Top-left arrow cursor on Linux, same as SizeTopLeftBottomRight on other platforms
-    sfCursorSizeBottomRight,        ///< Bottom-right arrow cursor on Linux, same as SizeTopLeftBottomRight on other platforms
-    sfCursorSizeBottomLeft,         ///< Bottom-left arrow cursor on Linux, same as SizeBottomLeftTopRight on other platforms
-    sfCursorSizeTopRight,           ///< Top-right arrow cursor on Linux, same as SizeBottomLeftTopRight on other platforms
-    sfCursorSizeAll,                ///< Combination of SizeHorizontal and SizeVertical
-    sfCursorCross,                  ///< Crosshair cursor
-    sfCursorHelp,                   ///< Help cursor
-    sfCursorNotAllowed              ///< Action not allowed cursor
+    sfCursorSizeTopLeft,     ///< Top-left arrow cursor on Linux, same as SizeTopLeftBottomRight on other platforms
+    sfCursorSizeBottomRight, ///< Bottom-right arrow cursor on Linux, same as SizeTopLeftBottomRight on other platforms
+    sfCursorSizeBottomLeft,  ///< Bottom-left arrow cursor on Linux, same as SizeBottomLeftTopRight on other platforms
+    sfCursorSizeTopRight,    ///< Top-right arrow cursor on Linux, same as SizeBottomLeftTopRight on other platforms
+    sfCursorSizeAll,         ///< Combination of SizeHorizontal and SizeVertical
+    sfCursorCross,           ///< Crosshair cursor
+    sfCursorHelp,            ///< Help cursor
+    sfCursorNotAllowed       ///< Action not allowed cursor
 } sfCursorType;
 
 

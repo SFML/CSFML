@@ -25,15 +25,16 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Text.h>
-#include <CSFML/Graphics/TextStruct.hpp>
-#include <CSFML/Graphics/Font.h>
-#include <SFML/Graphics/Color.hpp>
-#include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/Graphics/Font.h>
+#include <CSFML/Graphics/Text.h>
+#include <CSFML/Graphics/TextStruct.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
+
+#include <SFML/Graphics/Color.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -41,7 +42,7 @@ sfText* sfText_create(const sfFont* font)
 {
     CSFML_CHECK_RETURN(font, nullptr);
 
-    return new sfText{ sf::Text{font->This}, font, {}, {}, {} };
+    return new sfText{sf::Text{font->This}, font, {}, {}, {}};
 }
 
 
@@ -286,7 +287,6 @@ float sfText_getLineSpacing(const sfText* text)
 {
     CSFML_CALL_RETURN(text, getLineSpacing(), 1);
 }
-
 
 
 ////////////////////////////////////////////////////////////

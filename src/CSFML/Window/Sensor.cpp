@@ -25,10 +25,11 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Window/Sensor.h>
-#include <SFML/Window/Sensor.hpp>
-#include <CSFML/System/ConvertVector3.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector3.hpp>
+#include <CSFML/Window/Sensor.h>
+
+#include <SFML/Window/Sensor.hpp>
 
 
 ////////////////////////////////////////////////////////////

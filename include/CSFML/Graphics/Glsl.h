@@ -27,8 +27,8 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Transform.h>
 #include <CSFML/Graphics/Color.h>
+#include <CSFML/Graphics/Transform.h>
 #include <CSFML/System/Vector2.h>
 #include <CSFML/System/Vector3.h>
 

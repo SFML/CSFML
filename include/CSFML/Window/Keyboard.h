@@ -143,7 +143,7 @@ typedef enum
     sfKeyF15,          ///< The F15 key
     sfKeyPause,        ///< The Pause key
 
-    sfKeyCount,      ///< Keep last -- the total number of keyboard keys
+    sfKeyCount, ///< Keep last -- the total number of keyboard keys
 } sfKeyCode;
 
 
@@ -157,118 +157,118 @@ typedef enum
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfScanUnknown = -1,       //!< Represents any scancode not present in this enum
-    sfScanA = 0,              //!< Keyboard a and A key
-    sfScanB,                  //!< Keyboard b and B key
-    sfScanC,                  //!< Keyboard c and C key
-    sfScanD,                  //!< Keyboard d and D key
-    sfScanE,                  //!< Keyboard e and E key
-    sfScanF,                  //!< Keyboard f and F key
-    sfScanG,                  //!< Keyboard g and G key
-    sfScanH,                  //!< Keyboard h and H key
-    sfScanI,                  //!< Keyboard i and I key
-    sfScanJ,                  //!< Keyboard j and J key
-    sfScanK,                  //!< Keyboard k and K key
-    sfScanL,                  //!< Keyboard l and L key
-    sfScanM,                  //!< Keyboard m and M key
-    sfScanN,                  //!< Keyboard n and N key
-    sfScanO,                  //!< Keyboard o and O key
-    sfScanP,                  //!< Keyboard p and P key
-    sfScanQ,                  //!< Keyboard q and Q key
-    sfScanR,                  //!< Keyboard r and R key
-    sfScanS,                  //!< Keyboard s and S key
-    sfScanT,                  //!< Keyboard t and T key
-    sfScanU,                  //!< Keyboard u and U key
-    sfScanV,                  //!< Keyboard v and V key
-    sfScanW,                  //!< Keyboard w and W key
-    sfScanX,                  //!< Keyboard x and X key
-    sfScanY,                  //!< Keyboard y and Y key
-    sfScanZ,                  //!< Keyboard z and Z key
-    sfScanNum1,               //!< Keyboard 1 and ! key
-    sfScanNum2,               //!< Keyboard 2 and @ key
-    sfScanNum3,               //!< Keyboard 3 and # key
-    sfScanNum4,               //!< Keyboard 4 and $ key
-    sfScanNum5,               //!< Keyboard 5 and % key
-    sfScanNum6,               //!< Keyboard 6 and ^ key
-    sfScanNum7,               //!< Keyboard 7 and & key
-    sfScanNum8,               //!< Keyboard 8 and * key
-    sfScanNum9,               //!< Keyboard 9 and ) key
-    sfScanNum0,               //!< Keyboard 0 and ) key
-    sfScanEnter,              //!< Keyboard Enter/Return key
-    sfScanEscape,             //!< Keyboard Escape key
-    sfScanBackspace,          //!< Keyboard Backspace key
-    sfScanTab,                //!< Keyboard Tab key
-    sfScanSpace,              //!< Keyboard Space key
-    sfScanHyphen,             //!< Keyboard - and _ key
-    sfScanEqual,              //!< Keyboard = and +
-    sfScanLBracket,           //!< Keyboard [ and { key
-    sfScanRBracket,           //!< Keyboard ] and } key
+    sfScanUnknown = -1, //!< Represents any scancode not present in this enum
+    sfScanA       = 0,  //!< Keyboard a and A key
+    sfScanB,            //!< Keyboard b and B key
+    sfScanC,            //!< Keyboard c and C key
+    sfScanD,            //!< Keyboard d and D key
+    sfScanE,            //!< Keyboard e and E key
+    sfScanF,            //!< Keyboard f and F key
+    sfScanG,            //!< Keyboard g and G key
+    sfScanH,            //!< Keyboard h and H key
+    sfScanI,            //!< Keyboard i and I key
+    sfScanJ,            //!< Keyboard j and J key
+    sfScanK,            //!< Keyboard k and K key
+    sfScanL,            //!< Keyboard l and L key
+    sfScanM,            //!< Keyboard m and M key
+    sfScanN,            //!< Keyboard n and N key
+    sfScanO,            //!< Keyboard o and O key
+    sfScanP,            //!< Keyboard p and P key
+    sfScanQ,            //!< Keyboard q and Q key
+    sfScanR,            //!< Keyboard r and R key
+    sfScanS,            //!< Keyboard s and S key
+    sfScanT,            //!< Keyboard t and T key
+    sfScanU,            //!< Keyboard u and U key
+    sfScanV,            //!< Keyboard v and V key
+    sfScanW,            //!< Keyboard w and W key
+    sfScanX,            //!< Keyboard x and X key
+    sfScanY,            //!< Keyboard y and Y key
+    sfScanZ,            //!< Keyboard z and Z key
+    sfScanNum1,         //!< Keyboard 1 and ! key
+    sfScanNum2,         //!< Keyboard 2 and @ key
+    sfScanNum3,         //!< Keyboard 3 and # key
+    sfScanNum4,         //!< Keyboard 4 and $ key
+    sfScanNum5,         //!< Keyboard 5 and % key
+    sfScanNum6,         //!< Keyboard 6 and ^ key
+    sfScanNum7,         //!< Keyboard 7 and & key
+    sfScanNum8,         //!< Keyboard 8 and * key
+    sfScanNum9,         //!< Keyboard 9 and ) key
+    sfScanNum0,         //!< Keyboard 0 and ) key
+    sfScanEnter,        //!< Keyboard Enter/Return key
+    sfScanEscape,       //!< Keyboard Escape key
+    sfScanBackspace,    //!< Keyboard Backspace key
+    sfScanTab,          //!< Keyboard Tab key
+    sfScanSpace,        //!< Keyboard Space key
+    sfScanHyphen,       //!< Keyboard - and _ key
+    sfScanEqual,        //!< Keyboard = and +
+    sfScanLBracket,     //!< Keyboard [ and { key
+    sfScanRBracket,     //!< Keyboard ] and } key
     // For US keyboards mapped to key 29 (Microsoft Keyboard Scan Code Specification)
     // For Non-US keyboards mapped to key 42 (Microsoft Keyboard Scan Code Specification)
     // Typical language mappings: Belg:£µ` FrCa:<>} Dan:*' Dutch:`´ Fren:µ* Ger:'# Ital:§ù LatAm:[}` Nor:*@ Span:ç} Swed:*' Swiss:$£} UK:~# Brazil:}]
-    sfScanBackslash,          //!< Keyboard \ and | key OR various keys for Non-US keyboards
-    sfScanSemicolon,          //!< Keyboard ; and : key
-    sfScanApostrophe,         //!< Keyboard ' and " key
-    sfScanGrave,              //!< Keyboard ` and ~ key
-    sfScanComma,              //!< Keyboard , and < key
-    sfScanPeriod,             //!< Keyboard . and > key
-    sfScanSlash,              //!< Keyboard / and ? key
-    sfScanF1,                 //!< Keyboard F1 key
-    sfScanF2,                 //!< Keyboard F2 key
-    sfScanF3,                 //!< Keyboard F3 key
-    sfScanF4,                 //!< Keyboard F4 key
-    sfScanF5,                 //!< Keyboard F5 key
-    sfScanF6,                 //!< Keyboard F6 key
-    sfScanF7,                 //!< Keyboard F7 key
-    sfScanF8,                 //!< Keyboard F8 key
-    sfScanF9,                 //!< Keyboard F9 key
-    sfScanF10,                //!< Keyboard F10 key
-    sfScanF11,                //!< Keyboard F11 key
-    sfScanF12,                //!< Keyboard F12 key
-    sfScanF13,                //!< Keyboard F13 key
-    sfScanF14,                //!< Keyboard F14 key
-    sfScanF15,                //!< Keyboard F15 key
-    sfScanF16,                //!< Keyboard F16 key
-    sfScanF17,                //!< Keyboard F17 key
-    sfScanF18,                //!< Keyboard F18 key
-    sfScanF19,                //!< Keyboard F19 key
-    sfScanF20,                //!< Keyboard F20 key
-    sfScanF21,                //!< Keyboard F21 key
-    sfScanF22,                //!< Keyboard F22 key
-    sfScanF23,                //!< Keyboard F23 key
-    sfScanF24,                //!< Keyboard F24 key
-    sfScanCapsLock,           //!< Keyboard Caps %Lock key
-    sfScanPrintScreen,        //!< Keyboard Print Screen key
-    sfScanScrollLock,         //!< Keyboard Scroll %Lock key
-    sfScanPause,              //!< Keyboard Pause key
-    sfScanInsert,             //!< Keyboard Insert key
-    sfScanHome,               //!< Keyboard Home key
-    sfScanPageUp,             //!< Keyboard Page Up key
-    sfScanDelete,             //!< Keyboard Delete Forward key
-    sfScanEnd,                //!< Keyboard End key
-    sfScanPageDown,           //!< Keyboard Page Down key
-    sfScanRight,              //!< Keyboard Right Arrow key
-    sfScanLeft,               //!< Keyboard Left Arrow key
-    sfScanDown,               //!< Keyboard Down Arrow key
-    sfScanUp,                 //!< Keyboard Up Arrow key
-    sfScanNumLock,            //!< Keypad Num %Lock and Clear key
-    sfScanNumpadDivide,       //!< Keypad / key
-    sfScanNumpadMultiply,     //!< Keypad * key
-    sfScanNumpadMinus,        //!< Keypad - key
-    sfScanNumpadPlus,         //!< Keypad + key
-    sfScanNumpadEqual,        //!< keypad = key
-    sfScanNumpadEnter,        //!< Keypad Enter/Return key
-    sfScanNumpadDecimal,      //!< Keypad . and Delete key
-    sfScanNumpad1,            //!< Keypad 1 and End key
-    sfScanNumpad2,            //!< Keypad 2 and Down Arrow key
-    sfScanNumpad3,            //!< Keypad 3 and Page Down key
-    sfScanNumpad4,            //!< Keypad 4 and Left Arrow key
-    sfScanNumpad5,            //!< Keypad 5 key
-    sfScanNumpad6,            //!< Keypad 6 and Right Arrow key
-    sfScanNumpad7,            //!< Keypad 7 and Home key
-    sfScanNumpad8,            //!< Keypad 8 and Up Arrow key
-    sfScanNumpad9,            //!< Keypad 9 and Page Up key
-    sfScanNumpad0,            //!< Keypad 0 and Insert key
+    sfScanBackslash,      //!< Keyboard \ and | key OR various keys for Non-US keyboards
+    sfScanSemicolon,      //!< Keyboard ; and : key
+    sfScanApostrophe,     //!< Keyboard ' and " key
+    sfScanGrave,          //!< Keyboard ` and ~ key
+    sfScanComma,          //!< Keyboard , and < key
+    sfScanPeriod,         //!< Keyboard . and > key
+    sfScanSlash,          //!< Keyboard / and ? key
+    sfScanF1,             //!< Keyboard F1 key
+    sfScanF2,             //!< Keyboard F2 key
+    sfScanF3,             //!< Keyboard F3 key
+    sfScanF4,             //!< Keyboard F4 key
+    sfScanF5,             //!< Keyboard F5 key
+    sfScanF6,             //!< Keyboard F6 key
+    sfScanF7,             //!< Keyboard F7 key
+    sfScanF8,             //!< Keyboard F8 key
+    sfScanF9,             //!< Keyboard F9 key
+    sfScanF10,            //!< Keyboard F10 key
+    sfScanF11,            //!< Keyboard F11 key
+    sfScanF12,            //!< Keyboard F12 key
+    sfScanF13,            //!< Keyboard F13 key
+    sfScanF14,            //!< Keyboard F14 key
+    sfScanF15,            //!< Keyboard F15 key
+    sfScanF16,            //!< Keyboard F16 key
+    sfScanF17,            //!< Keyboard F17 key
+    sfScanF18,            //!< Keyboard F18 key
+    sfScanF19,            //!< Keyboard F19 key
+    sfScanF20,            //!< Keyboard F20 key
+    sfScanF21,            //!< Keyboard F21 key
+    sfScanF22,            //!< Keyboard F22 key
+    sfScanF23,            //!< Keyboard F23 key
+    sfScanF24,            //!< Keyboard F24 key
+    sfScanCapsLock,       //!< Keyboard Caps %Lock key
+    sfScanPrintScreen,    //!< Keyboard Print Screen key
+    sfScanScrollLock,     //!< Keyboard Scroll %Lock key
+    sfScanPause,          //!< Keyboard Pause key
+    sfScanInsert,         //!< Keyboard Insert key
+    sfScanHome,           //!< Keyboard Home key
+    sfScanPageUp,         //!< Keyboard Page Up key
+    sfScanDelete,         //!< Keyboard Delete Forward key
+    sfScanEnd,            //!< Keyboard End key
+    sfScanPageDown,       //!< Keyboard Page Down key
+    sfScanRight,          //!< Keyboard Right Arrow key
+    sfScanLeft,           //!< Keyboard Left Arrow key
+    sfScanDown,           //!< Keyboard Down Arrow key
+    sfScanUp,             //!< Keyboard Up Arrow key
+    sfScanNumLock,        //!< Keypad Num %Lock and Clear key
+    sfScanNumpadDivide,   //!< Keypad / key
+    sfScanNumpadMultiply, //!< Keypad * key
+    sfScanNumpadMinus,    //!< Keypad - key
+    sfScanNumpadPlus,     //!< Keypad + key
+    sfScanNumpadEqual,    //!< keypad = key
+    sfScanNumpadEnter,    //!< Keypad Enter/Return key
+    sfScanNumpadDecimal,  //!< Keypad . and Delete key
+    sfScanNumpad1,        //!< Keypad 1 and End key
+    sfScanNumpad2,        //!< Keypad 2 and Down Arrow key
+    sfScanNumpad3,        //!< Keypad 3 and Page Down key
+    sfScanNumpad4,        //!< Keypad 4 and Left Arrow key
+    sfScanNumpad5,        //!< Keypad 5 key
+    sfScanNumpad6,        //!< Keypad 6 and Right Arrow key
+    sfScanNumpad7,        //!< Keypad 7 and Home key
+    sfScanNumpad8,        //!< Keypad 8 and Up Arrow key
+    sfScanNumpad9,        //!< Keypad 9 and Page Up key
+    sfScanNumpad0,        //!< Keypad 0 and Insert key
     // For US keyboards doesn't exist
     // For Non-US keyboards mapped to key 45 (Microsoft Keyboard Scan Code Specification)
     // Typical language mappings: Belg:<\> FrCa:«°» Dan:<\> Dutch:]|[ Fren:<> Ger:<|> Ital:<> LatAm:<> Nor:<> Span:<> Swed:<|> Swiss:<\> UK:\| Brazil: \|.
@@ -311,7 +311,7 @@ typedef enum
     sfScanLaunchMail,         //!< Keyboard Launch Mail key
     sfScanLaunchMediaSelect,  //!< Keyboard Launch Media Select key
 
-    sfScancodeCount           //!< Keep last -- the total number of scancodes
+    sfScancodeCount //!< Keep last -- the total number of scancodes
 } sfScancode;
 
 

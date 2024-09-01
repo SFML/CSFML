@@ -27,19 +27,20 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Color.h>
 #include <CSFML/Internal.hpp>
+
 #include <algorithm>
 
 
 ////////////////////////////////////////////////////////////
-sfColor sfBlack       = sfColor_fromRGB(  0,   0,   0);
+sfColor sfBlack       = sfColor_fromRGB(0, 0, 0);
 sfColor sfWhite       = sfColor_fromRGB(255, 255, 255);
-sfColor sfRed         = sfColor_fromRGB(255,   0,   0);
-sfColor sfGreen       = sfColor_fromRGB(  0, 255,   0);
-sfColor sfBlue        = sfColor_fromRGB(  0,   0, 255);
-sfColor sfYellow      = sfColor_fromRGB(255, 255,   0);
-sfColor sfMagenta     = sfColor_fromRGB(255,   0, 255);
-sfColor sfCyan        = sfColor_fromRGB(  0, 255, 255);
-sfColor sfTransparent = sfColor_fromRGBA( 0,   0,   0, 0);
+sfColor sfRed         = sfColor_fromRGB(255, 0, 0);
+sfColor sfGreen       = sfColor_fromRGB(0, 255, 0);
+sfColor sfBlue        = sfColor_fromRGB(0, 0, 255);
+sfColor sfYellow      = sfColor_fromRGB(255, 255, 0);
+sfColor sfMagenta     = sfColor_fromRGB(255, 0, 255);
+sfColor sfCyan        = sfColor_fromRGB(0, 255, 255);
+sfColor sfTransparent = sfColor_fromRGBA(0, 0, 0, 0);
 
 
 ////////////////////////////////////////////////////////////
@@ -66,9 +67,9 @@ sfColor sfColor_fromRGBA(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha
 ////////////////////////////////////////////////////////////
 sfColor sfColor_fromInteger(uint32_t color)
 {
-    uint8_t red =   static_cast<uint8_t>((color & 0xff000000) >> 24);
+    uint8_t red   = static_cast<uint8_t>((color & 0xff000000) >> 24);
     uint8_t green = static_cast<uint8_t>((color & 0x00ff0000) >> 16);
-    uint8_t blue =  static_cast<uint8_t>((color & 0x0000ff00) >> 8);
+    uint8_t blue  = static_cast<uint8_t>((color & 0x0000ff00) >> 8);
     uint8_t alpha = static_cast<uint8_t>((color & 0x000000ff) >> 0);
 
     return sfColor_fromRGBA(red, green, blue, alpha);

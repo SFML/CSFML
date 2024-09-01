@@ -27,8 +27,10 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/System/String.hpp>
 #include <CSFML/Config.h>
+
+#include <SFML/System/String.hpp>
+
 #include <string.h>
 
 
@@ -38,7 +40,7 @@
 inline sfChar32* copyToChar32(const sf::String& str)
 {
     std::size_t byteCount = sizeof(sfChar32) * str.getSize();
-    sfChar32* utf32 = static_cast<sfChar32*>(malloc(byteCount + sizeof(sfChar32)));
+    sfChar32*   utf32     = static_cast<sfChar32*>(malloc(byteCount + sizeof(sfChar32)));
     memcpy(utf32, str.getData(), byteCount);
     utf32[str.getSize()] = 0;
 

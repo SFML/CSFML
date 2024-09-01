@@ -28,10 +28,12 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
-#include <CSFML/Audio/Types.h>
+
 #include <CSFML/Audio/SoundChannel.h>
+#include <CSFML/Audio/Types.h>
 #include <CSFML/System/InputStream.h>
 #include <CSFML/System/Time.h>
+
 #include <stddef.h>
 
 
@@ -94,12 +96,13 @@ CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* str
 /// \return A new sfSoundBuffer object (NULL if failed)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(const int16_t*  samples,
-                                                               uint64_t        sampleCount,
-                                                               unsigned int    channelCount,
-                                                               unsigned int    sampleRate,
-                                                               sfSoundChannel* channelMapData,
-                                                               size_t          channelMapSize);
+CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_createFromSamples(
+    const int16_t*  samples,
+    uint64_t        sampleCount,
+    unsigned int    channelCount,
+    unsigned int    sampleRate,
+    sfSoundChannel* channelMapData,
+    size_t          channelMapSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound buffer by copying an existing one

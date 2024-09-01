@@ -25,20 +25,19 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Shape.h>
-#include <CSFML/Graphics/ShapeStruct.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/Graphics/Shape.h>
+#include <CSFML/Graphics/ShapeStruct.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
+
+#include <SFML/Graphics/Color.hpp>
 
 
 ////////////////////////////////////////////////////////////
-sfShape* sfShape_create(sfShapeGetPointCountCallback getPointCount,
-                        sfShapeGetPointCallback getPoint,
-                        void* userData)
+sfShape* sfShape_create(sfShapeGetPointCountCallback getPointCount, sfShapeGetPointCallback getPoint, void* userData)
 {
     return new sfShape(getPointCount, getPoint, userData);
 }

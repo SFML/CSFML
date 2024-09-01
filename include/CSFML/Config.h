@@ -28,8 +28,8 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -44,9 +44,9 @@
 // Check if we need to mark functions as extern "C"
 ////////////////////////////////////////////////////////////
 #ifdef __cplusplus
-    #define CSFML_EXTERN_C extern "C"
+#define CSFML_EXTERN_C extern "C"
 #else
-    #define CSFML_EXTERN_C extern
+#define CSFML_EXTERN_C extern
 #endif
 
 
@@ -55,28 +55,28 @@
 ////////////////////////////////////////////////////////////
 #if defined(_WIN32) || defined(__WIN32__)
 
-    // Windows
-    #define CSFML_SYSTEM_WINDOWS
+// Windows
+#define CSFML_SYSTEM_WINDOWS
 
 #elif defined(linux) || defined(__linux)
 
-    // Linux
-    #define CSFML_SYSTEM_LINUX
+// Linux
+#define CSFML_SYSTEM_LINUX
 
 #elif defined(__APPLE__) || defined(MACOSX) || defined(macintosh) || defined(Macintosh)
 
-    // MacOS
-    #define CSFML_SYSTEM_MACOS
+// MacOS
+#define CSFML_SYSTEM_MACOS
 
 #elif defined(__FreeBSD__) || defined(__FreeBSD_kernel__)
 
-    // FreeBSD
-    #define CSFML_SYSTEM_FREEBSD
+// FreeBSD
+#define CSFML_SYSTEM_FREEBSD
 
 #else
 
-    // Unsupported system
-    #error This operating system is not supported by SFML library
+// Unsupported system
+#error This operating system is not supported by SFML library
 
 #endif
 
@@ -86,21 +86,21 @@
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_SYSTEM_WINDOWS)
 
-    // Windows compilers need specific (and different) keywords for export and import
-    #define CSFML_API_EXPORT extern "C" __declspec(dllexport)
-    #define CSFML_API_IMPORT CSFML_EXTERN_C __declspec(dllimport)
+// Windows compilers need specific (and different) keywords for export and import
+#define CSFML_API_EXPORT extern "C" __declspec(dllexport)
+#define CSFML_API_IMPORT CSFML_EXTERN_C __declspec(dllimport)
 
-    // For Visual C++ compilers, we also need to turn off this annoying C4251 warning
-    #ifdef _MSC_VER
+// For Visual C++ compilers, we also need to turn off this annoying C4251 warning
+#ifdef _MSC_VER
 
-        #pragma warning(disable : 4251)
+#pragma warning(disable : 4251)
 
-    #endif
+#endif
 
 #else // Linux, FreeBSD, Mac OS X
 
-    #define CSFML_API_EXPORT extern "C" __attribute__ ((__visibility__ ("default")))
-    #define CSFML_API_IMPORT CSFML_EXTERN_C __attribute__ ((__visibility__ ("default")))
+#define CSFML_API_EXPORT extern "C" __attribute__((__visibility__("default")))
+#define CSFML_API_IMPORT CSFML_EXTERN_C __attribute__((__visibility__("default")))
 
 #endif
 
@@ -117,27 +117,27 @@
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_NO_DEPRECATED_WARNINGS)
 
-    // User explicitly requests to disable deprecation warnings
-    #define CSFML_DEPRECATED
+// User explicitly requests to disable deprecation warnings
+#define CSFML_DEPRECATED
 
 #elif defined(_MSC_VER)
 
-    // Microsoft C++ compiler
-    // Note: On newer MSVC versions, using deprecated functions causes a compiler error. In order to
-    // trigger a warning instead of an error, the compiler flag /sdl- (instead of /sdl) must be specified.
-    #define CSFML_DEPRECATED __declspec(deprecated)
+// Microsoft C++ compiler
+// Note: On newer MSVC versions, using deprecated functions causes a compiler error. In order to
+// trigger a warning instead of an error, the compiler flag /sdl- (instead of /sdl) must be specified.
+#define CSFML_DEPRECATED __declspec(deprecated)
 
 #elif defined(__GNUC__)
 
-    // g++ and Clang
-    #define CSFML_DEPRECATED __attribute__ ((deprecated))
+// g++ and Clang
+#define CSFML_DEPRECATED __attribute__((deprecated))
 
 #else
 
-    // Other compilers are not supported, leave class or function as-is.
-    // With a bit of luck, the #pragma directive works, otherwise users get a warning (no error!) for unrecognized #pragma.
-    #pragma message("CSFML_DEPRECATED is not supported for your compiler, please contact the CSFML team")
-    #define CSFML_DEPRECATED
+// Other compilers are not supported, leave class or function as-is.
+// With a bit of luck, the #pragma directive works, otherwise users get a warning (no error!) for unrecognized #pragma.
+#pragma message("CSFML_DEPRECATED is not supported for your compiler, please contact the CSFML team")
+#define CSFML_DEPRECATED
 
 #endif
 
