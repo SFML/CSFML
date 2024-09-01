@@ -46,7 +46,7 @@
 #ifdef __cplusplus
 #define CSFML_EXTERN_C extern "C"
 #else
-#define CSFML_EXTERN_C extern
+#define CSFML_EXTERN_C
 #endif
 
 
