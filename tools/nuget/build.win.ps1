@@ -141,7 +141,7 @@ New-Item -ItemType Directory lib > $null
 $CSFMLLibDir = (Get-Item lib).FullName; # The directory where the final CSFML dlls are located
 
 cmake `
-    "-DSFML_DIR=$SFMLBuiltDir" `
+    "-DSFML_ROOT=$SFMLBuiltDir" `
     '-DCSFML_LINK_SFML_STATICALLY=1' `
     "-DCMAKE_LIBRARY_PATH=$SFMLExtLibs" `
     `

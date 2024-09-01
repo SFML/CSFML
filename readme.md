@@ -27,7 +27,7 @@ Of course, you can also find the CSFML API documentation in the SDK.
 
 ## Building
 
-Set `SFML_DIR` to a directory containing the `SFMLConfig.cmake` file, usually located at `lib/cmake/SFML`.
+Set `SFML_ROOT` to a directory containing the installation of SFML.
 
 ## Contribute
 

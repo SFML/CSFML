@@ -371,7 +371,7 @@ build_csfml () # $1: 'clang' => clang & libc++
           -D "CMAKE_OSX_DEPLOYMENT_TARGET:STRING=$target" \
           -D "CMAKE_OSX_SYSROOT:STRING=$sdk" \
           -D "BUILD_DOC:BOOL=$doc" \
-          -D "SFML_DIR:PATH=$sfml_package1070/Frameworks/SFML.framework/Versions/$gittag/Resources/CMake" \
+          -D "SFML_ROOT:PATH=$sfml_package1070/Frameworks/SFML.framework/Versions/$gittag/Resources/CMake" \
           "$codedir"
     assert $? "CMake failed"
 
