@@ -27,8 +27,8 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Sound.h>
 #include <CSFML/Audio/SoundStruct.hpp>
-#include <CSFML/System/ConvertVector3.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector3.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -36,7 +36,7 @@ sfSound* sfSound_create(const sfSoundBuffer* buffer)
 {
     CSFML_CHECK_RETURN(buffer, nullptr);
 
-    return new sfSound{ sf::Sound{ buffer->This }, buffer };
+    return new sfSound{sf::Sound{buffer->This}, buffer};
 }
 
 

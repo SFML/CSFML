@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
+
 #include <CSFML/Window/Joystick.h>
 #include <CSFML/Window/Keyboard.h>
 #include <CSFML/Window/Mouse.h>
@@ -63,7 +64,7 @@ typedef enum
     sfEvtTouchEnded,             ///< A touch event ended (data in event.touch)
     sfEvtSensorChanged,          ///< A sensor value changed (data in event.sensor)
 
-    sfEvtCount                   ///< Keep last -- the total number of event types
+    sfEvtCount ///< Keep last -- the total number of event types
 } sfEventType;
 
 

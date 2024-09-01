@@ -25,14 +25,15 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/ConvertEvent.hpp>
+#include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Window/ConvertVideoMode.hpp>
+#include <CSFML/Window/CursorStruct.hpp>
 #include <CSFML/Window/WindowBase.h>
 #include <CSFML/Window/WindowBaseStruct.hpp>
-#include <CSFML/Internal.hpp>
-#include <CSFML/Window/CursorStruct.hpp>
-#include <CSFML/Window/ConvertVideoMode.hpp>
+
 #include <SFML/Window/VideoMode.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/ConvertEvent.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -249,7 +250,10 @@ sfWindowHandle sfWindowBase_getNativeHandle(const sfWindowBase* windowBase)
 }
 
 ////////////////////////////////////////////////////////////
-bool sfWindowBase_createVulkanSurface(sfWindowBase* windowBase, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator)
+bool sfWindowBase_createVulkanSurface(sfWindowBase*                windowBase,
+                                      const VkInstance*            instance,
+                                      VkSurfaceKHR*                surface,
+                                      const VkAllocationCallbacks* allocator)
 {
     CSFML_CHECK_RETURN(instance, false);
     CSFML_CHECK_RETURN(surface, false);

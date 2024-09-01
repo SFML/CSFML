@@ -29,17 +29,18 @@
 #include <CSFML/Graphics/CircleShapeStruct.hpp>
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <SFML/Graphics/Color.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
+
+#include <SFML/Graphics/Color.hpp>
 
 
 ////////////////////////////////////////////////////////////
 sfCircleShape* sfCircleShape_create()
 {
     sfCircleShape* shape = new sfCircleShape;
-    shape->Texture = nullptr;
+    shape->Texture       = nullptr;
 
     return shape;
 }

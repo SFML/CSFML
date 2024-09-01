@@ -25,18 +25,20 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/CallbackStream.hpp>
+#include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/Shader.h>
 #include <CSFML/Graphics/ShaderStruct.hpp>
 #include <CSFML/Graphics/TextureStruct.hpp>
-#include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Internal.hpp>
-#include <CSFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////
-sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* geometryShaderFilename, const char* fragmentShaderFilename)
+sfShader* sfShader_createFromFile(const char* vertexShaderFilename,
+                                  const char* geometryShaderFilename,
+                                  const char* fragmentShaderFilename)
 {
-    bool success = false;
+    bool       success = false;
     sf::Shader shader;
     if (vertexShaderFilename || geometryShaderFilename || fragmentShaderFilename)
     {
@@ -83,7 +85,7 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename, const char* 
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geometryShader, const char* fragmentShader)
 {
-    bool success = false;
+    bool       success = false;
     sf::Shader shader;
     if (vertexShader || geometryShader || fragmentShader)
     {
@@ -128,9 +130,11 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
 
 
 ////////////////////////////////////////////////////////////
-sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream, sfInputStream* geometryShaderStream, sfInputStream* fragmentShaderStream)
+sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream,
+                                    sfInputStream* geometryShaderStream,
+                                    sfInputStream* fragmentShaderStream)
 {
-    bool success = false;
+    bool       success = false;
     sf::Shader shader;
     if (vertexShaderStream || geometryShaderStream || fragmentShaderStream)
     {

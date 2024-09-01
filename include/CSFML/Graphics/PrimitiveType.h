@@ -45,5 +45,5 @@ typedef enum
     sfLineStrip,     ///< List of connected lines, a point uses the previous point to form a line
     sfTriangles,     ///< List of individual triangles
     sfTriangleStrip, ///< List of connected triangles, a point uses the two previous points to form a triangle
-    sfTriangleFan,   ///< List of connected triangles, a point uses the common center and the previous point to form a triangle
+    sfTriangleFan, ///< List of connected triangles, a point uses the common center and the previous point to form a triangle
 } sfPrimitiveType;

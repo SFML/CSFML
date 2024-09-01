@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/Export.h>
+
 #include <CSFML/Network/Types.h>
 #include <CSFML/System/Time.h>
 
@@ -53,18 +54,18 @@ typedef enum
 typedef enum
 {
     // 2xx: success
-    sfHttpOk             = 200, ///< Most common code returned when operation was successful
-    sfHttpCreated        = 201, ///< The resource has successfully been created
-    sfHttpAccepted       = 202, ///< The request has been accepted, but will be processed later by the server
-    sfHttpNoContent      = 204, ///< Sent when the server didn't send any data in return
-    sfHttpResetContent   = 205, ///< The server informs the client that it should clear the view (form) that caused the request to be sent
+    sfHttpOk        = 200, ///< Most common code returned when operation was successful
+    sfHttpCreated   = 201, ///< The resource has successfully been created
+    sfHttpAccepted  = 202, ///< The request has been accepted, but will be processed later by the server
+    sfHttpNoContent = 204, ///< Sent when the server didn't send any data in return
+    sfHttpResetContent = 205, ///< The server informs the client that it should clear the view (form) that caused the request to be sent
     sfHttpPartialContent = 206, ///< The server has sent a part of the resource, as a response to a partial GET request
 
     // 3xx: redirection
     sfHttpMultipleChoices  = 300, ///< The requested page can be accessed from several locations
     sfHttpMovedPermanently = 301, ///< The requested page has permanently moved to a new location
     sfHttpMovedTemporarily = 302, ///< The requested page has temporarily moved to a new location
-    sfHttpNotModified      = 304, ///< For conditional requests, means the requested page hasn't changed and doesn't need to be refreshed
+    sfHttpNotModified = 304, ///< For conditional requests, means the requested page hasn't changed and doesn't need to be refreshed
 
     // 4xx: client error
     sfHttpBadRequest          = 400, ///< The server couldn't understand the request (syntax error)

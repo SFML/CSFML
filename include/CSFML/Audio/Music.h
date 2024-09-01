@@ -28,11 +28,13 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
+
 #include <CSFML/Audio/SoundStatus.h>
 #include <CSFML/Audio/Types.h>
 #include <CSFML/System/InputStream.h>
 #include <CSFML/System/Time.h>
 #include <CSFML/System/Vector3.h>
+
 #include <stddef.h>
 
 

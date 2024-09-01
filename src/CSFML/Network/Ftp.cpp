@@ -25,13 +25,15 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Char32.hpp>
+#include <CSFML/Internal.hpp>
 #include <CSFML/Network/Ftp.h>
 #include <CSFML/Network/FtpStruct.hpp>
+
 #include <SFML/Network/IpAddress.hpp>
 #include <SFML/System/String.hpp>
-#include <CSFML/Internal.hpp>
+
 #include <string.h>
-#include <CSFML/Char32.hpp>
 
 
 ////////////////////////////////////////////////////////////

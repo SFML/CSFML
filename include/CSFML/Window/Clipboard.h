@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
+
 #include <CSFML/Window/Types.h>
 
 

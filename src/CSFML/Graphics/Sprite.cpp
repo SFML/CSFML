@@ -25,15 +25,16 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Sprite.h>
-#include <CSFML/Graphics/SpriteStruct.hpp>
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/Graphics/Image.hpp>
-#include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/Graphics/Sprite.h>
+#include <CSFML/Graphics/SpriteStruct.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
+
+#include <SFML/Graphics/Color.hpp>
+#include <SFML/Graphics/Image.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -42,7 +43,7 @@ sfSprite* sfSprite_create(const sfTexture* texture)
     CSFML_CHECK_RETURN(texture, nullptr);
     CSFML_CHECK_RETURN(texture->This, nullptr);
 
-    return new sfSprite{ sf::Sprite{*texture->This}, texture, {}, {} };
+    return new sfSprite{sf::Sprite{*texture->This}, texture, {}, {}};
 }
 
 

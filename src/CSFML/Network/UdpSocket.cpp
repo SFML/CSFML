@@ -25,11 +25,13 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Internal.hpp>
+#include <CSFML/Network/PacketStruct.hpp>
 #include <CSFML/Network/UdpSocket.h>
 #include <CSFML/Network/UdpSocketStruct.hpp>
-#include <CSFML/Network/PacketStruct.hpp>
+
 #include <SFML/Network/IpAddress.hpp>
-#include <CSFML/Internal.hpp>
+
 #include <string.h>
 
 
@@ -108,13 +110,18 @@ sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t si
 
 
 ////////////////////////////////////////////////////////////
-sfSocketStatus sfUdpSocket_receive(sfUdpSocket* socket, void* data, size_t size, size_t* received, sfIpAddress* remoteAddress, unsigned short* remotePort)
+sfSocketStatus sfUdpSocket_receive(sfUdpSocket*    socket,
+                                   void*           data,
+                                   size_t          size,
+                                   size_t*         received,
+                                   sfIpAddress*    remoteAddress,
+                                   unsigned short* remotePort)
 {
     CSFML_CHECK_RETURN(socket, sfSocketError);
 
     std::optional<sf::IpAddress> address;
-    unsigned short port;
-    std::size_t sizeReceived;
+    unsigned short               port;
+    std::size_t                  sizeReceived;
 
     sf::Socket::Status status = socket->This.receive(data, size, sizeReceived, address, port);
     if (status != sf::Socket::Status::Done)
@@ -165,7 +172,7 @@ sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, 
     CSFML_CHECK_RETURN(packet, sfSocketError);
 
     std::optional<sf::IpAddress> address;
-    unsigned short port;
+    unsigned short               port;
 
     sf::Socket::Status status = socket->This.receive(packet->This, address, port);
     if (status != sf::Socket::Status::Done)

@@ -69,12 +69,12 @@ typedef enum
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    sfBlendFactor colorSrcFactor;  ///< Source blending factor for the color channels
-    sfBlendFactor colorDstFactor;  ///< Destination blending factor for the color channels
-    sfBlendEquation colorEquation; ///< Blending equation for the color channels
-    sfBlendFactor alphaSrcFactor;  ///< Source blending factor for the alpha channel
-    sfBlendFactor alphaDstFactor;  ///< Destination blending factor for the alpha channel
-    sfBlendEquation alphaEquation; ///< Blending equation for the alpha channel
+    sfBlendFactor   colorSrcFactor; ///< Source blending factor for the color channels
+    sfBlendFactor   colorDstFactor; ///< Destination blending factor for the color channels
+    sfBlendEquation colorEquation;  ///< Blending equation for the color channels
+    sfBlendFactor   alphaSrcFactor; ///< Source blending factor for the alpha channel
+    sfBlendFactor   alphaDstFactor; ///< Destination blending factor for the alpha channel
+    sfBlendEquation alphaEquation;  ///< Blending equation for the alpha channel
 } sfBlendMode;
 
 

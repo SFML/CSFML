@@ -28,12 +28,13 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
+
+#include <CSFML/System/Vector2.h>
 #include <CSFML/Window/Event.h>
+#include <CSFML/Window/Types.h>
 #include <CSFML/Window/VideoMode.h>
 #include <CSFML/Window/WindowBase.h>
 #include <CSFML/Window/WindowHandle.h>
-#include <CSFML/Window/Types.h>
-#include <CSFML/System/Vector2.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -42,7 +43,7 @@
 ////////////////////////////////////////////////////////////
 typedef enum
 {
-    sfContextDefault = 0,      ///< Non-debug, compatibility context (this and the core attribute are mutually exclusive)
+    sfContextDefault = 0, ///< Non-debug, compatibility context (this and the core attribute are mutually exclusive)
     sfContextCore    = 1 << 0, ///< Core attribute
     sfContextDebug   = 1 << 2  ///< Debug attribute
 } sfContextAttribute;
@@ -86,7 +87,11 @@ typedef struct
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state, const sfContextSettings* settings);
+CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode              mode,
+                                           const char*              title,
+                                           uint32_t                 style,
+                                           sfWindowState            state,
+                                           const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new window (with a UTF-32 title)
@@ -110,7 +115,12 @@ CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode mode, const char* title, 
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings);
+CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(
+    sfVideoMode              mode,
+    const sfChar32*          title,
+    uint32_t                 style,
+    sfWindowState            state,
+    const sfContextSettings* settings);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control
@@ -485,4 +495,7 @@ CSFML_WINDOW_API sfWindowHandle sfWindow_getNativeHandle(const sfWindow* window)
 /// \return True if surface creation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API bool sfWindow_createVulkanSurface(sfWindow* window, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator);
+CSFML_WINDOW_API bool sfWindow_createVulkanSurface(sfWindow*                    window,
+                                                   const VkInstance*            instance,
+                                                   VkSurfaceKHR*                surface,
+                                                   const VkAllocationCallbacks* allocator);

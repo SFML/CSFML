@@ -25,11 +25,11 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/CallbackStream.hpp>
+#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/Font.h>
 #include <CSFML/Graphics/FontStruct.hpp>
-#include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Internal.hpp>
-#include <CSFML/CallbackStream.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -164,7 +164,7 @@ void sfFont_setSmooth(sfFont* font, bool smooth)
 
 
 ////////////////////////////////////////////////////////////
-bool sfFont_isSmooth(const sfFont *font)
+bool sfFont_isSmooth(const sfFont* font)
 {
     return font->This.isSmooth();
 }

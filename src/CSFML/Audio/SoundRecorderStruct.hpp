@@ -27,8 +27,9 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Audio/SoundRecorder.hpp>
 #include <CSFML/Audio/SoundRecorder.h>
+
+#include <SFML/Audio/SoundRecorder.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -37,21 +38,19 @@
 ////////////////////////////////////////////////////////////
 class sfSoundRecorderImpl : public sf::SoundRecorder
 {
-public :
-
+public:
     sfSoundRecorderImpl(sfSoundRecorderStartCallback   onStart,
                         sfSoundRecorderProcessCallback onProcess,
                         sfSoundRecorderStopCallback    onStop,
                         void*                          userData) :
-    myStartCallback  (onStart),
+    myStartCallback(onStart),
     myProcessCallback(onProcess),
-    myStopCallback   (onStop),
-    myUserData       (userData)
+    myStopCallback(onStop),
+    myUserData(userData)
     {
     }
 
-private :
-
+private:
     bool onStart() override
     {
         if (myStartCallback)
@@ -95,5 +94,5 @@ struct sfSoundRecorder
     }
 
     sfSoundRecorderImpl This;
-    std::string DeviceName;
+    std::string         DeviceName;
 };

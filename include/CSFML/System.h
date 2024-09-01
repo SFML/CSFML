@@ -29,6 +29,7 @@
 ////////////////////////////////////////////////////////////
 
 #include <CSFML/Config.h>
+
 #include <CSFML/System/Buffer.h>
 #include <CSFML/System/Clock.h>
 #include <CSFML/System/InputStream.h>

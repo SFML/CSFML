@@ -27,10 +27,12 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Text.hpp>
 #include <CSFML/Graphics/FontStruct.hpp>
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/Transform.h>
+
+#include <SFML/Graphics/Text.hpp>
+
 #include <string>
 
 

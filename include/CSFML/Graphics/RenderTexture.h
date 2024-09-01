@@ -28,14 +28,16 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/Color.h>
-#include <CSFML/Graphics/Rect.h>
-#include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/PrimitiveType.h>
+#include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/RenderStates.h>
+#include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/Vertex.h>
-#include <CSFML/Window/Window.h>
 #include <CSFML/System/Vector2.h>
+#include <CSFML/Window/Window.h>
+
 #include <stddef.h>
 
 
@@ -171,7 +173,8 @@ CSFML_GRAPHICS_API sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* 
 /// \return The converted point, in "world" units
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfRenderTexture_mapPixelToCoords(const sfRenderTexture* renderTexture, sfVector2i point, const sfView* view);
+CSFML_GRAPHICS_API sfVector2f
+    sfRenderTexture_mapPixelToCoords(const sfRenderTexture* renderTexture, sfVector2i point, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Convert a point from world coordinates to texture coordinates
@@ -197,7 +200,8 @@ CSFML_GRAPHICS_API sfVector2f sfRenderTexture_mapPixelToCoords(const sfRenderTex
 /// \return The converted point, in target coordinates (pixels)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2i sfRenderTexture_mapCoordsToPixel(const sfRenderTexture* renderTexture, sfVector2f point, const sfView* view);
+CSFML_GRAPHICS_API sfVector2i
+    sfRenderTexture_mapCoordsToPixel(const sfRenderTexture* renderTexture, sfVector2f point, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw a drawable object to the render-target
@@ -207,14 +211,30 @@ CSFML_GRAPHICS_API sfVector2i sfRenderTexture_mapCoordsToPixel(const sfRenderTex
 /// \param states        Render states to use for drawing (NULL to use the default states)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_drawSprite(sfRenderTexture* renderTexture, const sfSprite* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_drawText(sfRenderTexture* renderTexture, const sfText* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_drawShape(sfRenderTexture* renderTexture, const sfShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_drawCircleShape(sfRenderTexture* renderTexture, const sfCircleShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_drawConvexShape(sfRenderTexture* renderTexture, const sfConvexShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_drawRectangleShape(sfRenderTexture* renderTexture, const sfRectangleShape* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_drawVertexArray(sfRenderTexture* renderTexture, const sfVertexArray* object, const sfRenderStates* states);
-CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBuffer(sfRenderTexture* renderTexture, const sfVertexBuffer* object, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawSprite(sfRenderTexture*      renderTexture,
+                                                   const sfSprite*       object,
+                                                   const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawText(sfRenderTexture*      renderTexture,
+                                                 const sfText*         object,
+                                                 const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawShape(sfRenderTexture*      renderTexture,
+                                                  const sfShape*        object,
+                                                  const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawCircleShape(sfRenderTexture*      renderTexture,
+                                                        const sfCircleShape*  object,
+                                                        const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawConvexShape(sfRenderTexture*      renderTexture,
+                                                        const sfConvexShape*  object,
+                                                        const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawRectangleShape(sfRenderTexture*        renderTexture,
+                                                           const sfRectangleShape* object,
+                                                           const sfRenderStates*   states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawVertexArray(sfRenderTexture*      renderTexture,
+                                                        const sfVertexArray*  object,
+                                                        const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBuffer(sfRenderTexture*      renderTexture,
+                                                         const sfVertexBuffer* object,
+                                                         const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by a vertex buffer.
@@ -226,9 +246,12 @@ CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBuffer(sfRenderTexture* render
 /// \param states        Render states to use for drawing
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBufferRange(sfRenderTexture* renderTexture,
-                                                              const sfVertexBuffer* object, size_t firstVertex,
-                                                              size_t vertexCount, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBufferRange(
+    sfRenderTexture*      renderTexture,
+    const sfVertexBuffer* object,
+    size_t                firstVertex,
+    size_t                vertexCount,
+    const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Draw primitives defined by an array of vertices to a render texture
@@ -240,9 +263,12 @@ CSFML_GRAPHICS_API void sfRenderTexture_drawVertexBufferRange(sfRenderTexture* r
 /// \param states        Render states to use for drawing (NULL to use the default states)
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_drawPrimitives(sfRenderTexture* renderTexture,
-                                                       const sfVertex* vertices, size_t vertexCount,
-                                                       sfPrimitiveType type, const sfRenderStates* states);
+CSFML_GRAPHICS_API void sfRenderTexture_drawPrimitives(
+    sfRenderTexture*      renderTexture,
+    const sfVertex*       vertices,
+    size_t                vertexCount,
+    sfPrimitiveType       type,
+    const sfRenderStates* states);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save the current OpenGL render states and matrices

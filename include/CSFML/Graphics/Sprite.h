@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/BlendMode.h>
 #include <CSFML/Graphics/Color.h>
 #include <CSFML/Graphics/Rect.h>
@@ -38,7 +39,7 @@
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sprite
-/// 
+///
 /// \param texture Source texture
 ///
 /// \return A new sfSprite object, or NULL if it failed

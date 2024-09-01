@@ -25,10 +25,10 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Internal.hpp>
 #include <CSFML/Network/TcpListener.h>
 #include <CSFML/Network/TcpListenerStruct.hpp>
 #include <CSFML/Network/TcpSocketStruct.hpp>
-#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -88,7 +88,7 @@ sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** conne
     CSFML_CHECK_RETURN(listener, sfSocketError);
     CSFML_CHECK_RETURN(connected, sfSocketError);
 
-    *connected = new sfTcpSocket;
+    *connected            = new sfTcpSocket;
     sfSocketStatus status = static_cast<sfSocketStatus>(listener->This.accept((*connected)->This));
 
     if (status != sfSocketDone)

@@ -27,11 +27,12 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/RenderStates.h>
-#include <SFML/Graphics/RenderStates.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
-#include <CSFML/Graphics/TextureStruct.hpp>
+#include <CSFML/Graphics/RenderStates.h>
 #include <CSFML/Graphics/ShaderStruct.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
+
+#include <SFML/Graphics/RenderStates.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -45,12 +46,12 @@
     sf::RenderStates renderStates;
     renderStates.blendMode.colorSrcFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.colorSrcFactor);
     renderStates.blendMode.colorDstFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.colorDstFactor);
-    renderStates.blendMode.colorEquation = static_cast<sf::BlendMode::Equation>(states->blendMode.colorEquation);
+    renderStates.blendMode.colorEquation  = static_cast<sf::BlendMode::Equation>(states->blendMode.colorEquation);
     renderStates.blendMode.alphaSrcFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaSrcFactor);
     renderStates.blendMode.alphaDstFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaDstFactor);
-    renderStates.blendMode.alphaEquation = static_cast<sf::BlendMode::Equation>(states->blendMode.alphaEquation);
-    renderStates.transform = convertTransform(states->transform);
-    renderStates.texture = states->texture ? states->texture->This : nullptr;
-    renderStates.shader = states->shader ? &states->shader->This : nullptr;
+    renderStates.blendMode.alphaEquation  = static_cast<sf::BlendMode::Equation>(states->blendMode.alphaEquation);
+    renderStates.transform                = convertTransform(states->transform);
+    renderStates.texture                  = states->texture ? states->texture->This : nullptr;
+    renderStates.shader                   = states->shader ? &states->shader->This : nullptr;
     return renderStates;
 }

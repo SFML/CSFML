@@ -25,12 +25,13 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Window/Touch.h>
-#include <SFML/Window/Touch.hpp>
 #include <CSFML/Window/WindowBaseStruct.hpp>
 #include <CSFML/Window/WindowStruct.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/Internal.hpp>
+
+#include <SFML/Window/Touch.hpp>
 
 
 ////////////////////////////////////////////////////////////

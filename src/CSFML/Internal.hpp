@@ -27,107 +27,101 @@
 ////////////////////////////////////////////////////////////
 // Define macros to check the validity of CSFML objects in debug run
 ////////////////////////////////////////////////////////////
-#include <SFML/System/Err.hpp>
 #include <CSFML/Config.h>
+
+#include <SFML/System/Err.hpp>
+
 #include <ostream>
 
 #ifndef NDEBUG
 
-    #define CSFML_CHECK(object_) \
-        do \
-        { \
-            if ((object_) == nullptr) \
-            { \
-                sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
-                return; \
-            } \
-        } \
-        while (0)
-
-    #define CSFML_CALL(object_, function_) \
-        do \
-        { \
-            if (object_) \
-            { \
-                ((object_)->This.function_); \
-            } \
-            else \
-            { \
-                sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
-            } \
-        } \
-        while (0)
-
-    #define CSFML_CALL_PTR(object_, function_) \
-        do \
-        { \
-            if (object_) \
-            { \
-                ((object_)->This->function_); \
-            } \
-            else \
-            { \
-                sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
-            } \
-        } \
-        while (0)
-
-    #define CSFML_CHECK_RETURN(object_, default_) \
-        do \
-        { \
-            if ((object_) == nullptr) \
-            { \
-                sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
-                return default_; \
-            } \
-        } \
-        while (0)
-
-    #define CSFML_CALL_RETURN(object_, function_, default_) \
-        if (object_) \
-        { \
-            return ((object_)->This.function_); \
-        } \
-        else \
-        { \
+#define CSFML_CHECK(object_)                                                         \
+    do                                                                               \
+    {                                                                                \
+        if ((object_) == nullptr)                                                    \
+        {                                                                            \
             sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
-            return default_; \
-        }
+            return;                                                                  \
+        }                                                                            \
+    } while (0)
 
-    #define CSFML_CALL_PTR_RETURN(object_, function_, default_) \
-        if (object_) \
-        { \
-            return ((object_)->This->function_); \
-        } \
-        else \
-        { \
+#define CSFML_CALL(object_, function_)                                               \
+    do                                                                               \
+    {                                                                                \
+        if (object_)                                                                 \
+        {                                                                            \
+            ((object_)->This.function_);                                             \
+        }                                                                            \
+        else                                                                         \
+        {                                                                            \
             sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
-            return default_; \
-        }
+        }                                                                            \
+    } while (0)
+
+#define CSFML_CALL_PTR(object_, function_)                                           \
+    do                                                                               \
+    {                                                                                \
+        if (object_)                                                                 \
+        {                                                                            \
+            ((object_)->This->function_);                                            \
+        }                                                                            \
+        else                                                                         \
+        {                                                                            \
+            sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
+        }                                                                            \
+    } while (0)
+
+#define CSFML_CHECK_RETURN(object_, default_)                                        \
+    do                                                                               \
+    {                                                                                \
+        if ((object_) == nullptr)                                                    \
+        {                                                                            \
+            sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
+            return default_;                                                         \
+        }                                                                            \
+    } while (0)
+
+#define CSFML_CALL_RETURN(object_, function_, default_)                          \
+    if (object_)                                                                 \
+    {                                                                            \
+        return ((object_)->This.function_);                                      \
+    }                                                                            \
+    else                                                                         \
+    {                                                                            \
+        sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
+        return default_;                                                         \
+    }
+
+#define CSFML_CALL_PTR_RETURN(object_, function_, default_)                      \
+    if (object_)                                                                 \
+    {                                                                            \
+        return ((object_)->This->function_);                                     \
+    }                                                                            \
+    else                                                                         \
+    {                                                                            \
+        sf::err() << "SFML warning: trying to use a null " #object_ " object\n"; \
+        return default_;                                                         \
+    }
 
 #else
 
-    #define CSFML_CHECK(object_)
+#define CSFML_CHECK(object_)
 
-    #define CSFML_CALL(object_, function_) \
-        ((object_)->This.function_)
+#define CSFML_CALL(object_, function_) ((object_)->This.function_)
 
-    #define CSFML_CALL_PTR(object_, function_) \
-        ((object_)->This->function_)
+#define CSFML_CALL_PTR(object_, function_) ((object_)->This->function_)
 
-    #define CSFML_CHECK_RETURN(object_, default_)
+#define CSFML_CHECK_RETURN(object_, default_)
 
-    #define CSFML_CALL_RETURN(object_, function_, default_) \
-        return ((object_)->This.function_);
+#define CSFML_CALL_RETURN(object_, function_, default_) return ((object_)->This.function_);
 
-    #define CSFML_CALL_PTR_RETURN(object_, function_, default_) \
-        return ((object_)->This->function_);
+#define CSFML_CALL_PTR_RETURN(object_, function_, default_) return ((object_)->This->function_);
 
 #endif
 
 ////////////////////////////////////////////////////////////
 // Ensure char32_t has the same size as sfChar32 (uint32_t)
-// Identical alignment and size is required because we're type punning 
+// Identical alignment and size is required because we're type punning
 // when doing sfChar32* <-> char32_t* casts
 ////////////////////////////////////////////////////////////
 static_assert(sizeof(sfChar32) == sizeof(char32_t));

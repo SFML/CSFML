@@ -27,9 +27,11 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <SFML/Graphics/Font.hpp>
-#include <CSFML/Graphics/TextureStruct.hpp>
 #include <CSFML/CallbackStream.hpp>
+#include <CSFML/Graphics/TextureStruct.hpp>
+
+#include <SFML/Graphics/Font.hpp>
+
 #include <map>
 
 
@@ -38,7 +40,7 @@
 ////////////////////////////////////////////////////////////
 struct sfFont
 {
-    sf::Font This;
+    sf::Font                          This;
     std::map<unsigned int, sfTexture> Textures;
-    CallbackStream Stream;
+    CallbackStream                    Stream;
 };

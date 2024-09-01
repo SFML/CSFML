@@ -28,7 +28,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/System/Export.h>
+
 #include <CSFML/System/Types.h>
+
 #include <stddef.h>
 
 

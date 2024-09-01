@@ -28,7 +28,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
-#include <CSFML/System.h>
 #include <CSFML/Audio/Listener.h>
 #include <CSFML/Audio/Music.h>
 #include <CSFML/Audio/Sound.h>
@@ -37,3 +36,4 @@
 #include <CSFML/Audio/SoundRecorder.h>
 #include <CSFML/Audio/SoundStatus.h>
 #include <CSFML/Audio/SoundStream.h>
+#include <CSFML/System.h>

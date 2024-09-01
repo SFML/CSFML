@@ -25,14 +25,14 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/ConvertEvent.hpp>
+#include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Window/ConvertContextSettings.hpp>
+#include <CSFML/Window/ConvertVideoMode.hpp>
+#include <CSFML/Window/CursorStruct.hpp>
 #include <CSFML/Window/Window.h>
 #include <CSFML/Window/WindowStruct.hpp>
-#include <CSFML/Internal.hpp>
-#include <CSFML/Window/ConvertContextSettings.hpp>
-#include <CSFML/Window/CursorStruct.hpp>
-#include <CSFML/Window/ConvertVideoMode.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
-#include <CSFML/ConvertEvent.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -49,14 +49,22 @@ sfWindow* sfWindow_create(sfVideoMode mode, const char* title, uint32_t style, s
 }
 
 ////////////////////////////////////////////////////////////
-sfWindow* sfWindow_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state, const sfContextSettings* settings)
+sfWindow* sfWindow_createUnicode(sfVideoMode              mode,
+                                 const sfChar32*          title,
+                                 uint32_t                 style,
+                                 sfWindowState            state,
+                                 const sfContextSettings* settings)
 {
     // Convert context settings
     const sf::ContextSettings params = settings ? convertContextSettings(*settings) : sf::ContextSettings();
 
     // Create the window
     sfWindow* window = new sfWindow;
-    window->This.create(convertVideoMode(mode), reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state), params);
+    window->This.create(convertVideoMode(mode),
+                        reinterpret_cast<const char32_t*>(title),
+                        style,
+                        static_cast<sf::State>(state),
+                        params);
 
     return window;
 }
@@ -293,7 +301,10 @@ sfWindowHandle sfWindow_getNativeHandle(const sfWindow* window)
 
 
 ////////////////////////////////////////////////////////////
-bool sfWindow_createVulkanSurface(sfWindow* window, const VkInstance* instance, VkSurfaceKHR* surface, const VkAllocationCallbacks* allocator)
+bool sfWindow_createVulkanSurface(sfWindow*                    window,
+                                  const VkInstance*            instance,
+                                  VkSurfaceKHR*                surface,
+                                  const VkAllocationCallbacks* allocator)
 {
     CSFML_CHECK_RETURN(instance, false);
     CSFML_CHECK_RETURN(surface, false);

@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
+
 #include <CSFML/Audio/SoundStatus.h>
 #include <CSFML/Audio/Types.h>
 #include <CSFML/System/Time.h>
@@ -36,7 +37,7 @@
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound
-/// 
+///
 /// \param soundBuffer Sound buffer containing the audio data to play with the sound
 ///
 /// \return A new sfSound object

@@ -28,7 +28,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/Export.h>
+
 #include <CSFML/Network/Types.h>
+
 #include <stddef.h>
 
 

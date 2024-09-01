@@ -26,7 +26,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
+
 #include <CSFML/Window/Vulkan.h>
+
 #include <SFML/Window/Vulkan.hpp>
 
 #include <stdlib.h>

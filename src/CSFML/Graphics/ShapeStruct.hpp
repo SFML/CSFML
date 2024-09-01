@@ -28,10 +28,11 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Shape.h>
-#include <SFML/Graphics/Shape.hpp>
 #include <CSFML/Graphics/TextureStruct.hpp>
 #include <CSFML/Graphics/Transform.h>
 #include <CSFML/System/ConvertVector2.hpp>
+
+#include <SFML/Graphics/Shape.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -40,14 +41,11 @@
 ////////////////////////////////////////////////////////////
 class sfShapeImpl : public sf::Shape
 {
-public :
-
-    sfShapeImpl(sfShapeGetPointCountCallback getPointCount,
-                sfShapeGetPointCallback      getPoint,
-                void*                        userData) :
+public:
+    sfShapeImpl(sfShapeGetPointCountCallback getPointCount, sfShapeGetPointCallback getPoint, void* userData) :
     myGetPointCountCallback(getPointCount),
-    myGetPointCallback     (getPoint),
-    myUserData             (userData)
+    myGetPointCallback(getPoint),
+    myUserData(userData)
     {
     }
 
@@ -64,7 +62,6 @@ public :
     using sf::Shape::update;
 
 private:
-
     sfShapeGetPointCountCallback myGetPointCountCallback;
     sfShapeGetPointCallback      myGetPointCallback;
     void*                        myUserData;
@@ -76,9 +73,7 @@ private:
 ////////////////////////////////////////////////////////////
 struct sfShape
 {
-    sfShape(sfShapeGetPointCountCallback getPointCount,
-            sfShapeGetPointCallback      getPoint,
-            void*                        userData) :
+    sfShape(sfShapeGetPointCountCallback getPointCount, sfShapeGetPointCallback getPoint, void* userData) :
     This(getPointCount, getPoint, userData)
     {
     }

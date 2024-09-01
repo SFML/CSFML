@@ -26,14 +26,14 @@
 
 
 typedef struct sfFtpDirectoryResponse sfFtpDirectoryResponse;
-typedef struct sfFtpListingResponse sfFtpListingResponse;
-typedef struct sfFtpResponse sfFtpResponse;
-typedef struct sfFtp sfFtp;
-typedef struct sfHttpRequest sfHttpRequest;
-typedef struct sfHttpResponse sfHttpResponse;
-typedef struct sfHttp sfHttp;
-typedef struct sfPacket sfPacket;
-typedef struct sfSocketSelector sfSocketSelector;
-typedef struct sfTcpListener sfTcpListener;
-typedef struct sfTcpSocket sfTcpSocket;
-typedef struct sfUdpSocket sfUdpSocket;
+typedef struct sfFtpListingResponse   sfFtpListingResponse;
+typedef struct sfFtpResponse          sfFtpResponse;
+typedef struct sfFtp                  sfFtp;
+typedef struct sfHttpRequest          sfHttpRequest;
+typedef struct sfHttpResponse         sfHttpResponse;
+typedef struct sfHttp                 sfHttp;
+typedef struct sfPacket               sfPacket;
+typedef struct sfSocketSelector       sfSocketSelector;
+typedef struct sfTcpListener          sfTcpListener;
+typedef struct sfTcpSocket            sfTcpSocket;
+typedef struct sfUdpSocket            sfUdpSocket;

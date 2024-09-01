@@ -35,10 +35,10 @@
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_GRAPHICS_EXPORTS)
 
-    #define CSFML_GRAPHICS_API CSFML_API_EXPORT
+#define CSFML_GRAPHICS_API CSFML_API_EXPORT
 
 #else
 
-    #define CSFML_GRAPHICS_API CSFML_API_IMPORT
+#define CSFML_GRAPHICS_API CSFML_API_IMPORT
 
 #endif

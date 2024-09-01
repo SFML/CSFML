@@ -28,15 +28,17 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/Color.h>
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/Transform.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/System/Vector2.h>
+
 #include <stddef.h>
 
 
-typedef size_t (*sfShapeGetPointCountCallback)(void*);        ///< Type of the callback used to get the number of points in a shape
+typedef size_t (*sfShapeGetPointCountCallback)(void*); ///< Type of the callback used to get the number of points in a shape
 typedef sfVector2f (*sfShapeGetPointCallback)(size_t, void*); ///< Type of the callback used to get a point of a shape
 
 ////////////////////////////////////////////////////////////
@@ -50,8 +52,8 @@ typedef sfVector2f (*sfShapeGetPointCallback)(size_t, void*); ///< Type of the c
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfShape* sfShape_create(sfShapeGetPointCountCallback getPointCount,
-                                           sfShapeGetPointCallback getPoint,
-                                           void* userData);
+                                           sfShapeGetPointCallback      getPoint,
+                                           void*                        userData);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy an existing shape

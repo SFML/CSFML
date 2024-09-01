@@ -35,10 +35,10 @@
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_NETWORK_EXPORTS)
 
-    #define CSFML_NETWORK_API CSFML_API_EXPORT
+#define CSFML_NETWORK_API CSFML_API_EXPORT
 
 #else
 
-    #define CSFML_NETWORK_API CSFML_API_IMPORT
+#define CSFML_NETWORK_API CSFML_API_IMPORT
 
 #endif

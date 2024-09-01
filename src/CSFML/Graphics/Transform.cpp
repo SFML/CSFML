@@ -25,18 +25,19 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Transform.h>
-#include <SFML/Graphics/Transform.hpp>
-#include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Graphics/ConvertTransform.hpp>
+#include <CSFML/Graphics/Transform.h>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
+
+#include <SFML/Graphics/Transform.hpp>
+
 #include <cstring>
 
 
 ////////////////////////////////////////////////////////////
-const sfTransform sfTransform_Identity =
-{
+const sfTransform sfTransform_Identity = {
     // clang-format off
     1, 0, 0,
     0, 1, 0,
@@ -46,9 +47,7 @@ const sfTransform sfTransform_Identity =
 
 
 ////////////////////////////////////////////////////////////
-sfTransform sfTransform_fromMatrix(float a00, float a01, float a02,
-                                   float a10, float a11, float a12,
-                                   float a20, float a21, float a22)
+sfTransform sfTransform_fromMatrix(float a00, float a01, float a02, float a10, float a11, float a12, float a20, float a21, float a22)
 {
     sfTransform transform = {a00, a01, a02, a10, a11, a12, a20, a21, a22};
     return transform;
@@ -154,8 +153,10 @@ bool sfTransform_equal(sfTransform* left, sfTransform* right)
     CSFML_CHECK_RETURN(left, false);
     CSFML_CHECK_RETURN(right, false);
 
-    for (int i = 0; i < 9; ++i) {
-        if (left->matrix[i] != right->matrix[i]) return false;
+    for (int i = 0; i < 9; ++i)
+    {
+        if (left->matrix[i] != right->matrix[i])
+            return false;
     }
     return true;
 }

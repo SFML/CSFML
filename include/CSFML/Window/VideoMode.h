@@ -28,7 +28,9 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
+
 #include <CSFML/System/Vector2.h>
+
 #include <stddef.h>
 
 

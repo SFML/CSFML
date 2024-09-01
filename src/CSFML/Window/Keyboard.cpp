@@ -25,10 +25,11 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Window/Keyboard.h>
-#include <SFML/Window/Keyboard.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/Window/Keyboard.h>
+
 #include <SFML/System/String.hpp>
+#include <SFML/Window/Keyboard.hpp>
 
 #include <string.h>
 

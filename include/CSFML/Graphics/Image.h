@@ -28,12 +28,14 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/Color.h>
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/System/Buffer.h>
 #include <CSFML/System/InputStream.h>
 #include <CSFML/System/Vector2.h>
+
 #include <stddef.h>
 
 
@@ -219,7 +221,7 @@ CSFML_GRAPHICS_API void sfImage_createMaskFromColor(sfImage* image, sfColor colo
 /// \param dest       Coordinates of the destination position
 /// \param sourceRect Sub-rectangle of the source image to copy
 /// \param applyAlpha Should the copy take in account the source transparency?
-/// 
+///
 /// \return True if the operation was successful, false otherwise
 ///
 ////////////////////////////////////////////////////////////

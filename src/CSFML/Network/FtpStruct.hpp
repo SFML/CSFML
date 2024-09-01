@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <SFML/Network/Ftp.hpp>
+
 #include <vector>
 
 
@@ -45,8 +46,7 @@ struct sfFtp
 ////////////////////////////////////////////////////////////
 struct sfFtpResponse
 {
-    sfFtpResponse(const sf::Ftp::Response& Response)
-        : This(Response)
+    sfFtpResponse(const sf::Ftp::Response& Response) : This(Response)
     {
     }
 
@@ -59,8 +59,7 @@ struct sfFtpResponse
 ////////////////////////////////////////////////////////////
 struct sfFtpDirectoryResponse
 {
-    sfFtpDirectoryResponse(const sf::Ftp::DirectoryResponse& Response)
-        : This(Response)
+    sfFtpDirectoryResponse(const sf::Ftp::DirectoryResponse& Response) : This(Response)
     {
     }
 
@@ -73,8 +72,7 @@ struct sfFtpDirectoryResponse
 ////////////////////////////////////////////////////////////
 struct sfFtpListingResponse
 {
-    sfFtpListingResponse(const sf::Ftp::ListingResponse& Response)
-        : This(Response)
+    sfFtpListingResponse(const sf::Ftp::ListingResponse& Response) : This(Response)
     {
     }
 

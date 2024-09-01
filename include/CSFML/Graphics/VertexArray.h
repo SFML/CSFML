@@ -28,10 +28,12 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
+
 #include <CSFML/Graphics/PrimitiveType.h>
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/Vertex.h>
+
 #include <stddef.h>
 
 

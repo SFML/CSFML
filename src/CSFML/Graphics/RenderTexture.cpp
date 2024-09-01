@@ -25,21 +25,21 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/RenderTexture.h>
-#include <CSFML/Graphics/RenderTextureStruct.hpp>
-#include <CSFML/Graphics/SpriteStruct.hpp>
-#include <CSFML/Graphics/TextStruct.hpp>
-#include <CSFML/Graphics/ShapeStruct.hpp>
 #include <CSFML/Graphics/CircleShapeStruct.hpp>
-#include <CSFML/Graphics/ConvexShapeStruct.hpp>
-#include <CSFML/Graphics/RectangleShapeStruct.hpp>
-#include <CSFML/Graphics/VertexArrayStruct.hpp>
-#include <CSFML/Graphics/VertexBufferStruct.hpp>
-#include <CSFML/Graphics/ConvertRenderStates.hpp>
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
-#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Graphics/ConvertRenderStates.hpp>
+#include <CSFML/Graphics/ConvexShapeStruct.hpp>
+#include <CSFML/Graphics/RectangleShapeStruct.hpp>
+#include <CSFML/Graphics/RenderTexture.h>
+#include <CSFML/Graphics/RenderTextureStruct.hpp>
+#include <CSFML/Graphics/ShapeStruct.hpp>
+#include <CSFML/Graphics/SpriteStruct.hpp>
+#include <CSFML/Graphics/TextStruct.hpp>
+#include <CSFML/Graphics/VertexArrayStruct.hpp>
+#include <CSFML/Graphics/VertexBufferStruct.hpp>
 #include <CSFML/Internal.hpp>
+#include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Window/ConvertContextSettings.hpp>
 
 
@@ -54,7 +54,7 @@ sfRenderTexture* sfRenderTexture_create(sfVector2u size, const sfContextSettings
     if (!renderTexture.resize(convertVector2(size), params))
         return nullptr;
 
-    auto* texture  = new sfTexture(const_cast<sf::Texture*>(&renderTexture.getTexture()));
+    auto*      texture     = new sfTexture(const_cast<sf::Texture*>(&renderTexture.getTexture()));
     const auto defaultView = sfView{renderTexture.getDefaultView()};
     const auto currentView = sfView{renderTexture.getView()};
 
@@ -213,9 +213,11 @@ void sfRenderTexture_drawVertexBuffer(sfRenderTexture* renderTexture, const sfVe
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_drawVertexBufferRange(sfRenderTexture* renderTexture,
-                                           const sfVertexBuffer* object, size_t firstVertex,
-                                           size_t vertexCount, const sfRenderStates* states)
+void sfRenderTexture_drawVertexBufferRange(sfRenderTexture*      renderTexture,
+                                           const sfVertexBuffer* object,
+                                           size_t                firstVertex,
+                                           size_t                vertexCount,
+                                           const sfRenderStates* states)
 {
     CSFML_CHECK(object);
     CSFML_CALL(renderTexture, draw(object->This, firstVertex, vertexCount, convertRenderStates(states)));
@@ -223,12 +225,17 @@ void sfRenderTexture_drawVertexBufferRange(sfRenderTexture* renderTexture,
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_drawPrimitives(sfRenderTexture* renderTexture,
-                                    const sfVertex* vertices, size_t vertexCount,
-                                    sfPrimitiveType type, const sfRenderStates* states)
+void sfRenderTexture_drawPrimitives(sfRenderTexture*      renderTexture,
+                                    const sfVertex*       vertices,
+                                    size_t                vertexCount,
+                                    sfPrimitiveType       type,
+                                    const sfRenderStates* states)
 {
-    CSFML_CALL(renderTexture, draw(reinterpret_cast<const sf::Vertex*>(vertices), vertexCount,
-               static_cast<sf::PrimitiveType>(type), convertRenderStates(states)));
+    CSFML_CALL(renderTexture,
+               draw(reinterpret_cast<const sf::Vertex*>(vertices),
+                    vertexCount,
+                    static_cast<sf::PrimitiveType>(type),
+                    convertRenderStates(states)));
 }
 
 

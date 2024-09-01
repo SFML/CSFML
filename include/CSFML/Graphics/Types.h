@@ -25,19 +25,19 @@
 #pragma once
 
 
-typedef struct sfCircleShape sfCircleShape;
-typedef struct sfConvexShape sfConvexShape;
-typedef struct sfFont sfFont;
-typedef struct sfImage sfImage;
-typedef struct sfShader sfShader;
+typedef struct sfCircleShape    sfCircleShape;
+typedef struct sfConvexShape    sfConvexShape;
+typedef struct sfFont           sfFont;
+typedef struct sfImage          sfImage;
+typedef struct sfShader         sfShader;
 typedef struct sfRectangleShape sfRectangleShape;
-typedef struct sfRenderTexture sfRenderTexture;
-typedef struct sfRenderWindow sfRenderWindow;
-typedef struct sfShape sfShape;
-typedef struct sfSprite sfSprite;
-typedef struct sfText sfText;
-typedef struct sfTexture sfTexture;
-typedef struct sfTransformable sfTransformable;
-typedef struct sfVertexArray sfVertexArray;
-typedef struct sfVertexBuffer sfVertexBuffer;
-typedef struct sfView sfView;
+typedef struct sfRenderTexture  sfRenderTexture;
+typedef struct sfRenderWindow   sfRenderWindow;
+typedef struct sfShape          sfShape;
+typedef struct sfSprite         sfSprite;
+typedef struct sfText           sfText;
+typedef struct sfTexture        sfTexture;
+typedef struct sfTransformable  sfTransformable;
+typedef struct sfVertexArray    sfVertexArray;
+typedef struct sfVertexBuffer   sfVertexBuffer;
+typedef struct sfView           sfView;

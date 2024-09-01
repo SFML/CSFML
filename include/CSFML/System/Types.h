@@ -26,4 +26,4 @@
 
 
 typedef struct sfBuffer sfBuffer;
-typedef struct sfClock sfClock;
+typedef struct sfClock  sfClock;

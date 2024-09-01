@@ -25,9 +25,9 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Internal.hpp>
 #include <CSFML/Network/Http.h>
 #include <CSFML/Network/HttpStruct.hpp>
-#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -155,11 +155,11 @@ void sfHttp_setHost(sfHttp* http, const char* host, unsigned short port)
 ////////////////////////////////////////////////////////////
 sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout)
 {
-    CSFML_CHECK_RETURN(http,    nullptr);
+    CSFML_CHECK_RETURN(http, nullptr);
     CSFML_CHECK_RETURN(request, nullptr);
 
     sfHttpResponse* response = new sfHttpResponse;
-    response->This = http->This.sendRequest(request->This, sf::microseconds(timeout.microseconds));
+    response->This           = http->This.sendRequest(request->This, sf::microseconds(timeout.microseconds));
 
     return response;
 }

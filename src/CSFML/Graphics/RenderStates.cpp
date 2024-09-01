@@ -29,7 +29,8 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderStates sfRenderStates_default() {
+sfRenderStates sfRenderStates_default()
+{
     sfRenderStates states = {
         sfBlendAlpha,
         sfTransform_Identity,

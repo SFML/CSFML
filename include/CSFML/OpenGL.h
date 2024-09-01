@@ -36,18 +36,18 @@
 ////////////////////////////////////////////////////////////
 #if defined(CSFML_SYSTEM_WINDOWS)
 
-    #include <windows.h>
-    #include <GL/gl.h>
-    #include <GL/glu.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
+#include <windows.h>
 
 #elif defined(CSFML_SYSTEM_LINUX) || defined(CSFML_SYSTEM_FREEBSD)
 
-    #include <GL/gl.h>
-    #include <GL/glu.h>
+#include <GL/gl.h>
+#include <GL/glu.h>
 
 #elif defined(CSFML_SYSTEM_MACOS)
 
-    #include <OpenGL/gl.h>
-    #include <OpenGL/glu.h>
+#include <OpenGL/gl.h>
+#include <OpenGL/glu.h>
 
 #endif
