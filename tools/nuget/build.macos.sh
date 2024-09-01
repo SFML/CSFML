@@ -133,7 +133,7 @@ CSFMLLibDir="$(realpath lib)" # The directory that contains the final CSFML libr
 
 cmake -E env \
     cmake -G "Unix Makefiles" \
-          -D "SFML_DIR=$SFMLBuiltDir" \
+          -D "SFML_ROOT=$SFMLBuiltDir" \
           -D 'BUILD_SHARED_LIBS=ON' \
           -D 'CMAKE_BUILD_TYPE=Release' \
           -D "CMAKE_OSX_ARCHITECTURES=$ARCHITECTURE" \

@@ -113,7 +113,7 @@ CSFMLLibDir="$(realpath lib)" # The directory that contains the final CSFML libr
 
 cmake -E env LDFLAGS="-z origin" \
     cmake \
-    "-DSFML_DIR=$SFMLBuiltDir" \
+    "-DSFML_ROOT=$SFMLBuiltDir" \
     '-DBUILD_SHARED_LIBS=1' \
     '-DCMAKE_BUILD_TYPE=Release' \
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" \
