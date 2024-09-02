@@ -34,7 +34,7 @@
 sfSound* sfSound_create(const sfSoundBuffer* buffer)
 {
     assert(buffer);
-    return new sfSound{sf::Sound{buffer->This}, buffer};
+    return new sfSound{sf::Sound(buffer->This), buffer};
 }
 
 
