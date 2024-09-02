@@ -30,7 +30,6 @@
 #include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/ConvexShape.h>
 #include <CSFML/Graphics/ConvexShapeStruct.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 
 #include <SFML/Graphics/Color.hpp>
@@ -46,8 +45,7 @@ sfConvexShape* sfConvexShape_create()
 ////////////////////////////////////////////////////////////
 sfConvexShape* sfConvexShape_copy(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, nullptr);
-
+    assert(shape);
     return new sfConvexShape(*shape);
 }
 
@@ -62,36 +60,39 @@ void sfConvexShape_destroy(sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setPosition(sfConvexShape* shape, sfVector2f position)
 {
-    CSFML_CALL(shape, setPosition(convertVector2(position)));
+    assert(shape);
+    shape->This.setPosition(convertVector2(position));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setRotation(sfConvexShape* shape, float angle)
 {
-    CSFML_CALL(shape, setRotation(sf::degrees(angle)));
+    assert(shape);
+    shape->This.setRotation(sf::degrees(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setScale(sfConvexShape* shape, sfVector2f scale)
 {
-    CSFML_CALL(shape, setScale(convertVector2(scale)));
+    assert(shape);
+    shape->This.setScale(convertVector2(scale));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setOrigin(sfConvexShape* shape, sfVector2f origin)
 {
-    CSFML_CALL(shape, setOrigin(convertVector2(origin)));
+    assert(shape);
+    shape->This.setOrigin(convertVector2(origin));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2f sfConvexShape_getPosition(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertVector2(shape->This.getPosition());
 }
 
@@ -99,15 +100,15 @@ sfVector2f sfConvexShape_getPosition(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 float sfConvexShape_getRotation(const sfConvexShape* shape)
 {
-    CSFML_CALL_RETURN(shape, getRotation().asDegrees(), 0.f);
+    assert(shape);
+    return shape->This.getRotation().asDegrees();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2f sfConvexShape_getScale(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertVector2(shape->This.getScale());
 }
 
@@ -115,8 +116,7 @@ sfVector2f sfConvexShape_getScale(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfVector2f sfConvexShape_getOrigin(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertVector2(shape->This.getOrigin());
 }
 
@@ -124,29 +124,31 @@ sfVector2f sfConvexShape_getOrigin(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_move(sfConvexShape* shape, sfVector2f offset)
 {
-    CSFML_CALL(shape, move(convertVector2(offset)));
+    assert(shape);
+    shape->This.move(convertVector2(offset));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_rotate(sfConvexShape* shape, float angle)
 {
-    CSFML_CALL(shape, rotate(sf::degrees(angle)));
+    assert(shape);
+    shape->This.rotate(sf::degrees(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_scale(sfConvexShape* shape, sfVector2f factors)
 {
-    CSFML_CALL(shape, scale(convertVector2(factors)));
+    assert(shape);
+    shape->This.scale(convertVector2(factors));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfTransform sfConvexShape_getTransform(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
-
+    assert(shape);
     shape->Transform = convertTransform(shape->This.getTransform());
     return shape->Transform;
 }
@@ -155,8 +157,7 @@ sfTransform sfConvexShape_getTransform(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfTransform sfConvexShape_getInverseTransform(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, sfTransform_Identity);
-
+    assert(shape);
     shape->InverseTransform = convertTransform(shape->This.getInverseTransform());
     return shape->InverseTransform;
 }
@@ -165,7 +166,8 @@ sfTransform sfConvexShape_getInverseTransform(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bool resetRect)
 {
-    CSFML_CALL(shape, setTexture(texture ? texture->This : nullptr, resetRect));
+    assert(shape);
+    shape->This.setTexture(texture ? texture->This : nullptr, resetRect);
     shape->Texture = texture;
 }
 
@@ -173,36 +175,39 @@ void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bo
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setTextureRect(sfConvexShape* shape, sfIntRect rect)
 {
-    CSFML_CALL(shape, setTextureRect(convertRect(rect)));
+    assert(shape);
+    shape->This.setTextureRect(convertRect(rect));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setFillColor(sfConvexShape* shape, sfColor color)
 {
-    CSFML_CALL(shape, setFillColor(convertColor(color)));
+    assert(shape);
+    shape->This.setFillColor(convertColor(color));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setOutlineColor(sfConvexShape* shape, sfColor color)
 {
-    CSFML_CALL(shape, setOutlineColor(convertColor(color)));
+    assert(shape);
+    shape->This.setOutlineColor(convertColor(color));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setOutlineThickness(sfConvexShape* shape, float thickness)
 {
-    CSFML_CALL(shape, setOutlineThickness(thickness));
+    assert(shape);
+    shape->This.setOutlineThickness(thickness);
 }
 
 
 ////////////////////////////////////////////////////////////
 const sfTexture* sfConvexShape_getTexture(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, nullptr);
-
+    assert(shape);
     return shape->Texture;
 }
 
@@ -210,8 +215,7 @@ const sfTexture* sfConvexShape_getTexture(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfIntRect sfConvexShape_getTextureRect(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertRect(shape->This.getTextureRect());
 }
 
@@ -219,8 +223,7 @@ sfIntRect sfConvexShape_getTextureRect(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfColor sfConvexShape_getFillColor(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertColor(shape->This.getFillColor());
 }
 
@@ -228,8 +231,7 @@ sfColor sfConvexShape_getFillColor(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfColor sfConvexShape_getOutlineColor(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertColor(shape->This.getOutlineColor());
 }
 
@@ -237,22 +239,23 @@ sfColor sfConvexShape_getOutlineColor(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 float sfConvexShape_getOutlineThickness(const sfConvexShape* shape)
 {
-    CSFML_CALL_RETURN(shape, getOutlineThickness(), 0.f);
+    assert(shape);
+    return shape->This.getOutlineThickness();
 }
 
 
 ////////////////////////////////////////////////////////////
 size_t sfConvexShape_getPointCount(const sfConvexShape* shape)
 {
-    CSFML_CALL_RETURN(shape, getPointCount(), 0);
+    assert(shape);
+    return shape->This.getPointCount();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertVector2(shape->This.getPoint(index));
 }
 
@@ -260,22 +263,23 @@ sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index)
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setPointCount(sfConvexShape* shape, size_t count)
 {
-    CSFML_CALL(shape, setPointCount(count));
+    assert(shape);
+    shape->This.setPointCount(count);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfConvexShape_setPoint(sfConvexShape* shape, size_t index, sfVector2f point)
 {
-    CSFML_CALL(shape, setPoint(index, convertVector2(point)));
+    assert(shape);
+    shape->This.setPoint(index, convertVector2(point));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfFloatRect sfConvexShape_getLocalBounds(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertRect(shape->This.getLocalBounds());
 }
 
@@ -283,7 +287,6 @@ sfFloatRect sfConvexShape_getLocalBounds(const sfConvexShape* shape)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfConvexShape_getGlobalBounds(const sfConvexShape* shape)
 {
-    CSFML_CHECK_RETURN(shape, {});
-
+    assert(shape);
     return convertRect(shape->This.getGlobalBounds());
 }

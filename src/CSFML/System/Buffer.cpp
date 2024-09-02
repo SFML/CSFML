@@ -25,9 +25,10 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/Buffer.h>
 #include <CSFML/System/BufferStruct.hpp>
+
+#include <cassert>
 
 
 ////////////////////////////////////////////////////////////
@@ -47,7 +48,7 @@ void sfBuffer_destroy(sfBuffer* buffer)
 ////////////////////////////////////////////////////////////
 size_t sfBuffer_getSize(const sfBuffer* buffer)
 {
-    CSFML_CHECK_RETURN(buffer, 0);
+    assert(buffer);
     return buffer->buffer.size();
 }
 
@@ -55,6 +56,6 @@ size_t sfBuffer_getSize(const sfBuffer* buffer)
 ////////////////////////////////////////////////////////////
 const uint8_t* sfBuffer_getData(const sfBuffer* buffer)
 {
-    CSFML_CHECK_RETURN(buffer, nullptr);
+    assert(buffer);
     return !buffer->buffer.empty() ? buffer->buffer.data() : nullptr;
 }

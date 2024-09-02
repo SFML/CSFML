@@ -27,15 +27,13 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Sound.h>
 #include <CSFML/Audio/SoundStruct.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector3.hpp>
 
 
 ////////////////////////////////////////////////////////////
 sfSound* sfSound_create(const sfSoundBuffer* buffer)
 {
-    CSFML_CHECK_RETURN(buffer, nullptr);
-
+    assert(buffer);
     return new sfSound{sf::Sound{buffer->This}, buffer};
 }
 
@@ -43,8 +41,7 @@ sfSound* sfSound_create(const sfSoundBuffer* buffer)
 ////////////////////////////////////////////////////////////
 sfSound* sfSound_copy(const sfSound* sound)
 {
-    CSFML_CHECK_RETURN(sound, nullptr);
-
+    assert(sound);
     return new sfSound(*sound);
 }
 
@@ -59,21 +56,24 @@ void sfSound_destroy(sfSound* sound)
 ////////////////////////////////////////////////////////////
 void sfSound_play(sfSound* sound)
 {
-    CSFML_CALL(sound, play());
+    assert(sound);
+    sound->This.play();
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_pause(sfSound* sound)
 {
-    CSFML_CALL(sound, pause());
+    assert(sound);
+    sound->This.pause();
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_stop(sfSound* sound)
 {
-    CSFML_CALL(sound, stop());
+    assert(sound);
+    sound->This.stop();
 }
 
 
@@ -82,7 +82,8 @@ void sfSound_setBuffer(sfSound* sound, const sfSoundBuffer* buffer)
 {
     if (buffer)
     {
-        CSFML_CALL(sound, setBuffer(buffer->This));
+        assert(sound);
+        sound->This.setBuffer(buffer->This);
         sound->Buffer = buffer;
     }
 }
@@ -91,8 +92,7 @@ void sfSound_setBuffer(sfSound* sound, const sfSoundBuffer* buffer)
 ////////////////////////////////////////////////////////////
 const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound)
 {
-    CSFML_CHECK_RETURN(sound, nullptr);
-
+    assert(sound);
     return sound->Buffer;
 }
 
@@ -100,22 +100,23 @@ const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound)
 ////////////////////////////////////////////////////////////
 void sfSound_setLooping(sfSound* sound, bool loop)
 {
-    CSFML_CALL(sound, setLooping(loop));
+    assert(sound);
+    sound->This.setLooping(loop);
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfSound_isLooping(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, isLooping(), false);
+    assert(sound);
+    return sound->This.isLooping();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfSoundStatus sfSound_getStatus(const sfSound* sound)
 {
-    CSFML_CHECK_RETURN(sound, sfStopped);
-
+    assert(sound);
     return static_cast<sfSoundStatus>(sound->This.getStatus());
 }
 
@@ -123,71 +124,79 @@ sfSoundStatus sfSound_getStatus(const sfSound* sound)
 ////////////////////////////////////////////////////////////
 void sfSound_setPitch(sfSound* sound, float pitch)
 {
-    CSFML_CALL(sound, setPitch(pitch));
+    assert(sound);
+    sound->This.setPitch(pitch);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_setVolume(sfSound* sound, float volume)
 {
-    CSFML_CALL(sound, setVolume(volume));
+    assert(sound);
+    sound->This.setVolume(volume);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_setPosition(sfSound* sound, sfVector3f position)
 {
-    CSFML_CALL(sound, setPosition(convertVector3(position)));
+    assert(sound);
+    sound->This.setPosition(convertVector3(position));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_setRelativeToListener(sfSound* sound, bool relative)
 {
-    CSFML_CALL(sound, setRelativeToListener(relative));
+    assert(sound);
+    sound->This.setRelativeToListener(relative);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_setMinDistance(sfSound* sound, float distance)
 {
-    CSFML_CALL(sound, setMinDistance(distance));
+    assert(sound);
+    sound->This.setMinDistance(distance);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_setAttenuation(sfSound* sound, float attenuation)
 {
-    CSFML_CALL(sound, setAttenuation(attenuation));
+    assert(sound);
+    sound->This.setAttenuation(attenuation);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSound_setPlayingOffset(sfSound* sound, sfTime timeOffset)
 {
-    CSFML_CALL(sound, setPlayingOffset(sf::microseconds(timeOffset.microseconds)));
+    assert(sound);
+    sound->This.setPlayingOffset(sf::microseconds(timeOffset.microseconds));
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfSound_getPitch(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, getPitch(), 0.f);
+    assert(sound);
+    return sound->This.getPitch();
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfSound_getVolume(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, getVolume(), 0.f);
+    assert(sound);
+    return sound->This.getVolume();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector3f sfSound_getPosition(const sfSound* sound)
 {
-    CSFML_CHECK_RETURN(sound, {});
-
+    assert(sound);
     return convertVector3(sound->This.getPosition());
 }
 
@@ -195,30 +204,30 @@ sfVector3f sfSound_getPosition(const sfSound* sound)
 ////////////////////////////////////////////////////////////
 bool sfSound_isRelativeToListener(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, isRelativeToListener(), false);
+    assert(sound);
+    return sound->This.isRelativeToListener();
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfSound_getMinDistance(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, getMinDistance(), 0.f);
+    assert(sound);
+    return sound->This.getMinDistance();
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfSound_getAttenuation(const sfSound* sound)
 {
-    CSFML_CALL_RETURN(sound, getAttenuation(), 0.f);
+    assert(sound);
+    return sound->This.getAttenuation();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfTime sfSound_getPlayingOffset(const sfSound* sound)
 {
-    sfTime time = {0};
-    CSFML_CHECK_RETURN(sound, time);
-
-    time.microseconds = sound->This.getPlayingOffset().asMicroseconds();
-    return time;
+    assert(sound);
+    return {sound->This.getPlayingOffset().asMicroseconds()};
 }

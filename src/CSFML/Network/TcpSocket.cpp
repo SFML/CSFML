@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/Network/PacketStruct.hpp>
 #include <CSFML/Network/TcpSocket.h>
 #include <CSFML/Network/TcpSocketStruct.hpp>
@@ -52,32 +51,35 @@ void sfTcpSocket_destroy(sfTcpSocket* socket)
 ////////////////////////////////////////////////////////////
 void sfTcpSocket_setBlocking(sfTcpSocket* socket, bool blocking)
 {
-    CSFML_CALL(socket, setBlocking(blocking));
+    assert(socket);
+    socket->This.setBlocking(blocking);
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfTcpSocket_isBlocking(const sfTcpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, isBlocking(), false);
+    assert(socket);
+    return socket->This.isBlocking();
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned short sfTcpSocket_getLocalPort(const sfTcpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, getLocalPort(), 0);
+    assert(socket);
+    return socket->This.getLocalPort();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
 {
-    sfIpAddress result = sfIpAddress_None;
-    CSFML_CHECK_RETURN(socket, result);
+    assert(socket);
 
     std::optional<sf::IpAddress> address = socket->This.getRemoteAddress();
 
+    sfIpAddress result = sfIpAddress_None;
     if (address)
     {
         strncpy(result.address, address->toString().c_str(), 15);
@@ -90,7 +92,8 @@ sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
 ////////////////////////////////////////////////////////////
 unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, getRemotePort(), 0);
+    assert(socket);
+    return socket->This.getRemotePort();
 }
 
 
@@ -104,8 +107,7 @@ sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddres
         return sfSocketError;
     }
 
-    CSFML_CHECK_RETURN(socket, sfSocketError);
-
+    assert(socket);
     return static_cast<sfSocketStatus>(socket->This.connect(*address, remotePort, sf::microseconds(timeout.microseconds)));
 }
 
@@ -113,15 +115,15 @@ sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddres
 ////////////////////////////////////////////////////////////
 void sfTcpSocket_disconnect(sfTcpSocket* socket)
 {
-    CSFML_CALL(socket, disconnect());
+    assert(socket);
+    socket->This.disconnect();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const void* data, size_t size)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
-
+    assert(socket);
     return static_cast<sfSocketStatus>(socket->This.send(data, size));
 }
 
@@ -129,8 +131,7 @@ sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const void* data, size_t si
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_sendPartial(sfTcpSocket* socket, const void* data, size_t size, size_t* sent)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
-
+    assert(socket);
     return static_cast<sfSocketStatus>(socket->This.send(data, size, *sent));
 }
 
@@ -138,7 +139,7 @@ sfSocketStatus sfTcpSocket_sendPartial(sfTcpSocket* socket, const void* data, si
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t size, size_t* received)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
+    assert(socket);
 
     if (received)
     {
@@ -155,9 +156,8 @@ sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t size,
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_sendPacket(sfTcpSocket* socket, sfPacket* packet)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
-    CSFML_CHECK_RETURN(packet, sfSocketError);
-
+    assert(socket);
+    assert(packet);
     return static_cast<sfSocketStatus>(socket->This.send(packet->This));
 }
 
@@ -165,8 +165,7 @@ sfSocketStatus sfTcpSocket_sendPacket(sfTcpSocket* socket, sfPacket* packet)
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_receivePacket(sfTcpSocket* socket, sfPacket* packet)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
-    CSFML_CHECK_RETURN(packet, sfSocketError);
-
+    assert(socket);
+    assert(packet);
     return static_cast<sfSocketStatus>(socket->This.receive(packet->This));
 }

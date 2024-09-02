@@ -28,7 +28,6 @@
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/Transform.h>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 
 #include <SFML/Graphics/Transform.hpp>
@@ -57,8 +56,7 @@ sfTransform sfTransform_fromMatrix(float a00, float a01, float a02, float a10, f
 ////////////////////////////////////////////////////////////
 void sfTransform_getMatrix(const sfTransform* transform, float* matrix)
 {
-    CSFML_CHECK(transform);
-
+    assert(transform);
     sf::Transform converted = convertTransform(*transform);
     if (matrix)
         std::memcpy(matrix, converted.getMatrix(), 16 * sizeof(float));
@@ -68,8 +66,7 @@ void sfTransform_getMatrix(const sfTransform* transform, float* matrix)
 ////////////////////////////////////////////////////////////
 sfTransform sfTransform_getInverse(const sfTransform* transform)
 {
-    CSFML_CHECK_RETURN(transform, sfTransform_Identity);
-
+    assert(transform);
     return convertTransform(convertTransform(*transform).getInverse());
 }
 
@@ -77,8 +74,7 @@ sfTransform sfTransform_getInverse(const sfTransform* transform)
 ////////////////////////////////////////////////////////////
 sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f point)
 {
-    CSFML_CHECK_RETURN(transform, {});
-
+    assert(transform);
     return convertVector2(convertTransform(*transform).transformPoint(convertVector2(point)));
 }
 
@@ -86,8 +82,7 @@ sfVector2f sfTransform_transformPoint(const sfTransform* transform, sfVector2f p
 ////////////////////////////////////////////////////////////
 sfFloatRect sfTransform_transformRect(const sfTransform* transform, sfFloatRect rectangle)
 {
-    CSFML_CHECK_RETURN(transform, {});
-
+    assert(transform);
     return convertRect(convertTransform(*transform).transformRect(convertRect(rectangle)));
 }
 
@@ -95,9 +90,8 @@ sfFloatRect sfTransform_transformRect(const sfTransform* transform, sfFloatRect 
 ////////////////////////////////////////////////////////////
 void sfTransform_combine(sfTransform* transform, const sfTransform* other)
 {
-    CSFML_CHECK(transform);
-    CSFML_CHECK(other);
-
+    assert(transform);
+    assert(other);
     *transform = convertTransform(convertTransform(*transform).combine(convertTransform(*other)));
 }
 
@@ -105,8 +99,7 @@ void sfTransform_combine(sfTransform* transform, const sfTransform* other)
 ////////////////////////////////////////////////////////////
 void sfTransform_translate(sfTransform* transform, sfVector2f offset)
 {
-    CSFML_CHECK(transform);
-
+    assert(transform);
     *transform = convertTransform(convertTransform(*transform).translate(convertVector2(offset)));
 }
 
@@ -114,8 +107,7 @@ void sfTransform_translate(sfTransform* transform, sfVector2f offset)
 ////////////////////////////////////////////////////////////
 void sfTransform_rotate(sfTransform* transform, float angle)
 {
-    CSFML_CHECK(transform);
-
+    assert(transform);
     *transform = convertTransform(convertTransform(*transform).rotate(sf::degrees(angle)));
 }
 
@@ -123,8 +115,7 @@ void sfTransform_rotate(sfTransform* transform, float angle)
 ////////////////////////////////////////////////////////////
 void sfTransform_rotateWithCenter(sfTransform* transform, float angle, sfVector2f center)
 {
-    CSFML_CHECK(transform);
-
+    assert(transform);
     *transform = convertTransform(convertTransform(*transform).rotate(sf::degrees(angle), convertVector2(center)));
 }
 
@@ -132,8 +123,7 @@ void sfTransform_rotateWithCenter(sfTransform* transform, float angle, sfVector2
 ////////////////////////////////////////////////////////////
 void sfTransform_scale(sfTransform* transform, sfVector2f scale)
 {
-    CSFML_CHECK(transform);
-
+    assert(transform);
     *transform = convertTransform(convertTransform(*transform).scale(convertVector2(scale)));
 }
 
@@ -141,8 +131,7 @@ void sfTransform_scale(sfTransform* transform, sfVector2f scale)
 ////////////////////////////////////////////////////////////
 void sfTransform_scaleWithCenter(sfTransform* transform, sfVector2f scale, sfVector2f center)
 {
-    CSFML_CHECK(transform);
-
+    assert(transform);
     *transform = convertTransform(convertTransform(*transform).scale(convertVector2(scale), convertVector2(center)));
 }
 
@@ -150,8 +139,8 @@ void sfTransform_scaleWithCenter(sfTransform* transform, sfVector2f scale, sfVec
 ////////////////////////////////////////////////////////////
 bool sfTransform_equal(sfTransform* left, sfTransform* right)
 {
-    CSFML_CHECK_RETURN(left, false);
-    CSFML_CHECK_RETURN(right, false);
+    assert(left);
+    assert(right);
 
     for (int i = 0; i < 9; ++i)
     {

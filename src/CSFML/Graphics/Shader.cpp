@@ -30,7 +30,6 @@
 #include <CSFML/Graphics/Shader.h>
 #include <CSFML/Graphics/ShaderStruct.hpp>
 #include <CSFML/Graphics/TextureStruct.hpp>
-#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -195,28 +194,32 @@ void sfShader_destroy(sfShader* shader)
 ////////////////////////////////////////////////////////////
 void sfShader_setFloatUniform(sfShader* shader, const char* name, float x)
 {
-    CSFML_CALL(shader, setUniform(name, x));
+    assert(shader);
+    shader->This.setUniform(name, x);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setVec2Uniform(sfShader* shader, const char* name, sfGlslVec2 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Vec2(vector.x, vector.y)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Vec2(vector.x, vector.y));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setVec3Uniform(sfShader* shader, const char* name, sfGlslVec3 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Vec3(vector.x, vector.y, vector.z)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Vec3(vector.x, vector.y, vector.z));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setVec4Uniform(sfShader* shader, const char* name, sfGlslVec4 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Vec4(vector.x, vector.y, vector.z, vector.w)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Vec4(vector.x, vector.y, vector.z, vector.w));
 }
 
 
@@ -235,28 +238,32 @@ void sfShader_setColorUniform(sfShader* shader, const char* name, sfColor color)
 ////////////////////////////////////////////////////////////
 void sfShader_setIntUniform(sfShader* shader, const char* name, int x)
 {
-    CSFML_CALL(shader, setUniform(name, x));
+    assert(shader);
+    shader->This.setUniform(name, x);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setIvec2Uniform(sfShader* shader, const char* name, sfGlslIvec2 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Ivec2(vector.x, vector.y)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Ivec2(vector.x, vector.y));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setIvec3Uniform(sfShader* shader, const char* name, sfGlslIvec3 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Ivec3(vector.x, vector.y, vector.z)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Ivec3(vector.x, vector.y, vector.z));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setIvec4Uniform(sfShader* shader, const char* name, sfGlslIvec4 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Ivec4(vector.x, vector.y, vector.z, vector.w)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Ivec4(vector.x, vector.y, vector.z, vector.w));
 }
 
 
@@ -275,113 +282,129 @@ void sfShader_setIntColorUniform(sfShader* shader, const char* name, sfColor col
 ////////////////////////////////////////////////////////////
 void sfShader_setBoolUniform(sfShader* shader, const char* name, bool x)
 {
-    CSFML_CALL(shader, setUniform(name, x));
+    assert(shader);
+    shader->This.setUniform(name, x);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec2Uniform(sfShader* shader, const char* name, sfGlslBvec2 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec2(vector.x, vector.y)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Bvec2(vector.x, vector.y));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec3Uniform(sfShader* shader, const char* name, sfGlslBvec3 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec3(vector.x, vector.y, vector.z)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Bvec3(vector.x, vector.y, vector.z));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setBvec4Uniform(sfShader* shader, const char* name, sfGlslBvec4 vector)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Bvec4(vector.x, vector.y, vector.z, vector.w)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Bvec4(vector.x, vector.y, vector.z, vector.w));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setMat3Uniform(sfShader* shader, const char* name, const sfGlslMat3* matrix)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Mat3(matrix->array)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Mat3(matrix->array));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setMat4Uniform(sfShader* shader, const char* name, const sfGlslMat4* matrix)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Glsl::Mat4(matrix->array)));
+    assert(shader);
+    shader->This.setUniform(name, sf::Glsl::Mat4(matrix->array));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setTextureUniform(sfShader* shader, const char* name, const sfTexture* texture)
 {
-    CSFML_CALL(shader, setUniform(name, *texture->This));
+    assert(shader);
+    shader->This.setUniform(name, *texture->This);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setCurrentTextureUniform(sfShader* shader, const char* name)
 {
-    CSFML_CALL(shader, setUniform(name, sf::Shader::CurrentTexture));
+    assert(shader);
+    shader->This.setUniform(name, sf::Shader::CurrentTexture);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setFloatUniformArray(sfShader* shader, const char* name, const float* scalarArray, size_t length)
 {
-    CSFML_CALL(shader, setUniformArray(name, scalarArray, length));
+    assert(shader);
+    shader->This.setUniformArray(name, scalarArray, length);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setVec2UniformArray(sfShader* shader, const char* name, const sfGlslVec2* vectorArray, size_t length)
 {
-    CSFML_CALL(shader, setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec2*>(vectorArray), length));
+    assert(shader);
+    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec2*>(vectorArray), length);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setVec3UniformArray(sfShader* shader, const char* name, const sfGlslVec3* vectorArray, size_t length)
 {
-    CSFML_CALL(shader, setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec3*>(vectorArray), length));
+    assert(shader);
+    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec3*>(vectorArray), length);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setVec4UniformArray(sfShader* shader, const char* name, const sfGlslVec4* vectorArray, size_t length)
 {
-    CSFML_CALL(shader, setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec4*>(vectorArray), length));
+    assert(shader);
+    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec4*>(vectorArray), length);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setMat3UniformArray(sfShader* shader, const char* name, const sfGlslMat3* matrixArray, size_t length)
 {
-    CSFML_CALL(shader, setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat3*>(matrixArray), length));
+    assert(shader);
+    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat3*>(matrixArray), length);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setMat4UniformArray(sfShader* shader, const char* name, const sfGlslMat4* matrixArray, size_t length)
 {
-    CSFML_CALL(shader, setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat4*>(matrixArray), length));
+    assert(shader);
+    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat4*>(matrixArray), length);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTexture* texture)
 {
-    CSFML_CHECK(texture);
-    CSFML_CALL(shader, setUniform(name, *texture->This));
+    assert(shader);
+    assert(texture);
+    shader->This.setUniform(name, *texture->This);
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfShader_getNativeHandle(const sfShader* shader)
 {
-    CSFML_CALL_RETURN(shader, getNativeHandle(), 0);
+    assert(shader);
+    return shader->This.getNativeHandle();
 }
 
 

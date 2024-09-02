@@ -26,7 +26,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/ConvertEvent.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Window/ConvertVideoMode.hpp>
 #include <CSFML/Window/CursorStruct.hpp>
@@ -79,22 +78,24 @@ void sfWindowBase_destroy(sfWindowBase* windowBase)
 ////////////////////////////////////////////////////////////
 void sfWindowBase_close(sfWindowBase* windowBase)
 {
-    CSFML_CALL(windowBase, close());
+    assert(windowBase);
+    windowBase->This.close();
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfWindowBase_isOpen(const sfWindowBase* windowBase)
 {
-    CSFML_CALL_RETURN(windowBase, isOpen(), false);
+    assert(windowBase);
+    return windowBase->This.isOpen();
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event)
 {
-    CSFML_CHECK_RETURN(windowBase, false);
-    CSFML_CHECK_RETURN(event, false);
+    assert(windowBase);
+    assert(event);
 
     // Get the event
     const std::optional sfmlEvent = windowBase->This.pollEvent();
@@ -113,8 +114,8 @@ bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event)
 ////////////////////////////////////////////////////////////
 bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event)
 {
-    CSFML_CHECK_RETURN(windowBase, false);
-    CSFML_CHECK_RETURN(event, false);
+    assert(windowBase);
+    assert(event);
 
     // Get the event
     const std::optional sfmlEvent = windowBase->This.waitEvent();
@@ -133,8 +134,7 @@ bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfEvent* event)
 ////////////////////////////////////////////////////////////
 sfVector2i sfWindowBase_getPosition(const sfWindowBase* windowBase)
 {
-    CSFML_CHECK_RETURN(windowBase, {});
-
+    assert(windowBase);
     return convertVector2(windowBase->This.getPosition());
 }
 
@@ -142,15 +142,15 @@ sfVector2i sfWindowBase_getPosition(const sfWindowBase* windowBase)
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setPosition(sfWindowBase* windowBase, sfVector2i position)
 {
-    CSFML_CALL(windowBase, setPosition(convertVector2(position)));
+    assert(windowBase);
+    windowBase->This.setPosition(convertVector2(position));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2u sfWindowBase_getSize(const sfWindowBase* windowBase)
 {
-    CSFML_CHECK_RETURN(windowBase, {});
-
+    assert(windowBase);
     return convertVector2(windowBase->This.getSize());
 }
 
@@ -158,94 +158,104 @@ sfVector2u sfWindowBase_getSize(const sfWindowBase* windowBase)
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setSize(sfWindowBase* windowBase, sfVector2u size)
 {
-    CSFML_CALL(windowBase, setSize(convertVector2(size)));
+    assert(windowBase);
+    windowBase->This.setSize(convertVector2(size));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setTitle(sfWindowBase* windowBase, const char* title)
 {
-    CSFML_CALL(windowBase, setTitle(title));
+    assert(windowBase);
+    windowBase->This.setTitle(title);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfChar32* title)
 {
-    CSFML_CALL(windowBase, setTitle(reinterpret_cast<const char32_t*>(title)));
+    assert(windowBase);
+    windowBase->This.setTitle(reinterpret_cast<const char32_t*>(title));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setIcon(sfWindowBase* windowBase, sfVector2u size, const uint8_t* pixels)
 {
-    CSFML_CALL(windowBase, setIcon(convertVector2(size), pixels));
+    assert(windowBase);
+    windowBase->This.setIcon(convertVector2(size), pixels);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setVisible(sfWindowBase* windowBase, bool visible)
 {
-    CSFML_CALL(windowBase, setVisible(visible));
+    assert(windowBase);
+    windowBase->This.setVisible(visible);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBase, bool visible)
 {
-    CSFML_CALL(windowBase, setMouseCursorVisible(visible));
+    assert(windowBase);
+    windowBase->This.setMouseCursorVisible(visible);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setMouseCursorGrabbed(sfWindowBase* windowBase, bool grabbed)
 {
-    CSFML_CALL(windowBase, setMouseCursorGrabbed(grabbed));
+    assert(windowBase);
+    windowBase->This.setMouseCursorGrabbed(grabbed);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setMouseCursor(sfWindowBase* windowBase, const sfCursor* cursor)
 {
-    CSFML_CHECK(cursor);
-
-    CSFML_CALL(windowBase, setMouseCursor(cursor->This));
+    assert(windowBase);
+    assert(cursor);
+    windowBase->This.setMouseCursor(cursor->This);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setKeyRepeatEnabled(sfWindowBase* windowBase, bool enabled)
 {
-    CSFML_CALL(windowBase, setKeyRepeatEnabled(enabled));
+    assert(windowBase);
+    windowBase->This.setKeyRepeatEnabled(enabled);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_setJoystickThreshold(sfWindowBase* windowBase, float threshold)
 {
-    CSFML_CALL(windowBase, setJoystickThreshold(threshold));
+    assert(windowBase);
+    windowBase->This.setJoystickThreshold(threshold);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfWindowBase_requestFocus(sfWindowBase* windowBase)
 {
-    CSFML_CALL(windowBase, requestFocus());
+    assert(windowBase);
+    windowBase->This.requestFocus();
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfWindowBase_hasFocus(const sfWindowBase* windowBase)
 {
-    CSFML_CALL_RETURN(windowBase, hasFocus(), false);
+    assert(windowBase);
+    return windowBase->This.hasFocus();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfWindowHandle sfWindowBase_getNativeHandle(const sfWindowBase* windowBase)
 {
-    CSFML_CHECK_RETURN(windowBase, 0);
-
+    assert(windowBase);
     return static_cast<sfWindowHandle>(windowBase->This.getNativeHandle());
 }
 
@@ -255,7 +265,8 @@ bool sfWindowBase_createVulkanSurface(sfWindowBase*                windowBase,
                                       VkSurfaceKHR*                surface,
                                       const VkAllocationCallbacks* allocator)
 {
-    CSFML_CHECK_RETURN(instance, false);
-    CSFML_CHECK_RETURN(surface, false);
-    CSFML_CALL_RETURN(windowBase, createVulkanSurface(*instance, *surface, allocator), false);
+    assert(windowBase);
+    assert(instance);
+    assert(surface);
+    return windowBase->This.createVulkanSurface(*instance, *surface, allocator);
 }

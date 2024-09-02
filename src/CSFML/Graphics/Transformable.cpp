@@ -28,7 +28,6 @@
 #include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/Transformable.h>
 #include <CSFML/Graphics/TransformableStruct.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 
 
@@ -44,8 +43,7 @@ sfTransformable* sfTransformable_create()
 ////////////////////////////////////////////////////////////
 sfTransformable* sfTransformable_copy(const sfTransformable* transformable)
 {
-    CSFML_CHECK_RETURN(transformable, nullptr);
-
+    assert(transformable);
     return new sfTransformable(*transformable);
 }
 
@@ -60,36 +58,39 @@ void sfTransformable_destroy(sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 void sfTransformable_setPosition(sfTransformable* transformable, sfVector2f position)
 {
-    CSFML_CALL(transformable, setPosition(convertVector2(position)));
+    assert(transformable);
+    transformable->This.setPosition(convertVector2(position));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_setRotation(sfTransformable* transformable, float angle)
 {
-    CSFML_CALL(transformable, setRotation(sf::degrees(angle)));
+    assert(transformable);
+    transformable->This.setRotation(sf::degrees(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_setScale(sfTransformable* transformable, sfVector2f scale)
 {
-    CSFML_CALL(transformable, setScale(convertVector2(scale)));
+    assert(transformable);
+    transformable->This.setScale(convertVector2(scale));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_setOrigin(sfTransformable* transformable, sfVector2f origin)
 {
-    CSFML_CALL(transformable, setOrigin(convertVector2(origin)));
+    assert(transformable);
+    transformable->This.setOrigin(convertVector2(origin));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2f sfTransformable_getPosition(const sfTransformable* transformable)
 {
-    CSFML_CHECK_RETURN(transformable, {});
-
+    assert(transformable);
     return convertVector2(transformable->This.getPosition());
 }
 
@@ -97,15 +98,15 @@ sfVector2f sfTransformable_getPosition(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 float sfTransformable_getRotation(const sfTransformable* transformable)
 {
-    CSFML_CALL_RETURN(transformable, getRotation().asDegrees(), 0.f);
+    assert(transformable);
+    return transformable->This.getRotation().asDegrees();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2f sfTransformable_getScale(const sfTransformable* transformable)
 {
-    CSFML_CHECK_RETURN(transformable, {});
-
+    assert(transformable);
     return convertVector2(transformable->This.getScale());
 }
 
@@ -113,8 +114,7 @@ sfVector2f sfTransformable_getScale(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable)
 {
-    CSFML_CHECK_RETURN(transformable, {});
-
+    assert(transformable);
     return convertVector2(transformable->This.getOrigin());
 }
 
@@ -122,29 +122,31 @@ sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 void sfTransformable_move(sfTransformable* transformable, sfVector2f offset)
 {
-    CSFML_CALL(transformable, move(convertVector2(offset)));
+    assert(transformable);
+    transformable->This.move(convertVector2(offset));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_rotate(sfTransformable* transformable, float angle)
 {
-    CSFML_CALL(transformable, rotate(sf::degrees(angle)));
+    assert(transformable);
+    transformable->This.rotate(sf::degrees(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors)
 {
-    CSFML_CALL(transformable, scale(convertVector2(factors)));
+    assert(transformable);
+    transformable->This.scale(convertVector2(factors));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfTransform sfTransformable_getTransform(const sfTransformable* transformable)
 {
-    CSFML_CHECK_RETURN(transformable, sfTransform_Identity);
-
+    assert(transformable);
     transformable->Transform = convertTransform(transformable->This.getTransform());
     return transformable->Transform;
 }
@@ -153,8 +155,7 @@ sfTransform sfTransformable_getTransform(const sfTransformable* transformable)
 ////////////////////////////////////////////////////////////
 sfTransform sfTransformable_getInverseTransform(const sfTransformable* transformable)
 {
-    CSFML_CHECK_RETURN(transformable, sfTransform_Identity);
-
+    assert(transformable);
     transformable->InverseTransform = convertTransform(transformable->This.getInverseTransform());
     return transformable->InverseTransform;
 }

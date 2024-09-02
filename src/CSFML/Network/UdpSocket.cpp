@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/Network/PacketStruct.hpp>
 #include <CSFML/Network/UdpSocket.h>
 #include <CSFML/Network/UdpSocketStruct.hpp>
@@ -52,27 +51,30 @@ void sfUdpSocket_destroy(sfUdpSocket* socket)
 ////////////////////////////////////////////////////////////
 void sfUdpSocket_setBlocking(sfUdpSocket* socket, bool blocking)
 {
-    CSFML_CALL(socket, setBlocking(blocking));
+    assert(socket);
+    socket->This.setBlocking(blocking);
 }
 
 ////////////////////////////////////////////////////////////
 bool sfUdpSocket_isBlocking(const sfUdpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, isBlocking(), false);
+    assert(socket);
+    return socket->This.isBlocking();
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned short sfUdpSocket_getLocalPort(const sfUdpSocket* socket)
 {
-    CSFML_CALL_RETURN(socket, getLocalPort(), 0);
+    assert(socket);
+    return socket->This.getLocalPort();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port, sfIpAddress address)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
+    assert(socket);
 
     std::optional<sf::IpAddress> sfmlAddress = sf::IpAddress::resolve(address.address);
 
@@ -88,14 +90,15 @@ sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port, sfIpAd
 ////////////////////////////////////////////////////////////
 void sfUdpSocket_unbind(sfUdpSocket* socket)
 {
-    CSFML_CALL(socket, unbind());
+    assert(socket);
+    socket->This.unbind();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t size, sfIpAddress remoteAddress, unsigned short remotePort)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
+    assert(socket);
 
     // Convert the address
     std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
@@ -117,7 +120,7 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket*    socket,
                                    sfIpAddress*    remoteAddress,
                                    unsigned short* remotePort)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
+    assert(socket);
 
     std::optional<sf::IpAddress> address;
     unsigned short               port;
@@ -150,8 +153,8 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket*    socket,
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress remoteAddress, unsigned short remotePort)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
-    CSFML_CHECK_RETURN(packet, sfSocketError);
+    assert(socket);
+    assert(packet);
 
     // Convert the address
     std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
@@ -168,8 +171,8 @@ sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfI
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, sfIpAddress* remoteAddress, unsigned short* remotePort)
 {
-    CSFML_CHECK_RETURN(socket, sfSocketError);
-    CSFML_CHECK_RETURN(packet, sfSocketError);
+    assert(socket);
+    assert(packet);
 
     std::optional<sf::IpAddress> address;
     unsigned short               port;

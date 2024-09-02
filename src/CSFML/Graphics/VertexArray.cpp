@@ -28,7 +28,6 @@
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/VertexArray.h>
 #include <CSFML/Graphics/VertexArrayStruct.hpp>
-#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -41,8 +40,7 @@ sfVertexArray* sfVertexArray_create()
 ////////////////////////////////////////////////////////////
 sfVertexArray* sfVertexArray_copy(const sfVertexArray* vertexArray)
 {
-    CSFML_CHECK_RETURN(vertexArray, nullptr);
-
+    assert(vertexArray);
     return new sfVertexArray(*vertexArray);
 }
 
@@ -57,14 +55,15 @@ void sfVertexArray_destroy(sfVertexArray* vertexArray)
 ////////////////////////////////////////////////////////////
 size_t sfVertexArray_getVertexCount(const sfVertexArray* vertexArray)
 {
-    CSFML_CALL_RETURN(vertexArray, getVertexCount(), 0);
+    assert(vertexArray);
+    return vertexArray->This.getVertexCount();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, size_t index)
 {
-    CSFML_CHECK_RETURN(vertexArray, nullptr);
+    assert(vertexArray);
 
     // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
     return reinterpret_cast<sfVertex*>(&vertexArray->This[index]);
@@ -74,14 +73,16 @@ sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, size_t index)
 ////////////////////////////////////////////////////////////
 void sfVertexArray_clear(sfVertexArray* vertexArray)
 {
-    CSFML_CALL(vertexArray, clear());
+    assert(vertexArray);
+    vertexArray->This.clear();
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfVertexArray_resize(sfVertexArray* vertexArray, size_t vertexCount)
 {
-    CSFML_CALL(vertexArray, resize(vertexCount));
+    assert(vertexArray);
+    vertexArray->This.resize(vertexCount);
 }
 
 
@@ -89,21 +90,23 @@ void sfVertexArray_resize(sfVertexArray* vertexArray, size_t vertexCount)
 void sfVertexArray_append(sfVertexArray* vertexArray, sfVertex vertex)
 {
     // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
-    CSFML_CALL(vertexArray, append(reinterpret_cast<sf::Vertex&>(vertex)));
+    assert(vertexArray);
+    vertexArray->This.append(reinterpret_cast<sf::Vertex&>(vertex));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfVertexArray_setPrimitiveType(sfVertexArray* vertexArray, sfPrimitiveType type)
 {
-    CSFML_CALL(vertexArray, setPrimitiveType(static_cast<sf::PrimitiveType>(type)));
+    assert(vertexArray);
+    vertexArray->This.setPrimitiveType(static_cast<sf::PrimitiveType>(type));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
 {
-    CSFML_CHECK_RETURN(vertexArray, sfPoints);
+    assert(vertexArray);
     return static_cast<sfPrimitiveType>(vertexArray->This.getPrimitiveType());
 }
 
@@ -111,7 +114,6 @@ sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
 ////////////////////////////////////////////////////////////
 sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray)
 {
-    CSFML_CHECK_RETURN(vertexArray, {});
-
+    assert(vertexArray);
     return convertRect(vertexArray->This.getBounds());
 }

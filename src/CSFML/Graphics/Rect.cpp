@@ -27,7 +27,6 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/Rect.h>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 
 #include <SFML/Graphics/Rect.hpp>
@@ -38,12 +37,12 @@
 ////////////////////////////////////////////////////////////
 bool sfFloatRect_contains(const sfFloatRect* rect, sfVector2f point)
 {
-    CSFML_CHECK_RETURN(rect, false);
+    assert(rect);
     return convertRect(*rect).contains(convertVector2(point));
 }
 bool sfIntRect_contains(const sfIntRect* rect, sfVector2i point)
 {
-    CSFML_CHECK_RETURN(rect, false);
+    assert(rect);
     return convertRect(*rect).contains(convertVector2(point));
 }
 
@@ -53,8 +52,8 @@ bool sfIntRect_contains(const sfIntRect* rect, sfVector2i point)
 ////////////////////////////////////////////////////////////
 bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, sfFloatRect* intersection)
 {
-    CSFML_CHECK_RETURN(rect1, false);
-    CSFML_CHECK_RETURN(rect2, false);
+    assert(rect1);
+    assert(rect2);
 
     const std::optional overlap = convertRect(*rect1).findIntersection(convertRect(*rect2));
 
@@ -65,8 +64,8 @@ bool sfFloatRect_intersects(const sfFloatRect* rect1, const sfFloatRect* rect2, 
 }
 bool sfIntRect_intersects(const sfIntRect* rect1, const sfIntRect* rect2, sfIntRect* intersection)
 {
-    CSFML_CHECK_RETURN(rect1, false);
-    CSFML_CHECK_RETURN(rect2, false);
+    assert(rect1);
+    assert(rect2);
 
     const std::optional overlap = convertRect(*rect1).findIntersection(convertRect(*rect2));
 

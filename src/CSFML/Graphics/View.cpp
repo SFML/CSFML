@@ -28,7 +28,6 @@
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/View.h>
 #include <CSFML/Graphics/ViewStruct.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 
 
@@ -49,8 +48,7 @@ sfView* sfView_createFromRect(sfFloatRect rectangle)
 ////////////////////////////////////////////////////////////
 sfView* sfView_copy(const sfView* view)
 {
-    CSFML_CHECK_RETURN(view, nullptr);
-
+    assert(view);
     return new sfView(*view);
 }
 
@@ -65,36 +63,39 @@ void sfView_destroy(sfView* view)
 ////////////////////////////////////////////////////////////
 void sfView_setCenter(sfView* view, sfVector2f center)
 {
-    CSFML_CALL(view, setCenter(convertVector2(center)));
+    assert(view);
+    view->This.setCenter(convertVector2(center));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_setSize(sfView* view, sfVector2f size)
 {
-    CSFML_CALL(view, setSize(convertVector2(size)));
+    assert(view);
+    view->This.setSize(convertVector2(size));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_setRotation(sfView* view, float angle)
 {
-    CSFML_CALL(view, setRotation(sf::degrees(angle)));
+    assert(view);
+    view->This.setRotation(sf::degrees(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_setViewport(sfView* view, sfFloatRect viewport)
 {
-    CSFML_CALL(view, setViewport(convertRect(viewport)));
+    assert(view);
+    view->This.setViewport(convertRect(viewport));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2f sfView_getCenter(const sfView* view)
 {
-    CSFML_CHECK_RETURN(view, {});
-
+    assert(view);
     return convertVector2(view->This.getCenter());
 }
 
@@ -102,8 +103,7 @@ sfVector2f sfView_getCenter(const sfView* view)
 ////////////////////////////////////////////////////////////
 sfVector2f sfView_getSize(const sfView* view)
 {
-    CSFML_CHECK_RETURN(view, {});
-
+    assert(view);
     return convertVector2(view->This.getSize());
 }
 
@@ -111,15 +111,15 @@ sfVector2f sfView_getSize(const sfView* view)
 ////////////////////////////////////////////////////////////
 float sfView_getRotation(const sfView* view)
 {
-    CSFML_CALL_RETURN(view, getRotation().asDegrees(), 0.f);
+    assert(view);
+    return view->This.getRotation().asDegrees();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfFloatRect sfView_getViewport(const sfView* view)
 {
-    CSFML_CHECK_RETURN(view, {});
-
+    assert(view);
     return convertRect(view->This.getViewport());
 }
 
@@ -127,19 +127,22 @@ sfFloatRect sfView_getViewport(const sfView* view)
 ////////////////////////////////////////////////////////////
 void sfView_move(sfView* view, sfVector2f offset)
 {
-    CSFML_CALL(view, move(convertVector2(offset)));
+    assert(view);
+    view->This.move(convertVector2(offset));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_rotate(sfView* view, float angle)
 {
-    CSFML_CALL(view, rotate(sf::degrees(angle)));
+    assert(view);
+    view->This.rotate(sf::degrees(angle));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfView_zoom(sfView* view, float factor)
 {
-    CSFML_CALL(view, zoom(factor));
+    assert(view);
+    view->This.zoom(factor);
 }

@@ -30,7 +30,6 @@
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/Image.h>
 #include <CSFML/Graphics/ImageStruct.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/BufferStruct.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 
@@ -81,7 +80,7 @@ sfImage* sfImage_createFromMemory(const void* data, size_t sizeInBytes)
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromStream(sfInputStream* stream)
 {
-    CSFML_CHECK_RETURN(stream, nullptr);
+    assert(stream);
 
     CallbackStream sfmlStream(stream);
     sf::Image      image;
@@ -95,8 +94,7 @@ sfImage* sfImage_createFromStream(sfInputStream* stream)
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_copy(const sfImage* image)
 {
-    CSFML_CHECK_RETURN(image, nullptr);
-
+    assert(image);
     return new sfImage(*image);
 }
 
@@ -111,15 +109,16 @@ void sfImage_destroy(sfImage* image)
 ////////////////////////////////////////////////////////////
 bool sfImage_saveToFile(const sfImage* image, const char* filename)
 {
-    CSFML_CALL_RETURN(image, saveToFile(filename), false);
+    assert(image);
+    return image->This.saveToFile(filename);
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* format)
 {
-    CSFML_CHECK_RETURN(output, false);
-    CSFML_CHECK_RETURN(image, false);
+    assert(image);
+    assert(output);
 
     auto data = image->This.saveToMemory(format);
 
@@ -136,16 +135,16 @@ bool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* fo
 ////////////////////////////////////////////////////////////
 void sfImage_createMaskFromColor(sfImage* image, sfColor colorKey, uint8_t alpha)
 {
-    CSFML_CALL(image, createMaskFromColor(convertColor(colorKey), alpha));
+    assert(image);
+    image->This.createMaskFromColor(convertColor(colorKey), alpha);
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfImage_copyImage(sfImage* image, const sfImage* source, sfVector2u dest, sfIntRect sourceRect, bool applyAlpha)
 {
-    CSFML_CHECK_RETURN(image, false);
-    CSFML_CHECK_RETURN(source, false);
-
+    assert(image);
+    assert(source);
     return image->This.copy(source->This, convertVector2(dest), convertRect(sourceRect), applyAlpha);
 }
 
@@ -153,15 +152,15 @@ bool sfImage_copyImage(sfImage* image, const sfImage* source, sfVector2u dest, s
 ////////////////////////////////////////////////////////////
 void sfImage_setPixel(sfImage* image, sfVector2u coords, sfColor color)
 {
-    CSFML_CALL(image, setPixel(convertVector2(coords), convertColor(color)));
+    assert(image);
+    image->This.setPixel(convertVector2(coords), convertColor(color));
 }
 
 
 ////////////////////////////////////////////////////////////
 sfColor sfImage_getPixel(const sfImage* image, sfVector2u coords)
 {
-    CSFML_CHECK_RETURN(image, {});
-
+    assert(image);
     return convertColor(image->This.getPixel(convertVector2(coords)));
 }
 
@@ -169,15 +168,15 @@ sfColor sfImage_getPixel(const sfImage* image, sfVector2u coords)
 ////////////////////////////////////////////////////////////
 const uint8_t* sfImage_getPixelsPtr(const sfImage* image)
 {
-    CSFML_CALL_RETURN(image, getPixelsPtr(), nullptr);
+    assert(image);
+    return image->This.getPixelsPtr();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfVector2u sfImage_getSize(const sfImage* image)
 {
-    CSFML_CHECK_RETURN(image, {});
-
+    assert(image);
     return convertVector2(image->This.getSize());
 }
 
@@ -185,12 +184,14 @@ sfVector2u sfImage_getSize(const sfImage* image)
 ////////////////////////////////////////////////////////////
 void sfImage_flipHorizontally(sfImage* image)
 {
-    CSFML_CALL(image, flipHorizontally());
+    assert(image);
+    image->This.flipHorizontally();
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfImage_flipVertically(sfImage* image)
 {
-    CSFML_CALL(image, flipVertically());
+    assert(image);
+    image->This.flipVertically();
 }
