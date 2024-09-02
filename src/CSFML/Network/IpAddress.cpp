@@ -35,7 +35,7 @@
 namespace
 {
 // Helper function for converting a SFML address to a CSFML one
-sfIpAddress fromSFMLAddress(std::optional<sf::IpAddress> address)
+[[nodiscard]] sfIpAddress fromSFMLAddress(std::optional<sf::IpAddress> address)
 {
     sfIpAddress result = {0};
 
@@ -48,7 +48,7 @@ sfIpAddress fromSFMLAddress(std::optional<sf::IpAddress> address)
 }
 
 // Helper function for converting a CSFML address to a SFML one
-std::optional<sf::IpAddress> toSFMLAddress(sfIpAddress address)
+[[nodiscard]] std::optional<sf::IpAddress> toSFMLAddress(sfIpAddress address)
 {
     return sf::IpAddress::resolve(address.address);
 }

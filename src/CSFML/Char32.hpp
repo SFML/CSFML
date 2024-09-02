@@ -46,7 +46,7 @@ static_assert(alignof(sfChar32) == alignof(char32_t));
 ////////////////////////////////////////////////////////////
 // Define utils to copy from / to sfChar32 and sf::String
 ////////////////////////////////////////////////////////////
-inline sfChar32* copyToChar32(const sf::String& str)
+[[nodiscard]] inline sfChar32* copyToChar32(const sf::String& str)
 {
     std::size_t byteCount = sizeof(sfChar32) * str.getSize();
     auto*       utf32     = static_cast<sfChar32*>(malloc(byteCount + sizeof(sfChar32)));
