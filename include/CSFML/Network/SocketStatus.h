@@ -35,5 +35,4 @@ typedef enum
     sfSocketPartial,      ///< The socket sent a part of the data
     sfSocketDisconnected, ///< The TCP socket has been disconnected
     sfSocketError         ///< An unexpected error happened
-
 } sfSocketStatus;

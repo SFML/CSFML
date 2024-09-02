@@ -41,8 +41,9 @@ catch_discover_tests(test-csfml-window)
 
 add_executable(test-csfml-network
     Network/IpAddress.test.cpp
+    Network/SocketStatus.test.cpp
 )
-target_link_libraries(test-csfml-network PRIVATE csfml-network Catch2::Catch2WithMain)
+target_link_libraries(test-csfml-network PRIVATE csfml-network Catch2::Catch2WithMain SFML::Network)
 set_target_warnings(test-csfml-network)
 catch_discover_tests(test-csfml-network)
 
