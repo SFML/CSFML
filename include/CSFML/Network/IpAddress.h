@@ -103,7 +103,7 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_fromBytes(uint8_t byte0, uint8_t byte1
 /// This function uses the internal representation of
 /// the address directly. It should be used for optimization
 /// purposes, and only if you got that representation from
-/// sfIpAddress_ToInteger.
+/// sfIpAddress_toInteger.
 ///
 /// \param address 4 bytes of the address packed into a 32-bits integer
 ///
