@@ -39,8 +39,16 @@ target_link_libraries(test-csfml-window PRIVATE csfml-window Catch2::Catch2WithM
 set_target_warnings(test-csfml-window)
 catch_discover_tests(test-csfml-window)
 
+add_executable(test-csfml-network
+    Network/IpAddress.test.cpp
+)
+target_link_libraries(test-csfml-network PRIVATE csfml-network Catch2::Catch2WithMain)
+set_target_warnings(test-csfml-network)
+catch_discover_tests(test-csfml-network)
+
 # Copy DLLs into the same directory
 if(SFML_OS_WINDOWS AND NOT CSFML_LINK_SFML_STATICALLY)
-    add_custom_command(TARGET test-csfml-system POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-system> $<TARGET_FILE_DIR:test-csfml-system> COMMAND_EXPAND_LISTS)
-    add_custom_command(TARGET test-csfml-window POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-window> $<TARGET_FILE_DIR:test-csfml-window> COMMAND_EXPAND_LISTS)
+    add_custom_command(TARGET test-csfml-system  POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-system>  $<TARGET_FILE_DIR:test-csfml-system> COMMAND_EXPAND_LISTS)
+    add_custom_command(TARGET test-csfml-window  POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-window>  $<TARGET_FILE_DIR:test-csfml-window> COMMAND_EXPAND_LISTS)
+    add_custom_command(TARGET test-csfml-network POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-network> $<TARGET_FILE_DIR:test-csfml-network> COMMAND_EXPAND_LISTS)
 endif()
