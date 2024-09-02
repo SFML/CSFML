@@ -26,7 +26,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Char32.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/Network/Ftp.h>
 #include <CSFML/Network/FtpStruct.hpp>
 
@@ -46,15 +45,15 @@ void sfFtpListingResponse_destroy(sfFtpListingResponse* ftpListingResponse)
 ////////////////////////////////////////////////////////////
 bool sfFtpListingResponse_isOk(const sfFtpListingResponse* ftpListingResponse)
 {
-    CSFML_CALL_RETURN(ftpListingResponse, isOk(), false);
+    assert(ftpListingResponse);
+    return ftpListingResponse->This.isOk();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfFtpStatus sfFtpListingResponse_getStatus(const sfFtpListingResponse* ftpListingResponse)
 {
-    CSFML_CHECK_RETURN(ftpListingResponse, sfFtpInvalidResponse);
-
+    assert(ftpListingResponse);
     return static_cast<sfFtpStatus>(ftpListingResponse->This.getStatus());
 }
 
@@ -62,8 +61,7 @@ sfFtpStatus sfFtpListingResponse_getStatus(const sfFtpListingResponse* ftpListin
 ////////////////////////////////////////////////////////////
 const char* sfFtpListingResponse_getMessage(const sfFtpListingResponse* ftpListingResponse)
 {
-    CSFML_CHECK_RETURN(ftpListingResponse, nullptr);
-
+    assert(ftpListingResponse);
     return ftpListingResponse->This.getMessage().c_str();
 }
 
@@ -71,8 +69,7 @@ const char* sfFtpListingResponse_getMessage(const sfFtpListingResponse* ftpListi
 ////////////////////////////////////////////////////////////
 size_t sfFtpListingResponse_getCount(const sfFtpListingResponse* ftpListingResponse)
 {
-    CSFML_CHECK_RETURN(ftpListingResponse, 0);
-
+    assert(ftpListingResponse);
     return ftpListingResponse->This.getListing().size();
 }
 
@@ -80,8 +77,7 @@ size_t sfFtpListingResponse_getCount(const sfFtpListingResponse* ftpListingRespo
 ////////////////////////////////////////////////////////////
 const char* sfFtpListingResponse_getName(const sfFtpListingResponse* ftpListingResponse, size_t index)
 {
-    CSFML_CHECK_RETURN(ftpListingResponse, nullptr);
-
+    assert(ftpListingResponse);
     return ftpListingResponse->This.getListing()[index].c_str();
 }
 
@@ -96,15 +92,15 @@ void sfFtpDirectoryResponse_destroy(sfFtpDirectoryResponse* ftpDirectoryResponse
 ////////////////////////////////////////////////////////////
 bool sfFtpDirectoryResponse_isOk(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
-    CSFML_CALL_RETURN(ftpDirectoryResponse, isOk(), false);
+    assert(ftpDirectoryResponse);
+    return ftpDirectoryResponse->This.isOk();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfFtpStatus sfFtpDirectoryResponse_getStatus(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
-    CSFML_CHECK_RETURN(ftpDirectoryResponse, sfFtpInvalidResponse);
-
+    assert(ftpDirectoryResponse);
     return static_cast<sfFtpStatus>(ftpDirectoryResponse->This.getStatus());
 }
 
@@ -112,8 +108,7 @@ sfFtpStatus sfFtpDirectoryResponse_getStatus(const sfFtpDirectoryResponse* ftpDi
 ////////////////////////////////////////////////////////////
 const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
-    CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
-
+    assert(ftpDirectoryResponse);
     return ftpDirectoryResponse->This.getMessage().c_str();
 }
 
@@ -121,7 +116,7 @@ const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirectoryResponse* ftpD
 ////////////////////////////////////////////////////////////
 const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
-    CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
+    assert(ftpDirectoryResponse);
     return strdup(ftpDirectoryResponse->This.getDirectory().string().c_str());
 }
 
@@ -129,8 +124,7 @@ const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ft
 ////////////////////////////////////////////////////////////
 const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
-    CSFML_CHECK_RETURN(ftpDirectoryResponse, nullptr);
-
+    assert(ftpDirectoryResponse);
     sf::String str = sf::String(ftpDirectoryResponse->This.getDirectory().c_str());
     return copyToChar32(str);
 }
@@ -146,15 +140,15 @@ void sfFtpResponse_destroy(sfFtpResponse* ftpResponse)
 ////////////////////////////////////////////////////////////
 bool sfFtpResponse_isOk(const sfFtpResponse* ftpResponse)
 {
-    CSFML_CALL_RETURN(ftpResponse, isOk(), false);
+    assert(ftpResponse);
+    return ftpResponse->This.isOk();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfFtpStatus sfFtpResponse_getStatus(const sfFtpResponse* ftpResponse)
 {
-    CSFML_CHECK_RETURN(ftpResponse, sfFtpInvalidResponse);
-
+    assert(ftpResponse);
     return static_cast<sfFtpStatus>(ftpResponse->This.getStatus());
 }
 
@@ -162,8 +156,7 @@ sfFtpStatus sfFtpResponse_getStatus(const sfFtpResponse* ftpResponse)
 ////////////////////////////////////////////////////////////
 const char* sfFtpResponse_getMessage(const sfFtpResponse* ftpResponse)
 {
-    CSFML_CHECK_RETURN(ftpResponse, nullptr);
-
+    assert(ftpResponse);
     return ftpResponse->This.getMessage().c_str();
 }
 
@@ -185,7 +178,7 @@ void sfFtp_destroy(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port, sfTime timeout)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
+    assert(ftp);
 
     std::optional<sf::IpAddress> SFMLServer = sf::IpAddress::resolve(server.address);
 
@@ -199,8 +192,7 @@ sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.login());
 }
 
@@ -208,8 +200,7 @@ sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.login(name ? name : "", password ? password : ""));
 }
 
@@ -217,8 +208,7 @@ sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_disconnect(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.disconnect());
 }
 
@@ -226,8 +216,7 @@ sfFtpResponse* sfFtp_disconnect(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.keepAlive());
 }
 
@@ -235,8 +224,7 @@ sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpDirectoryResponse(ftp->This.getWorkingDirectory());
 }
 
@@ -244,8 +232,7 @@ sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, const char* directory)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpListingResponse(ftp->This.getDirectoryListing(directory ? directory : ""));
 }
 
@@ -253,8 +240,7 @@ sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, const char* director
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* directory)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.changeDirectory(directory ? directory : ""));
 }
 
@@ -262,8 +248,7 @@ sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* directory)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.parentDirectory());
 }
 
@@ -271,8 +256,7 @@ sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* name)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.createDirectory(name ? name : ""));
 }
 
@@ -280,8 +264,7 @@ sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* name)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* name)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.deleteDirectory(name ? name : ""));
 }
 
@@ -289,8 +272,7 @@ sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* name)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, const char* newName)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.renameFile(file ? file : "", newName ? newName : ""));
 }
 
@@ -298,8 +280,7 @@ sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, const char* newNam
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.deleteFile(name ? name : ""));
 }
 
@@ -307,8 +288,7 @@ sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name)
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* localPath, sfFtpTransferMode mode)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.download(remoteFile ? remoteFile : "",
                                                 localPath ? localPath : "",
                                                 static_cast<sf::Ftp::TransferMode>(mode)));
@@ -318,8 +298,7 @@ sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* lo
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remotePath, sfFtpTransferMode mode, bool append)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.upload(localFile ? localFile : "",
                                               remotePath ? remotePath : "",
                                               static_cast<sf::Ftp::TransferMode>(mode),
@@ -330,7 +309,6 @@ sfFtpResponse* sfFtp_upload(sfFtp* ftp, const char* localFile, const char* remot
 ////////////////////////////////////////////////////////////
 sfFtpResponse* sfFtp_sendCommand(sfFtp* ftp, const char* command, const char* parameter)
 {
-    CSFML_CHECK_RETURN(ftp, nullptr);
-
+    assert(ftp);
     return new sfFtpResponse(ftp->This.sendCommand(command ? command : "", parameter ? parameter : ""));
 }

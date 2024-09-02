@@ -35,6 +35,15 @@
 
 
 ////////////////////////////////////////////////////////////
+// Ensure char32_t has the same size as sfChar32 (uint32_t)
+// Identical alignment and size is required because we're type punning
+// when doing sfChar32* <-> char32_t* casts
+////////////////////////////////////////////////////////////
+static_assert(sizeof(sfChar32) == sizeof(char32_t));
+static_assert(alignof(sfChar32) == alignof(char32_t));
+
+
+////////////////////////////////////////////////////////////
 // Define utils to copy from / to sfChar32 and sf::String
 ////////////////////////////////////////////////////////////
 inline sfChar32* copyToChar32(const sf::String& str)

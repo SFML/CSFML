@@ -29,7 +29,6 @@
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/Font.h>
 #include <CSFML/Graphics/FontStruct.hpp>
-#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -57,7 +56,7 @@ sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromStream(sfInputStream* stream)
 {
-    CSFML_CHECK_RETURN(stream, nullptr);
+    assert(stream);
 
     sfFont* font = new sfFont;
     font->Stream = CallbackStream(stream);
@@ -74,8 +73,7 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_copy(const sfFont* font)
 {
-    CSFML_CHECK_RETURN(font, nullptr);
-
+    assert(font);
     return new sfFont(*font);
 }
 
@@ -90,11 +88,11 @@ void sfFont_destroy(sfFont* font)
 ////////////////////////////////////////////////////////////
 sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness)
 {
-    sfGlyph glyph = {0, {{0, 0}, {0, 0}}, {{0, 0}, {0, 0}}};
-    CSFML_CHECK_RETURN(font, glyph);
+    assert(font);
 
     sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold, outlineThickness);
 
+    sfGlyph glyph{};
     glyph.advance     = SFMLGlyph.advance;
     glyph.bounds      = convertRect(SFMLGlyph.bounds);
     glyph.textureRect = convertRect(SFMLGlyph.textureRect);
@@ -106,49 +104,55 @@ sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int cha
 ////////////////////////////////////////////////////////////
 bool sfFont_hasGlyph(const sfFont* font, uint32_t codePoint)
 {
-    CSFML_CALL_RETURN(font, hasGlyph(codePoint), false);
+    assert(font);
+    return font->This.hasGlyph(codePoint);
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
-    CSFML_CALL_RETURN(font, getKerning(first, second, characterSize), 0);
+    assert(font);
+    return font->This.getKerning(first, second, characterSize);
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfFont_getBoldKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
-    CSFML_CALL_RETURN(font, getKerning(first, second, characterSize, true), 0);
+    assert(font);
+    return font->This.getKerning(first, second, characterSize, true);
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfFont_getLineSpacing(const sfFont* font, unsigned int characterSize)
 {
-    CSFML_CALL_RETURN(font, getLineSpacing(characterSize), 0);
+    assert(font);
+    return font->This.getLineSpacing(characterSize);
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfFont_getUnderlinePosition(const sfFont* font, unsigned int characterSize)
 {
-    CSFML_CALL_RETURN(font, getUnderlinePosition(characterSize), 0)
+    assert(font);
+    return font->This.getUnderlinePosition(characterSize);
 }
 
 
 ////////////////////////////////////////////////////////////
 float sfFont_getUnderlineThickness(const sfFont* font, unsigned int characterSize)
 {
-    CSFML_CALL_RETURN(font, getUnderlineThickness(characterSize), 0)
+    assert(font);
+    return font->This.getUnderlineThickness(characterSize);
 }
 
 
 ////////////////////////////////////////////////////////////
 const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 {
-    CSFML_CHECK_RETURN(font, nullptr);
+    assert(font);
 
     *font->Textures[characterSize].This = font->This.getTexture(characterSize);
 
@@ -173,10 +177,6 @@ bool sfFont_isSmooth(const sfFont* font)
 ////////////////////////////////////////////////////////////
 sfFontInfo sfFont_getInfo(const sfFont* font)
 {
-    sfFontInfo info = {nullptr};
-    CSFML_CHECK_RETURN(font, info);
-
-    info.family = font->This.getInfo().family.c_str();
-
-    return info;
+    assert(font);
+    return {font->This.getInfo().family.c_str()};
 }

@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/Network/Http.h>
 #include <CSFML/Network/HttpStruct.hpp>
 
@@ -47,7 +46,7 @@ void sfHttpRequest_destroy(sfHttpRequest* httpRequest)
 ////////////////////////////////////////////////////////////
 void sfHttpRequest_setField(sfHttpRequest* httpRequest, const char* field, const char* value)
 {
-    CSFML_CHECK(httpRequest);
+    assert(httpRequest);
     if (field)
         httpRequest->This.setField(field, value);
 }
@@ -56,28 +55,32 @@ void sfHttpRequest_setField(sfHttpRequest* httpRequest, const char* field, const
 ////////////////////////////////////////////////////////////
 void sfHttpRequest_setMethod(sfHttpRequest* httpRequest, sfHttpMethod method)
 {
-    CSFML_CALL(httpRequest, setMethod(static_cast<sf::Http::Request::Method>(method)));
+    assert(httpRequest);
+    httpRequest->This.setMethod(static_cast<sf::Http::Request::Method>(method));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfHttpRequest_setUri(sfHttpRequest* httpRequest, const char* uri)
 {
-    CSFML_CALL(httpRequest, setUri(uri ? uri : ""));
+    assert(httpRequest);
+    httpRequest->This.setUri(uri ? uri : "");
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfHttpRequest_setHttpVersion(sfHttpRequest* httpRequest, unsigned int major, unsigned int minor)
 {
-    CSFML_CALL(httpRequest, setHttpVersion(major, minor));
+    assert(httpRequest);
+    httpRequest->This.setHttpVersion(major, minor);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfHttpRequest_setBody(sfHttpRequest* httpRequest, const char* body)
 {
-    CSFML_CALL(httpRequest, setBody(body ? body : ""));
+    assert(httpRequest);
+    httpRequest->This.setBody(body ? body : "");
 }
 
 
@@ -91,7 +94,7 @@ void sfHttpResponse_destroy(sfHttpResponse* httpResponse)
 ////////////////////////////////////////////////////////////
 const char* sfHttpResponse_getField(const sfHttpResponse* httpResponse, const char* field)
 {
-    CSFML_CHECK_RETURN(httpResponse, nullptr);
+    assert(httpResponse);
     if (!field)
         return nullptr;
 
@@ -102,8 +105,7 @@ const char* sfHttpResponse_getField(const sfHttpResponse* httpResponse, const ch
 ////////////////////////////////////////////////////////////
 sfHttpStatus sfHttpResponse_getStatus(const sfHttpResponse* httpResponse)
 {
-    CSFML_CHECK_RETURN(httpResponse, sfHttpInvalidResponse);
-
+    assert(httpResponse);
     return static_cast<sfHttpStatus>(httpResponse->This.getStatus());
 }
 
@@ -111,22 +113,23 @@ sfHttpStatus sfHttpResponse_getStatus(const sfHttpResponse* httpResponse)
 ////////////////////////////////////////////////////////////
 unsigned int sfHttpResponse_getMajorVersion(const sfHttpResponse* httpResponse)
 {
-    CSFML_CALL_RETURN(httpResponse, getMajorHttpVersion(), 0);
+    assert(httpResponse);
+    return httpResponse->This.getMajorHttpVersion();
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfHttpResponse_getMinorVersion(const sfHttpResponse* httpResponse)
 {
-    CSFML_CALL_RETURN(httpResponse, getMinorHttpVersion(), 0);
+    assert(httpResponse);
+    return httpResponse->This.getMinorHttpVersion();
 }
 
 
 ////////////////////////////////////////////////////////////
 const char* sfHttpResponse_getBody(const sfHttpResponse* httpResponse)
 {
-    CSFML_CHECK_RETURN(httpResponse, nullptr);
-
+    assert(httpResponse);
     return httpResponse->This.getBody().c_str();
 }
 
@@ -148,15 +151,16 @@ void sfHttp_destroy(sfHttp* http)
 ////////////////////////////////////////////////////////////
 void sfHttp_setHost(sfHttp* http, const char* host, unsigned short port)
 {
-    CSFML_CALL(http, setHost(host ? host : "", port));
+    assert(http);
+    http->This.setHost(host ? host : "", port);
 }
 
 
 ////////////////////////////////////////////////////////////
 sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout)
 {
-    CSFML_CHECK_RETURN(http, nullptr);
-    CSFML_CHECK_RETURN(request, nullptr);
+    assert(http);
+    assert(request);
 
     sfHttpResponse* response = new sfHttpResponse;
     response->This           = http->This.sendRequest(request->This, sf::microseconds(timeout.microseconds));

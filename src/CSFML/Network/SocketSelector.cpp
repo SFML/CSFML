@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/Network/SocketSelector.h>
 #include <CSFML/Network/SocketSelectorStruct.hpp>
 #include <CSFML/Network/TcpListenerStruct.hpp>
@@ -43,8 +42,7 @@ sfSocketSelector* sfSocketSelector_create()
 ////////////////////////////////////////////////////////////
 sfSocketSelector* sfSocketSelector_copy(const sfSocketSelector* selector)
 {
-    CSFML_CHECK_RETURN(selector, nullptr);
-
+    assert(selector);
     return new sfSocketSelector(*selector);
 }
 
@@ -59,66 +57,77 @@ void sfSocketSelector_destroy(sfSocketSelector* selector)
 ////////////////////////////////////////////////////////////
 void sfSocketSelector_addTcpListener(sfSocketSelector* selector, sfTcpListener* socket)
 {
-    CSFML_CHECK(socket);
-    CSFML_CALL(selector, add(socket->This));
+    assert(selector);
+    assert(socket);
+    selector->This.add(socket->This);
 }
 void sfSocketSelector_addTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket)
 {
-    CSFML_CHECK(socket);
-    CSFML_CALL(selector, add(socket->This));
+    assert(selector);
+    assert(socket);
+    selector->This.add(socket->This);
 }
 void sfSocketSelector_addUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket)
 {
-    CSFML_CHECK(socket);
-    CSFML_CALL(selector, add(socket->This));
+    assert(selector);
+    assert(socket);
+    selector->This.add(socket->This);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSocketSelector_removeTcpListener(sfSocketSelector* selector, sfTcpListener* socket)
 {
-    CSFML_CHECK(socket);
-    CSFML_CALL(selector, remove(socket->This));
+    assert(selector);
+    assert(socket);
+    selector->This.remove(socket->This);
 }
 void sfSocketSelector_removeTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket)
 {
-    CSFML_CHECK(socket);
-    CSFML_CALL(selector, remove(socket->This));
+    assert(selector);
+    assert(socket);
+    selector->This.remove(socket->This);
 }
 void sfSocketSelector_removeUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket)
 {
-    CSFML_CHECK(socket);
-    CSFML_CALL(selector, remove(socket->This));
+    assert(selector);
+    assert(socket);
+    selector->This.remove(socket->This);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSocketSelector_clear(sfSocketSelector* selector)
 {
-    CSFML_CALL(selector, clear());
+    assert(selector);
+    selector->This.clear();
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfSocketSelector_wait(sfSocketSelector* selector, sfTime timeout)
 {
-    CSFML_CALL_RETURN(selector, wait(sf::microseconds(timeout.microseconds)), false);
+    assert(selector);
+    return selector->This.wait(sf::microseconds(timeout.microseconds));
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfSocketSelector_isTcpListenerReady(const sfSocketSelector* selector, sfTcpListener* socket)
 {
-    CSFML_CHECK_RETURN(socket, false);
-    CSFML_CALL_RETURN(selector, isReady(socket->This), false);
+    assert(selector);
+    assert(socket);
+    return selector->This.isReady(socket->This);
 }
 bool sfSocketSelector_isTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket)
 {
-    CSFML_CHECK_RETURN(socket, false);
-    CSFML_CALL_RETURN(selector, isReady(socket->This), false);
+    assert(selector);
+    assert(socket);
+    return selector->This.isReady(socket->This);
 }
 bool sfSocketSelector_isUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket)
 {
-    CSFML_CHECK_RETURN(socket, false);
-    CSFML_CALL_RETURN(selector, isReady(socket->This), false);
+    assert(selector);
+    assert(socket);
+    return selector->This.isReady(socket->This);
 }

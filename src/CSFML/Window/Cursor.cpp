@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Window/Cursor.h>
 #include <CSFML/Window/CursorStruct.hpp>

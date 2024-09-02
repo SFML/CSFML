@@ -26,7 +26,6 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Color.h>
-#include <CSFML/Internal.hpp>
 
 #include <algorithm>
 

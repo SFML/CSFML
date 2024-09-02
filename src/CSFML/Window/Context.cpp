@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/Window/Context.h>
 #include <CSFML/Window/ContextStruct.hpp>
 #include <CSFML/Window/ConvertContextSettings.hpp>
@@ -53,7 +52,11 @@ bool sfContext_isExtensionAvailable(const char* name)
 
 
 ////////////////////////////////////////////////////////////
-bool sfContext_setActive(sfContext* context, bool active){CSFML_CALL_RETURN(context, setActive(active), false)}
+bool sfContext_setActive(sfContext* context, bool active)
+{
+    assert(context);
+    return context->This.setActive(active);
+}
 
 
 ////////////////////////////////////////////////////////////
@@ -66,8 +69,7 @@ GlFunctionPointer sfContext_getFunction(const char* name)
 ////////////////////////////////////////////////////////////
 sfContextSettings sfContext_getSettings(const sfContext* context)
 {
-    CSFML_CHECK_RETURN(context, sfContextSettings{});
-
+    assert(context);
     return convertContextSettings(context->This.getSettings());
 }
 

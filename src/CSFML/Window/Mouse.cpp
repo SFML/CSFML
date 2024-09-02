@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Window/Mouse.h>
 #include <CSFML/Window/WindowBaseStruct.hpp>

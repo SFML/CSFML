@@ -27,7 +27,8 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/SoundRecorder.h>
 #include <CSFML/Audio/SoundRecorderStruct.hpp>
-#include <CSFML/Internal.hpp>
+
+#include <cassert>
 
 
 ////////////////////////////////////////////////////////////
@@ -50,21 +51,24 @@ void sfSoundRecorder_destroy(sfSoundRecorder* soundRecorder)
 ////////////////////////////////////////////////////////////
 bool sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate)
 {
-    CSFML_CALL_RETURN(soundRecorder, start(sampleRate), false);
+    assert(soundRecorder);
+    return soundRecorder->This.start(sampleRate);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSoundRecorder_stop(sfSoundRecorder* soundRecorder)
 {
-    CSFML_CALL(soundRecorder, stop());
+    assert(soundRecorder);
+    soundRecorder->This.stop();
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfSoundRecorder_getSampleRate(const sfSoundRecorder* soundRecorder)
 {
-    CSFML_CALL_RETURN(soundRecorder, getSampleRate(), 0);
+    assert(soundRecorder);
+    return soundRecorder->This.getSampleRate();
 }
 
 
@@ -108,14 +112,15 @@ const char* sfSoundRecorder_getDefaultDevice()
 ////////////////////////////////////////////////////////////
 bool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* name)
 {
-    CSFML_CALL_RETURN(soundRecorder, setDevice(name), false);
+    assert(soundRecorder);
+    return soundRecorder->This.setDevice(name);
 }
 
 
 ////////////////////////////////////////////////////////////
 const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
 {
-    CSFML_CHECK_RETURN(soundRecorder, nullptr);
+    assert(soundRecorder);
 
     soundRecorder->DeviceName = soundRecorder->This.getDevice();
 
@@ -126,12 +131,14 @@ const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
 ////////////////////////////////////////////////////////////
 void sfSoundRecorder_setChannelCount(sfSoundRecorder* soundRecorder, unsigned int channelCount)
 {
-    CSFML_CALL(soundRecorder, setChannelCount(channelCount));
+    assert(soundRecorder);
+    soundRecorder->This.setChannelCount(channelCount);
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfSoundRecorder_getChannelCount(const sfSoundRecorder* soundRecorder)
 {
-    CSFML_CALL_RETURN(soundRecorder, getChannelCount(), 0);
+    assert(soundRecorder);
+    return soundRecorder->This.getChannelCount();
 }

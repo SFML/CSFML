@@ -27,7 +27,6 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/SoundBufferRecorder.h>
 #include <CSFML/Audio/SoundBufferRecorderStruct.hpp>
-#include <CSFML/Internal.hpp>
 
 
 ////////////////////////////////////////////////////////////
@@ -47,28 +46,31 @@ void sfSoundBufferRecorder_destroy(sfSoundBufferRecorder* soundBufferRecorder)
 ////////////////////////////////////////////////////////////
 bool sfSoundBufferRecorder_start(sfSoundBufferRecorder* soundBufferRecorder, unsigned int sampleRate)
 {
-    CSFML_CALL_RETURN(soundBufferRecorder, start(sampleRate), false);
+    assert(soundBufferRecorder);
+    return soundBufferRecorder->This.start(sampleRate);
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfSoundBufferRecorder_stop(sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CALL(soundBufferRecorder, stop());
+    assert(soundBufferRecorder);
+    soundBufferRecorder->This.stop();
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfSoundBufferRecorder_getSampleRate(const sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CALL_RETURN(soundBufferRecorder, getSampleRate(), 0);
+    assert(soundBufferRecorder);
+    return soundBufferRecorder->This.getSampleRate();
 }
 
 
 ////////////////////////////////////////////////////////////
 const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CHECK_RETURN(soundBufferRecorder, nullptr);
+    assert(soundBufferRecorder);
 
     soundBufferRecorder->SoundBuffer.This = soundBufferRecorder->This.getBuffer();
 
@@ -78,13 +80,14 @@ const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder
 ////////////////////////////////////////////////////////////
 bool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorder, const char* name)
 {
-    CSFML_CALL_RETURN(soundBufferRecorder, setDevice(name), false);
+    assert(soundBufferRecorder);
+    return soundBufferRecorder->This.setDevice(name);
 }
 
 ////////////////////////////////////////////////////////////
 const char* sfSoundBufferRecorder_getDevice(sfSoundBufferRecorder* soundBufferRecorder)
 {
-    CSFML_CHECK_RETURN(soundBufferRecorder, nullptr);
+    assert(soundBufferRecorder);
 
     soundBufferRecorder->DeviceName = soundBufferRecorder->This.getDevice();
 

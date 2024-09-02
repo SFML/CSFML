@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Internal.hpp>
 #include <CSFML/Network/TcpListener.h>
 #include <CSFML/Network/TcpListenerStruct.hpp>
 #include <CSFML/Network/TcpSocketStruct.hpp>
@@ -48,28 +47,31 @@ void sfTcpListener_destroy(sfTcpListener* listener)
 ////////////////////////////////////////////////////////////
 void sfTcpListener_setBlocking(sfTcpListener* listener, bool blocking)
 {
-    CSFML_CALL(listener, setBlocking(blocking));
+    assert(listener);
+    listener->This.setBlocking(blocking);
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfTcpListener_isBlocking(const sfTcpListener* listener)
 {
-    CSFML_CALL_RETURN(listener, isBlocking(), false);
+    assert(listener);
+    return listener->This.isBlocking();
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned short sfTcpListener_getLocalPort(const sfTcpListener* listener)
 {
-    CSFML_CALL_RETURN(listener, getLocalPort(), 0);
+    assert(listener);
+    return listener->This.getLocalPort();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port, sfIpAddress address)
 {
-    CSFML_CHECK_RETURN(listener, sfSocketError);
+    assert(listener);
 
     std::optional<sf::IpAddress> sfmlAddress = sf::IpAddress::resolve(address.address);
 
@@ -85,8 +87,8 @@ sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** connected)
 {
-    CSFML_CHECK_RETURN(listener, sfSocketError);
-    CSFML_CHECK_RETURN(connected, sfSocketError);
+    assert(listener);
+    assert(connected);
 
     *connected            = new sfTcpSocket;
     sfSocketStatus status = static_cast<sfSocketStatus>(listener->This.accept((*connected)->This));

@@ -31,7 +31,6 @@
 #include <CSFML/Graphics/RenderWindowStruct.hpp>
 #include <CSFML/Graphics/Texture.h>
 #include <CSFML/Graphics/TextureStruct.hpp>
-#include <CSFML/Internal.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
 #include <CSFML/Window/WindowStruct.hpp>
 
@@ -119,7 +118,7 @@ sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* area)
 {
-    CSFML_CHECK_RETURN(stream, nullptr);
+    assert(stream);
 
     sfTexture* texture = new sfTexture;
 
@@ -138,7 +137,7 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect* area)
 {
-    CSFML_CHECK_RETURN(stream, nullptr);
+    assert(stream);
 
     sfTexture* texture = new sfTexture;
 
@@ -158,7 +157,7 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area)
 {
-    CSFML_CHECK_RETURN(image, nullptr);
+    assert(image);
 
     sfTexture* texture = new sfTexture;
 
@@ -176,7 +175,7 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* area)
 {
-    CSFML_CHECK_RETURN(image, nullptr);
+    assert(image);
 
     sfTexture* texture = new sfTexture;
 
@@ -194,8 +193,7 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_copy(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, nullptr);
-
+    assert(texture);
     return new sfTexture(*texture);
 }
 
@@ -210,8 +208,7 @@ void sfTexture_destroy(sfTexture* texture)
 ////////////////////////////////////////////////////////////
 sfVector2u sfTexture_getSize(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, {});
-
+    assert(texture);
     return convertVector2(texture->This->getSize());
 }
 
@@ -219,9 +216,8 @@ sfVector2u sfTexture_getSize(const sfTexture* texture)
 ////////////////////////////////////////////////////////////
 sfImage* sfTexture_copyToImage(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, nullptr);
-    CSFML_CHECK_RETURN(texture->This, nullptr);
-
+    assert(texture);
+    assert(texture->This);
     return new sfImage{texture->This->copyToImage()};
 }
 
@@ -229,83 +225,85 @@ sfImage* sfTexture_copyToImage(const sfTexture* texture)
 ////////////////////////////////////////////////////////////
 void sfTexture_updateFromPixels(sfTexture* texture, const uint8_t* pixels, sfVector2u size, sfVector2u offset)
 {
-    CSFML_CALL_PTR(texture, update(pixels, convertVector2(size), convertVector2(offset)));
+    assert(texture);
+    texture->This->update(pixels, convertVector2(size), convertVector2(offset));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTexture_updateFromTexture(sfTexture* destination, const sfTexture* texture, sfVector2u offset)
 {
-    CSFML_CHECK(texture);
-    CSFML_CHECK(texture->This);
-
-    CSFML_CALL_PTR(destination, update(*texture->This, convertVector2(offset)));
+    assert(destination);
+    assert(texture);
+    assert(texture->This);
+    destination->This->update(*texture->This, convertVector2(offset));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTexture_updateFromImage(sfTexture* texture, const sfImage* image, sfVector2u offset)
 {
-    CSFML_CHECK(image);
-
-    CSFML_CALL_PTR(texture, update(image->This, convertVector2(offset)));
+    assert(texture);
+    assert(image);
+    texture->This->update(image->This, convertVector2(offset));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTexture_updateFromWindow(sfTexture* texture, const sfWindow* window, sfVector2u offset)
 {
-    CSFML_CHECK(window);
-
-    CSFML_CALL_PTR(texture, update(window->This, convertVector2(offset)));
+    assert(texture);
+    assert(window);
+    texture->This->update(window->This, convertVector2(offset));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* renderWindow, sfVector2u offset)
 {
-    CSFML_CHECK(renderWindow);
-
-    CSFML_CALL_PTR(texture, update(renderWindow->This, convertVector2(offset)));
+    assert(texture);
+    assert(renderWindow);
+    texture->This->update(renderWindow->This, convertVector2(offset));
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTexture_setSmooth(sfTexture* texture, bool smooth)
 {
-    CSFML_CALL_PTR(texture, setSmooth(smooth));
+    assert(texture);
+    texture->This->setSmooth(smooth);
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfTexture_isSmooth(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, false);
-    CSFML_CHECK_RETURN(texture->This, false);
-
+    assert(texture);
+    assert(texture->This);
     return texture->This->isSmooth();
 }
 
 ////////////////////////////////////////////////////////////
 bool sfTexture_isSrgb(const sfTexture* texture)
 {
-    CSFML_CALL_PTR_RETURN(texture, isSrgb(), false);
+    assert(texture);
+    return texture->This->isSrgb();
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTexture_setRepeated(sfTexture* texture, bool repeated)
 {
-    CSFML_CALL_PTR(texture, setRepeated(repeated));
+    assert(texture);
+    texture->This->setRepeated(repeated);
 }
 
 
 ////////////////////////////////////////////////////////////
 bool sfTexture_isRepeated(const sfTexture* texture)
 {
-    CSFML_CHECK_RETURN(texture, false);
-    CSFML_CHECK_RETURN(texture->This, false);
-
+    assert(texture);
+    assert(texture->This);
     return texture->This->isRepeated();
 }
 
@@ -313,23 +311,25 @@ bool sfTexture_isRepeated(const sfTexture* texture)
 ////////////////////////////////////////////////////////////
 bool sfTexture_generateMipmap(sfTexture* texture)
 {
-    CSFML_CALL_PTR_RETURN(texture, generateMipmap(), false);
+    assert(texture);
+    return texture->This->generateMipmap();
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfTexture_swap(sfTexture* left, sfTexture* right)
 {
-    CSFML_CHECK(right);
-
-    CSFML_CALL_PTR(left, swap(*right->This));
+    assert(left);
+    assert(right);
+    left->This->swap(*right->This);
 }
 
 
 ////////////////////////////////////////////////////////////
 unsigned int sfTexture_getNativeHandle(const sfTexture* texture)
 {
-    CSFML_CALL_PTR_RETURN(texture, getNativeHandle(), 0);
+    assert(texture);
+    return texture->This->getNativeHandle();
 }
 
 
