@@ -40,6 +40,7 @@ set_target_warnings(test-csfml-window)
 catch_discover_tests(test-csfml-window)
 
 add_executable(test-csfml-network
+    Network/Ftp.test.cpp
     Network/IpAddress.test.cpp
     Network/SocketStatus.test.cpp
 )
