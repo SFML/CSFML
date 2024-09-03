@@ -4,7 +4,7 @@
 
 # Helper function to enable compiler warnings for a specific target
 function(set_target_warnings target)
-    option(WARNINGS_AS_ERRORS "Treat compiler warnings as errors" FALSE)
+    option(CSFML_WARNINGS_AS_ERRORS "Treat compiler warnings as errors" FALSE)
 
     set(MSVC_WARNINGS
         /W4 # Baseline reasonable warnings
@@ -55,10 +55,10 @@ function(set_target_warnings target)
 
     # Disable warnings as errors when using Clang on Windows to work around deprecation warnings in Windows APIs
     if(SFML_OS_WINDOWS AND (SFML_COMPILER_CLANG OR SFML_COMPILER_CLANG_CL))
-        set(WARNINGS_AS_ERRORS FALSE)
+        set(CSFML_WARNINGS_AS_ERRORS FALSE)
     endif()
 
-    if(WARNINGS_AS_ERRORS)
+    if(CSFML_WARNINGS_AS_ERRORS)
         list(APPEND CLANG_AND_GCC_WARNINGS -Werror)
         list(APPEND MSVC_WARNINGS /WX)
     endif()
