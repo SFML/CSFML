@@ -1,4 +1,3 @@
-
 # find doxygen
 find_package(Doxygen REQUIRED)
 

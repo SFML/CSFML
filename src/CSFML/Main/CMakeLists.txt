@@ -1,4 +1,3 @@
-
 # define the csfml-main target
 add_library(csfml-main STATIC ${PROJECT_SOURCE_DIR}/src/CSFML/Main/SFML_Main.cpp)
 

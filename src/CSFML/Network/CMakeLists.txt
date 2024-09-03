@@ -1,4 +1,3 @@
-
 set(INCROOT ${PROJECT_SOURCE_DIR}/include/CSFML/Network)
 set(SRCROOT ${PROJECT_SOURCE_DIR}/src/CSFML/Network)
 
