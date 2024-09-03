@@ -9,6 +9,7 @@
         "CMAKE_C_EXTENSIONS": "OFF",
         "CMAKE_CXX_EXTENSIONS": "OFF",
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_RUNTIME_OUTPUT_DIRECTORY": "${sourceDir}/build/bin",
         "CSFML_BUILD_EXAMPLES": "ON",
         "CSFML_BUILD_TEST_SUITE": "ON",
         "CSFML_WARNINGS_AS_ERRORS": "ON"
