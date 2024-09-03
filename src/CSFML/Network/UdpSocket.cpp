@@ -123,8 +123,8 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket*    socket,
     assert(socket);
 
     std::optional<sf::IpAddress> address;
-    unsigned short               port;
-    std::size_t                  sizeReceived;
+    unsigned short               port         = 0;
+    std::size_t                  sizeReceived = 0;
 
     sf::Socket::Status status = socket->This.receive(data, size, sizeReceived, address, port);
     if (status != sf::Socket::Status::Done)
@@ -175,7 +175,7 @@ sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, 
     assert(packet);
 
     std::optional<sf::IpAddress> address;
-    unsigned short               port;
+    unsigned short               port = 0;
 
     sf::Socket::Status status = socket->This.receive(packet->This, address, port);
     if (status != sf::Socket::Status::Done)

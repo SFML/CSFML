@@ -38,6 +38,6 @@
 struct sfTransformable
 {
     sf::Transformable   This;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
+    mutable sfTransform Transform{};
+    mutable sfTransform InverseTransform{};
 };

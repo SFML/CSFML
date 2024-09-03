@@ -43,15 +43,15 @@ typedef struct
 } sfColor;
 
 
-CSFML_GRAPHICS_API sfColor sfBlack;       ///< Black predefined color
-CSFML_GRAPHICS_API sfColor sfWhite;       ///< White predefined color
-CSFML_GRAPHICS_API sfColor sfRed;         ///< Red predefined color
-CSFML_GRAPHICS_API sfColor sfGreen;       ///< Green predefined color
-CSFML_GRAPHICS_API sfColor sfBlue;        ///< Blue predefined color
-CSFML_GRAPHICS_API sfColor sfYellow;      ///< Yellow predefined color
-CSFML_GRAPHICS_API sfColor sfMagenta;     ///< Magenta predefined color
-CSFML_GRAPHICS_API sfColor sfCyan;        ///< Cyan predefined color
-CSFML_GRAPHICS_API sfColor sfTransparent; ///< Transparent (black) predefined color
+CSFML_GRAPHICS_API const sfColor sfBlack;       ///< Black predefined color
+CSFML_GRAPHICS_API const sfColor sfWhite;       ///< White predefined color
+CSFML_GRAPHICS_API const sfColor sfRed;         ///< Red predefined color
+CSFML_GRAPHICS_API const sfColor sfGreen;       ///< Green predefined color
+CSFML_GRAPHICS_API const sfColor sfBlue;        ///< Blue predefined color
+CSFML_GRAPHICS_API const sfColor sfYellow;      ///< Yellow predefined color
+CSFML_GRAPHICS_API const sfColor sfMagenta;     ///< Magenta predefined color
+CSFML_GRAPHICS_API const sfColor sfCyan;        ///< Cyan predefined color
+CSFML_GRAPHICS_API const sfColor sfTransparent; ///< Transparent (black) predefined color
 
 
 ////////////////////////////////////////////////////////////
