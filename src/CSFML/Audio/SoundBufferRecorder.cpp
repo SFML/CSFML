@@ -93,3 +93,19 @@ const char* sfSoundBufferRecorder_getDevice(sfSoundBufferRecorder* soundBufferRe
 
     return soundBufferRecorder->DeviceName.c_str();
 }
+
+
+////////////////////////////////////////////////////////////
+void sfSoundBufferRecorder_setChannelCount(sfSoundBufferRecorder* soundBufferRecorder, unsigned int channelCount)
+{
+    assert(soundBufferRecorder);
+    soundBufferRecorder->This.setChannelCount(channelCount);
+}
+
+
+////////////////////////////////////////////////////////////
+unsigned int sfSoundBufferRecorder_getChannelCount(const sfSoundBufferRecorder* soundBufferRecorder)
+{
+    assert(soundBufferRecorder);
+    return soundBufferRecorder->This.getChannelCount();
+}
