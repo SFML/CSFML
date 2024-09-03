@@ -79,7 +79,7 @@ struct sfShape
     }
 
     sfShapeImpl         This;
-    const sfTexture*    Texture;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
+    const sfTexture*    Texture{};
+    mutable sfTransform Transform{};
+    mutable sfTransform InverseTransform{};
 };

@@ -117,56 +117,56 @@ bool sfPacket_readBool(sfPacket* packet)
 int8_t sfPacket_readInt8(sfPacket* packet)
 {
     assert(packet);
-    int8_t value;
+    int8_t value = 0;
     packet->This >> value;
     return value;
 }
 uint8_t sfPacket_readUint8(sfPacket* packet)
 {
     assert(packet);
-    uint8_t value;
+    uint8_t value = 0;
     packet->This >> value;
     return value;
 }
 int16_t sfPacket_readInt16(sfPacket* packet)
 {
     assert(packet);
-    int16_t value;
+    int16_t value = 0;
     packet->This >> value;
     return value;
 }
 uint16_t sfPacket_readUint16(sfPacket* packet)
 {
     assert(packet);
-    uint16_t value;
+    uint16_t value = 0;
     packet->This >> value;
     return value;
 }
 int32_t sfPacket_readInt32(sfPacket* packet)
 {
     assert(packet);
-    int32_t value;
+    int32_t value = 0;
     packet->This >> value;
     return value;
 }
 uint32_t sfPacket_readUint32(sfPacket* packet)
 {
     assert(packet);
-    uint32_t value;
+    uint32_t value = 0;
     packet->This >> value;
     return value;
 }
 float sfPacket_readFloat(sfPacket* packet)
 {
     assert(packet);
-    float value;
+    float value = 0;
     packet->This >> value;
     return value;
 }
 double sfPacket_readDouble(sfPacket* packet)
 {
     assert(packet);
-    double value;
+    double value = 0;
     packet->This >> value;
     return value;
 }

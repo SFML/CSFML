@@ -136,5 +136,5 @@ private:
     ////////////////////////////////////////////////////////////
     // Member data
     ////////////////////////////////////////////////////////////
-    sfInputStream myStream; ///< The source CSFML input stream
+    sfInputStream myStream{}; ///< The source CSFML input stream
 };
