@@ -51,7 +51,10 @@ catch_discover_tests(test-csfml-network)
 
 # Copy DLLs into the same directory
 if(SFML_OS_WINDOWS AND NOT CSFML_LINK_SFML_STATICALLY)
-    add_custom_command(TARGET test-csfml-system  POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-system>  $<TARGET_FILE_DIR:test-csfml-system> COMMAND_EXPAND_LISTS)
-    add_custom_command(TARGET test-csfml-window  POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-window>  $<TARGET_FILE_DIR:test-csfml-window> COMMAND_EXPAND_LISTS)
-    add_custom_command(TARGET test-csfml-network POST_BUILD COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_RUNTIME_DLLS:test-csfml-network> $<TARGET_FILE_DIR:test-csfml-network> COMMAND_EXPAND_LISTS)
+    foreach(SFML_TARGET SFML::System SFML::Window SFML::Graphics SFML::Audio SFML::Network)
+        add_custom_command(
+            TARGET test-csfml-system PRE_BUILD
+            COMMAND ${CMAKE_COMMAND} -E copy $<TARGET_FILE:${SFML_TARGET}> $<TARGET_FILE_DIR:test-csfml-system> COMMAND_EXPAND_LISTS
+        )
+    endforeach()
 endif()
