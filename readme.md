@@ -14,8 +14,9 @@ Development is focused on the next major version in the `master` branch. No more
 
 ## Authors
 
-  - Laurent Gomila - main developer (laurent@sfml-dev.org)
-  - Lukas Dürrenberger - active maintainer (eXpl0it3r@sfml-dev.org)
+  - Laurent Gomila (laurent@sfml-dev.org)
+  - Lukas Dürrenberger (eXpl0it3r@sfml-dev.org)
+  - Chris Thrasher (thrasher@sfml-dev.org)
   - Zachariah Brown (contact@zbrown.net)
 
 ## Download
