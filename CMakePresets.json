@@ -11,7 +11,7 @@
         "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
         "CSFML_BUILD_EXAMPLES": "ON",
         "CSFML_BUILD_TEST_SUITE": "ON",
-        "WARNINGS_AS_ERRORS": "ON"
+        "CSFML_WARNINGS_AS_ERRORS": "ON"
       }
     }
   ]
