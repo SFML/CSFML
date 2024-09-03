@@ -25,7 +25,6 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Char32.hpp>
 #include <CSFML/Network/Ftp.h>
 #include <CSFML/Network/FtpStruct.hpp>
 
@@ -33,6 +32,31 @@
 #include <SFML/System/String.hpp>
 
 #include <cstring>
+
+
+namespace
+{
+////////////////////////////////////////////////////////////
+// Ensure char32_t has the same size as sfChar32 (uint32_t)
+// Identical alignment and size is required because we're type punning
+// when doing sfChar32* <-> char32_t* casts
+////////////////////////////////////////////////////////////
+static_assert(sizeof(sfChar32) == sizeof(char32_t));
+static_assert(alignof(sfChar32) == alignof(char32_t));
+
+////////////////////////////////////////////////////////////
+// Define utils to copy to sfChar32
+////////////////////////////////////////////////////////////
+[[nodiscard]] sfChar32* copyToChar32(const sf::String& str)
+{
+    const std::size_t byteCount = sizeof(sfChar32) * str.getSize();
+    auto*             utf32     = static_cast<sfChar32*>(std::malloc(byteCount + sizeof(sfChar32)));
+    std::memcpy(utf32, str.getData(), byteCount);
+    utf32[str.getSize()] = 0;
+
+    return utf32;
+}
+} // namespace
 
 
 ////////////////////////////////////////////////////////////
@@ -125,8 +149,7 @@ const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ft
 const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
     assert(ftpDirectoryResponse);
-    sf::String str = sf::String(ftpDirectoryResponse->This.getDirectory().c_str());
-    return copyToChar32(str);
+    return copyToChar32(sf::String(ftpDirectoryResponse->This.getDirectory().string()));
 }
 
 
