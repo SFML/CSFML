@@ -33,9 +33,10 @@ set_target_warnings(test-csfml-system)
 catch_discover_tests(test-csfml-system)
 
 add_executable(test-csfml-window
+    Window/Cursor.test.cpp
     Window/Joystick.test.cpp
 )
-target_link_libraries(test-csfml-window PRIVATE csfml-window Catch2::Catch2WithMain)
+target_link_libraries(test-csfml-window PRIVATE csfml-window Catch2::Catch2WithMain SFML::Window)
 set_target_warnings(test-csfml-window)
 catch_discover_tests(test-csfml-window)
 
