@@ -33,6 +33,7 @@ set_target_warnings(test-csfml-system)
 catch_discover_tests(test-csfml-system)
 
 add_executable(test-csfml-window
+    Window/Cursor.test.cpp
     Window/Joystick.test.cpp
     Window/Keyboard.test.cpp
     Window/Mouse.test.cpp
