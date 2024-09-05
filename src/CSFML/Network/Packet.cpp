@@ -173,14 +173,14 @@ double sfPacket_readDouble(sfPacket* packet)
 void sfPacket_readString(sfPacket* packet, char* string)
 {
     assert(packet);
-    if (string)
-        *packet >> string;
+    assert(string);
+    *packet >> string;
 }
 void sfPacket_readWideString(sfPacket* packet, wchar_t* string)
 {
     assert(packet);
-    if (string)
-        *packet >> string;
+    assert(string);
+    *packet >> string;
 }
 
 
@@ -232,12 +232,12 @@ void sfPacket_writeDouble(sfPacket* packet, double value)
 void sfPacket_writeString(sfPacket* packet, const char* string)
 {
     assert(packet);
-    if (string)
-        *packet << string;
+    assert(string);
+    *packet << string;
 }
 void sfPacket_writeWideString(sfPacket* packet, const wchar_t* string)
 {
     assert(packet);
-    if (string)
-        *packet << string;
+    assert(string);
+    *packet << string;
 }
