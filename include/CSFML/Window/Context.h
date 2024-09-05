@@ -32,7 +32,7 @@
 #include <CSFML/Window/Types.h>
 #include <CSFML/Window/Window.h>
 
-typedef void (*GlFunctionPointer)(void);
+typedef void (*sfGlFunctionPointer)(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new context
@@ -81,7 +81,7 @@ CSFML_WINDOW_API bool sfContext_setActive(sfContext* context, bool active);
 /// \return Address of the OpenGL function, 0 on failure
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API GlFunctionPointer sfContext_getFunction(const char* name);
+CSFML_WINDOW_API sfGlFunctionPointer sfContext_getFunction(const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the settings of the context.

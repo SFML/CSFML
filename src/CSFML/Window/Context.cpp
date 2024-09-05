@@ -60,7 +60,7 @@ bool sfContext_setActive(sfContext* context, bool active)
 
 
 ////////////////////////////////////////////////////////////
-GlFunctionPointer sfContext_getFunction(const char* name)
+sfGlFunctionPointer sfContext_getFunction(const char* name)
 {
     return sf::Context::getFunction(name);
 }
