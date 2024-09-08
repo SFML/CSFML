@@ -54,6 +54,13 @@ target_link_libraries(test-csfml-network PRIVATE csfml-network Catch2::Catch2Wit
 set_target_warnings(test-csfml-network)
 catch_discover_tests(test-csfml-network)
 
+add_executable(test-csfml-audio
+    Audio/SoundChannel.test.cpp
+)
+target_link_libraries(test-csfml-audio PRIVATE csfml-audio Catch2::Catch2WithMain SFML::Audio)
+set_target_warnings(test-csfml-audio)
+catch_discover_tests(test-csfml-audio)
+
 # Copy DLLs into the same directory
 if(SFML_OS_WINDOWS AND NOT CSFML_LINK_SFML_STATICALLY)
     foreach(SFML_TARGET SFML::System SFML::Window SFML::Graphics SFML::Audio SFML::Network)
