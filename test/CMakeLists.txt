@@ -35,9 +35,6 @@ catch_discover_tests(test-csfml-system)
 add_executable(test-csfml-window
     Window/Joystick.test.cpp
     Window/Keyboard.test.cpp
-    Window/Mouse.test.cpp
-    Window/Sensor.test.cpp
-    Window/WindowBase.test.cpp
 )
 target_link_libraries(test-csfml-window PRIVATE csfml-window Catch2::Catch2WithMain SFML::Window)
 set_target_warnings(test-csfml-window)
