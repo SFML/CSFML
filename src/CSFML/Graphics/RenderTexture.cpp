@@ -184,7 +184,7 @@ void sfRenderTexture_drawShape(sfRenderTexture* renderTexture, const sfShape* ob
 {
     assert(renderTexture);
     assert(object);
-    renderTexture->This.draw(object->This, convertRenderStates(states));
+    renderTexture->This.draw(*object, convertRenderStates(states));
 }
 void sfRenderTexture_drawCircleShape(sfRenderTexture* renderTexture, const sfCircleShape* object, const sfRenderStates* states)
 {
