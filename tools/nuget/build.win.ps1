@@ -86,11 +86,9 @@ $SFMLDir = (Get-Item .).FullName
 switch ($RID) {
     'win-x86' {
         $SFMLExtLibs = (Get-Item ./extlibs/libs-msvc-universal/x86).FullName
-        $SFMLAudioExtras = (Get-Item ./extlibs/bin/x86).FullName
     }
     'win-x64' {
         $SFMLExtLibs = (Get-Item ./extlibs/libs-msvc-universal/x64).FullName
-        $SFMLAudioExtras = (Get-Item ./extlibs/bin/x64).FullName
     }
     Default {
         Write-Error "Unknown RID '$RID'"
@@ -108,24 +106,25 @@ Remove-Item -Recurse -Force -ErrorAction Ignore "$RID"
 New-Push "$RID"
 
 
-
 Write-Output "Building SFML"
 New-Push SFML
 
 $SFMLBuiltDir = Get-Location # The directory where SFML was built to. Used later to direct cmake when building CSFML
+$SFMLInstallDir = Join-Path -Path $SFMLBuiltDir -ChildPath 'install'
 
 cmake `
-    '-DBUILD_SHARED_LIBS=0' `
+    '-DBUILD_SHARED_LIBS=ON' `
     '-DCMAKE_BUILD_TYPE=Release' `
     '-DCMAKE_SYSTEM_VERSION=8.1' `
-    '-DSFML_USE_STATIC_STD_LIBS=1' `
-    '-DSFML_BUILD_NETWORK=0' `
+    '-DSFML_USE_STATIC_STD_LIBS=OFF' `
+    '-DSFML_BUILD_NETWORK=OFF' `
+    "-DCMAKE_INSTALL_PREFIX=$SFMLInstallDir" `
     "-G$Generator" `
     "-A$Architecture" `
     $SFMLDir
 Ensure-Success
 
-cmake --build . --config Release -- '-verbosity:minimal'
+cmake --build . --config Release --target install -- '-verbosity:minimal'
 Ensure-Success
 
 Pop-Location # Pop SFML
@@ -134,15 +133,15 @@ Pop-Location # Pop SFML
 # STEP 4: Build CSFML #
 # =================== #
 
-Write-Output "Building CSFML using SFML at $SFMLBuiltDir"
+Write-Output "Building CSFML using SFML at $SFMLInstallDir"
 New-Push CSFML
 
 New-Item -ItemType Directory lib > $null
 $CSFMLLibDir = (Get-Item lib).FullName; # The directory where the final CSFML dlls are located
 
 cmake `
-    "-DSFML_ROOT=$SFMLBuiltDir" `
-    '-DCSFML_LINK_SFML_STATICALLY=1' `
+    "-DSFML_ROOT=$SFMLInstallDir" `
+    '-DCSFML_LINK_SFML_STATICALLY=OFF' `
     "-DCMAKE_LIBRARY_PATH=$SFMLExtLibs" `
     `
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" `
@@ -155,11 +154,11 @@ cmake `
     "-DCMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE=$CSFMLLibDir" `
     `
     '-DCMAKE_SYSTEM_VERSION=8.1' `
-    '-DSTATIC_STD_LIBS=1' `
+    '-DSTATIC_STD_LIBS=OFF' `
     `
-    "-DBUILD_SHARED_LIBS=1" `
+    '-DBUILD_SHARED_LIBS=ON' `
     '-DCMAKE_BUILD_TYPE=Release' `
-    '-DCSFML_BUILD_NETWORK=0' `
+    '-DCSFML_BUILD_NETWORK=OFF' `
     `
     "-G$generator" `
     "-A$Architecture" `
@@ -178,7 +177,7 @@ Write-Output "Copying CSFML modules"
 
 <#
 .SYNOPSIS
-Copies a specific CSFML module into its proper NuGet project
+Copies a specific SFML & CSFML module into its proper NuGet project
 
 .DESCRIPTION
 This function locates a file named csfml-(module)-3.dll inside of the
@@ -186,13 +185,16 @@ folder specified by $CSFMLLibDir and copies it to $OutDir/csfml-(module).dll.
 
 Notice how it removes the "-3" at the end, to make the name compatible with other platforms.
 
+The "-3" prefix is retained for the SFML libraries.
+
 .PARAMETER module
 The case-insensitive name of the module to copy.
 #>
 function Copy-Module($module) {
-    Write-Output "Copying CSFML $module"
+    Write-Output "Copying SFML & CSFML $module"
 
     New-Item -ItemType Directory $OutDir -ErrorAction Ignore > $null
+    Copy-Item "$SFMLInstallDir/bin/sfml-$module-3.dll" "$OutDir" -Force > $null
     Copy-Item "$CSFMLLibDir/csfml-$module-3.dll" "$OutDir/csfml-$module.dll" -Force > $null
 }
 
@@ -200,9 +202,6 @@ Copy-Module 'audio'
 Copy-Module 'graphics'
 Copy-Module 'system'
 Copy-Module 'window'
-
-Write-Output "Copying Audio module extra files"
-Copy-Item "$SFMLAudioExtras/*" "$OutDir"
 
 Pop-Location # Pop CSFML
 Pop-Location # Pop $RID
