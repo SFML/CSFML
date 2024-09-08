@@ -203,12 +203,12 @@ sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port
 {
     assert(ftp);
 
-    std::optional<sf::IpAddress> SFMLServer = sf::IpAddress::resolve(server.address);
+    std::optional<sf::IpAddress> sfmlServer = sf::IpAddress::resolve(server.address);
 
-    if (!SFMLServer)
+    if (!sfmlServer)
         return nullptr;
 
-    return new sfFtpResponse{ftp->This.connect(*SFMLServer, port, sf::microseconds(timeout.microseconds))};
+    return new sfFtpResponse{ftp->This.connect(*sfmlServer, port, sf::microseconds(timeout.microseconds))};
 }
 
 
