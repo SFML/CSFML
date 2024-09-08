@@ -97,7 +97,7 @@ CSFML_GRAPHICS_API void sfVertexBuffer_destroy(sfVertexBuffer* vertexBuffer);
 /// \return Number of vertices in the vertex buffer
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfVertexBuffer_getVertexCount(const sfVertexBuffer* vertexBuffer);
+CSFML_GRAPHICS_API size_t sfVertexBuffer_getVertexCount(const sfVertexBuffer* vertexBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Update a part of the buffer from an array of vertices

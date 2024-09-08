@@ -66,10 +66,10 @@ void sfVertexBuffer_destroy(sfVertexBuffer* vertexBuffer)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfVertexBuffer_getVertexCount(const sfVertexBuffer* vertexBuffer)
+size_t sfVertexBuffer_getVertexCount(const sfVertexBuffer* vertexBuffer)
 {
     assert(vertexBuffer);
-    return static_cast<unsigned int>(vertexBuffer->This.getVertexCount());
+    return vertexBuffer->This.getVertexCount();
 }
 
 
