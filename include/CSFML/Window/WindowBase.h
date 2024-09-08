@@ -75,11 +75,12 @@ typedef enum
 /// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the windowBase)
 /// \param title    Title of the window
 /// \param style    Window style
+/// \param state    Window state
 ///
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t style);
+CSFML_WINDOW_API sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a new window (with a UTF-32 title)
@@ -93,11 +94,12 @@ CSFML_WINDOW_API sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char*
 /// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the windowBase)
 /// \param title    Title of the window (UTF-32)
 /// \param style    Window style
+/// \param state    Window state
 ///
 /// \return A new sfWindow object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style);
+CSFML_WINDOW_API sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title, uint32_t style, sfWindowState state);
 
 ////////////////////////////////////////////////////////////
 /// \brief Construct a window from an existing control
