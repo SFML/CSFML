@@ -177,8 +177,8 @@ void sfText_setString(sfText* text, const char* string)
 void sfText_setUnicodeString(sfText* text, const sfChar32* string)
 {
     assert(text);
-    sf::String UTF32Text = reinterpret_cast<const char32_t*>(string);
-    text->This.setString(UTF32Text);
+    sf::String utf32Text = reinterpret_cast<const char32_t*>(string);
+    text->This.setString(utf32Text);
 }
 
 

@@ -90,12 +90,12 @@ sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int cha
 {
     assert(font);
 
-    sf::Glyph SFMLGlyph = font->This.getGlyph(codePoint, characterSize, bold, outlineThickness);
+    sf::Glyph sfmlGlyph = font->This.getGlyph(codePoint, characterSize, bold, outlineThickness);
 
     sfGlyph glyph{};
-    glyph.advance     = SFMLGlyph.advance;
-    glyph.bounds      = convertRect(SFMLGlyph.bounds);
-    glyph.textureRect = convertRect(SFMLGlyph.textureRect);
+    glyph.advance     = sfmlGlyph.advance;
+    glyph.bounds      = convertRect(sfmlGlyph.bounds);
+    glyph.textureRect = convertRect(sfmlGlyph.textureRect);
 
     return glyph;
 }

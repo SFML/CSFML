@@ -3,6 +3,7 @@ Checks: >
   clang-analyzer-*,
   cppcoreguidelines-*,
   modernize-*,
+  readability-identifier-naming,
   -bugprone-easily-swappable-parameters,
   -bugprone-narrowing-conversions,
   -clang-analyzer-core.NonNullParamChecker,
@@ -26,6 +27,10 @@ Checks: >
   -modernize-redundant-void-arg,
   -modernize-use-trailing-return-type,
   -modernize-use-using,
+CheckOptions:
+  - { key: readability-identifier-naming.VariableCase,        value: camelBack }
+  - { key: readability-identifier-naming.GlobalVariableCase,  value: aNy_CasE }
+  - { key: readability-identifier-naming.ParameterCase,       value: camelBack }
 HeaderFilterRegex: '.*'
 WarningsAsErrors: '*'
 UseColor: true
