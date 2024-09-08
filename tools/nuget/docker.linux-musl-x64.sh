@@ -11,12 +11,12 @@ apk add \
     libx11-dev \
     libxrandr-dev \
     libxcursor-dev \
+    libxi-dev \
     eudev-dev \
     mesa-dev \
     flac-dev \
     libogg-dev \
     libvorbis-dev \
-    libpthread-stubs \
     cmake \
     make \
     g++

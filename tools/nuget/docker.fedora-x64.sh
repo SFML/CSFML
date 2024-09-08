@@ -9,6 +9,7 @@ dnf install -y \
     xorg-x11-server-devel \
     libXrandr-devel \
     libXcursor-devel \
+    libXi-devel \
     systemd-devel \
     mesa-libEGL-devel \
     flac-devel \

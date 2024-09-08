@@ -88,15 +88,16 @@ SFMLLibDir="$(realpath lib)"
 
 cmake -E env LDFLAGS="-z origin" \
     cmake \
-    '-DBUILD_SHARED_LIBS=1' \
+    '-DBUILD_SHARED_LIBS=ON' \
     '-DCMAKE_BUILD_TYPE=Release' \
+    "-DCMAKE_INSTALL_PREFIX=$SFMLLibDir" \
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$SFMLLibDir" \
-    '-DCMAKE_BUILD_WITH_INSTALL_RPATH=1' \
+    '-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON' \
     '-DCMAKE_INSTALL_RPATH=$ORIGIN' \
-    '-DSFML_BUILD_NETWORK=0' \
+    '-DSFML_BUILD_NETWORK=OFF' \
     "$SFMLDir"
 
-cmake --build . --config Release
+cmake --build . --config Release --target install
 
 popd # Pop SFML
 
@@ -113,13 +114,13 @@ CSFMLLibDir="$(realpath lib)" # The directory that contains the final CSFML libr
 
 cmake -E env LDFLAGS="-z origin" \
     cmake \
-    "-DSFML_ROOT=$SFMLBuiltDir" \
-    '-DBUILD_SHARED_LIBS=1' \
+    "-DSFML_ROOT=$SFMLLibDir" \
+    '-DBUILD_SHARED_LIBS=ON' \
     '-DCMAKE_BUILD_TYPE=Release' \
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" \
-    '-DCMAKE_BUILD_WITH_INSTALL_RPATH=1' \
+    '-DCMAKE_BUILD_WITH_INSTALL_RPATH=ON' \
     '-DCMAKE_INSTALL_RPATH=$ORIGIN' \
-    '-DCSFML_BUILD_NETWORK=0' \
+    '-DCSFML_BUILD_NETWORK=OFF' \
     "$CSFMLDir"
 cmake --build . --config Release
 
