@@ -32,18 +32,23 @@ macro(csfml_add_library target)
         if(SFML_OS_WINDOWS)
             # include the major version number in Windows shared library names (but not import library names)
             set_target_properties(${target} PROPERTIES SUFFIX "-${PROJECT_VERSION_MAJOR}${CMAKE_SHARED_LIBRARY_SUFFIX}")
+
+            # on Windows/gcc get rid of "lib" prefix for shared libraries,
+            # and transform the ".dll.a" suffix into ".a" for import libraries
+            if (SFML_COMPILER_GCC OR SFML_COMPILER_CLANG)
+                set_target_properties(${target} PROPERTIES PREFIX "")
+                set_target_properties(${target} PROPERTIES IMPORT_SUFFIX ".a")
+            endif()
         endif()
     else()
         set_target_properties(${target} PROPERTIES DEBUG_POSTFIX -s-d)
         set_target_properties(${target} PROPERTIES RELEASE_POSTFIX -s)
         set_target_properties(${target} PROPERTIES MINSIZEREL_POSTFIX -s)
         set_target_properties(${target} PROPERTIES RELWITHDEBINFO_POSTFIX -s)
-    endif()
-    if (SFML_OS_WINDOWS AND SFML_COMPILER_GCC)
-        # on Windows/gcc get rid of "lib" prefix for shared libraries,
-        # and transform the ".dll.a" suffix into ".a" for import libraries
-        set_target_properties(${target} PROPERTIES PREFIX "")
-        set_target_properties(${target} PROPERTIES IMPORT_SUFFIX ".a")
+
+        if(STATIC_STD_LIBS)
+            set_property(TARGET ${target} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
+        endif()
     endif()
 
     # set the version and soversion of the target (for compatible systems -- mostly Linuxes)
