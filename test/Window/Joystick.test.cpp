@@ -1,5 +1,7 @@
 #include <CSFML/Window/Joystick.h>
 
+#include <SFML/Window/Joystick.hpp>
+
 #include <catch2/catch_test_macros.hpp>
 #include <catch2/generators/catch_generators_range.hpp>
 
@@ -10,6 +12,18 @@ TEST_CASE("[Window] sfJoystick")
         STATIC_CHECK(sfJoystickCount == 8);
         STATIC_CHECK(sfJoystickButtonCount == 32);
         STATIC_CHECK(sfJoystickAxisCount == 8);
+    }
+
+    SECTION("sfJoystickAxis")
+    {
+        STATIC_CHECK(sfJoystickX == static_cast<int>(sf::Joystick::Axis::X));
+        STATIC_CHECK(sfJoystickY == static_cast<int>(sf::Joystick::Axis::Y));
+        STATIC_CHECK(sfJoystickZ == static_cast<int>(sf::Joystick::Axis::Z));
+        STATIC_CHECK(sfJoystickR == static_cast<int>(sf::Joystick::Axis::R));
+        STATIC_CHECK(sfJoystickU == static_cast<int>(sf::Joystick::Axis::U));
+        STATIC_CHECK(sfJoystickV == static_cast<int>(sf::Joystick::Axis::V));
+        STATIC_CHECK(sfJoystickPovX == static_cast<int>(sf::Joystick::Axis::PovX));
+        STATIC_CHECK(sfJoystickPovY == static_cast<int>(sf::Joystick::Axis::PovY));
     }
 
     // By avoiding calling sfJoystick_update() we can guarantee that
