@@ -36,13 +36,11 @@
 
 
 ////////////////////////////////////////////////////////////
-// Helper class implementing the callback forwarding from
-// C++ to C in sfShape
+// Internal structure of sfShape
 ////////////////////////////////////////////////////////////
-class sfShapeImpl : public sf::Shape
+struct sfShape : sf::Shape
 {
-public:
-    sfShapeImpl(sfShapeGetPointCountCallback getPointCount, sfShapeGetPointCallback getPoint, void* userData) :
+    sfShape(sfShapeGetPointCountCallback getPointCount, sfShapeGetPointCallback getPoint, void* userData) :
     myGetPointCountCallback(getPointCount),
     myGetPointCallback(getPoint),
     myUserData(userData)
@@ -61,25 +59,10 @@ public:
 
     using sf::Shape::update;
 
-private:
     sfShapeGetPointCountCallback myGetPointCountCallback;
     sfShapeGetPointCallback      myGetPointCallback;
     void*                        myUserData;
-};
-
-
-////////////////////////////////////////////////////////////
-// Internal structure of sfShape
-////////////////////////////////////////////////////////////
-struct sfShape
-{
-    sfShape(sfShapeGetPointCountCallback getPointCount, sfShapeGetPointCallback getPoint, void* userData) :
-    This(getPointCount, getPoint, userData)
-    {
-    }
-
-    sfShapeImpl         This;
-    const sfTexture*    Texture{};
-    mutable sfTransform Transform{};
-    mutable sfTransform InverseTransform{};
+    const sfTexture*             Texture{};
+    mutable sfTransform          Transform{};
+    mutable sfTransform          InverseTransform{};
 };

@@ -410,7 +410,7 @@ void sfRenderWindow_drawShape(sfRenderWindow* renderWindow, const sfShape* objec
 {
     assert(renderWindow);
     assert(object);
-    renderWindow->This.draw(object->This, convertRenderStates(states));
+    renderWindow->This.draw(*object, convertRenderStates(states));
 }
 void sfRenderWindow_drawCircleShape(sfRenderWindow* renderWindow, const sfCircleShape* object, const sfRenderStates* states)
 {
