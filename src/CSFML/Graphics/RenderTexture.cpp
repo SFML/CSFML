@@ -288,9 +288,9 @@ void sfRenderTexture_setSmooth(sfRenderTexture* renderTexture, bool smooth)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfRenderTexture_getMaximumAntialiasingLevel()
+unsigned int sfRenderTexture_getMaximumAntiAliasingLevel()
 {
-    return sf::RenderTexture::getMaximumAntialiasingLevel();
+    return sf::RenderTexture::getMaximumAntiAliasingLevel();
 }
 
 
