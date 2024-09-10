@@ -24,34 +24,34 @@ include(GNUInstallDirs)
 include(${PROJECT_SOURCE_DIR}/cmake/Config.cmake)
 
 # add options to select which modules to build
-csfml_set_option(CSFML_BUILD_WINDOW TRUE BOOL "TRUE to build CSFML's Window module. This setting is ignored, if the graphics module is built.")
-csfml_set_option(CSFML_BUILD_GRAPHICS TRUE BOOL "TRUE to build CSFML's Graphics module.")
-csfml_set_option(CSFML_BUILD_AUDIO TRUE BOOL "TRUE to build CSFML's Audio module.")
-csfml_set_option(CSFML_BUILD_NETWORK TRUE BOOL "TRUE to build CSFML's Network module.")
+csfml_set_option(CSFML_BUILD_WINDOW ON BOOL "ON to build CSFML's Window module. This setting is ignored, if the graphics module is built.")
+csfml_set_option(CSFML_BUILD_GRAPHICS ON BOOL "ON to build CSFML's Graphics module.")
+csfml_set_option(CSFML_BUILD_AUDIO ON BOOL "ON to build CSFML's Audio module.")
+csfml_set_option(CSFML_BUILD_NETWORK ON BOOL "ON to build CSFML's Network module.")
 
 # add an option for choosing the build type (shared or static)
-csfml_set_option(BUILD_SHARED_LIBS TRUE BOOL "TRUE to build CSFML as shared libraries, FALSE to build it as static libraries")
+csfml_set_option(BUILD_SHARED_LIBS ON BOOL "ON to build CSFML as shared libraries, OFF to build it as static libraries")
 
 # add an option for building the API documentation
-csfml_set_option(CSFML_BUILD_DOC FALSE BOOL "TRUE to generate the API documentation, FALSE to ignore it")
+csfml_set_option(CSFML_BUILD_DOC OFF BOOL "ON to generate the API documentation, OFF to ignore it")
 
 # add an option for linking to sfml either statically or dynamically
 # default on windows to static and on other platforms to dynamic
 if(SFML_OS_WINDOWS)
-    set(LINK_STATICALLY_DEFAULT TRUE)
+    set(LINK_STATICALLY_DEFAULT ON)
 else()
-    set(LINK_STATICALLY_DEFAULT FALSE)
+    set(LINK_STATICALLY_DEFAULT OFF)
 endif()
-csfml_set_option(CSFML_LINK_SFML_STATICALLY ${LINK_STATICALLY_DEFAULT} BOOL "TRUE to link to a static version of SFML, FALSE to link dynamically")
+csfml_set_option(CSFML_LINK_SFML_STATICALLY ${LINK_STATICALLY_DEFAULT} BOOL "ON to link to a static version of SFML, OFF to link dynamically")
 
 # define an option for choosing between static and dynamic C runtime (Windows only)
 if(SFML_OS_WINDOWS)
-    set(STATIC_STD_LIBS FALSE CACHE BOOL "TRUE to statically link to the standard libraries, FALSE to use them as DLLs")
+    set(STATIC_STD_LIBS OFF CACHE BOOL "ON to statically link to the standard libraries, OFF to use them as DLLs")
 endif()
 
 # find SFML libraries (C++)
 if(CSFML_LINK_SFML_STATICALLY)
-    set(SFML_STATIC_LIBRARIES TRUE)
+    set(SFML_STATIC_LIBRARIES ON)
     add_definitions(-DSFML_STATIC)
 endif()
 set(SFML_MODULES "System")
@@ -76,13 +76,13 @@ if(CSFML_BUILD_DOC)
 endif()
 
 # on Linux and BSD-like OS, install pkg-config files by default
-set(CSFML_INSTALL_PKGCONFIG_DEFAULT FALSE)
+set(CSFML_INSTALL_PKGCONFIG_DEFAULT OFF)
 
 if(SFML_OS_LINUX OR SFML_OS_FREEBSD OR SFML_OS_OPENBSD OR SFML_OS_NETBSD)
-    set(CSFML_INSTALL_PKGCONFIG_DEFAULT TRUE)
+    set(CSFML_INSTALL_PKGCONFIG_DEFAULT ON)
 endif()
 
-csfml_set_option(CSFML_INSTALL_PKGCONFIG_FILES ${CSFML_INSTALL_PKGCONFIG_DEFAULT} BOOL "TRUE to automatically install pkg-config files so other projects can find SFML")
+csfml_set_option(CSFML_INSTALL_PKGCONFIG_FILES ${CSFML_INSTALL_PKGCONFIG_DEFAULT} BOOL "ON to automatically install pkg-config files so other projects can find SFML")
 
 if(CSFML_INSTALL_PKGCONFIG_FILES)
     csfml_set_option(CSFML_PKGCONFIG_INSTALL_DIR "${CSFML_PKGCONFIG_DIR}" PATH "Install directory for CSFML's pkg-config .pc files")
@@ -110,13 +110,13 @@ if(NOT PROJECT_IS_TOP_LEVEL)
 endif()
 
 # add an option for building the examples
-csfml_set_option(CSFML_BUILD_EXAMPLES FALSE BOOL "TRUE to build the CSFML examples, FALSE to ignore them")
+csfml_set_option(CSFML_BUILD_EXAMPLES OFF BOOL "ON to build the CSFML examples, OFF to ignore them")
 if(CSFML_BUILD_EXAMPLES)
     add_subdirectory(examples)
 endif()
 
 # add an option for building the tests
-csfml_set_option(CSFML_BUILD_TEST_SUITE FALSE BOOL "TRUE to build the CSFML test suite, FALSE to ignore it")
+csfml_set_option(CSFML_BUILD_TEST_SUITE OFF BOOL "ON to build the CSFML test suite, OFF to ignore it")
 if(CSFML_BUILD_TEST_SUITE)
     enable_testing()
     add_subdirectory(test)

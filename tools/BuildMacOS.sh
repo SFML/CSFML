@@ -220,11 +220,11 @@ build_sfml () # $1: 'clang' => clang & libc++
 
     case "$2" in
         'frameworks')
-            frameworks="TRUE"
+            frameworks="ON"
             installdir_adapted="$installdir/Library/Frameworks"
             ;;
         'dylibs')
-            frameworks="FALSE"
+            frameworks="OFF"
             installdir_adapted="$installdir/usr/local"
             ;;
         *)
@@ -234,10 +234,10 @@ build_sfml () # $1: 'clang' => clang & libc++
 
     case "$3" in
         'doc')
-            doc="TRUE"
+            doc="ON"
             ;;
         'no doc')
-            doc="FALSE"
+            doc="OFF"
             ;;
         *)
             error "Unknown option for $3 in create_makefile"
@@ -246,12 +246,12 @@ build_sfml () # $1: 'clang' => clang & libc++
 
     case "$4" in
         'examples')
-            examples="TRUE"
+            examples="ON"
             makeopts=""
             # NB: cannot use -j8 here because it bugs with cocoa example...
             ;;
         'no examples')
-            examples="FALSE"
+            examples="OFF"
             makeopts="-j8"
             ;;
         *)
@@ -261,10 +261,10 @@ build_sfml () # $1: 'clang' => clang & libc++
 
     case "$5" in
         'templates')
-            templates="TRUE"
+            templates="ON"
             ;;
         'no templates')
-            templates="FALSE"
+            templates="OFF"
             ;;
         *)
             error "Unknown option for $5 in create_makefile"
@@ -285,7 +285,7 @@ build_sfml () # $1: 'clang' => clang & libc++
     push_pwd "$cmakedir"
 
     cmake -G "Unix Makefiles" \
-          -D "BUILD_SHARED_LIBS:BOOL=TRUE" \
+          -D "BUILD_SHARED_LIBS:BOOL=ON" \
           -D "CMAKE_BUILD_TYPE:STRING=Release" \
           -D "CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/$cxx" \
           -D "CMAKE_CXX_FLAGS:STRING=$cxx_flags" \
@@ -334,10 +334,10 @@ build_csfml () # $1: 'clang' => clang & libc++
 
     case "$2" in
         'doc')
-            doc="TRUE"
+            doc="ON"
             ;;
         'no doc')
-            doc="FALSE"
+            doc="OFF"
             ;;
         *)
             error "Unknown option for $2 in create_makefile"
@@ -360,7 +360,7 @@ build_csfml () # $1: 'clang' => clang & libc++
     push_pwd "$cmakedir"
 
     cmake -G "Unix Makefiles" \
-          -D "BUILD_SHARED_LIBS:BOOL=TRUE" \
+          -D "BUILD_SHARED_LIBS:BOOL=ON" \
           -D "CMAKE_BUILD_TYPE:STRING=Release" \
           -D "CMAKE_CXX_COMPILER:FILEPATH=/usr/bin/$cxx" \
           -D "CMAKE_CXX_FLAGS:STRING=$cxx_flags" \

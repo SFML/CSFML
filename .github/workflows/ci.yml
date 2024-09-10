@@ -105,7 +105,7 @@ jobs:
         path: SFML
 
     - name: Configure SFML CMake
-      run: cmake -S SFML -B SFML/build -GNinja -DCMAKE_INSTALL_PREFIX=SFML/install -DBUILD_SHARED_LIBS=TRUE -DCMAKE_BUILD_TYPE=Debug
+      run: cmake -S SFML -B SFML/build -GNinja -DCMAKE_INSTALL_PREFIX=SFML/install -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Debug
 
     - name: Build SFML
       run: cmake --build SFML/build --target install
