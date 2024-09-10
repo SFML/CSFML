@@ -39,7 +39,7 @@
 {
     return {settings.depthBits,
             settings.stencilBits,
-            settings.antialiasingLevel,
+            settings.antiAliasingLevel,
             settings.majorVersion,
             settings.minorVersion,
             settings.attributeFlags,
@@ -53,7 +53,7 @@
 {
     return {settings.depthBits,
             settings.stencilBits,
-            settings.antialiasingLevel,
+            settings.antiAliasingLevel,
             settings.majorVersion,
             settings.minorVersion,
             settings.attributeFlags,

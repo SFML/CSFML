@@ -57,7 +57,7 @@ typedef struct
 {
     unsigned int depthBits;         ///< Bits of the depth buffer
     unsigned int stencilBits;       ///< Bits of the stencil buffer
-    unsigned int antialiasingLevel; ///< Level of antialiasing
+    unsigned int antiAliasingLevel; ///< Level of anti-aliasing
     unsigned int majorVersion;      ///< Major number of the context version to create
     unsigned int minorVersion;      ///< Minor number of the context version to create
     uint32_t     attributeFlags;    ///< The attribute flags to create the context with
@@ -75,7 +75,7 @@ typedef struct
 /// sfFullscreen, then \a mode must be a valid video mode.
 ///
 /// The fourth parameter is a pointer to a structure specifying
-/// advanced OpenGL context settings such as antialiasing,
+/// advanced OpenGL context settings such as anti-aliasing,
 /// depth-buffer bits, etc.
 ///
 /// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the window)
@@ -103,7 +103,7 @@ CSFML_WINDOW_API sfWindow* sfWindow_create(sfVideoMode              mode,
 /// sfFullscreen, then \a mode must be a valid video mode.
 ///
 /// The fourth parameter is a pointer to a structure specifying
-/// advanced OpenGL context settings such as antialiasing,
+/// advanced OpenGL context settings such as anti-aliasing,
 /// depth-buffer bits, etc.
 ///
 /// \param mode     Video mode to use (defines the width, height and depth of the rendering area of the window)
@@ -129,7 +129,7 @@ CSFML_WINDOW_API sfWindow* sfWindow_createUnicode(
 /// rendering area into an already existing control.
 ///
 /// The second parameter is a pointer to a structure specifying
-/// advanced OpenGL context settings such as antialiasing,
+/// advanced OpenGL context settings such as anti-aliasing,
 /// depth-buffer bits, etc.
 ///
 /// \param handle   Platform-specific handle of the control
