@@ -1,10 +1,6 @@
 # find doxygen
 find_package(Doxygen REQUIRED)
 
-# set the input and output documentation paths
-set(DOXYGEN_INPUT_DIR ${PROJECT_SOURCE_DIR})
-set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
-
 # see if we can generate the CHM documentation
 set(DOXYGEN_HHC_PROGRAM)
 set(DOXYGEN_GENERATE_HTMLHELP NO)
@@ -24,27 +20,26 @@ if(SFML_OS_WINDOWS)
 endif()
 
 # configure the source Doxyfile by copying it and replacing all @variables@
-set(DOXYGEN_CONFIGURED_INPUT ${DOXYGEN_OUTPUT_DIR}/doxyfile)
-configure_file(${DOXYGEN_INPUT_DIR}/doc/doxyfile.in ${DOXYGEN_CONFIGURED_INPUT} @ONLY)
-configure_file(${DOXYGEN_INPUT_DIR}/doc/header.html.in ${DOXYGEN_OUTPUT_DIR}/header.html @ONLY)
+configure_file(doxyfile.in doxyfile @ONLY)
+configure_file(header.html.in header.html @ONLY)
 
 # copy the files needed by the documentation
-configure_file(${DOXYGEN_INPUT_DIR}/doc/doxygen.css ${DOXYGEN_OUTPUT_DIR}/html/doxygen.css COPYONLY)
-configure_file(${DOXYGEN_INPUT_DIR}/doc/searchOverrides.css ${DOXYGEN_OUTPUT_DIR}/html/searchOverrides.css COPYONLY)
+configure_file(doxygen.css html/doxygen.css COPYONLY)
+configure_file(searchOverrides.css html/searchOverrides.css COPYONLY)
 
 # target setup
 add_custom_target(doc ALL
                   COMMAND ${CMAKE_COMMAND} -E echo_append "Building API Documentation..."
-                  COMMAND Doxygen::doxygen ${DOXYGEN_CONFIGURED_INPUT}
+                  COMMAND Doxygen::doxygen ${CMAKE_CURRENT_BINARY_DIR}/doxyfile
                   COMMAND ${CMAKE_COMMAND} -E echo "Done."
-                  WORKING_DIRECTORY ${DOXYGEN_INPUT_DIR})
+                  WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 # setup install rules
-install(DIRECTORY ${DOXYGEN_OUTPUT_DIR}/html
+install(DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/html
         DESTINATION ${INSTALL_MISC_DIR}/doc
         COMPONENT doc)
 if(DOXYGEN_HHC_PROGRAM)
-    install(FILES ${DOXYGEN_OUTPUT_DIR}/CSFML.chm
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/CSFML.chm
             DESTINATION ${INSTALL_MISC_DIR}/doc
             COMPONENT doc)
 endif()
