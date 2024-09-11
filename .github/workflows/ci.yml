@@ -120,3 +120,37 @@ jobs:
 
     - name: Tidy
       run: cmake --build CSFML/build --target tidy
+
+  docs:
+    name: Documentation
+    runs-on: macos-14
+
+    steps:
+    - name: Install Doxygen
+      run: |
+        brew update
+        brew install doxygen ninja || true
+
+    - name: Checkout SFML
+      uses: actions/checkout@v4
+      with:
+        repository: SFML/SFML
+        ref: master
+        path: SFML
+
+    - name: Configure SFML
+      run: cmake -S SFML -B SFML/build -GNinja -DCMAKE_INSTALL_PREFIX=SFML/install
+
+    - name: Build SFML
+      run: cmake --build SFML/build --target install
+
+    - name: Checkout CSFML
+      uses: actions/checkout@v4
+      with:
+        path: CSFML
+
+    - name: Configure CSFML
+      run: cmake -S CSFML -B CSFML/build -GNinja -DSFML_ROOT=SFML/install -DCSFML_BUILD_DOC=ON -DCSFML_LINK_SFML_STATICALLY=ON
+
+    - name: Build Doxygen Site
+      run: cmake --build CSFML/build --target doc
