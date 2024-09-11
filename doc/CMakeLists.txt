@@ -6,6 +6,8 @@ set(DOXYGEN_INPUT_DIR ${PROJECT_SOURCE_DIR})
 set(DOXYGEN_OUTPUT_DIR ${CMAKE_CURRENT_BINARY_DIR})
 
 # see if we can generate the CHM documentation
+set(DOXYGEN_HHC_PROGRAM)
+set(DOXYGEN_GENERATE_HTMLHELP NO)
 if(SFML_OS_WINDOWS)
     # if HHC is found, we can generate the CHM (compressed HTML) output
     find_program(DOXYGEN_HHC_PROGRAM
@@ -17,14 +19,8 @@ if(SFML_OS_WINDOWS)
             set(DOXYGEN_GENERATE_HTMLHELP YES)
         else()
             message("Due to conflicts with the HTML output settings in Doxygen ${DOXYGEN_VERSION}, the HTML Help generation will be disabled")
-            set(DOXYGEN_GENERATE_HTMLHELP NO)
         endif()
-    else()
-        set(DOXYGEN_GENERATE_HTMLHELP NO)
     endif()
-else()
-    set(DOXYGEN_HHC_PROGRAM)
-    set(DOXYGEN_GENERATE_HTMLHELP NO)
 endif()
 
 # configure the source Doxyfile by copying it and replacing all @variables@
