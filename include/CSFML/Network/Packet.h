@@ -137,7 +137,7 @@ CSFML_NETWORK_API bool sfPacket_endOfPacket(const sfPacket* packet);
 ////////////////////////////////////////////////////////////
 /// \brief Test the validity of a packet, for reading
 ///
-/// This function allows to test the packet, to check if
+/// This function allows for testing the packet, to check if
 /// a reading operation was successful.
 ///
 /// A packet will be in an invalid state if it has no more
