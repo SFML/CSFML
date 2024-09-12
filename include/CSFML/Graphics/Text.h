@@ -77,7 +77,7 @@ CSFML_GRAPHICS_API sfText* sfText_copy(const sfText* text);
 /// \param text Text to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfText_destroy(sfText* text);
+CSFML_GRAPHICS_API void sfText_destroy(const sfText* text);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a text

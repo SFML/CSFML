@@ -104,7 +104,7 @@ CSFML_AUDIO_API sfMusic* sfMusic_createFromStream(sfInputStream* stream);
 /// \param music Music to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfMusic_destroy(sfMusic* music);
+CSFML_AUDIO_API void sfMusic_destroy(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set whether or not a music should loop after reaching the end

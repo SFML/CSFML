@@ -185,7 +185,7 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream,
 
 
 ////////////////////////////////////////////////////////////
-void sfShader_destroy(sfShader* shader)
+void sfShader_destroy(const sfShader* shader)
 {
     delete shader;
 }

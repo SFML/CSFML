@@ -61,7 +61,7 @@ CSFML_GRAPHICS_API sfVertexArray* sfVertexArray_copy(const sfVertexArray* vertex
 /// \param vertexArray Vertex array to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfVertexArray_destroy(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API void sfVertexArray_destroy(const sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the vertex count of a vertex array

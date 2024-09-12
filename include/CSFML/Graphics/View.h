@@ -70,7 +70,7 @@ CSFML_GRAPHICS_API sfView* sfView_copy(const sfView* view);
 /// \param view View to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfView_destroy(sfView* view);
+CSFML_GRAPHICS_API void sfView_destroy(const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the center of a view

@@ -84,7 +84,7 @@ sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, const sfContextSettin
 
 
 ////////////////////////////////////////////////////////////
-void sfWindow_destroy(sfWindow* window)
+void sfWindow_destroy(const sfWindow* window)
 {
     delete window;
 }

@@ -62,7 +62,7 @@ CSFML_GRAPHICS_API sfRectangleShape* sfRectangleShape_copy(const sfRectangleShap
 /// \param shape Shape to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRectangleShape_destroy(sfRectangleShape* shape);
+CSFML_GRAPHICS_API void sfRectangleShape_destroy(const sfRectangleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a rectangle shape

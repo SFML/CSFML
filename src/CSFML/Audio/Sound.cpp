@@ -47,7 +47,7 @@ sfSound* sfSound_copy(const sfSound* sound)
 
 
 ////////////////////////////////////////////////////////////
-void sfSound_destroy(sfSound* sound)
+void sfSound_destroy(const sfSound* sound)
 {
     delete sound;
 }

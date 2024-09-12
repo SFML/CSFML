@@ -60,7 +60,7 @@ static_assert(alignof(sfChar32) == alignof(char32_t));
 
 
 ////////////////////////////////////////////////////////////
-void sfFtpListingResponse_destroy(sfFtpListingResponse* ftpListingResponse)
+void sfFtpListingResponse_destroy(const sfFtpListingResponse* ftpListingResponse)
 {
     delete ftpListingResponse;
 }
@@ -107,7 +107,7 @@ const char* sfFtpListingResponse_getName(const sfFtpListingResponse* ftpListingR
 
 
 ////////////////////////////////////////////////////////////
-void sfFtpDirectoryResponse_destroy(sfFtpDirectoryResponse* ftpDirectoryResponse)
+void sfFtpDirectoryResponse_destroy(const sfFtpDirectoryResponse* ftpDirectoryResponse)
 {
     delete ftpDirectoryResponse;
 }
@@ -154,7 +154,7 @@ const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryR
 
 
 ////////////////////////////////////////////////////////////
-void sfFtpResponse_destroy(sfFtpResponse* ftpResponse)
+void sfFtpResponse_destroy(const sfFtpResponse* ftpResponse)
 {
     delete ftpResponse;
 }
@@ -192,7 +192,7 @@ sfFtp* sfFtp_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfFtp_destroy(sfFtp* ftp)
+void sfFtp_destroy(const sfFtp* ftp)
 {
     delete ftp;
 }

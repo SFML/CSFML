@@ -54,7 +54,7 @@ sfCircleShape* sfCircleShape_copy(const sfCircleShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfCircleShape_destroy(sfCircleShape* shape)
+void sfCircleShape_destroy(const sfCircleShape* shape)
 {
     delete shape;
 }

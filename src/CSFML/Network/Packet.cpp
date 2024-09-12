@@ -47,7 +47,7 @@ sfPacket* sfPacket_copy(const sfPacket* packet)
 
 
 ////////////////////////////////////////////////////////////
-void sfPacket_destroy(sfPacket* packet)
+void sfPacket_destroy(const sfPacket* packet)
 {
     delete packet;
 }

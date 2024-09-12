@@ -50,7 +50,7 @@ CSFML_NETWORK_API sfUdpSocket* sfUdpSocket_create(void);
 /// \param socket UDP socket to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfUdpSocket_destroy(sfUdpSocket* socket);
+CSFML_NETWORK_API void sfUdpSocket_destroy(const sfUdpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the blocking state of a UDP listener

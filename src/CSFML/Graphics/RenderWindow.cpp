@@ -109,7 +109,7 @@ sfRenderWindow* sfRenderWindow_createFromHandle(sfWindowHandle handle, const sfC
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_destroy(sfRenderWindow* renderWindow)
+void sfRenderWindow_destroy(const sfRenderWindow* renderWindow)
 {
     delete renderWindow;
 }

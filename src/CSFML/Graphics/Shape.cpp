@@ -43,7 +43,7 @@ sfShape* sfShape_create(sfShapeGetPointCountCallback getPointCount, sfShapeGetPo
 
 
 ////////////////////////////////////////////////////////////
-void sfShape_destroy(sfShape* shape)
+void sfShape_destroy(const sfShape* shape)
 {
     delete shape;
 }

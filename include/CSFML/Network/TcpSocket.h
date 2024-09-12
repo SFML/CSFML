@@ -51,7 +51,7 @@ CSFML_NETWORK_API sfTcpSocket* sfTcpSocket_create(void);
 /// \param socket TCP socket to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfTcpSocket_destroy(sfTcpSocket* socket);
+CSFML_NETWORK_API void sfTcpSocket_destroy(const sfTcpSocket* socket);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the blocking state of a TCP listener

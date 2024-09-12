@@ -58,7 +58,7 @@ CSFML_GRAPHICS_API sfTransformable* sfTransformable_copy(const sfTransformable* 
 /// \param transformable Transformable to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTransformable_destroy(sfTransformable* transformable);
+CSFML_GRAPHICS_API void sfTransformable_destroy(const sfTransformable* transformable);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a transformable

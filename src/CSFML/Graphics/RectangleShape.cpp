@@ -51,7 +51,7 @@ sfRectangleShape* sfRectangleShape_copy(const sfRectangleShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfRectangleShape_destroy(sfRectangleShape* shape)
+void sfRectangleShape_destroy(const sfRectangleShape* shape)
 {
     delete shape;
 }

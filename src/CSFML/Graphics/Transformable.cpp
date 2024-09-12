@@ -49,7 +49,7 @@ sfTransformable* sfTransformable_copy(const sfTransformable* transformable)
 
 
 ////////////////////////////////////////////////////////////
-void sfTransformable_destroy(sfTransformable* transformable)
+void sfTransformable_destroy(const sfTransformable* transformable)
 {
     delete transformable;
 }

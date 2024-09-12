@@ -47,7 +47,7 @@ sfClock* sfClock_copy(const sfClock* clock)
 
 
 ////////////////////////////////////////////////////////////
-void sfClock_destroy(sfClock* clock)
+void sfClock_destroy(const sfClock* clock)
 {
     delete clock;
 }

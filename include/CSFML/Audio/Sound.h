@@ -61,7 +61,7 @@ CSFML_AUDIO_API sfSound* sfSound_copy(const sfSound* sound);
 /// \param sound Sound to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSound_destroy(sfSound* sound);
+CSFML_AUDIO_API void sfSound_destroy(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start or resume playing a sound

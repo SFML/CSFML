@@ -46,7 +46,7 @@ sfVertexArray* sfVertexArray_copy(const sfVertexArray* vertexArray)
 
 
 ////////////////////////////////////////////////////////////
-void sfVertexArray_destroy(sfVertexArray* vertexArray)
+void sfVertexArray_destroy(const sfVertexArray* vertexArray)
 {
     delete vertexArray;
 }

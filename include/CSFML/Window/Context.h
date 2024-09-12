@@ -50,7 +50,7 @@ CSFML_WINDOW_API sfContext* sfContext_create(void);
 /// \param context Context to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfContext_destroy(sfContext* context);
+CSFML_WINDOW_API void sfContext_destroy(const sfContext* context);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check whether a given OpenGL extension is available.

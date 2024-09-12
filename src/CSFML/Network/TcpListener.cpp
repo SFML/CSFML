@@ -38,7 +38,7 @@ sfTcpListener* sfTcpListener_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpListener_destroy(sfTcpListener* listener)
+void sfTcpListener_destroy(const sfTcpListener* listener)
 {
     delete listener;
 }

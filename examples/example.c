@@ -12,7 +12,7 @@ int main(void)
         return EXIT_FAILURE;
 
     // Load a sprite to display
-    sfTexture* texture = sfTexture_createFromFile("sfml_logo.png", NULL);
+    const sfTexture* texture = sfTexture_createFromFile("sfml_logo.png", NULL);
     if (!texture)
     {
         sfRenderWindow_destroy(window);
@@ -23,7 +23,7 @@ int main(void)
     sfSprite_setPosition(sprite, spritePosition);
 
     // Create a graphical text to display
-    sfFont* font = sfFont_createFromFile("tuffy.ttf");
+    const sfFont* font = sfFont_createFromFile("tuffy.ttf");
     if (!font)
     {
         sfSprite_destroy(sprite);

@@ -45,7 +45,7 @@ sfSoundStream* sfSoundStream_create(
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundStream_destroy(sfSoundStream* soundStream)
+void sfSoundStream_destroy(const sfSoundStream* soundStream)
 {
     delete soundStream;
 }

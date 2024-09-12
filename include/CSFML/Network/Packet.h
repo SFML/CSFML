@@ -58,7 +58,7 @@ CSFML_NETWORK_API sfPacket* sfPacket_copy(const sfPacket* packet);
 /// \param packet Packet to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfPacket_destroy(sfPacket* packet);
+CSFML_NETWORK_API void sfPacket_destroy(const sfPacket* packet);
 
 ////////////////////////////////////////////////////////////
 /// \brief Append data to the end of a packet

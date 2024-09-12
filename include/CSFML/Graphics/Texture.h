@@ -175,7 +175,7 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_copy(const sfTexture* texture);
 /// \param texture Texture to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_destroy(sfTexture* texture);
+CSFML_GRAPHICS_API void sfTexture_destroy(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the size of the texture

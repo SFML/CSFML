@@ -87,7 +87,7 @@ CSFML_GRAPHICS_API sfVertexBuffer* sfVertexBuffer_copy(const sfVertexBuffer* ver
 /// \param vertexBuffer Vertex buffer to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfVertexBuffer_destroy(sfVertexBuffer* vertexBuffer);
+CSFML_GRAPHICS_API void sfVertexBuffer_destroy(const sfVertexBuffer* vertexBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the vertex count

@@ -48,7 +48,7 @@ CSFML_NETWORK_API sfTcpListener* sfTcpListener_create(void);
 /// \param listener TCP listener to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfTcpListener_destroy(sfTcpListener* listener);
+CSFML_NETWORK_API void sfTcpListener_destroy(const sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the blocking state of a TCP listener

@@ -199,7 +199,7 @@ sfTexture* sfTexture_copy(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
-void sfTexture_destroy(sfTexture* texture)
+void sfTexture_destroy(const sfTexture* texture)
 {
     delete texture;
 }

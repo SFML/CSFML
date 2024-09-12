@@ -53,7 +53,7 @@ sfText* sfText_copy(const sfText* text)
 
 
 ////////////////////////////////////////////////////////////
-void sfText_destroy(sfText* text)
+void sfText_destroy(const sfText* text)
 {
     delete text;
 }

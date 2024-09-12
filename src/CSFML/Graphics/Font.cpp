@@ -79,7 +79,7 @@ sfFont* sfFont_copy(const sfFont* font)
 
 
 ////////////////////////////////////////////////////////////
-void sfFont_destroy(sfFont* font)
+void sfFont_destroy(const sfFont* font)
 {
     delete font;
 }

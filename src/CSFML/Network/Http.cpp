@@ -37,7 +37,7 @@ sfHttpRequest* sfHttpRequest_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpRequest_destroy(sfHttpRequest* httpRequest)
+void sfHttpRequest_destroy(const sfHttpRequest* httpRequest)
 {
     delete httpRequest;
 }
@@ -85,7 +85,7 @@ void sfHttpRequest_setBody(sfHttpRequest* httpRequest, const char* body)
 
 
 ////////////////////////////////////////////////////////////
-void sfHttpResponse_destroy(sfHttpResponse* httpResponse)
+void sfHttpResponse_destroy(const sfHttpResponse* httpResponse)
 {
     delete httpResponse;
 }
@@ -142,7 +142,7 @@ sfHttp* sfHttp_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfHttp_destroy(sfHttp* http)
+void sfHttp_destroy(const sfHttp* http)
 {
     delete http;
 }

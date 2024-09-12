@@ -63,7 +63,7 @@ CSFML_GRAPHICS_API sfSprite* sfSprite_copy(const sfSprite* sprite);
 /// \param sprite Sprite to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfSprite_destroy(sfSprite* sprite);
+CSFML_GRAPHICS_API void sfSprite_destroy(const sfSprite* sprite);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a sprite
