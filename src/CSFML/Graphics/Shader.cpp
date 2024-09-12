@@ -195,6 +195,7 @@ void sfShader_destroy(const sfShader* shader)
 void sfShader_setFloatUniform(sfShader* shader, const char* name, float x)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, x);
 }
 
@@ -203,6 +204,7 @@ void sfShader_setFloatUniform(sfShader* shader, const char* name, float x)
 void sfShader_setVec2Uniform(sfShader* shader, const char* name, sfGlslVec2 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Vec2(vector.x, vector.y));
 }
 
@@ -211,6 +213,7 @@ void sfShader_setVec2Uniform(sfShader* shader, const char* name, sfGlslVec2 vect
 void sfShader_setVec3Uniform(sfShader* shader, const char* name, sfGlslVec3 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Vec3(vector.x, vector.y, vector.z));
 }
 
@@ -219,6 +222,7 @@ void sfShader_setVec3Uniform(sfShader* shader, const char* name, sfGlslVec3 vect
 void sfShader_setVec4Uniform(sfShader* shader, const char* name, sfGlslVec4 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Vec4(vector.x, vector.y, vector.z, vector.w));
 }
 
@@ -239,6 +243,7 @@ void sfShader_setColorUniform(sfShader* shader, const char* name, sfColor color)
 void sfShader_setIntUniform(sfShader* shader, const char* name, int x)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, x);
 }
 
@@ -247,6 +252,7 @@ void sfShader_setIntUniform(sfShader* shader, const char* name, int x)
 void sfShader_setIvec2Uniform(sfShader* shader, const char* name, sfGlslIvec2 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Ivec2(vector.x, vector.y));
 }
 
@@ -255,6 +261,7 @@ void sfShader_setIvec2Uniform(sfShader* shader, const char* name, sfGlslIvec2 ve
 void sfShader_setIvec3Uniform(sfShader* shader, const char* name, sfGlslIvec3 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Ivec3(vector.x, vector.y, vector.z));
 }
 
@@ -263,6 +270,7 @@ void sfShader_setIvec3Uniform(sfShader* shader, const char* name, sfGlslIvec3 ve
 void sfShader_setIvec4Uniform(sfShader* shader, const char* name, sfGlslIvec4 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Ivec4(vector.x, vector.y, vector.z, vector.w));
 }
 
@@ -283,6 +291,7 @@ void sfShader_setIntColorUniform(sfShader* shader, const char* name, sfColor col
 void sfShader_setBoolUniform(sfShader* shader, const char* name, bool x)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, x);
 }
 
@@ -291,6 +300,7 @@ void sfShader_setBoolUniform(sfShader* shader, const char* name, bool x)
 void sfShader_setBvec2Uniform(sfShader* shader, const char* name, sfGlslBvec2 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Bvec2(vector.x, vector.y));
 }
 
@@ -299,6 +309,7 @@ void sfShader_setBvec2Uniform(sfShader* shader, const char* name, sfGlslBvec2 ve
 void sfShader_setBvec3Uniform(sfShader* shader, const char* name, sfGlslBvec3 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Bvec3(vector.x, vector.y, vector.z));
 }
 
@@ -307,6 +318,7 @@ void sfShader_setBvec3Uniform(sfShader* shader, const char* name, sfGlslBvec3 ve
 void sfShader_setBvec4Uniform(sfShader* shader, const char* name, sfGlslBvec4 vector)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Bvec4(vector.x, vector.y, vector.z, vector.w));
 }
 
@@ -315,6 +327,7 @@ void sfShader_setBvec4Uniform(sfShader* shader, const char* name, sfGlslBvec4 ve
 void sfShader_setMat3Uniform(sfShader* shader, const char* name, const sfGlslMat3* matrix)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Mat3(matrix->array));
 }
 
@@ -323,6 +336,7 @@ void sfShader_setMat3Uniform(sfShader* shader, const char* name, const sfGlslMat
 void sfShader_setMat4Uniform(sfShader* shader, const char* name, const sfGlslMat4* matrix)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Glsl::Mat4(matrix->array));
 }
 
@@ -331,6 +345,7 @@ void sfShader_setMat4Uniform(sfShader* shader, const char* name, const sfGlslMat
 void sfShader_setTextureUniform(sfShader* shader, const char* name, const sfTexture* texture)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, *texture->This);
 }
 
@@ -339,6 +354,7 @@ void sfShader_setTextureUniform(sfShader* shader, const char* name, const sfText
 void sfShader_setCurrentTextureUniform(sfShader* shader, const char* name)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniform(name, sf::Shader::CurrentTexture);
 }
 
@@ -347,6 +363,7 @@ void sfShader_setCurrentTextureUniform(sfShader* shader, const char* name)
 void sfShader_setFloatUniformArray(sfShader* shader, const char* name, const float* scalarArray, size_t length)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniformArray(name, scalarArray, length);
 }
 
@@ -355,6 +372,7 @@ void sfShader_setFloatUniformArray(sfShader* shader, const char* name, const flo
 void sfShader_setVec2UniformArray(sfShader* shader, const char* name, const sfGlslVec2* vectorArray, size_t length)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec2*>(vectorArray), length);
 }
 
@@ -363,6 +381,7 @@ void sfShader_setVec2UniformArray(sfShader* shader, const char* name, const sfGl
 void sfShader_setVec3UniformArray(sfShader* shader, const char* name, const sfGlslVec3* vectorArray, size_t length)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec3*>(vectorArray), length);
 }
 
@@ -371,6 +390,7 @@ void sfShader_setVec3UniformArray(sfShader* shader, const char* name, const sfGl
 void sfShader_setVec4UniformArray(sfShader* shader, const char* name, const sfGlslVec4* vectorArray, size_t length)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec4*>(vectorArray), length);
 }
 
@@ -379,6 +399,7 @@ void sfShader_setVec4UniformArray(sfShader* shader, const char* name, const sfGl
 void sfShader_setMat3UniformArray(sfShader* shader, const char* name, const sfGlslMat3* matrixArray, size_t length)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat3*>(matrixArray), length);
 }
 
@@ -387,6 +408,7 @@ void sfShader_setMat3UniformArray(sfShader* shader, const char* name, const sfGl
 void sfShader_setMat4UniformArray(sfShader* shader, const char* name, const sfGlslMat4* matrixArray, size_t length)
 {
     assert(shader);
+    assert(name);
     shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat4*>(matrixArray), length);
 }
 
@@ -395,6 +417,7 @@ void sfShader_setMat4UniformArray(sfShader* shader, const char* name, const sfGl
 void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTexture* texture)
 {
     assert(shader);
+    assert(name);
     assert(texture);
     shader->This.setUniform(name, *texture->This);
 }
