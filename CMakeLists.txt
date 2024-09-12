@@ -46,7 +46,7 @@ csfml_set_option(CSFML_LINK_SFML_STATICALLY ${LINK_STATICALLY_DEFAULT} BOOL "ON 
 
 # define an option for choosing between static and dynamic C runtime (Windows only)
 if(SFML_OS_WINDOWS)
-    set(STATIC_STD_LIBS OFF CACHE BOOL "ON to statically link to the standard libraries, OFF to use them as DLLs")
+    csfml_set_option(CSFML_USE_STATIC_STD_LIBS OFF BOOL "ON to statically link to the standard libraries, OFF to use them as DLLs")
 endif()
 
 # find SFML libraries (C++)
