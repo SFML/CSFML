@@ -50,6 +50,7 @@
 /// \param mode     Video mode to use
 /// \param title    Title of the window
 /// \param style    Window style
+/// \param state    Window state
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
@@ -66,6 +67,7 @@ CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_create(
 /// \param mode     Video mode to use
 /// \param title    Title of the window (UTF-32)
 /// \param style    Window style
+/// \param state    Window state
 /// \param settings Creation settings (pass NULL to use default values)
 ///
 ////////////////////////////////////////////////////////////
@@ -256,7 +258,8 @@ CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorVisible(sfRenderWindow* ren
 /// won't have any effect (fullscreen windows always grab the
 /// cursor).
 ///
-/// \param grabbed true to enable, false to disable
+/// \param renderWindow Render window object
+/// \param grabbed      true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, bool grabbed);
@@ -272,13 +275,14 @@ CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* ren
 /// \warning Features related to Cursor are not supported on
 ///          iOS and Android.
 ///
-/// \param cursor Native system cursor type to display
+/// \param renderWindow Render window object
+/// \param cursor       Native system cursor type to display
 ///
 /// \see sfCursor_createFromSystem
 /// \see sfCursor_createFromPixels
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursor(sfRenderWindow* window, const sfCursor* cursor);
+CSFML_GRAPHICS_API void sfRenderWindow_setMouseCursor(sfRenderWindow* renderWindow, const sfCursor* cursor);
 
 ////////////////////////////////////////////////////////////
 /// \brief Enable or disable automatic key-repeat for keydown events

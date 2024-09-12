@@ -254,11 +254,11 @@ void sfRenderWindow_setMouseCursorGrabbed(sfRenderWindow* renderWindow, bool gra
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderWindow_setMouseCursor(sfRenderWindow* window, const sfCursor* cursor)
+void sfRenderWindow_setMouseCursor(sfRenderWindow* renderWindow, const sfCursor* cursor)
 {
-    assert(window);
+    assert(renderWindow);
     assert(cursor);
-    window->This.setMouseCursor(cursor->This);
+    renderWindow->This.setMouseCursor(cursor->This);
 }
 
 

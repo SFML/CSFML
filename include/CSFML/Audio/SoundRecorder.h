@@ -174,8 +174,9 @@ CSFML_AUDIO_API const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundReco
 /// used for recording. Currently only 16-bit mono and
 /// 16-bit stereo are supported.
 ///
-/// \param channelCount Number of channels. Currently only
-///                     mono (1) and stereo (2) are supported.
+/// \param soundRecorder Sound recorder object
+/// \param channelCount  Number of channels. Currently only
+///                      mono (1) and stereo (2) are supported.
 ///
 /// \see sfSoundRecorder_getChannelCount
 ///

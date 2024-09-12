@@ -143,6 +143,8 @@ CSFML_AUDIO_API sfTime sfMusic_getDuration(const sfMusic* music);
 ////////////////////////////////////////////////////////////
 /// \brief Get the positions of the of the sound's looping sequence
 ///
+/// \param music Music object
+///
 /// \return Loop Time position class.
 ///
 /// \warning Since sfMusic_setLoopPoints() performs some adjustments on the
@@ -172,6 +174,7 @@ CSFML_AUDIO_API sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music);
 /// \warning Setting the loop points while the stream's status is Paused
 /// will set its status to Stopped. The playing offset will be unaffected.
 ///
+/// \param music      Music object
 /// \param timePoints The definition of the loop. Can be any time points within the sound's length
 ///
 /// \see getLoopPoints

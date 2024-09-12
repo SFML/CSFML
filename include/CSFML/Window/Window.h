@@ -345,6 +345,7 @@ CSFML_WINDOW_API void sfWindow_setMouseCursorVisible(sfWindow* window, bool visi
 /// won't have any effect (fullscreen windows always grab the
 /// cursor).
 ///
+/// \param window  Window object
 /// \param grabbed true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////

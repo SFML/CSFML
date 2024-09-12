@@ -196,6 +196,7 @@ CSFML_NETWORK_API sfSocketStatus
 /// In blocking mode, this function will wait until the whole packet
 /// has been received.
 ///
+/// \param socket        UDP socket object
 /// \param packet        Packet to fill with the received data
 /// \param remoteAddress Address of the peer that sent the data
 /// \param remotePort    Port of the peer that sent the data
