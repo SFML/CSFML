@@ -62,7 +62,7 @@ sfRenderTexture* sfRenderTexture_create(sfVector2u size, const sfContextSettings
 
 
 ////////////////////////////////////////////////////////////
-void sfRenderTexture_destroy(sfRenderTexture* renderTexture)
+void sfRenderTexture_destroy(const sfRenderTexture* renderTexture)
 {
     delete renderTexture->Target;
     delete renderTexture;

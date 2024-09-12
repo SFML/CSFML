@@ -51,7 +51,7 @@ sfConvexShape* sfConvexShape_copy(const sfConvexShape* shape)
 
 
 ////////////////////////////////////////////////////////////
-void sfConvexShape_destroy(sfConvexShape* shape)
+void sfConvexShape_destroy(const sfConvexShape* shape)
 {
     delete shape;
 }

@@ -37,7 +37,7 @@ sfSoundBufferRecorder* sfSoundBufferRecorder_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundBufferRecorder_destroy(sfSoundBufferRecorder* soundBufferRecorder)
+void sfSoundBufferRecorder_destroy(const sfSoundBufferRecorder* soundBufferRecorder)
 {
     delete soundBufferRecorder;
 }

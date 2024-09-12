@@ -57,7 +57,7 @@ CSFML_NETWORK_API sfSocketSelector* sfSocketSelector_copy(const sfSocketSelector
 /// \param selector Socket selector to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfSocketSelector_destroy(sfSocketSelector* selector);
+CSFML_NETWORK_API void sfSocketSelector_destroy(const sfSocketSelector* selector);
 
 ////////////////////////////////////////////////////////////
 /// \brief Add a new socket to a socket selector

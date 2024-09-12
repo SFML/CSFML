@@ -100,7 +100,7 @@ sfImage* sfImage_copy(const sfImage* image)
 
 
 ////////////////////////////////////////////////////////////
-void sfImage_destroy(sfImage* image)
+void sfImage_destroy(const sfImage* image)
 {
     delete image;
 }

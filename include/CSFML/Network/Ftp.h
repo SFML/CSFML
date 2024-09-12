@@ -120,7 +120,7 @@ typedef enum
 /// \param ftpListingResponse Ftp listing response to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfFtpListingResponse_destroy(sfFtpListingResponse* ftpListingResponse);
+CSFML_NETWORK_API void sfFtpListingResponse_destroy(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a FTP listing response status code means a success
@@ -182,7 +182,7 @@ CSFML_NETWORK_API const char* sfFtpListingResponse_getName(const sfFtpListingRes
 /// \param ftpDirectoryResponse Ftp directory response to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfFtpDirectoryResponse_destroy(sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API void sfFtpDirectoryResponse_destroy(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a FTP directory response status code means a success
@@ -251,7 +251,7 @@ CSFML_NETWORK_API const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(con
 /// \param ftpResponse Ftp response to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfFtpResponse_destroy(sfFtpResponse* ftpResponse);
+CSFML_NETWORK_API void sfFtpResponse_destroy(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a FTP response status code means a success
@@ -300,7 +300,7 @@ CSFML_NETWORK_API sfFtp* sfFtp_create(void);
 /// \param ftp Ftp object to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfFtp_destroy(sfFtp* ftp);
+CSFML_NETWORK_API void sfFtp_destroy(const sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
 /// \brief Connect to the specified FTP server

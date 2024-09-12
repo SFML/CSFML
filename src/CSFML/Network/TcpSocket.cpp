@@ -42,7 +42,7 @@ sfTcpSocket* sfTcpSocket_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpSocket_destroy(sfTcpSocket* socket)
+void sfTcpSocket_destroy(const sfTcpSocket* socket)
 {
     delete socket;
 }

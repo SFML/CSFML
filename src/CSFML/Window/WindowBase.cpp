@@ -70,7 +70,7 @@ sfWindowBase* sfWindowBase_createFromHandle(sfWindowHandle handle)
 
 
 ////////////////////////////////////////////////////////////
-void sfWindowBase_destroy(sfWindowBase* windowBase)
+void sfWindowBase_destroy(const sfWindowBase* windowBase)
 {
     delete windowBase;
 }

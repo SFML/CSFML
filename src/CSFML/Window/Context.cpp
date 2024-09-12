@@ -38,7 +38,7 @@ sfContext* sfContext_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfContext_destroy(sfContext* context)
+void sfContext_destroy(const sfContext* context)
 {
     delete context;
 }

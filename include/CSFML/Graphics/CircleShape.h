@@ -62,7 +62,7 @@ CSFML_GRAPHICS_API sfCircleShape* sfCircleShape_copy(const sfCircleShape* shape)
 /// \param shape Shape to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfCircleShape_destroy(sfCircleShape* shape);
+CSFML_GRAPHICS_API void sfCircleShape_destroy(const sfCircleShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a circle shape

@@ -81,7 +81,7 @@ CSFML_AUDIO_API sfSoundStream* sfSoundStream_create(
 /// \param soundStream Sound stream to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundStream_destroy(sfSoundStream* soundStream);
+CSFML_AUDIO_API void sfSoundStream_destroy(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start or resume playing a sound stream

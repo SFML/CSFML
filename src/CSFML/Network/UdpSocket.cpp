@@ -42,7 +42,7 @@ sfUdpSocket* sfUdpSocket_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfUdpSocket_destroy(sfUdpSocket* socket)
+void sfUdpSocket_destroy(const sfUdpSocket* socket)
 {
     delete socket;
 }

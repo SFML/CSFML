@@ -61,7 +61,7 @@ CSFML_GRAPHICS_API sfShape* sfShape_create(sfShapeGetPointCountCallback getPoint
 /// \param shape Shape to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShape_destroy(sfShape* shape);
+CSFML_GRAPHICS_API void sfShape_destroy(const sfShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the position of a shape

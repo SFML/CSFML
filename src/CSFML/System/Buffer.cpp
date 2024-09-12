@@ -39,7 +39,7 @@ sfBuffer* sfBuffer_create()
 
 
 ////////////////////////////////////////////////////////////
-void sfBuffer_destroy(sfBuffer* buffer)
+void sfBuffer_destroy(const sfBuffer* buffer)
 {
     delete buffer;
 }

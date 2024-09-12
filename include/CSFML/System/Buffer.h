@@ -48,7 +48,7 @@ CSFML_SYSTEM_API sfBuffer* sfBuffer_create(void);
 /// \param buffer Buffer to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API void sfBuffer_destroy(sfBuffer* buffer);
+CSFML_SYSTEM_API void sfBuffer_destroy(const sfBuffer* buffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the size of a buffer

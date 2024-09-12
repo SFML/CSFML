@@ -54,7 +54,7 @@ sfSprite* sfSprite_copy(const sfSprite* sprite)
 
 
 ////////////////////////////////////////////////////////////
-void sfSprite_destroy(sfSprite* sprite)
+void sfSprite_destroy(const sfSprite* sprite)
 {
     delete sprite;
 }

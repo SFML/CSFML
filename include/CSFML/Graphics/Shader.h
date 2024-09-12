@@ -112,7 +112,7 @@ CSFML_GRAPHICS_API sfShader* sfShader_createFromStream(sfInputStream* vertexShad
 /// \param shader Shader to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfShader_destroy(sfShader* shader);
+CSFML_GRAPHICS_API void sfShader_destroy(const sfShader* shader);
 
 ////////////////////////////////////////////////////////////
 /// \brief Specify value for \p float uniform

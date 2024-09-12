@@ -53,7 +53,7 @@ sfCursor* sfCursor_createFromSystem(sfCursorType type)
 
 
 ////////////////////////////////////////////////////////////
-void sfCursor_destroy(sfCursor* cursor)
+void sfCursor_destroy(const sfCursor* cursor)
 {
     delete cursor;
 }

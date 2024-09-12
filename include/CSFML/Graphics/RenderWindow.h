@@ -93,7 +93,7 @@ CSFML_GRAPHICS_API sfRenderWindow* sfRenderWindow_createFromHandle(sfWindowHandl
 /// \param renderWindow Render window to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderWindow_destroy(sfRenderWindow* renderWindow);
+CSFML_GRAPHICS_API void sfRenderWindow_destroy(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
 /// \brief Close a render window (but doesn't destroy the internal data)

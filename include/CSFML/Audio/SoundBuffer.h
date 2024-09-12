@@ -120,7 +120,7 @@ CSFML_AUDIO_API sfSoundBuffer* sfSoundBuffer_copy(const sfSoundBuffer* soundBuff
 /// \param soundBuffer Sound buffer to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundBuffer_destroy(sfSoundBuffer* soundBuffer);
+CSFML_AUDIO_API void sfSoundBuffer_destroy(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save a sound buffer to an audio file

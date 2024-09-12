@@ -76,7 +76,7 @@ sfMusic* sfMusic_createFromStream(sfInputStream* stream)
 
 
 ////////////////////////////////////////////////////////////
-void sfMusic_destroy(sfMusic* music)
+void sfMusic_destroy(const sfMusic* music)
 {
     delete music;
 }

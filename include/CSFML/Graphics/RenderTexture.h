@@ -58,7 +58,7 @@ CSFML_GRAPHICS_API sfRenderTexture* sfRenderTexture_create(sfVector2u size, cons
 /// \param renderTexture Render texture to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfRenderTexture_destroy(sfRenderTexture* renderTexture);
+CSFML_GRAPHICS_API void sfRenderTexture_destroy(const sfRenderTexture* renderTexture);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the size of the rendering region of a render texture

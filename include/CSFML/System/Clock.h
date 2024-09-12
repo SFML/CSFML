@@ -57,7 +57,7 @@ CSFML_SYSTEM_API sfClock* sfClock_copy(const sfClock* clock);
 /// \param clock Clock to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API void sfClock_destroy(sfClock* clock);
+CSFML_SYSTEM_API void sfClock_destroy(const sfClock* clock);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the time elapsed in a clock

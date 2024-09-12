@@ -141,4 +141,4 @@ CSFML_WINDOW_API sfCursor* sfCursor_createFromSystem(sfCursorType type);
 /// \param cursor Cursor to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfCursor_destroy(sfCursor* cursor);
+CSFML_WINDOW_API void sfCursor_destroy(const sfCursor* cursor);

@@ -84,7 +84,7 @@ CSFML_GRAPHICS_API sfFont* sfFont_copy(const sfFont* font);
 /// \param font Font to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfFont_destroy(sfFont* font);
+CSFML_GRAPHICS_API void sfFont_destroy(const sfFont* font);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get a glyph in a font

@@ -102,7 +102,7 @@ CSFML_NETWORK_API sfHttpRequest* sfHttpRequest_create(void);
 /// \param httpRequest HTTP request to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfHttpRequest_destroy(sfHttpRequest* httpRequest);
+CSFML_NETWORK_API void sfHttpRequest_destroy(const sfHttpRequest* httpRequest);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the value of a header field of a HTTP request
@@ -177,7 +177,7 @@ CSFML_NETWORK_API void sfHttpRequest_setBody(sfHttpRequest* httpRequest, const c
 /// \param httpResponse HTTP response to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfHttpResponse_destroy(sfHttpResponse* httpResponse);
+CSFML_NETWORK_API void sfHttpResponse_destroy(const sfHttpResponse* httpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the value of a field of a HTTP response
@@ -259,7 +259,7 @@ CSFML_NETWORK_API sfHttp* sfHttp_create(void);
 /// \param http Http object to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfHttp_destroy(sfHttp* http);
+CSFML_NETWORK_API void sfHttp_destroy(const sfHttp* http);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the target host of a HTTP object

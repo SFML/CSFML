@@ -96,7 +96,7 @@ sfSoundBuffer* sfSoundBuffer_copy(const sfSoundBuffer* soundBuffer)
 
 
 ////////////////////////////////////////////////////////////
-void sfSoundBuffer_destroy(sfSoundBuffer* soundBuffer)
+void sfSoundBuffer_destroy(const sfSoundBuffer* soundBuffer)
 {
     delete soundBuffer;
 }

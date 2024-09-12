@@ -140,7 +140,7 @@ CSFML_GRAPHICS_API sfImage* sfImage_copy(const sfImage* image);
 /// \param image Image to delete
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfImage_destroy(sfImage* image);
+CSFML_GRAPHICS_API void sfImage_destroy(const sfImage* image);
 
 ////////////////////////////////////////////////////////////
 /// \brief Save an image to a file on disk

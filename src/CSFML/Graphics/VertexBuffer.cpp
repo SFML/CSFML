@@ -59,7 +59,7 @@ sfVertexBuffer* sfVertexBuffer_copy(const sfVertexBuffer* vertexBuffer)
 
 
 ////////////////////////////////////////////////////////////
-void sfVertexBuffer_destroy(sfVertexBuffer* vertexBuffer)
+void sfVertexBuffer_destroy(const sfVertexBuffer* vertexBuffer)
 {
     delete vertexBuffer;
 }

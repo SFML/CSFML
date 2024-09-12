@@ -54,7 +54,7 @@ sfView* sfView_copy(const sfView* view)
 
 
 ////////////////////////////////////////////////////////////
-void sfView_destroy(sfView* view)
+void sfView_destroy(const sfView* view)
 {
     delete view;
 }

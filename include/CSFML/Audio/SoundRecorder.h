@@ -62,7 +62,7 @@ CSFML_AUDIO_API sfSoundRecorder* sfSoundRecorder_create(sfSoundRecorderStartCall
 /// \param soundRecorder Sound recorder to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API void sfSoundRecorder_destroy(sfSoundRecorder* soundRecorder);
+CSFML_AUDIO_API void sfSoundRecorder_destroy(const sfSoundRecorder* soundRecorder);
 
 ////////////////////////////////////////////////////////////
 /// \brief Start the capture of a sound recorder

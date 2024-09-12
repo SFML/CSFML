@@ -48,7 +48,7 @@ sfSocketSelector* sfSocketSelector_copy(const sfSocketSelector* selector)
 
 
 ////////////////////////////////////////////////////////////
-void sfSocketSelector_destroy(sfSocketSelector* selector)
+void sfSocketSelector_destroy(const sfSocketSelector* selector)
 {
     delete selector;
 }

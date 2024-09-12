@@ -146,7 +146,7 @@ CSFML_WINDOW_API sfWindow* sfWindow_createFromHandle(sfWindowHandle handle, cons
 /// \param window Window to destroy
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API void sfWindow_destroy(sfWindow* window);
+CSFML_WINDOW_API void sfWindow_destroy(const sfWindow* window);
 
 ////////////////////////////////////////////////////////////
 /// \brief Close a window and destroy all the attached resources
