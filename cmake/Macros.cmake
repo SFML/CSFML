@@ -46,7 +46,7 @@ macro(csfml_add_library target)
         set_target_properties(${target} PROPERTIES MINSIZEREL_POSTFIX -s)
         set_target_properties(${target} PROPERTIES RELWITHDEBINFO_POSTFIX -s)
 
-        if(STATIC_STD_LIBS)
+        if(CSFML_USE_STATIC_STD_LIBS)
             set_property(TARGET ${target} PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
         endif()
     endif()
@@ -58,11 +58,11 @@ macro(csfml_add_library target)
     # set the target's folder (for IDEs that support it, e.g. Visual Studio)
     set_target_properties(${target} PROPERTIES FOLDER "CSFML")
 
-    # apply the SFML_USE_STATIC_STD_LIBS option if it is enabled
+    # apply the CSFML_USE_STATIC_STD_LIBS option if it is enabled
     if(SFML_OS_WINDOWS AND SFML_COMPILER_GCC)
-        if(SFML_USE_STATIC_STD_LIBS AND NOT SFML_COMPILER_GCC_TDM)
+        if(CSFML_USE_STATIC_STD_LIBS AND NOT SFML_COMPILER_GCC_TDM)
             set_target_properties(${target} PROPERTIES LINK_FLAGS "-static-libgcc -static-libstdc++")
-        elseif(NOT SFML_USE_STATIC_STD_LIBS AND SFML_COMPILER_GCC_TDM)
+        elseif(NOT CSFML_USE_STATIC_STD_LIBS AND SFML_COMPILER_GCC_TDM)
             set_target_properties(${target} PROPERTIES LINK_FLAGS "-shared-libgcc -shared-libstdc++")
         endif()
     endif()
