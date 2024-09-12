@@ -387,6 +387,7 @@ CSFML_GRAPHICS_API unsigned int sfTexture_getNativeHandle(const sfTexture* textu
 /// \endcode
 ///
 /// \param texture Pointer to the texture to bind, can be null to use no texture
+/// \param type    Type of texture coordinates to use
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture, sfTextureCoordinateType type);

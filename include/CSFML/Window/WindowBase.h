@@ -287,7 +287,8 @@ CSFML_WINDOW_API void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBas
 /// won't have any effect (fullscreen windows always grab the
 /// cursor).
 ///
-/// \param grabbed true to enable, false to disable
+/// \param windowBase Window object
+/// \param grabbed    true to enable, false to disable
 ///
 ////////////////////////////////////////////////////////////
 CSFML_WINDOW_API void sfWindowBase_setMouseCursorGrabbed(sfWindowBase* windowBase, bool grabbed);

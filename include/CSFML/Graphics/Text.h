@@ -359,6 +359,7 @@ CSFML_GRAPHICS_API void sfText_setOutlineColor(sfText* text, sfColor color);
 /// Be aware that using a negative value for the outline
 /// thickness will cause distorted rendering.
 ///
+/// \param text      Text object
 /// \param thickness New outline thickness, in pixels
 ///
 /// \see getOutlineThickness

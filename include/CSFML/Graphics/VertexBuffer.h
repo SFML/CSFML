@@ -123,9 +123,10 @@ CSFML_GRAPHICS_API size_t sfVertexBuffer_getVertexCount(const sfVertexBuffer* ve
 /// array, passing invalid arguments will lead to undefined
 /// behavior.
 ///
-/// \param vertices    Array of vertices to copy to the buffer
-/// \param vertexCount Number of vertices to copy
-/// \param offset      Offset in the buffer to copy to
+/// \param vertexBuffer Vertex buffer object
+/// \param vertices     Array of vertices to copy to the buffer
+/// \param vertexCount  Number of vertices to copy
+/// \param offset       Offset in the buffer to copy to
 ///
 /// \return true if the update was successful
 ///

@@ -38,7 +38,7 @@
 ////////////////////////////////////////////////////////////
 /// \brief Create a new sound
 ///
-/// \param soundBuffer Sound buffer containing the audio data to play with the sound
+/// \param buffer Sound buffer containing the audio data to play with the sound
 ///
 /// \return A new sfSound object
 ///
