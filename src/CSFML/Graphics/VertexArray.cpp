@@ -30,6 +30,9 @@
 #include <CSFML/Graphics/VertexArrayStruct.hpp>
 
 
+static_assert(sizeof(sf::Vertex) == sizeof(sfVertex));
+static_assert(alignof(sf::Vertex) == alignof(sfVertex));
+
 ////////////////////////////////////////////////////////////
 sfVertexArray* sfVertexArray_create()
 {
