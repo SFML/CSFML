@@ -113,6 +113,7 @@ const char* sfSoundRecorder_getDefaultDevice()
 bool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* name)
 {
     assert(soundRecorder);
+    assert(name);
     return soundRecorder->This.setDevice(name);
 }
 
