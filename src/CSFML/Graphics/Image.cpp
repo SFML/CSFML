@@ -122,6 +122,7 @@ bool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* fo
 {
     assert(image);
     assert(output);
+    assert(format);
 
     auto data = image->This.saveToMemory(format);
 

@@ -81,6 +81,7 @@ const sfSoundBuffer* sfSoundBufferRecorder_getBuffer(const sfSoundBufferRecorder
 bool sfSoundBufferRecorder_setDevice(sfSoundBufferRecorder* soundBufferRecorder, const char* name)
 {
     assert(soundBufferRecorder);
+    assert(name);
     return soundBufferRecorder->This.setDevice(name);
 }
 
