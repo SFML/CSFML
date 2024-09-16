@@ -34,6 +34,8 @@
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromFile(const char* filename)
 {
+    assert(filename);
+
     sf::Font font;
     if (!font.openFromFile(filename))
         return nullptr;

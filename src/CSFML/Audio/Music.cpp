@@ -33,6 +33,8 @@
 ////////////////////////////////////////////////////////////
 sfMusic* sfMusic_createFromFile(const char* filename)
 {
+    assert(filename);
+
     auto* music = new sfMusic;
     if (!music->This.openFromFile(filename))
     {

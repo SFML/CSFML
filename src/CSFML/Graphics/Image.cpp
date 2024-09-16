@@ -58,6 +58,8 @@ sfImage* sfImage_createFromPixels(sfVector2u size, const uint8_t* data)
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromFile(const char* filename)
 {
+    assert(filename);
+
     sf::Image image;
     if (!image.loadFromFile(filename))
         return nullptr;
@@ -110,6 +112,7 @@ void sfImage_destroy(const sfImage* image)
 bool sfImage_saveToFile(const sfImage* image, const char* filename)
 {
     assert(image);
+    assert(filename);
     return image->This.saveToFile(filename);
 }
 

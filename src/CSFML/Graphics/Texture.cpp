@@ -53,6 +53,8 @@ sfTexture* sfTexture_create(sfVector2u size)
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 {
+    assert(filename);
+
     auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
@@ -69,6 +71,8 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* area)
 {
+    assert(filename);
+
     auto* texture = new sfTexture;
 
     const sf::IntRect rect = area ? convertRect(*area) : sf::IntRect();
