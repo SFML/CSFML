@@ -61,7 +61,7 @@ void sfConvexShape_destroy(const sfConvexShape* shape)
 void sfConvexShape_setPosition(sfConvexShape* shape, sfVector2f position)
 {
     assert(shape);
-    shape->This.setPosition(convertVector2(position));
+    shape->setPosition(convertVector2(position));
 }
 
 
@@ -69,7 +69,7 @@ void sfConvexShape_setPosition(sfConvexShape* shape, sfVector2f position)
 void sfConvexShape_setRotation(sfConvexShape* shape, float angle)
 {
     assert(shape);
-    shape->This.setRotation(sf::degrees(angle));
+    shape->setRotation(sf::degrees(angle));
 }
 
 
@@ -77,7 +77,7 @@ void sfConvexShape_setRotation(sfConvexShape* shape, float angle)
 void sfConvexShape_setScale(sfConvexShape* shape, sfVector2f scale)
 {
     assert(shape);
-    shape->This.setScale(convertVector2(scale));
+    shape->setScale(convertVector2(scale));
 }
 
 
@@ -85,7 +85,7 @@ void sfConvexShape_setScale(sfConvexShape* shape, sfVector2f scale)
 void sfConvexShape_setOrigin(sfConvexShape* shape, sfVector2f origin)
 {
     assert(shape);
-    shape->This.setOrigin(convertVector2(origin));
+    shape->setOrigin(convertVector2(origin));
 }
 
 
@@ -93,7 +93,7 @@ void sfConvexShape_setOrigin(sfConvexShape* shape, sfVector2f origin)
 sfVector2f sfConvexShape_getPosition(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getPosition());
+    return convertVector2(shape->getPosition());
 }
 
 
@@ -101,7 +101,7 @@ sfVector2f sfConvexShape_getPosition(const sfConvexShape* shape)
 float sfConvexShape_getRotation(const sfConvexShape* shape)
 {
     assert(shape);
-    return shape->This.getRotation().asDegrees();
+    return shape->getRotation().asDegrees();
 }
 
 
@@ -109,7 +109,7 @@ float sfConvexShape_getRotation(const sfConvexShape* shape)
 sfVector2f sfConvexShape_getScale(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getScale());
+    return convertVector2(shape->getScale());
 }
 
 
@@ -117,7 +117,7 @@ sfVector2f sfConvexShape_getScale(const sfConvexShape* shape)
 sfVector2f sfConvexShape_getOrigin(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getOrigin());
+    return convertVector2(shape->getOrigin());
 }
 
 
@@ -125,7 +125,7 @@ sfVector2f sfConvexShape_getOrigin(const sfConvexShape* shape)
 void sfConvexShape_move(sfConvexShape* shape, sfVector2f offset)
 {
     assert(shape);
-    shape->This.move(convertVector2(offset));
+    shape->move(convertVector2(offset));
 }
 
 
@@ -133,7 +133,7 @@ void sfConvexShape_move(sfConvexShape* shape, sfVector2f offset)
 void sfConvexShape_rotate(sfConvexShape* shape, float angle)
 {
     assert(shape);
-    shape->This.rotate(sf::degrees(angle));
+    shape->rotate(sf::degrees(angle));
 }
 
 
@@ -141,7 +141,7 @@ void sfConvexShape_rotate(sfConvexShape* shape, float angle)
 void sfConvexShape_scale(sfConvexShape* shape, sfVector2f factors)
 {
     assert(shape);
-    shape->This.scale(convertVector2(factors));
+    shape->scale(convertVector2(factors));
 }
 
 
@@ -149,7 +149,7 @@ void sfConvexShape_scale(sfConvexShape* shape, sfVector2f factors)
 sfTransform sfConvexShape_getTransform(const sfConvexShape* shape)
 {
     assert(shape);
-    shape->Transform = convertTransform(shape->This.getTransform());
+    shape->Transform = convertTransform(shape->getTransform());
     return shape->Transform;
 }
 
@@ -158,7 +158,7 @@ sfTransform sfConvexShape_getTransform(const sfConvexShape* shape)
 sfTransform sfConvexShape_getInverseTransform(const sfConvexShape* shape)
 {
     assert(shape);
-    shape->InverseTransform = convertTransform(shape->This.getInverseTransform());
+    shape->InverseTransform = convertTransform(shape->getInverseTransform());
     return shape->InverseTransform;
 }
 
@@ -167,7 +167,7 @@ sfTransform sfConvexShape_getInverseTransform(const sfConvexShape* shape)
 void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bool resetRect)
 {
     assert(shape);
-    shape->This.setTexture(texture ? texture->This : nullptr, resetRect);
+    shape->setTexture(texture ? texture->This : nullptr, resetRect);
     shape->Texture = texture;
 }
 
@@ -176,7 +176,7 @@ void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bo
 void sfConvexShape_setTextureRect(sfConvexShape* shape, sfIntRect rect)
 {
     assert(shape);
-    shape->This.setTextureRect(convertRect(rect));
+    shape->setTextureRect(convertRect(rect));
 }
 
 
@@ -184,7 +184,7 @@ void sfConvexShape_setTextureRect(sfConvexShape* shape, sfIntRect rect)
 void sfConvexShape_setFillColor(sfConvexShape* shape, sfColor color)
 {
     assert(shape);
-    shape->This.setFillColor(convertColor(color));
+    shape->setFillColor(convertColor(color));
 }
 
 
@@ -192,7 +192,7 @@ void sfConvexShape_setFillColor(sfConvexShape* shape, sfColor color)
 void sfConvexShape_setOutlineColor(sfConvexShape* shape, sfColor color)
 {
     assert(shape);
-    shape->This.setOutlineColor(convertColor(color));
+    shape->setOutlineColor(convertColor(color));
 }
 
 
@@ -200,7 +200,7 @@ void sfConvexShape_setOutlineColor(sfConvexShape* shape, sfColor color)
 void sfConvexShape_setOutlineThickness(sfConvexShape* shape, float thickness)
 {
     assert(shape);
-    shape->This.setOutlineThickness(thickness);
+    shape->setOutlineThickness(thickness);
 }
 
 
@@ -216,7 +216,7 @@ const sfTexture* sfConvexShape_getTexture(const sfConvexShape* shape)
 sfIntRect sfConvexShape_getTextureRect(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertRect(shape->This.getTextureRect());
+    return convertRect(shape->getTextureRect());
 }
 
 
@@ -224,7 +224,7 @@ sfIntRect sfConvexShape_getTextureRect(const sfConvexShape* shape)
 sfColor sfConvexShape_getFillColor(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertColor(shape->This.getFillColor());
+    return convertColor(shape->getFillColor());
 }
 
 
@@ -232,7 +232,7 @@ sfColor sfConvexShape_getFillColor(const sfConvexShape* shape)
 sfColor sfConvexShape_getOutlineColor(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertColor(shape->This.getOutlineColor());
+    return convertColor(shape->getOutlineColor());
 }
 
 
@@ -240,7 +240,7 @@ sfColor sfConvexShape_getOutlineColor(const sfConvexShape* shape)
 float sfConvexShape_getOutlineThickness(const sfConvexShape* shape)
 {
     assert(shape);
-    return shape->This.getOutlineThickness();
+    return shape->getOutlineThickness();
 }
 
 
@@ -248,7 +248,7 @@ float sfConvexShape_getOutlineThickness(const sfConvexShape* shape)
 size_t sfConvexShape_getPointCount(const sfConvexShape* shape)
 {
     assert(shape);
-    return shape->This.getPointCount();
+    return shape->getPointCount();
 }
 
 
@@ -256,7 +256,7 @@ size_t sfConvexShape_getPointCount(const sfConvexShape* shape)
 sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index)
 {
     assert(shape);
-    return convertVector2(shape->This.getPoint(index));
+    return convertVector2(shape->getPoint(index));
 }
 
 
@@ -264,7 +264,7 @@ sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index)
 sfVector2f sfConvexShape_getGeometricCenter(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getGeometricCenter());
+    return convertVector2(shape->getGeometricCenter());
 }
 
 
@@ -272,7 +272,7 @@ sfVector2f sfConvexShape_getGeometricCenter(const sfConvexShape* shape)
 void sfConvexShape_setPointCount(sfConvexShape* shape, size_t count)
 {
     assert(shape);
-    shape->This.setPointCount(count);
+    shape->setPointCount(count);
 }
 
 
@@ -280,7 +280,7 @@ void sfConvexShape_setPointCount(sfConvexShape* shape, size_t count)
 void sfConvexShape_setPoint(sfConvexShape* shape, size_t index, sfVector2f point)
 {
     assert(shape);
-    shape->This.setPoint(index, convertVector2(point));
+    shape->setPoint(index, convertVector2(point));
 }
 
 
@@ -288,7 +288,7 @@ void sfConvexShape_setPoint(sfConvexShape* shape, size_t index, sfVector2f point
 sfFloatRect sfConvexShape_getLocalBounds(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertRect(shape->This.getLocalBounds());
+    return convertRect(shape->getLocalBounds());
 }
 
 
@@ -296,5 +296,5 @@ sfFloatRect sfConvexShape_getLocalBounds(const sfConvexShape* shape)
 sfFloatRect sfConvexShape_getGlobalBounds(const sfConvexShape* shape)
 {
     assert(shape);
-    return convertRect(shape->This.getGlobalBounds());
+    return convertRect(shape->getGlobalBounds());
 }

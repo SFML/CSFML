@@ -36,22 +36,22 @@ sfFont* sfFont_createFromFile(const char* filename)
 {
     assert(filename);
 
-    sf::Font font;
-    if (!font.openFromFile(filename))
+    auto font = std::make_unique<sfFont>();
+    if (!font->openFromFile(filename))
         return nullptr;
 
-    return new sfFont{std::move(font), {}, {}};
+    return font.release();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfFont* sfFont_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sf::Font font;
-    if (!font.openFromMemory(data, sizeInBytes))
+    auto font = std::make_unique<sfFont>();
+    if (!font->openFromMemory(data, sizeInBytes))
         return nullptr;
 
-    return new sfFont{std::move(font), {}, {}};
+    return font.release();
 }
 
 
@@ -61,7 +61,7 @@ sfFont* sfFont_createFromStream(sfInputStream* stream)
     assert(stream);
 
     auto font = std::make_unique<sfFont>(sfFont{{}, {}, {stream}});
-    if (!font->This.openFromStream(font->Stream))
+    if (!font->openFromStream(font->Stream))
         return nullptr;
 
     return font.release();
@@ -88,7 +88,7 @@ sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int cha
 {
     assert(font);
 
-    sf::Glyph sfmlGlyph = font->This.getGlyph(codePoint, characterSize, bold, outlineThickness);
+    sf::Glyph sfmlGlyph = font->getGlyph(codePoint, characterSize, bold, outlineThickness);
 
     sfGlyph glyph{};
     glyph.advance     = sfmlGlyph.advance;
@@ -103,7 +103,7 @@ sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int cha
 bool sfFont_hasGlyph(const sfFont* font, uint32_t codePoint)
 {
     assert(font);
-    return font->This.hasGlyph(codePoint);
+    return font->hasGlyph(codePoint);
 }
 
 
@@ -111,7 +111,7 @@ bool sfFont_hasGlyph(const sfFont* font, uint32_t codePoint)
 float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     assert(font);
-    return font->This.getKerning(first, second, characterSize);
+    return font->getKerning(first, second, characterSize);
 }
 
 
@@ -119,7 +119,7 @@ float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, uns
 float sfFont_getBoldKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     assert(font);
-    return font->This.getKerning(first, second, characterSize, true);
+    return font->getKerning(first, second, characterSize, true);
 }
 
 
@@ -127,7 +127,7 @@ float sfFont_getBoldKerning(const sfFont* font, uint32_t first, uint32_t second,
 float sfFont_getLineSpacing(const sfFont* font, unsigned int characterSize)
 {
     assert(font);
-    return font->This.getLineSpacing(characterSize);
+    return font->getLineSpacing(characterSize);
 }
 
 
@@ -135,7 +135,7 @@ float sfFont_getLineSpacing(const sfFont* font, unsigned int characterSize)
 float sfFont_getUnderlinePosition(const sfFont* font, unsigned int characterSize)
 {
     assert(font);
-    return font->This.getUnderlinePosition(characterSize);
+    return font->getUnderlinePosition(characterSize);
 }
 
 
@@ -143,7 +143,7 @@ float sfFont_getUnderlinePosition(const sfFont* font, unsigned int characterSize
 float sfFont_getUnderlineThickness(const sfFont* font, unsigned int characterSize)
 {
     assert(font);
-    return font->This.getUnderlineThickness(characterSize);
+    return font->getUnderlineThickness(characterSize);
 }
 
 
@@ -152,7 +152,7 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 {
     assert(font);
 
-    *font->Textures[characterSize].This = font->This.getTexture(characterSize);
+    *font->Textures[characterSize].This = font->getTexture(characterSize);
 
     return &font->Textures[characterSize];
 }
@@ -162,7 +162,7 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 void sfFont_setSmooth(sfFont* font, bool smooth)
 {
     assert(font);
-    font->This.setSmooth(smooth);
+    font->setSmooth(smooth);
 }
 
 
@@ -170,7 +170,7 @@ void sfFont_setSmooth(sfFont* font, bool smooth)
 bool sfFont_isSmooth(const sfFont* font)
 {
     assert(font);
-    return font->This.isSmooth();
+    return font->isSmooth();
 }
 
 
@@ -178,5 +178,5 @@ bool sfFont_isSmooth(const sfFont* font)
 sfFontInfo sfFont_getInfo(const sfFont* font)
 {
     assert(font);
-    return {font->This.getInfo().family.c_str()};
+    return {font->getInfo().family.c_str()};
 }

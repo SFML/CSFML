@@ -56,7 +56,7 @@ void sfVertexArray_destroy(const sfVertexArray* vertexArray)
 size_t sfVertexArray_getVertexCount(const sfVertexArray* vertexArray)
 {
     assert(vertexArray);
-    return vertexArray->This.getVertexCount();
+    return vertexArray->getVertexCount();
 }
 
 
@@ -66,7 +66,7 @@ sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, size_t index)
     assert(vertexArray);
 
     // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
-    return reinterpret_cast<sfVertex*>(&vertexArray->This[index]);
+    return reinterpret_cast<sfVertex*>(&(*vertexArray)[index]);
 }
 
 
@@ -74,7 +74,7 @@ sfVertex* sfVertexArray_getVertex(sfVertexArray* vertexArray, size_t index)
 void sfVertexArray_clear(sfVertexArray* vertexArray)
 {
     assert(vertexArray);
-    vertexArray->This.clear();
+    vertexArray->clear();
 }
 
 
@@ -82,7 +82,7 @@ void sfVertexArray_clear(sfVertexArray* vertexArray)
 void sfVertexArray_resize(sfVertexArray* vertexArray, size_t vertexCount)
 {
     assert(vertexArray);
-    vertexArray->This.resize(vertexCount);
+    vertexArray->resize(vertexCount);
 }
 
 
@@ -91,7 +91,7 @@ void sfVertexArray_append(sfVertexArray* vertexArray, sfVertex vertex)
 {
     // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
     assert(vertexArray);
-    vertexArray->This.append(reinterpret_cast<sf::Vertex&>(vertex));
+    vertexArray->append(reinterpret_cast<sf::Vertex&>(vertex));
 }
 
 
@@ -99,7 +99,7 @@ void sfVertexArray_append(sfVertexArray* vertexArray, sfVertex vertex)
 void sfVertexArray_setPrimitiveType(sfVertexArray* vertexArray, sfPrimitiveType type)
 {
     assert(vertexArray);
-    vertexArray->This.setPrimitiveType(static_cast<sf::PrimitiveType>(type));
+    vertexArray->setPrimitiveType(static_cast<sf::PrimitiveType>(type));
 }
 
 
@@ -107,7 +107,7 @@ void sfVertexArray_setPrimitiveType(sfVertexArray* vertexArray, sfPrimitiveType 
 sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
 {
     assert(vertexArray);
-    return static_cast<sfPrimitiveType>(vertexArray->This.getPrimitiveType());
+    return static_cast<sfPrimitiveType>(vertexArray->getPrimitiveType());
 }
 
 
@@ -115,5 +115,5 @@ sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
 sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray)
 {
     assert(vertexArray);
-    return convertRect(vertexArray->This.getBounds());
+    return convertRect(vertexArray->getBounds());
 }

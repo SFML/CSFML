@@ -37,22 +37,22 @@ sfSoundBuffer* sfSoundBuffer_createFromFile(const char* filename)
 {
     assert(filename);
 
-    sf::SoundBuffer soundBuffer;
-    if (!soundBuffer.loadFromFile(filename))
+    auto soundBuffer = std::make_unique<sfSoundBuffer>();
+    if (!soundBuffer->loadFromFile(filename))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(soundBuffer), {}};
+    return soundBuffer.release();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sf::SoundBuffer soundBuffer;
-    if (!soundBuffer.loadFromMemory(data, sizeInBytes))
+    auto soundBuffer = std::make_unique<sfSoundBuffer>();
+    if (!soundBuffer->loadFromMemory(data, sizeInBytes))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(soundBuffer), {}};
+    return soundBuffer.release();
 }
 
 
@@ -61,12 +61,12 @@ sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
 {
     assert(stream);
 
-    CallbackStream  sfmlStream(stream);
-    sf::SoundBuffer soundBuffer;
-    if (!soundBuffer.loadFromStream(sfmlStream))
+    CallbackStream sfmlStream(stream);
+    auto           soundBuffer = std::make_unique<sfSoundBuffer>();
+    if (!soundBuffer->loadFromStream(sfmlStream))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(soundBuffer), {}};
+    return soundBuffer.release();
 }
 
 
@@ -83,11 +83,11 @@ sfSoundBuffer* sfSoundBuffer_createFromSamples(
     for (std::size_t i = 0; i < channelMap.size(); ++i)
         channelMap[i] = static_cast<sf::SoundChannel>(channelMapData[i]);
 
-    sf::SoundBuffer soundBuffer;
-    if (!soundBuffer.loadFromSamples(samples, sampleCount, channelCount, sampleRate, channelMap))
+    auto soundBuffer = std::make_unique<sfSoundBuffer>();
+    if (!soundBuffer->loadFromSamples(samples, sampleCount, channelCount, sampleRate, channelMap))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(soundBuffer), {}};
+    return soundBuffer.release();
 }
 
 
@@ -111,7 +111,7 @@ bool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* file
 {
     assert(soundBuffer);
     assert(filename);
-    return soundBuffer->This.saveToFile(filename);
+    return soundBuffer->saveToFile(filename);
 }
 
 
@@ -119,7 +119,7 @@ bool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* file
 const int16_t* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer)
 {
     assert(soundBuffer);
-    return soundBuffer->This.getSamples();
+    return soundBuffer->getSamples();
 }
 
 
@@ -127,7 +127,7 @@ const int16_t* sfSoundBuffer_getSamples(const sfSoundBuffer* soundBuffer)
 uint64_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
 {
     assert(soundBuffer);
-    return soundBuffer->This.getSampleCount();
+    return soundBuffer->getSampleCount();
 }
 
 
@@ -135,7 +135,7 @@ uint64_t sfSoundBuffer_getSampleCount(const sfSoundBuffer* soundBuffer)
 unsigned int sfSoundBuffer_getSampleRate(const sfSoundBuffer* soundBuffer)
 {
     assert(soundBuffer);
-    return soundBuffer->This.getSampleRate();
+    return soundBuffer->getSampleRate();
 }
 
 
@@ -143,7 +143,7 @@ unsigned int sfSoundBuffer_getSampleRate(const sfSoundBuffer* soundBuffer)
 unsigned int sfSoundBuffer_getChannelCount(const sfSoundBuffer* soundBuffer)
 {
     assert(soundBuffer);
-    return soundBuffer->This.getChannelCount();
+    return soundBuffer->getChannelCount();
 }
 
 
@@ -153,7 +153,7 @@ sfSoundChannel* sfSoundBuffer_getChannelMap(const sfSoundBuffer* soundBuffer, si
     assert(soundBuffer);
     assert(count);
 
-    const auto channels = soundBuffer->This.getChannelMap();
+    const auto channels = soundBuffer->getChannelMap();
 
     soundBuffer->Channels.resize(channels.size());
     std::memcpy(soundBuffer->Channels.data(), channels.data(), sizeof(sfSoundChannel) * channels.size());
@@ -167,5 +167,5 @@ sfSoundChannel* sfSoundBuffer_getChannelMap(const sfSoundBuffer* soundBuffer, si
 sfTime sfSoundBuffer_getDuration(const sfSoundBuffer* soundBuffer)
 {
     assert(soundBuffer);
-    return {soundBuffer->This.getDuration().asMicroseconds()};
+    return {soundBuffer->getDuration().asMicroseconds()};
 }

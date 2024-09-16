@@ -39,11 +39,11 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfText
 ////////////////////////////////////////////////////////////
-struct sfText
+struct sfText : sf::Text
 {
-    sf::Text            This;
-    const sfFont*       Font;
+    using sf::Text::Text;
+    const sfFont*       Font{};
     mutable std::string String;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
+    mutable sfTransform Transform{};
+    mutable sfTransform InverseTransform{};
 };

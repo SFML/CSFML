@@ -36,9 +36,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfRectangleShape
 ////////////////////////////////////////////////////////////
-struct sfRectangleShape
+struct sfRectangleShape : sf::RectangleShape
 {
-    sf::RectangleShape  This;
     const sfTexture*    Texture{};
     mutable sfTransform Transform{};
     mutable sfTransform InverseTransform{};

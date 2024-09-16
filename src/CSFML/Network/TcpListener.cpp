@@ -50,7 +50,7 @@ void sfTcpListener_destroy(const sfTcpListener* listener)
 void sfTcpListener_setBlocking(sfTcpListener* listener, bool blocking)
 {
     assert(listener);
-    listener->This.setBlocking(blocking);
+    listener->setBlocking(blocking);
 }
 
 
@@ -58,7 +58,7 @@ void sfTcpListener_setBlocking(sfTcpListener* listener, bool blocking)
 bool sfTcpListener_isBlocking(const sfTcpListener* listener)
 {
     assert(listener);
-    return listener->This.isBlocking();
+    return listener->isBlocking();
 }
 
 
@@ -66,7 +66,7 @@ bool sfTcpListener_isBlocking(const sfTcpListener* listener)
 unsigned short sfTcpListener_getLocalPort(const sfTcpListener* listener)
 {
     assert(listener);
-    return listener->This.getLocalPort();
+    return listener->getLocalPort();
 }
 
 
@@ -82,7 +82,7 @@ sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port
         return sfSocketError;
     }
 
-    return static_cast<sfSocketStatus>(listener->This.listen(port, *sfmlAddress));
+    return static_cast<sfSocketStatus>(listener->listen(port, *sfmlAddress));
 }
 
 
@@ -93,7 +93,7 @@ sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** conne
     assert(connected);
 
     auto socket = std::make_unique<sfTcpSocket>();
-    auto status = static_cast<sfSocketStatus>(listener->This.accept(socket->This));
+    auto status = static_cast<sfSocketStatus>(listener->accept(*socket));
 
     if (status != sfSocketDone)
         *connected = nullptr;

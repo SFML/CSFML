@@ -59,19 +59,19 @@ void sfSocketSelector_addTcpListener(sfSocketSelector* selector, sfTcpListener* 
 {
     assert(selector);
     assert(socket);
-    selector->This.add(socket->This);
+    selector->add(*socket);
 }
 void sfSocketSelector_addTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket)
 {
     assert(selector);
     assert(socket);
-    selector->This.add(socket->This);
+    selector->add(*socket);
 }
 void sfSocketSelector_addUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket)
 {
     assert(selector);
     assert(socket);
-    selector->This.add(socket->This);
+    selector->add(*socket);
 }
 
 
@@ -80,19 +80,19 @@ void sfSocketSelector_removeTcpListener(sfSocketSelector* selector, sfTcpListene
 {
     assert(selector);
     assert(socket);
-    selector->This.remove(socket->This);
+    selector->remove(*socket);
 }
 void sfSocketSelector_removeTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket)
 {
     assert(selector);
     assert(socket);
-    selector->This.remove(socket->This);
+    selector->remove(*socket);
 }
 void sfSocketSelector_removeUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket)
 {
     assert(selector);
     assert(socket);
-    selector->This.remove(socket->This);
+    selector->remove(*socket);
 }
 
 
@@ -100,7 +100,7 @@ void sfSocketSelector_removeUdpSocket(sfSocketSelector* selector, sfUdpSocket* s
 void sfSocketSelector_clear(sfSocketSelector* selector)
 {
     assert(selector);
-    selector->This.clear();
+    selector->clear();
 }
 
 
@@ -108,7 +108,7 @@ void sfSocketSelector_clear(sfSocketSelector* selector)
 bool sfSocketSelector_wait(sfSocketSelector* selector, sfTime timeout)
 {
     assert(selector);
-    return selector->This.wait(sf::microseconds(timeout.microseconds));
+    return selector->wait(sf::microseconds(timeout.microseconds));
 }
 
 
@@ -117,17 +117,17 @@ bool sfSocketSelector_isTcpListenerReady(const sfSocketSelector* selector, sfTcp
 {
     assert(selector);
     assert(socket);
-    return selector->This.isReady(socket->This);
+    return selector->isReady(*socket);
 }
 bool sfSocketSelector_isTcpSocketReady(const sfSocketSelector* selector, sfTcpSocket* socket)
 {
     assert(selector);
     assert(socket);
-    return selector->This.isReady(socket->This);
+    return selector->isReady(*socket);
 }
 bool sfSocketSelector_isUdpSocketReady(const sfSocketSelector* selector, sfUdpSocket* socket)
 {
     assert(selector);
     assert(socket);
-    return selector->This.isReady(socket->This);
+    return selector->isReady(*socket);
 }

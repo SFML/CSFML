@@ -64,9 +64,8 @@ sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 {
     assert(filename);
 
-    const auto rect    = area ? convertRect(*area) : sf::IntRect();
-    auto       texture = std::make_unique<sfTexture>();
-    if (!texture->This->loadFromFile(filename, false, rect))
+    auto texture = std::make_unique<sfTexture>();
+    if (!texture->This->loadFromFile(filename, false, area ? convertRect(*area) : sf::IntRect()))
         return nullptr;
 
     return texture.release();
@@ -77,9 +76,8 @@ sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* a
 {
     assert(filename);
 
-    const auto rect    = area ? convertRect(*area) : sf::IntRect();
-    auto       texture = std::make_unique<sfTexture>();
-    if (!texture->This->loadFromFile(filename, true, rect))
+    auto texture = std::make_unique<sfTexture>();
+    if (!texture->This->loadFromFile(filename, true, area ? convertRect(*area) : sf::IntRect()))
         return nullptr;
 
     return texture.release();
@@ -88,9 +86,8 @@ sfTexture* sfTexture_createSrgbFromFile(const char* filename, const sfIntRect* a
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
 {
-    const auto rect    = area ? convertRect(*area) : sf::IntRect();
-    auto       texture = std::make_unique<sfTexture>();
-    if (!texture->This->loadFromMemory(data, sizeInBytes, false, rect))
+    auto texture = std::make_unique<sfTexture>();
+    if (!texture->This->loadFromMemory(data, sizeInBytes, false, area ? convertRect(*area) : sf::IntRect()))
         return nullptr;
 
     return texture.release();
@@ -99,9 +96,8 @@ sfTexture* sfTexture_createFromMemory(const void* data, size_t sizeInBytes, cons
 ////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createSrgbFromMemory(const void* data, size_t sizeInBytes, const sfIntRect* area)
 {
-    const auto rect    = area ? convertRect(*area) : sf::IntRect();
-    auto       texture = std::make_unique<sfTexture>();
-    if (!texture->This->loadFromMemory(data, sizeInBytes, true, rect))
+    auto texture = std::make_unique<sfTexture>();
+    if (!texture->This->loadFromMemory(data, sizeInBytes, true, area ? convertRect(*area) : sf::IntRect()))
         return nullptr;
 
     return texture.release();
@@ -113,10 +109,9 @@ sfTexture* sfTexture_createFromStream(sfInputStream* stream, const sfIntRect* ar
 {
     assert(stream);
 
-    const auto     rect = area ? convertRect(*area) : sf::IntRect();
     CallbackStream sfmlStream(stream);
     auto           texture = std::make_unique<sfTexture>();
-    if (!texture->This->loadFromStream(sfmlStream, false, rect))
+    if (!texture->This->loadFromStream(sfmlStream, false, area ? convertRect(*area) : sf::IntRect()))
         return nullptr;
 
     return texture.release();
@@ -127,10 +122,9 @@ sfTexture* sfTexture_createSrgbFromStream(sfInputStream* stream, const sfIntRect
 {
     assert(stream);
 
-    const auto     rect = area ? convertRect(*area) : sf::IntRect();
     CallbackStream sfmlStream(stream);
     auto           texture = std::make_unique<sfTexture>();
-    if (!texture->This->loadFromStream(sfmlStream, true, rect))
+    if (!texture->This->loadFromStream(sfmlStream, true, area ? convertRect(*area) : sf::IntRect()))
         return nullptr;
 
     return texture.release();
@@ -142,9 +136,8 @@ sfTexture* sfTexture_createFromImage(const sfImage* image, const sfIntRect* area
 {
     assert(image);
 
-    const auto rect    = area ? convertRect(*area) : sf::IntRect();
-    auto       texture = std::make_unique<sfTexture>();
-    if (!texture->This->loadFromImage(image->This, false, rect))
+    auto texture = std::make_unique<sfTexture>();
+    if (!texture->This->loadFromImage(*image, false, area ? convertRect(*area) : sf::IntRect()))
         return nullptr;
 
     return texture.release();
@@ -155,9 +148,8 @@ sfTexture* sfTexture_createSrgbFromImage(const sfImage* image, const sfIntRect* 
 {
     assert(image);
 
-    const auto rect    = area ? convertRect(*area) : sf::IntRect();
-    auto       texture = std::make_unique<sfTexture>();
-    if (!texture->This->loadFromImage(image->This, true, rect))
+    auto texture = std::make_unique<sfTexture>();
+    if (!texture->This->loadFromImage(*image, true, area ? convertRect(*area) : sf::IntRect()))
         return nullptr;
 
     return texture.release();
@@ -218,7 +210,7 @@ void sfTexture_updateFromImage(sfTexture* texture, const sfImage* image, sfVecto
 {
     assert(texture);
     assert(image);
-    texture->This->update(image->This, convertVector2(offset));
+    texture->This->update(*image, convertVector2(offset));
 }
 
 
@@ -227,7 +219,7 @@ void sfTexture_updateFromWindow(sfTexture* texture, const sfWindow* window, sfVe
 {
     assert(texture);
     assert(window);
-    texture->This->update(window->This, convertVector2(offset));
+    texture->This->update(*window, convertVector2(offset));
 }
 
 
@@ -236,7 +228,7 @@ void sfTexture_updateFromRenderWindow(sfTexture* texture, const sfRenderWindow* 
 {
     assert(texture);
     assert(renderWindow);
-    texture->This->update(renderWindow->This, convertVector2(offset));
+    texture->This->update(*renderWindow, convertVector2(offset));
 }
 
 

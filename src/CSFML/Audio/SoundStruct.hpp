@@ -35,8 +35,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfSound
 ////////////////////////////////////////////////////////////
-struct sfSound
+struct sfSound : sf::Sound
 {
-    sf::Sound            This;
-    const sfSoundBuffer* Buffer;
+    using sf::Sound::Sound;
+    const sfSoundBuffer* Buffer{};
 };

@@ -35,9 +35,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfTransformable
 ////////////////////////////////////////////////////////////
-struct sfTransformable
+struct sfTransformable : sf::Transformable
 {
-    sf::Transformable   This;
     mutable sfTransform Transform{};
     mutable sfTransform InverseTransform{};
 };

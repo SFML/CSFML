@@ -43,7 +43,7 @@ bool sfTouch_isDown(unsigned int finger)
 sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo)
 {
     if (relativeTo)
-        return convertVector2(sf::Touch::getPosition(finger, relativeTo->This));
+        return convertVector2(sf::Touch::getPosition(finger, *relativeTo));
 
     return convertVector2(sf::Touch::getPosition(finger));
 }
@@ -52,7 +52,7 @@ sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo)
 sfVector2i sfTouch_getPositionWindowBase(unsigned int finger, const sfWindowBase* relativeTo)
 {
     if (relativeTo)
-        return convertVector2(sf::Touch::getPosition(finger, relativeTo->This));
+        return convertVector2(sf::Touch::getPosition(finger, *relativeTo));
 
     return convertVector2(sf::Touch::getPosition(finger));
 }

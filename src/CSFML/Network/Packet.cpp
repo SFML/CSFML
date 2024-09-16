@@ -57,7 +57,7 @@ void sfPacket_destroy(const sfPacket* packet)
 void sfPacket_append(sfPacket* packet, const void* data, size_t sizeInBytes)
 {
     assert(packet);
-    packet->This.append(data, sizeInBytes);
+    packet->append(data, sizeInBytes);
 }
 
 
@@ -65,7 +65,7 @@ void sfPacket_append(sfPacket* packet, const void* data, size_t sizeInBytes)
 size_t sfPacket_getReadPosition(const sfPacket* packet)
 {
     assert(packet);
-    return packet->This.getReadPosition();
+    return packet->getReadPosition();
 }
 
 
@@ -73,7 +73,7 @@ size_t sfPacket_getReadPosition(const sfPacket* packet)
 void sfPacket_clear(sfPacket* packet)
 {
     assert(packet);
-    packet->This.clear();
+    packet->clear();
 }
 
 
@@ -81,7 +81,7 @@ void sfPacket_clear(sfPacket* packet)
 const void* sfPacket_getData(const sfPacket* packet)
 {
     assert(packet);
-    return packet->This.getData();
+    return packet->getData();
 }
 
 
@@ -89,7 +89,7 @@ const void* sfPacket_getData(const sfPacket* packet)
 size_t sfPacket_getDataSize(const sfPacket* packet)
 {
     assert(packet);
-    return packet->This.getDataSize();
+    return packet->getDataSize();
 }
 
 
@@ -97,7 +97,7 @@ size_t sfPacket_getDataSize(const sfPacket* packet)
 bool sfPacket_endOfPacket(const sfPacket* packet)
 {
     assert(packet);
-    return packet->This.endOfPacket();
+    return packet->endOfPacket();
 }
 
 
@@ -105,7 +105,7 @@ bool sfPacket_endOfPacket(const sfPacket* packet)
 bool sfPacket_canRead(const sfPacket* packet)
 {
     assert(packet);
-    return static_cast<bool>(packet->This);
+    return static_cast<bool>(*packet);
 }
 
 
@@ -118,69 +118,69 @@ int8_t sfPacket_readInt8(sfPacket* packet)
 {
     assert(packet);
     int8_t value = 0;
-    packet->This >> value;
+    *packet >> value;
     return value;
 }
 uint8_t sfPacket_readUint8(sfPacket* packet)
 {
     assert(packet);
     uint8_t value = 0;
-    packet->This >> value;
+    *packet >> value;
     return value;
 }
 int16_t sfPacket_readInt16(sfPacket* packet)
 {
     assert(packet);
     int16_t value = 0;
-    packet->This >> value;
+    *packet >> value;
     return value;
 }
 uint16_t sfPacket_readUint16(sfPacket* packet)
 {
     assert(packet);
     uint16_t value = 0;
-    packet->This >> value;
+    *packet >> value;
     return value;
 }
 int32_t sfPacket_readInt32(sfPacket* packet)
 {
     assert(packet);
     int32_t value = 0;
-    packet->This >> value;
+    *packet >> value;
     return value;
 }
 uint32_t sfPacket_readUint32(sfPacket* packet)
 {
     assert(packet);
     uint32_t value = 0;
-    packet->This >> value;
+    *packet >> value;
     return value;
 }
 float sfPacket_readFloat(sfPacket* packet)
 {
     assert(packet);
     float value = 0;
-    packet->This >> value;
+    *packet >> value;
     return value;
 }
 double sfPacket_readDouble(sfPacket* packet)
 {
     assert(packet);
     double value = 0;
-    packet->This >> value;
+    *packet >> value;
     return value;
 }
 void sfPacket_readString(sfPacket* packet, char* string)
 {
     assert(packet);
     if (string)
-        packet->This >> string;
+        *packet >> string;
 }
 void sfPacket_readWideString(sfPacket* packet, wchar_t* string)
 {
     assert(packet);
     if (string)
-        packet->This >> string;
+        *packet >> string;
 }
 
 
@@ -192,52 +192,52 @@ void sfPacket_writeBool(sfPacket* packet, bool value)
 void sfPacket_writeInt8(sfPacket* packet, int8_t value)
 {
     assert(packet);
-    packet->This << value;
+    *packet << value;
 }
 void sfPacket_writeUint8(sfPacket* packet, uint8_t value)
 {
     assert(packet);
-    packet->This << value;
+    *packet << value;
 }
 void sfPacket_writeInt16(sfPacket* packet, int16_t value)
 {
     assert(packet);
-    packet->This << value;
+    *packet << value;
 }
 void sfPacket_writeUint16(sfPacket* packet, uint16_t value)
 {
     assert(packet);
-    packet->This << value;
+    *packet << value;
 }
 void sfPacket_writeInt32(sfPacket* packet, int32_t value)
 {
     assert(packet);
-    packet->This << value;
+    *packet << value;
 }
 void sfPacket_writeUint32(sfPacket* packet, uint32_t value)
 {
     assert(packet);
-    packet->This << value;
+    *packet << value;
 }
 void sfPacket_writeFloat(sfPacket* packet, float value)
 {
     assert(packet);
-    packet->This << value;
+    *packet << value;
 }
 void sfPacket_writeDouble(sfPacket* packet, double value)
 {
     assert(packet);
-    packet->This << value;
+    *packet << value;
 }
 void sfPacket_writeString(sfPacket* packet, const char* string)
 {
     assert(packet);
     if (string)
-        packet->This << string;
+        *packet << string;
 }
 void sfPacket_writeWideString(sfPacket* packet, const wchar_t* string)
 {
     assert(packet);
     if (string)
-        packet->This << string;
+        *packet << string;
 }

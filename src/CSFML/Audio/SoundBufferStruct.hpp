@@ -35,8 +35,7 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfSoundBuffer
 ////////////////////////////////////////////////////////////
-struct sfSoundBuffer
+struct sfSoundBuffer : sf::SoundBuffer
 {
-    sf::SoundBuffer                     This;
     mutable std::vector<sfSoundChannel> Channels;
 };

@@ -64,7 +64,7 @@ void sfView_destroy(const sfView* view)
 void sfView_setCenter(sfView* view, sfVector2f center)
 {
     assert(view);
-    view->This.setCenter(convertVector2(center));
+    view->setCenter(convertVector2(center));
 }
 
 
@@ -72,7 +72,7 @@ void sfView_setCenter(sfView* view, sfVector2f center)
 void sfView_setSize(sfView* view, sfVector2f size)
 {
     assert(view);
-    view->This.setSize(convertVector2(size));
+    view->setSize(convertVector2(size));
 }
 
 
@@ -80,7 +80,7 @@ void sfView_setSize(sfView* view, sfVector2f size)
 void sfView_setRotation(sfView* view, float angle)
 {
     assert(view);
-    view->This.setRotation(sf::degrees(angle));
+    view->setRotation(sf::degrees(angle));
 }
 
 
@@ -88,7 +88,7 @@ void sfView_setRotation(sfView* view, float angle)
 void sfView_setViewport(sfView* view, sfFloatRect viewport)
 {
     assert(view);
-    view->This.setViewport(convertRect(viewport));
+    view->setViewport(convertRect(viewport));
 }
 
 
@@ -96,7 +96,7 @@ void sfView_setViewport(sfView* view, sfFloatRect viewport)
 void sfView_setScissor(sfView* view, sfFloatRect scissor)
 {
     assert(view);
-    view->This.setScissor(convertRect(scissor));
+    view->setScissor(convertRect(scissor));
 }
 
 
@@ -104,7 +104,7 @@ void sfView_setScissor(sfView* view, sfFloatRect scissor)
 sfVector2f sfView_getCenter(const sfView* view)
 {
     assert(view);
-    return convertVector2(view->This.getCenter());
+    return convertVector2(view->getCenter());
 }
 
 
@@ -112,7 +112,7 @@ sfVector2f sfView_getCenter(const sfView* view)
 sfVector2f sfView_getSize(const sfView* view)
 {
     assert(view);
-    return convertVector2(view->This.getSize());
+    return convertVector2(view->getSize());
 }
 
 
@@ -120,7 +120,7 @@ sfVector2f sfView_getSize(const sfView* view)
 float sfView_getRotation(const sfView* view)
 {
     assert(view);
-    return view->This.getRotation().asDegrees();
+    return view->getRotation().asDegrees();
 }
 
 
@@ -128,7 +128,7 @@ float sfView_getRotation(const sfView* view)
 sfFloatRect sfView_getViewport(const sfView* view)
 {
     assert(view);
-    return convertRect(view->This.getViewport());
+    return convertRect(view->getViewport());
 }
 
 
@@ -136,7 +136,7 @@ sfFloatRect sfView_getViewport(const sfView* view)
 sfFloatRect sfView_getScissor(const sfView* view)
 {
     assert(view);
-    return convertRect(view->This.getScissor());
+    return convertRect(view->getScissor());
 }
 
 
@@ -144,7 +144,7 @@ sfFloatRect sfView_getScissor(const sfView* view)
 void sfView_move(sfView* view, sfVector2f offset)
 {
     assert(view);
-    view->This.move(convertVector2(offset));
+    view->move(convertVector2(offset));
 }
 
 
@@ -152,7 +152,7 @@ void sfView_move(sfView* view, sfVector2f offset)
 void sfView_rotate(sfView* view, float angle)
 {
     assert(view);
-    view->This.rotate(sf::degrees(angle));
+    view->rotate(sf::degrees(angle));
 }
 
 
@@ -160,5 +160,5 @@ void sfView_rotate(sfView* view, float angle)
 void sfView_zoom(sfView* view, float factor)
 {
     assert(view);
-    view->This.zoom(factor);
+    view->zoom(factor);
 }

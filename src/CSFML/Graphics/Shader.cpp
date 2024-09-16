@@ -37,8 +37,8 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename,
                                   const char* geometryShaderFilename,
                                   const char* fragmentShaderFilename)
 {
-    bool       success = false;
-    sf::Shader shader;
+    bool success = false;
+    auto shader  = std::make_unique<sfShader>();
     if (vertexShaderFilename || geometryShaderFilename || fragmentShaderFilename)
     {
         if (!geometryShaderFilename)
@@ -46,17 +46,17 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename,
             if (!vertexShaderFilename)
             {
                 // fragment shader only
-                success = shader.loadFromFile(fragmentShaderFilename, sf::Shader::Type::Fragment);
+                success = shader->loadFromFile(fragmentShaderFilename, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShaderFilename)
             {
                 // vertex shader only
-                success = shader.loadFromFile(vertexShaderFilename, sf::Shader::Type::Vertex);
+                success = shader->loadFromFile(vertexShaderFilename, sf::Shader::Type::Vertex);
             }
             else
             {
                 // vertex + fragment shaders
-                success = shader.loadFromFile(vertexShaderFilename, fragmentShaderFilename);
+                success = shader->loadFromFile(vertexShaderFilename, fragmentShaderFilename);
             }
         }
         else
@@ -64,12 +64,12 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename,
             if (!vertexShaderFilename && !fragmentShaderFilename)
             {
                 // geometry shader only
-                success = shader.loadFromFile(geometryShaderFilename, sf::Shader::Type::Geometry);
+                success = shader->loadFromFile(geometryShaderFilename, sf::Shader::Type::Geometry);
             }
             else
             {
                 // vertex + geometry + fragment shaders
-                success = shader.loadFromFile(vertexShaderFilename, geometryShaderFilename, fragmentShaderFilename);
+                success = shader->loadFromFile(vertexShaderFilename, geometryShaderFilename, fragmentShaderFilename);
             }
         }
     }
@@ -77,15 +77,15 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename,
     if (!success)
         return nullptr;
 
-    return new sfShader{std::move(shader)};
+    return shader.release();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geometryShader, const char* fragmentShader)
 {
-    bool       success = false;
-    sf::Shader shader;
+    bool success = false;
+    auto shader  = std::make_unique<sfShader>();
     if (vertexShader || geometryShader || fragmentShader)
     {
         if (!geometryShader)
@@ -93,17 +93,17 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
             if (!vertexShader)
             {
                 // fragment shader only
-                success = shader.loadFromMemory(fragmentShader, sf::Shader::Type::Fragment);
+                success = shader->loadFromMemory(fragmentShader, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShader)
             {
                 // vertex shader only
-                success = shader.loadFromMemory(vertexShader, sf::Shader::Type::Vertex);
+                success = shader->loadFromMemory(vertexShader, sf::Shader::Type::Vertex);
             }
             else
             {
                 // vertex + fragment shaders
-                success = shader.loadFromMemory(vertexShader, fragmentShader);
+                success = shader->loadFromMemory(vertexShader, fragmentShader);
             }
         }
         else
@@ -111,12 +111,12 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
             if (!vertexShader && !fragmentShader)
             {
                 // geometry shader only
-                success = shader.loadFromMemory(geometryShader, sf::Shader::Type::Geometry);
+                success = shader->loadFromMemory(geometryShader, sf::Shader::Type::Geometry);
             }
             else
             {
                 // vertex + geometry + fragment shaders
-                success = shader.loadFromMemory(vertexShader, geometryShader, fragmentShader);
+                success = shader->loadFromMemory(vertexShader, geometryShader, fragmentShader);
             }
         }
     }
@@ -124,7 +124,7 @@ sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geomet
     if (!success)
         return nullptr;
 
-    return new sfShader{std::move(shader)};
+    return shader.release();
 }
 
 
@@ -133,8 +133,8 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream,
                                     sfInputStream* geometryShaderStream,
                                     sfInputStream* fragmentShaderStream)
 {
-    bool       success = false;
-    sf::Shader shader;
+    bool success = false;
+    auto shader  = std::make_unique<sfShader>();
     if (vertexShaderStream || geometryShaderStream || fragmentShaderStream)
     {
         if (!geometryShaderStream)
@@ -143,20 +143,20 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream,
             {
                 // fragment shader only
                 CallbackStream stream(fragmentShaderStream);
-                success = shader.loadFromStream(stream, sf::Shader::Type::Fragment);
+                success = shader->loadFromStream(stream, sf::Shader::Type::Fragment);
             }
             else if (!fragmentShaderStream)
             {
                 // vertex shader only
                 CallbackStream stream(vertexShaderStream);
-                success = shader.loadFromStream(stream, sf::Shader::Type::Vertex);
+                success = shader->loadFromStream(stream, sf::Shader::Type::Vertex);
             }
             else
             {
                 // vertex + fragment shaders
                 CallbackStream vertexStream(vertexShaderStream);
                 CallbackStream fragmentStream(fragmentShaderStream);
-                success = shader.loadFromStream(vertexStream, fragmentStream);
+                success = shader->loadFromStream(vertexStream, fragmentStream);
             }
         }
         else
@@ -165,14 +165,14 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream,
             if (!vertexShaderStream && !fragmentShaderStream)
             {
                 // geometry shader only
-                success = shader.loadFromStream(geometryStream, sf::Shader::Type::Geometry);
+                success = shader->loadFromStream(geometryStream, sf::Shader::Type::Geometry);
             }
             else
             {
                 // vertex + geometry + fragment shaders
                 CallbackStream vertexStream(vertexShaderStream);
                 CallbackStream fragmentStream(fragmentShaderStream);
-                success = shader.loadFromStream(vertexStream, geometryStream, fragmentStream);
+                success = shader->loadFromStream(vertexStream, geometryStream, fragmentStream);
             }
         }
     }
@@ -180,7 +180,7 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream,
     if (!success)
         return nullptr;
 
-    return new sfShader{std::move(shader)};
+    return shader.release();
 }
 
 
@@ -196,7 +196,7 @@ void sfShader_setFloatUniform(sfShader* shader, const char* name, float x)
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, x);
+    shader->setUniform(name, x);
 }
 
 
@@ -205,7 +205,7 @@ void sfShader_setVec2Uniform(sfShader* shader, const char* name, sfGlslVec2 vect
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Vec2(vector.x, vector.y));
+    shader->setUniform(name, sf::Glsl::Vec2(vector.x, vector.y));
 }
 
 
@@ -214,7 +214,7 @@ void sfShader_setVec3Uniform(sfShader* shader, const char* name, sfGlslVec3 vect
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Vec3(vector.x, vector.y, vector.z));
+    shader->setUniform(name, sf::Glsl::Vec3(vector.x, vector.y, vector.z));
 }
 
 
@@ -223,7 +223,7 @@ void sfShader_setVec4Uniform(sfShader* shader, const char* name, sfGlslVec4 vect
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Vec4(vector.x, vector.y, vector.z, vector.w));
+    shader->setUniform(name, sf::Glsl::Vec4(vector.x, vector.y, vector.z, vector.w));
 }
 
 
@@ -244,7 +244,7 @@ void sfShader_setIntUniform(sfShader* shader, const char* name, int x)
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, x);
+    shader->setUniform(name, x);
 }
 
 
@@ -253,7 +253,7 @@ void sfShader_setIvec2Uniform(sfShader* shader, const char* name, sfGlslIvec2 ve
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Ivec2(vector.x, vector.y));
+    shader->setUniform(name, sf::Glsl::Ivec2(vector.x, vector.y));
 }
 
 
@@ -262,7 +262,7 @@ void sfShader_setIvec3Uniform(sfShader* shader, const char* name, sfGlslIvec3 ve
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Ivec3(vector.x, vector.y, vector.z));
+    shader->setUniform(name, sf::Glsl::Ivec3(vector.x, vector.y, vector.z));
 }
 
 
@@ -271,7 +271,7 @@ void sfShader_setIvec4Uniform(sfShader* shader, const char* name, sfGlslIvec4 ve
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Ivec4(vector.x, vector.y, vector.z, vector.w));
+    shader->setUniform(name, sf::Glsl::Ivec4(vector.x, vector.y, vector.z, vector.w));
 }
 
 
@@ -292,7 +292,7 @@ void sfShader_setBoolUniform(sfShader* shader, const char* name, bool x)
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, x);
+    shader->setUniform(name, x);
 }
 
 
@@ -301,7 +301,7 @@ void sfShader_setBvec2Uniform(sfShader* shader, const char* name, sfGlslBvec2 ve
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Bvec2(vector.x, vector.y));
+    shader->setUniform(name, sf::Glsl::Bvec2(vector.x, vector.y));
 }
 
 
@@ -310,7 +310,7 @@ void sfShader_setBvec3Uniform(sfShader* shader, const char* name, sfGlslBvec3 ve
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Bvec3(vector.x, vector.y, vector.z));
+    shader->setUniform(name, sf::Glsl::Bvec3(vector.x, vector.y, vector.z));
 }
 
 
@@ -319,7 +319,7 @@ void sfShader_setBvec4Uniform(sfShader* shader, const char* name, sfGlslBvec4 ve
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Bvec4(vector.x, vector.y, vector.z, vector.w));
+    shader->setUniform(name, sf::Glsl::Bvec4(vector.x, vector.y, vector.z, vector.w));
 }
 
 
@@ -328,7 +328,7 @@ void sfShader_setMat3Uniform(sfShader* shader, const char* name, const sfGlslMat
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Mat3(matrix->array));
+    shader->setUniform(name, sf::Glsl::Mat3(matrix->array));
 }
 
 
@@ -337,7 +337,7 @@ void sfShader_setMat4Uniform(sfShader* shader, const char* name, const sfGlslMat
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Glsl::Mat4(matrix->array));
+    shader->setUniform(name, sf::Glsl::Mat4(matrix->array));
 }
 
 
@@ -346,7 +346,7 @@ void sfShader_setTextureUniform(sfShader* shader, const char* name, const sfText
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, *texture->This);
+    shader->setUniform(name, *texture->This);
 }
 
 
@@ -355,7 +355,7 @@ void sfShader_setCurrentTextureUniform(sfShader* shader, const char* name)
 {
     assert(shader);
     assert(name);
-    shader->This.setUniform(name, sf::Shader::CurrentTexture);
+    shader->setUniform(name, sf::Shader::CurrentTexture);
 }
 
 
@@ -364,7 +364,7 @@ void sfShader_setFloatUniformArray(sfShader* shader, const char* name, const flo
 {
     assert(shader);
     assert(name);
-    shader->This.setUniformArray(name, scalarArray, length);
+    shader->setUniformArray(name, scalarArray, length);
 }
 
 
@@ -373,7 +373,7 @@ void sfShader_setVec2UniformArray(sfShader* shader, const char* name, const sfGl
 {
     assert(shader);
     assert(name);
-    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec2*>(vectorArray), length);
+    shader->setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec2*>(vectorArray), length);
 }
 
 
@@ -382,7 +382,7 @@ void sfShader_setVec3UniformArray(sfShader* shader, const char* name, const sfGl
 {
     assert(shader);
     assert(name);
-    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec3*>(vectorArray), length);
+    shader->setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec3*>(vectorArray), length);
 }
 
 
@@ -391,7 +391,7 @@ void sfShader_setVec4UniformArray(sfShader* shader, const char* name, const sfGl
 {
     assert(shader);
     assert(name);
-    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec4*>(vectorArray), length);
+    shader->setUniformArray(name, reinterpret_cast<const sf::Glsl::Vec4*>(vectorArray), length);
 }
 
 
@@ -400,7 +400,7 @@ void sfShader_setMat3UniformArray(sfShader* shader, const char* name, const sfGl
 {
     assert(shader);
     assert(name);
-    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat3*>(matrixArray), length);
+    shader->setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat3*>(matrixArray), length);
 }
 
 
@@ -409,7 +409,7 @@ void sfShader_setMat4UniformArray(sfShader* shader, const char* name, const sfGl
 {
     assert(shader);
     assert(name);
-    shader->This.setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat4*>(matrixArray), length);
+    shader->setUniformArray(name, reinterpret_cast<const sf::Glsl::Mat4*>(matrixArray), length);
 }
 
 
@@ -419,7 +419,7 @@ void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTe
     assert(shader);
     assert(name);
     assert(texture);
-    shader->This.setUniform(name, *texture->This);
+    shader->setUniform(name, *texture->This);
 }
 
 
@@ -427,14 +427,14 @@ void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTe
 unsigned int sfShader_getNativeHandle(const sfShader* shader)
 {
     assert(shader);
-    return shader->This.getNativeHandle();
+    return shader->getNativeHandle();
 }
 
 
 ////////////////////////////////////////////////////////////
 void sfShader_bind(const sfShader* shader)
 {
-    sf::Shader::bind(shader ? &shader->This : nullptr);
+    sf::Shader::bind(shader);
 }
 
 

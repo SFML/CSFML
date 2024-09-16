@@ -38,9 +38,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfMusic
 ////////////////////////////////////////////////////////////
-struct sfMusic
+struct sfMusic : sf::Music
 {
-    sf::Music                           This;
     mutable std::vector<sfSoundChannel> Channels;
     CallbackStream                      Stream;
 };

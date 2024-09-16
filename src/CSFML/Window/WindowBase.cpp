@@ -40,7 +40,7 @@ sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t 
 {
     // Create the window
     auto* windowBase = new sfWindowBase;
-    windowBase->This.create(convertVideoMode(mode), title, style, static_cast<sf::State>(state));
+    windowBase->create(convertVideoMode(mode), title, style, static_cast<sf::State>(state));
 
     return windowBase;
 }
@@ -51,8 +51,7 @@ sfWindowBase* sfWindowBase_createUnicode(sfVideoMode mode, const sfChar32* title
 {
     // Create the window
     auto* windowBase = new sfWindowBase;
-    windowBase->This
-        .create(convertVideoMode(mode), reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state));
+    windowBase->create(convertVideoMode(mode), reinterpret_cast<const char32_t*>(title), style, static_cast<sf::State>(state));
 
     return windowBase;
 }
@@ -63,7 +62,7 @@ sfWindowBase* sfWindowBase_createFromHandle(sfWindowHandle handle)
 {
     // Create the window
     auto* windowBase = new sfWindowBase;
-    windowBase->This.create(handle);
+    windowBase->create(handle);
 
     return windowBase;
 }
@@ -80,7 +79,7 @@ void sfWindowBase_destroy(const sfWindowBase* windowBase)
 void sfWindowBase_close(sfWindowBase* windowBase)
 {
     assert(windowBase);
-    windowBase->This.close();
+    windowBase->close();
 }
 
 
@@ -88,7 +87,7 @@ void sfWindowBase_close(sfWindowBase* windowBase)
 bool sfWindowBase_isOpen(const sfWindowBase* windowBase)
 {
     assert(windowBase);
-    return windowBase->This.isOpen();
+    return windowBase->isOpen();
 }
 
 
@@ -97,7 +96,7 @@ bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event)
 {
     assert(windowBase);
     assert(event);
-    return convertEvent(windowBase->This.pollEvent(), event);
+    return convertEvent(windowBase->pollEvent(), event);
 }
 
 
@@ -106,7 +105,7 @@ bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfTime timeout, sfEvent* e
 {
     assert(windowBase);
     assert(event);
-    return convertEvent(windowBase->This.waitEvent(sf::microseconds(timeout.microseconds)), event);
+    return convertEvent(windowBase->waitEvent(sf::microseconds(timeout.microseconds)), event);
 }
 
 
@@ -114,7 +113,7 @@ bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfTime timeout, sfEvent* e
 sfVector2i sfWindowBase_getPosition(const sfWindowBase* windowBase)
 {
     assert(windowBase);
-    return convertVector2(windowBase->This.getPosition());
+    return convertVector2(windowBase->getPosition());
 }
 
 
@@ -122,7 +121,7 @@ sfVector2i sfWindowBase_getPosition(const sfWindowBase* windowBase)
 void sfWindowBase_setPosition(sfWindowBase* windowBase, sfVector2i position)
 {
     assert(windowBase);
-    windowBase->This.setPosition(convertVector2(position));
+    windowBase->setPosition(convertVector2(position));
 }
 
 
@@ -130,7 +129,7 @@ void sfWindowBase_setPosition(sfWindowBase* windowBase, sfVector2i position)
 sfVector2u sfWindowBase_getSize(const sfWindowBase* windowBase)
 {
     assert(windowBase);
-    return convertVector2(windowBase->This.getSize());
+    return convertVector2(windowBase->getSize());
 }
 
 
@@ -138,7 +137,7 @@ sfVector2u sfWindowBase_getSize(const sfWindowBase* windowBase)
 void sfWindowBase_setSize(sfWindowBase* windowBase, sfVector2u size)
 {
     assert(windowBase);
-    windowBase->This.setSize(convertVector2(size));
+    windowBase->setSize(convertVector2(size));
 }
 
 
@@ -146,7 +145,7 @@ void sfWindowBase_setSize(sfWindowBase* windowBase, sfVector2u size)
 void sfWindowBase_setTitle(sfWindowBase* windowBase, const char* title)
 {
     assert(windowBase);
-    windowBase->This.setTitle(title);
+    windowBase->setTitle(title);
 }
 
 
@@ -154,7 +153,7 @@ void sfWindowBase_setTitle(sfWindowBase* windowBase, const char* title)
 void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfChar32* title)
 {
     assert(windowBase);
-    windowBase->This.setTitle(reinterpret_cast<const char32_t*>(title));
+    windowBase->setTitle(reinterpret_cast<const char32_t*>(title));
 }
 
 
@@ -162,7 +161,7 @@ void sfWindowBase_setUnicodeTitle(sfWindowBase* windowBase, const sfChar32* titl
 void sfWindowBase_setIcon(sfWindowBase* windowBase, sfVector2u size, const uint8_t* pixels)
 {
     assert(windowBase);
-    windowBase->This.setIcon(convertVector2(size), pixels);
+    windowBase->setIcon(convertVector2(size), pixels);
 }
 
 
@@ -170,7 +169,7 @@ void sfWindowBase_setIcon(sfWindowBase* windowBase, sfVector2u size, const uint8
 void sfWindowBase_setVisible(sfWindowBase* windowBase, bool visible)
 {
     assert(windowBase);
-    windowBase->This.setVisible(visible);
+    windowBase->setVisible(visible);
 }
 
 
@@ -178,7 +177,7 @@ void sfWindowBase_setVisible(sfWindowBase* windowBase, bool visible)
 void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBase, bool visible)
 {
     assert(windowBase);
-    windowBase->This.setMouseCursorVisible(visible);
+    windowBase->setMouseCursorVisible(visible);
 }
 
 
@@ -186,7 +185,7 @@ void sfWindowBase_setMouseCursorVisible(sfWindowBase* windowBase, bool visible)
 void sfWindowBase_setMouseCursorGrabbed(sfWindowBase* windowBase, bool grabbed)
 {
     assert(windowBase);
-    windowBase->This.setMouseCursorGrabbed(grabbed);
+    windowBase->setMouseCursorGrabbed(grabbed);
 }
 
 
@@ -195,7 +194,7 @@ void sfWindowBase_setMouseCursor(sfWindowBase* windowBase, const sfCursor* curso
 {
     assert(windowBase);
     assert(cursor);
-    windowBase->This.setMouseCursor(cursor->This);
+    windowBase->setMouseCursor(*cursor);
 }
 
 
@@ -203,7 +202,7 @@ void sfWindowBase_setMouseCursor(sfWindowBase* windowBase, const sfCursor* curso
 void sfWindowBase_setKeyRepeatEnabled(sfWindowBase* windowBase, bool enabled)
 {
     assert(windowBase);
-    windowBase->This.setKeyRepeatEnabled(enabled);
+    windowBase->setKeyRepeatEnabled(enabled);
 }
 
 
@@ -211,7 +210,7 @@ void sfWindowBase_setKeyRepeatEnabled(sfWindowBase* windowBase, bool enabled)
 void sfWindowBase_setJoystickThreshold(sfWindowBase* windowBase, float threshold)
 {
     assert(windowBase);
-    windowBase->This.setJoystickThreshold(threshold);
+    windowBase->setJoystickThreshold(threshold);
 }
 
 
@@ -219,7 +218,7 @@ void sfWindowBase_setJoystickThreshold(sfWindowBase* windowBase, float threshold
 void sfWindowBase_requestFocus(sfWindowBase* windowBase)
 {
     assert(windowBase);
-    windowBase->This.requestFocus();
+    windowBase->requestFocus();
 }
 
 
@@ -227,7 +226,7 @@ void sfWindowBase_requestFocus(sfWindowBase* windowBase)
 bool sfWindowBase_hasFocus(const sfWindowBase* windowBase)
 {
     assert(windowBase);
-    return windowBase->This.hasFocus();
+    return windowBase->hasFocus();
 }
 
 
@@ -235,7 +234,7 @@ bool sfWindowBase_hasFocus(const sfWindowBase* windowBase)
 sfWindowHandle sfWindowBase_getNativeHandle(const sfWindowBase* windowBase)
 {
     assert(windowBase);
-    return static_cast<sfWindowHandle>(windowBase->This.getNativeHandle());
+    return static_cast<sfWindowHandle>(windowBase->getNativeHandle());
 }
 
 ////////////////////////////////////////////////////////////
@@ -247,5 +246,5 @@ bool sfWindowBase_createVulkanSurface(sfWindowBase*                windowBase,
     assert(windowBase);
     assert(instance);
     assert(surface);
-    return windowBase->This.createVulkanSurface(*instance, *surface, allocator);
+    return windowBase->createVulkanSurface(*instance, *surface, allocator);
 }

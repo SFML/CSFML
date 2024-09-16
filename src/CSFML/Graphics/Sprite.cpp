@@ -41,7 +41,9 @@ sfSprite* sfSprite_create(const sfTexture* texture)
 {
     assert(texture);
     assert(texture->This);
-    return new sfSprite{sf::Sprite{*texture->This}, texture, {}, {}};
+    auto sprite     = new sfSprite(*texture->This);
+    sprite->Texture = texture;
+    return sprite;
 }
 
 
@@ -64,7 +66,7 @@ void sfSprite_destroy(const sfSprite* sprite)
 void sfSprite_setPosition(sfSprite* sprite, sfVector2f position)
 {
     assert(sprite);
-    sprite->This.setPosition(convertVector2(position));
+    sprite->setPosition(convertVector2(position));
 }
 
 
@@ -72,7 +74,7 @@ void sfSprite_setPosition(sfSprite* sprite, sfVector2f position)
 void sfSprite_setRotation(sfSprite* sprite, float angle)
 {
     assert(sprite);
-    sprite->This.setRotation(sf::degrees(angle));
+    sprite->setRotation(sf::degrees(angle));
 }
 
 
@@ -80,7 +82,7 @@ void sfSprite_setRotation(sfSprite* sprite, float angle)
 void sfSprite_setScale(sfSprite* sprite, sfVector2f scale)
 {
     assert(sprite);
-    sprite->This.setScale(convertVector2(scale));
+    sprite->setScale(convertVector2(scale));
 }
 
 
@@ -88,7 +90,7 @@ void sfSprite_setScale(sfSprite* sprite, sfVector2f scale)
 void sfSprite_setOrigin(sfSprite* sprite, sfVector2f origin)
 {
     assert(sprite);
-    sprite->This.setOrigin(convertVector2(origin));
+    sprite->setOrigin(convertVector2(origin));
 }
 
 
@@ -96,7 +98,7 @@ void sfSprite_setOrigin(sfSprite* sprite, sfVector2f origin)
 sfVector2f sfSprite_getPosition(const sfSprite* sprite)
 {
     assert(sprite);
-    return convertVector2(sprite->This.getPosition());
+    return convertVector2(sprite->getPosition());
 }
 
 
@@ -104,7 +106,7 @@ sfVector2f sfSprite_getPosition(const sfSprite* sprite)
 float sfSprite_getRotation(const sfSprite* sprite)
 {
     assert(sprite);
-    return sprite->This.getRotation().asDegrees();
+    return sprite->getRotation().asDegrees();
 }
 
 
@@ -112,7 +114,7 @@ float sfSprite_getRotation(const sfSprite* sprite)
 sfVector2f sfSprite_getScale(const sfSprite* sprite)
 {
     assert(sprite);
-    return convertVector2(sprite->This.getScale());
+    return convertVector2(sprite->getScale());
 }
 
 
@@ -120,7 +122,7 @@ sfVector2f sfSprite_getScale(const sfSprite* sprite)
 sfVector2f sfSprite_getOrigin(const sfSprite* sprite)
 {
     assert(sprite);
-    return convertVector2(sprite->This.getOrigin());
+    return convertVector2(sprite->getOrigin());
 }
 
 
@@ -128,7 +130,7 @@ sfVector2f sfSprite_getOrigin(const sfSprite* sprite)
 void sfSprite_move(sfSprite* sprite, sfVector2f offset)
 {
     assert(sprite);
-    sprite->This.move(convertVector2(offset));
+    sprite->move(convertVector2(offset));
 }
 
 
@@ -136,7 +138,7 @@ void sfSprite_move(sfSprite* sprite, sfVector2f offset)
 void sfSprite_rotate(sfSprite* sprite, float angle)
 {
     assert(sprite);
-    sprite->This.rotate(sf::degrees(angle));
+    sprite->rotate(sf::degrees(angle));
 }
 
 
@@ -144,7 +146,7 @@ void sfSprite_rotate(sfSprite* sprite, float angle)
 void sfSprite_scale(sfSprite* sprite, sfVector2f factors)
 {
     assert(sprite);
-    sprite->This.scale(convertVector2(factors));
+    sprite->scale(convertVector2(factors));
 }
 
 
@@ -152,7 +154,7 @@ void sfSprite_scale(sfSprite* sprite, sfVector2f factors)
 sfTransform sfSprite_getTransform(const sfSprite* sprite)
 {
     assert(sprite);
-    sprite->Transform = convertTransform(sprite->This.getTransform());
+    sprite->Transform = convertTransform(sprite->getTransform());
     return sprite->Transform;
 }
 
@@ -161,7 +163,7 @@ sfTransform sfSprite_getTransform(const sfSprite* sprite)
 sfTransform sfSprite_getInverseTransform(const sfSprite* sprite)
 {
     assert(sprite);
-    sprite->InverseTransform = convertTransform(sprite->This.getInverseTransform());
+    sprite->InverseTransform = convertTransform(sprite->getInverseTransform());
     return sprite->InverseTransform;
 }
 
@@ -172,7 +174,7 @@ void sfSprite_setTexture(sfSprite* sprite, const sfTexture* texture, bool resetR
     if (texture && texture->This)
     {
         assert(sprite);
-        sprite->This.setTexture(*texture->This, resetRect);
+        sprite->setTexture(*texture->This, resetRect);
         sprite->Texture = texture;
     }
 }
@@ -182,7 +184,7 @@ void sfSprite_setTexture(sfSprite* sprite, const sfTexture* texture, bool resetR
 void sfSprite_setTextureRect(sfSprite* sprite, sfIntRect rectangle)
 {
     assert(sprite);
-    sprite->This.setTextureRect(convertRect(rectangle));
+    sprite->setTextureRect(convertRect(rectangle));
 }
 
 
@@ -190,7 +192,7 @@ void sfSprite_setTextureRect(sfSprite* sprite, sfIntRect rectangle)
 void sfSprite_setColor(sfSprite* sprite, sfColor color)
 {
     assert(sprite);
-    sprite->This.setColor(convertColor(color));
+    sprite->setColor(convertColor(color));
 }
 
 
@@ -206,7 +208,7 @@ const sfTexture* sfSprite_getTexture(const sfSprite* sprite)
 sfIntRect sfSprite_getTextureRect(const sfSprite* sprite)
 {
     assert(sprite);
-    return convertRect(sprite->This.getTextureRect());
+    return convertRect(sprite->getTextureRect());
 }
 
 
@@ -214,7 +216,7 @@ sfIntRect sfSprite_getTextureRect(const sfSprite* sprite)
 sfColor sfSprite_getColor(const sfSprite* sprite)
 {
     assert(sprite);
-    return convertColor(sprite->This.getColor());
+    return convertColor(sprite->getColor());
 }
 
 
@@ -222,7 +224,7 @@ sfColor sfSprite_getColor(const sfSprite* sprite)
 sfFloatRect sfSprite_getLocalBounds(const sfSprite* sprite)
 {
     assert(sprite);
-    return convertRect(sprite->This.getLocalBounds());
+    return convertRect(sprite->getLocalBounds());
 }
 
 
@@ -230,5 +232,5 @@ sfFloatRect sfSprite_getLocalBounds(const sfSprite* sprite)
 sfFloatRect sfSprite_getGlobalBounds(const sfSprite* sprite)
 {
     assert(sprite);
-    return convertRect(sprite->This.getGlobalBounds());
+    return convertRect(sprite->getGlobalBounds());
 }

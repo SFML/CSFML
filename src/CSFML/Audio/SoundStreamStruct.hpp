@@ -33,19 +33,18 @@
 
 
 ////////////////////////////////////////////////////////////
-// Helper class implementing the callback forwarding from
-// C++ to C in sfSoundStream
+// Internal structure of sfSoundStream
 ////////////////////////////////////////////////////////////
-class sfSoundStreamImpl : public sf::SoundStream
+struct sfSoundStream : sf::SoundStream
 {
 public:
-    sfSoundStreamImpl(sfSoundStreamGetDataCallback onGetData,
-                      sfSoundStreamSeekCallback    onSeek,
-                      unsigned int                 channelCount,
-                      unsigned int                 sampleRate,
-                      sfSoundChannel*              channelMapData,
-                      size_t                       channelMapSize,
-                      void*                        userData) :
+    sfSoundStream(sfSoundStreamGetDataCallback onGetData,
+                  sfSoundStreamSeekCallback    onSeek,
+                  unsigned int                 channelCount,
+                  unsigned int                 sampleRate,
+                  sfSoundChannel*              channelMapData,
+                  size_t                       channelMapSize,
+                  void*                        userData) :
     myGetDataCallback(onGetData),
     mySeekCallback(onSeek),
     myUserData(userData)
@@ -55,6 +54,8 @@ public:
             channelMap[i] = static_cast<sf::SoundChannel>(channelMapData[i]);
         initialize(channelCount, sampleRate, channelMap);
     }
+
+    mutable std::vector<sfSoundChannel> Channels;
 
 private:
     bool onGetData(Chunk& data) override
@@ -80,14 +81,4 @@ private:
     sfSoundStreamGetDataCallback myGetDataCallback;
     sfSoundStreamSeekCallback    mySeekCallback;
     void*                        myUserData;
-};
-
-
-////////////////////////////////////////////////////////////
-// Internal structure of sfSoundStream
-////////////////////////////////////////////////////////////
-struct sfSoundStream
-{
-    sfSoundStreamImpl                   This;
-    mutable std::vector<sfSoundChannel> Channels;
 };

@@ -52,7 +52,7 @@ void sfTcpSocket_destroy(const sfTcpSocket* socket)
 void sfTcpSocket_setBlocking(sfTcpSocket* socket, bool blocking)
 {
     assert(socket);
-    socket->This.setBlocking(blocking);
+    socket->setBlocking(blocking);
 }
 
 
@@ -60,7 +60,7 @@ void sfTcpSocket_setBlocking(sfTcpSocket* socket, bool blocking)
 bool sfTcpSocket_isBlocking(const sfTcpSocket* socket)
 {
     assert(socket);
-    return socket->This.isBlocking();
+    return socket->isBlocking();
 }
 
 
@@ -68,7 +68,7 @@ bool sfTcpSocket_isBlocking(const sfTcpSocket* socket)
 unsigned short sfTcpSocket_getLocalPort(const sfTcpSocket* socket)
 {
     assert(socket);
-    return socket->This.getLocalPort();
+    return socket->getLocalPort();
 }
 
 
@@ -77,7 +77,7 @@ sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
 {
     assert(socket);
 
-    std::optional<sf::IpAddress> address = socket->This.getRemoteAddress();
+    std::optional<sf::IpAddress> address = socket->getRemoteAddress();
 
     sfIpAddress result = sfIpAddress_None;
     if (address)
@@ -93,7 +93,7 @@ sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
 unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* socket)
 {
     assert(socket);
-    return socket->This.getRemotePort();
+    return socket->getRemotePort();
 }
 
 
@@ -108,7 +108,7 @@ sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddres
     }
 
     assert(socket);
-    return static_cast<sfSocketStatus>(socket->This.connect(*address, remotePort, sf::microseconds(timeout.microseconds)));
+    return static_cast<sfSocketStatus>(socket->connect(*address, remotePort, sf::microseconds(timeout.microseconds)));
 }
 
 
@@ -116,7 +116,7 @@ sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddres
 void sfTcpSocket_disconnect(sfTcpSocket* socket)
 {
     assert(socket);
-    socket->This.disconnect();
+    socket->disconnect();
 }
 
 
@@ -124,7 +124,7 @@ void sfTcpSocket_disconnect(sfTcpSocket* socket)
 sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const void* data, size_t size)
 {
     assert(socket);
-    return static_cast<sfSocketStatus>(socket->This.send(data, size));
+    return static_cast<sfSocketStatus>(socket->send(data, size));
 }
 
 
@@ -132,7 +132,7 @@ sfSocketStatus sfTcpSocket_send(sfTcpSocket* socket, const void* data, size_t si
 sfSocketStatus sfTcpSocket_sendPartial(sfTcpSocket* socket, const void* data, size_t size, size_t* sent)
 {
     assert(socket);
-    return static_cast<sfSocketStatus>(socket->This.send(data, size, *sent));
+    return static_cast<sfSocketStatus>(socket->send(data, size, *sent));
 }
 
 
@@ -143,12 +143,12 @@ sfSocketStatus sfTcpSocket_receive(sfTcpSocket* socket, void* data, size_t size,
 
     if (received)
     {
-        return static_cast<sfSocketStatus>(socket->This.receive(data, size, *received));
+        return static_cast<sfSocketStatus>(socket->receive(data, size, *received));
     }
     else
     {
         std::size_t tempReceived = 0;
-        return static_cast<sfSocketStatus>(socket->This.receive(data, size, tempReceived));
+        return static_cast<sfSocketStatus>(socket->receive(data, size, tempReceived));
     }
 }
 
@@ -158,7 +158,7 @@ sfSocketStatus sfTcpSocket_sendPacket(sfTcpSocket* socket, sfPacket* packet)
 {
     assert(socket);
     assert(packet);
-    return static_cast<sfSocketStatus>(socket->This.send(packet->This));
+    return static_cast<sfSocketStatus>(socket->send(*packet));
 }
 
 
@@ -167,5 +167,5 @@ sfSocketStatus sfTcpSocket_receivePacket(sfTcpSocket* socket, sfPacket* packet)
 {
     assert(socket);
     assert(packet);
-    return static_cast<sfSocketStatus>(socket->This.receive(packet->This));
+    return static_cast<sfSocketStatus>(socket->receive(*packet));
 }

@@ -52,14 +52,14 @@ void sfUdpSocket_destroy(const sfUdpSocket* socket)
 void sfUdpSocket_setBlocking(sfUdpSocket* socket, bool blocking)
 {
     assert(socket);
-    socket->This.setBlocking(blocking);
+    socket->setBlocking(blocking);
 }
 
 ////////////////////////////////////////////////////////////
 bool sfUdpSocket_isBlocking(const sfUdpSocket* socket)
 {
     assert(socket);
-    return socket->This.isBlocking();
+    return socket->isBlocking();
 }
 
 
@@ -67,7 +67,7 @@ bool sfUdpSocket_isBlocking(const sfUdpSocket* socket)
 unsigned short sfUdpSocket_getLocalPort(const sfUdpSocket* socket)
 {
     assert(socket);
-    return socket->This.getLocalPort();
+    return socket->getLocalPort();
 }
 
 
@@ -83,7 +83,7 @@ sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port, sfIpAd
         return sfSocketError;
     }
 
-    return static_cast<sfSocketStatus>(socket->This.bind(port, *sfmlAddress));
+    return static_cast<sfSocketStatus>(socket->bind(port, *sfmlAddress));
 }
 
 
@@ -91,7 +91,7 @@ sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port, sfIpAd
 void sfUdpSocket_unbind(sfUdpSocket* socket)
 {
     assert(socket);
-    socket->This.unbind();
+    socket->unbind();
 }
 
 
@@ -108,7 +108,7 @@ sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t si
         return sfSocketError;
     }
 
-    return static_cast<sfSocketStatus>(socket->This.send(data, size, *address, remotePort));
+    return static_cast<sfSocketStatus>(socket->send(data, size, *address, remotePort));
 }
 
 
@@ -126,7 +126,7 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket*    socket,
     unsigned short               port         = 0;
     std::size_t                  sizeReceived = 0;
 
-    sf::Socket::Status status = socket->This.receive(data, size, sizeReceived, address, port);
+    sf::Socket::Status status = socket->receive(data, size, sizeReceived, address, port);
     if (status != sf::Socket::Status::Done)
         return static_cast<sfSocketStatus>(status);
 
@@ -164,7 +164,7 @@ sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfI
         return sfSocketError;
     }
 
-    return static_cast<sfSocketStatus>(socket->This.send(packet->This, *address, remotePort));
+    return static_cast<sfSocketStatus>(socket->send(*packet, *address, remotePort));
 }
 
 
@@ -177,7 +177,7 @@ sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, 
     std::optional<sf::IpAddress> address;
     unsigned short               port = 0;
 
-    sf::Socket::Status status = socket->This.receive(packet->This, address, port);
+    sf::Socket::Status status = socket->receive(*packet, address, port);
     if (status != sf::Socket::Status::Done)
         return static_cast<sfSocketStatus>(status);
 
