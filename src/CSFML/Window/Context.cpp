@@ -56,7 +56,7 @@ bool sfContext_isExtensionAvailable(const char* name)
 bool sfContext_setActive(sfContext* context, bool active)
 {
     assert(context);
-    return context->This.setActive(active);
+    return context->setActive(active);
 }
 
 
@@ -71,7 +71,7 @@ sfGlFunctionPointer sfContext_getFunction(const char* name)
 sfContextSettings sfContext_getSettings(const sfContext* context)
 {
     assert(context);
-    return convertContextSettings(context->This.getSettings());
+    return convertContextSettings(context->getSettings());
 }
 
 

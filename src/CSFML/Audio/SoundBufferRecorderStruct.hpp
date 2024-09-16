@@ -35,9 +35,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfSoundBufferRecorder
 ////////////////////////////////////////////////////////////
-struct sfSoundBufferRecorder
+struct sfSoundBufferRecorder : sf::SoundBufferRecorder
 {
-    sf::SoundBufferRecorder This;
-    mutable sfSoundBuffer   SoundBuffer;
-    std::string             DeviceName;
+    mutable sfSoundBuffer SoundBuffer;
+    std::string           DeviceName;
 };

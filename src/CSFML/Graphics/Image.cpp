@@ -60,22 +60,22 @@ sfImage* sfImage_createFromFile(const char* filename)
 {
     assert(filename);
 
-    sf::Image image;
-    if (!image.loadFromFile(filename))
+    auto image = std::make_unique<sfImage>();
+    if (!image->loadFromFile(filename))
         return nullptr;
 
-    return new sfImage{std::move(image)};
+    return image.release();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfImage* sfImage_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sf::Image image;
-    if (!image.loadFromMemory(data, sizeInBytes))
+    auto image = std::make_unique<sfImage>();
+    if (!image->loadFromMemory(data, sizeInBytes))
         return nullptr;
 
-    return new sfImage{std::move(image)};
+    return image.release();
 }
 
 
@@ -85,11 +85,11 @@ sfImage* sfImage_createFromStream(sfInputStream* stream)
     assert(stream);
 
     CallbackStream sfmlStream(stream);
-    sf::Image      image;
-    if (!image.loadFromStream(sfmlStream))
+    auto           image = std::make_unique<sfImage>();
+    if (!image->loadFromStream(sfmlStream))
         return nullptr;
 
-    return new sfImage{std::move(image)};
+    return image.release();
 }
 
 
@@ -113,7 +113,7 @@ bool sfImage_saveToFile(const sfImage* image, const char* filename)
 {
     assert(image);
     assert(filename);
-    return image->This.saveToFile(filename);
+    return image->saveToFile(filename);
 }
 
 
@@ -124,11 +124,9 @@ bool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* fo
     assert(output);
     assert(format);
 
-    auto data = image->This.saveToMemory(format);
-
-    if (data)
+    if (auto data = image->saveToMemory(format))
     {
-        output->buffer = std::move(*data);
+        *output = sfBuffer{std::move(*data)};
         return true;
     }
 
@@ -140,7 +138,7 @@ bool sfImage_saveToMemory(const sfImage* image, sfBuffer* output, const char* fo
 void sfImage_createMaskFromColor(sfImage* image, sfColor colorKey, uint8_t alpha)
 {
     assert(image);
-    image->This.createMaskFromColor(convertColor(colorKey), alpha);
+    image->createMaskFromColor(convertColor(colorKey), alpha);
 }
 
 
@@ -149,7 +147,7 @@ bool sfImage_copyImage(sfImage* image, const sfImage* source, sfVector2u dest, s
 {
     assert(image);
     assert(source);
-    return image->This.copy(source->This, convertVector2(dest), convertRect(sourceRect), applyAlpha);
+    return image->copy(*source, convertVector2(dest), convertRect(sourceRect), applyAlpha);
 }
 
 
@@ -157,7 +155,7 @@ bool sfImage_copyImage(sfImage* image, const sfImage* source, sfVector2u dest, s
 void sfImage_setPixel(sfImage* image, sfVector2u coords, sfColor color)
 {
     assert(image);
-    image->This.setPixel(convertVector2(coords), convertColor(color));
+    image->setPixel(convertVector2(coords), convertColor(color));
 }
 
 
@@ -165,7 +163,7 @@ void sfImage_setPixel(sfImage* image, sfVector2u coords, sfColor color)
 sfColor sfImage_getPixel(const sfImage* image, sfVector2u coords)
 {
     assert(image);
-    return convertColor(image->This.getPixel(convertVector2(coords)));
+    return convertColor(image->getPixel(convertVector2(coords)));
 }
 
 
@@ -173,7 +171,7 @@ sfColor sfImage_getPixel(const sfImage* image, sfVector2u coords)
 const uint8_t* sfImage_getPixelsPtr(const sfImage* image)
 {
     assert(image);
-    return image->This.getPixelsPtr();
+    return image->getPixelsPtr();
 }
 
 
@@ -181,7 +179,7 @@ const uint8_t* sfImage_getPixelsPtr(const sfImage* image)
 sfVector2u sfImage_getSize(const sfImage* image)
 {
     assert(image);
-    return convertVector2(image->This.getSize());
+    return convertVector2(image->getSize());
 }
 
 
@@ -189,7 +187,7 @@ sfVector2u sfImage_getSize(const sfImage* image)
 void sfImage_flipHorizontally(sfImage* image)
 {
     assert(image);
-    image->This.flipHorizontally();
+    image->flipHorizontally();
 }
 
 
@@ -197,5 +195,5 @@ void sfImage_flipHorizontally(sfImage* image)
 void sfImage_flipVertically(sfImage* image)
 {
     assert(image);
-    image->This.flipVertically();
+    image->flipVertically();
 }

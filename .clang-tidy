@@ -15,6 +15,7 @@ Checks: >
   -cppcoreguidelines-macro-usage,
   -cppcoreguidelines-narrowing-conversions,
   -cppcoreguidelines-no-malloc,
+  -cppcoreguidelines-non-private-member-variables-in-classes,
   -cppcoreguidelines-owning-memory,
   -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
   -cppcoreguidelines-pro-bounds-constant-array-index,

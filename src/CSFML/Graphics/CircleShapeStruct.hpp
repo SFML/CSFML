@@ -36,9 +36,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfCircleShape
 ////////////////////////////////////////////////////////////
-struct sfCircleShape
+struct sfCircleShape : sf::CircleShape
 {
-    sf::CircleShape     This;
     const sfTexture*    Texture{};
     mutable sfTransform Transform{};
     mutable sfTransform InverseTransform{};

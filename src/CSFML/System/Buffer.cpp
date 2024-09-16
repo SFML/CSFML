@@ -49,7 +49,7 @@ void sfBuffer_destroy(const sfBuffer* buffer)
 size_t sfBuffer_getSize(const sfBuffer* buffer)
 {
     assert(buffer);
-    return buffer->buffer.size();
+    return buffer->size();
 }
 
 
@@ -57,5 +57,5 @@ size_t sfBuffer_getSize(const sfBuffer* buffer)
 const uint8_t* sfBuffer_getData(const sfBuffer* buffer)
 {
     assert(buffer);
-    return !buffer->buffer.empty() ? buffer->buffer.data() : nullptr;
+    return !buffer->empty() ? buffer->data() : nullptr;
 }

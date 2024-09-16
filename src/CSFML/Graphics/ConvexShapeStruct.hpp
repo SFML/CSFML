@@ -36,9 +36,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfConvexShape
 ////////////////////////////////////////////////////////////
-struct sfConvexShape
+struct sfConvexShape : sf::ConvexShape
 {
-    sf::ConvexShape     This;
     const sfTexture*    Texture{};
     mutable sfTransform Transform{};
     mutable sfTransform InverseTransform{};

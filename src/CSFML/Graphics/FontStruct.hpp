@@ -38,9 +38,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfFont
 ////////////////////////////////////////////////////////////
-struct sfFont
+struct sfFont : sf::Font
 {
-    sf::Font                          This;
     std::map<unsigned int, sfTexture> Textures;
     CallbackStream                    Stream;
 };

@@ -59,7 +59,7 @@ void sfTransformable_destroy(const sfTransformable* transformable)
 void sfTransformable_setPosition(sfTransformable* transformable, sfVector2f position)
 {
     assert(transformable);
-    transformable->This.setPosition(convertVector2(position));
+    transformable->setPosition(convertVector2(position));
 }
 
 
@@ -67,7 +67,7 @@ void sfTransformable_setPosition(sfTransformable* transformable, sfVector2f posi
 void sfTransformable_setRotation(sfTransformable* transformable, float angle)
 {
     assert(transformable);
-    transformable->This.setRotation(sf::degrees(angle));
+    transformable->setRotation(sf::degrees(angle));
 }
 
 
@@ -75,7 +75,7 @@ void sfTransformable_setRotation(sfTransformable* transformable, float angle)
 void sfTransformable_setScale(sfTransformable* transformable, sfVector2f scale)
 {
     assert(transformable);
-    transformable->This.setScale(convertVector2(scale));
+    transformable->setScale(convertVector2(scale));
 }
 
 
@@ -83,7 +83,7 @@ void sfTransformable_setScale(sfTransformable* transformable, sfVector2f scale)
 void sfTransformable_setOrigin(sfTransformable* transformable, sfVector2f origin)
 {
     assert(transformable);
-    transformable->This.setOrigin(convertVector2(origin));
+    transformable->setOrigin(convertVector2(origin));
 }
 
 
@@ -91,7 +91,7 @@ void sfTransformable_setOrigin(sfTransformable* transformable, sfVector2f origin
 sfVector2f sfTransformable_getPosition(const sfTransformable* transformable)
 {
     assert(transformable);
-    return convertVector2(transformable->This.getPosition());
+    return convertVector2(transformable->getPosition());
 }
 
 
@@ -99,7 +99,7 @@ sfVector2f sfTransformable_getPosition(const sfTransformable* transformable)
 float sfTransformable_getRotation(const sfTransformable* transformable)
 {
     assert(transformable);
-    return transformable->This.getRotation().asDegrees();
+    return transformable->getRotation().asDegrees();
 }
 
 
@@ -107,7 +107,7 @@ float sfTransformable_getRotation(const sfTransformable* transformable)
 sfVector2f sfTransformable_getScale(const sfTransformable* transformable)
 {
     assert(transformable);
-    return convertVector2(transformable->This.getScale());
+    return convertVector2(transformable->getScale());
 }
 
 
@@ -115,7 +115,7 @@ sfVector2f sfTransformable_getScale(const sfTransformable* transformable)
 sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable)
 {
     assert(transformable);
-    return convertVector2(transformable->This.getOrigin());
+    return convertVector2(transformable->getOrigin());
 }
 
 
@@ -123,7 +123,7 @@ sfVector2f sfTransformable_getOrigin(const sfTransformable* transformable)
 void sfTransformable_move(sfTransformable* transformable, sfVector2f offset)
 {
     assert(transformable);
-    transformable->This.move(convertVector2(offset));
+    transformable->move(convertVector2(offset));
 }
 
 
@@ -131,7 +131,7 @@ void sfTransformable_move(sfTransformable* transformable, sfVector2f offset)
 void sfTransformable_rotate(sfTransformable* transformable, float angle)
 {
     assert(transformable);
-    transformable->This.rotate(sf::degrees(angle));
+    transformable->rotate(sf::degrees(angle));
 }
 
 
@@ -139,7 +139,7 @@ void sfTransformable_rotate(sfTransformable* transformable, float angle)
 void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors)
 {
     assert(transformable);
-    transformable->This.scale(convertVector2(factors));
+    transformable->scale(convertVector2(factors));
 }
 
 
@@ -147,7 +147,7 @@ void sfTransformable_scale(sfTransformable* transformable, sfVector2f factors)
 sfTransform sfTransformable_getTransform(const sfTransformable* transformable)
 {
     assert(transformable);
-    transformable->Transform = convertTransform(transformable->This.getTransform());
+    transformable->Transform = convertTransform(transformable->getTransform());
     return transformable->Transform;
 }
 
@@ -156,6 +156,6 @@ sfTransform sfTransformable_getTransform(const sfTransformable* transformable)
 sfTransform sfTransformable_getInverseTransform(const sfTransformable* transformable)
 {
     assert(transformable);
-    transformable->InverseTransform = convertTransform(transformable->This.getInverseTransform());
+    transformable->InverseTransform = convertTransform(transformable->getInverseTransform());
     return transformable->InverseTransform;
 }

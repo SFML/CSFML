@@ -35,9 +35,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfRenderWindow
 ////////////////////////////////////////////////////////////
-struct sfRenderWindow
+struct sfRenderWindow : sf::RenderWindow
 {
-    sf::RenderWindow This;
-    sfView           DefaultView;
-    sfView           CurrentView;
+    sfView DefaultView;
+    sfView CurrentView;
 };

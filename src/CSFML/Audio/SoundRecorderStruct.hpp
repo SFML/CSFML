@@ -33,22 +33,24 @@
 
 
 ////////////////////////////////////////////////////////////
-// Helper class implementing the callback forwarding from
-// C++ to C in sfSoundRecorder
+// Internal structure of sfSoundRecorder
 ////////////////////////////////////////////////////////////
-class sfSoundRecorderImpl : public sf::SoundRecorder
+struct sfSoundRecorder : sf::SoundRecorder
 {
 public:
-    sfSoundRecorderImpl(sfSoundRecorderStartCallback   onStart,
-                        sfSoundRecorderProcessCallback onProcess,
-                        sfSoundRecorderStopCallback    onStop,
-                        void*                          userData) :
+    sfSoundRecorder(sfSoundRecorderStartCallback   onStart,
+                    sfSoundRecorderProcessCallback onProcess,
+                    sfSoundRecorderStopCallback    onStop,
+                    void*                          userData) :
     myStartCallback(onStart),
     myProcessCallback(onProcess),
     myStopCallback(onStop),
     myUserData(userData)
     {
     }
+
+    mutable std::vector<sfSoundChannel> Channels;
+    std::string                         DeviceName;
 
 private:
     bool onStart() override
@@ -77,15 +79,4 @@ private:
     sfSoundRecorderProcessCallback myProcessCallback;
     sfSoundRecorderStopCallback    myStopCallback;
     void*                          myUserData;
-};
-
-
-////////////////////////////////////////////////////////////
-// Internal structure of sfSoundRecorder
-////////////////////////////////////////////////////////////
-struct sfSoundRecorder
-{
-    sfSoundRecorderImpl                 This;
-    mutable std::vector<sfSoundChannel> Channels;
-    std::string                         DeviceName;
 };

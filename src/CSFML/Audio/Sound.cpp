@@ -35,7 +35,9 @@
 sfSound* sfSound_create(const sfSoundBuffer* buffer)
 {
     assert(buffer);
-    return new sfSound{sf::Sound(buffer->This), buffer};
+    auto sound    = new sfSound(*buffer);
+    sound->Buffer = buffer;
+    return sound;
 }
 
 
@@ -58,7 +60,7 @@ void sfSound_destroy(const sfSound* sound)
 void sfSound_play(sfSound* sound)
 {
     assert(sound);
-    sound->This.play();
+    sound->play();
 }
 
 
@@ -66,7 +68,7 @@ void sfSound_play(sfSound* sound)
 void sfSound_pause(sfSound* sound)
 {
     assert(sound);
-    sound->This.pause();
+    sound->pause();
 }
 
 
@@ -74,7 +76,7 @@ void sfSound_pause(sfSound* sound)
 void sfSound_stop(sfSound* sound)
 {
     assert(sound);
-    sound->This.stop();
+    sound->stop();
 }
 
 
@@ -84,7 +86,7 @@ void sfSound_setBuffer(sfSound* sound, const sfSoundBuffer* buffer)
     if (buffer)
     {
         assert(sound);
-        sound->This.setBuffer(buffer->This);
+        sound->setBuffer(*buffer);
         sound->Buffer = buffer;
     }
 }
@@ -102,7 +104,7 @@ const sfSoundBuffer* sfSound_getBuffer(const sfSound* sound)
 void sfSound_setLooping(sfSound* sound, bool loop)
 {
     assert(sound);
-    sound->This.setLooping(loop);
+    sound->setLooping(loop);
 }
 
 
@@ -110,7 +112,7 @@ void sfSound_setLooping(sfSound* sound, bool loop)
 bool sfSound_isLooping(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.isLooping();
+    return sound->isLooping();
 }
 
 
@@ -118,7 +120,7 @@ bool sfSound_isLooping(const sfSound* sound)
 sfSoundStatus sfSound_getStatus(const sfSound* sound)
 {
     assert(sound);
-    return static_cast<sfSoundStatus>(sound->This.getStatus());
+    return static_cast<sfSoundStatus>(sound->getStatus());
 }
 
 
@@ -126,7 +128,7 @@ sfSoundStatus sfSound_getStatus(const sfSound* sound)
 void sfSound_setPitch(sfSound* sound, float pitch)
 {
     assert(sound);
-    sound->This.setPitch(pitch);
+    sound->setPitch(pitch);
 }
 
 
@@ -134,7 +136,7 @@ void sfSound_setPitch(sfSound* sound, float pitch)
 void sfSound_setPan(sfSound* sound, float pan)
 {
     assert(sound);
-    sound->This.setPan(pan);
+    sound->setPan(pan);
 }
 
 
@@ -142,7 +144,7 @@ void sfSound_setPan(sfSound* sound, float pan)
 void sfSound_setVolume(sfSound* sound, float volume)
 {
     assert(sound);
-    sound->This.setVolume(volume);
+    sound->setVolume(volume);
 }
 
 
@@ -150,7 +152,7 @@ void sfSound_setVolume(sfSound* sound, float volume)
 void sfSound_setSpatializationEnabled(sfSound* sound, bool enabled)
 {
     assert(sound);
-    sound->This.setSpatializationEnabled(enabled);
+    sound->setSpatializationEnabled(enabled);
 }
 
 
@@ -158,7 +160,7 @@ void sfSound_setSpatializationEnabled(sfSound* sound, bool enabled)
 void sfSound_setPosition(sfSound* sound, sfVector3f position)
 {
     assert(sound);
-    sound->This.setPosition(convertVector3(position));
+    sound->setPosition(convertVector3(position));
 }
 
 
@@ -166,7 +168,7 @@ void sfSound_setPosition(sfSound* sound, sfVector3f position)
 void sfSound_setDirection(sfSound* sound, sfVector3f direction)
 {
     assert(sound);
-    sound->This.setDirection(convertVector3(direction));
+    sound->setDirection(convertVector3(direction));
 }
 
 
@@ -174,7 +176,7 @@ void sfSound_setDirection(sfSound* sound, sfVector3f direction)
 void sfSound_setCone(sfSound* sound, sfSoundSourceCone cone)
 {
     assert(sound);
-    sound->This.setCone(convertCone(cone));
+    sound->setCone(convertCone(cone));
 }
 
 
@@ -182,7 +184,7 @@ void sfSound_setCone(sfSound* sound, sfSoundSourceCone cone)
 void sfSound_setVelocity(sfSound* sound, sfVector3f velocity)
 {
     assert(sound);
-    sound->This.setVelocity(convertVector3(velocity));
+    sound->setVelocity(convertVector3(velocity));
 }
 
 
@@ -190,7 +192,7 @@ void sfSound_setVelocity(sfSound* sound, sfVector3f velocity)
 void sfSound_setDopplerFactor(sfSound* sound, float factor)
 {
     assert(sound);
-    sound->This.setDopplerFactor(factor);
+    sound->setDopplerFactor(factor);
 }
 
 
@@ -198,7 +200,7 @@ void sfSound_setDopplerFactor(sfSound* sound, float factor)
 void sfSound_setDirectionalAttenuationFactor(sfSound* sound, float factor)
 {
     assert(sound);
-    sound->This.setDirectionalAttenuationFactor(factor);
+    sound->setDirectionalAttenuationFactor(factor);
 }
 
 
@@ -206,7 +208,7 @@ void sfSound_setDirectionalAttenuationFactor(sfSound* sound, float factor)
 void sfSound_setRelativeToListener(sfSound* sound, bool relative)
 {
     assert(sound);
-    sound->This.setRelativeToListener(relative);
+    sound->setRelativeToListener(relative);
 }
 
 
@@ -214,7 +216,7 @@ void sfSound_setRelativeToListener(sfSound* sound, bool relative)
 void sfSound_setMinDistance(sfSound* sound, float distance)
 {
     assert(sound);
-    sound->This.setMinDistance(distance);
+    sound->setMinDistance(distance);
 }
 
 
@@ -222,7 +224,7 @@ void sfSound_setMinDistance(sfSound* sound, float distance)
 void sfSound_setMaxDistance(sfSound* sound, float distance)
 {
     assert(sound);
-    sound->This.setMaxDistance(distance);
+    sound->setMaxDistance(distance);
 }
 
 
@@ -230,7 +232,7 @@ void sfSound_setMaxDistance(sfSound* sound, float distance)
 void sfSound_setMinGain(sfSound* sound, float gain)
 {
     assert(sound);
-    sound->This.setMinGain(gain);
+    sound->setMinGain(gain);
 }
 
 
@@ -238,7 +240,7 @@ void sfSound_setMinGain(sfSound* sound, float gain)
 void sfSound_setMaxGain(sfSound* sound, float gain)
 {
     assert(sound);
-    sound->This.setMaxGain(gain);
+    sound->setMaxGain(gain);
 }
 
 
@@ -246,7 +248,7 @@ void sfSound_setMaxGain(sfSound* sound, float gain)
 void sfSound_setAttenuation(sfSound* sound, float attenuation)
 {
     assert(sound);
-    sound->This.setAttenuation(attenuation);
+    sound->setAttenuation(attenuation);
 }
 
 
@@ -254,7 +256,7 @@ void sfSound_setAttenuation(sfSound* sound, float attenuation)
 void sfSound_setPlayingOffset(sfSound* sound, sfTime timeOffset)
 {
     assert(sound);
-    sound->This.setPlayingOffset(sf::microseconds(timeOffset.microseconds));
+    sound->setPlayingOffset(sf::microseconds(timeOffset.microseconds));
 }
 
 
@@ -265,11 +267,11 @@ void sfSound_setEffectProcessor(sfSound* sound, sfEffectProcessor effectProcesso
 
     if (!effectProcessor)
     {
-        sound->This.setEffectProcessor(nullptr);
+        sound->setEffectProcessor(nullptr);
     }
     else
     {
-        sound->This.setEffectProcessor(
+        sound->setEffectProcessor(
             [effectProcessor](const float*  inputFrames,
                               unsigned int& inputFrameCount,
                               float*        outputFrames,
@@ -284,7 +286,7 @@ void sfSound_setEffectProcessor(sfSound* sound, sfEffectProcessor effectProcesso
 float sfSound_getPitch(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getPitch();
+    return sound->getPitch();
 }
 
 
@@ -292,7 +294,7 @@ float sfSound_getPitch(const sfSound* sound)
 float sfSound_getPan(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getPan();
+    return sound->getPan();
 }
 
 
@@ -300,7 +302,7 @@ float sfSound_getPan(const sfSound* sound)
 float sfSound_getVolume(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getVolume();
+    return sound->getVolume();
 }
 
 
@@ -308,7 +310,7 @@ float sfSound_getVolume(const sfSound* sound)
 bool sfSound_isSpatializationEnabled(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.isSpatializationEnabled();
+    return sound->isSpatializationEnabled();
 }
 
 
@@ -316,7 +318,7 @@ bool sfSound_isSpatializationEnabled(const sfSound* sound)
 sfVector3f sfSound_getPosition(const sfSound* sound)
 {
     assert(sound);
-    return convertVector3(sound->This.getPosition());
+    return convertVector3(sound->getPosition());
 }
 
 
@@ -324,7 +326,7 @@ sfVector3f sfSound_getPosition(const sfSound* sound)
 sfVector3f sfSound_getDirection(const sfSound* sound)
 {
     assert(sound);
-    return convertVector3(sound->This.getDirection());
+    return convertVector3(sound->getDirection());
 }
 
 
@@ -332,7 +334,7 @@ sfVector3f sfSound_getDirection(const sfSound* sound)
 sfSoundSourceCone sfSound_getCone(const sfSound* sound)
 {
     assert(sound);
-    return convertCone(sound->This.getCone());
+    return convertCone(sound->getCone());
 }
 
 
@@ -340,7 +342,7 @@ sfSoundSourceCone sfSound_getCone(const sfSound* sound)
 sfVector3f sfSound_getVelocity(const sfSound* sound)
 {
     assert(sound);
-    return convertVector3(sound->This.getVelocity());
+    return convertVector3(sound->getVelocity());
 }
 
 
@@ -348,7 +350,7 @@ sfVector3f sfSound_getVelocity(const sfSound* sound)
 float sfSound_getDopplerFactor(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getDopplerFactor();
+    return sound->getDopplerFactor();
 }
 
 
@@ -356,7 +358,7 @@ float sfSound_getDopplerFactor(const sfSound* sound)
 float sfSound_getDirectionalAttenuationFactor(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getDopplerFactor();
+    return sound->getDopplerFactor();
 }
 
 
@@ -364,7 +366,7 @@ float sfSound_getDirectionalAttenuationFactor(const sfSound* sound)
 bool sfSound_isRelativeToListener(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.isRelativeToListener();
+    return sound->isRelativeToListener();
 }
 
 
@@ -372,7 +374,7 @@ bool sfSound_isRelativeToListener(const sfSound* sound)
 float sfSound_getMinDistance(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getMinDistance();
+    return sound->getMinDistance();
 }
 
 
@@ -380,7 +382,7 @@ float sfSound_getMinDistance(const sfSound* sound)
 float sfSound_getMaxDistance(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getMaxDistance();
+    return sound->getMaxDistance();
 }
 
 
@@ -388,7 +390,7 @@ float sfSound_getMaxDistance(const sfSound* sound)
 float sfSound_getMinGain(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getMinGain();
+    return sound->getMinGain();
 }
 
 
@@ -396,7 +398,7 @@ float sfSound_getMinGain(const sfSound* sound)
 float sfSound_getMaxGain(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getMaxGain();
+    return sound->getMaxGain();
 }
 
 
@@ -404,7 +406,7 @@ float sfSound_getMaxGain(const sfSound* sound)
 float sfSound_getAttenuation(const sfSound* sound)
 {
     assert(sound);
-    return sound->This.getAttenuation();
+    return sound->getAttenuation();
 }
 
 
@@ -412,5 +414,5 @@ float sfSound_getAttenuation(const sfSound* sound)
 sfTime sfSound_getPlayingOffset(const sfSound* sound)
 {
     assert(sound);
-    return {sound->This.getPlayingOffset().asMicroseconds()};
+    return {sound->getPlayingOffset().asMicroseconds()};
 }

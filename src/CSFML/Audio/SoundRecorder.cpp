@@ -38,7 +38,7 @@ sfSoundRecorder* sfSoundRecorder_create(sfSoundRecorderStartCallback   onStart,
                                         sfSoundRecorderStopCallback    onStop,
                                         void*                          userData)
 {
-    return new sfSoundRecorder{{onStart, onProcess, onStop, userData}, {}, ""};
+    return new sfSoundRecorder(onStart, onProcess, onStop, userData);
 }
 
 
@@ -53,7 +53,7 @@ void sfSoundRecorder_destroy(const sfSoundRecorder* soundRecorder)
 bool sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRate)
 {
     assert(soundRecorder);
-    return soundRecorder->This.start(sampleRate);
+    return soundRecorder->start(sampleRate);
 }
 
 
@@ -61,7 +61,7 @@ bool sfSoundRecorder_start(sfSoundRecorder* soundRecorder, unsigned int sampleRa
 void sfSoundRecorder_stop(sfSoundRecorder* soundRecorder)
 {
     assert(soundRecorder);
-    soundRecorder->This.stop();
+    soundRecorder->stop();
 }
 
 
@@ -69,7 +69,7 @@ void sfSoundRecorder_stop(sfSoundRecorder* soundRecorder)
 unsigned int sfSoundRecorder_getSampleRate(const sfSoundRecorder* soundRecorder)
 {
     assert(soundRecorder);
-    return soundRecorder->This.getSampleRate();
+    return soundRecorder->getSampleRate();
 }
 
 
@@ -115,7 +115,7 @@ bool sfSoundRecorder_setDevice(sfSoundRecorder* soundRecorder, const char* name)
 {
     assert(soundRecorder);
     assert(name);
-    return soundRecorder->This.setDevice(name);
+    return soundRecorder->setDevice(name);
 }
 
 
@@ -124,7 +124,7 @@ const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
 {
     assert(soundRecorder);
 
-    soundRecorder->DeviceName = soundRecorder->This.getDevice();
+    soundRecorder->DeviceName = soundRecorder->getDevice();
 
     return soundRecorder->DeviceName.c_str();
 }
@@ -134,7 +134,7 @@ const char* sfSoundRecorder_getDevice(sfSoundRecorder* soundRecorder)
 void sfSoundRecorder_setChannelCount(sfSoundRecorder* soundRecorder, unsigned int channelCount)
 {
     assert(soundRecorder);
-    soundRecorder->This.setChannelCount(channelCount);
+    soundRecorder->setChannelCount(channelCount);
 }
 
 
@@ -142,7 +142,7 @@ void sfSoundRecorder_setChannelCount(sfSoundRecorder* soundRecorder, unsigned in
 unsigned int sfSoundRecorder_getChannelCount(const sfSoundRecorder* soundRecorder)
 {
     assert(soundRecorder);
-    return soundRecorder->This.getChannelCount();
+    return soundRecorder->getChannelCount();
 }
 
 
@@ -152,7 +152,7 @@ sfSoundChannel* sfSoundRecorder_getChannelMap(const sfSoundRecorder* soundRecord
     assert(soundRecorder);
     assert(count);
 
-    const auto channels = soundRecorder->This.getChannelMap();
+    const auto channels = soundRecorder->getChannelMap();
 
     soundRecorder->Channels.resize(channels.size());
     std::memcpy(soundRecorder->Channels.data(), channels.data(), sizeof(sfSoundChannel) * channels.size());

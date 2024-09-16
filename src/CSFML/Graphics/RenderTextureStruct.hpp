@@ -38,9 +38,8 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfRenderTexture
 ////////////////////////////////////////////////////////////
-struct sfRenderTexture
+struct sfRenderTexture : sf::RenderTexture
 {
-    sf::RenderTexture                This;
     std::unique_ptr<const sfTexture> Target;
     sfView                           DefaultView;
     sfView                           CurrentView;

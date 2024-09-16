@@ -39,22 +39,22 @@ sfMusic* sfMusic_createFromFile(const char* filename)
 {
     assert(filename);
 
-    sf::Music music;
-    if (!music.openFromFile(filename))
+    auto music = std::make_unique<sfMusic>();
+    if (!music->openFromFile(filename))
         return nullptr;
 
-    return new sfMusic{std::move(music), {}, {}};
+    return music.release();
 }
 
 
 ////////////////////////////////////////////////////////////
 sfMusic* sfMusic_createFromMemory(const void* data, size_t sizeInBytes)
 {
-    sf::Music music;
-    if (!music.openFromMemory(data, sizeInBytes))
+    auto music = std::make_unique<sfMusic>();
+    if (!music->openFromMemory(data, sizeInBytes))
         return nullptr;
 
-    return new sfMusic{std::move(music), {}, {}};
+    return music.release();
 }
 
 
@@ -63,8 +63,9 @@ sfMusic* sfMusic_createFromStream(sfInputStream* stream)
 {
     assert(stream);
 
-    auto music = std::make_unique<sfMusic>(sfMusic{{}, {}, {stream}});
-    if (!music->This.openFromStream(music->Stream))
+    auto music    = std::make_unique<sfMusic>();
+    music->Stream = CallbackStream(stream);
+    if (!music->openFromStream(music->Stream))
         return nullptr;
 
     return music.release();
@@ -82,7 +83,7 @@ void sfMusic_destroy(const sfMusic* music)
 void sfMusic_setLooping(sfMusic* music, bool loop)
 {
     assert(music);
-    music->This.setLooping(loop != 0);
+    music->setLooping(loop != 0);
 }
 
 
@@ -90,7 +91,7 @@ void sfMusic_setLooping(sfMusic* music, bool loop)
 bool sfMusic_isLooping(const sfMusic* music)
 {
     assert(music);
-    return music->This.isLooping();
+    return music->isLooping();
 }
 
 
@@ -101,11 +102,11 @@ void sfMusic_setEffectProcessor(sfMusic* music, sfEffectProcessor effectProcesso
 
     if (!effectProcessor)
     {
-        music->This.setEffectProcessor(nullptr);
+        music->setEffectProcessor(nullptr);
     }
     else
     {
-        music->This.setEffectProcessor(
+        music->setEffectProcessor(
             [effectProcessor](const float*  inputFrames,
                               unsigned int& inputFrameCount,
                               float*        outputFrames,
@@ -120,7 +121,7 @@ void sfMusic_setEffectProcessor(sfMusic* music, sfEffectProcessor effectProcesso
 sfTime sfMusic_getDuration(const sfMusic* music)
 {
     assert(music);
-    return {music->This.getDuration().asMicroseconds()};
+    return {music->getDuration().asMicroseconds()};
 }
 
 
@@ -128,7 +129,7 @@ sfTime sfMusic_getDuration(const sfMusic* music)
 sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music)
 {
     assert(music);
-    const auto [offset, length] = music->This.getLoopPoints();
+    const auto [offset, length] = music->getLoopPoints();
     return {{offset.asMicroseconds()}, {length.asMicroseconds()}};
 }
 
@@ -137,7 +138,7 @@ sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music)
 void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints)
 {
     assert(music);
-    music->This.setLoopPoints(
+    music->setLoopPoints(
         {sf::microseconds(timePoints.offset.microseconds), sf::microseconds(timePoints.length.microseconds)});
 }
 
@@ -146,7 +147,7 @@ void sfMusic_setLoopPoints(sfMusic* music, sfTimeSpan timePoints)
 void sfMusic_play(sfMusic* music)
 {
     assert(music);
-    music->This.play();
+    music->play();
 }
 
 
@@ -154,7 +155,7 @@ void sfMusic_play(sfMusic* music)
 void sfMusic_pause(sfMusic* music)
 {
     assert(music);
-    music->This.pause();
+    music->pause();
 }
 
 
@@ -162,7 +163,7 @@ void sfMusic_pause(sfMusic* music)
 void sfMusic_stop(sfMusic* music)
 {
     assert(music);
-    music->This.stop();
+    music->stop();
 }
 
 
@@ -170,7 +171,7 @@ void sfMusic_stop(sfMusic* music)
 unsigned int sfMusic_getChannelCount(const sfMusic* music)
 {
     assert(music);
-    return music->This.getChannelCount();
+    return music->getChannelCount();
 }
 
 
@@ -178,7 +179,7 @@ unsigned int sfMusic_getChannelCount(const sfMusic* music)
 unsigned int sfMusic_getSampleRate(const sfMusic* music)
 {
     assert(music);
-    return music->This.getSampleRate();
+    return music->getSampleRate();
 }
 
 
@@ -188,7 +189,7 @@ const sfSoundChannel* sfMusic_getChannelMap(const sfMusic* music, size_t* count)
     assert(music);
     assert(count);
 
-    const auto channels = music->This.getChannelMap();
+    const auto channels = music->getChannelMap();
 
     music->Channels.resize(channels.size());
     std::memcpy(music->Channels.data(), channels.data(), sizeof(sfSoundChannel) * channels.size());
@@ -202,7 +203,7 @@ const sfSoundChannel* sfMusic_getChannelMap(const sfMusic* music, size_t* count)
 sfSoundStatus sfMusic_getStatus(const sfMusic* music)
 {
     assert(music);
-    return static_cast<sfSoundStatus>(music->This.getStatus());
+    return static_cast<sfSoundStatus>(music->getStatus());
 }
 
 
@@ -210,7 +211,7 @@ sfSoundStatus sfMusic_getStatus(const sfMusic* music)
 sfTime sfMusic_getPlayingOffset(const sfMusic* music)
 {
     assert(music);
-    return {music->This.getPlayingOffset().asMicroseconds()};
+    return {music->getPlayingOffset().asMicroseconds()};
 }
 
 
@@ -218,7 +219,7 @@ sfTime sfMusic_getPlayingOffset(const sfMusic* music)
 void sfMusic_setPitch(sfMusic* music, float pitch)
 {
     assert(music);
-    music->This.setPitch(pitch);
+    music->setPitch(pitch);
 }
 
 
@@ -226,7 +227,7 @@ void sfMusic_setPitch(sfMusic* music, float pitch)
 void sfMusic_setPan(sfMusic* music, float pan)
 {
     assert(music);
-    music->This.setPan(pan);
+    music->setPan(pan);
 }
 
 
@@ -234,7 +235,7 @@ void sfMusic_setPan(sfMusic* music, float pan)
 void sfMusic_setVolume(sfMusic* music, float volume)
 {
     assert(music);
-    music->This.setVolume(volume);
+    music->setVolume(volume);
 }
 
 
@@ -242,7 +243,7 @@ void sfMusic_setVolume(sfMusic* music, float volume)
 void sfMusic_setSpatializationEnabled(sfMusic* music, bool enabled)
 {
     assert(music);
-    music->This.setSpatializationEnabled(enabled);
+    music->setSpatializationEnabled(enabled);
 }
 
 
@@ -250,7 +251,7 @@ void sfMusic_setSpatializationEnabled(sfMusic* music, bool enabled)
 void sfMusic_setPosition(sfMusic* music, sfVector3f position)
 {
     assert(music);
-    music->This.setPosition(convertVector3(position));
+    music->setPosition(convertVector3(position));
 }
 
 
@@ -258,7 +259,7 @@ void sfMusic_setPosition(sfMusic* music, sfVector3f position)
 void sfMusic_setDirection(sfMusic* music, sfVector3f position)
 {
     assert(music);
-    music->This.setDirection(convertVector3(position));
+    music->setDirection(convertVector3(position));
 }
 
 
@@ -266,7 +267,7 @@ void sfMusic_setDirection(sfMusic* music, sfVector3f position)
 void sfMusic_setCone(sfMusic* music, sfSoundSourceCone cone)
 {
     assert(music);
-    music->This.setCone(convertCone(cone));
+    music->setCone(convertCone(cone));
 }
 
 
@@ -274,7 +275,7 @@ void sfMusic_setCone(sfMusic* music, sfSoundSourceCone cone)
 void sfMusic_setVelocity(sfMusic* music, sfVector3f velocity)
 {
     assert(music);
-    music->This.setVelocity(convertVector3(velocity));
+    music->setVelocity(convertVector3(velocity));
 }
 
 
@@ -282,7 +283,7 @@ void sfMusic_setVelocity(sfMusic* music, sfVector3f velocity)
 void sfMusic_setDopplerFactor(sfMusic* music, float factor)
 {
     assert(music);
-    music->This.setDopplerFactor(factor);
+    music->setDopplerFactor(factor);
 }
 
 
@@ -290,7 +291,7 @@ void sfMusic_setDopplerFactor(sfMusic* music, float factor)
 CSFML_AUDIO_API void sfMusic_setDirectionalAttenuationFactor(sfMusic* music, float factor)
 {
     assert(music);
-    music->This.setDirectionalAttenuationFactor(factor);
+    music->setDirectionalAttenuationFactor(factor);
 }
 
 
@@ -298,7 +299,7 @@ CSFML_AUDIO_API void sfMusic_setDirectionalAttenuationFactor(sfMusic* music, flo
 void sfMusic_setRelativeToListener(sfMusic* music, bool relative)
 {
     assert(music);
-    music->This.setRelativeToListener(relative);
+    music->setRelativeToListener(relative);
 }
 
 
@@ -306,7 +307,7 @@ void sfMusic_setRelativeToListener(sfMusic* music, bool relative)
 void sfMusic_setMinDistance(sfMusic* music, float distance)
 {
     assert(music);
-    music->This.setMinDistance(distance);
+    music->setMinDistance(distance);
 }
 
 
@@ -314,7 +315,7 @@ void sfMusic_setMinDistance(sfMusic* music, float distance)
 void sfMusic_setMaxDistance(sfMusic* music, float distance)
 {
     assert(music);
-    music->This.setMaxDistance(distance);
+    music->setMaxDistance(distance);
 }
 
 
@@ -322,7 +323,7 @@ void sfMusic_setMaxDistance(sfMusic* music, float distance)
 void sfMusic_setMinGain(sfMusic* music, float gain)
 {
     assert(music);
-    music->This.setMinGain(gain);
+    music->setMinGain(gain);
 }
 
 
@@ -330,7 +331,7 @@ void sfMusic_setMinGain(sfMusic* music, float gain)
 void sfMusic_setMaxGain(sfMusic* music, float gain)
 {
     assert(music);
-    music->This.setMaxGain(gain);
+    music->setMaxGain(gain);
 }
 
 
@@ -338,7 +339,7 @@ void sfMusic_setMaxGain(sfMusic* music, float gain)
 void sfMusic_setAttenuation(sfMusic* music, float attenuation)
 {
     assert(music);
-    music->This.setAttenuation(attenuation);
+    music->setAttenuation(attenuation);
 }
 
 
@@ -346,7 +347,7 @@ void sfMusic_setAttenuation(sfMusic* music, float attenuation)
 void sfMusic_setPlayingOffset(sfMusic* music, sfTime timeOffset)
 {
     assert(music);
-    music->This.setPlayingOffset(sf::microseconds(timeOffset.microseconds));
+    music->setPlayingOffset(sf::microseconds(timeOffset.microseconds));
 }
 
 
@@ -354,7 +355,7 @@ void sfMusic_setPlayingOffset(sfMusic* music, sfTime timeOffset)
 float sfMusic_getPitch(const sfMusic* music)
 {
     assert(music);
-    return music->This.getPitch();
+    return music->getPitch();
 }
 
 
@@ -362,7 +363,7 @@ float sfMusic_getPitch(const sfMusic* music)
 float sfMusic_getPan(const sfMusic* music)
 {
     assert(music);
-    return music->This.getPan();
+    return music->getPan();
 }
 
 
@@ -370,7 +371,7 @@ float sfMusic_getPan(const sfMusic* music)
 float sfMusic_getVolume(const sfMusic* music)
 {
     assert(music);
-    return music->This.getVolume();
+    return music->getVolume();
 }
 
 
@@ -378,7 +379,7 @@ float sfMusic_getVolume(const sfMusic* music)
 bool sfMusic_isSpatializationEnabled(const sfMusic* music)
 {
     assert(music);
-    return music->This.isSpatializationEnabled();
+    return music->isSpatializationEnabled();
 }
 
 
@@ -386,7 +387,7 @@ bool sfMusic_isSpatializationEnabled(const sfMusic* music)
 sfVector3f sfMusic_getPosition(const sfMusic* music)
 {
     assert(music);
-    return convertVector3(music->This.getPosition());
+    return convertVector3(music->getPosition());
 }
 
 
@@ -394,7 +395,7 @@ sfVector3f sfMusic_getPosition(const sfMusic* music)
 sfVector3f sfMusic_getDirection(const sfMusic* music)
 {
     assert(music);
-    return convertVector3(music->This.getDirection());
+    return convertVector3(music->getDirection());
 }
 
 
@@ -402,7 +403,7 @@ sfVector3f sfMusic_getDirection(const sfMusic* music)
 sfSoundSourceCone sfMusic_getCone(const sfMusic* music)
 {
     assert(music);
-    return convertCone(music->This.getCone());
+    return convertCone(music->getCone());
 }
 
 
@@ -410,7 +411,7 @@ sfSoundSourceCone sfMusic_getCone(const sfMusic* music)
 sfVector3f sfMusic_getVelocity(const sfMusic* music)
 {
     assert(music);
-    return convertVector3(music->This.getVelocity());
+    return convertVector3(music->getVelocity());
 }
 
 
@@ -418,7 +419,7 @@ sfVector3f sfMusic_getVelocity(const sfMusic* music)
 float sfMusic_getDopplerFactor(const sfMusic* music)
 {
     assert(music);
-    return music->This.getDopplerFactor();
+    return music->getDopplerFactor();
 }
 
 
@@ -426,7 +427,7 @@ float sfMusic_getDopplerFactor(const sfMusic* music)
 float sfMusic_getDirectionalAttenuationFactor(const sfMusic* music)
 {
     assert(music);
-    return music->This.getDirectionalAttenuationFactor();
+    return music->getDirectionalAttenuationFactor();
 }
 
 
@@ -434,7 +435,7 @@ float sfMusic_getDirectionalAttenuationFactor(const sfMusic* music)
 bool sfMusic_isRelativeToListener(const sfMusic* music)
 {
     assert(music);
-    return music->This.isRelativeToListener();
+    return music->isRelativeToListener();
 }
 
 
@@ -442,7 +443,7 @@ bool sfMusic_isRelativeToListener(const sfMusic* music)
 float sfMusic_getMinDistance(const sfMusic* music)
 {
     assert(music);
-    return music->This.getMinDistance();
+    return music->getMinDistance();
 }
 
 
@@ -450,7 +451,7 @@ float sfMusic_getMinDistance(const sfMusic* music)
 float sfMusic_getMaxDistance(const sfMusic* music)
 {
     assert(music);
-    return music->This.getMaxDistance();
+    return music->getMaxDistance();
 }
 
 
@@ -458,7 +459,7 @@ float sfMusic_getMaxDistance(const sfMusic* music)
 float sfMusic_getMinGain(const sfMusic* music)
 {
     assert(music);
-    return music->This.getMinGain();
+    return music->getMinGain();
 }
 
 
@@ -466,7 +467,7 @@ float sfMusic_getMinGain(const sfMusic* music)
 float sfMusic_getMaxGain(const sfMusic* music)
 {
     assert(music);
-    return music->This.getMinGain();
+    return music->getMinGain();
 }
 
 
@@ -474,5 +475,5 @@ float sfMusic_getMaxGain(const sfMusic* music)
 float sfMusic_getAttenuation(const sfMusic* music)
 {
     assert(music);
-    return music->This.getAttenuation();
+    return music->getAttenuation();
 }

@@ -36,10 +36,10 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfSprite
 ////////////////////////////////////////////////////////////
-struct sfSprite
+struct sfSprite : sf::Sprite
 {
-    sf::Sprite          This;
-    const sfTexture*    Texture;
-    mutable sfTransform Transform;
-    mutable sfTransform InverseTransform;
+    using sf::Sprite::Sprite;
+    const sfTexture*    Texture{};
+    mutable sfTransform Transform{};
+    mutable sfTransform InverseTransform{};
 };

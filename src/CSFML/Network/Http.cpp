@@ -48,7 +48,7 @@ void sfHttpRequest_setField(sfHttpRequest* httpRequest, const char* field, const
 {
     assert(httpRequest);
     if (field)
-        httpRequest->This.setField(field, value);
+        httpRequest->setField(field, value);
 }
 
 
@@ -56,7 +56,7 @@ void sfHttpRequest_setField(sfHttpRequest* httpRequest, const char* field, const
 void sfHttpRequest_setMethod(sfHttpRequest* httpRequest, sfHttpMethod method)
 {
     assert(httpRequest);
-    httpRequest->This.setMethod(static_cast<sf::Http::Request::Method>(method));
+    httpRequest->setMethod(static_cast<sf::Http::Request::Method>(method));
 }
 
 
@@ -64,7 +64,7 @@ void sfHttpRequest_setMethod(sfHttpRequest* httpRequest, sfHttpMethod method)
 void sfHttpRequest_setUri(sfHttpRequest* httpRequest, const char* uri)
 {
     assert(httpRequest);
-    httpRequest->This.setUri(uri ? uri : "");
+    httpRequest->setUri(uri ? uri : "");
 }
 
 
@@ -72,7 +72,7 @@ void sfHttpRequest_setUri(sfHttpRequest* httpRequest, const char* uri)
 void sfHttpRequest_setHttpVersion(sfHttpRequest* httpRequest, unsigned int major, unsigned int minor)
 {
     assert(httpRequest);
-    httpRequest->This.setHttpVersion(major, minor);
+    httpRequest->setHttpVersion(major, minor);
 }
 
 
@@ -80,7 +80,7 @@ void sfHttpRequest_setHttpVersion(sfHttpRequest* httpRequest, unsigned int major
 void sfHttpRequest_setBody(sfHttpRequest* httpRequest, const char* body)
 {
     assert(httpRequest);
-    httpRequest->This.setBody(body ? body : "");
+    httpRequest->setBody(body ? body : "");
 }
 
 
@@ -98,7 +98,7 @@ const char* sfHttpResponse_getField(const sfHttpResponse* httpResponse, const ch
     if (!field)
         return nullptr;
 
-    return httpResponse->This.getField(field).c_str();
+    return httpResponse->getField(field).c_str();
 }
 
 
@@ -106,7 +106,7 @@ const char* sfHttpResponse_getField(const sfHttpResponse* httpResponse, const ch
 sfHttpStatus sfHttpResponse_getStatus(const sfHttpResponse* httpResponse)
 {
     assert(httpResponse);
-    return static_cast<sfHttpStatus>(httpResponse->This.getStatus());
+    return static_cast<sfHttpStatus>(httpResponse->getStatus());
 }
 
 
@@ -114,7 +114,7 @@ sfHttpStatus sfHttpResponse_getStatus(const sfHttpResponse* httpResponse)
 unsigned int sfHttpResponse_getMajorVersion(const sfHttpResponse* httpResponse)
 {
     assert(httpResponse);
-    return httpResponse->This.getMajorHttpVersion();
+    return httpResponse->getMajorHttpVersion();
 }
 
 
@@ -122,7 +122,7 @@ unsigned int sfHttpResponse_getMajorVersion(const sfHttpResponse* httpResponse)
 unsigned int sfHttpResponse_getMinorVersion(const sfHttpResponse* httpResponse)
 {
     assert(httpResponse);
-    return httpResponse->This.getMinorHttpVersion();
+    return httpResponse->getMinorHttpVersion();
 }
 
 
@@ -130,7 +130,7 @@ unsigned int sfHttpResponse_getMinorVersion(const sfHttpResponse* httpResponse)
 const char* sfHttpResponse_getBody(const sfHttpResponse* httpResponse)
 {
     assert(httpResponse);
-    return httpResponse->This.getBody().c_str();
+    return httpResponse->getBody().c_str();
 }
 
 
@@ -152,7 +152,7 @@ void sfHttp_destroy(const sfHttp* http)
 void sfHttp_setHost(sfHttp* http, const char* host, unsigned short port)
 {
     assert(http);
-    http->This.setHost(host ? host : "", port);
+    http->setHost(host ? host : "", port);
 }
 
 
@@ -161,9 +161,5 @@ sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, s
 {
     assert(http);
     assert(request);
-
-    auto* response = new sfHttpResponse;
-    response->This = http->This.sendRequest(request->This, sf::microseconds(timeout.microseconds));
-
-    return response;
+    return new sfHttpResponse{http->sendRequest(*request, sf::microseconds(timeout.microseconds))};
 }

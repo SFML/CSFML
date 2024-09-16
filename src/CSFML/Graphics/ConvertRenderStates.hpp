@@ -52,6 +52,6 @@
     renderStates.blendMode.alphaEquation  = static_cast<sf::BlendMode::Equation>(states->blendMode.alphaEquation);
     renderStates.transform                = convertTransform(states->transform);
     renderStates.texture                  = states->texture ? states->texture->This : nullptr;
-    renderStates.shader                   = states->shader ? &states->shader->This : nullptr;
+    renderStates.shader                   = states->shader;
     return renderStates;
 }

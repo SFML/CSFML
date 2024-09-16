@@ -61,7 +61,7 @@ void sfRectangleShape_destroy(const sfRectangleShape* shape)
 void sfRectangleShape_setPosition(sfRectangleShape* shape, sfVector2f position)
 {
     assert(shape);
-    shape->This.setPosition(convertVector2(position));
+    shape->setPosition(convertVector2(position));
 }
 
 
@@ -69,7 +69,7 @@ void sfRectangleShape_setPosition(sfRectangleShape* shape, sfVector2f position)
 void sfRectangleShape_setRotation(sfRectangleShape* shape, float angle)
 {
     assert(shape);
-    shape->This.setRotation(sf::degrees(angle));
+    shape->setRotation(sf::degrees(angle));
 }
 
 
@@ -77,7 +77,7 @@ void sfRectangleShape_setRotation(sfRectangleShape* shape, float angle)
 void sfRectangleShape_setScale(sfRectangleShape* shape, sfVector2f scale)
 {
     assert(shape);
-    shape->This.setScale(convertVector2(scale));
+    shape->setScale(convertVector2(scale));
 }
 
 
@@ -85,7 +85,7 @@ void sfRectangleShape_setScale(sfRectangleShape* shape, sfVector2f scale)
 void sfRectangleShape_setOrigin(sfRectangleShape* shape, sfVector2f origin)
 {
     assert(shape);
-    shape->This.setOrigin(convertVector2(origin));
+    shape->setOrigin(convertVector2(origin));
 }
 
 
@@ -93,7 +93,7 @@ void sfRectangleShape_setOrigin(sfRectangleShape* shape, sfVector2f origin)
 sfVector2f sfRectangleShape_getPosition(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getPosition());
+    return convertVector2(shape->getPosition());
 }
 
 
@@ -101,7 +101,7 @@ sfVector2f sfRectangleShape_getPosition(const sfRectangleShape* shape)
 float sfRectangleShape_getRotation(const sfRectangleShape* shape)
 {
     assert(shape);
-    return shape->This.getRotation().asDegrees();
+    return shape->getRotation().asDegrees();
 }
 
 
@@ -109,7 +109,7 @@ float sfRectangleShape_getRotation(const sfRectangleShape* shape)
 sfVector2f sfRectangleShape_getScale(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getScale());
+    return convertVector2(shape->getScale());
 }
 
 
@@ -117,7 +117,7 @@ sfVector2f sfRectangleShape_getScale(const sfRectangleShape* shape)
 sfVector2f sfRectangleShape_getOrigin(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getOrigin());
+    return convertVector2(shape->getOrigin());
 }
 
 
@@ -125,7 +125,7 @@ sfVector2f sfRectangleShape_getOrigin(const sfRectangleShape* shape)
 void sfRectangleShape_move(sfRectangleShape* shape, sfVector2f offset)
 {
     assert(shape);
-    shape->This.move(convertVector2(offset));
+    shape->move(convertVector2(offset));
 }
 
 
@@ -133,7 +133,7 @@ void sfRectangleShape_move(sfRectangleShape* shape, sfVector2f offset)
 void sfRectangleShape_rotate(sfRectangleShape* shape, float angle)
 {
     assert(shape);
-    shape->This.rotate(sf::degrees(angle));
+    shape->rotate(sf::degrees(angle));
 }
 
 
@@ -141,7 +141,7 @@ void sfRectangleShape_rotate(sfRectangleShape* shape, float angle)
 void sfRectangleShape_scale(sfRectangleShape* shape, sfVector2f factors)
 {
     assert(shape);
-    shape->This.scale(convertVector2(factors));
+    shape->scale(convertVector2(factors));
 }
 
 
@@ -149,7 +149,7 @@ void sfRectangleShape_scale(sfRectangleShape* shape, sfVector2f factors)
 sfTransform sfRectangleShape_getTransform(const sfRectangleShape* shape)
 {
     assert(shape);
-    shape->Transform = convertTransform(shape->This.getTransform());
+    shape->Transform = convertTransform(shape->getTransform());
     return shape->Transform;
 }
 
@@ -158,7 +158,7 @@ sfTransform sfRectangleShape_getTransform(const sfRectangleShape* shape)
 sfTransform sfRectangleShape_getInverseTransform(const sfRectangleShape* shape)
 {
     assert(shape);
-    shape->InverseTransform = convertTransform(shape->This.getInverseTransform());
+    shape->InverseTransform = convertTransform(shape->getInverseTransform());
     return shape->InverseTransform;
 }
 
@@ -167,7 +167,7 @@ sfTransform sfRectangleShape_getInverseTransform(const sfRectangleShape* shape)
 void sfRectangleShape_setTexture(sfRectangleShape* shape, const sfTexture* texture, bool resetRect)
 {
     assert(shape);
-    shape->This.setTexture(texture ? texture->This : nullptr, resetRect);
+    shape->setTexture(texture ? texture->This : nullptr, resetRect);
     shape->Texture = texture;
 }
 
@@ -176,7 +176,7 @@ void sfRectangleShape_setTexture(sfRectangleShape* shape, const sfTexture* textu
 void sfRectangleShape_setTextureRect(sfRectangleShape* shape, sfIntRect rect)
 {
     assert(shape);
-    shape->This.setTextureRect(convertRect(rect));
+    shape->setTextureRect(convertRect(rect));
 }
 
 
@@ -184,7 +184,7 @@ void sfRectangleShape_setTextureRect(sfRectangleShape* shape, sfIntRect rect)
 void sfRectangleShape_setFillColor(sfRectangleShape* shape, sfColor color)
 {
     assert(shape);
-    shape->This.setFillColor(convertColor(color));
+    shape->setFillColor(convertColor(color));
 }
 
 
@@ -192,7 +192,7 @@ void sfRectangleShape_setFillColor(sfRectangleShape* shape, sfColor color)
 void sfRectangleShape_setOutlineColor(sfRectangleShape* shape, sfColor color)
 {
     assert(shape);
-    shape->This.setOutlineColor(convertColor(color));
+    shape->setOutlineColor(convertColor(color));
 }
 
 
@@ -200,7 +200,7 @@ void sfRectangleShape_setOutlineColor(sfRectangleShape* shape, sfColor color)
 void sfRectangleShape_setOutlineThickness(sfRectangleShape* shape, float thickness)
 {
     assert(shape);
-    shape->This.setOutlineThickness(thickness);
+    shape->setOutlineThickness(thickness);
 }
 
 
@@ -216,7 +216,7 @@ const sfTexture* sfRectangleShape_getTexture(const sfRectangleShape* shape)
 sfIntRect sfRectangleShape_getTextureRect(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertRect(shape->This.getTextureRect());
+    return convertRect(shape->getTextureRect());
 }
 
 
@@ -224,7 +224,7 @@ sfIntRect sfRectangleShape_getTextureRect(const sfRectangleShape* shape)
 sfColor sfRectangleShape_getFillColor(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertColor(shape->This.getFillColor());
+    return convertColor(shape->getFillColor());
 }
 
 
@@ -232,7 +232,7 @@ sfColor sfRectangleShape_getFillColor(const sfRectangleShape* shape)
 sfColor sfRectangleShape_getOutlineColor(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertColor(shape->This.getOutlineColor());
+    return convertColor(shape->getOutlineColor());
 }
 
 
@@ -240,7 +240,7 @@ sfColor sfRectangleShape_getOutlineColor(const sfRectangleShape* shape)
 float sfRectangleShape_getOutlineThickness(const sfRectangleShape* shape)
 {
     assert(shape);
-    return shape->This.getOutlineThickness();
+    return shape->getOutlineThickness();
 }
 
 
@@ -248,7 +248,7 @@ float sfRectangleShape_getOutlineThickness(const sfRectangleShape* shape)
 size_t sfRectangleShape_getPointCount(const sfRectangleShape* shape)
 {
     assert(shape);
-    return shape->This.getPointCount();
+    return shape->getPointCount();
 }
 
 
@@ -256,7 +256,7 @@ size_t sfRectangleShape_getPointCount(const sfRectangleShape* shape)
 sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, size_t index)
 {
     assert(shape);
-    return convertVector2(shape->This.getPoint(index));
+    return convertVector2(shape->getPoint(index));
 }
 
 
@@ -264,7 +264,7 @@ sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, size_t index
 sfVector2f sfRectangleShape_getGeometricCenter(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getGeometricCenter());
+    return convertVector2(shape->getGeometricCenter());
 }
 
 
@@ -272,7 +272,7 @@ sfVector2f sfRectangleShape_getGeometricCenter(const sfRectangleShape* shape)
 void sfRectangleShape_setSize(sfRectangleShape* shape, sfVector2f size)
 {
     assert(shape);
-    shape->This.setSize(convertVector2(size));
+    shape->setSize(convertVector2(size));
 }
 
 
@@ -280,7 +280,7 @@ void sfRectangleShape_setSize(sfRectangleShape* shape, sfVector2f size)
 sfVector2f sfRectangleShape_getSize(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertVector2(shape->This.getSize());
+    return convertVector2(shape->getSize());
 }
 
 
@@ -288,7 +288,7 @@ sfVector2f sfRectangleShape_getSize(const sfRectangleShape* shape)
 sfFloatRect sfRectangleShape_getLocalBounds(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertRect(shape->This.getLocalBounds());
+    return convertRect(shape->getLocalBounds());
 }
 
 
@@ -296,5 +296,5 @@ sfFloatRect sfRectangleShape_getLocalBounds(const sfRectangleShape* shape)
 sfFloatRect sfRectangleShape_getGlobalBounds(const sfRectangleShape* shape)
 {
     assert(shape);
-    return convertRect(shape->This.getGlobalBounds());
+    return convertRect(shape->getGlobalBounds());
 }
