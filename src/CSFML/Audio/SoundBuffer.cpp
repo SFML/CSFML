@@ -33,6 +33,8 @@
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromFile(const char* filename)
 {
+    assert(filename);
+
     sf::SoundBuffer soundBuffer;
     if (!soundBuffer.loadFromFile(filename))
         return nullptr;
@@ -106,6 +108,7 @@ void sfSoundBuffer_destroy(const sfSoundBuffer* soundBuffer)
 bool sfSoundBuffer_saveToFile(const sfSoundBuffer* soundBuffer, const char* filename)
 {
     assert(soundBuffer);
+    assert(filename);
     return soundBuffer->This.saveToFile(filename);
 }
 
