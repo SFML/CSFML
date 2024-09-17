@@ -40,7 +40,7 @@ sfSoundStream* sfSoundStream_create(
     size_t                       channelMapSize,
     void*                        userData)
 {
-    return new sfSoundStream(onGetData, onSeek, channelCount, sampleRate, channelMapData, channelMapSize, userData);
+    return new sfSoundStream{{onGetData, onSeek, channelCount, sampleRate, channelMapData, channelMapSize, userData}};
 }
 
 
