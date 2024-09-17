@@ -47,6 +47,7 @@ void sfContext_destroy(const sfContext* context)
 ////////////////////////////////////////////////////////////
 bool sfContext_isExtensionAvailable(const char* name)
 {
+    assert(name);
     return sf::Context::isExtensionAvailable(name);
 }
 
