@@ -37,7 +37,7 @@ sfSoundRecorder* sfSoundRecorder_create(sfSoundRecorderStartCallback   onStart,
                                         sfSoundRecorderStopCallback    onStop,
                                         void*                          userData)
 {
-    return new sfSoundRecorder(onStart, onProcess, onStop, userData);
+    return new sfSoundRecorder{{onStart, onProcess, onStop, userData}, {}};
 }
 
 

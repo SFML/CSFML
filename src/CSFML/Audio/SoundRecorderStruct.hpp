@@ -85,14 +85,6 @@ private:
 ////////////////////////////////////////////////////////////
 struct sfSoundRecorder
 {
-    sfSoundRecorder(sfSoundRecorderStartCallback   onStart,
-                    sfSoundRecorderProcessCallback onProcess,
-                    sfSoundRecorderStopCallback    onStop,
-                    void*                          userData) :
-    This(onStart, onProcess, onStop, userData)
-    {
-    }
-
     sfSoundRecorderImpl This;
     std::string         DeviceName;
 };

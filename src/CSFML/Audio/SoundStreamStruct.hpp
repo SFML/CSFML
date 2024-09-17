@@ -88,16 +88,5 @@ private:
 ////////////////////////////////////////////////////////////
 struct sfSoundStream
 {
-    sfSoundStream(sfSoundStreamGetDataCallback onGetData,
-                  sfSoundStreamSeekCallback    onSeek,
-                  unsigned int                 channelCount,
-                  unsigned int                 sampleRate,
-                  sfSoundChannel*              channelMapData,
-                  size_t                       channelMapSize,
-                  void*                        userData) :
-    This(onGetData, onSeek, channelCount, sampleRate, channelMapData, channelMapSize, userData)
-    {
-    }
-
     sfSoundStreamImpl This;
 };
