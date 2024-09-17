@@ -74,6 +74,7 @@ const sfIpAddress sfIpAddress_Broadcast = sfIpAddress_fromBytes(255, 255, 255, 2
 ////////////////////////////////////////////////////////////
 sfIpAddress sfIpAddress_fromString(const char* address)
 {
+    assert(address);
     return fromSFMLAddress(sf::IpAddress::resolve(address));
 }
 
