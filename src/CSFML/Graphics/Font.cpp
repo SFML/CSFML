@@ -161,6 +161,7 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 ////////////////////////////////////////////////////////////
 void sfFont_setSmooth(sfFont* font, bool smooth)
 {
+    assert(font);
     font->This.setSmooth(smooth);
 }
 
@@ -168,6 +169,7 @@ void sfFont_setSmooth(sfFont* font, bool smooth)
 ////////////////////////////////////////////////////////////
 bool sfFont_isSmooth(const sfFont* font)
 {
+    assert(font);
     return font->This.isSmooth();
 }
 
