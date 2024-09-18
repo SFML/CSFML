@@ -37,7 +37,7 @@
 #if defined(CSFML_SYSTEM_WINDOWS)
 
 // Window handle is HWND (HWND__*) on Windows
-struct HWND__;
+struct HWND__; // NOLINT(bugprone-reserved-identifier)
 typedef struct HWND__* sfWindowHandle;
 
 #elif defined(CSFML_SYSTEM_LINUX) || defined(CSFML_SYSTEM_FREEBSD)
