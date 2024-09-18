@@ -44,6 +44,13 @@ target_link_libraries(test-csfml-window PRIVATE csfml-window Catch2::Catch2WithM
 set_target_warnings(test-csfml-window)
 catch_discover_tests(test-csfml-window)
 
+add_executable(test-csfml-graphics
+    Graphics/Rect.test.cpp
+)
+target_link_libraries(test-csfml-graphics PRIVATE csfml-graphics Catch2::Catch2WithMain)
+set_target_warnings(test-csfml-graphics)
+catch_discover_tests(test-csfml-graphics)
+
 add_executable(test-csfml-network
     Network/Ftp.test.cpp
     Network/Http.test.cpp
