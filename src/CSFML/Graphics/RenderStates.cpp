@@ -29,13 +29,9 @@
 
 
 ////////////////////////////////////////////////////////////
-sfRenderStates sfRenderStates_default()
-{
-    sfRenderStates states = {
-        sfBlendAlpha,
-        sfTransform_Identity,
-        nullptr,
-        nullptr,
-    };
-    return states;
-}
+const sfRenderStates sfRenderStates_default = {
+    sfBlendAlpha,
+    sfTransform_Identity,
+    nullptr,
+    nullptr,
+};
