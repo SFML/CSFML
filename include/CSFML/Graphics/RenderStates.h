@@ -50,4 +50,4 @@ typedef struct
 /// \brief Define the default values for a RenderState
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfRenderStates sfRenderStates_default(void);
+CSFML_GRAPHICS_API const sfRenderStates sfRenderStates_default;
