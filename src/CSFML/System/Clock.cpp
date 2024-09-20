@@ -62,8 +62,40 @@ sfTime sfClock_getElapsedTime(const sfClock* clock)
 
 
 ////////////////////////////////////////////////////////////
+bool sfClock_isRunning(const sfClock* clock)
+{
+    assert(clock);
+    return clock->This.isRunning();
+}
+
+
+////////////////////////////////////////////////////////////
+void sfClock_start(sfClock* clock)
+{
+    assert(clock);
+    clock->This.start();
+}
+
+
+////////////////////////////////////////////////////////////
+void sfClock_stop(sfClock* clock)
+{
+    assert(clock);
+    clock->This.stop();
+}
+
+
+////////////////////////////////////////////////////////////
 sfTime sfClock_restart(sfClock* clock)
 {
     assert(clock);
     return {clock->This.restart().asMicroseconds()};
+}
+
+
+////////////////////////////////////////////////////////////
+sfTime sfClock_reset(sfClock* clock)
+{
+    assert(clock);
+    return {clock->This.reset().asMicroseconds()};
 }
