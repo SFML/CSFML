@@ -74,6 +74,36 @@ CSFML_SYSTEM_API void sfClock_destroy(const sfClock* clock);
 CSFML_SYSTEM_API sfTime sfClock_getElapsedTime(const sfClock* clock);
 
 ////////////////////////////////////////////////////////////
+/// \brief Check whether the clock is running
+///
+/// \param clock Clock object
+///
+/// \return `true` if the clock is running, `false` otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_SYSTEM_API bool sfClock_isRunning(const sfClock* clock);
+
+////////////////////////////////////////////////////////////
+/// \brief Start the clock
+///
+/// \param clock Clock object
+///
+/// \see `stop`
+///
+////////////////////////////////////////////////////////////
+CSFML_SYSTEM_API void sfClock_start(sfClock* clock);
+
+////////////////////////////////////////////////////////////
+/// \brief Stop the clock
+///
+/// \param clock Clock object
+///
+/// \see `start`
+///
+////////////////////////////////////////////////////////////
+CSFML_SYSTEM_API void sfClock_stop(sfClock* clock);
+
+////////////////////////////////////////////////////////////
 /// \brief Restart a clock
 ///
 /// This function puts the time counter back to zero.
@@ -85,3 +115,18 @@ CSFML_SYSTEM_API sfTime sfClock_getElapsedTime(const sfClock* clock);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_SYSTEM_API sfTime sfClock_restart(sfClock* clock);
+
+////////////////////////////////////////////////////////////
+/// \brief Reset the clock
+///
+/// This function puts the time counter back to zero, returns
+/// the elapsed time, and leaves the clock in a paused state.
+///
+/// \param clock Clock object
+///
+/// \return Time elapsed
+///
+/// \see `restart`
+///
+////////////////////////////////////////////////////////////
+CSFML_SYSTEM_API sfTime sfClock_reset(sfClock* clock);
