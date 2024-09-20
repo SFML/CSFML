@@ -253,6 +253,14 @@ sfVector2f sfShape_getPoint(const sfShape* shape, size_t index)
 
 
 ////////////////////////////////////////////////////////////
+sfVector2f sfShape_getGeometricCenter(const sfShape* shape)
+{
+    assert(shape);
+    return convertVector2(shape->getGeometricCenter());
+}
+
+
+////////////////////////////////////////////////////////////
 sfFloatRect sfShape_getLocalBounds(const sfShape* shape)
 {
     assert(shape);

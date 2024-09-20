@@ -264,6 +264,14 @@ sfVector2f sfCircleShape_getPoint(const sfCircleShape* shape, size_t index)
 
 
 ////////////////////////////////////////////////////////////
+sfVector2f sfCircleShape_getGeometricCenter(const sfCircleShape* shape)
+{
+    assert(shape);
+    return convertVector2(shape->This.getGeometricCenter());
+}
+
+
+////////////////////////////////////////////////////////////
 void sfCircleShape_setRadius(sfCircleShape* shape, float radius)
 {
     assert(shape);

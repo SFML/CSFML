@@ -369,6 +369,20 @@ CSFML_GRAPHICS_API size_t sfShape_getPointCount(const sfShape* shape);
 CSFML_GRAPHICS_API sfVector2f sfShape_getPoint(const sfShape* shape, size_t index);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the geometric center of the shape
+///
+/// The returned point is in local coordinates, that is,
+/// the shape's transforms (position, rotation, scale) are
+/// not taken into account.
+///
+/// \param shape Shape object
+///
+/// \return The geometric center of the shape
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVector2f sfShape_getGeometricCenter(const sfShape* shape);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a shape
 ///
 /// The returned rectangle is in local coordinates, which means
