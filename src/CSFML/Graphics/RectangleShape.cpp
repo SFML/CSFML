@@ -261,6 +261,14 @@ sfVector2f sfRectangleShape_getPoint(const sfRectangleShape* shape, size_t index
 
 
 ////////////////////////////////////////////////////////////
+sfVector2f sfRectangleShape_getGeometricCenter(const sfRectangleShape* shape)
+{
+    assert(shape);
+    return convertVector2(shape->This.getGeometricCenter());
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRectangleShape_setSize(sfRectangleShape* shape, sfVector2f size)
 {
     assert(shape);

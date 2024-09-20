@@ -370,6 +370,20 @@ CSFML_GRAPHICS_API size_t sfCircleShape_getPointCount(const sfCircleShape* shape
 CSFML_GRAPHICS_API sfVector2f sfCircleShape_getPoint(const sfCircleShape* shape, size_t index);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the geometric center of the circle
+///
+/// The returned point is in local coordinates, that is,
+/// the shape's transforms (position, rotation, scale) are
+/// not taken into account.
+///
+/// \param shape Shape object
+///
+/// \return The geometric center of the shape
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVector2f sfCircleShape_getGeometricCenter(const sfCircleShape* shape);
+
+////////////////////////////////////////////////////////////
 /// \brief Set the radius of a circle
 ///
 /// \param shape  Shape object

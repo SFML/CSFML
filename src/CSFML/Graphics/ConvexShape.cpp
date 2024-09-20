@@ -261,6 +261,14 @@ sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index)
 
 
 ////////////////////////////////////////////////////////////
+sfVector2f sfConvexShape_getGeometricCenter(const sfConvexShape* shape)
+{
+    assert(shape);
+    return convertVector2(shape->This.getGeometricCenter());
+}
+
+
+////////////////////////////////////////////////////////////
 void sfConvexShape_setPointCount(sfConvexShape* shape, size_t count)
 {
     assert(shape);

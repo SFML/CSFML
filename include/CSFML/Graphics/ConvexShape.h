@@ -370,6 +370,20 @@ CSFML_GRAPHICS_API size_t sfConvexShape_getPointCount(const sfConvexShape* shape
 CSFML_GRAPHICS_API sfVector2f sfConvexShape_getPoint(const sfConvexShape* shape, size_t index);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the geometric center of a convex shape
+///
+/// The returned point is in local coordinates, that is,
+/// the shape's transforms (position, rotation, scale) are
+/// not taken into account.
+///
+/// \param shape Shape object
+///
+/// \return The geometric center of the shape
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVector2f sfConvexShape_getGeometricCenter(const sfConvexShape* shape);
+
+////////////////////////////////////////////////////////////
 /// \brief Set the number of points of a convex shap
 ///
 /// \a count must be greater than 2 to define a valid shape.
