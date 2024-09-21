@@ -192,6 +192,20 @@ CSFML_AUDIO_API unsigned int sfSoundBuffer_getSampleRate(const sfSoundBuffer* so
 CSFML_AUDIO_API unsigned int sfSoundBuffer_getChannelCount(const sfSoundBuffer* soundBuffer);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the map of position in sample frame to sound channel
+///
+/// This is used to map a sample in the sample stream to a
+/// position during spatialization.
+///
+/// \param soundBuffer Sound buffer object
+/// \param count Pointer to a variable that will be filled with the number of channels in the map
+///
+/// \return Map of position in sample frame to sound channel
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfSoundChannel* sfSoundBuffer_getChannelMap(const sfSoundBuffer* soundBuffer, size_t* count);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the total duration of a sound buffer
 ///
 /// \param soundBuffer Sound buffer object

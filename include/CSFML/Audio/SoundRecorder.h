@@ -29,6 +29,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
 
+#include <CSFML/Audio/SoundChannel.h>
 #include <CSFML/Audio/Types.h>
 #include <CSFML/System/Time.h>
 
@@ -195,3 +196,17 @@ CSFML_AUDIO_API void sfSoundRecorder_setChannelCount(sfSoundRecorder* soundRecor
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API unsigned int sfSoundRecorder_getChannelCount(const sfSoundRecorder* soundRecorder);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the map of position in sample frame to sound channel
+///
+/// This is used to map a sample in the sample stream to a
+/// position during spatialization.
+///
+/// \param soundRecorder Sound recorder object
+/// \param count Pointer to a variable that will be filled with the number of channels in the map
+///
+/// \return Map of position in sample frame to sound channel
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfSoundChannel* sfSoundRecorder_getChannelMap(const sfSoundRecorder* soundRecorder, size_t* count);

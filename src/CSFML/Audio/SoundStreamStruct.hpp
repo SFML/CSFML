@@ -88,5 +88,6 @@ private:
 ////////////////////////////////////////////////////////////
 struct sfSoundStream
 {
-    sfSoundStreamImpl This;
+    sfSoundStreamImpl                   This;
+    mutable std::vector<sfSoundChannel> Channels;
 };

@@ -25,22 +25,19 @@
 #pragma once
 
 ////////////////////////////////////////////////////////////
-// Headers
+/// \brief Structure defining the properties of a directional cone
+///
+/// Sounds will play at gain 1 when the listener
+/// is positioned within the inner angle of the cone.
+/// Sounds will play at `outerGain` when the listener is
+/// positioned outside the outer angle of the cone.
+/// The gain declines linearly from 1 to `outerGain` as the
+/// listener moves from the inner angle to the outer angle.
+///
 ////////////////////////////////////////////////////////////
-#include <CSFML/Audio/SoundChannel.h>
-#include <CSFML/CallbackStream.hpp>
-
-#include <SFML/Audio/Music.hpp>
-
-#include <vector>
-
-
-////////////////////////////////////////////////////////////
-// Internal structure of sfMusic
-////////////////////////////////////////////////////////////
-struct sfMusic
+typedef struct
 {
-    sf::Music                           This;
-    mutable std::vector<sfSoundChannel> Channels;
-    CallbackStream                      Stream;
-};
+    float innerAngle; //!< Inner angle, in degrees
+    float outerAngle; //!< Outer angle, in degrees
+    float outerGain;  //!< Outer gain
+} sfSoundSourceCone;

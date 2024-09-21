@@ -33,6 +33,25 @@
 
 
 ////////////////////////////////////////////////////////////
+/// \brief Structure defining the properties of a directional cone
+///
+/// Sounds will play at gain 1 when they are positioned
+/// within the inner angle of the cone. Sounds will play
+/// at `outerGain` when they are positioned outside the
+/// outer angle of the cone. The gain declines linearly
+/// from 1 to `outerGain` as the sound moves from the inner
+/// angle to the outer angle.
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    float innerAngle; //!< Inner angle, in degrees
+    float outerAngle; //!< Outer angle, in degrees
+    float outerGain;  //!< Outer gain
+} sfListenerCone;
+
+
+////////////////////////////////////////////////////////////
 /// \brief Change the global volume of all the sounds and musics
 ///
 /// The volume is a number between 0 and 100; it is combined with
@@ -92,6 +111,43 @@ CSFML_AUDIO_API void sfListener_setDirection(sfVector3f direction);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfVector3f sfListener_getDirection(void);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the velocity of the listener in the scene
+///
+/// The default listener's velocity is (0, 0, -1).
+///
+/// \param velocity New listener's velocity
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfListener_setVelocity(sfVector3f velocity);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the current forward vector of the listener in the scene
+///
+/// \return Listener's velocity
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfVector3f sfListener_getVelocity(void);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the cone properties of the listener in the audio scene
+///
+/// The cone defines how directional attenuation is applied.
+/// The default cone of a sound is (2 * PI, 2 * PI, 1).
+///
+/// \param cone Cone properties of the listener in the scene
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfListener_setCone(sfListenerCone cone);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the cone properties of the listener in the audio scene
+///
+/// \return Cone properties of the listener
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfListenerCone sfListener_getCone(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the upward vector of the listener in the scene

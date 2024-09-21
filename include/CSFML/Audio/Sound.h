@@ -29,6 +29,8 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
 
+#include <CSFML/Audio/EffectProcessor.h>
+#include <CSFML/Audio/SoundSourceCone.h>
 #include <CSFML/Audio/SoundStatus.h>
 #include <CSFML/Audio/Types.h>
 #include <CSFML/System/Time.h>
@@ -173,6 +175,21 @@ CSFML_AUDIO_API sfSoundStatus sfSound_getStatus(const sfSound* sound);
 CSFML_AUDIO_API void sfSound_setPitch(sfSound* sound, float pitch);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the pan of the sound
+///
+/// Using panning, a mono sound can be panned between
+/// stereo channels. When the pan is set to -1, the sound
+/// is played only on the left channel, when the pan is set
+/// to +1, the sound is played only on the right channel.
+///
+/// \param sound Sound object
+/// \param pan   New pan to apply to the sound [-1, +1]
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setPan(sfSound* sound, float pan);
+
+
+////////////////////////////////////////////////////////////
 /// \brief Set the volume of a sound
 ///
 /// The volume is a value between 0 (mute) and 100 (full volume).
@@ -183,6 +200,20 @@ CSFML_AUDIO_API void sfSound_setPitch(sfSound* sound, float pitch);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API void sfSound_setVolume(sfSound* sound, float volume);
+
+////////////////////////////////////////////////////////////
+/// \brief Set whether spatialization of the sound is enabled
+///
+/// Spatialization is the application of various effects to
+/// simulate a sound being emitted at a virtual position in
+/// 3D space and exhibiting various physical phenomena such as
+/// directional attenuation and doppler shift.
+///
+/// \param sound   Sound object
+/// \param enabled `true` to enable spatialization, `false` to disable
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setSpatializationEnabled(sfSound* sound, bool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the 3D position of a sound in the audio scene
@@ -196,6 +227,74 @@ CSFML_AUDIO_API void sfSound_setVolume(sfSound* sound, float volume);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API void sfSound_setPosition(sfSound* sound, sfVector3f position);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the 3D direction of the sound in the audio scene
+///
+/// The direction defines where the sound source is facing
+/// in 3D space. It will affect how the sound is attenuated
+/// if facing away from the listener.
+/// The default direction of a sound is (0, 0, -1).
+///
+/// \param sound     Sound object
+/// \param direction Direction of the sound in the scene
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setDirection(sfSound* sound, sfVector3f direction);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the cone properties of the sound in the audio scene
+///
+/// The cone defines how directional attenuation is applied.
+/// The default cone of a sound is (2 * PI, 2 * PI, 1).
+///
+/// \param sound Sound object
+/// \param cone  Cone properties of the sound in the scene
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setCone(sfSound* sound, sfSoundSourceCone cone);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the 3D velocity of the sound in the audio scene
+///
+/// The velocity is used to determine how to doppler shift
+/// the sound. Sounds moving towards the listener will be
+/// perceived to have a higher pitch and sounds moving away
+/// from the listener will be perceived to have a lower pitch.
+///
+/// \param sound    Sound object
+/// \param velocity Velocity of the sound in the scene
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setVelocity(sfSound* sound, sfVector3f velocity);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the doppler factor of the sound
+///
+/// The doppler factor determines how strong the doppler
+/// shift will be.
+///
+/// \param sound  Sound object
+/// \param factor New doppler factor to apply to the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setDopplerFactor(sfSound* sound, float factor);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the directional attenuation factor of the sound
+///
+/// Depending on the virtual position of an output channel
+/// relative to the listener (such as in surround sound
+/// setups), sounds will be attenuated when emitting them
+/// from certain channels. This factor determines how strong
+/// the attenuation based on output channel position
+/// relative to the listener is.
+///
+/// \param sound  Sound object
+/// \param factor New directional attenuation factor to apply to the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setDirectionalAttenuationFactor(sfSound* sound, float factor);
 
 ////////////////////////////////////////////////////////////
 /// \brief Make the sound's position relative to the listener or absolute
@@ -229,6 +328,49 @@ CSFML_AUDIO_API void sfSound_setRelativeToListener(sfSound* sound, bool relative
 CSFML_AUDIO_API void sfSound_setMinDistance(sfSound* sound, float distance);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the maximum distance of the sound
+///
+/// The "maximum distance" of a sound is the minimum
+/// distance at which it is heard at its minimum volume. Closer
+/// than the maximum distance, it will start to fade in according
+/// to its attenuation factor.
+/// The default value of the maximum distance is the maximum
+/// value a float can represent.
+///
+/// \param sound    Sound object
+/// \param distance New maximum distance of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setMaxDistance(sfSound* sound, float distance);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the minimum gain of the sound
+///
+/// When the sound is further away from the listener than
+/// the "maximum distance" the attenuated gain is clamped
+/// so it cannot go below the minimum gain value.
+///
+/// \param sound Sound object
+/// \param gain  New minimum gain of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setMinGain(sfSound* sound, float gain);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the maximum gain of the sound
+///
+/// When the sound is closer from the listener than
+/// the "minimum distance" the attenuated gain is clamped
+/// so it cannot go above the maximum gain value.
+///
+///
+/// \param sound Sound object
+/// \param gain  New maximum gain of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setMaxGain(sfSound* sound, float gain);
+
+////////////////////////////////////////////////////////////
 /// \brief Set the attenuation factor of a sound
 ///
 /// The attenuation is a multiplicative factor which makes
@@ -259,6 +401,18 @@ CSFML_AUDIO_API void sfSound_setAttenuation(sfSound* sound, float attenuation);
 CSFML_AUDIO_API void sfSound_setPlayingOffset(sfSound* sound, sfTime timeOffset);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the effect processor to be applied to the sound
+///
+/// The effect processor is a callable that will be called
+/// with sound data to be processed.
+///
+/// \param sound           Sound object
+/// \param effectProcessor The effect processor to attach to this sound, attach an empty processor to disable processing
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSound_setEffectProcessor(sfSound* sound, sfEffectProcessor effectProcessor);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the pitch of a sound
 ///
 /// \param sound Sound object
@@ -267,6 +421,16 @@ CSFML_AUDIO_API void sfSound_setPlayingOffset(sfSound* sound, sfTime timeOffset)
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API float sfSound_getPitch(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the pan of the sound
+///
+/// \param sound Sound object
+///
+/// \return Pan of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSound_getPan(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the volume of a sound
@@ -279,6 +443,16 @@ CSFML_AUDIO_API float sfSound_getPitch(const sfSound* sound);
 CSFML_AUDIO_API float sfSound_getVolume(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
+/// \brief Tell whether spatialization of the sound is enabled
+///
+/// \param sound Sound object
+///
+/// \return `true` if spatialization is enabled, `false` if it's disabled
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API bool sfSound_isSpatializationEnabled(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the 3D position of a sound in the audio scene
 ///
 /// \param sound Sound object
@@ -287,6 +461,56 @@ CSFML_AUDIO_API float sfSound_getVolume(const sfSound* sound);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfVector3f sfSound_getPosition(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the 3D direction of the sound in the audio scene
+///
+/// \param sound Sound object
+///
+/// \return Direction of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfVector3f sfSound_getDirection(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the cone properties of the sound in the audio scene
+///
+/// \param sound Sound object
+///
+/// \return Cone properties of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfSoundSourceCone sfSound_getCone(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the 3D velocity of the sound in the audio scene
+///
+/// \param sound Sound object
+///
+/// \return Velocity of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfVector3f sfSound_getVelocity(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the doppler factor of the sound
+///
+/// \param sound Sound object
+///
+/// \return Doppler factor of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSound_getDopplerFactor(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the directional attenuation factor of the sound
+///
+/// \param sound Sound object
+///
+/// \return Directional attenuation factor of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSound_getDirectionalAttenuationFactor(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a sound's position is relative to the
@@ -308,6 +532,36 @@ CSFML_AUDIO_API bool sfSound_isRelativeToListener(const sfSound* sound);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API float sfSound_getMinDistance(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the maximum distance of the sound
+///
+/// \param sound Sound object
+///
+/// \return Maximum distance of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSound_getMaxDistance(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the minimum gain of the sound
+///
+/// \param sound Sound object
+///
+/// \return Minimum gain of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSound_getMinGain(const sfSound* sound);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the maximum gain of the sound
+///
+/// \param sound Sound object
+///
+/// \return Maximum gain of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSound_getMaxGain(const sfSound* sound);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the attenuation factor of a sound

@@ -4,6 +4,8 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/CSFML/Audio)
 # all source files
 set(SRC
     ${INCROOT}/Export.h
+    ${SRCROOT}/ConvertCone.hpp
+    ${INCROOT}/EffectProcessor.h
     ${SRCROOT}/Listener.cpp
     ${INCROOT}/Listener.h
     ${SRCROOT}/Music.cpp
@@ -18,9 +20,11 @@ set(SRC
     ${SRCROOT}/SoundBufferRecorder.cpp
     ${SRCROOT}/SoundBufferRecorderStruct.hpp
     ${INCROOT}/SoundBufferRecorder.h
+    ${INCROOT}/SoundChannel.h
     ${SRCROOT}/SoundRecorder.cpp
     ${SRCROOT}/SoundRecorderStruct.hpp
     ${INCROOT}/SoundRecorder.h
+    ${INCROOT}/SoundSourceCone.h
     ${INCROOT}/SoundStatus.h
     ${SRCROOT}/SoundStream.cpp
     ${SRCROOT}/SoundStreamStruct.hpp

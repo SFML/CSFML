@@ -25,9 +25,12 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Audio/ConvertCone.hpp>
 #include <CSFML/Audio/SoundStream.h>
 #include <CSFML/Audio/SoundStreamStruct.hpp>
 #include <CSFML/System/ConvertVector3.hpp>
+
+#include <cstring>
 
 
 ////////////////////////////////////////////////////////////
@@ -40,7 +43,7 @@ sfSoundStream* sfSoundStream_create(
     size_t                       channelMapSize,
     void*                        userData)
 {
-    return new sfSoundStream{{onGetData, onSeek, channelCount, sampleRate, channelMapData, channelMapSize, userData}};
+    return new sfSoundStream{{onGetData, onSeek, channelCount, sampleRate, channelMapData, channelMapSize, userData}, {}};
 }
 
 
@@ -100,10 +103,34 @@ unsigned int sfSoundStream_getSampleRate(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
+sfSoundChannel* sfSoundStream_getChannelMap(const sfSoundStream* soundStream, size_t* count)
+{
+    assert(soundStream);
+    assert(count);
+
+    const auto channels = soundStream->This.getChannelMap();
+
+    soundStream->Channels.resize(channels.size());
+    std::memcpy(soundStream->Channels.data(), channels.data(), sizeof(sfSoundChannel) * channels.size());
+
+    *count = soundStream->Channels.size();
+    return soundStream->Channels.data();
+}
+
+
+////////////////////////////////////////////////////////////
 void sfSoundStream_setPitch(sfSoundStream* soundStream, float pitch)
 {
     assert(soundStream);
     soundStream->This.setPitch(pitch);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setPan(sfSoundStream* soundStream, float pan)
+{
+    assert(soundStream);
+    soundStream->This.setPan(pan);
 }
 
 
@@ -116,10 +143,58 @@ void sfSoundStream_setVolume(sfSoundStream* soundStream, float volume)
 
 
 ////////////////////////////////////////////////////////////
+void sfSoundStream_setSpatializationEnabled(sfSoundStream* soundStream, bool enabled)
+{
+    assert(soundStream);
+    soundStream->This.setSpatializationEnabled(enabled);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfSoundStream_setPosition(sfSoundStream* soundStream, sfVector3f position)
 {
     assert(soundStream);
     soundStream->This.setPosition(convertVector3(position));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setDirection(sfSoundStream* soundStream, sfVector3f position)
+{
+    assert(soundStream);
+    soundStream->This.setDirection(convertVector3(position));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setCone(sfSoundStream* soundStream, sfSoundSourceCone cone)
+{
+    assert(soundStream);
+    soundStream->This.setCone(convertCone(cone));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setVelocity(sfSoundStream* soundStream, sfVector3f velocity)
+{
+    assert(soundStream);
+    soundStream->This.setVelocity(convertVector3(velocity));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setDopplerFactor(sfSoundStream* soundStream, float factor)
+{
+    assert(soundStream);
+    soundStream->This.setDopplerFactor(factor);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setDirectionalAttenuationFactor(sfSoundStream* soundStream, float factor)
+{
+    assert(soundStream);
+    soundStream->This.setDirectionalAttenuationFactor(factor);
 }
 
 
@@ -136,6 +211,30 @@ void sfSoundStream_setMinDistance(sfSoundStream* soundStream, float distance)
 {
     assert(soundStream);
     soundStream->This.setMinDistance(distance);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setMaxDistance(sfSoundStream* soundStream, float distance)
+{
+    assert(soundStream);
+    soundStream->This.setMaxDistance(distance);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setMinGain(sfSoundStream* soundStream, float gain)
+{
+    assert(soundStream);
+    soundStream->This.setMinGain(gain);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setMaxGain(sfSoundStream* soundStream, float gain)
+{
+    assert(soundStream);
+    soundStream->This.setMaxGain(gain);
 }
 
 
@@ -172,6 +271,14 @@ float sfSoundStream_getPitch(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
+float sfSoundStream_getPan(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return soundStream->This.getPan();
+}
+
+
+////////////////////////////////////////////////////////////
 float sfSoundStream_getVolume(const sfSoundStream* soundStream)
 {
     assert(soundStream);
@@ -180,10 +287,58 @@ float sfSoundStream_getVolume(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
+bool sfSoundStream_isSpatializationEnabled(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return soundStream->This.isSpatializationEnabled();
+}
+
+
+////////////////////////////////////////////////////////////
 sfVector3f sfSoundStream_getPosition(const sfSoundStream* soundStream)
 {
     assert(soundStream);
     return convertVector3(soundStream->This.getPosition());
+}
+
+
+////////////////////////////////////////////////////////////
+sfVector3f sfSoundStream_getDirection(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return convertVector3(soundStream->This.getDirection());
+}
+
+
+////////////////////////////////////////////////////////////
+sfSoundSourceCone sfSoundStream_getCone(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return convertCone(soundStream->This.getCone());
+}
+
+
+////////////////////////////////////////////////////////////
+sfVector3f sfSoundStream_getVelocity(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return convertVector3(soundStream->This.getVelocity());
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSoundStream_getDopplerFactor(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return soundStream->This.getDopplerFactor();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSoundStream_getDirectionalAttenuationFactor(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return soundStream->This.getDirectionalAttenuationFactor();
 }
 
 
@@ -204,6 +359,30 @@ float sfSoundStream_getMinDistance(const sfSoundStream* soundStream)
 
 
 ////////////////////////////////////////////////////////////
+float sfSoundStream_getMaxDistance(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return soundStream->This.getMaxDistance();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSoundStream_getMinGain(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return soundStream->This.getMinGain();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSoundStream_getMaxGain(const sfSoundStream* soundStream)
+{
+    assert(soundStream);
+    return soundStream->This.getMaxGain();
+}
+
+
+////////////////////////////////////////////////////////////
 float sfSoundStream_getAttenuation(const sfSoundStream* soundStream)
 {
     assert(soundStream);
@@ -216,6 +395,28 @@ bool sfSoundStream_isLooping(const sfSoundStream* soundStream)
 {
     assert(soundStream);
     return soundStream->This.isLooping();
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSoundStream_setEffectProcessor(sfSoundStream* soundStream, sfEffectProcessor effectProcessor)
+{
+    assert(soundStream);
+
+    if (!effectProcessor)
+    {
+        soundStream->This.setEffectProcessor(nullptr);
+    }
+    else
+    {
+        soundStream->This.setEffectProcessor(
+            [effectProcessor](const float*  inputFrames,
+                              unsigned int& inputFrameCount,
+                              float*        outputFrames,
+                              unsigned int& outputFrameCount,
+                              unsigned int  frameChannelCount)
+            { effectProcessor(inputFrames, &inputFrameCount, outputFrames, &outputFrameCount, frameChannelCount); });
+    }
 }
 
 
