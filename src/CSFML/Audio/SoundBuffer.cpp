@@ -29,6 +29,8 @@
 #include <CSFML/Audio/SoundBufferStruct.hpp>
 #include <CSFML/CallbackStream.hpp>
 
+#include <cstring>
+
 
 ////////////////////////////////////////////////////////////
 sfSoundBuffer* sfSoundBuffer_createFromFile(const char* filename)
@@ -39,7 +41,7 @@ sfSoundBuffer* sfSoundBuffer_createFromFile(const char* filename)
     if (!soundBuffer.loadFromFile(filename))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(soundBuffer)};
+    return new sfSoundBuffer{std::move(soundBuffer), {}};
 }
 
 
@@ -50,7 +52,7 @@ sfSoundBuffer* sfSoundBuffer_createFromMemory(const void* data, size_t sizeInByt
     if (!soundBuffer.loadFromMemory(data, sizeInBytes))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(soundBuffer)};
+    return new sfSoundBuffer{std::move(soundBuffer), {}};
 }
 
 
@@ -64,7 +66,7 @@ sfSoundBuffer* sfSoundBuffer_createFromStream(sfInputStream* stream)
     if (!soundBuffer.loadFromStream(sfmlStream))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(soundBuffer)};
+    return new sfSoundBuffer{std::move(soundBuffer), {}};
 }
 
 
@@ -85,7 +87,7 @@ sfSoundBuffer* sfSoundBuffer_createFromSamples(
     if (!soundBuffer.loadFromSamples(samples, sampleCount, channelCount, sampleRate, channelMap))
         return nullptr;
 
-    return new sfSoundBuffer{std::move(soundBuffer)};
+    return new sfSoundBuffer{std::move(soundBuffer), {}};
 }
 
 
@@ -142,6 +144,22 @@ unsigned int sfSoundBuffer_getChannelCount(const sfSoundBuffer* soundBuffer)
 {
     assert(soundBuffer);
     return soundBuffer->This.getChannelCount();
+}
+
+
+////////////////////////////////////////////////////////////
+sfSoundChannel* sfSoundBuffer_getChannelMap(const sfSoundBuffer* soundBuffer, size_t* count)
+{
+    assert(soundBuffer);
+    assert(count);
+
+    const auto channels = soundBuffer->This.getChannelMap();
+
+    soundBuffer->Channels.resize(channels.size());
+    std::memcpy(soundBuffer->Channels.data(), channels.data(), sizeof(sfSoundChannel) * channels.size());
+
+    *count = soundBuffer->Channels.size();
+    return soundBuffer->Channels.data();
 }
 
 

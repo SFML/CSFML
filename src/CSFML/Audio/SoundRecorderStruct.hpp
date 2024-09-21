@@ -85,6 +85,7 @@ private:
 ////////////////////////////////////////////////////////////
 struct sfSoundRecorder
 {
-    sfSoundRecorderImpl This;
-    std::string         DeviceName;
+    sfSoundRecorderImpl                 This;
+    mutable std::vector<sfSoundChannel> Channels;
+    std::string                         DeviceName;
 };

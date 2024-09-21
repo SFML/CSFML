@@ -29,6 +29,7 @@
 #include <CSFML/Audio/SoundRecorderStruct.hpp>
 
 #include <cassert>
+#include <cstring>
 
 
 ////////////////////////////////////////////////////////////
@@ -37,7 +38,7 @@ sfSoundRecorder* sfSoundRecorder_create(sfSoundRecorderStartCallback   onStart,
                                         sfSoundRecorderStopCallback    onStop,
                                         void*                          userData)
 {
-    return new sfSoundRecorder{{onStart, onProcess, onStop, userData}, {}};
+    return new sfSoundRecorder{{onStart, onProcess, onStop, userData}, {}, ""};
 }
 
 
@@ -142,4 +143,20 @@ unsigned int sfSoundRecorder_getChannelCount(const sfSoundRecorder* soundRecorde
 {
     assert(soundRecorder);
     return soundRecorder->This.getChannelCount();
+}
+
+
+////////////////////////////////////////////////////////////
+sfSoundChannel* sfSoundRecorder_getChannelMap(const sfSoundRecorder* soundRecorder, size_t* count)
+{
+    assert(soundRecorder);
+    assert(count);
+
+    const auto channels = soundRecorder->This.getChannelMap();
+
+    soundRecorder->Channels.resize(channels.size());
+    std::memcpy(soundRecorder->Channels.data(), channels.data(), sizeof(sfSoundChannel) * channels.size());
+
+    *count = soundRecorder->Channels.size();
+    return soundRecorder->Channels.data();
 }

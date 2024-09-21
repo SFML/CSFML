@@ -27,6 +27,8 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Audio/SoundChannel.h>
+
 #include <SFML/Audio/SoundBuffer.hpp>
 
 
@@ -35,5 +37,6 @@
 ////////////////////////////////////////////////////////////
 struct sfSoundBuffer
 {
-    sf::SoundBuffer This;
+    sf::SoundBuffer                     This;
+    mutable std::vector<sfSoundChannel> Channels;
 };

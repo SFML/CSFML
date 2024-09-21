@@ -27,20 +27,24 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Audio/SoundChannel.h>
-#include <CSFML/CallbackStream.hpp>
+#include <CSFML/Audio/SoundSourceCone.h>
 
-#include <SFML/Audio/Music.hpp>
-
-#include <vector>
+#include <SFML/Audio/SoundSource.hpp>
 
 
 ////////////////////////////////////////////////////////////
-// Internal structure of sfMusic
+// Convert sf::SoundSource::Cone to sfSoundSourceCone
 ////////////////////////////////////////////////////////////
-struct sfMusic
+[[nodiscard]] inline sfSoundSourceCone convertCone(const sf::SoundSource::Cone cone)
 {
-    sf::Music                           This;
-    mutable std::vector<sfSoundChannel> Channels;
-    CallbackStream                      Stream;
-};
+    return {cone.innerAngle.asDegrees(), cone.outerAngle.asDegrees(), cone.outerGain};
+}
+
+
+////////////////////////////////////////////////////////////
+// Convert sfSoundSourceCone to sf::SoundSource::Cone
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sf::SoundSource::Cone convertCone(const sfSoundSourceCone cone)
+{
+    return {sf::degrees(cone.innerAngle), sf::degrees(cone.outerAngle), cone.outerGain};
+}

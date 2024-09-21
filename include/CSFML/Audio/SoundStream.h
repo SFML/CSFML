@@ -29,7 +29,9 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/Export.h>
 
+#include <CSFML/Audio/EffectProcessor.h>
 #include <CSFML/Audio/SoundChannel.h>
+#include <CSFML/Audio/SoundSourceCone.h>
 #include <CSFML/Audio/SoundStatus.h>
 #include <CSFML/Audio/Types.h>
 #include <CSFML/System/Time.h>
@@ -156,6 +158,20 @@ CSFML_AUDIO_API unsigned int sfSoundStream_getChannelCount(const sfSoundStream* 
 CSFML_AUDIO_API unsigned int sfSoundStream_getSampleRate(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the map of position in sample frame to sound channel
+///
+/// This is used to map a sample in the sample stream to a
+/// position during spatialization.
+///
+/// \param soundStream Sound stream object
+/// \param count       Pointer to a variable that will be filled with the number of channels in the map
+///
+/// \return Map of position in sample frame to sound channel
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfSoundChannel* sfSoundStream_getChannelMap(const sfSoundStream* soundStream, size_t* count);
+
+////////////////////////////////////////////////////////////
 /// \brief Set the pitch of a sound stream
 ///
 /// The pitch represents the perceived fundamental frequency
@@ -171,6 +187,20 @@ CSFML_AUDIO_API unsigned int sfSoundStream_getSampleRate(const sfSoundStream* so
 CSFML_AUDIO_API void sfSoundStream_setPitch(sfSoundStream* soundStream, float pitch);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the pan of the sound
+///
+/// Using panning, a mono sound can be panned between
+/// stereo channels. When the pan is set to -1, the sound
+/// is played only on the left channel, when the pan is set
+/// to +1, the sound is played only on the right channel.
+///
+/// \param soundStream Sound stream object
+/// \param pan         New pan to apply to the sound [-1, +1]
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setPan(sfSoundStream* soundStream, float pan);
+
+////////////////////////////////////////////////////////////
 /// \brief Set the volume of a sound stream
 ///
 /// The volume is a value between 0 (mute) and 100 (full volume).
@@ -181,6 +211,20 @@ CSFML_AUDIO_API void sfSoundStream_setPitch(sfSoundStream* soundStream, float pi
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API void sfSoundStream_setVolume(sfSoundStream* soundStream, float volume);
+
+////////////////////////////////////////////////////////////
+/// \brief Set whether spatialization of the sound is enabled
+///
+/// Spatialization is the application of various effects to
+/// simulate a sound being emitted at a virtual position in
+/// 3D space and exhibiting various physical phenomena such as
+/// directional attenuation and doppler shift.
+///
+/// \param soundStream Sound stream object
+/// \param enabled     `true` to enable spatialization, `false` to disable
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setSpatializationEnabled(sfSoundStream* soundStream, bool enabled);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the 3D position of a sound stream in the audio scene
@@ -194,6 +238,74 @@ CSFML_AUDIO_API void sfSoundStream_setVolume(sfSoundStream* soundStream, float v
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API void sfSoundStream_setPosition(sfSoundStream* soundStream, sfVector3f position);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the 3D direction of the sound in the audio scene
+///
+/// The direction defines where the sound source is facing
+/// in 3D space. It will affect how the sound is attenuated
+/// if facing away from the listener.
+/// The default direction of a sound is (0, 0, -1).
+///
+/// \param soundStream Sound stream object
+/// \param direction   Direction of the sound in the scene
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setDirection(sfSoundStream* soundStream, sfVector3f direction);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the cone properties of the sound in the audio scene
+///
+/// The cone defines how directional attenuation is applied.
+/// The default cone of a sound is (2 * PI, 2 * PI, 1).
+///
+/// \param soundStream Sound stream object
+/// \param cone        Cone properties of the sound in the scene
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setCone(sfSoundStream* soundStream, sfSoundSourceCone cone);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the 3D velocity of the sound in the audio scene
+///
+/// The velocity is used to determine how to doppler shift
+/// the sound. Sounds moving towards the listener will be
+/// perceived to have a higher pitch and sounds moving away
+/// from the listener will be perceived to have a lower pitch.
+///
+/// \param soundStream Sound stream object
+/// \param velocity    Velocity of the sound in the scene
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setVelocity(sfSoundStream* soundStream, sfVector3f velocity);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the doppler factor of the sound
+///
+/// The doppler factor determines how strong the doppler
+/// shift will be.
+///
+/// \param soundStream Sound stream object
+/// \param factor      New doppler factor to apply to the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setDopplerFactor(sfSoundStream* soundStream, float factor);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the directional attenuation factor of the sound
+///
+/// Depending on the virtual position of an output channel
+/// relative to the listener (such as in surround sound
+/// setups), sounds will be attenuated when emitting them
+/// from certain channels. This factor determines how strong
+/// the attenuation based on output channel position
+/// relative to the listener is.
+///
+/// \param soundStream Sound stream object
+/// \param factor      New directional attenuation factor to apply to the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setDirectionalAttenuationFactor(sfSoundStream* soundStream, float factor);
 
 ////////////////////////////////////////////////////////////
 /// \brief Make a sound stream's position relative to the listener or absolute
@@ -225,6 +337,48 @@ CSFML_AUDIO_API void sfSoundStream_setRelativeToListener(sfSoundStream* soundStr
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API void sfSoundStream_setMinDistance(sfSoundStream* soundStream, float distance);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the maximum distance of the sound
+///
+/// The "maximum distance" of a sound is the minimum
+/// distance at which it is heard at its minimum volume. Closer
+/// than the maximum distance, it will start to fade in according
+/// to its attenuation factor.
+/// The default value of the maximum distance is the maximum
+/// value a float can represent.
+///
+/// \param soundStream Sound stream object
+/// \param distance    New maximum distance of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setMaxDistance(sfSoundStream* soundStream, float distance);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the minimum gain of the sound
+///
+/// When the sound is further away from the listener than
+/// the "maximum distance" the attenuated gain is clamped
+/// so it cannot go below the minimum gain value.
+///
+/// \param soundStream Sound stream object
+/// \param gain        New minimum gain of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setMinGain(sfSoundStream* soundStream, float gain);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the maximum gain of the sound
+///
+/// When the sound is closer from the listener than
+/// the "minimum distance" the attenuated gain is clamped
+/// so it cannot go above the maximum gain value.
+///
+/// \param soundStream Sound stream object
+/// \param gain        New maximum gain of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setMaxGain(sfSoundStream* soundStream, float gain);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the attenuation factor of a sound stream
@@ -281,6 +435,16 @@ CSFML_AUDIO_API void sfSoundStream_setLooping(sfSoundStream* soundStream, bool l
 CSFML_AUDIO_API float sfSoundStream_getPitch(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the pan of the sound
+///
+/// \param soundStream Sound stream object
+///
+/// \return Pan of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSoundStream_getPan(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the volume of a sound stream
 ///
 /// \param soundStream Sound stream object
@@ -291,6 +455,16 @@ CSFML_AUDIO_API float sfSoundStream_getPitch(const sfSoundStream* soundStream);
 CSFML_AUDIO_API float sfSoundStream_getVolume(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
+/// \brief Tell whether spatialization of the sound is enabled
+///
+/// \param soundStream Sound stream object
+///
+/// \return `true` if spatialization is enabled, `false` if it's disabled
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API bool sfSoundStream_isSpatializationEnabled(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the 3D position of a sound stream in the audio scene
 ///
 /// \param soundStream Sound stream object
@@ -299,6 +473,56 @@ CSFML_AUDIO_API float sfSoundStream_getVolume(const sfSoundStream* soundStream);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API sfVector3f sfSoundStream_getPosition(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the 3D direction of the sound in the audio scene
+///
+/// \param soundStream Sound stream object
+///
+/// \return Direction of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfVector3f sfSoundStream_getDirection(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the cone properties of the sound in the audio scene
+///
+/// \param soundStream Sound stream object
+///
+/// \return Cone properties of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfSoundSourceCone sfSoundStream_getCone(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the 3D velocity of the sound in the audio scene
+///
+/// \param soundStream Sound stream object
+///
+/// \return Velocity of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API sfVector3f sfSoundStream_getVelocity(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the doppler factor of the sound
+///
+/// \param soundStream Sound stream object
+///
+/// \return Doppler factor of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSoundStream_getDopplerFactor(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the directional attenuation factor of the sound
+///
+/// \param soundStream Sound stream object
+///
+/// \return Directional attenuation factor of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSoundStream_getDirectionalAttenuationFactor(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
 /// \brief Tell whether a sound stream's position is relative to the
@@ -322,6 +546,36 @@ CSFML_AUDIO_API bool sfSoundStream_isRelativeToListener(const sfSoundStream* sou
 CSFML_AUDIO_API float sfSoundStream_getMinDistance(const sfSoundStream* soundStream);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the maximum distance of the sound
+///
+/// \param soundStream Sound stream object
+///
+/// \return Maximum distance of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSoundStream_getMaxDistance(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the minimum gain of the sound
+///
+/// \param soundStream Sound stream object
+///
+/// \return Minimum gain of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSoundStream_getMinGain(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the maximum gain of the sound
+///
+/// \param soundStream Sound stream object
+///
+/// \return Maximum gain of the sound
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API float sfSoundStream_getMaxGain(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the attenuation factor of a sound stream
 ///
 /// \param soundStream Sound stream object
@@ -340,6 +594,18 @@ CSFML_AUDIO_API float sfSoundStream_getAttenuation(const sfSoundStream* soundStr
 ///
 ////////////////////////////////////////////////////////////
 CSFML_AUDIO_API bool sfSoundStream_isLooping(const sfSoundStream* soundStream);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the effect processor to be applied to the sound
+///
+/// The effect processor is a callable that will be called
+/// with sound data to be processed.
+///
+/// \param soundStream Sound stream object
+/// \param effectProcessor The effect processor to attach to this sound, attach an empty processor to disable processing
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setEffectProcessor(sfSoundStream* soundStream, sfEffectProcessor effectProcessor);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current playing position of a sound stream

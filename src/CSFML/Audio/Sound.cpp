@@ -25,6 +25,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Audio/ConvertCone.hpp>
 #include <CSFML/Audio/Sound.h>
 #include <CSFML/Audio/SoundStruct.hpp>
 #include <CSFML/System/ConvertVector3.hpp>
@@ -130,6 +131,14 @@ void sfSound_setPitch(sfSound* sound, float pitch)
 
 
 ////////////////////////////////////////////////////////////
+void sfSound_setPan(sfSound* sound, float pan)
+{
+    assert(sound);
+    sound->This.setPan(pan);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfSound_setVolume(sfSound* sound, float volume)
 {
     assert(sound);
@@ -138,10 +147,58 @@ void sfSound_setVolume(sfSound* sound, float volume)
 
 
 ////////////////////////////////////////////////////////////
+void sfSound_setSpatializationEnabled(sfSound* sound, bool enabled)
+{
+    assert(sound);
+    sound->This.setSpatializationEnabled(enabled);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfSound_setPosition(sfSound* sound, sfVector3f position)
 {
     assert(sound);
     sound->This.setPosition(convertVector3(position));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSound_setDirection(sfSound* sound, sfVector3f direction)
+{
+    assert(sound);
+    sound->This.setDirection(convertVector3(direction));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSound_setCone(sfSound* sound, sfSoundSourceCone cone)
+{
+    assert(sound);
+    sound->This.setCone(convertCone(cone));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSound_setVelocity(sfSound* sound, sfVector3f velocity)
+{
+    assert(sound);
+    sound->This.setVelocity(convertVector3(velocity));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSound_setDopplerFactor(sfSound* sound, float factor)
+{
+    assert(sound);
+    sound->This.setDopplerFactor(factor);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSound_setDirectionalAttenuationFactor(sfSound* sound, float factor)
+{
+    assert(sound);
+    sound->This.setDirectionalAttenuationFactor(factor);
 }
 
 
@@ -162,6 +219,30 @@ void sfSound_setMinDistance(sfSound* sound, float distance)
 
 
 ////////////////////////////////////////////////////////////
+void sfSound_setMaxDistance(sfSound* sound, float distance)
+{
+    assert(sound);
+    sound->This.setMaxDistance(distance);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSound_setMinGain(sfSound* sound, float gain)
+{
+    assert(sound);
+    sound->This.setMinGain(gain);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSound_setMaxGain(sfSound* sound, float gain)
+{
+    assert(sound);
+    sound->This.setMaxGain(gain);
+}
+
+
+////////////////////////////////////////////////////////////
 void sfSound_setAttenuation(sfSound* sound, float attenuation)
 {
     assert(sound);
@@ -178,10 +259,40 @@ void sfSound_setPlayingOffset(sfSound* sound, sfTime timeOffset)
 
 
 ////////////////////////////////////////////////////////////
+void sfSound_setEffectProcessor(sfSound* sound, sfEffectProcessor effectProcessor)
+{
+    assert(sound);
+
+    if (!effectProcessor)
+    {
+        sound->This.setEffectProcessor(nullptr);
+    }
+    else
+    {
+        sound->This.setEffectProcessor(
+            [effectProcessor](const float*  inputFrames,
+                              unsigned int& inputFrameCount,
+                              float*        outputFrames,
+                              unsigned int& outputFrameCount,
+                              unsigned int  frameChannelCount)
+            { effectProcessor(inputFrames, &inputFrameCount, outputFrames, &outputFrameCount, frameChannelCount); });
+    }
+}
+
+
+////////////////////////////////////////////////////////////
 float sfSound_getPitch(const sfSound* sound)
 {
     assert(sound);
     return sound->This.getPitch();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSound_getPan(const sfSound* sound)
+{
+    assert(sound);
+    return sound->This.getPan();
 }
 
 
@@ -194,10 +305,58 @@ float sfSound_getVolume(const sfSound* sound)
 
 
 ////////////////////////////////////////////////////////////
+bool sfSound_isSpatializationEnabled(const sfSound* sound)
+{
+    assert(sound);
+    return sound->This.isSpatializationEnabled();
+}
+
+
+////////////////////////////////////////////////////////////
 sfVector3f sfSound_getPosition(const sfSound* sound)
 {
     assert(sound);
     return convertVector3(sound->This.getPosition());
+}
+
+
+////////////////////////////////////////////////////////////
+sfVector3f sfSound_getDirection(const sfSound* sound)
+{
+    assert(sound);
+    return convertVector3(sound->This.getDirection());
+}
+
+
+////////////////////////////////////////////////////////////
+sfSoundSourceCone sfSound_getCone(const sfSound* sound)
+{
+    assert(sound);
+    return convertCone(sound->This.getCone());
+}
+
+
+////////////////////////////////////////////////////////////
+sfVector3f sfSound_getVelocity(const sfSound* sound)
+{
+    assert(sound);
+    return convertVector3(sound->This.getVelocity());
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSound_getDopplerFactor(const sfSound* sound)
+{
+    assert(sound);
+    return sound->This.getDopplerFactor();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSound_getDirectionalAttenuationFactor(const sfSound* sound)
+{
+    assert(sound);
+    return sound->This.getDopplerFactor();
 }
 
 
@@ -214,6 +373,30 @@ float sfSound_getMinDistance(const sfSound* sound)
 {
     assert(sound);
     return sound->This.getMinDistance();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSound_getMaxDistance(const sfSound* sound)
+{
+    assert(sound);
+    return sound->This.getMaxDistance();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSound_getMinGain(const sfSound* sound)
+{
+    assert(sound);
+    return sound->This.getMinGain();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfSound_getMaxGain(const sfSound* sound)
+{
+    assert(sound);
+    return sound->This.getMaxGain();
 }
 
 
