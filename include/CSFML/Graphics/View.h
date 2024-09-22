@@ -118,6 +118,29 @@ CSFML_GRAPHICS_API void sfView_setRotation(sfView* view, float angle);
 CSFML_GRAPHICS_API void sfView_setViewport(sfView* view, sfFloatRect viewport);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the target scissor rectangle
+///
+/// The scissor rectangle, expressed as a factor (between 0 and 1) of
+/// the RenderTarget, specifies the region of the RenderTarget whose
+/// pixels are able to be modified by draw or clear operations.
+/// Any pixels which lie outside of the scissor rectangle will
+/// not be modified by draw or clear operations.
+/// For example, a scissor rectangle which only allows modifications
+/// to the right side of the target would be defined
+/// with `sfView_setScissor(view, (sfFloatRect){{0.5f, 0.f}, {0.5f, 1.f}})`.
+/// By default, a view has a scissor rectangle which allows
+/// modifications to the entire target. This is equivalent to
+/// disabling the scissor test entirely. Passing the default
+/// scissor rectangle to this function will also disable
+/// scissor testing.
+///
+/// \param view    View object
+/// \param scissor New scissor rectangle
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfView_setScissor(sfView* view, sfFloatRect scissor);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the center of a view
 ///
 /// \param view View object
@@ -156,6 +179,16 @@ CSFML_GRAPHICS_API float sfView_getRotation(const sfView* view);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfFloatRect sfView_getViewport(const sfView* view);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the scissor rectangle of the view
+///
+/// \param view View object
+///
+/// \return Scissor rectangle, expressed as a factor of the target size
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfFloatRect sfView_getScissor(const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Move a view relatively to its current position

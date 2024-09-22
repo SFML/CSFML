@@ -29,6 +29,7 @@
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/ConvertRenderStates.hpp>
+#include <CSFML/Graphics/ConvertStencil.hpp>
 #include <CSFML/Graphics/ConvexShapeStruct.hpp>
 #include <CSFML/Graphics/RectangleShapeStruct.hpp>
 #include <CSFML/Graphics/RenderTexture.h>
@@ -109,6 +110,22 @@ void sfRenderTexture_clear(sfRenderTexture* renderTexture, sfColor color)
 
 
 ////////////////////////////////////////////////////////////
+void sfRenderTexture_clearStencil(sfRenderTexture* renderTexture, sfStencilValue stencilValue)
+{
+    assert(renderTexture);
+    renderTexture->This.clearStencil(convertStencilValue(stencilValue));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfRenderTexture_clearColorAndStencil(sfRenderTexture* renderTexture, sfColor color, sfStencilValue stencilValue)
+{
+    assert(renderTexture);
+    renderTexture->This.clear(convertColor(color), convertStencilValue(stencilValue));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderTexture_setView(sfRenderTexture* renderTexture, const sfView* view)
 {
     assert(renderTexture);
@@ -140,6 +157,15 @@ sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, cons
     assert(renderTexture);
     assert(view);
     return convertRect(renderTexture->This.getViewport(view->This));
+}
+
+
+////////////////////////////////////////////////////////////
+sfIntRect sfRenderTexture_getScissor(const sfRenderTexture* renderTexture, const sfView* view)
+{
+    assert(renderTexture);
+    assert(view);
+    return convertRect(renderTexture->This.getScissor(view->This));
 }
 
 

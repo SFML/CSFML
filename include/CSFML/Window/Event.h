@@ -52,6 +52,7 @@ typedef enum
     sfEvtMouseButtonPressed,     ///< A mouse button was pressed (data in event.mouseButton)
     sfEvtMouseButtonReleased,    ///< A mouse button was released (data in event.mouseButton)
     sfEvtMouseMoved,             ///< The mouse cursor moved (data in event.mouseMove)
+    sfEvtMouseMovedRaw,          ///< The mouse cursor moved (data in event.mouseMove)
     sfEvtMouseEntered,           ///< The mouse cursor entered the area of the window (no data)
     sfEvtMouseLeft,              ///< The mouse cursor left the area of the window (no data)
     sfEvtJoystickButtonPressed,  ///< A joystick button was pressed (data in event.joystickButton)
@@ -100,9 +101,18 @@ typedef struct
 typedef struct
 {
     sfEventType type;
-    int         x;
-    int         y;
+    sfVector2i  position;
 } sfMouseMoveEvent;
+
+////////////////////////////////////////////////////////////
+/// \brief Mouse move raw event parameters
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    sfEventType type;
+    sfVector2i  delta;
+} sfMouseMoveRawEvent;
 
 ////////////////////////////////////////////////////////////
 /// \brief Mouse buttons events parameters
@@ -112,8 +122,7 @@ typedef struct
 {
     sfEventType   type;
     sfMouseButton button;
-    int           x;
-    int           y;
+    sfVector2i    position;
 } sfMouseButtonEvent;
 
 ////////////////////////////////////////////////////////////
@@ -125,8 +134,7 @@ typedef struct
     sfEventType  type;
     sfMouseWheel wheel;
     float        delta;
-    int          x;
-    int          y;
+    sfVector2i   position;
 } sfMouseWheelScrollEvent;
 
 ////////////////////////////////////////////////////////////
@@ -168,9 +176,8 @@ typedef struct
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    sfEventType  type;
-    unsigned int width;
-    unsigned int height;
+    sfEventType type;
+    sfVector2u  size;
 } sfSizeEvent;
 
 ////////////////////////////////////////////////////////////
@@ -181,8 +188,7 @@ typedef struct
 {
     sfEventType  type;
     unsigned int finger;
-    int          x;
-    int          y;
+    sfVector2i   position;
 } sfTouchEvent;
 
 ////////////////////////////////////////////////////////////
@@ -193,9 +199,7 @@ typedef struct
 {
     sfEventType  type;
     sfSensorType sensorType;
-    float        x;
-    float        y;
-    float        z;
+    sfVector3f   value;
 } sfSensorEvent;
 
 ////////////////////////////////////////////////////////////
@@ -209,6 +213,7 @@ typedef union
     sfKeyEvent              key;              ///< Key event parameters
     sfTextEvent             text;             ///< Text event parameters
     sfMouseMoveEvent        mouseMove;        ///< Mouse move event parameters
+    sfMouseMoveRawEvent     mouseMoveRaw;     ///< Mouse move raw event parameters
     sfMouseButtonEvent      mouseButton;      ///< Mouse button event parameters
     sfMouseWheelScrollEvent mouseWheelScroll; ///< Mouse wheel event parameters
     sfJoystickMoveEvent     joystickMove;     ///< Joystick move event parameters

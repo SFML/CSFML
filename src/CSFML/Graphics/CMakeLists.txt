@@ -14,6 +14,7 @@ set(SRC
     ${SRCROOT}/ConvertColor.hpp
     ${SRCROOT}/ConvertRect.hpp
     ${SRCROOT}/ConvertRenderStates.hpp
+    ${SRCROOT}/ConvertStencil.hpp
     ${SRCROOT}/ConvertTransform.hpp
     ${SRCROOT}/ConvexShape.cpp
     ${SRCROOT}/ConvexShapeStruct.hpp
@@ -47,6 +48,8 @@ set(SRC
     ${SRCROOT}/Sprite.cpp
     ${SRCROOT}/SpriteStruct.hpp
     ${INCROOT}/Sprite.h
+    ${INCROOT}/StencilMode.h
+    ${SRCROOT}/StencilMode.cpp
     ${SRCROOT}/Text.cpp
     ${SRCROOT}/TextStruct.hpp
     ${INCROOT}/Text.h

@@ -30,6 +30,7 @@
 #include <CSFML/Graphics/ConvertColor.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/ConvertRenderStates.hpp>
+#include <CSFML/Graphics/ConvertStencil.hpp>
 #include <CSFML/Graphics/ConvexShapeStruct.hpp>
 #include <CSFML/Graphics/ImageStruct.hpp>
 #include <CSFML/Graphics/RectangleShapeStruct.hpp>
@@ -149,11 +150,11 @@ bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
 
 
 ////////////////////////////////////////////////////////////
-bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event)
+bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfTime timeout, sfEvent* event)
 {
     assert(renderWindow);
     assert(event);
-    return convertEvent(renderWindow->This.waitEvent(), event);
+    return convertEvent(renderWindow->This.waitEvent(sf::microseconds(timeout.microseconds)), event);
 }
 
 
@@ -335,6 +336,22 @@ void sfRenderWindow_clear(sfRenderWindow* renderWindow, sfColor color)
 
 
 ////////////////////////////////////////////////////////////
+void sfRenderWindow_clearStencil(sfRenderWindow* renderWindow, sfStencilValue stencilValue)
+{
+    assert(renderWindow);
+    renderWindow->This.clearStencil(convertStencilValue(stencilValue));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfRenderWindow_clearColorAndStencil(sfRenderWindow* renderWindow, sfColor color, sfStencilValue stencilValue)
+{
+    assert(renderWindow);
+    renderWindow->This.clear(convertColor(color), convertStencilValue(stencilValue));
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderWindow_setView(sfRenderWindow* renderWindow, const sfView* view)
 {
     assert(renderWindow);
@@ -366,6 +383,15 @@ sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const s
     assert(renderWindow);
     assert(view);
     return convertRect(renderWindow->This.getViewport(view->This));
+}
+
+
+////////////////////////////////////////////////////////////
+sfIntRect sfRenderWindow_getScissor(const sfRenderWindow* renderWindow, const sfView* view)
+{
+    assert(renderWindow);
+    assert(view);
+    return convertRect(renderWindow->This.getScissor(view->This));
 }
 
 

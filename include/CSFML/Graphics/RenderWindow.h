@@ -33,8 +33,10 @@
 #include <CSFML/Graphics/PrimitiveType.h>
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/RenderStates.h>
+#include <CSFML/Graphics/StencilMode.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/Vertex.h>
+#include <CSFML/System/Time.h>
 #include <CSFML/System/Vector2.h>
 #include <CSFML/Window/Event.h>
 #include <CSFML/Window/VideoMode.h>
@@ -122,12 +124,18 @@ CSFML_GRAPHICS_API bool sfRenderWindow_isOpen(const sfRenderWindow* renderWindow
 CSFML_GRAPHICS_API sfContextSettings sfRenderWindow_getSettings(const sfRenderWindow* renderWindow);
 
 ////////////////////////////////////////////////////////////
-/// \brief Get the event on top of event queue of a render window, if any, and pop it
+/// \brief Pop the event on top of event queue, if any, and return it
+///
+/// This function is not blocking: if there's no pending event then
+/// it will return false and leave \a event unmodified.
+/// Note that more than one event may be present in the event queue,
+/// thus you should always call this function in a loop
+/// to make sure that you process every pending event.
 ///
 /// \param renderWindow Render window object
 /// \param event        Event to fill, if any
 ///
-/// \return true if an event was returned, false if event queue was empty
+/// \return true if an event was returned, or false if the event queue was empty
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event);
@@ -135,13 +143,28 @@ CSFML_GRAPHICS_API bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, s
 ////////////////////////////////////////////////////////////
 /// \brief Wait for an event and return it
 ///
-/// \param renderWindow Render window object
-/// \param event        Event to fill
+/// This function is blocking: if there's no pending event then
+/// it will wait until an event is received or until the provided
+/// timeout elapses. Only if an error or a timeout occurs the
+/// function returns `false`.
+/// This function is typically used when you have a thread that is
+/// dedicated to events handling: you want to make this thread sleep
+/// as long as no new event is received.
+/// \code
+/// while (sfRenderWindow_waitEvent(renderWindow, timeout, &event))
+/// {
+///    // process event...
+/// }
+/// \endcode
 ///
-/// \return false if an error occurred
+/// \param renderWindow Render window object
+/// \param timeout      Maximum time to wait (`sfTime_Zero` for infinite)
+/// \param event        Event to fill, if any
+///
+/// \return true if an event was returned, false if event queue was empty or function timed out
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfEvent* event);
+CSFML_GRAPHICS_API bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfTime timeout, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a render window
@@ -378,6 +401,31 @@ CSFML_GRAPHICS_API sfWindowHandle sfRenderWindow_getNativeHandle(const sfRenderW
 CSFML_GRAPHICS_API void sfRenderWindow_clear(sfRenderWindow* renderWindow, sfColor color);
 
 ////////////////////////////////////////////////////////////
+/// \brief Clear the stencil buffer to a specific value
+///
+/// The specified value is truncated to the bit width of
+/// the current stencil buffer.
+///
+/// \param renderWindow Render window object
+/// \param stencilValue Stencil value to clear to
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_clearStencil(sfRenderWindow* renderWindow, sfStencilValue stencilValue);
+
+////////////////////////////////////////////////////////////
+/// \brief Clear the entire target with a single color and stencil value
+///
+/// The specified stencil value is truncated to the bit
+/// width of the current stencil buffer.
+///
+/// \param renderWindow Render window object
+/// \param color        Fill color to use to clear the render target
+/// \param stencilValue Stencil value to clear to
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_clearColorAndStencil(sfRenderWindow* renderWindow, sfColor color, sfStencilValue stencilValue);
+
+////////////////////////////////////////////////////////////
 /// \brief Change the current active view of a render window
 ///
 /// \param renderWindow Render window object
@@ -416,6 +464,22 @@ CSFML_GRAPHICS_API const sfView* sfRenderWindow_getDefaultView(const sfRenderWin
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfIntRect sfRenderWindow_getViewport(const sfRenderWindow* renderWindow, const sfView* view);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the scissor rectangle of a view, applied to this render target
+///
+/// The scissor rectangle is defined in the view as a ratio. This
+/// function simply applies this ratio to the current dimensions
+/// of the render target to calculate the pixels rectangle
+/// that the scissor rectangle actually covers in the target.
+///
+/// \param renderWindow Render window object
+/// \param view         The view for which we want to compute the scissor rectangle
+///
+/// \return Scissor rectangle, expressed in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfIntRect sfRenderWindow_getScissor(const sfRenderWindow* renderWindow, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Convert a point from window coordinates to world coordinates

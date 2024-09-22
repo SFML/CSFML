@@ -33,6 +33,7 @@
 #include <CSFML/Graphics/PrimitiveType.h>
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/RenderStates.h>
+#include <CSFML/Graphics/StencilMode.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/Graphics/Vertex.h>
 #include <CSFML/System/Vector2.h>
@@ -109,6 +110,33 @@ CSFML_GRAPHICS_API void sfRenderTexture_display(sfRenderTexture* renderTexture);
 CSFML_GRAPHICS_API void sfRenderTexture_clear(sfRenderTexture* renderTexture, sfColor color);
 
 ////////////////////////////////////////////////////////////
+/// \brief Clear the stencil buffer to a specific value
+///
+/// The specified value is truncated to the bit width of
+/// the current stencil buffer.
+///
+/// \param renderTexture Render texture object
+/// \param stencilValue  Stencil value to clear to
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderTexture_clearStencil(sfRenderTexture* renderTexture, sfStencilValue stencilValue);
+
+////////////////////////////////////////////////////////////
+/// \brief Clear the entire target with a single color and stencil value
+///
+/// The specified stencil value is truncated to the bit
+/// width of the current stencil buffer.
+///
+/// \param renderTexture Render texture object
+/// \param color         Fill color to use to clear the render target
+/// \param stencilValue  Stencil value to clear to
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderTexture_clearColorAndStencil(sfRenderTexture* renderTexture,
+                                                             sfColor          color,
+                                                             sfStencilValue   stencilValue);
+
+////////////////////////////////////////////////////////////
 /// \brief Change the current active view of a render texture
 ///
 /// \param renderTexture Render texture object
@@ -147,6 +175,22 @@ CSFML_GRAPHICS_API const sfView* sfRenderTexture_getDefaultView(const sfRenderTe
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API sfIntRect sfRenderTexture_getViewport(const sfRenderTexture* renderTexture, const sfView* view);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the scissor rectangle of a view, applied to this render target
+///
+/// The scissor rectangle is defined in the view as a ratio. This
+/// function simply applies this ratio to the current dimensions
+/// of the render target to calculate the pixels rectangle
+/// that the scissor rectangle actually covers in the target.
+///
+/// \param renderTexture Render texture object
+/// \param view          The view for which we want to compute the scissor rectangle
+///
+/// \return Scissor rectangle, expressed in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfIntRect sfRenderTexture_getScissor(const sfRenderTexture* renderTexture, const sfView* view);
 
 ////////////////////////////////////////////////////////////
 /// \brief Convert a point from texture coordinates to world coordinates

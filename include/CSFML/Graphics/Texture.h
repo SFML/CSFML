@@ -58,6 +58,16 @@ typedef enum
 CSFML_GRAPHICS_API sfTexture* sfTexture_create(sfVector2u size);
 
 ////////////////////////////////////////////////////////////
+/// \brief Create a new sRGB-enabled texture
+///
+/// \param size Texture size
+///
+/// \return A new sfTexture object, or NULL if it failed
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfTexture* sfTexture_createSrgb(sfVector2u size);
+
+////////////////////////////////////////////////////////////
 /// \brief Create a new texture from a file
 ///
 /// \param filename Path of the image file to load
