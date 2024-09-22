@@ -93,6 +93,14 @@ void sfView_setViewport(sfView* view, sfFloatRect viewport)
 
 
 ////////////////////////////////////////////////////////////
+void sfView_setScissor(sfView* view, sfFloatRect scissor)
+{
+    assert(view);
+    view->This.setScissor(convertRect(scissor));
+}
+
+
+////////////////////////////////////////////////////////////
 sfVector2f sfView_getCenter(const sfView* view)
 {
     assert(view);
@@ -121,6 +129,14 @@ sfFloatRect sfView_getViewport(const sfView* view)
 {
     assert(view);
     return convertRect(view->This.getViewport());
+}
+
+
+////////////////////////////////////////////////////////////
+sfFloatRect sfView_getScissor(const sfView* view)
+{
+    assert(view);
+    return convertRect(view->This.getScissor());
 }
 
 

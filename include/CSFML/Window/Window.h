@@ -29,6 +29,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Window/Export.h>
 
+#include <CSFML/System/Time.h>
 #include <CSFML/System/Vector2.h>
 #include <CSFML/Window/Event.h>
 #include <CSFML/Window/Types.h>
@@ -201,7 +202,7 @@ CSFML_WINDOW_API sfContextSettings sfWindow_getSettings(const sfWindow* window);
 /// to make sure that you process every pending event.
 ///
 /// \param window Window object
-/// \param event  Event to be returned
+/// \param event  Event to fill, if any
 ///
 /// \return true if an event was returned, or false if the event queue was empty
 ///
@@ -212,20 +213,27 @@ CSFML_WINDOW_API bool sfWindow_pollEvent(sfWindow* window, sfEvent* event);
 /// \brief Wait for an event and return it
 ///
 /// This function is blocking: if there's no pending event then
-/// it will wait until an event is received.
-/// After this function returns (and no error occurred),
-/// the \a event object is always valid and filled properly.
-/// This function is typically used when you have a thread that
-/// is dedicated to events handling: you want to make this thread
-/// sleep as long as no new event is received.
+/// it will wait until an event is received or until the provided
+/// timeout elapses. Only if an error or a timeout occurs the
+/// function returns `false`.
+/// This function is typically used when you have a thread that is
+/// dedicated to events handling: you want to make this thread sleep
+/// as long as no new event is received.
+/// \code
+/// while (sfWindow_waitEvent(window, timeout, &event))
+/// {
+///    // process event...
+/// }
+/// \endcode
 ///
-/// \param window Window object
-/// \param event  Event to be returned
+/// \param window  Window object
+/// \param timeout Maximum time to wait (`sfTime_Zero` for infinite)
+/// \param event   Event to fill, if any
 ///
-/// \return false if any error occurred
+/// \return true if an event was returned, false if event queue was empty or function timed out
 ///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API bool sfWindow_waitEvent(sfWindow* window, sfEvent* event);
+CSFML_WINDOW_API bool sfWindow_waitEvent(sfWindow* window, sfTime timeout, sfEvent* event);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of a window

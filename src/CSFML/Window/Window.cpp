@@ -123,11 +123,11 @@ bool sfWindow_pollEvent(sfWindow* window, sfEvent* event)
 
 
 ////////////////////////////////////////////////////////////
-bool sfWindow_waitEvent(sfWindow* window, sfEvent* event)
+bool sfWindow_waitEvent(sfWindow* window, sfTime timeout, sfEvent* event)
 {
     assert(window);
     assert(event);
-    return convertEvent(window->This.waitEvent(), event);
+    return convertEvent(window->This.waitEvent(sf::microseconds(timeout.microseconds)), event);
 }
 
 

@@ -49,6 +49,17 @@ sfTexture* sfTexture_create(sfVector2u size)
 
 
 ////////////////////////////////////////////////////////////
+sfTexture* sfTexture_createSrgb(sfVector2u size)
+{
+    auto texture = std::make_unique<sfTexture>();
+    if (!texture->This->resize(convertVector2(size), true))
+        return nullptr;
+
+    return texture.release();
+}
+
+
+////////////////////////////////////////////////////////////
 sfTexture* sfTexture_createFromFile(const char* filename, const sfIntRect* area)
 {
     assert(filename);

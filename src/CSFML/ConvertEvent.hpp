@@ -27,6 +27,8 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/System/ConvertVector3.hpp>
 #include <CSFML/Window/Event.h>
 
 #include <SFML/Window/Event.hpp>
@@ -48,9 +50,8 @@
     }
     else if (const auto* resized = sfmlEvent->getIf<sf::Event::Resized>())
     {
-        event->type        = sfEvtResized;
-        event->size.width  = resized->size.x;
-        event->size.height = resized->size.y;
+        event->type      = sfEvtResized;
+        event->size.size = convertVector2(resized->size);
     }
     else if (sfmlEvent->is<sf::Event::FocusLost>())
     {
@@ -87,31 +88,32 @@
     }
     else if (const auto* mouseWheelScrolled = sfmlEvent->getIf<sf::Event::MouseWheelScrolled>())
     {
-        event->type                   = sfEvtMouseWheelScrolled;
-        event->mouseWheelScroll.wheel = static_cast<sfMouseWheel>(mouseWheelScrolled->wheel);
-        event->mouseWheelScroll.delta = mouseWheelScrolled->delta;
-        event->mouseWheelScroll.x     = mouseWheelScrolled->position.x;
-        event->mouseWheelScroll.y     = mouseWheelScrolled->position.y;
+        event->type                      = sfEvtMouseWheelScrolled;
+        event->mouseWheelScroll.wheel    = static_cast<sfMouseWheel>(mouseWheelScrolled->wheel);
+        event->mouseWheelScroll.delta    = mouseWheelScrolled->delta;
+        event->mouseWheelScroll.position = convertVector2(mouseWheelScrolled->position);
     }
     else if (const auto* mouseButtonPressed = sfmlEvent->getIf<sf::Event::MouseButtonPressed>())
     {
-        event->type               = sfEvtMouseButtonPressed;
-        event->mouseButton.button = static_cast<sfMouseButton>(mouseButtonPressed->button);
-        event->mouseButton.x      = mouseButtonPressed->position.x;
-        event->mouseButton.y      = mouseButtonPressed->position.y;
+        event->type                 = sfEvtMouseButtonPressed;
+        event->mouseButton.button   = static_cast<sfMouseButton>(mouseButtonPressed->button);
+        event->mouseButton.position = convertVector2(mouseButtonPressed->position);
     }
     else if (const auto* mouseButtonReleased = sfmlEvent->getIf<sf::Event::MouseButtonReleased>())
     {
-        event->type               = sfEvtMouseButtonReleased;
-        event->mouseButton.button = static_cast<sfMouseButton>(mouseButtonReleased->button);
-        event->mouseButton.x      = mouseButtonReleased->position.x;
-        event->mouseButton.y      = mouseButtonReleased->position.y;
+        event->type                 = sfEvtMouseButtonReleased;
+        event->mouseButton.button   = static_cast<sfMouseButton>(mouseButtonReleased->button);
+        event->mouseButton.position = convertVector2(mouseButtonReleased->position);
     }
     else if (const auto* mouseMoved = sfmlEvent->getIf<sf::Event::MouseMoved>())
     {
-        event->type        = sfEvtMouseMoved;
-        event->mouseMove.x = mouseMoved->position.x;
-        event->mouseMove.y = mouseMoved->position.y;
+        event->type               = sfEvtMouseMoved;
+        event->mouseMove.position = convertVector2(mouseMoved->position);
+    }
+    else if (const auto* mouseMovedRaw = sfmlEvent->getIf<sf::Event::MouseMovedRaw>())
+    {
+        event->type               = sfEvtMouseMovedRaw;
+        event->mouseMoveRaw.delta = convertVector2(mouseMovedRaw->delta);
     }
     else if (sfmlEvent->is<sf::Event::MouseEntered>())
     {
@@ -152,32 +154,27 @@
     }
     else if (const auto* touchBegan = sfmlEvent->getIf<sf::Event::TouchBegan>())
     {
-        event->type         = sfEvtTouchBegan;
-        event->touch.finger = touchBegan->finger;
-        event->touch.x      = touchBegan->position.x;
-        event->touch.y      = touchBegan->position.y;
+        event->type           = sfEvtTouchBegan;
+        event->touch.finger   = touchBegan->finger;
+        event->touch.position = convertVector2(touchBegan->position);
     }
     else if (const auto* touchMoved = sfmlEvent->getIf<sf::Event::TouchMoved>())
     {
-        event->type         = sfEvtTouchMoved;
-        event->touch.finger = touchMoved->finger;
-        event->touch.x      = touchMoved->position.x;
-        event->touch.y      = touchMoved->position.y;
+        event->type           = sfEvtTouchMoved;
+        event->touch.finger   = touchMoved->finger;
+        event->touch.position = convertVector2(touchMoved->position);
     }
     else if (const auto* touchEnded = sfmlEvent->getIf<sf::Event::TouchEnded>())
     {
-        event->type         = sfEvtTouchEnded;
-        event->touch.finger = touchEnded->finger;
-        event->touch.x      = touchEnded->position.x;
-        event->touch.y      = touchEnded->position.y;
+        event->type           = sfEvtTouchEnded;
+        event->touch.finger   = touchEnded->finger;
+        event->touch.position = convertVector2(touchEnded->position);
     }
     else if (const auto* sensorChanged = sfmlEvent->getIf<sf::Event::SensorChanged>())
     {
         event->type              = sfEvtSensorChanged;
         event->sensor.sensorType = static_cast<sfSensorType>(sensorChanged->type);
-        event->sensor.x          = sensorChanged->value.x;
-        event->sensor.y          = sensorChanged->value.y;
-        event->sensor.z          = sensorChanged->value.z;
+        event->sensor.value      = convertVector3(sensorChanged->value);
     }
 
     return true;
