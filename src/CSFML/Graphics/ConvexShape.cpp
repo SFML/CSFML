@@ -167,7 +167,7 @@ sfTransform sfConvexShape_getInverseTransform(const sfConvexShape* shape)
 void sfConvexShape_setTexture(sfConvexShape* shape, const sfTexture* texture, bool resetRect)
 {
     assert(shape);
-    shape->setTexture(texture ? texture->This : nullptr, resetRect);
+    shape->setTexture(texture, resetRect);
     shape->Texture = texture;
 }
 

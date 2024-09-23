@@ -54,7 +54,7 @@ sfRenderTexture* sfRenderTexture_create(sfVector2u size, const sfContextSettings
     if (!renderTexture->resize(convertVector2(size), params))
         return nullptr;
 
-    renderTexture->Target      = std::make_unique<sfTexture>(const_cast<sf::Texture*>(&renderTexture->getTexture()));
+    renderTexture->Target      = sfTexture{renderTexture->getTexture()};
     renderTexture->DefaultView = sfView{renderTexture->getDefaultView()};
     renderTexture->CurrentView = sfView{renderTexture->getView()};
 
@@ -300,7 +300,7 @@ void sfRenderTexture_resetGLStates(sfRenderTexture* renderTexture)
 const sfTexture* sfRenderTexture_getTexture(const sfRenderTexture* renderTexture)
 {
     assert(renderTexture);
-    return renderTexture->Target.get();
+    return &renderTexture->Target;
 }
 
 

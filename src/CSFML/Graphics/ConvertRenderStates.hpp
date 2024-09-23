@@ -51,7 +51,7 @@
     renderStates.blendMode.alphaDstFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaDstFactor);
     renderStates.blendMode.alphaEquation  = static_cast<sf::BlendMode::Equation>(states->blendMode.alphaEquation);
     renderStates.transform                = convertTransform(states->transform);
-    renderStates.texture                  = states->texture ? states->texture->This : nullptr;
+    renderStates.texture                  = states->texture;
     renderStates.shader                   = states->shader;
     return renderStates;
 }

@@ -167,7 +167,7 @@ sfTransform sfRectangleShape_getInverseTransform(const sfRectangleShape* shape)
 void sfRectangleShape_setTexture(sfRectangleShape* shape, const sfTexture* texture, bool resetRect)
 {
     assert(shape);
-    shape->setTexture(texture ? texture->This : nullptr, resetRect);
+    shape->setTexture(texture, resetRect);
     shape->Texture = texture;
 }
 

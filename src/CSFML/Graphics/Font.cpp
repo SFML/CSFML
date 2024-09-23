@@ -152,7 +152,7 @@ const sfTexture* sfFont_getTexture(sfFont* font, unsigned int characterSize)
 {
     assert(font);
 
-    *font->Textures[characterSize].This = font->getTexture(characterSize);
+    font->Textures[characterSize] = sfTexture{font->getTexture(characterSize)};
 
     return &font->Textures[characterSize];
 }

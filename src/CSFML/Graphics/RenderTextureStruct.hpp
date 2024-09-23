@@ -32,15 +32,13 @@
 
 #include <SFML/Graphics/RenderTexture.hpp>
 
-#include <memory>
-
 
 ////////////////////////////////////////////////////////////
 // Internal structure of sfRenderTexture
 ////////////////////////////////////////////////////////////
 struct sfRenderTexture : sf::RenderTexture
 {
-    std::unique_ptr<const sfTexture> Target;
-    sfView                           DefaultView;
-    sfView                           CurrentView;
+    sfTexture Target;
+    sfView    DefaultView;
+    sfView    CurrentView;
 };

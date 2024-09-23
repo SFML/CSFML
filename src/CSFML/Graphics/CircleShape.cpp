@@ -170,7 +170,7 @@ sfTransform sfCircleShape_getInverseTransform(const sfCircleShape* shape)
 void sfCircleShape_setTexture(sfCircleShape* shape, const sfTexture* texture, bool resetRect)
 {
     assert(shape);
-    shape->setTexture(texture ? texture->This : nullptr, resetRect);
+    shape->setTexture(texture, resetRect);
     shape->Texture = texture;
 }
 

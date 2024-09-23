@@ -40,8 +40,7 @@
 sfSprite* sfSprite_create(const sfTexture* texture)
 {
     assert(texture);
-    assert(texture->This);
-    auto sprite     = new sfSprite(*texture->This);
+    auto sprite     = new sfSprite(*texture);
     sprite->Texture = texture;
     return sprite;
 }
@@ -171,10 +170,10 @@ sfTransform sfSprite_getInverseTransform(const sfSprite* sprite)
 ////////////////////////////////////////////////////////////
 void sfSprite_setTexture(sfSprite* sprite, const sfTexture* texture, bool resetRect)
 {
-    if (texture && texture->This)
+    if (texture)
     {
         assert(sprite);
-        sprite->setTexture(*texture->This, resetRect);
+        sprite->setTexture(*texture, resetRect);
         sprite->Texture = texture;
     }
 }

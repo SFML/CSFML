@@ -33,24 +33,6 @@
 ////////////////////////////////////////////////////////////
 // Internal structure of sfTexture
 ////////////////////////////////////////////////////////////
-struct sfTexture
+struct sfTexture : sf::Texture
 {
-    sfTexture() = default;
-
-    sfTexture(sf::Texture* texture) : This(texture), OwnInstance(false)
-    {
-    }
-
-    sfTexture(const sfTexture& texture) : This(texture.This ? new sf::Texture(*texture.This) : nullptr)
-    {
-    }
-
-    ~sfTexture()
-    {
-        if (OwnInstance)
-            delete This;
-    }
-
-    sf::Texture* This{new sf::Texture};
-    bool         OwnInstance{true};
 };

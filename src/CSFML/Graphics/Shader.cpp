@@ -346,7 +346,8 @@ void sfShader_setTextureUniform(sfShader* shader, const char* name, const sfText
 {
     assert(shader);
     assert(name);
-    shader->setUniform(name, *texture->This);
+    assert(texture);
+    shader->setUniform(name, *texture);
 }
 
 
@@ -419,7 +420,7 @@ void sfShader_setTextureParameter(sfShader* shader, const char* name, const sfTe
     assert(shader);
     assert(name);
     assert(texture);
-    shader->setUniform(name, *texture->This);
+    shader->setUniform(name, *texture);
 }
 
 
