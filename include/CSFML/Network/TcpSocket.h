@@ -153,7 +153,7 @@ CSFML_NETWORK_API void sfTcpSocket_disconnect(sfTcpSocket* socket);
 /// \brief Send raw data to the remote peer of a TCP socket
 ///
 /// To be able to handle partial sends over non-blocking
-/// sockets, use the sfTcpSocket_sendPartial(sfTcpSocket*, const void*, std::size_t, size_t*)
+/// sockets, use the sfTcpSocket_sendPartial(sfTcpSocket*, const void*, size_t, size_t*)
 /// overload instead.
 /// This function will fail if the socket is not connected.
 ///
