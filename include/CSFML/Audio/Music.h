@@ -175,7 +175,7 @@ CSFML_AUDIO_API sfTime sfMusic_getDuration(const sfMusic* music);
 CSFML_AUDIO_API sfTimeSpan sfMusic_getLoopPoints(const sfMusic* music);
 
 ////////////////////////////////////////////////////////////
-/// \brief Sets the beginning and end of the sound's looping sequence using sf::Time
+/// \brief Sets the beginning and end of the sound's looping sequence using sfTime
 ///
 /// Loop points allow one to specify a pair of positions such that, when the music
 /// is enabled for looping, it will seamlessly seek to the beginning whenever it
