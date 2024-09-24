@@ -37,41 +37,28 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename,
                                   const char* geometryShaderFilename,
                                   const char* fragmentShaderFilename)
 {
+    // At least one shader must be provided
+    if (!(vertexShaderFilename || geometryShaderFilename || fragmentShaderFilename))
+        return nullptr;
+
     bool success = false;
     auto shader  = std::make_unique<sfShader>();
-    if (vertexShaderFilename || geometryShaderFilename || fragmentShaderFilename)
+
+    if (!geometryShaderFilename)
     {
-        if (!geometryShaderFilename)
-        {
-            if (!vertexShaderFilename)
-            {
-                // fragment shader only
-                success = shader->loadFromFile(fragmentShaderFilename, sf::Shader::Type::Fragment);
-            }
-            else if (!fragmentShaderFilename)
-            {
-                // vertex shader only
-                success = shader->loadFromFile(vertexShaderFilename, sf::Shader::Type::Vertex);
-            }
-            else
-            {
-                // vertex + fragment shaders
-                success = shader->loadFromFile(vertexShaderFilename, fragmentShaderFilename);
-            }
-        }
-        else
-        {
-            if (!vertexShaderFilename && !fragmentShaderFilename)
-            {
-                // geometry shader only
-                success = shader->loadFromFile(geometryShaderFilename, sf::Shader::Type::Geometry);
-            }
-            else
-            {
-                // vertex + geometry + fragment shaders
-                success = shader->loadFromFile(vertexShaderFilename, geometryShaderFilename, fragmentShaderFilename);
-            }
-        }
+        if (!vertexShaderFilename) // fragment shader only
+            success = shader->loadFromFile(fragmentShaderFilename, sf::Shader::Type::Fragment);
+        else if (!fragmentShaderFilename) // vertex shader only
+            success = shader->loadFromFile(vertexShaderFilename, sf::Shader::Type::Vertex);
+        else // vertex + fragment shaders
+            success = shader->loadFromFile(vertexShaderFilename, fragmentShaderFilename);
+    }
+    else
+    {
+        if (!vertexShaderFilename && !fragmentShaderFilename) // geometry shader only
+            success = shader->loadFromFile(geometryShaderFilename, sf::Shader::Type::Geometry);
+        else // vertex + geometry + fragment shaders
+            success = shader->loadFromFile(vertexShaderFilename, geometryShaderFilename, fragmentShaderFilename);
     }
 
     if (!success)
@@ -84,41 +71,28 @@ sfShader* sfShader_createFromFile(const char* vertexShaderFilename,
 ////////////////////////////////////////////////////////////
 sfShader* sfShader_createFromMemory(const char* vertexShader, const char* geometryShader, const char* fragmentShader)
 {
+    // At least one shader must be provided
+    if (!(vertexShader || geometryShader || fragmentShader))
+        return nullptr;
+
     bool success = false;
     auto shader  = std::make_unique<sfShader>();
-    if (vertexShader || geometryShader || fragmentShader)
+
+    if (!geometryShader)
     {
-        if (!geometryShader)
-        {
-            if (!vertexShader)
-            {
-                // fragment shader only
-                success = shader->loadFromMemory(fragmentShader, sf::Shader::Type::Fragment);
-            }
-            else if (!fragmentShader)
-            {
-                // vertex shader only
-                success = shader->loadFromMemory(vertexShader, sf::Shader::Type::Vertex);
-            }
-            else
-            {
-                // vertex + fragment shaders
-                success = shader->loadFromMemory(vertexShader, fragmentShader);
-            }
-        }
-        else
-        {
-            if (!vertexShader && !fragmentShader)
-            {
-                // geometry shader only
-                success = shader->loadFromMemory(geometryShader, sf::Shader::Type::Geometry);
-            }
-            else
-            {
-                // vertex + geometry + fragment shaders
-                success = shader->loadFromMemory(vertexShader, geometryShader, fragmentShader);
-            }
-        }
+        if (!vertexShader) // fragment shader only
+            success = shader->loadFromMemory(fragmentShader, sf::Shader::Type::Fragment);
+        else if (!fragmentShader) // vertex shader only
+            success = shader->loadFromMemory(vertexShader, sf::Shader::Type::Vertex);
+        else // vertex + fragment shaders
+            success = shader->loadFromMemory(vertexShader, fragmentShader);
+    }
+    else
+    {
+        if (!vertexShader && !fragmentShader) // geometry shader only
+            success = shader->loadFromMemory(geometryShader, sf::Shader::Type::Geometry);
+        else // vertex + geometry + fragment shaders
+            success = shader->loadFromMemory(vertexShader, geometryShader, fragmentShader);
     }
 
     if (!success)
@@ -133,47 +107,44 @@ sfShader* sfShader_createFromStream(sfInputStream* vertexShaderStream,
                                     sfInputStream* geometryShaderStream,
                                     sfInputStream* fragmentShaderStream)
 {
+    // At least one shader must be provided
+    if (!(vertexShaderStream || geometryShaderStream || fragmentShaderStream))
+        return nullptr;
+
     bool success = false;
     auto shader  = std::make_unique<sfShader>();
-    if (vertexShaderStream || geometryShaderStream || fragmentShaderStream)
+
+    if (!geometryShaderStream)
     {
-        if (!geometryShaderStream)
+        if (!vertexShaderStream) // fragment shader only
         {
-            if (!vertexShaderStream)
-            {
-                // fragment shader only
-                CallbackStream stream(fragmentShaderStream);
-                success = shader->loadFromStream(stream, sf::Shader::Type::Fragment);
-            }
-            else if (!fragmentShaderStream)
-            {
-                // vertex shader only
-                CallbackStream stream(vertexShaderStream);
-                success = shader->loadFromStream(stream, sf::Shader::Type::Vertex);
-            }
-            else
-            {
-                // vertex + fragment shaders
-                CallbackStream vertexStream(vertexShaderStream);
-                CallbackStream fragmentStream(fragmentShaderStream);
-                success = shader->loadFromStream(vertexStream, fragmentStream);
-            }
+            CallbackStream stream(fragmentShaderStream);
+            success = shader->loadFromStream(stream, sf::Shader::Type::Fragment);
         }
-        else
+        else if (!fragmentShaderStream) // vertex shader only
         {
-            CallbackStream geometryStream(geometryShaderStream);
-            if (!vertexShaderStream && !fragmentShaderStream)
-            {
-                // geometry shader only
-                success = shader->loadFromStream(geometryStream, sf::Shader::Type::Geometry);
-            }
-            else
-            {
-                // vertex + geometry + fragment shaders
-                CallbackStream vertexStream(vertexShaderStream);
-                CallbackStream fragmentStream(fragmentShaderStream);
-                success = shader->loadFromStream(vertexStream, geometryStream, fragmentStream);
-            }
+            CallbackStream stream(vertexShaderStream);
+            success = shader->loadFromStream(stream, sf::Shader::Type::Vertex);
+        }
+        else // vertex + fragment shaders
+        {
+            CallbackStream vertexStream(vertexShaderStream);
+            CallbackStream fragmentStream(fragmentShaderStream);
+            success = shader->loadFromStream(vertexStream, fragmentStream);
+        }
+    }
+    else
+    {
+        CallbackStream geometryStream(geometryShaderStream);
+        if (!vertexShaderStream && !fragmentShaderStream) // geometry shader only
+        {
+            success = shader->loadFromStream(geometryStream, sf::Shader::Type::Geometry);
+        }
+        else // vertex + geometry + fragment shaders
+        {
+            CallbackStream vertexStream(vertexShaderStream);
+            CallbackStream fragmentStream(fragmentShaderStream);
+            success = shader->loadFromStream(vertexStream, geometryStream, fragmentStream);
         }
     }
 
