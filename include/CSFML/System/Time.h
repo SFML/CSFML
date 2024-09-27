@@ -43,7 +43,7 @@ typedef struct
 /// \brief Predefined "zero" time value
 ///
 ////////////////////////////////////////////////////////////
-CSFML_SYSTEM_API sfTime sfTime_Zero;
+CSFML_SYSTEM_API const sfTime sfTime_Zero;
 
 ////////////////////////////////////////////////////////////
 /// \brief Return a time value as a number of seconds
