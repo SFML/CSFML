@@ -45,33 +45,26 @@ const sfColor sfTransparent = sfColor_fromRGBA(0, 0, 0, 0);
 ////////////////////////////////////////////////////////////
 sfColor sfColor_fromRGB(uint8_t red, uint8_t green, uint8_t blue)
 {
-    return sfColor_fromRGBA(red, green, blue, 255);
+    return {red, green, blue, 255};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfColor sfColor_fromRGBA(uint8_t red, uint8_t green, uint8_t blue, uint8_t alpha)
 {
-    sfColor color;
-
-    color.r = red;
-    color.g = green;
-    color.b = blue;
-    color.a = alpha;
-
-    return color;
+    return {red, green, blue, alpha};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfColor sfColor_fromInteger(uint32_t color)
 {
-    auto red   = static_cast<uint8_t>((color & 0xff000000) >> 24);
-    auto green = static_cast<uint8_t>((color & 0x00ff0000) >> 16);
-    auto blue  = static_cast<uint8_t>((color & 0x0000ff00) >> 8);
-    auto alpha = static_cast<uint8_t>((color & 0x000000ff) >> 0);
-
-    return sfColor_fromRGBA(red, green, blue, alpha);
+    return {
+        static_cast<uint8_t>((color & 0xff000000) >> 24),
+        static_cast<uint8_t>((color & 0x00ff0000) >> 16),
+        static_cast<uint8_t>((color & 0x0000ff00) >> 8),
+        static_cast<uint8_t>((color & 0x000000ff) >> 0),
+    };
 }
 
 
@@ -85,43 +78,34 @@ uint32_t sfColor_toInteger(sfColor color)
 ////////////////////////////////////////////////////////////
 sfColor sfColor_add(sfColor color1, sfColor color2)
 {
-    int red   = std::min(color1.r + color2.r, 255);
-    int green = std::min(color1.g + color2.g, 255);
-    int blue  = std::min(color1.b + color2.b, 255);
-    int alpha = std::min(color1.a + color2.a, 255);
-
-    return sfColor_fromRGBA(static_cast<uint8_t>(red),
-                            static_cast<uint8_t>(green),
-                            static_cast<uint8_t>(blue),
-                            static_cast<uint8_t>(alpha));
+    return {
+        static_cast<uint8_t>(std::min(color1.r + color2.r, 255)),
+        static_cast<uint8_t>(std::min(color1.g + color2.g, 255)),
+        static_cast<uint8_t>(std::min(color1.b + color2.b, 255)),
+        static_cast<uint8_t>(std::min(color1.a + color2.a, 255)),
+    };
 }
 
 
 ////////////////////////////////////////////////////////////
 sfColor sfColor_subtract(sfColor color1, sfColor color2)
 {
-    int red   = std::max(color1.r - color2.r, 0);
-    int green = std::max(color1.g - color2.g, 0);
-    int blue  = std::max(color1.b - color2.b, 0);
-    int alpha = std::max(color1.a - color2.a, 0);
-
-    return sfColor_fromRGBA(static_cast<uint8_t>(red),
-                            static_cast<uint8_t>(green),
-                            static_cast<uint8_t>(blue),
-                            static_cast<uint8_t>(alpha));
+    return {
+        static_cast<uint8_t>(std::max(color1.r - color2.r, 0)),
+        static_cast<uint8_t>(std::max(color1.g - color2.g, 0)),
+        static_cast<uint8_t>(std::max(color1.b - color2.b, 0)),
+        static_cast<uint8_t>(std::max(color1.a - color2.a, 0)),
+    };
 }
 
 
 ////////////////////////////////////////////////////////////
 sfColor sfColor_modulate(sfColor color1, sfColor color2)
 {
-    int red   = color1.r * color2.r / 255;
-    int green = color1.g * color2.g / 255;
-    int blue  = color1.b * color2.b / 255;
-    int alpha = color1.a * color2.a / 255;
-
-    return sfColor_fromRGBA(static_cast<uint8_t>(red),
-                            static_cast<uint8_t>(green),
-                            static_cast<uint8_t>(blue),
-                            static_cast<uint8_t>(alpha));
+    return {
+        static_cast<uint8_t>(color1.r * color2.r / 255),
+        static_cast<uint8_t>(color1.g * color2.g / 255),
+        static_cast<uint8_t>(color1.b * color2.b / 255),
+        static_cast<uint8_t>(color1.a * color2.a / 255),
+    };
 }

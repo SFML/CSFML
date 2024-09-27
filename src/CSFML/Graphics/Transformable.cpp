@@ -34,9 +34,7 @@
 ////////////////////////////////////////////////////////////
 sfTransformable* sfTransformable_create()
 {
-    auto* transformable = new sfTransformable;
-
-    return transformable;
+    return new sfTransformable;
 }
 
 

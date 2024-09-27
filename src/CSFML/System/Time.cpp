@@ -56,25 +56,19 @@ int64_t sfTime_asMicroseconds(sfTime time)
 ////////////////////////////////////////////////////////////
 sfTime sfSeconds(float amount)
 {
-    sfTime time;
-    time.microseconds = static_cast<int64_t>(amount * 1000000);
-    return time;
+    return {static_cast<int64_t>(amount * 1000000)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfTime sfMilliseconds(int32_t amount)
 {
-    sfTime time;
-    time.microseconds = static_cast<int64_t>(amount) * 1000;
-    return time;
+    return {static_cast<int64_t>(amount * 1000)};
 }
 
 
 ////////////////////////////////////////////////////////////
 sfTime sfMicroseconds(int64_t amount)
 {
-    sfTime time;
-    time.microseconds = amount;
-    return time;
+    return {amount};
 }
