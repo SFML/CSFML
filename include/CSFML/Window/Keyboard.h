@@ -142,9 +142,9 @@ typedef enum
     sfKeyF14,          ///< The F14 key
     sfKeyF15,          ///< The F15 key
     sfKeyPause,        ///< The Pause key
-
-    sfKeyCount, ///< Keep last -- the total number of keyboard keys
 } sfKeyCode;
+
+CSFML_WINDOW_API const unsigned int sfKeyCount; ///< The total number of keyboard keys
 
 
 ////////////////////////////////////////////////////////////
@@ -310,9 +310,9 @@ typedef enum
     sfScanLaunchApplication2, //!< Keyboard Launch Application 2 key
     sfScanLaunchMail,         //!< Keyboard Launch Mail key
     sfScanLaunchMediaSelect,  //!< Keyboard Launch Media Select key
-
-    sfScancodeCount //!< Keep last -- the total number of scancodes
 } sfScancode;
+
+CSFML_WINDOW_API const unsigned int sfScancodeCount; //!< The total number of scancodes
 
 
 ////////////////////////////////////////////////////////////

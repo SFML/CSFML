@@ -45,9 +45,9 @@ typedef enum
     sfSensorGravity, ///< Measures the direction and intensity of gravity, independent of device acceleration (m/s^2)
     sfSensorUserAcceleration, ///< Measures the direction and intensity of device acceleration, independent of the gravity (m/s^2)
     sfSensorOrientation, ///< Measures the absolute 3D orientation (degrees)
-
-    sfSensorCount ///< Keep last -- the total number of sensor types
 } sfSensorType;
+
+CSFML_WINDOW_API const unsigned int sfSensorCount; ///< The total number of sensor types
 
 
 ////////////////////////////////////////////////////////////

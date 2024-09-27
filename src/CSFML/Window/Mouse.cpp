@@ -34,6 +34,10 @@
 
 
 ////////////////////////////////////////////////////////////
+const unsigned int sfMouseButtonCount = sfMouseButtonExtra2 + 1;
+
+
+////////////////////////////////////////////////////////////
 bool sfMouse_isButtonPressed(sfMouseButton button)
 {
     return sf::Mouse::isButtonPressed(static_cast<sf::Mouse::Button>(button));

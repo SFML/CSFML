@@ -32,6 +32,10 @@
 
 
 ////////////////////////////////////////////////////////////
+const unsigned int sfSensorCount = sfSensorOrientation + 1;
+
+
+////////////////////////////////////////////////////////////
 bool sfSensor_isAvailable(sfSensorType sensor)
 {
     return sf::Sensor::isAvailable(static_cast<sf::Sensor::Type>(sensor));
