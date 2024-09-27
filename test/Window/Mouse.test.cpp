@@ -11,9 +11,9 @@ TEST_CASE("[Window] sfMouse")
         STATIC_CHECK(sfMouseLeft == static_cast<int>(sf::Mouse::Button::Left));
         STATIC_CHECK(sfMouseRight == static_cast<int>(sf::Mouse::Button::Right));
         STATIC_CHECK(sfMouseMiddle == static_cast<int>(sf::Mouse::Button::Middle));
-        STATIC_CHECK(sfMouseXButton1 == static_cast<int>(sf::Mouse::Button::Extra1));
-        STATIC_CHECK(sfMouseXButton2 == static_cast<int>(sf::Mouse::Button::Extra2));
-        STATIC_CHECK(sfMouseButtonCount == sf::Mouse::ButtonCount);
+        STATIC_CHECK(sfMouseButtonExtra1 == static_cast<int>(sf::Mouse::Button::Extra1));
+        STATIC_CHECK(sfMouseButtonExtra2 == static_cast<int>(sf::Mouse::Button::Extra2));
+        CHECK(sfMouseButtonCount == sf::Mouse::ButtonCount);
     }
 
     SECTION("sfMouseWheel")

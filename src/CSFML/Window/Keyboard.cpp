@@ -34,6 +34,11 @@
 
 
 ////////////////////////////////////////////////////////////
+const unsigned int sfKeyCount      = sfKeyPause + 1;
+const unsigned int sfScancodeCount = sfScanLaunchMediaSelect + 1;
+
+
+////////////////////////////////////////////////////////////
 bool sfKeyboard_isKeyPressed(sfKeyCode key)
 {
     return sf::Keyboard::isKeyPressed(static_cast<sf::Keyboard::Key>(key));
