@@ -201,13 +201,14 @@ void sfShader_setVec4Uniform(sfShader* shader, const char* name, sfGlslVec4 vect
 ////////////////////////////////////////////////////////////
 void sfShader_setColorUniform(sfShader* shader, const char* name, sfColor color)
 {
-    sfGlslVec4 vec4;
-    vec4.x = color.r / 255.f;
-    vec4.y = color.g / 255.f;
-    vec4.z = color.b / 255.f;
-    vec4.w = color.a / 255.f;
-
-    sfShader_setVec4Uniform(shader, name, vec4);
+    sfShader_setVec4Uniform(shader,
+                            name,
+                            {
+                                color.r / 255.f,
+                                color.g / 255.f,
+                                color.b / 255.f,
+                                color.a / 255.f,
+                            });
 }
 
 ////////////////////////////////////////////////////////////
@@ -249,13 +250,14 @@ void sfShader_setIvec4Uniform(sfShader* shader, const char* name, sfGlslIvec4 ve
 ////////////////////////////////////////////////////////////
 void sfShader_setIntColorUniform(sfShader* shader, const char* name, sfColor color)
 {
-    sfGlslIvec4 ivec4;
-    ivec4.x = static_cast<int>(color.r);
-    ivec4.y = static_cast<int>(color.g);
-    ivec4.z = static_cast<int>(color.b);
-    ivec4.w = static_cast<int>(color.a);
-
-    sfShader_setIvec4Uniform(shader, name, ivec4);
+    sfShader_setIvec4Uniform(shader,
+                             name,
+                             {
+                                 static_cast<int>(color.r),
+                                 static_cast<int>(color.g),
+                                 static_cast<int>(color.b),
+                                 static_cast<int>(color.a),
+                             });
 }
 
 ////////////////////////////////////////////////////////////
