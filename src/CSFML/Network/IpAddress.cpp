@@ -37,7 +37,7 @@ namespace
 // Helper function for converting a SFML address to a CSFML one
 [[nodiscard]] sfIpAddress fromSFMLAddress(std::optional<sf::IpAddress> address)
 {
-    sfIpAddress result = {0};
+    sfIpAddress result{};
 
     if (address)
     {
