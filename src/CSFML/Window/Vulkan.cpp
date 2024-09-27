@@ -31,9 +31,6 @@
 
 #include <SFML/Window/Vulkan.hpp>
 
-#include <cstdlib>
-#include <cstring>
-
 
 ////////////////////////////////////////////////////////////
 bool sfVulkan_isAvailable(bool requireGraphics)
