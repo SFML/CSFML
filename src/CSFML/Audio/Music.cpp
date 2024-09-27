@@ -83,7 +83,7 @@ void sfMusic_destroy(const sfMusic* music)
 void sfMusic_setLooping(sfMusic* music, bool loop)
 {
     assert(music);
-    music->setLooping(loop != 0);
+    music->setLooping(loop);
 }
 
 
