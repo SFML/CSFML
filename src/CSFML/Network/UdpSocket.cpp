@@ -139,7 +139,7 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket*    socket,
 
         if (address)
         {
-            strncpy(remoteAddress->address, address->toString().c_str(), 15);
+            std::strncpy(remoteAddress->address, address->toString().c_str(), 15);
         }
     }
 
@@ -187,7 +187,7 @@ sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, 
 
         if (address)
         {
-            strncpy(remoteAddress->address, address->toString().c_str(), 15);
+            std::strncpy(remoteAddress->address, address->toString().c_str(), 15);
         }
     }
 

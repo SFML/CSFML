@@ -82,7 +82,7 @@ sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
     sfIpAddress result = sfIpAddress_None;
     if (address)
     {
-        strncpy(result.address, address->toString().c_str(), 15);
+        std::strncpy(result.address, address->toString().c_str(), 15);
     }
 
     return result;

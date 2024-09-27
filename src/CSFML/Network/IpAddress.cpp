@@ -41,7 +41,7 @@ namespace
 
     if (address)
     {
-        strncpy(result.address, address->toString().c_str(), 15);
+        std::strncpy(result.address, address->toString().c_str(), 15);
     }
 
     return result;
@@ -97,7 +97,7 @@ sfIpAddress sfIpAddress_fromInteger(uint32_t address)
 void sfIpAddress_toString(sfIpAddress address, char* string)
 {
     if (string)
-        strcpy(string, address.address);
+        std::strcpy(string, address.address);
 }
 
 
