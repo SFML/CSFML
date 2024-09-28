@@ -41,14 +41,13 @@ sfVideoMode sfVideoMode_getDesktopMode()
 ////////////////////////////////////////////////////////////
 const sfVideoMode* sfVideoMode_getFullscreenModes(size_t* count)
 {
-    static std::vector<sfVideoMode> modes;
-
-    // Populate the array on first call
-    if (modes.empty())
+    static const auto modes = []
     {
+        std::vector<sfVideoMode> videomodes;
         for (const auto& mode : sf::VideoMode::getFullscreenModes())
-            modes.push_back(convertVideoMode(mode));
-    }
+            videomodes.push_back(convertVideoMode(mode));
+        return videomodes;
+    }();
 
     if (count)
         *count = modes.size();

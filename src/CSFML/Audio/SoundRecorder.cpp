@@ -81,18 +81,17 @@ bool sfSoundRecorder_isAvailable()
 
 
 ////////////////////////////////////////////////////////////
-const char** sfSoundRecorder_getAvailableDevices(size_t* count)
+const char* const* sfSoundRecorder_getAvailableDevices(size_t* count)
 {
-    static std::vector<std::string> stringDevices = sf::SoundRecorder::getAvailableDevices();
-    static std::vector<const char*> cstringDevices;
-
-    if (cstringDevices.empty() && !stringDevices.empty())
+    static const auto cstringDevices = []
     {
+        static const std::vector<std::string> stringDevices = sf::SoundRecorder::getAvailableDevices();
+        std::vector<const char*>              devices;
+        devices.reserve(stringDevices.size());
         for (const auto& stringDevice : stringDevices)
-        {
-            cstringDevices.push_back(stringDevice.c_str());
-        }
-    }
+            devices.push_back(stringDevice.c_str());
+        return devices;
+    }();
 
     if (count)
         *count = cstringDevices.size();
@@ -104,7 +103,7 @@ const char** sfSoundRecorder_getAvailableDevices(size_t* count)
 ////////////////////////////////////////////////////////////
 const char* sfSoundRecorder_getDefaultDevice()
 {
-    static std::string defaultDevice = sf::SoundRecorder::getDefaultDevice();
+    static const std::string defaultDevice = sf::SoundRecorder::getDefaultDevice();
 
     return !defaultDevice.empty() ? defaultDevice.c_str() : nullptr;
 }

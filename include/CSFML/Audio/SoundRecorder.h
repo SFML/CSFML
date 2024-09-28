@@ -129,7 +129,7 @@ CSFML_AUDIO_API bool sfSoundRecorder_isAvailable(void);
 /// \return An array of strings containing the names
 ///
 ////////////////////////////////////////////////////////////
-CSFML_AUDIO_API const char** sfSoundRecorder_getAvailableDevices(size_t* count);
+CSFML_AUDIO_API const char* const* sfSoundRecorder_getAvailableDevices(size_t* count);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the name of the default audio capture device
