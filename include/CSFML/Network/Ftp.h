@@ -225,7 +225,7 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirec
 ///
 /// \param ftpDirectoryResponse Ftp directory response
 ///
-/// \return Directory name
+/// \return Directory name or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse);
@@ -239,7 +239,7 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDir
 ///
 /// \param ftpDirectoryResponse Ftp directory response
 ///
-/// \return Directory name
+/// \return Directory name or NULL if it failed
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse);

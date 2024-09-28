@@ -51,6 +51,8 @@ static_assert(alignof(sfChar32) == alignof(char32_t));
 {
     const std::size_t byteCount = sizeof(sfChar32) * str.getSize();
     auto*             utf32     = static_cast<sfChar32*>(std::malloc(byteCount + sizeof(sfChar32)));
+    if (!utf32)
+        return nullptr;
     std::memcpy(utf32, str.getData(), byteCount);
     utf32[str.getSize()] = 0;
 
