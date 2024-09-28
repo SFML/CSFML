@@ -28,4 +28,7 @@ TEST_CASE("[System] sfTime")
     CHECK(sfSeconds(10).microseconds == 10'000'000);
     CHECK(sfMilliseconds(10).microseconds == 10'000);
     CHECK(sfMicroseconds(10).microseconds == 10);
+
+    CHECK(sfMilliseconds(std::numeric_limits<int32_t>::max()).microseconds == 2'147'483'647'000);
+    CHECK(sfMicroseconds(std::numeric_limits<int64_t>::max()).microseconds == std::numeric_limits<int64_t>::max());
 }
