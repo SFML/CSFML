@@ -63,7 +63,7 @@ sfTime sfSeconds(float amount)
 ////////////////////////////////////////////////////////////
 sfTime sfMilliseconds(int32_t amount)
 {
-    return {static_cast<int64_t>(amount * 1000)};
+    return {int64_t{amount} * 1000};
 }
 
 
