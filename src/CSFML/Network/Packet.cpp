@@ -105,7 +105,7 @@ bool sfPacket_endOfPacket(const sfPacket* packet)
 bool sfPacket_canRead(const sfPacket* packet)
 {
     assert(packet);
-    return static_cast<bool>(*packet);
+    return bool{*packet};
 }
 
 
