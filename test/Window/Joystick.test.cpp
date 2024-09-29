@@ -30,7 +30,7 @@ TEST_CASE("[Window] sfJoystick")
     // no joysticks will be detected. This is how we can ensure these
     // tests are portable and reliable.
 
-    const auto joystick = GENERATE(range(0u, static_cast<unsigned int>(sfJoystickCount - 1)));
+    const auto joystick = GENERATE(range(0u, unsigned{sfJoystickCount - 1}));
 
     SECTION("sfJoystick_isConnected()")
     {
@@ -56,7 +56,7 @@ TEST_CASE("[Window] sfJoystick")
 
     SECTION("sfJoystick_isButtonPressed()")
     {
-        const auto button = GENERATE(range(0u, static_cast<unsigned int>(sfJoystickButtonCount - 1)));
+        const auto button = GENERATE(range(0u, unsigned{sfJoystickButtonCount - 1}));
         CHECK(!sfJoystick_isButtonPressed(joystick, button));
     }
 
