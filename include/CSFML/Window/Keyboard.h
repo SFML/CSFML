@@ -144,8 +144,10 @@ typedef enum
     sfKeyPause,        ///< The Pause key
 } sfKeyCode;
 
-CSFML_WINDOW_API const unsigned int sfKeyCount; ///< The total number of keyboard keys
-
+enum
+{
+    sfKeyCount = sfKeyPause + 1 ///< The total number of keyboard keys
+};
 
 ////////////////////////////////////////////////////////////
 /// \brief Scancodes
@@ -312,8 +314,10 @@ typedef enum
     sfScanLaunchMediaSelect,  //!< Keyboard Launch Media Select key
 } sfScancode;
 
-CSFML_WINDOW_API const unsigned int sfScancodeCount; //!< The total number of scancodes
-
+enum
+{
+    sfScancodeCount = sfScanLaunchMediaSelect + 1 //!< The total number of scancodes
+};
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a key is pressed
