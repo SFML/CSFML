@@ -14,6 +14,6 @@ TEST_CASE("[Window] sfSensor")
         STATIC_CHECK(sfSensorGravity == static_cast<int>(sf::Sensor::Type::Gravity));
         STATIC_CHECK(sfSensorUserAcceleration == static_cast<int>(sf::Sensor::Type::UserAcceleration));
         STATIC_CHECK(sfSensorOrientation == static_cast<int>(sf::Sensor::Type::Orientation));
-        CHECK(sfSensorCount == sf::Sensor::Count);
+        STATIC_CHECK(sfSensorCount == sf::Sensor::Count);
     }
 }

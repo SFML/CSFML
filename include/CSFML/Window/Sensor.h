@@ -47,8 +47,10 @@ typedef enum
     sfSensorOrientation, ///< Measures the absolute 3D orientation (degrees)
 } sfSensorType;
 
-CSFML_WINDOW_API const unsigned int sfSensorCount; ///< The total number of sensor types
-
+enum
+{
+    sfSensorCount = sfSensorOrientation + 1 ///< The total number of sensor types
+};
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a sensor is available on the underlying platform

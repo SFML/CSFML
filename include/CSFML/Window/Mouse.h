@@ -46,7 +46,10 @@ typedef enum
     sfMouseButtonExtra2, ///< The second extra mouse button
 } sfMouseButton;
 
-CSFML_WINDOW_API const unsigned int sfMouseButtonCount; ///< The total number of mouse buttons
+enum
+{
+    sfMouseButtonCount = sfMouseButtonExtra2 + 1 ///< The total number of mouse buttons
+};
 
 ////////////////////////////////////////////////////////////
 /// \brief Mouse wheels
