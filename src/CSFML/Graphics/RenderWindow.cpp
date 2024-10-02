@@ -145,7 +145,7 @@ bool sfRenderWindow_pollEvent(sfRenderWindow* renderWindow, sfEvent* event)
 {
     assert(renderWindow);
     assert(event);
-    return convertEvent(renderWindow->pollEvent(), event);
+    return convertEvent(renderWindow->pollEvent(), *event);
 }
 
 
@@ -154,7 +154,7 @@ bool sfRenderWindow_waitEvent(sfRenderWindow* renderWindow, sfTime timeout, sfEv
 {
     assert(renderWindow);
     assert(event);
-    return convertEvent(renderWindow->waitEvent(sf::microseconds(timeout.microseconds)), event);
+    return convertEvent(renderWindow->waitEvent(sf::microseconds(timeout.microseconds)), *event);
 }
 
 

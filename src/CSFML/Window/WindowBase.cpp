@@ -96,7 +96,7 @@ bool sfWindowBase_pollEvent(sfWindowBase* windowBase, sfEvent* event)
 {
     assert(windowBase);
     assert(event);
-    return convertEvent(windowBase->pollEvent(), event);
+    return convertEvent(windowBase->pollEvent(), *event);
 }
 
 
@@ -105,7 +105,7 @@ bool sfWindowBase_waitEvent(sfWindowBase* windowBase, sfTime timeout, sfEvent* e
 {
     assert(windowBase);
     assert(event);
-    return convertEvent(windowBase->waitEvent(sf::microseconds(timeout.microseconds)), event);
+    return convertEvent(windowBase->waitEvent(sf::microseconds(timeout.microseconds)), *event);
 }
 
 
