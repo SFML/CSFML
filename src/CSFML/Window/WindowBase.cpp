@@ -25,8 +25,8 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/ConvertEvent.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
+#include <CSFML/Window/ConvertEvent.hpp>
 #include <CSFML/Window/ConvertVideoMode.hpp>
 #include <CSFML/Window/CursorStruct.hpp>
 #include <CSFML/Window/WindowBase.h>

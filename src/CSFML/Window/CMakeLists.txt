@@ -13,6 +13,7 @@ set(SRC
     ${SRCROOT}/ContextStruct.hpp
     ${INCROOT}/Context.h
     ${SRCROOT}/ConvertContextSettings.hpp
+    ${SRCROOT}/ConvertEvent.hpp
     ${SRCROOT}/ConvertVideoMode.hpp
     ${INCROOT}/Event.h
     ${SRCROOT}/Joystick.cpp
