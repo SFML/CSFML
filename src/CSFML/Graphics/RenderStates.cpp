@@ -31,7 +31,9 @@
 ////////////////////////////////////////////////////////////
 const sfRenderStates sfRenderStates_default = {
     sfBlendAlpha,
+    sfStencilMode_default,
     sfTransform_Identity,
+    sfCoordinateTypePixels,
     nullptr,
     nullptr,
 };
