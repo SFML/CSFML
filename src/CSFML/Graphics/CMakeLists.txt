@@ -19,6 +19,7 @@ set(SRC
     ${SRCROOT}/ConvexShape.cpp
     ${SRCROOT}/ConvexShapeStruct.hpp
     ${INCROOT}/ConvexShape.h
+    ${INCROOT}/CoordinateType.h
     ${SRCROOT}/Font.cpp
     ${SRCROOT}/FontStruct.hpp
     ${INCROOT}/Font.h

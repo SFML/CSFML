@@ -25,33 +25,11 @@
 #pragma once
 
 ////////////////////////////////////////////////////////////
-// Headers
-////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Export.h>
-
-#include <CSFML/Graphics/BlendMode.h>
-#include <CSFML/Graphics/CoordinateType.h>
-#include <CSFML/Graphics/StencilMode.h>
-#include <CSFML/Graphics/Transform.h>
-#include <CSFML/Graphics/Types.h>
-
-
-////////////////////////////////////////////////////////////
-/// \brief Define the states used for drawing to a RenderTarget
+/// \brief Types of texture coordinates that can be used for rendering.
 ///
 ////////////////////////////////////////////////////////////
-typedef struct
+typedef enum
 {
-    sfBlendMode      blendMode;      ///< Blending mode
-    sfStencilMode    stencilMode;    //!< Stencil mode
-    sfTransform      transform;      ///< Transform
-    sfCoordinateType coordinateType; //!< Texture coordinate type
-    const sfTexture* texture;        ///< Texture
-    const sfShader*  shader;         ///< Shader
-} sfRenderStates;
-
-////////////////////////////////////////////////////////////
-/// \brief Define the default values for a RenderState
-///
-////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API const sfRenderStates sfRenderStates_default;
+    sfCoordinateTypeNormalized, ///< sfTexture coordinates in range [0 .. 1].
+    sfCoordinateTypePixels      ///< sfTexture coordinates in range [0 .. size].
+} sfCoordinateType;

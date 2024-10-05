@@ -29,6 +29,7 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
 
+#include <CSFML/Graphics/CoordinateType.h>
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/Types.h>
 #include <CSFML/System/InputStream.h>
@@ -36,16 +37,6 @@
 #include <CSFML/Window/Types.h>
 
 #include <stddef.h>
-
-////////////////////////////////////////////////////////////
-/// \brief Types of texture coordinates that can be used for rendering.
-///
-////////////////////////////////////////////////////////////
-typedef enum
-{
-    sfTextureNormalized, ///< sfTexture coordinates in range [0 .. 1].
-    sfTexturePixels      ///< sfTexture coordinates in range [0 .. size].
-} sfTextureCoordinateType;
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new texture
@@ -400,7 +391,7 @@ CSFML_GRAPHICS_API unsigned int sfTexture_getNativeHandle(const sfTexture* textu
 /// \param type    Type of texture coordinates to use
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture, sfTextureCoordinateType type);
+CSFML_GRAPHICS_API void sfTexture_bind(const sfTexture* texture, sfCoordinateType type);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the maximum texture size allowed

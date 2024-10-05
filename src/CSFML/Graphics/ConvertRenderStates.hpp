@@ -44,14 +44,21 @@
         return {};
 
     sf::RenderStates renderStates;
-    renderStates.blendMode.colorSrcFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.colorSrcFactor);
-    renderStates.blendMode.colorDstFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.colorDstFactor);
-    renderStates.blendMode.colorEquation  = static_cast<sf::BlendMode::Equation>(states->blendMode.colorEquation);
-    renderStates.blendMode.alphaSrcFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaSrcFactor);
-    renderStates.blendMode.alphaDstFactor = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaDstFactor);
-    renderStates.blendMode.alphaEquation  = static_cast<sf::BlendMode::Equation>(states->blendMode.alphaEquation);
-    renderStates.transform                = convertTransform(states->transform);
-    renderStates.texture                  = states->texture ? states->texture->This : nullptr;
-    renderStates.shader                   = states->shader;
+    renderStates.blendMode.colorSrcFactor      = static_cast<sf::BlendMode::Factor>(states->blendMode.colorSrcFactor);
+    renderStates.blendMode.colorDstFactor      = static_cast<sf::BlendMode::Factor>(states->blendMode.colorDstFactor);
+    renderStates.blendMode.colorEquation       = static_cast<sf::BlendMode::Equation>(states->blendMode.colorEquation);
+    renderStates.blendMode.alphaSrcFactor      = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaSrcFactor);
+    renderStates.blendMode.alphaDstFactor      = static_cast<sf::BlendMode::Factor>(states->blendMode.alphaDstFactor);
+    renderStates.blendMode.alphaEquation       = static_cast<sf::BlendMode::Equation>(states->blendMode.alphaEquation);
+    renderStates.stencilMode.stencilComparison = static_cast<sf::StencilComparison>(states->stencilMode.stencilComparison);
+    renderStates.stencilMode.stencilUpdateOperation = static_cast<sf::StencilUpdateOperation>(
+        states->stencilMode.stencilUpdateOperation);
+    renderStates.stencilMode.stencilReference.value = states->stencilMode.stencilReference.value;
+    renderStates.stencilMode.stencilMask.value      = states->stencilMode.stencilMask.value;
+    renderStates.stencilMode.stencilOnly            = states->stencilMode.stencilOnly;
+    renderStates.transform                          = convertTransform(states->transform);
+    renderStates.coordinateType                     = static_cast<sf::CoordinateType>(states->coordinateType);
+    renderStates.texture                            = states->texture ? states->texture->This : nullptr;
+    renderStates.shader                             = states->shader;
     return renderStates;
 }
