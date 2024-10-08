@@ -69,7 +69,7 @@ typedef enum
 /// \return A new sfVertexBuffer object
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVertexBuffer* sfVertexBuffer_create(unsigned int vertexCount, sfPrimitiveType type, sfVertexBufferUsage usage);
+CSFML_GRAPHICS_API sfVertexBuffer* sfVertexBuffer_create(size_t vertexCount, sfPrimitiveType type, sfVertexBufferUsage usage);
 
 ////////////////////////////////////////////////////////////
 /// \brief Copy an existing vertex buffer
