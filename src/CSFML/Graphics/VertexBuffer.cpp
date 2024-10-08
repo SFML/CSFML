@@ -30,7 +30,7 @@
 
 
 ////////////////////////////////////////////////////////////
-sfVertexBuffer* sfVertexBuffer_create(unsigned int vertexCount, sfPrimitiveType type, sfVertexBufferUsage usage)
+sfVertexBuffer* sfVertexBuffer_create(size_t vertexCount, sfPrimitiveType type, sfVertexBufferUsage usage)
 {
     auto buffer = std::make_unique<sfVertexBuffer>();
     if (!buffer->create(vertexCount))
