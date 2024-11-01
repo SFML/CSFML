@@ -121,7 +121,7 @@ if(CSFML_BUILD_TEST_SUITE)
     add_subdirectory(test)
 endif()
 
-csfml_set_option(CLANG_FORMAT_EXECUTABLE clang-format STRING "Override clang-format executable, requires version 14")
+csfml_set_option(CLANG_FORMAT_EXECUTABLE clang-format STRING "Override clang-format executable, requires version 17")
 add_custom_target(format
     COMMAND ${CMAKE_COMMAND} -DCLANG_FORMAT_EXECUTABLE=${CLANG_FORMAT_EXECUTABLE} -P ./cmake/Format.cmake
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR} VERBATIM)
