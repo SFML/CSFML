@@ -55,7 +55,12 @@ jobs:
         path: SFML
 
     - name: Configure SFML CMake
-      run: cmake -S SFML -B SFML/build -DCMAKE_INSTALL_PREFIX=SFML/install ${{matrix.platform.flags}} ${{matrix.config.flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
+      run: |
+        cmake -S SFML -B SFML/build \
+          -DCMAKE_BUILD_TYPE=${{matrix.type.name}} \
+          -DCMAKE_INSTALL_PREFIX=SFML/install \
+          ${{matrix.platform.flags}} \
+          ${{matrix.config.flags}}
 
     - name: Build SFML
       run: cmake --build SFML/build --config ${{matrix.type.name}} --target install
@@ -66,7 +71,15 @@ jobs:
         path: CSFML
 
     - name: Configure CSFML CMake
-      run: cmake --preset dev -S CSFML -B CSFML/build -DCMAKE_INSTALL_PREFIX=CSFML/install -DSFML_ROOT=SFML/install -DCMAKE_VERBOSE_MAKEFILE=ON ${{matrix.platform.flags}} ${{matrix.config.flags}} ${{matrix.config.csfml_flags}} -DCMAKE_BUILD_TYPE=${{matrix.type.name}}
+      run: |
+        cmake --preset dev -S CSFML -B CSFML/build \
+          -DCMAKE_BUILD_TYPE=${{matrix.type.name}} \
+          -DCMAKE_INSTALL_PREFIX=CSFML/install \
+          -DSFML_ROOT=SFML/install \
+          -DCMAKE_VERBOSE_MAKEFILE=ON \
+          ${{matrix.platform.flags}} \
+          ${{matrix.config.flags}} \
+          ${{matrix.config.csfml_flags}}
 
     - name: Build CSFML
       run: cmake --build CSFML/build --config ${{matrix.type.name}} --target install
