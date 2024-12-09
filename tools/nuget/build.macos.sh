@@ -146,39 +146,12 @@ cmake -E env \
           "$CSFMLDir"
 cmake --build . --config Release --target install
 
-# ============================ #
-# STEP 5: Fix RPATH references #
-# ============================ #
+# ======================================== #
+# STEP 5: Copy result to the NuGet folders #
+# ======================================== #
 
 SFMLMajorMinor="3.0"
 SFMLMajorMinorPatch="$SFMLMajorMinor.0"
-
-# SFML's framework dependencies will always reference @rpath/../Frameworks/<depedency>
-# Which is not where we place the frameworks and where SFML should look for them
-# This this fixes the dependency with install_name_tool
-fixrpath()
-{
-    MODULE="$1"
-    OLD="$2"
-    NEW="$3"
-
-    install_name_tool -change $OLD $NEW "$SFMLLibDir/libsfml-$MODULE.dylib"
-    install_name_tool -change $OLD $NEW "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinor.dylib"
-    install_name_tool -change $OLD $NEW "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinorPatch.dylib"
-}
-
-fixrpath audio "@rpath/../Frameworks/vorbisenc.framework/Versions/A/vorbisenc" "@rpath/vorbisenc.framework/Versions/A/vorbisenc"
-fixrpath audio "@rpath/../Frameworks/vorbisfile.framework/Versions/A/vorbisfile" "@rpath/vorbisfile.framework/Versions/A/vorbisfile"
-fixrpath audio "@rpath/../Frameworks/vorbis.framework/Versions/A/vorbis" "@rpath/vorbis.framework/Versions/A/vorbis"
-fixrpath audio "@rpath/../Frameworks/ogg.framework/Versions/A/ogg" "@rpath/ogg.framework/Versions/A/ogg"
-fixrpath audio "@rpath/../Frameworks/FLAC.framework/Versions/A/FLAC" "@rpath/FLAC.framework/Versions/A/FLAC"
-
-fixrpath graphics "@rpath/../Frameworks/freetype.framework/Versions/A/freetype" "@rpath/freetype.framework/Versions/A/freetype"
-
-# ======================================== #
-# STEP 6: Copy result to the NuGet folders #
-# ======================================== #
-
 CSFMLMajorMinor="3.0"
 CSFMLMajorMinorPatch="$CSFMLMajorMinor.0"
 
@@ -207,8 +180,6 @@ copymodule audio
 copymodule graphics
 copymodule system
 copymodule window
-
-cp -R "$SFMLLibDir/lib/"*.framework "$OutDir"
 
 popd # Pop CSFML
 popd # Pop $RID
