@@ -208,7 +208,7 @@ copymodule graphics
 copymodule system
 copymodule window
 
-cp -R "$SFMLLibDir/lib/"*.framework "$OutDir"
+cp -R "$SFMLLibDir/"*.framework "$OutDir"
 
 popd # Pop CSFML
 popd # Pop $RID
