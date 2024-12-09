@@ -79,7 +79,7 @@ jobs:
                   path: CSFML
 
             - name: Build in an ARM container
-              uses: uraimo/run-on-arch-action@v2.7.2
+              uses: uraimo/run-on-arch-action@v2.8.1
               with:
                   arch: armv7
                   distro: ubuntu22.04
@@ -111,7 +111,7 @@ jobs:
                   path: CSFML
 
             - name: Build in an ARM64 container
-              uses: uraimo/run-on-arch-action@v2.7.2
+              uses: uraimo/run-on-arch-action@v2.8.1
               with:
                   arch: aarch64
                   distro: ubuntu22.04

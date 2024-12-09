@@ -35,7 +35,7 @@ Write-Output "Building $RID"
 Write-Output "Using $Generator as the cmake generator"
 Write-Output "Using architecture $Architecture"
 
-$SFMLBranch = "master" # The branch or tag of the SFML repository to be cloned
+$SFMLBranch = "3.0.0" # The branch or tag of the SFML repository to be cloned
 $CSFMLDir = (Get-Item (git rev-parse --show-toplevel)).FullName # The directory of the source code of CSFML
 
 $OutDir = "./CSFML/runtimes/$RID/native" # The directory of all CSFML modules, used to copy the final dlls
