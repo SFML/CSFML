@@ -83,17 +83,9 @@ Push-Location "SFML"
 
 $SFMLDir = (Get-Item .).FullName
 
-switch ($RID) {
-    'win-x86' {
-        $SFMLExtLibs = (Get-Item ./extlibs/libs-msvc-universal/x86).FullName
-    }
-    'win-x64' {
-        $SFMLExtLibs = (Get-Item ./extlibs/libs-msvc-universal/x64).FullName
-    }
-    Default {
-        Write-Error "Unknown RID '$RID'"
-        exit
-    }
+IF ($RID -ne 'win-x86' -and $RID -ne 'win-x64') {
+    Write-Error "Unknown RID '$RID'"
+    exit
 }
 
 Pop-Location # Pop SFML
@@ -142,7 +134,6 @@ $CSFMLLibDir = (Get-Item lib).FullName; # The directory where the final CSFML dl
 cmake `
     "-DSFML_ROOT=$SFMLInstallDir" `
     '-DCSFML_LINK_SFML_STATICALLY=OFF' `
-    "-DCMAKE_LIBRARY_PATH=$SFMLExtLibs" `
     `
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=$CSFMLLibDir" `
     "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE=$CSFMLLibDir" `
