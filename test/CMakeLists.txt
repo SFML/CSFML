@@ -47,6 +47,7 @@ catch_discover_tests(test-csfml-window)
 add_executable(test-csfml-graphics
     Graphics/BlendMode.test.cpp
     Graphics/Color.test.cpp
+    Graphics/CoordinateType.test.cpp
     Graphics/Rect.test.cpp
 )
 target_link_libraries(test-csfml-graphics PRIVATE csfml-graphics Catch2::Catch2WithMain SFML::Graphics)
