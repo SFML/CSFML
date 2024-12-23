@@ -50,6 +50,7 @@ add_executable(test-csfml-graphics
     Graphics/CoordinateType.test.cpp
     Graphics/Rect.test.cpp
     Graphics/StencilMode.test.cpp
+    Graphics/Transform.test.cpp
 )
 target_link_libraries(test-csfml-graphics PRIVATE csfml-graphics Catch2::Catch2WithMain SFML::Graphics)
 set_target_warnings(test-csfml-graphics)
