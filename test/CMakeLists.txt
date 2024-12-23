@@ -49,6 +49,7 @@ add_executable(test-csfml-graphics
     Graphics/Color.test.cpp
     Graphics/CoordinateType.test.cpp
     Graphics/Rect.test.cpp
+    Graphics/RenderStates.test.cpp
     Graphics/StencilMode.test.cpp
     Graphics/Transform.test.cpp
 )
