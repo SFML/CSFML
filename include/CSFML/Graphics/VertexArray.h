@@ -150,7 +150,7 @@ CSFML_GRAPHICS_API void sfVertexArray_setPrimitiveType(sfVertexArray* vertexArra
 /// \return Primitive type
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API sfPrimitiveType sfVertexArray_getPrimitiveType(const sfVertexArray* vertexArray);
 
 ////////////////////////////////////////////////////////////
 /// \brief Compute the bounding rectangle of a vertex array
@@ -163,4 +163,4 @@ CSFML_GRAPHICS_API sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray*
 /// \return Bounding rectangle of the vertex array
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray);
+CSFML_GRAPHICS_API sfFloatRect sfVertexArray_getBounds(const sfVertexArray* vertexArray);

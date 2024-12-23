@@ -92,7 +92,7 @@ void sfVertexBuffer_swap(sfVertexBuffer* left, sfVertexBuffer* right)
 
 
 ////////////////////////////////////////////////////////////
-unsigned int sfVertexBuffer_getNativeHandle(sfVertexBuffer* vertexBuffer)
+unsigned int sfVertexBuffer_getNativeHandle(const sfVertexBuffer* vertexBuffer)
 {
     assert(vertexBuffer);
     return vertexBuffer->getNativeHandle();

@@ -104,7 +104,7 @@ void sfVertexArray_setPrimitiveType(sfVertexArray* vertexArray, sfPrimitiveType 
 
 
 ////////////////////////////////////////////////////////////
-sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
+sfPrimitiveType sfVertexArray_getPrimitiveType(const sfVertexArray* vertexArray)
 {
     assert(vertexArray);
     return static_cast<sfPrimitiveType>(vertexArray->getPrimitiveType());
@@ -112,7 +112,7 @@ sfPrimitiveType sfVertexArray_getPrimitiveType(sfVertexArray* vertexArray)
 
 
 ////////////////////////////////////////////////////////////
-sfFloatRect sfVertexArray_getBounds(sfVertexArray* vertexArray)
+sfFloatRect sfVertexArray_getBounds(const sfVertexArray* vertexArray)
 {
     assert(vertexArray);
     return convertRect(vertexArray->getBounds());
