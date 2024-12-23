@@ -166,7 +166,7 @@ CSFML_GRAPHICS_API void sfVertexBuffer_swap(sfVertexBuffer* left, sfVertexBuffer
 /// \return OpenGL handle of the vertex buffer or 0 if not yet created
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API unsigned int sfVertexBuffer_getNativeHandle(sfVertexBuffer* vertexBuffer);
+CSFML_GRAPHICS_API unsigned int sfVertexBuffer_getNativeHandle(const sfVertexBuffer* vertexBuffer);
 
 ////////////////////////////////////////////////////////////
 /// \brief Set the type of primitives to draw
