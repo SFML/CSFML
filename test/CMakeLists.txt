@@ -72,6 +72,7 @@ set_target_warnings(test-csfml-network)
 catch_discover_tests(test-csfml-network)
 
 add_executable(test-csfml-audio
+    Audio/Listener.test.cpp
     Audio/SoundChannel.test.cpp
 )
 target_link_libraries(test-csfml-audio PRIVATE csfml-audio Catch2::Catch2WithMain SFML::Audio)
