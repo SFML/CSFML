@@ -31,13 +31,6 @@ TEST_CASE("[Graphics] sfBlendMode")
 
     SECTION("Construction")
     {
-        // sfBlendFactor   colorSrcFactor; ///< Source blending factor for the color channels
-        // sfBlendFactor   colorDstFactor; ///< Destination blending factor for the color channels
-        // sfBlendEquation colorEquation;  ///< Blending equation for the color channels
-        // sfBlendFactor   alphaSrcFactor; ///< Source blending factor for the alpha channel
-        // sfBlendFactor   alphaDstFactor; ///< Destination blending factor for the alpha channel
-        // sfBlendEquation alphaEquation;  ///< Blending equation for the alpha channel
-
         constexpr sfBlendMode blendMode{};
         STATIC_CHECK(blendMode.colorSrcFactor == sfBlendFactorZero);
         STATIC_CHECK(blendMode.colorDstFactor == sfBlendFactorZero);
