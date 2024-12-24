@@ -51,6 +51,7 @@ add_executable(test-csfml-graphics
     Graphics/PrimitiveType.test.cpp
     Graphics/Rect.test.cpp
     Graphics/RenderStates.test.cpp
+    Graphics/Shape.test.cpp
     Graphics/StencilMode.test.cpp
     Graphics/Transform.test.cpp
     Graphics/VertexArray.test.cpp
