@@ -48,6 +48,7 @@ add_executable(test-csfml-graphics
     Graphics/BlendMode.test.cpp
     Graphics/Color.test.cpp
     Graphics/CoordinateType.test.cpp
+    Graphics/PrimitiveType.test.cpp
     Graphics/Rect.test.cpp
     Graphics/RenderStates.test.cpp
     Graphics/StencilMode.test.cpp
