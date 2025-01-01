@@ -191,7 +191,7 @@ CSFML_GRAPHICS_API sfFloatRect sfView_getViewport(const sfView* view);
 CSFML_GRAPHICS_API sfFloatRect sfView_getScissor(const sfView* view);
 
 ////////////////////////////////////////////////////////////
-/// \brief Move a view relatively to its current position
+/// \brief Move a view relative to its current position
 ///
 /// \param view   View object
 /// \param offset Offset
@@ -200,7 +200,7 @@ CSFML_GRAPHICS_API sfFloatRect sfView_getScissor(const sfView* view);
 CSFML_GRAPHICS_API void sfView_move(sfView* view, sfVector2f offset);
 
 ////////////////////////////////////////////////////////////
-/// \brief Rotate a view relatively to its current orientation
+/// \brief Rotate a view relative to its current orientation
 ///
 /// \param view  View object
 /// \param angle Angle to rotate, in degrees
@@ -209,7 +209,7 @@ CSFML_GRAPHICS_API void sfView_move(sfView* view, sfVector2f offset);
 CSFML_GRAPHICS_API void sfView_rotate(sfView* view, float angle);
 
 ////////////////////////////////////////////////////////////
-/// \brief Resize a view rectangle relatively to its current size
+/// \brief Resize a view rectangle relative to its current size
 ///
 /// Resizing the view simulates a zoom, as the zone displayed on
 /// screen grows or shrinks.
