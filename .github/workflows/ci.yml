@@ -23,7 +23,7 @@ jobs:
         - { name: Windows Clang,       os: windows-2022, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: Linux GCC,           os: ubuntu-22.04, flags: -GNinja }
         - { name: Linux Clang,         os: ubuntu-22.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: MacOS,               os: macos-12,     flags: -GNinja }
+        - { name: MacOS,               os: macos-13,     flags: -GNinja }
         type:
         - { name: Debug }
         - { name: Release }
@@ -42,7 +42,7 @@ jobs:
       uses: actions/checkout@v4
       with:
         repository: SFML/SFML
-        ref: 2.6.1
+        ref: 2.6.2
         path: SFML
 
     - name: Configure SFML CMake
