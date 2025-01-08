@@ -168,7 +168,7 @@ fixrpath()
 }
 
 fixrpath audio "@rpath/../Frameworks/OpenAL.framework/Versions/A/OpenAL" "@rpath/OpenAL.framework/Versions/A/OpenAL"
-fixrpath audio "@rpath/../Frameworks/vorbisenc.framework/Versions/A/vorbisenc" "@rpath/vorbisenc.framework/Versions/A/vorbisen"
+fixrpath audio "@rpath/../Frameworks/vorbisenc.framework/Versions/A/vorbisenc" "@rpath/vorbisenc.framework/Versions/A/vorbisenc"
 fixrpath audio "@rpath/../Frameworks/vorbisfile.framework/Versions/A/vorbisfile" "@rpath/vorbisfile.framework/Versions/A/vorbisfile"
 fixrpath audio "@rpath/../Frameworks/vorbis.framework/Versions/A/vorbis" "@rpath/vorbis.framework/Versions/A/vorbis"
 fixrpath audio "@rpath/../Frameworks/ogg.framework/Versions/A/ogg" "@rpath/ogg.framework/Versions/A/ogg"
