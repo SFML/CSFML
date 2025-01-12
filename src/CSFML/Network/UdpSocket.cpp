@@ -203,3 +203,10 @@ unsigned int sfUdpSocket_maxDatagramSize()
 {
     return sf::UdpSocket::MaxDatagramSize;
 }
+
+
+////////////////////////////////////////////////////////////
+unsigned short sfUdpSocket_anyPort()
+{
+    return 0;
+}

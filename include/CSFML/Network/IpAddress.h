@@ -132,7 +132,7 @@ CSFML_NETWORK_API void sfIpAddress_toString(sfIpAddress address, char* string);
 /// address, and should be used for optimization purposes only
 /// (like sending the address through a socket).
 /// The integer produced by this function can then be converted
-/// back to a sfIpAddress with sfIpAddress_FromInteger.
+/// back to a sfIpAddress with sfIpAddress_fromInteger.
 ///
 /// \param address Address object
 ///

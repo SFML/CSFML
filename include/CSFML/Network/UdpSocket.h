@@ -102,6 +102,10 @@ CSFML_NETWORK_API unsigned short sfUdpSocket_getLocalPort(const sfUdpSocket* soc
 /// system to automatically pick an available port, and then
 /// call sfUdpSocket_getLocalPort to retrieve the chosen port.
 ///
+/// When providing `sfUdpSocket_anyPort()` as port, the listener
+/// will request an available port from the system.
+/// The chosen port can be retrieved by calling `sfUdpSocket_getLocalPort()`.
+///
 /// If there is no specific address to listen to, pass sfIpAddress_Any
 ///
 /// \param socket  UDP socket object
@@ -215,3 +219,12 @@ CSFML_NETWORK_API sfSocketStatus
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API unsigned int sfUdpSocket_maxDatagramSize(void);
+
+////////////////////////////////////////////////////////////
+/// \brief Return the special value that tells the system
+///        to pick any available port
+///
+/// \return The value to use for any port
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API unsigned short sfUdpSocket_anyPort(void);

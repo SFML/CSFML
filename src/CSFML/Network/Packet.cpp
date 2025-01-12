@@ -156,6 +156,20 @@ uint32_t sfPacket_readUint32(sfPacket* packet)
     *packet >> value;
     return value;
 }
+int64_t sfPacket_readInt64(sfPacket* packet)
+{
+    assert(packet);
+    int64_t value = 0;
+    *packet >> value;
+    return value;
+}
+uint64_t sfPacket_readUint64(sfPacket* packet)
+{
+    assert(packet);
+    uint64_t value = 0;
+    *packet >> value;
+    return value;
+}
 float sfPacket_readFloat(sfPacket* packet)
 {
     assert(packet);
@@ -215,6 +229,16 @@ void sfPacket_writeInt32(sfPacket* packet, int32_t value)
     *packet << value;
 }
 void sfPacket_writeUint32(sfPacket* packet, uint32_t value)
+{
+    assert(packet);
+    *packet << value;
+}
+void sfPacket_writeInt64(sfPacket* packet, int64_t value)
+{
+    assert(packet);
+    *packet << value;
+}
+void sfPacket_writeUint64(sfPacket* packet, uint64_t value)
 {
     assert(packet);
     *packet << value;

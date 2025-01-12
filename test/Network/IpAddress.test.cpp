@@ -2,6 +2,8 @@
 
 #include <catch2/catch_test_macros.hpp>
 
+#include <cstring>
+
 TEST_CASE("[Network] sfIpAddress")
 {
     SECTION("Constants")
@@ -10,6 +12,11 @@ TEST_CASE("[Network] sfIpAddress")
         CHECK(sfIpAddress_toInteger(sfIpAddress_Any) == 0);
         CHECK(sfIpAddress_toInteger(sfIpAddress_LocalHost) == 0x7F000001);
         CHECK(sfIpAddress_toInteger(sfIpAddress_Broadcast) == 0xFFFFFFFF);
+
+        CHECK(std::strcmp(sfIpAddress_None.address, "") == 0);
+        CHECK(std::strcmp(sfIpAddress_Any.address, "0.0.0.0") == 0);
+        CHECK(std::strcmp(sfIpAddress_LocalHost.address, "127.0.0.1") == 0);
+        CHECK(std::strcmp(sfIpAddress_Broadcast.address, "255.255.255.255") == 0);
     }
 
     SECTION("sfIpAddress_fromString")

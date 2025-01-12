@@ -87,6 +87,14 @@ sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port
 
 
 ////////////////////////////////////////////////////////////
+void sfTcpListener_close(sfTcpListener* listener)
+{
+    assert(listener);
+    listener->close();
+}
+
+
+////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** connected)
 {
     assert(listener);
@@ -101,4 +109,11 @@ sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** conne
         *connected = socket.release();
 
     return status;
+}
+
+
+////////////////////////////////////////////////////////////
+unsigned short sfTcpListener_anyPort()
+{
+    return 0;
 }
