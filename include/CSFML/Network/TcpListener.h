@@ -99,6 +99,10 @@ CSFML_NETWORK_API unsigned short sfTcpListener_getLocalPort(const sfTcpListener*
 /// If the socket was previously listening to another port,
 /// it will be stopped first and bound to the new port.
 ///
+/// When providing `sfTcpListener_anyPort()` as port, the listener
+/// will request an available port from the system.
+/// The chosen port can be retrieved by calling `sfTcpListener_getLocalPort()`.
+///
 /// If there is no specific address to listen to, pass sfIpAddress_Any
 ///
 /// \param listener TCP listener object
@@ -109,6 +113,17 @@ CSFML_NETWORK_API unsigned short sfTcpListener_getLocalPort(const sfTcpListener*
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port, sfIpAddress address);
+
+////////////////////////////////////////////////////////////
+/// \brief Stop listening and close the socket
+///
+/// This function gracefully stops the listener. If the
+/// socket is not listening, this function has no effect.
+///
+/// \param listener  TCP listener object
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API void sfTcpListener_close(sfTcpListener* listener);
 
 ////////////////////////////////////////////////////////////
 /// \brief Accept a new connection
@@ -127,3 +142,12 @@ CSFML_NETWORK_API sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, u
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** connected);
+
+////////////////////////////////////////////////////////////
+/// \brief Return the special value that tells the system
+///        to pick any available port
+///
+/// \return The value to use for any port
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API unsigned short sfTcpListener_anyPort(void);

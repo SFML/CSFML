@@ -75,6 +75,8 @@ CSFML_NETWORK_API void sfPacket_append(sfPacket* packet, const void* data, size_
 ///
 /// The next read operation will read data from this position
 ///
+/// \param packet Packet object
+///
 /// \return The byte offset of the current read position
 ///
 /// \see append
@@ -163,6 +165,8 @@ CSFML_NETWORK_API int16_t  sfPacket_readInt16(sfPacket* packet);
 CSFML_NETWORK_API uint16_t sfPacket_readUint16(sfPacket* packet);
 CSFML_NETWORK_API int32_t  sfPacket_readInt32(sfPacket* packet);
 CSFML_NETWORK_API uint32_t sfPacket_readUint32(sfPacket* packet);
+CSFML_NETWORK_API int64_t  sfPacket_readInt64(sfPacket* packet);
+CSFML_NETWORK_API uint64_t sfPacket_readUint64(sfPacket* packet);
 CSFML_NETWORK_API float    sfPacket_readFloat(sfPacket* packet);
 CSFML_NETWORK_API double   sfPacket_readDouble(sfPacket* packet);
 CSFML_NETWORK_API void     sfPacket_readString(sfPacket* packet, char* string);
@@ -181,6 +185,8 @@ CSFML_NETWORK_API void sfPacket_writeInt16(sfPacket* packet, int16_t);
 CSFML_NETWORK_API void sfPacket_writeUint16(sfPacket* packet, uint16_t);
 CSFML_NETWORK_API void sfPacket_writeInt32(sfPacket* packet, int32_t);
 CSFML_NETWORK_API void sfPacket_writeUint32(sfPacket* packet, uint32_t);
+CSFML_NETWORK_API void sfPacket_writeInt64(sfPacket* packet, int64_t);
+CSFML_NETWORK_API void sfPacket_writeUint64(sfPacket* packet, uint64_t);
 CSFML_NETWORK_API void sfPacket_writeFloat(sfPacket* packet, float);
 CSFML_NETWORK_API void sfPacket_writeDouble(sfPacket* packet, double);
 CSFML_NETWORK_API void sfPacket_writeString(sfPacket* packet, const char* string);
