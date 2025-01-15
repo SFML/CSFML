@@ -24,14 +24,14 @@ jobs:
               uses: actions/cache@v4
               with:
                   path: ${{ github.workspace }}/mingw32
-                  key: 14.1.0posix-18.1.5-11.0.1-msvcrt-r1-x86
+                  key: 14.2.0posix-19.1.1-12.0.0-ucrt-r2-x86
 
             - name: Install MinGW x86
               if: steps.mingw-x86-cache.outputs.cache-hit != 'true'
               uses: bwoodsend/setup-winlibs-action@v1
               id: winlibs-32
               with:
-                  tag: 14.1.0posix-18.1.5-11.0.1-msvcrt-r1
+                  tag: 14.2.0posix-19.1.1-12.0.0-ucrt-r2
                   with_clang: false
                   architecture: 32
                   destination: ${{ github.workspace }}
@@ -41,7 +41,7 @@ jobs:
               uses: actions/checkout@v4
               with:
                   repository: SFML/SFML
-                  ref: 2.6.1
+                  ref: 3.0.0
                   path: SFML
 
             - name: Checkout CSFML
@@ -56,7 +56,7 @@ jobs:
 
             - name: Build CSFML
               run: |
-                  cmake -S CSFML -B CSFML-build -A Win32 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DSTATIC_STD_LIBS=TRUE -DCSFML_LINK_SFML_STATICALLY=TRUE -DCMAKE_BUILD_TYPE=Release -DSFML_DIR=${{ github.workspace }}/SFML-install/lib/cmake/SFML -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+                  cmake -S CSFML -B CSFML-build -A Win32 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DSTATIC_STD_LIBS=TRUE -DCSFML_LINK_SFML_STATICALLY=TRUE -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build CSFML-build --config Release --target install
             
             - name: Add MinGW to PATH
@@ -71,25 +71,25 @@ jobs:
                   Move-Item -Path "CSFML-install\lib\*.lib" -Destination "CSFML-install\lib\msvc"
 
                   Push-Location CSFML-install\lib\gcc
-                  & gendef.exe "..\..\bin\csfml-graphics-2.dll"
-                  & dlltool.exe -d "csfml-graphics-2.def" -D "..\..\bin\csfml-graphics-2.dll" -l "libcsfml-graphics.a"
-                  Remove-Item -Path "csfml-graphics-2.def"
+                  & gendef.exe "..\..\bin\csfml-graphics-3.dll"
+                  & dlltool.exe -d "csfml-graphics-3.def" -D "..\..\bin\csfml-graphics-3.dll" -l "libcsfml-graphics.a"
+                  Remove-Item -Path "csfml-graphics-3.def"
                   
-                  & gendef.exe "..\..\bin\csfml-window-2.dll"
-                  & dlltool.exe -d "csfml-window-2.def" -D "..\..\bin\bin\csfml-window-2.dll" -l "libcsfml-window.a"
-                  Remove-Item -Path "csfml-window-2.def"
+                  & gendef.exe "..\..\bin\csfml-window-3.dll"
+                  & dlltool.exe -d "csfml-window-3.def" -D "..\..\bin\bin\csfml-window-3.dll" -l "libcsfml-window.a"
+                  Remove-Item -Path "csfml-window-3.def"
                   
-                  & gendef.exe "..\..\bin\csfml-audio-2.dll"
-                  & dlltool.exe -d "csfml-audio-2.def" -D "..\..\bin\bin\csfml-audio-2.dll" -l "libcsfml-audio.a"
-                  Remove-Item -Path "csfml-audio-2.def"
+                  & gendef.exe "..\..\bin\csfml-audio-3.dll"
+                  & dlltool.exe -d "csfml-audio-3.def" -D "..\..\bin\bin\csfml-audio-3.dll" -l "libcsfml-audio.a"
+                  Remove-Item -Path "csfml-audio-3.def"
                   
-                  & gendef.exe "..\..\bin\csfml-network-2.dll"
-                  & dlltool.exe -d "csfml-network-2.def" -D "..\..\bin\bin\csfml-network-2.dll" -l "libcsfml-network.a"
-                  Remove-Item -Path "csfml-network-2.def"
+                  & gendef.exe "..\..\bin\csfml-network-3.dll"
+                  & dlltool.exe -d "csfml-network-3.def" -D "..\..\bin\bin\csfml-network-3.dll" -l "libcsfml-network.a"
+                  Remove-Item -Path "csfml-network-3.def"
                   
-                  & gendef.exe "..\..\bin\csfml-system-2.dll"
-                  & dlltool.exe -d "csfml-system-2.def" -D "..\..\bin\bin\csfml-system-2.dll" -l "libcsfml-system.a"
-                  Remove-Item -Path "csfml-system-2.def"
+                  & gendef.exe "..\..\bin\csfml-system-3.dll"
+                  & dlltool.exe -d "csfml-system-3.def" -D "..\..\bin\bin\csfml-system-3.dll" -l "libcsfml-system.a"
+                  Remove-Item -Path "csfml-system-3.def"
                   Pop-Location
 
                   New-Item -ItemType "directory" -PATH "install"
@@ -111,14 +111,14 @@ jobs:
               uses: actions/cache@v4
               with:
                   path: ${{ github.workspace }}/mingw64
-                  key: 14.1.0posix-18.1.5-11.0.1-msvcrt-r1-x64
+                  key: 14.2.0posix-19.1.1-12.0.0-ucrt-r2-x64
 
             - name: Install MinGW x64
               if: steps.mingw-x64-cache.outputs.cache-hit != 'true'
               uses: bwoodsend/setup-winlibs-action@v1
               id: winlibs-64
               with:
-                  tag: 14.1.0posix-18.1.5-11.0.1-msvcrt-r1
+                  tag: 14.2.0posix-19.1.1-12.0.0-ucrt-r2
                   with_clang: false
                   architecture: 64
                   destination: ${{ github.workspace }}
@@ -128,7 +128,7 @@ jobs:
               uses: actions/checkout@v4
               with:
                   repository: SFML/SFML
-                  ref: 2.6.1
+                  ref: 3.0.0
                   path: SFML
 
             - name: Checkout CSFML
@@ -143,7 +143,7 @@ jobs:
 
             - name: Build CSFML
               run: |
-                  cmake -S CSFML -B CSFML-build -A x64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DSTATIC_STD_LIBS=TRUE -DCSFML_LINK_SFML_STATICALLY=TRUE -DCMAKE_BUILD_TYPE=Release -DSFML_DIR=${{ github.workspace }}/SFML-install/lib/cmake/SFML -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+                  cmake -S CSFML -B CSFML-build -A x64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=TRUE -DSTATIC_STD_LIBS=TRUE -DCSFML_LINK_SFML_STATICALLY=TRUE -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build CSFML-build --config Release --target install
 
             - name: Add MinGW to PATH
@@ -158,25 +158,25 @@ jobs:
                   Move-Item -Path "CSFML-install\lib\*.lib" -Destination "CSFML-install\lib\msvc"
 
                   Push-Location CSFML-install\lib\gcc
-                  & gendef.exe "..\..\bin\csfml-graphics-2.dll"
-                  & dlltool.exe -d "csfml-graphics-2.def" -D "..\..\bin\csfml-graphics-2.dll" -l "libcsfml-graphics.a"
-                  Remove-Item -Path "csfml-graphics-2.def"
+                  & gendef.exe "..\..\bin\csfml-graphics-3.dll"
+                  & dlltool.exe -d "csfml-graphics-3.def" -D "..\..\bin\csfml-graphics-3.dll" -l "libcsfml-graphics.a"
+                  Remove-Item -Path "csfml-graphics-3.def"
                   
-                  & gendef.exe "..\..\bin\csfml-window-2.dll"
-                  & dlltool.exe -d "csfml-window-2.def" -D "..\..\bin\bin\csfml-window-2.dll" -l "libcsfml-window.a"
-                  Remove-Item -Path "csfml-window-2.def"
+                  & gendef.exe "..\..\bin\csfml-window-3.dll"
+                  & dlltool.exe -d "csfml-window-3.def" -D "..\..\bin\bin\csfml-window-3.dll" -l "libcsfml-window.a"
+                  Remove-Item -Path "csfml-window-3.def"
                   
-                  & gendef.exe "..\..\bin\csfml-audio-2.dll"
-                  & dlltool.exe -d "csfml-audio-2.def" -D "..\..\bin\bin\csfml-audio-2.dll" -l "libcsfml-audio.a"
-                  Remove-Item -Path "csfml-audio-2.def"
+                  & gendef.exe "..\..\bin\csfml-audio-3.dll"
+                  & dlltool.exe -d "csfml-audio-3.def" -D "..\..\bin\bin\csfml-audio-3.dll" -l "libcsfml-audio.a"
+                  Remove-Item -Path "csfml-audio-3.def"
                   
-                  & gendef.exe "..\..\bin\csfml-network-2.dll"
-                  & dlltool.exe -d "csfml-network-2.def" -D "..\..\bin\bin\csfml-network-2.dll" -l "libcsfml-network.a"
-                  Remove-Item -Path "csfml-network-2.def"
+                  & gendef.exe "..\..\bin\csfml-network-3.dll"
+                  & dlltool.exe -d "csfml-network-3.def" -D "..\..\bin\bin\csfml-network-3.dll" -l "libcsfml-network.a"
+                  Remove-Item -Path "csfml-network-3.def"
                   
-                  & gendef.exe "..\..\bin\csfml-system-2.dll"
-                  & dlltool.exe -d "csfml-system-2.def" -D "..\..\bin\bin\csfml-system-2.dll" -l "libcsfml-system.a"
-                  Remove-Item -Path "csfml-system-2.def"
+                  & gendef.exe "..\..\bin\csfml-system-3.dll"
+                  & dlltool.exe -d "csfml-system-3.def" -D "..\..\bin\bin\csfml-system-3.dll" -l "libcsfml-system.a"
+                  Remove-Item -Path "csfml-system-3.def"
                   Pop-Location
 
                   New-Item -ItemType "directory" -PATH "install"
@@ -190,14 +190,14 @@ jobs:
 
     macos-x64:
         name: macOS x64
-        runs-on: macos-12
+        runs-on: macos-13
 
         steps:
             - name: Checkout SFML
               uses: actions/checkout@v4
               with:
                   repository: SFML/SFML
-                  ref: 2.6.1
+                  ref: 3.0.0
                   path: SFML
 
             - name: Checkout CSFML
@@ -214,10 +214,10 @@ jobs:
                         -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
                         -DBUILD_SHARED_LIBS=TRUE \
                         -DCMAKE_BUILD_TYPE=Release \
-                        -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install/Library/Frameworks \
+                        -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install \
                         -DCMAKE_OSX_ARCHITECTURES=x86_64 \
                         -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 \
-                        -DSFML_BUILD_FRAMEWORKS=TRUE \
+                        -DSFML_BUILD_FRAMEWORKS=OFF \
                         -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build SFML-build --config Release --target install
 
@@ -234,7 +234,7 @@ jobs:
                         -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install \
                         -DCMAKE_OSX_ARCHITECTURES=x86_64 \
                         -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 \
-                        -DSFML_DIR=${{ github.workspace }}/SFML-install/Library/Frameworks/SFML.framework/Resources/CMake \
+                        -DSFML_ROOT=${{ github.workspace }}/SFML-install \
                         -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build CSFML-build --config Release --target install
 
@@ -261,7 +261,7 @@ jobs:
               uses: actions/checkout@v4
               with:
                   repository: SFML/SFML
-                  ref: 2.6.1
+                  ref: 3.0.0
                   path: SFML
 
             - name: Checkout CSFML
@@ -277,10 +277,10 @@ jobs:
                         -DCMAKE_CXX_FLAGS="-stdlib=libc++" \
                         -DBUILD_SHARED_LIBS=TRUE \
                         -DCMAKE_BUILD_TYPE=Release \
-                        -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install/Library/Frameworks \
+                        -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install \
                         -DCMAKE_OSX_ARCHITECTURES=arm64 \
                         -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 \
-                        -DSFML_BUILD_FRAMEWORKS=TRUE \
+                        -DSFML_BUILD_FRAMEWORKS=OFF \
                         -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build SFML-build --config Release --target install
 
@@ -297,7 +297,7 @@ jobs:
                         -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install \
                         -DCMAKE_OSX_ARCHITECTURES=arm64 \
                         -DCMAKE_OSX_DEPLOYMENT_TARGET=11.0 \
-                        -DSFML_DIR=${{ github.workspace }}/SFML-install/Library/Frameworks/SFML.framework/Resources/CMake \
+                        -DSFML_ROOT=${{ github.workspace }}/SFML-install \
                         -DCMAKE_VERBOSE_MAKEFILE=ON
                   cmake --build CSFML-build --config Release --target install
 
