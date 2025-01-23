@@ -18,6 +18,7 @@ Development is focused on the next major version in the `master` branch. No more
   - Lukas Dürrenberger (eXpl0it3r@sfml-dev.org)
   - Chris Thrasher (thrasher@sfml-dev.org)
   - Zachariah Brown (contact@zbrown.net)
+  - And many other members of the SFML community
 
 ## Download
 

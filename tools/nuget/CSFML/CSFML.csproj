@@ -4,7 +4,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 
-    <Version>3.0.0</Version>
+    <Version>3.0.0-rc.2</Version>
     <Authors>Laurent Gomila</Authors>
     <PackageTags>sfml csfml</PackageTags>
     <Copyright>Copyright © Laurent Gomila</Copyright>
@@ -13,6 +13,7 @@
     <PackageProjectUrl>https://www.sfml-dev.org/</PackageProjectUrl>
     <PackageIconUrl>https://www.sfml-dev.org/images/sfml-icon.png</PackageIconUrl>
     <PackageIcon>sfml-icon.png</PackageIcon>
+    <PackageReadmeFile>readme.md</PackageReadmeFile>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <IncludeBuildOutput>false</IncludeBuildOutput>
@@ -31,6 +32,7 @@
     <None Pack="True" Include="runtimes/**" PackagePath="runtimes" />
     <None Pack="True" Include="build/**" PackagePath="build" />
     <None Pack="True" Include="sfml-icon.png" PackagePath="/" />
+    <None Pack="True" Include="readme.md" PackagePath="/" />
   </ItemGroup>
 
 </Project>
