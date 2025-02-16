@@ -22,7 +22,8 @@ TEST_CASE("[Network] sfIpAddress")
     SECTION("sfIpAddress_fromString")
     {
         CHECK(sfIpAddress_toInteger(sfIpAddress_fromString("")) == 0);
-        CHECK(sfIpAddress_toInteger(sfIpAddress_fromString("invalid address")) == 0);
+        CHECK(sfIpAddress_toInteger(sfIpAddress_fromString("256.256.256.256")) == 0);
+        CHECK(sfIpAddress_toInteger(sfIpAddress_fromString("localhost")) == 0x7F000001);
         CHECK(sfIpAddress_toInteger(sfIpAddress_fromString("192.168.0.1")) == 0xC0A80001);
         CHECK(sfIpAddress_toInteger(sfIpAddress_fromString("8.8.8.8")) == 0x08080808);
     }
