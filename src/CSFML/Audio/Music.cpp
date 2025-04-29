@@ -34,6 +34,28 @@
 
 #include <cstring>
 
+
+////////////////////////////////////////////////////////////
+void sfMusic_setOnGetData(sfMusic* music, sfMusicOnGetDataMixin mixin)
+{
+    music->OnGetDataMixin = mixin;
+}
+
+
+////////////////////////////////////////////////////////////
+void sfMusic_setOnSeek(sfMusic* music, sfMusicOnSeekMixin mixin)
+{
+    music->OnSeekMixin = mixin;
+}
+
+
+////////////////////////////////////////////////////////////
+void sfMusic_setOnLoop(sfMusic* music, sfMusicOnLoopMixin mixin)
+{
+    music->OnLoopMixin = mixin;
+}
+
+
 ////////////////////////////////////////////////////////////
 sfMusic* sfMusic_createFromFile(const char* filename)
 {
