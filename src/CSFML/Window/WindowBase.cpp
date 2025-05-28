@@ -34,6 +34,8 @@
 
 #include <SFML/Window/VideoMode.hpp>
 
+#include <optional>
+
 
 ////////////////////////////////////////////////////////////
 sfWindowBase* sfWindowBase_create(sfVideoMode mode, const char* title, uint32_t style, sfWindowState state)
@@ -138,6 +140,38 @@ void sfWindowBase_setSize(sfWindowBase* windowBase, sfVector2u size)
 {
     assert(windowBase);
     windowBase->setSize(convertVector2(size));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfWindowBase_setMinimumSize(sfWindowBase* windowBase, const sfVector2u* minimumSize)
+{
+    assert(windowBase);
+
+    if (minimumSize == nullptr)
+    {
+        windowBase->setMinimumSize(std::nullopt);
+    }
+    else
+    {
+        windowBase->setMinimumSize(convertVector2(*minimumSize));
+    }
+}
+
+
+////////////////////////////////////////////////////////////
+void sfWindowBase_setMaximumSize(sfWindowBase* windowBase, const sfVector2u* maximumSize)
+{
+    assert(windowBase);
+
+    if (maximumSize == nullptr)
+    {
+        windowBase->setMaximumSize(std::nullopt);
+    }
+    else
+    {
+        windowBase->setMaximumSize(convertVector2(*maximumSize));
+    }
 }
 
 
