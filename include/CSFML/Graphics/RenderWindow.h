@@ -217,6 +217,28 @@ CSFML_GRAPHICS_API bool sfRenderWindow_isSrgb(const sfRenderWindow* renderWindow
 CSFML_GRAPHICS_API void sfRenderWindow_setSize(sfRenderWindow* renderWindow, sfVector2u size);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the minimum window rendering region size
+///
+/// Pass a `NULL` vector to unset the minimum size
+///
+/// \param renderWindow Render window object
+/// \param minimumSize  New minimum size, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_setMinimumSize(sfRenderWindow* renderWindow, const sfVector2u* minimumSize);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the maximum window rendering region size
+///
+/// Pass a `NULL` vector to unset the maximum size
+///
+/// \param renderWindow Render window object
+/// \param maximumSize  New maximum size, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfRenderWindow_setMaximumSize(sfRenderWindow* renderWindow, const sfVector2u* maximumSize);
+
+////////////////////////////////////////////////////////////
 /// \brief Change the title of a render window
 ///
 /// \param renderWindow Render window object

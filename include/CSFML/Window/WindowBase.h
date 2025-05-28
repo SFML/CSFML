@@ -237,6 +237,28 @@ CSFML_WINDOW_API sfVector2u sfWindowBase_getSize(const sfWindowBase* windowBase)
 CSFML_WINDOW_API void sfWindowBase_setSize(sfWindowBase* windowBase, sfVector2u size);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the minimum window rendering region size
+///
+/// Pass a `NULL` vector to unset the minimum size
+///
+/// \param windowBase  Window object
+/// \param minimumSize New minimum size, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindowBase_setMinimumSize(sfWindowBase* windowBase, const sfVector2u* minimumSize);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the maximum window rendering region size
+///
+/// Pass a `NULL` vector to unset the maximum size
+///
+/// \param windowBase  Window object
+/// \param maximumSize New maximum size, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindowBase_setMaximumSize(sfWindowBase* windowBase, const sfVector2u* maximumSize);
+
+////////////////////////////////////////////////////////////
 /// \brief Change the title of a window
 ///
 /// \param windowBase Window object

@@ -160,6 +160,38 @@ void sfWindow_setSize(sfWindow* window, sfVector2u size)
 
 
 ////////////////////////////////////////////////////////////
+void sfWindow_setMinimumSize(sfWindow* window, const sfVector2u* minimumSize)
+{
+    assert(window);
+
+    if (minimumSize == nullptr)
+    {
+        window->setMinimumSize(std::nullopt);
+    }
+    else
+    {
+        window->setMinimumSize(convertVector2(*minimumSize));
+    }
+}
+
+
+////////////////////////////////////////////////////////////
+void sfWindow_setMaximumSize(sfWindow* window, const sfVector2u* maximumSize)
+{
+    assert(window);
+
+    if (maximumSize == nullptr)
+    {
+        window->setMaximumSize(std::nullopt);
+    }
+    else
+    {
+        window->setMaximumSize(convertVector2(*maximumSize));
+    }
+}
+
+
+////////////////////////////////////////////////////////////
 void sfWindow_setTitle(sfWindow* window, const char* title)
 {
     assert(window);

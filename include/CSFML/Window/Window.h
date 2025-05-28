@@ -281,6 +281,28 @@ CSFML_WINDOW_API sfVector2u sfWindow_getSize(const sfWindow* window);
 CSFML_WINDOW_API void sfWindow_setSize(sfWindow* window, sfVector2u size);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the minimum window rendering region size
+///
+/// Pass a `NULL` vector to unset the minimum size
+///
+/// \param window      Window object
+/// \param minimumSize New minimum size, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_setMinimumSize(sfWindow* window, const sfVector2u* minimumSize);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the maximum window rendering region size
+///
+/// Pass a `NULL` vector to unset the maximum size
+///
+/// \param window      Window object
+/// \param maximumSize New maximum size, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_WINDOW_API void sfWindow_setMaximumSize(sfWindow* window, const sfVector2u* maximumSize);
+
+////////////////////////////////////////////////////////////
 /// \brief Change the title of a window
 ///
 /// \param window Window object

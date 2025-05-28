@@ -199,6 +199,38 @@ void sfRenderWindow_setSize(sfRenderWindow* renderWindow, sfVector2u size)
 
 
 ////////////////////////////////////////////////////////////
+void sfRenderWindow_setMinimumSize(sfRenderWindow* renderWindow, const sfVector2u* minimumSize)
+{
+    assert(renderWindow);
+
+    if (minimumSize == nullptr)
+    {
+        renderWindow->setMinimumSize(std::nullopt);
+    }
+    else
+    {
+        renderWindow->setMinimumSize(convertVector2(*minimumSize));
+    }
+}
+
+
+////////////////////////////////////////////////////////////
+void sfRenderWindow_setMaximumSize(sfRenderWindow* renderWindow, const sfVector2u* maximumSize)
+{
+    assert(renderWindow);
+
+    if (maximumSize == nullptr)
+    {
+        renderWindow->setMaximumSize(std::nullopt);
+    }
+    else
+    {
+        renderWindow->setMaximumSize(convertVector2(*maximumSize));
+    }
+}
+
+
+////////////////////////////////////////////////////////////
 void sfRenderWindow_setTitle(sfRenderWindow* renderWindow, const char* title)
 {
     assert(renderWindow);
