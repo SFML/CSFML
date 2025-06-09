@@ -179,6 +179,20 @@ CSFML_GRAPHICS_API sfTexture* sfTexture_copy(const sfTexture* texture);
 CSFML_GRAPHICS_API void sfTexture_destroy(const sfTexture* texture);
 
 ////////////////////////////////////////////////////////////
+/// \brief Resize the texture
+///
+/// If this function fails, the texture is left unchanged.
+///
+/// \param texture Texture to resize
+/// \param size Width and height of the texture
+/// \param sRgb `true` to enable sRGB conversion, `false` to disable it
+///
+/// \return `true` if resizing was successful, `false` if it failed
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API bool sfTexture_resize(sfTexture* texture, sfVector2u size, bool sRgb);
+
+////////////////////////////////////////////////////////////
 /// \brief Return the size of the texture
 ///
 /// \param texture Texture to read

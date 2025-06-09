@@ -171,6 +171,15 @@ void sfTexture_destroy(const sfTexture* texture)
 
 
 ////////////////////////////////////////////////////////////
+bool sfTexture_resize(sfTexture* texture, sfVector2u size, bool sRgb)
+{
+    assert(texture);
+    assert(texture->This);
+    return texture->This->resize(convertVector2(size), sRgb);
+}
+
+
+////////////////////////////////////////////////////////////
 sfVector2u sfTexture_getSize(const sfTexture* texture)
 {
     assert(texture);
