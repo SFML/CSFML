@@ -53,13 +53,14 @@ add_executable(test-csfml-graphics
     Graphics/RenderStates.test.cpp
     Graphics/Shape.test.cpp
     Graphics/StencilMode.test.cpp
+    Graphics/Texture.test.cpp
     Graphics/Transform.test.cpp
     Graphics/VertexArray.test.cpp
     Graphics/View.test.cpp
 )
 target_link_libraries(test-csfml-graphics PRIVATE csfml-graphics Catch2::Catch2WithMain SFML::Graphics)
 set_target_warnings(test-csfml-graphics)
-catch_discover_tests(test-csfml-graphics)
+catch_discover_tests(test-csfml-graphics WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(test-csfml-network
     Network/Ftp.test.cpp
