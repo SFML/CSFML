@@ -48,6 +48,7 @@ add_executable(test-csfml-graphics
     Graphics/BlendMode.test.cpp
     Graphics/Color.test.cpp
     Graphics/CoordinateType.test.cpp
+    Graphics/Image.test.cpp
     Graphics/PrimitiveType.test.cpp
     Graphics/Rect.test.cpp
     Graphics/RenderStates.test.cpp
@@ -59,7 +60,7 @@ add_executable(test-csfml-graphics
 )
 target_link_libraries(test-csfml-graphics PRIVATE csfml-graphics Catch2::Catch2WithMain SFML::Graphics)
 set_target_warnings(test-csfml-graphics)
-catch_discover_tests(test-csfml-graphics)
+catch_discover_tests(test-csfml-graphics WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(test-csfml-network
     Network/Ftp.test.cpp
