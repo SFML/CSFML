@@ -7,7 +7,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  SFML_VERSION: 3.0.0
+  SFML_VERSION: 3.0.1
 
 defaults:
   run:
