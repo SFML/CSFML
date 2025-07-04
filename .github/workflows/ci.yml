@@ -22,10 +22,10 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: Windows VS2022 x86,  os: windows-2022, flags: -AWin32 }
-        - { name: Windows VS2022 x64,  os: windows-2022, flags: -Ax64 }
-        - { name: Windows ClangCL,     os: windows-2022, flags: -T ClangCL }
-        - { name: Windows Clang,       os: windows-2022, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        - { name: Windows VS2022 x86,  os: windows-2025, flags: -AWin32 }
+        - { name: Windows VS2022 x64,  os: windows-2025, flags: -Ax64 }
+        - { name: Windows ClangCL,     os: windows-2025, flags: -T ClangCL }
+        - { name: Windows Clang,       os: windows-2025, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: Linux GCC,           os: ubuntu-22.04, flags: -GNinja }
         - { name: Linux Clang,         os: ubuntu-22.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: MacOS,               os: macos-14,     flags: -GNinja }
