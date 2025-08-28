@@ -27,14 +27,14 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/mingw32
-          key: 15.1.0posix-13.0.0-ucrt-r2-x86
+          key: 15.2.0posix-13.0.0-ucrt-r1-x86
 
       - name: Install MinGW x86
         if: steps.mingw-x86-cache.outputs.cache-hit != 'true'
         uses: bwoodsend/setup-winlibs-action@v1
         id: winlibs-32
         with:
-          tag: 15.1.0posix-13.0.0-ucrt-r2
+          tag: 15.2.0posix-13.0.0-ucrt-r1
           with_clang: false
           architecture: 32
           destination: ${{ github.workspace }}
@@ -114,14 +114,14 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ${{ github.workspace }}/mingw64
-          key: 15.1.0posix-13.0.0-ucrt-r2-x64
+          key: 15.2.0posix-13.0.0-ucrt-r1-x64
 
       - name: Install MinGW x64
         if: steps.mingw-x64-cache.outputs.cache-hit != 'true'
         uses: bwoodsend/setup-winlibs-action@v1
         id: winlibs-64
         with:
-          tag: 15.1.0posix-13.0.0-ucrt-r2
+          tag: 15.2.0posix-13.0.0-ucrt-r1
           with_clang: false
           architecture: 64
           destination: ${{ github.workspace }}
