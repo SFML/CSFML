@@ -85,7 +85,7 @@ jobs:
           path: CSFML
 
       - name: Build in an ARM container
-        uses: uraimo/run-on-arch-action@v2.8.1
+        uses: uraimo/run-on-arch-action@v3.0.1
         with:
           arch: armv7
           distro: ubuntu22.04
@@ -117,7 +117,7 @@ jobs:
           path: CSFML
 
       - name: Build in an ARM64 container
-        uses: uraimo/run-on-arch-action@v2.8.1
+        uses: uraimo/run-on-arch-action@v3.0.1
         with:
           arch: aarch64
           distro: ubuntu22.04
@@ -142,7 +142,7 @@ jobs:
     name: Linux MUSL x64
     runs-on: ubuntu-22.04
     container:
-      image: alpine:3.20.3
+      image: alpine:3.20.7
 
     steps:
       - name: Checkout CSFML
