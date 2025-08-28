@@ -23,6 +23,7 @@ Checks: >
   -cppcoreguidelines-pro-type-const-cast,
   -cppcoreguidelines-pro-type-reinterpret-cast,
   -cppcoreguidelines-special-member-functions,
+  -cppcoreguidelines-use-enum-class,
   -modernize-avoid-c-arrays,
   -modernize-macro-to-enum,
   -modernize-redundant-void-arg,
