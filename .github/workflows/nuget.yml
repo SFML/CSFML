@@ -37,10 +37,16 @@ jobs:
           cd CSFML/tools/nuget
           ./build.win.ps1 "win-x64"
 
+      - name: Build ARM64
+        shell: pwsh
+        run: |
+          cd CSFML/tools/nuget
+          ./build.win.ps1 "win-arm64"
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
-          name: CSFML-win-x86-x64
+          name: CSFML-win-x86-x64-arm64
           path: CSFML/tools/nuget/CSFML/runtimes
 
   linux-x64:
@@ -213,7 +219,7 @@ jobs:
 
   package:
     name: Package Builds
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-24.04
     needs:
       - windows
       - linux-x64
