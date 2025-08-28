@@ -18,12 +18,16 @@ if (-not $RID) {
 
 $Generator = 'Visual Studio 17 2022'
 
+# See also: https://learn.microsoft.com/en-us/dotnet/core/rid-catalog#known-rids
 switch ($RID) {
     'win-x86' {
         $Architecture = 'Win32'
     }
     'win-x64' {
         $Architecture = 'x64'
+    }
+    'win-arm64' {
+        $Architecture = 'ARM64'
     }
     Default {
         Write-Error "Unknown RID '$RID'"
@@ -83,7 +87,7 @@ Push-Location "SFML"
 
 $SFMLDir = (Get-Item .).FullName
 
-IF ($RID -ne 'win-x86' -and $RID -ne 'win-x64') {
+IF ($RID -ne 'win-x86' -and $RID -ne 'win-x64' -and $RID -ne 'win-arm64') {
     Write-Error "Unknown RID '$RID'"
     exit
 }

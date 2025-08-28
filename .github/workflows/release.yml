@@ -191,6 +191,45 @@ jobs:
           name: CSFML-windows-64-bit
           path: install/CSFML
 
+  windows-arm64:
+    name: Windows ARM64
+    runs-on: windows-2025
+
+    steps:
+      - name: Checkout SFML
+        uses: actions/checkout@v4
+        with:
+          repository: SFML/SFML
+          ref: ${{ env.SFML_VERSION }}
+          path: SFML
+
+      - name: Checkout CSFML
+        uses: actions/checkout@v4
+        with:
+          path: CSFML
+
+      - name: Build SFML
+        run: |
+          cmake -S SFML -B SFML-build -A ARM64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+          cmake --build SFML-build --config Release --target install
+
+      - name: Build CSFML
+        run: |
+          cmake -S CSFML -B CSFML-build -A ARM64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=ON -DCSFML_LINK_SFML_STATICALLY=OFF -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+          cmake --build CSFML-build --config Release --target install
+
+      - name: Move Files
+        shell: pwsh
+        run: |
+          New-Item -ItemType "directory" -PATH "install\CSFML"
+          Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: CSFML-windows-arm64
+          path: install/CSFML
+
   macos-x64:
     name: macOS x64
     runs-on: macos-13
