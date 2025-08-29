@@ -5,6 +5,8 @@ on:
     branches:
       - master
       - 2.6.x
+    tags:
+      - "**"
   workflow_dispatch: {}
 
 concurrency:
