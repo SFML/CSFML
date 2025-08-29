@@ -165,31 +165,6 @@ jobs:
           name: CSFML-linux-musl-x64
           path: CSFML/tools/nuget/CSFML/runtimes
 
-  fedora-x64:
-    name: Fedora x64
-    runs-on: ubuntu-22.04
-    container:
-      image: fedora:37
-
-    steps:
-      - name: Checkout CSFML
-        uses: actions/checkout@v4
-        with:
-          path: CSFML
-
-      - name: Build
-        shell: bash
-        run: |
-          cd ./CSFML/tools/nuget
-          chmod +x ./docker.fedora-x64.sh
-          ./docker.fedora-x64.sh
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: CSFML-fedora-x64
-          path: CSFML/tools/nuget/CSFML/runtimes
-
   macos:
     name: macOS
     runs-on: macos-14
@@ -228,7 +203,6 @@ jobs:
       - linux-arm
       - linux-arm64
       - linux-musl-x64
-      - fedora-x64
       - macos
     steps:
       - name: Checkout CSFML
