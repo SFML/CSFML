@@ -185,12 +185,24 @@ CSFML_GRAPHICS_API void sfTexture_destroy(const sfTexture* texture);
 ///
 /// \param texture Texture to resize
 /// \param size Width and height of the texture
-/// \param sRgb `true` to enable sRGB conversion, `false` to disable it
 ///
 /// \return `true` if resizing was successful, `false` if it failed
 ///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API bool sfTexture_resize(sfTexture* texture, sfVector2u size, bool sRgb);
+CSFML_GRAPHICS_API bool sfTexture_resize(sfTexture* texture, sfVector2u size);
+
+////////////////////////////////////////////////////////////
+/// \brief Resize the texture with sRGB-enabled
+///
+/// If this function fails, the texture is left unchanged.
+///
+/// \param texture Texture to resize
+/// \param size Width and height of the texture
+///
+/// \return `true` if resizing was successful, `false` if it failed
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API bool sfTexture_resizeSrgb(sfTexture* texture, sfVector2u size);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the size of the texture
