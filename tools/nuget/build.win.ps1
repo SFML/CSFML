@@ -13,6 +13,7 @@ if (-not $RID) {
     Write-Output "No RID specified, building all known RIDs"
     ./build.win.ps1 "win-x86"
     ./build.win.ps1 "win-x64"
+    ./build.win.ps1 "win-arm64"
     exit
 }
 
@@ -21,13 +22,16 @@ $Generator = 'Visual Studio 17 2022'
 # See also: https://learn.microsoft.com/en-us/dotnet/core/rid-catalog#known-rids
 switch ($RID) {
     'win-x86' {
-        $Architecture = 'Win32'
+        $ArchitectureCMake = 'Win32'
+        $Architecture = 'x86'
     }
     'win-x64' {
+        $ArchitectureCMake = 'x64'
         $Architecture = 'x64'
     }
     'win-arm64' {
-        $Architecture = 'ARM64'
+        $ArchitectureCMake = 'ARM64'
+        $Architecture = 'arm64'
     }
     Default {
         Write-Error "Unknown RID '$RID'"
@@ -37,7 +41,7 @@ switch ($RID) {
 
 Write-Output "Building $RID"
 Write-Output "Using $Generator as the cmake generator"
-Write-Output "Using architecture $Architecture"
+Write-Output "Using architecture $ArchitectureCMake"
 
 $SFMLBranch = "3.0.1" # The branch or tag of the SFML repository to be cloned
 $CSFMLDir = (Get-Item (git rev-parse --show-toplevel)).FullName # The directory of the source code of CSFML
@@ -115,8 +119,9 @@ cmake `
     '-DSFML_USE_STATIC_STD_LIBS=OFF' `
     '-DSFML_BUILD_NETWORK=OFF' `
     "-DCMAKE_INSTALL_PREFIX=$SFMLInstallDir" `
+    "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" `
     "-G$Generator" `
-    "-A$Architecture" `
+    "-A$ArchitectureCMake" `
     $SFMLDir
 Ensure-Success
 
@@ -156,7 +161,7 @@ cmake `
     '-DCSFML_BUILD_NETWORK=OFF' `
     `
     "-G$generator" `
-    "-A$Architecture" `
+    "-A$ArchitectureCMake" `
     `
     $CSFMLDir
 Ensure-Success
@@ -197,6 +202,74 @@ Copy-Module 'audio'
 Copy-Module 'graphics'
 Copy-Module 'system'
 Copy-Module 'window'
+
+# ====================================================== #
+# STEP 6: Copy the required runtime to the NuGet folders #
+# ====================================================== #
+
+<#
+.SYNOPSIS
+Copies the required and allowed redistributable runtime DLLs to the NuGet folders.
+
+.DESCRIPTION
+Since we're no longer linking statically against the runtime, we need to ensure
+that the required redistributable DLLs are included in the NuGet package.
+Microsoft only allows the distribution of the DLLs listed in the redist.txt, as
+such we make sure to only include those.
+Additionally, we're checking what the DLLs actually depend on with dumpbin.exe
+and make sure to find those dependencies.
+#>
+
+# Locate VS installation
+$vswhere = "${env:ProgramFiles(x86)}\Microsoft Visual Studio\Installer\vswhere.exe"
+if (-not (Test-Path $vswhere)) {
+    throw "vswhere.exe not found"
+}
+
+$vsPath = & $vswhere -latest -products * -requires Microsoft.VisualStudio.Component.VC.Redist.* -property installationPath
+if (-not $vsPath) {
+    throw "Could not locate Visual Studio installation with VC++ Redist components"
+}
+
+# Find latest VC redist directory
+$redistRoot = Join-Path $vsPath "VC\Redist\MSVC"
+$latestRedist = Get-ChildItem $redistRoot -Directory -Exclude "v*" | Sort-Object Name -Descending | Select-Object -First 1
+$redistCRT = Join-Path $latestRedist.FullName "$Architecture\Microsoft.VC*" 
+
+Write-Host "Using CRT redistributables from $redistCRT"
+
+# Get list of DLLs in redistributable CRT directory
+$redistributableDlls = Get-ChildItem -Path $redistCRT -Recurse -Filter *.dll | Select-Object -ExpandProperty Name
+
+# Check binary dependencies
+function Get-BinaryDependencies {
+    param([string]$Path)
+
+    $dumpbin = Get-Command dumpbin.exe -ErrorAction SilentlyContinue
+    if (-not $dumpbin) {
+        $dumpbin = Get-ChildItem -Path $vsPath -Recurse -Filter dumpbin.exe -ErrorAction SilentlyContinue | Where-Object { $_.FullName -match "\\$Architecture\\" } -ErrorAction SilentlyContinue | Select-Object -First 1
+    }
+    if (-not $dumpbin) { throw "dumpbin.exe not found" }
+
+    & $dumpbin /DEPENDENTS $Path | Where-Object { $_ -match "\.DLL" } | ForEach-Object { $_.Trim() }
+}
+
+# Process binaries
+Get-ChildItem $OutDir -Filter *.dll | ForEach-Object {
+    $dll = $_.FullName
+    Write-Host "Checking dependencies for $dll"
+
+    $deps = Get-BinaryDependencies -Path $dll
+    foreach ($dep in $deps) {
+        if ($redistributableDlls -contains $dep) {
+            $source = Get-ChildItem -Path $redistCRT -Recurse -Filter $dep | Select-Object -First 1
+            if ($source) {
+                Copy-Item $source.FullName -Destination $OutDir -Force
+                Write-Host " -> Copied $dep from $($source.DirectoryName)"
+            }
+        }
+    }
+}
 
 Pop-Location # Pop CSFML
 Pop-Location # Pop $RID
