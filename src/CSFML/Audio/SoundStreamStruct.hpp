@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Audio/SoundChannel.h>
+#include <CSFML/Audio/SoundStream.h>
 
 #include <SFML/Audio/SoundStream.hpp>
 
@@ -57,7 +58,6 @@ public:
 
     mutable std::vector<sfSoundChannel> Channels;
 
-private:
     bool onGetData(Chunk& data) override
     {
         sfSoundStreamChunk chunk = {nullptr, 0};
@@ -77,6 +77,10 @@ private:
             mySeekCallback(time, myUserData);
         }
     }
+
+    sfSoundStreamOnLoopMixin     OnLoopMixin = nullptr;
+    static bool                  onLoopOriginal(sfSoundStream* music, uint64_t* position);
+    std::optional<std::uint64_t> onLoop() override;
 
     sfSoundStreamGetDataCallback myGetDataCallback;
     sfSoundStreamSeekCallback    mySeekCallback;

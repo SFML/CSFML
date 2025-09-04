@@ -33,12 +33,23 @@
 #include <CSFML/Audio/SoundChannel.h>
 #include <CSFML/Audio/SoundSourceCone.h>
 #include <CSFML/Audio/SoundStatus.h>
+#include <CSFML/Audio/SoundStream.h>
 #include <CSFML/Audio/Types.h>
 #include <CSFML/System/InputStream.h>
 #include <CSFML/System/Time.h>
 #include <CSFML/System/Vector3.h>
 
 #include <stddef.h>
+
+
+typedef bool (*sfMusicOnGetDataOriginal)(sfMusic* music, sfSoundStreamChunk* data); ///< sf::Music::onGetData callback
+typedef bool (*sfMusicOnGetDataMixin)(sfMusicOnGetDataOriginal originalImpl, sfMusic* music, sfSoundStreamChunk* data); ///< sf::Music::onGetData mixin
+
+typedef void (*sfMusicOnSeekOriginal)(sfMusic* music, sfTime data); ///< sf::Music::onSeek callback
+typedef void (*sfMusicOnSeekMixin)(sfMusicOnSeekOriginal originalImpl, sfMusic* music, sfTime timeOffset); ///< sf::Music::onSeek mixin
+
+typedef bool (*sfMusicOnLoopOriginal)(sfMusic* music, uint64_t* position); ///< sf::Music::onLoop callback
+typedef bool (*sfMusicOnLoopMixin)(sfMusicOnLoopOriginal originalImpl, sfMusic* music, uint64_t* position); ///< sf::Music::onLoop mixin
 
 
 ////////////////////////////////////////////////////////////
@@ -50,6 +61,46 @@ typedef struct
     sfTime offset; ///< The beginning offset of the time range
     sfTime length; ///< The length of the time range
 } sfTimeSpan;
+
+
+////////////////////////////////////////////////////////////
+/// \brief Override the behaviour of requesting a new chunk
+///        of audio samples from the stream source
+///
+/// This function fills the chunk from the next samples
+/// to read from the audio file.
+///
+/// \param music Music object
+/// \param mixin Method override to set, a null override restores the original behaviour
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfMusic_setOnGetData(sfMusic* music, sfMusicOnGetDataMixin mixin);
+
+
+////////////////////////////////////////////////////////////
+/// \brief Override the behaviour of changing the current
+///        playing position in the stream source
+///
+/// \param music Music object
+/// \param mixin Method override to set, a null override restores the original behaviour
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfMusic_setOnSeek(sfMusic* music, sfMusicOnSeekMixin mixin);
+
+
+////////////////////////////////////////////////////////////
+/// \brief Override the behaviour of changing the current
+///        playing position in the stream source to the loop offset
+///
+/// This is called by the underlying `SoundStream` whenever it needs us to reset
+/// the seek position for a loop. We then determine whether we are looping on a
+/// loop point or the end-of-file, perform the seek, and return the new position.
+///
+/// \param music Music object
+/// \param mixin Method override to set, a null override restores the original behaviour
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfMusic_setOnLoop(sfMusic* music, sfMusicOnLoopMixin mixin);
 
 
 ////////////////////////////////////////////////////////////

@@ -1,7 +1,7 @@
 ////////////////////////////////////////////////////////////
 //
 // SFML - Simple and Fast Multimedia Library
-// Copyright (C) 2007-2025 Laurent Gomila (laurent@sfml-dev.org)
+// Copyright (C) 2007-2024 Laurent Gomila (laurent@sfml-dev.org)
 //
 // This software is provided 'as-is', without any express or implied warranty.
 // In no event will the authors be held liable for any damages arising from the use of this software.
@@ -22,37 +22,32 @@
 //
 ////////////////////////////////////////////////////////////
 
-#pragma once
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Audio/Music.h>
-#include <CSFML/Audio/SoundChannel.h>
-#include <CSFML/CallbackStream.hpp>
+#include <CSFML/Audio/SoundStreamStruct.hpp>
 
-#include <SFML/Audio/Music.hpp>
-
-#include <vector>
-
-
-////////////////////////////////////////////////////////////
-// Internal structure of sfMusic
-////////////////////////////////////////////////////////////
-struct sfMusic : sf::Music
+bool sfSoundStream::onLoopOriginal(sfSoundStream* music, uint64_t* position)
 {
-    mutable std::vector<sfSoundChannel> Channels;
-    CallbackStream                      Stream;
+    auto result = music->sf::SoundStream::onLoop();
 
-    sfMusicOnGetDataMixin OnGetDataMixin = nullptr;
-    static bool           onGetDataOriginal(sfMusic* music, sfSoundStreamChunk* data);
-    bool                  onGetData(Chunk& data) override;
+    if (!result)
+    {
+        return false;
+    }
 
-    sfMusicOnSeekMixin OnSeekMixin = nullptr;
-    static void        onSeekOriginal(sfMusic* music, sfTime timeOffset);
-    void               onSeek(sf::Time timeOffset) override;
+    *position = *result;
+    return true;
+}
 
-    sfMusicOnLoopMixin           OnLoopMixin = nullptr;
-    static bool                  onLoopOriginal(sfMusic* music, uint64_t* position);
-    std::optional<std::uint64_t> onLoop() override;
-};
+std::optional<std::uint64_t> sfSoundStream::onLoop()
+{
+    if (!OnLoopMixin)
+        return sf::SoundStream::onLoop();
+
+    std::uint64_t data = 0;
+
+    bool noLoop = OnLoopMixin(onLoopOriginal, this, &data);
+
+    return noLoop ? std::nullopt : std::optional(data);
+}
