@@ -39,7 +39,7 @@ Of course, you can also find the CSFML API documentation in the SDK.
 
 ### Third-party resources
 
-  * Sigmanificient's [CSFML API Reference](https://github.com/Sigmanificient)
+  * Sigmanificient's [CSFML API Reference](https://csfml.1l.is/api-v3/)
 
 ## Building
 
