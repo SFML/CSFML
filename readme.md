@@ -26,6 +26,8 @@ You can get the latest official release on [SFML website](https://www.sfml-dev.o
 
 ## Learn
 
+### Offical resources
+
 There is no tutorial for CSFML, but since it's a binding you can use the C++ resources:
 
   * The [official tutorials](https://www.sfml-dev.org/tutorials/)
@@ -34,6 +36,10 @@ There is no tutorial for CSFML, but since it's a binding you can use the C++ res
   * The [community forum](https://en.sfml-dev.org/forums/) (or [French](https://fr.sfml-dev.org/forums/))
 
 Of course, you can also find the CSFML API documentation in the SDK.
+
+### Third-party resources
+
+  * Sigmanificient's [CSFML API Reference](https://github.com/Sigmanificient)
 
 ## Building
 
