@@ -66,7 +66,7 @@ endif()
 if(CSFML_BUILD_NETWORK)
     list(PREPEND SFML_MODULES "Network")
 endif()
-find_package(SFML 3.0.0 COMPONENTS ${SFML_MODULES} REQUIRED)
+find_package(SFML 3.0 COMPONENTS ${SFML_MODULES} REQUIRED)
 
 # add the subdirectories
 add_subdirectory(src/CSFML)

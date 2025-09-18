@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  SFML_VERSION: 3.0.1
+  SFML_VERSION: 3.0.2
 
 jobs:
   windows-x86:
