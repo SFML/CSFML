@@ -26,9 +26,9 @@ jobs:
         - { name: Windows VS2022 x64,  os: windows-2025, flags: -Ax64 }
         - { name: Windows ClangCL,     os: windows-2025, flags: -T ClangCL }
         - { name: Windows Clang,       os: windows-2025, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: Linux GCC,           os: ubuntu-22.04, flags: -GNinja }
-        - { name: Linux Clang,         os: ubuntu-22.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
-        - { name: MacOS,               os: macos-14,     flags: -GNinja }
+        - { name: Linux GCC,           os: ubuntu-24.04, flags: -GNinja }
+        - { name: Linux Clang,         os: ubuntu-24.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        - { name: MacOS,               os: macos-15,     flags: -GNinja }
         config:
         - { name: Shared, flags: -DBUILD_SHARED_LIBS=ON,  csfml_flags: -DCSFML_LINK_SFML_STATICALLY=OFF }
         - { name: Static, flags: -DBUILD_SHARED_LIBS=OFF, csfml_flags: -DCSFML_LINK_SFML_STATICALLY=ON }
@@ -48,7 +48,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
 
     - name: Checkout SFML
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
@@ -66,7 +66,7 @@ jobs:
       run: cmake --build SFML/build --config ${{matrix.type.name}} --target install
 
     - name: Checkout CSFML
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         path: CSFML
 
@@ -96,7 +96,7 @@ jobs:
       run: sudo apt-get install clang-format-17
 
     - name: Checkout Code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
     - name: Format Code
       run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-17 -P cmake/Format.cmake
@@ -106,7 +106,7 @@ jobs:
 
   tidy:
     name: Analyze
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
     - name: Get CMake and Ninja
@@ -122,7 +122,7 @@ jobs:
         echo /opt/homebrew/opt/llvm/bin >> $GITHUB_PATH
 
     - name: Checkout SFML
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
@@ -135,7 +135,7 @@ jobs:
       run: cmake --build SFML/build --target install
 
     - name: Checkout CSFML
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         path: CSFML
 
@@ -147,7 +147,7 @@ jobs:
 
   docs:
     name: Documentation
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
     - name: Get CMake and Ninja
@@ -162,7 +162,7 @@ jobs:
         brew install doxygen ninja || true
 
     - name: Checkout SFML
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
@@ -175,7 +175,7 @@ jobs:
       run: cmake --build SFML/build --target install
 
     - name: Checkout CSFML
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
       with:
         path: CSFML
 

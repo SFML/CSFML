@@ -24,7 +24,7 @@ jobs:
     steps:
       - name: Cache MinGW x86
         id: mingw-x86-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ github.workspace }}/mingw32
           key: 15.2.0posix-13.0.0-ucrt-r1-x86
@@ -41,14 +41,14 @@ jobs:
           add_to_path: false
 
       - name: Checkout SFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: CSFML
 
@@ -99,7 +99,7 @@ jobs:
           Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: CSFML-windows-32-bit
           path: install/CSFML
@@ -111,7 +111,7 @@ jobs:
     steps:
       - name: Cache MinGW x64
         id: mingw-x64-cache
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         with:
           path: ${{ github.workspace }}/mingw64
           key: 15.2.0posix-13.0.0-ucrt-r1-x64
@@ -128,14 +128,14 @@ jobs:
           add_to_path: false
 
       - name: Checkout SFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: CSFML
 
@@ -186,7 +186,7 @@ jobs:
           Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: CSFML-windows-64-bit
           path: install/CSFML
@@ -197,14 +197,14 @@ jobs:
 
     steps:
       - name: Checkout SFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: CSFML
 
@@ -225,25 +225,25 @@ jobs:
           Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: CSFML-windows-arm64
           path: install/CSFML
 
   macos-x64:
     name: macOS x64
-    runs-on: macos-13
+    runs-on: macos-15
 
     steps:
       - name: Checkout SFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: CSFML
 
@@ -288,25 +288,25 @@ jobs:
           tar -zcvf CSFML-macOS-clang-64-bit.tar.gz CSFML-macOS-clang-64-bit
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: CSFML-macOS-clang-64-bit
           path: CSFML-macOS-clang-64-bit.tar.gz
 
   macos-arm64:
     name: macOS ARM64
-    runs-on: macos-14
+    runs-on: macos-15
 
     steps:
       - name: Checkout SFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           path: CSFML
       - name: Build SFML
@@ -350,7 +350,7 @@ jobs:
           tar -zcvf CSFML-macOS-clang-arm64.tar.gz CSFML-macOS-clang-arm64
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: CSFML-macOS-clang-arm64
           path: CSFML-macOS-clang-arm64.tar.gz

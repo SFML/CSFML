@@ -34,13 +34,29 @@ set -e
 # =================================================== #
 
 if [[ -z "$1" ]]; then
-    echo "Please specify the platform Runtime Identifier as an argument to this script"
+    echo "Usage: $0 <RID> [<cxx_compiler> <c_compiler>]"
+    echo "Example: $0 linux-arm arm-linux-gnueabihf-g++ arm-linux-gnueabihf-gcc"
     exit 1
 fi
 
 echo "Please note that all SFML dependencies must be installed and available to cmake. SFML does not ship with its linux dependencies."
 
 RID="$1"
+CXX_COMPILER="$2"
+C_COMPILER="$3"
+
+if [[ -n "$CXX_COMPILER" || -n "$C_COMPILER" ]]; then
+    if [[ -z "$CXX_COMPILER" || -z "$C_COMPILER" ]]; then
+        echo "When overriding compilers, specify both C++ and C compilers."
+        exit 1
+    fi
+fi
+
+CMAKE_COMPILER_ARGS=()
+if [[ -n "$CXX_COMPILER" ]]; then
+    CMAKE_COMPILER_ARGS+=("-DCMAKE_CXX_COMPILER=$CXX_COMPILER" "-DCMAKE_C_COMPILER=$C_COMPILER")
+    echo "Using custom compilers: CXX=$CXX_COMPILER, CC=$C_COMPILER"
+fi
 
 SFMLBranch="3.0.2" # The branch or tag of the SFML repository to be cloned
 CSFMLDir="$(realpath ../../)"  # The directory of the source code of CSFML
@@ -87,7 +103,7 @@ mkdir -p lib
 SFMLLibDir="$(realpath lib)"
 
 cmake -E env LDFLAGS="-z origin" \
-    cmake \
+    cmake "${CMAKE_COMPILER_ARGS[@]}" \
     '-DBUILD_SHARED_LIBS=ON' \
     '-DCMAKE_BUILD_TYPE=Release' \
     "-DCMAKE_INSTALL_PREFIX=$SFMLLibDir" \
@@ -114,7 +130,7 @@ mkdir -p lib
 CSFMLLibDir="$(realpath lib)" # The directory that contains the final CSFML libraries. Used to copy the result into SFML.Net
 
 cmake -E env LDFLAGS="-z origin" \
-    cmake \
+    cmake "${CMAKE_COMPILER_ARGS[@]}" \
     "-DSFML_ROOT=$SFMLLibDir" \
     '-DBUILD_SHARED_LIBS=ON' \
     '-DCMAKE_BUILD_TYPE=Release' \
