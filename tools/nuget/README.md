@@ -17,21 +17,20 @@ All build scripts follow the same routine:
 
 * `build.linux.sh`
     * A [Bash](https://www.gnu.org/software/bash/) script to build libraries for a generic Linux distribution. The [Runtime Identifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog) of the linux distribution must be specified as a parameter to the script.
-    This generic script doesn't install any of its dependencies. As such, you must have cmake and make installed, as well as all [SFML Dependencies](https://www.sfml-dev.org/tutorials/2.6/compile-with-cmake.php#installing-dependencies) available to cmake.
+    This generic script doesn't install any of its dependencies. As such, you must have cmake and make installed, as well as all [SFML Dependencies](https://www.sfml-dev.org/tutorials/3.0/getting-started/build-from-source/#installing-dependencies) available to cmake.
 
 * `build.macos.sh`
     * A [Bash](https://www.gnu.org/software/bash/) script to build libraries for macOS. The [Runtime Identifier](https://docs.microsoft.com/en-us/dotnet/core/rid-catalog#macos-rids) of the macOS distribution must be specified as parameter to the script. Latest macOS SDKs can be downloaded [here](https://github.com/phracker/MacOSX-SDKs/releases).
     Currently supported RIDs are:
-        * `osx-x64` (uses macOS SDK 10.12)
-        * `osx.11.0-x64`
-        * `osx.11.0-arm64` (requires SFML 2.6+)
+        * `osx-x64`
+        * `osx-arm64` (requires SFML 2.6+)
 
 * `build.docker.sh`, `build.docker.ps1`
     * A script to build the native libraries for a Linux distribution in a Docker container. If no RID is specified as a parameter, all supported RIDs will be built. Currently, the supported RIDs are:
     * `linux-x64` (uses Ubuntu)
     * `linux-musl-x64` (uses Apline)
     * `linux-arm` (uses Arm32v7 Ubuntu)
-    * `linux-arm64` (uses Arm64v8 Ubuntu )
+    * `linux-arm64` (uses Arm64v8 Ubuntu)
     * `alpine-x64`
     * `debian-x64` (compatible with derivatives such as Ubuntu and Linux Mint)
     * `ubuntu-x64`

@@ -161,7 +161,7 @@ copymodule()
     # SFML.Net only searches for the name with common pre- and suffixes
     # As such we need to ship e.g. libcsfml-graphics.so
     # But the CSFML libs will look for the major.minor version
-    # As such we also need to ship e.g. libcsfml-graphics.so.2.6
+    # As such we also need to ship e.g. libcsfml-graphics.so.3.0
     # Unfortunately NuGet package don't support symlinks: https://github.com/NuGet/Home/issues/10734
     # For SFML, we can just ship one version that CSFML will be looking for
     cp "$SFMLLibDir/libsfml-$MODULE.so.$SFMLMajorMinor" "$OutDir"

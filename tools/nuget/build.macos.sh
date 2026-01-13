@@ -95,7 +95,7 @@ if [ $RID == "osx-x64" ]; then
 elif [ $RID == "osx-arm64" ]; then
     ARCHITECTURE="arm64"
 
-    echo "Note: arm64 is only supported with SFML 2.6"
+    echo "Note: arm64 is only supported starting with SFML 2.6"
 else
     echo "Unsupported RID provided. Use 'osx-x64', 'osx-arm64'"
     exit 1
@@ -168,7 +168,7 @@ copymodule()
     # SFML.Net only searches for the name with common pre- and suffixes
     # As such we need to ship e.g. libcsfml-graphics.dylib
     # But the CSFML libs will look for the major.minor version
-    # As such we also need to ship e.g. libcsfml-graphics.2.6.dylib
+    # As such we also need to ship e.g. libcsfml-graphics.3.0.dylib
     # Unfortunately NuGet package don't support symlinks: https://github.com/NuGet/Home/issues/10734
     # For SFML, we can just ship one version that CSFML will be looking for
     cp "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinor.dylib" "$OutDir"
