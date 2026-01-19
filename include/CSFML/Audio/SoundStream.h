@@ -40,18 +40,36 @@
 #include <stddef.h>
 
 
+typedef bool (*sfSoundStreamOnLoopOriginal)(sfSoundStream* soundStream, uint64_t* position); ///< sf::SoundStream::onLoop callback
+typedef bool (*sfSoundStreamOnLoopMixin)(sfSoundStreamOnLoopOriginal, sfSoundStream* soundStream, uint64_t* position); ///< sf::SoundStream::onLoop mixin
+
+
 ////////////////////////////////////////////////////////////
 /// \brief defines the data to fill by the OnGetData callback
 ///
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    int16_t*     samples;     ///< Pointer to the audio samples
-    unsigned int sampleCount; ///< Number of samples pointed by Samples
+    const int16_t* samples;     ///< Pointer to the audio samples
+    size_t         sampleCount; ///< Number of samples pointed by Samples
 } sfSoundStreamChunk;
 
 typedef bool (*sfSoundStreamGetDataCallback)(sfSoundStreamChunk*, void*); ///< Type of the callback used to get a sound stream data
 typedef void (*sfSoundStreamSeekCallback)(sfTime, void*); ///< Type of the callback used to seek in a sound stream
+
+
+////////////////////////////////////////////////////////////
+/// \brief Override the behaviour of changing the current
+///        playing position in the stream source to the loop offset
+///
+/// This function can be overridden to allow implementation of
+/// custom loop points. Otherwise, it just calls `onSeek(Time::Zero)` and returns 0.
+///
+/// \param soundStream SoundStream object
+/// \param mixin       Method override to set, a null override restores the original behaviour
+///
+////////////////////////////////////////////////////////////
+CSFML_AUDIO_API void sfSoundStream_setOnLoop(sfSoundStream* soundStream, sfSoundStreamOnLoopMixin mixin);
 
 
 ////////////////////////////////////////////////////////////
