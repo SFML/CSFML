@@ -292,6 +292,36 @@ CSFML_GRAPHICS_API void sfShape_setOutlineColor(sfShape* shape, sfColor color);
 CSFML_GRAPHICS_API void sfShape_setOutlineThickness(sfShape* shape, float thickness);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the limit on the ratio between miter length and outline thickness of a shape
+///
+/// Outline segments around each corner are joined either
+/// with a miter or a bevel join.
+/// - A miter join is formed by extending outline segments until
+///   they intersect. The distance between the point of
+///   intersection and the shape's corner is the miter length.
+/// - A bevel join is formed by connecting outline segments with
+///   a straight line perpendicular to the corner's bisector.
+///
+/// The miter limit is used to determine whether outline segments
+/// around a corner are joined with a bevel or a miter.
+/// When the ratio between the miter length and outline thickness
+/// exceeds the miter limit, a bevel is used instead of a miter.
+///
+/// The miter limit is linked to the maximum inner angle of a
+/// corner below which a bevel is used by the following formula:
+///
+/// miterLimit = 1 / sin(angle / 2)
+///
+/// The miter limit must be greater than or equal to 1.
+/// By default, the miter limit is 10.
+///
+/// \param shape      Shape object
+/// \param miterLimit New miter limit
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfShape_setMiterLimit(sfShape* shape, float miterLimit);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the source texture of a shape
 ///
 /// If the shape has no source texture, a NULL pointer is returned.
@@ -344,6 +374,16 @@ CSFML_GRAPHICS_API sfColor sfShape_getOutlineColor(const sfShape* shape);
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API float sfShape_getOutlineThickness(const sfShape* shape);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the limit on the ratio between miter length and outline thickness of a shape
+///
+/// \param shape Shape object
+///
+/// \return Limit on the ratio between miter length and outline thickness
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float sfShape_getMiterLimit(const sfShape* shape);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the total number of points of a shape
