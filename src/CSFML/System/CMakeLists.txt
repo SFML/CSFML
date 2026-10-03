@@ -23,6 +23,8 @@ set(SRC
     ${INCROOT}/Types.h
     ${INCROOT}/Vector2.h
     ${INCROOT}/Vector3.h
+    ${SRCROOT}/Version.cpp
+    ${INCROOT}/Version.h
 )
 
 # define the csfml-system target
