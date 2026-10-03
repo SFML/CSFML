@@ -708,8 +708,11 @@ CSFML_GRAPHICS_API void sfMouse_setPositionRenderWindow(sfVector2i position, con
 ///
 /// \return Current position of \a finger, or undefined if it's not down
 ///
+/// \deprecated Use the position of the touch events (sfEvtTouchBegan, sfEvtTouchMoved and sfEvtTouchEnded) instead
+///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2i sfTouch_getPositionRenderWindow(unsigned int finger, const sfRenderWindow* relativeTo);
+CSFML_GRAPHICS_API CSFML_DEPRECATED sfVector2i sfTouch_getPositionRenderWindow(unsigned int          finger,
+                                                                               const sfRenderWindow* relativeTo);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a Vulkan rendering surface

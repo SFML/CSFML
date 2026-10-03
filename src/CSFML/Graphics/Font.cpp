@@ -111,7 +111,7 @@ bool sfFont_hasGlyph(const sfFont* font, uint32_t codePoint)
 float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     assert(font);
-    return font->getKerning(first, second, characterSize);
+    return font->getKerning(char32_t{first}, char32_t{second}, characterSize);
 }
 
 
@@ -119,7 +119,7 @@ float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, uns
 float sfFont_getBoldKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     assert(font);
-    return font->getKerning(first, second, characterSize, true);
+    return font->getKerning(char32_t{first}, char32_t{second}, characterSize, true);
 }
 
 

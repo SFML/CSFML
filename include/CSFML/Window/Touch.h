@@ -40,8 +40,10 @@
 ///
 /// \return true if \a finger is currently touching the screen, false otherwise
 ///
+/// \deprecated Use the touch events (sfEvtTouchBegan, sfEvtTouchMoved and sfEvtTouchEnded) instead
+///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API bool sfTouch_isDown(unsigned int finger);
+CSFML_WINDOW_API CSFML_DEPRECATED bool sfTouch_isDown(unsigned int finger);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of a touch in window coordinates
@@ -54,8 +56,10 @@ CSFML_WINDOW_API bool sfTouch_isDown(unsigned int finger);
 ///
 /// \return Current position of \a finger, or undefined if it's not down
 ///
+/// \deprecated Use the touch events (sfEvtTouchBegan, sfEvtTouchMoved and sfEvtTouchEnded) instead
+///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo);
+CSFML_WINDOW_API CSFML_DEPRECATED sfVector2i sfTouch_getPosition(unsigned int finger, const sfWindow* relativeTo);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current position of a touch in window coordinates
@@ -68,5 +72,7 @@ CSFML_WINDOW_API sfVector2i sfTouch_getPosition(unsigned int finger, const sfWin
 ///
 /// \return Current position of \a finger, or undefined if it's not down
 ///
+/// \deprecated Use the touch events (sfEvtTouchBegan, sfEvtTouchMoved and sfEvtTouchEnded) instead
+///
 ////////////////////////////////////////////////////////////
-CSFML_WINDOW_API sfVector2i sfTouch_getPositionWindowBase(unsigned int finger, const sfWindowBase* relativeTo);
+CSFML_WINDOW_API CSFML_DEPRECATED sfVector2i sfTouch_getPositionWindowBase(unsigned int finger, const sfWindowBase* relativeTo);
