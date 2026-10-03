@@ -27,15 +27,20 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-
-#include <CSFML/Config.h>
-
-#include <CSFML/System/Buffer.h>
-#include <CSFML/System/Clock.h>
-#include <CSFML/System/InputStream.h>
-#include <CSFML/System/Sleep.h>
-#include <CSFML/System/Time.h>
 #include <CSFML/System/TimeoutWithPredicate.h>
-#include <CSFML/System/Vector2.h>
-#include <CSFML/System/Vector3.h>
-#include <CSFML/System/Version.h>
+
+#include <SFML/System/TimeoutWithPredicate.hpp>
+
+
+////////////////////////////////////////////////////////////
+// Convert sfTimeoutWithPredicate to sf::TimeoutWithPredicate
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sf::TimeoutWithPredicate convertTimeoutWithPredicate(const sfTimeoutWithPredicate& timeout)
+{
+    if (!timeout.predicate)
+        return {sf::microseconds(timeout.timeout.microseconds)};
+
+    const auto period = timeout.period.microseconds > 0 ? sf::microseconds(timeout.period.microseconds)
+                                                        : sf::milliseconds(1);
+    return {[predicate = timeout.predicate, userData = timeout.userData] { return predicate(userData); }, period};
+}
