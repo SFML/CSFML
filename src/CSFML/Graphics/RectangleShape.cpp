@@ -205,6 +205,14 @@ void sfRectangleShape_setOutlineThickness(sfRectangleShape* shape, float thickne
 
 
 ////////////////////////////////////////////////////////////
+void sfRectangleShape_setMiterLimit(sfRectangleShape* shape, float miterLimit)
+{
+    assert(shape);
+    shape->setMiterLimit(miterLimit);
+}
+
+
+////////////////////////////////////////////////////////////
 const sfTexture* sfRectangleShape_getTexture(const sfRectangleShape* shape)
 {
     assert(shape);
@@ -241,6 +249,14 @@ float sfRectangleShape_getOutlineThickness(const sfRectangleShape* shape)
 {
     assert(shape);
     return shape->getOutlineThickness();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfRectangleShape_getMiterLimit(const sfRectangleShape* shape)
+{
+    assert(shape);
+    return shape->getMiterLimit();
 }
 
 

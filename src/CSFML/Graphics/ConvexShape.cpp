@@ -205,6 +205,14 @@ void sfConvexShape_setOutlineThickness(sfConvexShape* shape, float thickness)
 
 
 ////////////////////////////////////////////////////////////
+void sfConvexShape_setMiterLimit(sfConvexShape* shape, float miterLimit)
+{
+    assert(shape);
+    shape->setMiterLimit(miterLimit);
+}
+
+
+////////////////////////////////////////////////////////////
 const sfTexture* sfConvexShape_getTexture(const sfConvexShape* shape)
 {
     assert(shape);
@@ -241,6 +249,14 @@ float sfConvexShape_getOutlineThickness(const sfConvexShape* shape)
 {
     assert(shape);
     return shape->getOutlineThickness();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfConvexShape_getMiterLimit(const sfConvexShape* shape)
+{
+    assert(shape);
+    return shape->getMiterLimit();
 }
 
 

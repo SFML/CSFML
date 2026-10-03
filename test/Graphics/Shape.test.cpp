@@ -47,6 +47,7 @@ TEST_CASE("[Graphics] sfShape")
         CHECK(outlineColor.b == sfWhite.b);
         CHECK(outlineColor.a == sfWhite.a);
         CHECK(sfShape_getOutlineThickness(shape) == 0);
+        CHECK(sfShape_getMiterLimit(shape) == 10);
         CHECK(sfShape_getPointCount(shape) == 3);
         const sfVector2f point = sfShape_getPoint(shape, 0);
         CHECK(point.x == 0);
@@ -102,6 +103,14 @@ TEST_CASE("[Graphics] sfShape")
         const sfVector2f origin = sfShape_getOrigin(shape);
         CHECK(origin.x == 80);
         CHECK(origin.y == 90);
+        sfShape_destroy(shape);
+    }
+
+    SECTION("Set/get miter limit")
+    {
+        sfShape* shape = sfShape_create(getPointCount, getPoint, &points);
+        sfShape_setMiterLimit(shape, 2);
+        CHECK(sfShape_getMiterLimit(shape) == 2);
         sfShape_destroy(shape);
     }
 }
