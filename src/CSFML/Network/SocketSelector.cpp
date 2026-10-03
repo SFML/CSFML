@@ -31,6 +31,22 @@
 #include <CSFML/Network/TcpSocketStruct.hpp>
 #include <CSFML/Network/UdpSocketStruct.hpp>
 
+#include <functional>
+
+
+namespace
+{
+////////////////////////////////////////////////////////////
+[[nodiscard]] std::function<void(sf::SocketSelector::ReadinessType)> convertCallback(sfSocketSelectorCallback callback,
+                                                                                     void*                    userData)
+{
+    if (!callback)
+        return {};
+
+    return [callback, userData](sf::SocketSelector::ReadinessType readiness) { callback(readiness, userData); };
+}
+} // namespace
+
 
 ////////////////////////////////////////////////////////////
 sfSocketSelector* sfSocketSelector_create()
@@ -55,44 +71,86 @@ void sfSocketSelector_destroy(const sfSocketSelector* selector)
 
 
 ////////////////////////////////////////////////////////////
-void sfSocketSelector_addTcpListener(sfSocketSelector* selector, sfTcpListener* socket)
+bool sfSocketSelector_addTcpListener(sfSocketSelector* selector, sfTcpListener* socket)
 {
     assert(selector);
     assert(socket);
-    selector->add(*socket);
+    return selector->add(*socket);
 }
-void sfSocketSelector_addTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket)
+bool sfSocketSelector_addTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket)
 {
     assert(selector);
     assert(socket);
-    selector->add(*socket);
+    return selector->add(*socket);
 }
-void sfSocketSelector_addUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket)
+bool sfSocketSelector_addUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket)
 {
     assert(selector);
     assert(socket);
-    selector->add(*socket);
+    return selector->add(*socket);
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfSocketSelector_removeTcpListener(sfSocketSelector* selector, sfTcpListener* socket)
+bool sfSocketSelector_addTcpListenerWithReadiness(
+    sfSocketSelector*        selector,
+    sfTcpListener*           socket,
+    uint32_t                 readiness,
+    sfSocketSelectorCallback callback,
+    void*                    userData)
 {
     assert(selector);
     assert(socket);
-    selector->remove(*socket);
+    return selector->add(*socket, readiness, convertCallback(callback, userData));
 }
-void sfSocketSelector_removeTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket)
+
+
+////////////////////////////////////////////////////////////
+bool sfSocketSelector_addTcpSocketWithReadiness(
+    sfSocketSelector*        selector,
+    sfTcpSocket*             socket,
+    uint32_t                 readiness,
+    sfSocketSelectorCallback callback,
+    void*                    userData)
 {
     assert(selector);
     assert(socket);
-    selector->remove(*socket);
+    return selector->add(*socket, readiness, convertCallback(callback, userData));
 }
-void sfSocketSelector_removeUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket)
+
+
+////////////////////////////////////////////////////////////
+bool sfSocketSelector_addUdpSocketWithReadiness(
+    sfSocketSelector*        selector,
+    sfUdpSocket*             socket,
+    uint32_t                 readiness,
+    sfSocketSelectorCallback callback,
+    void*                    userData)
 {
     assert(selector);
     assert(socket);
-    selector->remove(*socket);
+    return selector->add(*socket, readiness, convertCallback(callback, userData));
+}
+
+
+////////////////////////////////////////////////////////////
+bool sfSocketSelector_removeTcpListener(sfSocketSelector* selector, sfTcpListener* socket)
+{
+    assert(selector);
+    assert(socket);
+    return selector->remove(*socket);
+}
+bool sfSocketSelector_removeTcpSocket(sfSocketSelector* selector, sfTcpSocket* socket)
+{
+    assert(selector);
+    assert(socket);
+    return selector->remove(*socket);
+}
+bool sfSocketSelector_removeUdpSocket(sfSocketSelector* selector, sfUdpSocket* socket)
+{
+    assert(selector);
+    assert(socket);
+    return selector->remove(*socket);
 }
 
 
@@ -130,4 +188,39 @@ bool sfSocketSelector_isUdpSocketReady(const sfSocketSelector* selector, sfUdpSo
     assert(selector);
     assert(socket);
     return selector->isReady(*socket);
+}
+
+
+////////////////////////////////////////////////////////////
+bool sfSocketSelector_isTcpListenerReadyFor(const sfSocketSelector* selector, sfTcpListener* socket, uint32_t readiness)
+{
+    assert(selector);
+    assert(socket);
+    return selector->isReady(*socket, readiness);
+}
+
+
+////////////////////////////////////////////////////////////
+bool sfSocketSelector_isTcpSocketReadyFor(const sfSocketSelector* selector, sfTcpSocket* socket, uint32_t readiness)
+{
+    assert(selector);
+    assert(socket);
+    return selector->isReady(*socket, readiness);
+}
+
+
+////////////////////////////////////////////////////////////
+bool sfSocketSelector_isUdpSocketReadyFor(const sfSocketSelector* selector, sfUdpSocket* socket, uint32_t readiness)
+{
+    assert(selector);
+    assert(socket);
+    return selector->isReady(*socket, readiness);
+}
+
+
+////////////////////////////////////////////////////////////
+void sfSocketSelector_dispatchReadyCallbacks(sfSocketSelector* selector)
+{
+    assert(selector);
+    selector->dispatchReadyCallbacks();
 }

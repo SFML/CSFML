@@ -70,6 +70,7 @@ add_executable(test-csfml-network
     Network/Ftp.test.cpp
     Network/Http.test.cpp
     Network/IpAddress.test.cpp
+    Network/SocketSelector.test.cpp
     Network/SocketStatus.test.cpp
     Network/TcpSocket.test.cpp
 )
