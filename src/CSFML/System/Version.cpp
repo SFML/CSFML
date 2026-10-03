@@ -22,19 +22,20 @@
 //
 ////////////////////////////////////////////////////////////
 
-#pragma once
-
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-
-#include <CSFML/Config.h>
-
-#include <CSFML/System/Buffer.h>
-#include <CSFML/System/Clock.h>
-#include <CSFML/System/InputStream.h>
-#include <CSFML/System/Sleep.h>
-#include <CSFML/System/Time.h>
-#include <CSFML/System/Vector2.h>
-#include <CSFML/System/Vector3.h>
 #include <CSFML/System/Version.h>
+
+#include <SFML/System/Version.hpp>
+
+#include <string>
+
+
+////////////////////////////////////////////////////////////
+sfVersion sfGetVersion()
+{
+    const auto&              version = sf::version();
+    static const std::string string(version.string);
+    return {version.major, version.minor, version.patch, version.isRelease, string.c_str()};
+}

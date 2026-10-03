@@ -27,6 +27,7 @@ add_executable(test-csfml-system
     System/Time.test.cpp
     System/Vector2.test.cpp
     System/Vector3.test.cpp
+    System/Version.test.cpp
 )
 target_link_libraries(test-csfml-system PRIVATE csfml-system Catch2::Catch2WithMain)
 set_target_warnings(test-csfml-system)
