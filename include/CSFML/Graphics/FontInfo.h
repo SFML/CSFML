@@ -29,10 +29,16 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/Export.h>
 
+#include <stdbool.h>
+#include <stdint.h>
+
 ////////////////////////////////////////////////////////////
 /// sfFontInfo holds various information about a font
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    const char* family;
+    uint64_t    id;                 ///< A unique ID that identifies the font
+    const char* family;             ///< The font family
+    bool        hasKerning;         ///< Has kerning information
+    bool        hasVerticalMetrics; ///< Has native vertical metrics
 } sfFontInfo;
