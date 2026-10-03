@@ -17,7 +17,7 @@ if (-not $RID) {
     exit
 }
 
-$Generator = 'Visual Studio 17 2022'
+$Generator = 'Visual Studio 18 2026'
 
 # See also: https://learn.microsoft.com/en-us/dotnet/core/rid-catalog#known-rids
 switch ($RID) {

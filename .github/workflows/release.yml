@@ -19,12 +19,12 @@ env:
 jobs:
   windows-x86:
     name: Windows x86
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
 
     steps:
       - name: Cache MinGW x86
         id: mingw-x86-cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ github.workspace }}/mingw32
           key: 15.2.0posix-13.0.0-ucrt-r1-x86
@@ -41,25 +41,25 @@ jobs:
           add_to_path: false
 
       - name: Checkout SFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
       - name: Build SFML
         run: |
-          cmake -S SFML -B SFML-build -A Win32 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+          cmake -S SFML -B SFML-build -A Win32 -G "Visual Studio 18 2026" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
           cmake --build SFML-build --config Release --target install
 
       - name: Build CSFML
         run: |
-          cmake -S CSFML -B CSFML-build -A Win32 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=ON -DCSFML_LINK_SFML_STATICALLY=OFF -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+          cmake -S CSFML -B CSFML-build -A Win32 -G "Visual Studio 18 2026" -DBUILD_SHARED_LIBS=ON -DCSFML_LINK_SFML_STATICALLY=OFF -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
           cmake --build CSFML-build --config Release --target install
 
       - name: Add MinGW to PATH
@@ -99,19 +99,19 @@ jobs:
           Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-windows-32-bit
           path: install/CSFML
 
   windows-x64:
     name: Windows x64
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
 
     steps:
       - name: Cache MinGW x64
         id: mingw-x64-cache
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ github.workspace }}/mingw64
           key: 15.2.0posix-13.0.0-ucrt-r1-x64
@@ -128,25 +128,25 @@ jobs:
           add_to_path: false
 
       - name: Checkout SFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
       - name: Build SFML
         run: |
-          cmake -S SFML -B SFML-build -A x64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+          cmake -S SFML -B SFML-build -A x64 -G "Visual Studio 18 2026" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
           cmake --build SFML-build --config Release --target install
 
       - name: Build CSFML
         run: |
-          cmake -S CSFML -B CSFML-build -A x64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=ON -DCSFML_LINK_SFML_STATICALLY=OFF -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+          cmake -S CSFML -B CSFML-build -A x64 -G "Visual Studio 18 2026" -DBUILD_SHARED_LIBS=ON -DCSFML_LINK_SFML_STATICALLY=OFF -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
           cmake --build CSFML-build --config Release --target install
 
       - name: Add MinGW to PATH
@@ -186,36 +186,36 @@ jobs:
           Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-windows-64-bit
           path: install/CSFML
 
   windows-arm64:
     name: Windows ARM64
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
 
     steps:
       - name: Checkout SFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
       - name: Build SFML
         run: |
-          cmake -S SFML -B SFML-build -A ARM64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+          cmake -S SFML -B SFML-build -A ARM64 -G "Visual Studio 18 2026" -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/SFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
           cmake --build SFML-build --config Release --target install
 
       - name: Build CSFML
         run: |
-          cmake -S CSFML -B CSFML-build -A ARM64 -G "Visual Studio 17 2022" -DBUILD_SHARED_LIBS=ON -DCSFML_LINK_SFML_STATICALLY=OFF -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
+          cmake -S CSFML -B CSFML-build -A ARM64 -G "Visual Studio 18 2026" -DBUILD_SHARED_LIBS=ON -DCSFML_LINK_SFML_STATICALLY=OFF -DCMAKE_BUILD_TYPE=Release -DSFML_ROOT=${{ github.workspace }}/SFML-install -DCMAKE_INSTALL_PREFIX=${{ github.workspace }}/CSFML-install -DCMAKE_VERBOSE_MAKEFILE=ON
           cmake --build CSFML-build --config Release --target install
 
       - name: Move Files
@@ -225,7 +225,7 @@ jobs:
           Move-Item -Path "CSFML-install\*" -Destination "install\CSFML"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-windows-arm64
           path: install/CSFML
@@ -236,14 +236,14 @@ jobs:
 
     steps:
       - name: Checkout SFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
@@ -288,7 +288,7 @@ jobs:
           tar -zcvf CSFML-macOS-clang-64-bit.tar.gz CSFML-macOS-clang-64-bit
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-macOS-clang-64-bit
           path: CSFML-macOS-clang-64-bit.tar.gz
@@ -299,14 +299,14 @@ jobs:
 
     steps:
       - name: Checkout SFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
 
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
       - name: Build SFML
@@ -350,7 +350,7 @@ jobs:
           tar -zcvf CSFML-macOS-clang-arm64.tar.gz CSFML-macOS-clang-arm64
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-macOS-clang-arm64
           path: CSFML-macOS-clang-arm64.tar.gz

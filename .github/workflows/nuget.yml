@@ -19,11 +19,11 @@ env:
 jobs:
   windows-x86-x64:
     name: Windows x86 x64
-    runs-on: windows-2025
+    runs-on: windows-2025-vs2026
 
     steps:
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
@@ -40,18 +40,18 @@ jobs:
           ./build.win.ps1 "win-x64"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-win-x86-x64
           path: CSFML/tools/nuget/CSFML/runtimes
 
   windows-arm64:
     name: Windows ARM64
-    runs-on: windows-11-arm
+    runs-on: windows-11-vs2026-arm
 
     steps:
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
@@ -62,7 +62,7 @@ jobs:
           ./build.win.ps1 "win-arm64"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-win-arm64
           path: CSFML/tools/nuget/CSFML/runtimes
@@ -75,7 +75,7 @@ jobs:
 
     steps:
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
@@ -87,7 +87,7 @@ jobs:
           ./docker.linux-x64.sh
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-linux-x64
           path: CSFML/tools/nuget/CSFML/runtimes
@@ -98,7 +98,7 @@ jobs:
 
     steps:
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
@@ -116,7 +116,7 @@ jobs:
           ./build.linux.sh linux-arm arm-linux-gnueabihf-g++ arm-linux-gnueabihf-gcc
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-linux-arm
           path: CSFML/tools/nuget/CSFML/runtimes
@@ -127,7 +127,7 @@ jobs:
 
     steps:
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
@@ -144,7 +144,7 @@ jobs:
           ./build.linux.sh linux-arm64
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-linux-arm64
           path: CSFML/tools/nuget/CSFML/runtimes
@@ -157,7 +157,7 @@ jobs:
 
     steps:
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
@@ -169,7 +169,7 @@ jobs:
           ./docker.linux-musl-x64.sh
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-linux-musl-x64
           path: CSFML/tools/nuget/CSFML/runtimes
@@ -180,7 +180,7 @@ jobs:
 
     steps:
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
 
@@ -198,7 +198,7 @@ jobs:
           ./build.macos.sh "osx-arm64"
 
       - name: Upload Artifact
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-macOS-x64-arm64
           path: CSFML/tools/nuget/CSFML/runtimes
@@ -216,11 +216,11 @@ jobs:
       - macos-x64-arm64
     steps:
       - name: Checkout CSFML
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           path: CSFML
       - name: Download Artifacts
-        uses: actions/download-artifact@v7
+        uses: actions/download-artifact@v8
         with:
           path: CSFML/tools/nuget/CSFML/runtimes
           merge-multiple: true
@@ -238,7 +238,7 @@ jobs:
           cd CSFML/tools/nuget
           dotnet build --configuration Release --verbosity detailed
       - name: Upload NuGet Package
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: CSFML-NuGet-Package
           path: CSFML/tools/nuget/CSFML/bin/Release/*.nupkg

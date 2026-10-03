@@ -22,10 +22,10 @@ jobs:
       fail-fast: false
       matrix:
         platform:
-        - { name: Windows VS2022 x86,  os: windows-2025, flags: -AWin32 }
-        - { name: Windows VS2022 x64,  os: windows-2025, flags: -Ax64 }
-        - { name: Windows ClangCL,     os: windows-2025, flags: -T ClangCL }
-        - { name: Windows Clang,       os: windows-2025, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
+        - { name: Windows VS2026 x86,  os: windows-2025-vs2026, flags: -AWin32 }
+        - { name: Windows VS2026 x64,  os: windows-2025-vs2026, flags: -Ax64 }
+        - { name: Windows ClangCL,     os: windows-2025-vs2026, flags: -T ClangCL }
+        - { name: Windows Clang,       os: windows-2025-vs2026, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: Linux GCC,           os: ubuntu-24.04, flags: -GNinja }
         - { name: Linux Clang,         os: ubuntu-24.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: MacOS,               os: macos-15,     flags: -GNinja }
@@ -40,7 +40,7 @@ jobs:
     - name: Get CMake and Ninja
       uses: lukka/get-cmake@latest
       with:
-        cmakeVersion: ${{ runner.os == 'Windows' && '3.25' || '3.22' }}
+        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.22' }} # Visual Studio 2026 generator requires CMake 4.2 or later
         ninjaVersion: latest
 
     - name: Install Linux Dependencies
@@ -48,7 +48,7 @@ jobs:
       run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
 
     - name: Checkout SFML
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
@@ -66,7 +66,7 @@ jobs:
       run: cmake --build SFML/build --config ${{matrix.type.name}} --target install
 
     - name: Checkout CSFML
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         path: CSFML
 
@@ -96,7 +96,7 @@ jobs:
       run: sudo apt-get install clang-format-17
 
     - name: Checkout Code
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
 
     - name: Format Code
       run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-17 -P cmake/Format.cmake
@@ -112,7 +112,7 @@ jobs:
     - name: Get CMake and Ninja
       uses: lukka/get-cmake@latest
       with:
-        cmakeVersion: ${{ runner.os == 'Windows' && '3.25' || '3.22' }}
+        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.22' }} # Visual Studio 2026 generator requires CMake 4.2 or later
         ninjaVersion: latest
 
     - name: Install Dependencies
@@ -122,7 +122,7 @@ jobs:
         echo /opt/homebrew/opt/llvm/bin >> $GITHUB_PATH
 
     - name: Checkout SFML
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
@@ -135,7 +135,7 @@ jobs:
       run: cmake --build SFML/build --target install
 
     - name: Checkout CSFML
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         path: CSFML
 
@@ -153,7 +153,7 @@ jobs:
     - name: Get CMake and Ninja
       uses: lukka/get-cmake@latest
       with:
-        cmakeVersion: ${{ runner.os == 'Windows' && '3.25' || '3.22' }}
+        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.22' }} # Visual Studio 2026 generator requires CMake 4.2 or later
         ninjaVersion: latest
 
     - name: Install Doxygen
@@ -162,7 +162,7 @@ jobs:
         brew install doxygen ninja || true
 
     - name: Checkout SFML
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
@@ -175,7 +175,7 @@ jobs:
       run: cmake --build SFML/build --target install
 
     - name: Checkout CSFML
-      uses: actions/checkout@v6
+      uses: actions/checkout@v7
       with:
         path: CSFML
 
