@@ -9,6 +9,8 @@ on:
       - "**"
   workflow_dispatch: {}
 
+permissions: {}
+
 concurrency:
   group: nuget-${{github.ref}}
   cancel-in-progress: true
@@ -25,6 +27,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Build x86
@@ -53,6 +56,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Build ARM64
@@ -77,6 +81,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Build
@@ -100,6 +105,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Install dependencies & cross compiler
@@ -129,6 +135,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Install dependencies
@@ -159,6 +166,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Build
@@ -182,6 +190,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Install necessary tooling
@@ -218,6 +227,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
       - name: Download Artifacts
         uses: actions/download-artifact@v8
@@ -230,7 +240,9 @@ jobs:
         with:
           dotnet-version: 10.0.x
       - name: Enforce SDK Version
-        run: dotnet new globaljson --sdk-version ${{ steps.setup-dotnet.outputs.dotnet-version }} --force
+        env:
+          DOTNET_VERSION: ${{ steps.setup-dotnet.outputs.dotnet-version }}
+        run: dotnet new globaljson --sdk-version "$DOTNET_VERSION" --force
       - name: Verify SDK Installation
         run: dotnet --info
       - name: Build NuGet Package

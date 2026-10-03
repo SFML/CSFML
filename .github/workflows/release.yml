@@ -9,6 +9,8 @@ on:
       - "**"
   workflow_dispatch: {}
 
+permissions: {}
+
 concurrency:
   group: release-${{github.ref}}
   cancel-in-progress: true
@@ -43,6 +45,7 @@ jobs:
       - name: Checkout SFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
@@ -50,6 +53,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Build SFML
@@ -130,6 +134,7 @@ jobs:
       - name: Checkout SFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
@@ -137,6 +142,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Build SFML
@@ -199,6 +205,7 @@ jobs:
       - name: Checkout SFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
@@ -206,6 +213,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Build SFML
@@ -238,6 +246,7 @@ jobs:
       - name: Checkout SFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
@@ -245,6 +254,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
 
       - name: Build SFML
@@ -301,6 +311,7 @@ jobs:
       - name: Checkout SFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           repository: SFML/SFML
           ref: ${{ env.SFML_VERSION }}
           path: SFML
@@ -308,6 +319,7 @@ jobs:
       - name: Checkout CSFML
         uses: actions/checkout@v7
         with:
+          persist-credentials: false
           path: CSFML
       - name: Build SFML
         run: |
