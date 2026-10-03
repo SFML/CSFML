@@ -31,15 +31,32 @@
 
 #include <CSFML/System/Time.h>
 
+#include <stdbool.h>
+#include <stdint.h>
+
 
 ////////////////////////////////////////////////////////////
-/// \brief Encapsulate an IPv4 network address
+/// \brief Encapsulate an IPv4 or IPv6 network address
+///
+/// The address is stored as its string representation,
+/// which is large enough to hold any IPv6 address.
 ///
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    char address[16];
+    char address[46];
 } sfIpAddress;
+
+
+////////////////////////////////////////////////////////////
+/// \brief Type of an IP address
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfIpAddressV4, ///< IPv4 address
+    sfIpAddressV6  ///< IPv6 address
+} sfIpAddressType;
 
 
 ////////////////////////////////////////////////////////////
@@ -49,35 +66,84 @@ typedef struct
 CSFML_NETWORK_API const sfIpAddress sfIpAddress_None;
 
 ////////////////////////////////////////////////////////////
-/// \brief Value representing any address (0.0.0.0)
+/// \brief The same as sfIpAddress_AnyV4
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API const sfIpAddress sfIpAddress_Any;
 
 ////////////////////////////////////////////////////////////
-/// \brief Local host IP address (127.0.0.1, or "localhost")
+/// \brief The same as sfIpAddress_LocalHostV4
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API const sfIpAddress sfIpAddress_LocalHost;
 
 ////////////////////////////////////////////////////////////
-/// \brief UDP broadcast address (255.255.255.255)
+/// \brief The same as sfIpAddress_BroadcastV4
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API const sfIpAddress sfIpAddress_Broadcast;
 
 ////////////////////////////////////////////////////////////
-/// \brief Create an address from a string
+/// \brief Value representing any IPv4 address (0.0.0.0)
 ///
-/// Here \a address can be either a decimal address
-/// (ex: "192.168.1.56") or a network name (ex: "localhost").
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API const sfIpAddress sfIpAddress_AnyV4;
+
+////////////////////////////////////////////////////////////
+/// \brief Local host IPv4 address (127.0.0.1)
 ///
-/// \param address IP address or network name
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API const sfIpAddress sfIpAddress_LocalHostV4;
+
+////////////////////////////////////////////////////////////
+/// \brief UDP broadcast IPv4 address (255.255.255.255)
 ///
-/// \return Resulting address
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API const sfIpAddress sfIpAddress_BroadcastV4;
+
+////////////////////////////////////////////////////////////
+/// \brief Value representing any IPv6 address (::)
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API const sfIpAddress sfIpAddress_AnyV6;
+
+////////////////////////////////////////////////////////////
+/// \brief Local host IPv6 address (::1)
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API const sfIpAddress sfIpAddress_LocalHostV6;
+
+////////////////////////////////////////////////////////////
+/// \brief Create an address from a string representation
+///
+/// Here \a address can be either an IPv4 address in
+/// dotted-decimal notation (ex: "192.168.1.56") or an IPv6
+/// address in standard notation (ex: "2606:4700:4700::1111").
+/// Network names are not resolved, use sfDns_resolve or
+/// sfIpAddress_resolve for that.
+///
+/// \param address IP address string
+///
+/// \return Resulting address or sfIpAddress_None if the string is not a valid address
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfIpAddress sfIpAddress_fromString(const char* address);
+
+////////////////////////////////////////////////////////////
+/// \brief Create an IPv4 address from a string or by resolving a network name
+///
+/// Here \a address can be either a decimal address
+/// (ex: "192.168.1.56") or a network name (ex: "localhost").
+/// Only IPv4 addresses are returned.
+///
+/// \param address IP address or network name
+///
+/// \return Resulting address or sfIpAddress_None if the address could not be resolved
+///
+/// \deprecated Use sfDns_resolve instead
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API CSFML_DEPRECATED sfIpAddress sfIpAddress_resolve(const char* address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create an address from 4 bytes
@@ -113,11 +179,23 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_fromBytes(uint8_t byte0, uint8_t byte1
 CSFML_NETWORK_API sfIpAddress sfIpAddress_fromInteger(uint32_t address);
 
 ////////////////////////////////////////////////////////////
+/// \brief Create an IPv6 address from 16 bytes
+///
+/// \param bytes Array of 16 bytes containing the address
+///
+/// \return Resulting address
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfIpAddress sfIpAddress_fromV6Bytes(const uint8_t bytes[16]);
+
+////////////////////////////////////////////////////////////
 /// \brief Get a string representation of an address
 ///
 /// The returned string is the decimal representation of the
-/// IP address (like "192.168.1.56"), even if it was constructed
-/// from a host name.
+/// IPv4 address (like "192.168.1.56") or the standard
+/// representation of the IPv6 address (like "2606:4700:4700::1111"),
+/// even if it was constructed from a host name.
+/// The string must be able to hold at least 46 characters.
 ///
 /// \param address Address object
 /// \param string  String where the string representation will be stored
@@ -134,12 +212,59 @@ CSFML_NETWORK_API void sfIpAddress_toString(sfIpAddress address, char* string);
 /// The integer produced by this function can then be converted
 /// back to a sfIpAddress with sfIpAddress_fromInteger.
 ///
+/// Only IPv4 addresses can be converted to an integer, 0 is
+/// returned for IPv6 addresses.
+///
 /// \param address Address object
 ///
 /// \return 32-bits unsigned integer representation of the address
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API uint32_t sfIpAddress_toInteger(sfIpAddress address);
+
+////////////////////////////////////////////////////////////
+/// \brief Get a 16-byte representation of an IPv6 address
+///
+/// The bytes produced by this function can then be converted
+/// back to a sfIpAddress with sfIpAddress_fromV6Bytes.
+///
+/// \param address Address object
+/// \param bytes   Array of 16 bytes that will be filled with the address
+///
+/// \return True if the address is a valid IPv6 address and the bytes have been written, false otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API bool sfIpAddress_toV6Bytes(sfIpAddress address, uint8_t bytes[16]);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the type of an address
+///
+/// \param address Address object
+///
+/// \return The type of the address, sfIpAddressV4 is returned for invalid addresses
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfIpAddressType sfIpAddress_getType(sfIpAddress address);
+
+////////////////////////////////////////////////////////////
+/// \brief Check if an address is a valid IPv4 address
+///
+/// \param address Address object
+///
+/// \return True if the address is a valid IPv4 address
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API bool sfIpAddress_isV4(sfIpAddress address);
+
+////////////////////////////////////////////////////////////
+/// \brief Check if an address is a valid IPv6 address
+///
+/// \param address Address object
+///
+/// \return True if the address is a valid IPv6 address
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API bool sfIpAddress_isV6(sfIpAddress address);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the computer's local address
@@ -150,10 +275,27 @@ CSFML_NETWORK_API uint32_t sfIpAddress_toInteger(sfIpAddress address);
 /// Unlike sfIpAddress_getPublicAddress, this function is fast
 /// and may be used safely anywhere.
 ///
+/// This returns the local IPv4 address.
+///
 /// \return Local IP address of the computer
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfIpAddress sfIpAddress_getLocalAddress(void);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the computer's local address of a given type
+///
+/// The local address is the address of the computer from the
+/// LAN point of view, i.e. something like 192.168.1.56 or
+/// fe80::1234:5678:9abc. It is meaningful only for
+/// communications over the local network.
+///
+/// \param type The type of local address to get
+///
+/// \return Local IP address of the computer or sfIpAddress_None if there is none
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfIpAddress sfIpAddress_getLocalAddressOfType(sfIpAddressType type);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the computer's public address
@@ -170,9 +312,31 @@ CSFML_NETWORK_API sfIpAddress sfIpAddress_getLocalAddress(void);
 /// to be possibly stuck waiting in case there is a problem; use
 /// 0 to deactivate this limit.
 ///
+/// This returns the public IPv4 address.
+///
 /// \param timeout Maximum time to wait
 ///
 /// \return Public IP address of the computer
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfIpAddress sfIpAddress_getPublicAddress(sfTime timeout);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the computer's public address of a given type
+///
+/// The public address is the address of the computer from the
+/// internet point of view, i.e. something like 89.54.1.169 or
+/// 2600:1901:0:13e0::1. See sfIpAddress_getPublicAddress for
+/// details.
+///
+/// If tamper resistance is required, setting \a secure to true
+/// will make use of verified HTTPS connections to get the address.
+///
+/// \param timeout Maximum time to wait, use 0 to deactivate the limit
+/// \param type    The type of public address to get, NULL to specify no preference
+/// \param secure  True to retrieve the public address via a secure HTTPS connection, false to retrieve via DNS or an insecure connection
+///
+/// \return Public IP address of the computer or sfIpAddress_None on failure
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfIpAddress sfIpAddress_getPublicAddressOfType(sfTime timeout, const sfIpAddressType* type, bool secure);

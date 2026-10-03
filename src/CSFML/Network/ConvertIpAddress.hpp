@@ -22,99 +22,55 @@
 //
 ////////////////////////////////////////////////////////////
 
+#pragma once
+
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Network/ConvertIpAddress.hpp>
-#include <CSFML/Network/TcpListener.h>
-#include <CSFML/Network/TcpListenerStruct.hpp>
-#include <CSFML/Network/TcpSocketStruct.hpp>
+#include <CSFML/Network/IpAddress.h>
 
-#include <memory>
+#include <SFML/Network/IpAddress.hpp>
+
+#include <cstring>
+#include <optional>
 
 
 ////////////////////////////////////////////////////////////
-sfTcpListener* sfTcpListener_create()
+// Convert sf::IpAddress to sfIpAddress
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sfIpAddress convertIpAddress(const sf::IpAddress& address)
 {
-    return new sfTcpListener;
+    sfIpAddress result{};
+    std::strncpy(result.address, address.toString().c_str(), sizeof(result.address) - 1);
+    return result;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpListener_destroy(const sfTcpListener* listener)
+// Convert std::optional<sf::IpAddress> to sfIpAddress
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline sfIpAddress convertIpAddress(const std::optional<sf::IpAddress>& address)
 {
-    delete listener;
+    return address ? convertIpAddress(*address) : sfIpAddress_None;
 }
 
 
 ////////////////////////////////////////////////////////////
-void sfTcpListener_setBlocking(sfTcpListener* listener, bool blocking)
+// Convert sfIpAddress to std::optional<sf::IpAddress>
+////////////////////////////////////////////////////////////
+[[nodiscard]] inline std::optional<sf::IpAddress> convertIpAddress(const sfIpAddress& address)
 {
-    assert(listener);
-    listener->setBlocking(blocking);
+    return sf::IpAddress::fromString(address.address);
 }
 
 
 ////////////////////////////////////////////////////////////
-bool sfTcpListener_isBlocking(const sfTcpListener* listener)
-{
-    assert(listener);
-    return listener->isBlocking();
-}
-
-
+// Convert an optional sfIpAddressType to std::optional<sf::IpAddress::Type>
 ////////////////////////////////////////////////////////////
-unsigned short sfTcpListener_getLocalPort(const sfTcpListener* listener)
+[[nodiscard]] inline std::optional<sf::IpAddress::Type> convertIpAddressType(const sfIpAddressType* type)
 {
-    assert(listener);
-    return listener->getLocalPort();
-}
+    if (!type)
+        return std::nullopt;
 
-
-////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port, sfIpAddress address)
-{
-    assert(listener);
-
-    std::optional<sf::IpAddress> sfmlAddress = convertIpAddress(address);
-
-    if (!sfmlAddress)
-    {
-        return sfSocketError;
-    }
-
-    return static_cast<sfSocketStatus>(listener->listen(port, *sfmlAddress));
-}
-
-
-////////////////////////////////////////////////////////////
-void sfTcpListener_close(sfTcpListener* listener)
-{
-    assert(listener);
-    listener->close();
-}
-
-
-////////////////////////////////////////////////////////////
-sfSocketStatus sfTcpListener_accept(sfTcpListener* listener, sfTcpSocket** connected)
-{
-    assert(listener);
-    assert(connected);
-
-    auto socket = std::make_unique<sfTcpSocket>();
-    auto status = static_cast<sfSocketStatus>(listener->accept(*socket));
-
-    if (status != sfSocketDone)
-        *connected = nullptr;
-    else
-        *connected = socket.release();
-
-    return status;
-}
-
-
-////////////////////////////////////////////////////////////
-unsigned short sfTcpListener_anyPort()
-{
-    return 0;
+    return static_cast<sf::IpAddress::Type>(*type);
 }

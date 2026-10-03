@@ -66,12 +66,13 @@ set_target_warnings(test-csfml-graphics)
 catch_discover_tests(test-csfml-graphics WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(test-csfml-network
+    Network/Dns.test.cpp
     Network/Ftp.test.cpp
     Network/Http.test.cpp
     Network/IpAddress.test.cpp
     Network/SocketStatus.test.cpp
 )
-target_link_libraries(test-csfml-network PRIVATE csfml-network Catch2::Catch2WithMain SFML::Network)
+target_link_libraries(test-csfml-network PRIVATE csfml-network csfml-system Catch2::Catch2WithMain SFML::Network)
 set_target_warnings(test-csfml-network)
 catch_discover_tests(test-csfml-network)
 

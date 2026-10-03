@@ -25,6 +25,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Network/ConvertIpAddress.hpp>
 #include <CSFML/Network/PacketStruct.hpp>
 #include <CSFML/Network/TcpSocket.h>
 #include <CSFML/Network/TcpSocketStruct.hpp>
@@ -82,7 +83,7 @@ sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
     sfIpAddress result = sfIpAddress_None;
     if (address)
     {
-        std::strncpy(result.address, address->toString().c_str(), 15);
+        result = convertIpAddress(*address);
     }
 
     return result;
@@ -100,7 +101,7 @@ unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* socket)
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddress, unsigned short remotePort, sfTime timeout)
 {
-    std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
+    std::optional<sf::IpAddress> address = convertIpAddress(remoteAddress);
 
     if (!address)
     {

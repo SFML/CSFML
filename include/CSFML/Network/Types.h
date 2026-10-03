@@ -25,6 +25,10 @@
 #pragma once
 
 
+typedef struct sfDnsMxRecords         sfDnsMxRecords;
+typedef struct sfDnsNsRecords         sfDnsNsRecords;
+typedef struct sfDnsSrvRecords        sfDnsSrvRecords;
+typedef struct sfDnsTxtRecords        sfDnsTxtRecords;
 typedef struct sfFtpDirectoryResponse sfFtpDirectoryResponse;
 typedef struct sfFtpListingResponse   sfFtpListingResponse;
 typedef struct sfFtpResponse          sfFtpResponse;

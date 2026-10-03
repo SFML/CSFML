@@ -27,15 +27,56 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <cstdint>
+#include <string>
+#include <vector>
 
-#include <CSFML/Network/Dns.h>
-#include <CSFML/Network/Ftp.h>
-#include <CSFML/Network/Http.h>
-#include <CSFML/Network/IpAddress.h>
-#include <CSFML/Network/Packet.h>
-#include <CSFML/Network/SocketSelector.h>
-#include <CSFML/Network/SocketStatus.h>
-#include <CSFML/Network/TcpListener.h>
-#include <CSFML/Network/TcpSocket.h>
-#include <CSFML/Network/UdpSocket.h>
-#include <CSFML/System.h>
+
+////////////////////////////////////////////////////////////
+// Internal structure of sfDnsNsRecords
+////////////////////////////////////////////////////////////
+struct sfDnsNsRecords
+{
+    std::vector<std::string> Records;
+};
+
+
+////////////////////////////////////////////////////////////
+// Internal structure of sfDnsMxRecords
+////////////////////////////////////////////////////////////
+struct sfDnsMxRecords
+{
+    struct Record
+    {
+        std::string   exchange;
+        std::uint16_t preference{};
+    };
+
+    std::vector<Record> Records;
+};
+
+
+////////////////////////////////////////////////////////////
+// Internal structure of sfDnsSrvRecords
+////////////////////////////////////////////////////////////
+struct sfDnsSrvRecords
+{
+    struct Record
+    {
+        std::string   target;
+        std::uint16_t port{};
+        std::uint16_t weight{};
+        std::uint16_t priority{};
+    };
+
+    std::vector<Record> Records;
+};
+
+
+////////////////////////////////////////////////////////////
+// Internal structure of sfDnsTxtRecords
+////////////////////////////////////////////////////////////
+struct sfDnsTxtRecords
+{
+    std::vector<std::vector<std::string>> Records;
+};
