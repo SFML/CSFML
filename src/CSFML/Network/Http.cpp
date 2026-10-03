@@ -25,6 +25,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Network/ConvertIpAddress.hpp>
 #include <CSFML/Network/Http.h>
 #include <CSFML/Network/HttpStruct.hpp>
 
@@ -149,10 +150,18 @@ void sfHttp_destroy(const sfHttp* http)
 
 
 ////////////////////////////////////////////////////////////
-void sfHttp_setHost(sfHttp* http, const char* host, unsigned short port)
+bool sfHttp_setHost(sfHttp* http, const char* host, unsigned short port)
 {
     assert(http);
-    http->setHost(host ? host : "", port);
+    return http->setHost(host ? host : "", port);
+}
+
+
+////////////////////////////////////////////////////////////
+bool sfHttp_setHostWithAddressType(sfHttp* http, const char* host, unsigned short port, const sfIpAddressType* addressType)
+{
+    assert(http);
+    return http->setHost(host ? host : "", port, convertIpAddressType(addressType));
 }
 
 
@@ -162,4 +171,13 @@ sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, s
     assert(http);
     assert(request);
     return new sfHttpResponse{http->sendRequest(*request, sf::microseconds(timeout.microseconds))};
+}
+
+
+////////////////////////////////////////////////////////////
+sfHttpResponse* sfHttp_sendRequestWithVerification(const sfHttp* http, const sfHttpRequest* request, sfTime timeout, bool verifyServer)
+{
+    assert(http);
+    assert(request);
+    return new sfHttpResponse{http->sendRequest(*request, sf::microseconds(timeout.microseconds), verifyServer)};
 }

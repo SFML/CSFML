@@ -29,8 +29,11 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Network/Export.h>
 
+#include <CSFML/Network/IpAddress.h>
 #include <CSFML/Network/Types.h>
 #include <CSFML/System/Time.h>
+
+#include <stdbool.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -272,12 +275,35 @@ CSFML_NETWORK_API void sfHttp_destroy(const sfHttp* http);
 /// leave it like this unless you really need a port other
 /// than the standard one, or use an unknown protocol.
 ///
+/// The host is resolved immediately. To use HTTPS, prefix
+/// the host with "https://".
+///
 /// \param http Http object
 /// \param host Web server to connect to
 /// \param port Port to use for connection
 ///
+/// \return True if the host has been resolved and is valid, false otherwise
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfHttp_setHost(sfHttp* http, const char* host, unsigned short port);
+CSFML_NETWORK_API bool sfHttp_setHost(sfHttp* http, const char* host, unsigned short port);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the target host of a HTTP object with a given address type
+///
+/// See sfHttp_setHost for details.
+///
+/// \param http        Http object
+/// \param host        Web server to connect to
+/// \param port        Port to use for connection
+/// \param addressType Address type to use for the connection, NULL to specify no preference
+///
+/// \return True if the host has been resolved and is valid, false otherwise
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API bool sfHttp_setHostWithAddressType(sfHttp*                http,
+                                                     const char*            host,
+                                                     unsigned short         port,
+                                                     const sfIpAddressType* addressType);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a HTTP request and return the server's response.
@@ -299,3 +325,23 @@ CSFML_NETWORK_API void sfHttp_setHost(sfHttp* http, const char* host, unsigned s
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfHttpResponse* sfHttp_sendRequest(sfHttp* http, const sfHttpRequest* request, sfTime timeout);
+
+////////////////////////////////////////////////////////////
+/// \brief Send a HTTP request and return the server's response, optionally without verifying the server
+///
+/// See sfHttp_sendRequest for details. sfHttp_sendRequest
+/// always verifies the server when using HTTPS.
+///
+/// \param http         Http object
+/// \param request      Request to send
+/// \param timeout      Maximum time to wait
+/// \param verifyServer Verify the server if using HTTPS
+///
+/// \return Server's response
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfHttpResponse* sfHttp_sendRequestWithVerification(
+    const sfHttp*        http,
+    const sfHttpRequest* request,
+    sfTime               timeout,
+    bool                 verifyServer);
