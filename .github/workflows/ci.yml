@@ -2,6 +2,8 @@ name: CI
 
 on: [push, pull_request, workflow_dispatch]
 
+permissions: {}
+
 concurrency:
   group: environment-${{github.ref}}
   cancel-in-progress: true
@@ -50,6 +52,7 @@ jobs:
     - name: Checkout SFML
       uses: actions/checkout@v7
       with:
+        persist-credentials: false
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
         path: SFML
@@ -68,6 +71,7 @@ jobs:
     - name: Checkout CSFML
       uses: actions/checkout@v7
       with:
+        persist-credentials: false
         path: CSFML
 
     - name: Configure CSFML CMake
@@ -97,6 +101,8 @@ jobs:
 
     - name: Checkout Code
       uses: actions/checkout@v7
+      with:
+        persist-credentials: false
 
     - name: Format Code
       run: cmake -DCLANG_FORMAT_EXECUTABLE=clang-format-17 -P cmake/Format.cmake
@@ -124,6 +130,7 @@ jobs:
     - name: Checkout SFML
       uses: actions/checkout@v7
       with:
+        persist-credentials: false
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
         path: SFML
@@ -137,6 +144,7 @@ jobs:
     - name: Checkout CSFML
       uses: actions/checkout@v7
       with:
+        persist-credentials: false
         path: CSFML
 
     - name: Configure CSFML CMake
@@ -164,6 +172,7 @@ jobs:
     - name: Checkout SFML
       uses: actions/checkout@v7
       with:
+        persist-credentials: false
         repository: SFML/SFML
         ref: ${{env.SFML_VERSION}}
         path: SFML
@@ -177,6 +186,7 @@ jobs:
     - name: Checkout CSFML
       uses: actions/checkout@v7
       with:
+        persist-credentials: false
         path: CSFML
 
     - name: Configure CSFML
