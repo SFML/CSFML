@@ -27,18 +27,16 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
-#include <CSFML/Graphics/Export.h>
+#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/Graphics/Glyph.h>
 
-#include <stdbool.h>
-#include <stdint.h>
+#include <SFML/Graphics/Glyph.hpp>
+
 
 ////////////////////////////////////////////////////////////
-/// sfFontInfo holds various information about a font
+// Convert sf::Glyph to sfGlyph
 ////////////////////////////////////////////////////////////
-typedef struct
+[[nodiscard]] inline sfGlyph convertGlyph(const sf::Glyph& glyph)
 {
-    uint64_t    id;                 ///< A unique ID that identifies the font
-    const char* family;             ///< The font family
-    bool        hasKerning;         ///< Has kerning information
-    bool        hasVerticalMetrics; ///< Has native vertical metrics
-} sfFontInfo;
+    return {glyph.advance, convertRect(glyph.bounds), convertRect(glyph.textureRect)};
+}
