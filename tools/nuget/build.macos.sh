@@ -46,7 +46,7 @@ echo "Please note that all SFML dependencies must be installed and available to 
 
 RID="$1"
 
-SFMLBranch="3.0.2" # The branch or tag of the SFML repository to be cloned
+SFMLBranch="3.1.0" # The branch or tag of the SFML repository to be cloned
 CSFMLDir="$(grealpath "$(git rev-parse --show-toplevel)")" # The directory of the source code of CSFML
 
 OutDir="./CSFML/runtimes/$RID/native" # The base directory of all CSFML modules, used to copy the final libraries
@@ -150,9 +150,9 @@ cmake --build . --config Release --target install
 # STEP 5: Copy result to the NuGet folders #
 # ======================================== #
 
-SFMLMajorMinor="3.0"
+SFMLMajorMinor="3.1"
 SFMLMajorMinorPatch="$SFMLMajorMinor.0"
-CSFMLMajorMinor="3.0"
+CSFMLMajorMinor="3.1"
 CSFMLMajorMinorPatch="$CSFMLMajorMinor.0"
 
 # Copies one SFML and CSFML module into the NuGet package
@@ -168,7 +168,7 @@ copymodule()
     # SFML.Net only searches for the name with common pre- and suffixes
     # As such we need to ship e.g. libcsfml-graphics.dylib
     # But the CSFML libs will look for the major.minor version
-    # As such we also need to ship e.g. libcsfml-graphics.3.0.dylib
+    # As such we also need to ship e.g. libcsfml-graphics.3.1.dylib
     # Unfortunately NuGet package don't support symlinks: https://github.com/NuGet/Home/issues/10734
     # For SFML, we can just ship one version that CSFML will be looking for
     cp "$SFMLLibDir/libsfml-$MODULE.$SFMLMajorMinor.dylib" "$OutDir"
