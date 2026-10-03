@@ -42,9 +42,8 @@
 ///     font = sfFont_createFromFile("arial.ttf");
 ///     if (!font)
 ///         return EXIT_FAILURE;
-///     text = sfText_create();
+///     text = sfText_create(font);
 ///     sfText_setString(text, "Hello SFML");
-///     sfText_setFont(text, font);
 ///     sfText_setCharacterSize(text, 50);
 ///
 ///     /* Load a music to play */
