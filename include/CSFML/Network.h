@@ -33,6 +33,7 @@
 #include <CSFML/Network/Http.h>
 #include <CSFML/Network/IpAddress.h>
 #include <CSFML/Network/Packet.h>
+#include <CSFML/Network/Sftp.h>
 #include <CSFML/Network/SocketSelector.h>
 #include <CSFML/Network/SocketStatus.h>
 #include <CSFML/Network/TcpListener.h>
