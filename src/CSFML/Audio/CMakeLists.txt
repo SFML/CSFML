@@ -11,6 +11,8 @@ set(SRC
     ${SRCROOT}/Music.cpp
     ${SRCROOT}/MusicStruct.hpp
     ${INCROOT}/Music.h
+    ${SRCROOT}/PlaybackDevice.cpp
+    ${INCROOT}/PlaybackDevice.h
     ${SRCROOT}/Sound.cpp
     ${SRCROOT}/SoundStruct.hpp
     ${INCROOT}/Sound.h

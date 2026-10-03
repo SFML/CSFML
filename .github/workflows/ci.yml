@@ -62,9 +62,13 @@ jobs:
         BUILD_TYPE: ${{ matrix.type.name }}
         CMAKE_FLAGS: ${{ matrix.platform.flags }} ${{ matrix.config.flags }}
       run: |
+        # Let the installed SFML libraries find each other, same as tools/nuget/build.linux.sh
+        RPATH_FLAGS=()
+        if [ "$RUNNER_OS" = "Linux" ]; then RPATH_FLAGS=('-DCMAKE_INSTALL_RPATH=$ORIGIN'); fi
         cmake -S SFML -B SFML/build \
           -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
           -DCMAKE_INSTALL_PREFIX=SFML/install \
+          "${RPATH_FLAGS[@]}" \
           $CMAKE_FLAGS
 
     - name: Build SFML
