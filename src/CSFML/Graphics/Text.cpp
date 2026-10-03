@@ -26,12 +26,29 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/ConvertColor.hpp>
+#include <CSFML/Graphics/ConvertGlyph.hpp>
 #include <CSFML/Graphics/ConvertRect.hpp>
 #include <CSFML/Graphics/ConvertTransform.hpp>
 #include <CSFML/Graphics/Font.h>
 #include <CSFML/Graphics/Text.h>
 #include <CSFML/Graphics/TextStruct.hpp>
 #include <CSFML/System/ConvertVector2.hpp>
+
+
+namespace
+{
+// Helper function for converting a SFML shaped glyph to a CSFML one
+[[nodiscard]] sfShapedGlyph convertShapedGlyph(const sf::Text::ShapedGlyph& shapedGlyph)
+{
+    return {convertGlyph(shapedGlyph.glyph),
+            convertVector2(shapedGlyph.position),
+            shapedGlyph.cluster,
+            static_cast<sfTextDirection>(shapedGlyph.textDirection),
+            shapedGlyph.baseline,
+            shapedGlyph.vertexOffset,
+            shapedGlyph.vertexCount};
+}
+} // namespace
 
 #include <SFML/Graphics/Color.hpp>
 
@@ -251,6 +268,22 @@ void sfText_setOutlineThickness(sfText* text, float thickness)
 
 
 ////////////////////////////////////////////////////////////
+void sfText_setLineAlignment(sfText* text, sfTextLineAlignment lineAlignment)
+{
+    assert(text);
+    text->setLineAlignment(static_cast<sf::Text::LineAlignment>(lineAlignment));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfText_setTextOrientation(sfText* text, sfTextOrientation textOrientation)
+{
+    assert(text);
+    text->setTextOrientation(static_cast<sf::Text::TextOrientation>(textOrientation));
+}
+
+
+////////////////////////////////////////////////////////////
 const char* sfText_getString(const sfText* text)
 {
     assert(text);
@@ -334,10 +367,121 @@ float sfText_getOutlineThickness(const sfText* text)
 
 
 ////////////////////////////////////////////////////////////
+sfTextLineAlignment sfText_getLineAlignment(const sfText* text)
+{
+    assert(text);
+    return static_cast<sfTextLineAlignment>(text->getLineAlignment());
+}
+
+
+////////////////////////////////////////////////////////////
+sfTextOrientation sfText_getTextOrientation(const sfText* text)
+{
+    assert(text);
+    return static_cast<sfTextOrientation>(text->getTextOrientation());
+}
+
+
+////////////////////////////////////////////////////////////
 sfVector2f sfText_findCharacterPos(const sfText* text, size_t index)
 {
     assert(text);
     return convertVector2(text->findCharacterPos(index));
+}
+
+
+////////////////////////////////////////////////////////////
+const sfShapedGlyph* sfText_getShapedGlyphs(const sfText* text, size_t* count)
+{
+    assert(text);
+    assert(count);
+
+    const auto& shapedGlyphs = text->getShapedGlyphs();
+    text->ShapedGlyphs.clear();
+    text->ShapedGlyphs.reserve(shapedGlyphs.size());
+    for (const auto& shapedGlyph : shapedGlyphs)
+        text->ShapedGlyphs.push_back(convertShapedGlyph(shapedGlyph));
+
+    *count = text->ShapedGlyphs.size();
+    return text->ShapedGlyphs.data();
+}
+
+
+////////////////////////////////////////////////////////////
+sfTextClusterGrouping sfText_getClusterGrouping(const sfText* text)
+{
+    assert(text);
+    return static_cast<sfTextClusterGrouping>(text->getClusterGrouping());
+}
+
+
+////////////////////////////////////////////////////////////
+void sfText_setClusterGrouping(sfText* text, sfTextClusterGrouping clusterGrouping)
+{
+    assert(text);
+    text->setClusterGrouping(static_cast<sf::Text::ClusterGrouping>(clusterGrouping));
+}
+
+
+////////////////////////////////////////////////////////////
+void sfText_setGlyphPreProcessor(sfText* text, sfGlyphPreProcessor glyphPreProcessor, void* userData)
+{
+    assert(text);
+
+    if (!glyphPreProcessor)
+    {
+        text->setGlyphPreProcessor({});
+        return;
+    }
+
+    text->setGlyphPreProcessor(
+        [glyphPreProcessor, userData](const sf::Text::ShapedGlyph& shapedGlyph,
+                                      std::uint32_t&               style,
+                                      sf::Color&                   fillColor,
+                                      sf::Color&                   outlineColor,
+                                      float&                       outlineThickness)
+        {
+            const sfShapedGlyph glyph             = convertShapedGlyph(shapedGlyph);
+            sfColor             csfmlFillColor    = convertColor(fillColor);
+            sfColor             csfmlOutlineColor = convertColor(outlineColor);
+            glyphPreProcessor(&glyph, &style, &csfmlFillColor, &csfmlOutlineColor, &outlineThickness, userData);
+            fillColor    = convertColor(csfmlFillColor);
+            outlineColor = convertColor(csfmlOutlineColor);
+        });
+}
+
+
+////////////////////////////////////////////////////////////
+sfVertex* sfText_getVertexData(const sfText* text, size_t* count)
+{
+    assert(text);
+    assert(count);
+
+    // Make sure the geometry is up to date, sf::Text only updates it when needed
+    [[maybe_unused]] const auto bounds = text->getLocalBounds();
+
+    sf::VertexArray& vertices = text->getVertexData();
+    *count                    = vertices.getVertexCount();
+
+    // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
+    return *count > 0 ? reinterpret_cast<sfVertex*>(&vertices[0]) : nullptr;
+}
+
+
+////////////////////////////////////////////////////////////
+sfVertex* sfText_getOutlineVertexData(const sfText* text, size_t* count)
+{
+    assert(text);
+    assert(count);
+
+    // Make sure the geometry is up to date, sf::Text only updates it when needed
+    [[maybe_unused]] const auto bounds = text->getLocalBounds();
+
+    sf::VertexArray& vertices = text->getOutlineVertexData();
+    *count                    = vertices.getVertexCount();
+
+    // the cast is safe, sfVertex has to be binary compatible with sf::Vertex
+    return *count > 0 ? reinterpret_cast<sfVertex*>(&vertices[0]) : nullptr;
 }
 
 
