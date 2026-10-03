@@ -490,8 +490,10 @@ CSFML_GRAPHICS_API float sfText_getOutlineThickness(const sfText* text);
 ///
 /// \return Position of the character
 ///
+/// \deprecated Use sfText_getShapedGlyphs instead
+///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfText_findCharacterPos(const sfText* text, size_t index);
+CSFML_GRAPHICS_API CSFML_DEPRECATED sfVector2f sfText_findCharacterPos(const sfText* text, size_t index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a text
