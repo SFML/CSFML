@@ -71,6 +71,7 @@ add_executable(test-csfml-network
     Network/Http.test.cpp
     Network/IpAddress.test.cpp
     Network/SocketStatus.test.cpp
+    Network/TcpSocket.test.cpp
 )
 target_link_libraries(test-csfml-network PRIVATE csfml-network csfml-system Catch2::Catch2WithMain SFML::Network)
 set_target_warnings(test-csfml-network)
