@@ -25,6 +25,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Network/ConvertIpAddress.hpp>
 #include <CSFML/Network/PacketStruct.hpp>
 #include <CSFML/Network/UdpSocket.h>
 #include <CSFML/Network/UdpSocketStruct.hpp>
@@ -76,7 +77,7 @@ sfSocketStatus sfUdpSocket_bind(sfUdpSocket* socket, unsigned short port, sfIpAd
 {
     assert(socket);
 
-    std::optional<sf::IpAddress> sfmlAddress = sf::IpAddress::resolve(address.address);
+    std::optional<sf::IpAddress> sfmlAddress = convertIpAddress(address);
 
     if (!sfmlAddress)
     {
@@ -101,7 +102,7 @@ sfSocketStatus sfUdpSocket_send(sfUdpSocket* socket, const void* data, size_t si
     assert(socket);
 
     // Convert the address
-    std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
+    std::optional<sf::IpAddress> address = convertIpAddress(remoteAddress);
 
     if (!address)
     {
@@ -139,7 +140,7 @@ sfSocketStatus sfUdpSocket_receive(sfUdpSocket*    socket,
 
         if (address)
         {
-            std::strncpy(remoteAddress->address, address->toString().c_str(), 15);
+            *remoteAddress = convertIpAddress(*address);
         }
     }
 
@@ -157,7 +158,7 @@ sfSocketStatus sfUdpSocket_sendPacket(sfUdpSocket* socket, sfPacket* packet, sfI
     assert(packet);
 
     // Convert the address
-    std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
+    std::optional<sf::IpAddress> address = convertIpAddress(remoteAddress);
 
     if (!address)
     {
@@ -187,7 +188,7 @@ sfSocketStatus sfUdpSocket_receivePacket(sfUdpSocket* socket, sfPacket* packet, 
 
         if (address)
         {
-            std::strncpy(remoteAddress->address, address->toString().c_str(), 15);
+            *remoteAddress = convertIpAddress(*address);
         }
     }
 

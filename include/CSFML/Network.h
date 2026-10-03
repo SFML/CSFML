@@ -28,6 +28,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 
+#include <CSFML/Network/Dns.h>
 #include <CSFML/Network/Ftp.h>
 #include <CSFML/Network/Http.h>
 #include <CSFML/Network/IpAddress.h>

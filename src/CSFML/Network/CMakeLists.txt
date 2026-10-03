@@ -3,6 +3,10 @@ set(SRCROOT ${PROJECT_SOURCE_DIR}/src/CSFML/Network)
 
 # all source files
 set(SRC
+    ${SRCROOT}/ConvertIpAddress.hpp
+    ${SRCROOT}/Dns.cpp
+    ${SRCROOT}/DnsStruct.hpp
+    ${INCROOT}/Dns.h
     ${INCROOT}/Export.h
     ${SRCROOT}/Ftp.cpp
     ${SRCROOT}/FtpStruct.hpp
