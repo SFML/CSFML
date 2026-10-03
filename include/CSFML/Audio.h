@@ -30,6 +30,7 @@
 
 #include <CSFML/Audio/Listener.h>
 #include <CSFML/Audio/Music.h>
+#include <CSFML/Audio/PlaybackDevice.h>
 #include <CSFML/Audio/Sound.h>
 #include <CSFML/Audio/SoundBuffer.h>
 #include <CSFML/Audio/SoundBufferRecorder.h>
