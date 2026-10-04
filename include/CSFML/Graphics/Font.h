@@ -102,6 +102,31 @@ CSFML_GRAPHICS_API sfGlyph
     sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int characterSize, bool bold, float outlineThickness);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get a glyph in a font by glyph ID
+///
+/// If the font is a bitmap font, not all character sizes
+/// might be available. If the glyph is not available at the
+/// requested size, an empty glyph is returned.
+///
+/// Glyph IDs are font specific and are for example
+/// provided by the shaped glyphs of a text.
+///
+/// Be aware that using a negative value for the outline
+/// thickness will cause distorted rendering.
+///
+/// \param font             Source font
+/// \param id               ID of the glyph to get
+/// \param characterSize    Character size, in pixels
+/// \param bold             Retrieve the bold version or the regular one?
+/// \param outlineThickness Thickness of outline (when != 0 the glyph will not be filled)
+///
+/// \return The corresponding glyph
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfGlyph
+    sfFont_getGlyphById(const sfFont* font, uint32_t id, unsigned int characterSize, bool bold, float outlineThickness);
+
+////////////////////////////////////////////////////////////
 /// \brief Determine if this font has a glyph representing the requested code point
 ///
 /// Most fonts only include a very limited selection of glyphs from
@@ -156,6 +181,44 @@ CSFML_GRAPHICS_API float sfFont_getBoldKerning(const sfFont* font, uint32_t firs
 ///
 ////////////////////////////////////////////////////////////
 CSFML_GRAPHICS_API float sfFont_getLineSpacing(const sfFont* font, unsigned int characterSize);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the ascent of a font
+///
+/// The ascent is the largest distance between the baseline and
+/// the top of all glyphs in the font.
+///
+/// Be aware that there is no uniform definition of how the
+/// ascent is calculated. It can vary from font to font.
+///
+/// \param font          Source font
+/// \param characterSize Reference character size
+///
+/// \return Ascent, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float sfFont_getAscent(const sfFont* font, unsigned int characterSize);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the descent of a font
+///
+/// The descent is the largest distance between the baseline and
+/// the bottom of all glyphs in the font.
+///
+/// Be aware that there is no uniform definition of how the
+/// descent is calculated. It can vary from font to font.
+///
+/// The descent shares the same coordinate system as the
+/// ascent. This means that it will be negative for distances
+/// below the baseline.
+///
+/// \param font          Source font
+/// \param characterSize Reference character size
+///
+/// \return Descent, in pixels
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API float sfFont_getDescent(const sfFont* font, unsigned int characterSize);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the position of the underline

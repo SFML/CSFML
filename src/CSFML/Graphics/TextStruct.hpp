@@ -29,11 +29,13 @@
 ////////////////////////////////////////////////////////////
 #include <CSFML/Graphics/FontStruct.hpp>
 #include <CSFML/Graphics/Rect.h>
+#include <CSFML/Graphics/Text.h>
 #include <CSFML/Graphics/Transform.h>
 
 #include <SFML/Graphics/Text.hpp>
 
 #include <string>
+#include <vector>
 
 
 ////////////////////////////////////////////////////////////
@@ -42,8 +44,9 @@
 struct sfText : sf::Text
 {
     using sf::Text::Text;
-    const sfFont*       Font{};
-    mutable std::string String;
-    mutable sfTransform Transform{};
-    mutable sfTransform InverseTransform{};
+    const sfFont*                      Font{};
+    mutable std::string                String;
+    mutable sfTransform                Transform{};
+    mutable sfTransform                InverseTransform{};
+    mutable std::vector<sfShapedGlyph> ShapedGlyphs;
 };

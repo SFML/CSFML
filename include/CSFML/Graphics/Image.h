@@ -82,8 +82,8 @@ CSFML_GRAPHICS_API sfImage* sfImage_createFromPixels(sfVector2u size, const uint
 /// \brief Create an image from a file on disk
 ///
 /// The supported image formats are bmp, png, tga, jpg, gif,
-/// psd, hdr and pic. Some format options are not supported,
-/// like progressive jpeg.
+/// psd, hdr, pic, pnm and qoi. Some format options are not supported,
+/// like jpeg with arithmetic coding or ASCII pnm.
 /// If this function fails, the image is left unchanged.
 ///
 /// \param filename Path of the image file to load
@@ -97,8 +97,8 @@ CSFML_GRAPHICS_API sfImage* sfImage_createFromFile(const char* filename);
 /// \brief Create an image from a file in memory
 ///
 /// The supported image formats are bmp, png, tga, jpg, gif,
-/// psd, hdr and pic. Some format options are not supported,
-/// like progressive jpeg.
+/// psd, hdr, pic, pnm and qoi. Some format options are not supported,
+/// like jpeg with arithmetic coding or ASCII pnm.
 /// If this function fails, the image is left unchanged.
 ///
 /// \param data Pointer to the file data in memory
@@ -113,8 +113,8 @@ CSFML_GRAPHICS_API sfImage* sfImage_createFromMemory(const void* data, size_t si
 /// \brief Create an image from a custom stream
 ///
 /// The supported image formats are bmp, png, tga, jpg, gif,
-/// psd, hdr and pic. Some format options are not supported,
-/// like progressive jpeg.
+/// psd, hdr, pic, pnm and qoi. Some format options are not supported,
+/// like jpeg with arithmetic coding or ASCII pnm.
 /// If this function fails, the image is left unchanged.
 ///
 /// \param stream Source stream to read from
@@ -147,7 +147,7 @@ CSFML_GRAPHICS_API void sfImage_destroy(const sfImage* image);
 ///
 /// The format of the image is automatically deduced from
 /// the extension. The supported image formats are bmp, png,
-/// tga and jpg. The destination file is overwritten
+/// tga, jpg and qoi. The destination file is overwritten
 /// if it already exists. This function fails if the image is empty.
 ///
 /// \param image    Image object
@@ -164,7 +164,7 @@ CSFML_GRAPHICS_API bool sfImage_saveToFile(const sfImage* image, const char* fil
 /// \brief Save the image to a buffer in memory
 ///
 /// The format of the image must be specified.
-/// The supported image formats are bmp, png, tga and jpg.
+/// The supported image formats are bmp, png, tga, jpg and qoi.
 /// This function fails if the image is empty, or if
 /// the format was invalid.
 ///

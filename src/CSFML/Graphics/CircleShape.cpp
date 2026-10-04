@@ -208,6 +208,14 @@ void sfCircleShape_setOutlineThickness(sfCircleShape* shape, float thickness)
 
 
 ////////////////////////////////////////////////////////////
+void sfCircleShape_setMiterLimit(sfCircleShape* shape, float miterLimit)
+{
+    assert(shape);
+    shape->setMiterLimit(miterLimit);
+}
+
+
+////////////////////////////////////////////////////////////
 const sfTexture* sfCircleShape_getTexture(const sfCircleShape* shape)
 {
     assert(shape);
@@ -244,6 +252,14 @@ float sfCircleShape_getOutlineThickness(const sfCircleShape* shape)
 {
     assert(shape);
     return shape->getOutlineThickness();
+}
+
+
+////////////////////////////////////////////////////////////
+float sfCircleShape_getMiterLimit(const sfCircleShape* shape)
+{
+    assert(shape);
+    return shape->getMiterLimit();
 }
 
 

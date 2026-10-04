@@ -119,8 +119,10 @@ typedef enum
 ///
 /// \param ftpListingResponse Ftp listing response to destroy
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfFtpListingResponse_destroy(const sfFtpListingResponse* ftpListingResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED void sfFtpListingResponse_destroy(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a FTP listing response status code means a success
@@ -132,8 +134,10 @@ CSFML_NETWORK_API void sfFtpListingResponse_destroy(const sfFtpListingResponse* 
 ///
 /// \return true if the status is a success, false if it is a failure
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API bool sfFtpListingResponse_isOk(const sfFtpListingResponse* ftpListingResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED bool sfFtpListingResponse_isOk(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the status code of a FTP listing response
@@ -142,8 +146,10 @@ CSFML_NETWORK_API bool sfFtpListingResponse_isOk(const sfFtpListingResponse* ftp
 ///
 /// \return Status code
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpStatus sfFtpListingResponse_getStatus(const sfFtpListingResponse* ftpListingResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpStatus sfFtpListingResponse_getStatus(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the full message contained in a FTP listing response
@@ -152,8 +158,10 @@ CSFML_NETWORK_API sfFtpStatus sfFtpListingResponse_getStatus(const sfFtpListingR
 ///
 /// \return The response message
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char* sfFtpListingResponse_getMessage(const sfFtpListingResponse* ftpListingResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED const char* sfFtpListingResponse_getMessage(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return the number of directory/file names contained in a FTP listing response
@@ -162,8 +170,10 @@ CSFML_NETWORK_API const char* sfFtpListingResponse_getMessage(const sfFtpListing
 ///
 /// \return Total number of names available
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API size_t sfFtpListingResponse_getCount(const sfFtpListingResponse* ftpListingResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED size_t sfFtpListingResponse_getCount(const sfFtpListingResponse* ftpListingResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Return a directory/file name contained in a FTP listing response
@@ -173,16 +183,21 @@ CSFML_NETWORK_API size_t sfFtpListingResponse_getCount(const sfFtpListingRespons
 ///
 /// \return The requested name
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char* sfFtpListingResponse_getName(const sfFtpListingResponse* ftpListingResponse, size_t index);
+CSFML_NETWORK_API CSFML_DEPRECATED const char* sfFtpListingResponse_getName(const sfFtpListingResponse* ftpListingResponse,
+                                                                            size_t index);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a FTP directory response
 ///
 /// \param ftpDirectoryResponse Ftp directory response to destroy
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfFtpDirectoryResponse_destroy(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED void sfFtpDirectoryResponse_destroy(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a FTP directory response status code means a success
@@ -194,8 +209,10 @@ CSFML_NETWORK_API void sfFtpDirectoryResponse_destroy(const sfFtpDirectoryRespon
 ///
 /// \return true if the status is a success, false if it is a failure
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API bool sfFtpDirectoryResponse_isOk(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED bool sfFtpDirectoryResponse_isOk(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the status code of a FTP directory response
@@ -204,8 +221,11 @@ CSFML_NETWORK_API bool sfFtpDirectoryResponse_isOk(const sfFtpDirectoryResponse*
 ///
 /// \return Status code
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpStatus sfFtpDirectoryResponse_getStatus(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpStatus
+    sfFtpDirectoryResponse_getStatus(const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the full message contained in a FTP directory response
@@ -214,8 +234,11 @@ CSFML_NETWORK_API sfFtpStatus sfFtpDirectoryResponse_getStatus(const sfFtpDirect
 ///
 /// \return The response message
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED const char* sfFtpDirectoryResponse_getMessage(
+    const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the directory returned in a FTP directory response
@@ -227,8 +250,11 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getMessage(const sfFtpDirec
 ///
 /// \return Directory name or NULL if it failed
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED const char* sfFtpDirectoryResponse_getDirectory(
+    const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 
 ////////////////////////////////////////////////////////////
@@ -241,8 +267,11 @@ CSFML_NETWORK_API const char* sfFtpDirectoryResponse_getDirectory(const sfFtpDir
 ///
 /// \return Directory name or NULL if it failed
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(const sfFtpDirectoryResponse* ftpDirectoryResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(
+    const sfFtpDirectoryResponse* ftpDirectoryResponse);
 
 
 ////////////////////////////////////////////////////////////
@@ -250,8 +279,10 @@ CSFML_NETWORK_API const sfChar32* sfFtpDirectoryResponse_getDirectoryUnicode(con
 ///
 /// \param ftpResponse Ftp response to destroy
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfFtpResponse_destroy(const sfFtpResponse* ftpResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED void sfFtpResponse_destroy(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Check if a FTP response status code means a success
@@ -263,8 +294,10 @@ CSFML_NETWORK_API void sfFtpResponse_destroy(const sfFtpResponse* ftpResponse);
 ///
 /// \return true if the status is a success, false if it is a failure
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API bool sfFtpResponse_isOk(const sfFtpResponse* ftpResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED bool sfFtpResponse_isOk(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the status code of a FTP response
@@ -273,8 +306,10 @@ CSFML_NETWORK_API bool sfFtpResponse_isOk(const sfFtpResponse* ftpResponse);
 ///
 /// \return Status code
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpStatus sfFtpResponse_getStatus(const sfFtpResponse* ftpResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpStatus sfFtpResponse_getStatus(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the full message contained in a FTP response
@@ -283,24 +318,30 @@ CSFML_NETWORK_API sfFtpStatus sfFtpResponse_getStatus(const sfFtpResponse* ftpRe
 ///
 /// \return The response message
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API const char* sfFtpResponse_getMessage(const sfFtpResponse* ftpResponse);
+CSFML_NETWORK_API CSFML_DEPRECATED const char* sfFtpResponse_getMessage(const sfFtpResponse* ftpResponse);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new Ftp object
 ///
 /// \return A new sfFtp object
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtp* sfFtp_create(void);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtp* sfFtp_create(void);
 
 ////////////////////////////////////////////////////////////
 /// \brief Destroy a Ftp object
 ///
 /// \param ftp Ftp object to destroy
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API void sfFtp_destroy(const sfFtp* ftp);
+CSFML_NETWORK_API CSFML_DEPRECATED void sfFtp_destroy(const sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
 /// \brief Connect to the specified FTP server
@@ -321,8 +362,10 @@ CSFML_NETWORK_API void sfFtp_destroy(const sfFtp* ftp);
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port, sfTime timeout);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port, sfTime timeout);
 
 ////////////////////////////////////////////////////////////
 /// \brief Log in using an anonymous account
@@ -334,8 +377,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, u
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
 /// \brief Log in using a username and a password
@@ -349,8 +394,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_loginAnonymous(sfFtp* ftp);
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const char* password);
 
 ////////////////////////////////////////////////////////////
 /// \brief Close the connection with the server
@@ -359,8 +406,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_login(sfFtp* ftp, const char* name, const
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_disconnect(sfFtp* ftp);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_disconnect(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
 /// \brief Send a null command to keep the connection alive
@@ -372,8 +421,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_disconnect(sfFtp* ftp);
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the current working directory
@@ -385,8 +436,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_keepAlive(sfFtp* ftp);
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the contents of the given directory
@@ -401,8 +454,10 @@ CSFML_NETWORK_API sfFtpDirectoryResponse* sfFtp_getWorkingDirectory(sfFtp* ftp);
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, const char* directory);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, const char* directory);
 
 ////////////////////////////////////////////////////////////
 /// \brief Change the current working directory
@@ -414,8 +469,10 @@ CSFML_NETWORK_API sfFtpListingResponse* sfFtp_getDirectoryListing(sfFtp* ftp, co
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* directory);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* directory);
 
 ////////////////////////////////////////////////////////////
 /// \brief Go to the parent directory of the current one
@@ -424,8 +481,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_changeDirectory(sfFtp* ftp, const char* d
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp);
 
 ////////////////////////////////////////////////////////////
 /// \brief Create a new directory
@@ -438,8 +497,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_parentDirectory(sfFtp* ftp);
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* name);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Remove an existing directory
@@ -454,8 +515,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_createDirectory(sfFtp* ftp, const char* n
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* name);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Rename an existing file
@@ -469,8 +532,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_deleteDirectory(sfFtp* ftp, const char* n
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, const char* newName);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, const char* newName);
 
 ////////////////////////////////////////////////////////////
 /// \brief Remove an existing file
@@ -485,8 +550,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_renameFile(sfFtp* ftp, const char* file, 
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name);
 
 ////////////////////////////////////////////////////////////
 /// \brief Download a file from a FTP server
@@ -503,8 +570,14 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_deleteFile(sfFtp* ftp, const char* name);
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFile, const char* localPath, sfFtpTransferMode mode);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_download(
+    sfFtp*            ftp,
+    const char*       remoteFile,
+    const char*       localPath,
+    sfFtpTransferMode mode);
 
 ////////////////////////////////////////////////////////////
 /// \brief Upload a file to a FTP server
@@ -522,8 +595,10 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_download(sfFtp* ftp, const char* remoteFi
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_upload(
     sfFtp*            ftp,
     const char*       localFile,
     const char*       remotePath,
@@ -547,5 +622,7 @@ CSFML_NETWORK_API sfFtpResponse* sfFtp_upload(
 ///
 /// \return Server response to the request
 ///
+/// \deprecated Use sfSftp if possible
+///
 ////////////////////////////////////////////////////////////
-CSFML_NETWORK_API sfFtpResponse* sfFtp_sendCommand(sfFtp* ftp, const char* command, const char* parameter);
+CSFML_NETWORK_API CSFML_DEPRECATED sfFtpResponse* sfFtp_sendCommand(sfFtp* ftp, const char* command, const char* parameter);

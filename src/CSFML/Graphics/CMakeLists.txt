@@ -12,6 +12,7 @@ set(SRC
     ${SRCROOT}/Color.cpp
     ${INCROOT}/Color.h
     ${SRCROOT}/ConvertColor.hpp
+    ${SRCROOT}/ConvertGlyph.hpp
     ${SRCROOT}/ConvertRect.hpp
     ${SRCROOT}/ConvertRenderStates.hpp
     ${SRCROOT}/ConvertStencil.hpp

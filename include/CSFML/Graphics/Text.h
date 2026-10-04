@@ -30,12 +30,15 @@
 #include <CSFML/Graphics/Export.h>
 
 #include <CSFML/Graphics/Color.h>
+#include <CSFML/Graphics/Glyph.h>
 #include <CSFML/Graphics/Rect.h>
 #include <CSFML/Graphics/Transform.h>
 #include <CSFML/Graphics/Types.h>
+#include <CSFML/Graphics/Vertex.h>
 #include <CSFML/System/Vector2.h>
 
 #include <stddef.h>
+#include <stdint.h>
 
 
 ////////////////////////////////////////////////////////////
@@ -49,6 +52,102 @@ typedef enum
     sfTextUnderlined    = 1 << 2, ///< Underlined characters
     sfTextStrikeThrough = 1 << 3  ///< Strike through characters
 } sfTextStyle;
+
+////////////////////////////////////////////////////////////
+/// \brief Line alignment of a multi-line text
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfTextLineAlignmentDefault, ///< Automatically align lines by script direction, left-align left-to-right text and right-align right-to-left text
+    sfTextLineAlignmentLeft,   ///< Force align all lines to the left, regardless of script direction
+    sfTextLineAlignmentCenter, ///< Force align all lines centrally
+    sfTextLineAlignmentRight   ///< Force align lines to the right, regardless of script direction
+} sfTextLineAlignment;
+
+////////////////////////////////////////////////////////////
+/// \brief Cluster grouping algorithm
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfTextClusterGroupingGrapheme,  ///< Group clusters by grapheme
+    sfTextClusterGroupingCharacter, ///< Group clusters by character
+    sfTextClusterGroupingNone       ///< Do not group clusters
+} sfTextClusterGrouping;
+
+////////////////////////////////////////////////////////////
+/// \brief Direction of the text a glyph belongs to
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfTextDirectionUnspecified, ///< Unspecified
+    sfTextDirectionLeftToRight, ///< Left-to-right
+    sfTextDirectionRightToLeft, ///< Right-to-left
+    sfTextDirectionTopToBottom, ///< Top-to-bottom
+    sfTextDirectionBottomToTop  ///< Bottom-to-top
+} sfTextDirection;
+
+////////////////////////////////////////////////////////////
+/// \brief Text orientation
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfTextOrientationDefault,     ///< Default (left-to-right or right-to-left depending on detected script)
+    sfTextOrientationTopToBottom, ///< Top-to-bottom
+    sfTextOrientationBottomToTop  ///< Bottom-to-top
+} sfTextOrientation;
+
+////////////////////////////////////////////////////////////
+/// \brief Glyph that has been positioned by the shaper
+///
+////////////////////////////////////////////////////////////
+typedef struct
+{
+    sfGlyph         glyph;         ///< The glyph
+    sfVector2f      position;      ///< Position of the glyph within a text
+    uint32_t        cluster;       ///< Cluster ID
+    sfTextDirection textDirection; ///< Text direction
+    float           baseline;      ///< The baseline position of the line this glyph is a part of
+    size_t          vertexOffset;  ///< Starting offset of the vertex data belonging to this glyph
+    size_t          vertexCount;   ///< Count of vertices belonging to this glyph
+} sfShapedGlyph;
+
+////////////////////////////////////////////////////////////
+/// \brief Callback that is provided with glyph data for pre-processing
+///
+/// The callback is called once per glyph whenever the text
+/// geometry is regenerated, in the order in which the glyph
+/// geometry is generated. The style, fill color, outline color
+/// and outline thickness of the glyph can be modified through
+/// the given pointers.
+///
+/// To map glyphs back to the input string, use the cluster
+/// value of the shaped glyph. See sf::Text::GlyphPreProcessor
+/// in the SFML documentation for a detailed explanation.
+///
+/// Changing the style or outline thickness might lead to
+/// slight inconsistencies of the text bounds, changing the
+/// fill or outline color is always safe. It is not safe to
+/// query the text bounds from within the callback.
+///
+/// \param shapedGlyph      The shaped glyph to pre-process
+/// \param style            Style of the glyph (see sfTextStyle enum)
+/// \param fillColor        Fill color of the glyph
+/// \param outlineColor     Outline color of the glyph
+/// \param outlineThickness Outline thickness of the glyph
+/// \param userData         User data passed to sfText_setGlyphPreProcessor
+///
+////////////////////////////////////////////////////////////
+typedef void (*sfGlyphPreProcessor)(
+    const sfShapedGlyph* shapedGlyph,
+    uint32_t*            style,
+    sfColor*             fillColor,
+    sfColor*             outlineColor,
+    float*               outlineThickness,
+    void*                userData);
 
 
 ////////////////////////////////////////////////////////////
@@ -368,6 +467,31 @@ CSFML_GRAPHICS_API void sfText_setOutlineColor(sfText* text, sfColor color);
 CSFML_GRAPHICS_API void sfText_setOutlineThickness(sfText* text, float thickness);
 
 ////////////////////////////////////////////////////////////
+/// \brief Set the line alignment for a multi-line text
+///
+/// By default, the line alignment is sfTextLineAlignmentDefault.
+///
+/// \param text          Text object
+/// \param lineAlignment New line alignment
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setLineAlignment(sfText* text, sfTextLineAlignment lineAlignment);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the text orientation
+///
+/// By default, the text orientation is sfTextOrientationDefault.
+///
+/// Vertical text orientations require the font to provide
+/// vertical metrics, see sfFontInfo.
+///
+/// \param text            Text object
+/// \param textOrientation New text orientation
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setTextOrientation(sfText* text, sfTextOrientation textOrientation);
+
+////////////////////////////////////////////////////////////
 /// \brief Get the string of a text (returns an ANSI string)
 ///
 /// \param text Text object
@@ -476,6 +600,26 @@ CSFML_GRAPHICS_API sfColor sfText_getOutlineColor(const sfText* text);
 CSFML_GRAPHICS_API float sfText_getOutlineThickness(const sfText* text);
 
 ////////////////////////////////////////////////////////////
+/// \brief Get the line alignment for a multi-line text
+///
+/// \param text Text object
+///
+/// \return Line alignment
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfTextLineAlignment sfText_getLineAlignment(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the text orientation
+///
+/// \param text Text object
+///
+/// \return Text orientation
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfTextOrientation sfText_getTextOrientation(const sfText* text);
+
+////////////////////////////////////////////////////////////
 /// \brief Return the position of the \a index-th character in a text
 ///
 /// This function computes the visual position of a character
@@ -490,8 +634,113 @@ CSFML_GRAPHICS_API float sfText_getOutlineThickness(const sfText* text);
 ///
 /// \return Position of the character
 ///
+/// \deprecated Use sfText_getShapedGlyphs instead
+///
 ////////////////////////////////////////////////////////////
-CSFML_GRAPHICS_API sfVector2f sfText_findCharacterPos(const sfText* text, size_t index);
+CSFML_GRAPHICS_API CSFML_DEPRECATED sfVector2f sfText_findCharacterPos(const sfText* text, size_t index);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the shaped glyphs that make up a text
+///
+/// The result of shaping, i.e. positioning individual glyphs
+/// based on the properties of the font and the input text,
+/// is a sequence of shaped glyphs. In addition to the glyph
+/// information that is available by looking up a glyph from
+/// a font, the glyph position, glyph cluster ID and direction
+/// of the text represented by the glyph is provided.
+///
+/// When positioning e.g. a cursor within the text, grapheme
+/// clusters can be treated as the basic units of which the
+/// text is composed. See sfText_setClusterGrouping.
+///
+/// The returned glyph positions are in local coordinates
+/// (translation, rotation, scale and origin are not applied).
+///
+/// The returned array is owned by the text and stays valid
+/// until the next call to this function or until the text
+/// is destroyed.
+///
+/// \param text  Text object
+/// \param count Pointer to a variable that will be filled with the number of shaped glyphs
+///
+/// \return Pointer to the array of shaped glyphs
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API const sfShapedGlyph* sfText_getShapedGlyphs(const sfText* text, size_t* count);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the cluster grouping algorithm in use
+///
+/// \param text Text object
+///
+/// \return The cluster grouping algorithm in use
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfTextClusterGrouping sfText_getClusterGrouping(const sfText* text);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the cluster grouping algorithm to use
+///
+/// By default, character cluster grouping is used.
+///
+/// Character cluster grouping is good enough to be able to
+/// position cursors in most scenarios. If more coarse-grained
+/// grouping is required, grapheme grouping can be selected.
+///
+/// Cluster grouping can also be disabled if necessary.
+///
+/// \param text            Text object
+/// \param clusterGrouping The cluster grouping algorithm to use
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setClusterGrouping(sfText* text, sfTextClusterGrouping clusterGrouping);
+
+////////////////////////////////////////////////////////////
+/// \brief Set the glyph pre-processor to be called per glyph
+///
+/// The glyph pre-processor is called with glyph data to be
+/// pre-processed whenever the text geometry is regenerated.
+///
+/// \param text              Text object
+/// \param glyphPreProcessor The glyph pre-processor to be called per glyph, pass NULL to disable pre-processing
+/// \param userData          User data that will be passed to the glyph pre-processor
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API void sfText_setGlyphPreProcessor(sfText* text, sfGlyphPreProcessor glyphPreProcessor, void* userData);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the vertex data of a text
+///
+/// The vertices form triangles (sfTriangles).
+///
+/// The vertex data is regenerated by the text whenever it is
+/// necessary. Any changes made to the vertex data will be
+/// discarded whenever this happens.
+///
+/// \param text  Text object
+/// \param count Pointer to a variable that will be filled with the number of vertices
+///
+/// \return Pointer to the vertex data of the text
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVertex* sfText_getVertexData(const sfText* text, size_t* count);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the outline vertex data of a text
+///
+/// The vertices form triangles (sfTriangles).
+///
+/// The outline vertex data is regenerated by the text whenever
+/// it is necessary. Any changes made to the outline vertex data
+/// will be discarded whenever this happens.
+///
+/// \param text  Text object
+/// \param count Pointer to a variable that will be filled with the number of vertices
+///
+/// \return Pointer to the outline vertex data of the text
+///
+////////////////////////////////////////////////////////////
+CSFML_GRAPHICS_API sfVertex* sfText_getOutlineVertexData(const sfText* text, size_t* count);
 
 ////////////////////////////////////////////////////////////
 /// \brief Get the local bounding rectangle of a text

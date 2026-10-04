@@ -20,9 +20,13 @@ set(SRC
     ${INCROOT}/Sleep.h
     ${SRCROOT}/Time.cpp
     ${INCROOT}/Time.h
+    ${SRCROOT}/ConvertTimeoutWithPredicate.hpp
+    ${INCROOT}/TimeoutWithPredicate.h
     ${INCROOT}/Types.h
     ${INCROOT}/Vector2.h
     ${INCROOT}/Vector3.h
+    ${SRCROOT}/Version.cpp
+    ${INCROOT}/Version.h
 )
 
 # define the csfml-system target

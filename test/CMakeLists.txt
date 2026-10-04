@@ -27,6 +27,7 @@ add_executable(test-csfml-system
     System/Time.test.cpp
     System/Vector2.test.cpp
     System/Vector3.test.cpp
+    System/Version.test.cpp
 )
 target_link_libraries(test-csfml-system PRIVATE csfml-system Catch2::Catch2WithMain)
 set_target_warnings(test-csfml-system)
@@ -48,12 +49,14 @@ add_executable(test-csfml-graphics
     Graphics/BlendMode.test.cpp
     Graphics/Color.test.cpp
     Graphics/CoordinateType.test.cpp
+    Graphics/Font.test.cpp
     Graphics/Image.test.cpp
     Graphics/PrimitiveType.test.cpp
     Graphics/Rect.test.cpp
     Graphics/RenderStates.test.cpp
     Graphics/Shape.test.cpp
     Graphics/StencilMode.test.cpp
+    Graphics/Text.test.cpp
     Graphics/Transform.test.cpp
     Graphics/VertexArray.test.cpp
     Graphics/View.test.cpp
@@ -63,16 +66,21 @@ set_target_warnings(test-csfml-graphics)
 catch_discover_tests(test-csfml-graphics WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR})
 
 add_executable(test-csfml-network
+    Network/Dns.test.cpp
     Network/Ftp.test.cpp
     Network/Http.test.cpp
     Network/IpAddress.test.cpp
+    Network/Sftp.test.cpp
+    Network/SocketSelector.test.cpp
     Network/SocketStatus.test.cpp
+    Network/TcpSocket.test.cpp
 )
-target_link_libraries(test-csfml-network PRIVATE csfml-network Catch2::Catch2WithMain SFML::Network)
+target_link_libraries(test-csfml-network PRIVATE csfml-network csfml-system Catch2::Catch2WithMain SFML::Network)
 set_target_warnings(test-csfml-network)
 catch_discover_tests(test-csfml-network)
 
 add_executable(test-csfml-audio
+    Audio/PlaybackDevice.test.cpp
     Audio/SoundChannel.test.cpp
 )
 target_link_libraries(test-csfml-audio PRIVATE csfml-audio Catch2::Catch2WithMain SFML::Audio)

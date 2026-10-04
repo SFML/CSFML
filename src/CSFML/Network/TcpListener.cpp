@@ -25,6 +25,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Network/ConvertIpAddress.hpp>
 #include <CSFML/Network/TcpListener.h>
 #include <CSFML/Network/TcpListenerStruct.hpp>
 #include <CSFML/Network/TcpSocketStruct.hpp>
@@ -75,7 +76,7 @@ sfSocketStatus sfTcpListener_listen(sfTcpListener* listener, unsigned short port
 {
     assert(listener);
 
-    std::optional<sf::IpAddress> sfmlAddress = sf::IpAddress::resolve(address.address);
+    std::optional<sf::IpAddress> sfmlAddress = convertIpAddress(address);
 
     if (!sfmlAddress)
     {

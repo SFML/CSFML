@@ -35,5 +35,7 @@
 #include <CSFML/System/InputStream.h>
 #include <CSFML/System/Sleep.h>
 #include <CSFML/System/Time.h>
+#include <CSFML/System/TimeoutWithPredicate.h>
 #include <CSFML/System/Vector2.h>
 #include <CSFML/System/Vector3.h>
+#include <CSFML/System/Version.h>

@@ -25,6 +25,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Network/ConvertIpAddress.hpp>
 #include <CSFML/Network/Ftp.h>
 #include <CSFML/Network/FtpStruct.hpp>
 
@@ -205,7 +206,7 @@ sfFtpResponse* sfFtp_connect(sfFtp* ftp, sfIpAddress server, unsigned short port
 {
     assert(ftp);
 
-    std::optional<sf::IpAddress> sfmlServer = sf::IpAddress::resolve(server.address);
+    std::optional<sf::IpAddress> sfmlServer = convertIpAddress(server);
 
     if (!sfmlServer)
         return nullptr;

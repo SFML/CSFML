@@ -38,7 +38,7 @@ Here's how to get started.
 
 1. Install SFML.
 This may be done in a variety of ways including using a system package manager or building and installing SFML from source.
-The major version of SFML must match the major version of CSFML.
+The major version of SFML must match the major version of CSFML and the minor version of SFML must be the same or newer than the one of CSFML.
 2. Configure CSFML.
 If you are building CSFML for the purpose of contributing, we recommend using the `dev` CMake preset.
 This will enable a number of useful settings related to developing the library.

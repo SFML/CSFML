@@ -25,12 +25,15 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Network/ConvertIpAddress.hpp>
 #include <CSFML/Network/PacketStruct.hpp>
 #include <CSFML/Network/TcpSocket.h>
 #include <CSFML/Network/TcpSocketStruct.hpp>
 
 #include <SFML/Network/IpAddress.hpp>
+#include <SFML/System/String.hpp>
 
+#include <cstddef>
 #include <cstring>
 
 
@@ -82,7 +85,7 @@ sfIpAddress sfTcpSocket_getRemoteAddress(const sfTcpSocket* socket)
     sfIpAddress result = sfIpAddress_None;
     if (address)
     {
-        std::strncpy(result.address, address->toString().c_str(), 15);
+        result = convertIpAddress(*address);
     }
 
     return result;
@@ -100,7 +103,7 @@ unsigned short sfTcpSocket_getRemotePort(const sfTcpSocket* socket)
 ////////////////////////////////////////////////////////////
 sfSocketStatus sfTcpSocket_connect(sfTcpSocket* socket, sfIpAddress remoteAddress, unsigned short remotePort, sfTime timeout)
 {
-    std::optional<sf::IpAddress> address = sf::IpAddress::resolve(remoteAddress.address);
+    std::optional<sf::IpAddress> address = convertIpAddress(remoteAddress);
 
     if (!address)
     {
@@ -168,4 +171,74 @@ sfSocketStatus sfTcpSocket_receivePacket(sfTcpSocket* socket, sfPacket* packet)
     assert(socket);
     assert(packet);
     return static_cast<sfSocketStatus>(socket->receive(*packet));
+}
+
+
+namespace
+{
+////////////////////////////////////////////////////////////
+[[nodiscard]] sf::String fromUtf8(const char* string)
+{
+    return sf::String::fromUtf8(string, string + std::strlen(string));
+}
+} // namespace
+
+
+////////////////////////////////////////////////////////////
+sfTlsStatus sfTcpSocket_setupTlsClient(sfTcpSocket* socket, const char* hostname, bool verifyPeer)
+{
+    assert(socket);
+    assert(hostname);
+    return static_cast<sfTlsStatus>(socket->setupTlsClient(fromUtf8(hostname), verifyPeer));
+}
+
+
+////////////////////////////////////////////////////////////
+sfTlsStatus sfTcpSocket_setupTlsClientWithCertificate(sfTcpSocket* socket,
+                                                      const char*  hostname,
+                                                      const void*  certificateChainData,
+                                                      size_t       certificateChainSize)
+{
+    assert(socket);
+    assert(hostname);
+    assert(certificateChainData);
+    return static_cast<sfTlsStatus>(
+        socket->setupTlsClient(fromUtf8(hostname), static_cast<const std::byte*>(certificateChainData), certificateChainSize));
+}
+
+
+////////////////////////////////////////////////////////////
+sfTlsStatus sfTcpSocket_setupTlsServer(
+    sfTcpSocket* socket,
+    const void*  certificateChainData,
+    size_t       certificateChainSize,
+    const void*  privateKeyData,
+    size_t       privateKeySize,
+    const void*  privateKeyPasswordData,
+    size_t       privateKeyPasswordSize)
+{
+    assert(socket);
+    assert(certificateChainData);
+    assert(privateKeyData);
+    return static_cast<sfTlsStatus>(
+        socket->setupTlsServer(static_cast<const std::byte*>(certificateChainData),
+                               certificateChainSize,
+                               static_cast<const std::byte*>(privateKeyData),
+                               privateKeySize,
+                               static_cast<const std::byte*>(privateKeyPasswordData),
+                               privateKeyPasswordData ? privateKeyPasswordSize : 0));
+}
+
+
+////////////////////////////////////////////////////////////
+const char* sfTcpSocket_getCurrentCiphersuiteName(const sfTcpSocket* socket)
+{
+    assert(socket);
+
+    const auto name = socket->getCurrentCiphersuiteName();
+    if (!name)
+        return nullptr;
+
+    socket->CiphersuiteName = *name;
+    return socket->CiphersuiteName.c_str();
 }

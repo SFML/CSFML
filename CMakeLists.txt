@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.22)
+cmake_minimum_required(VERSION 3.28)
 
 # define a macro that helps defining an option
 macro(csfml_set_option var default type docstring)
@@ -13,7 +13,7 @@ endmacro()
 csfml_set_option(CMAKE_BUILD_TYPE Release STRING "Choose the type of build (Debug or Release)")
 
 # project name
-project(CSFML VERSION 3.0.0)
+project(CSFML VERSION 3.1.0)
 
 # we use the paths from the cmake GNUInstallDirs module as defaults
 # you can override these if you like
@@ -66,7 +66,7 @@ endif()
 if(CSFML_BUILD_NETWORK)
     list(PREPEND SFML_MODULES "Network")
 endif()
-find_package(SFML 3.0 COMPONENTS ${SFML_MODULES} REQUIRED)
+find_package(SFML 3.1 COMPONENTS ${SFML_MODULES} REQUIRED)
 
 # add the subdirectories
 add_subdirectory(src/CSFML)

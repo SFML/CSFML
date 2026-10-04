@@ -9,7 +9,7 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  SFML_VERSION: 3.0.2
+  SFML_VERSION: 3.1.0
 
 defaults:
   run:
@@ -26,8 +26,7 @@ jobs:
         platform:
         - { name: Windows VS2026 x86,  os: windows-2025-vs2026, flags: -AWin32 }
         - { name: Windows VS2026 x64,  os: windows-2025-vs2026, flags: -Ax64 }
-        # ClangCL is disabled until we build against SFML 3.1, the FLAC version bundled with SFML 3.0 fails to compile with VS2026's ClangCL
-        # - { name: Windows ClangCL,     os: windows-2025-vs2026, flags: -T ClangCL }
+        - { name: Windows ClangCL,     os: windows-2025-vs2026, flags: -T ClangCL }
         - { name: Windows Clang,       os: windows-2025-vs2026, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: Linux GCC,           os: ubuntu-24.04, flags: -GNinja }
         - { name: Linux Clang,         os: ubuntu-24.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
@@ -43,12 +42,12 @@ jobs:
     - name: Get CMake and Ninja
       uses: lukka/get-cmake@latest
       with:
-        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.22' }} # Visual Studio 2026 generator requires CMake 4.2 or later
+        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.28' }} # Visual Studio 2026 generator requires CMake 4.2 or later
         ninjaVersion: latest
 
     - name: Install Linux Dependencies
       if: runner.os == 'Linux'
-      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev
+      run: sudo apt-get update && sudo apt-get install libxrandr-dev libxcursor-dev libxi-dev libudev-dev libflac-dev libvorbis-dev libgl1-mesa-dev libegl1-mesa-dev libfreetype-dev libharfbuzz-dev libmbedtls-dev libssh2-1-dev
 
     - name: Checkout SFML
       uses: actions/checkout@v7
@@ -63,9 +62,13 @@ jobs:
         BUILD_TYPE: ${{ matrix.type.name }}
         CMAKE_FLAGS: ${{ matrix.platform.flags }} ${{ matrix.config.flags }}
       run: |
+        # Let the installed SFML libraries find each other, same as tools/nuget/build.linux.sh
+        RPATH_FLAGS=()
+        if [ "$RUNNER_OS" = "Linux" ]; then RPATH_FLAGS=('-DCMAKE_INSTALL_RPATH=$ORIGIN'); fi
         cmake -S SFML -B SFML/build \
           -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
           -DCMAKE_INSTALL_PREFIX=SFML/install \
+          "${RPATH_FLAGS[@]}" \
           $CMAKE_FLAGS
 
     - name: Build SFML
@@ -128,7 +131,7 @@ jobs:
     - name: Get CMake and Ninja
       uses: lukka/get-cmake@latest
       with:
-        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.22' }} # Visual Studio 2026 generator requires CMake 4.2 or later
+        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.28' }} # Visual Studio 2026 generator requires CMake 4.2 or later
         ninjaVersion: latest
 
     - name: Install Dependencies
@@ -171,7 +174,7 @@ jobs:
     - name: Get CMake and Ninja
       uses: lukka/get-cmake@latest
       with:
-        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.22' }} # Visual Studio 2026 generator requires CMake 4.2 or later
+        cmakeVersion: ${{ runner.os == 'Windows' && '4.2' || '3.28' }} # Visual Studio 2026 generator requires CMake 4.2 or later
         ninjaVersion: latest
 
     - name: Install Doxygen

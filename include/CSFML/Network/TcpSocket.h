@@ -34,7 +34,21 @@
 #include <CSFML/Network/Types.h>
 #include <CSFML/System/Time.h>
 
+#include <stdbool.h>
 #include <stddef.h>
+
+
+////////////////////////////////////////////////////////////
+/// \brief Transport layer security status codes
+///
+////////////////////////////////////////////////////////////
+typedef enum
+{
+    sfTlsNotConnected,      ///< TCP connection not yet connected
+    sfTlsHandshakeStarted,  ///< TLS handshake has been started
+    sfTlsHandshakeComplete, ///< TLS handshake is complete, stream is encrypted
+    sfTlsError              ///< An unexpected error happened
+} sfTlsStatus;
 
 
 ////////////////////////////////////////////////////////////
@@ -229,3 +243,121 @@ CSFML_NETWORK_API sfSocketStatus sfTcpSocket_sendPacket(sfTcpSocket* socket, sfP
 ///
 ////////////////////////////////////////////////////////////
 CSFML_NETWORK_API sfSocketStatus sfTcpSocket_receivePacket(sfTcpSocket* socket, sfPacket* packet);
+
+////////////////////////////////////////////////////////////
+/// \brief Set up transport layer security as a client
+///
+/// Once the TCP connection is connected, transport layer
+/// security can be set up.
+///
+/// If this function is called before the TCP connection is
+/// connected, it will return sfTlsNotConnected and must be
+/// called again once the TCP connection is connected.
+///
+/// If this function started TLS setup but could not finish
+/// it within this call e.g. because this socket was set to
+/// non-blocking, it will return sfTlsHandshakeStarted and
+/// this function will have to be called repeatedly until
+/// sfTlsHandshakeComplete is returned. If this socket is
+/// blocking, sfTlsHandshakeComplete should be returned
+/// within the same function call if TLS setup was successful.
+///
+/// If sfTlsError is returned, something went wrong with TLS
+/// setup and the connection must be reconnected and TLS setup
+/// reattempted after it is connected again.
+///
+/// If verification is enabled, this function verifies the peer
+/// using the system provided certificate store. If the peer
+/// does not have a certificate that was signed by a certificate
+/// authority i.e. a self-signed certificate, the entire certificate
+/// chain can be provided using sfTcpSocket_setupTlsClientWithCertificate.
+///
+/// The hostname is sent to the server via server name indication
+/// (SNI) and used to verify the certificate chain returned by the
+/// server.
+///
+/// \param socket     TCP socket object
+/// \param hostname   Hostname of the remote peer, encoded in UTF-8, used for verification
+/// \param verifyPeer True to enable peer verification, false to disable it
+///
+/// \return TLS status code
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfTlsStatus sfTcpSocket_setupTlsClient(sfTcpSocket* socket, const char* hostname, bool verifyPeer);
+
+////////////////////////////////////////////////////////////
+/// \brief Set up transport layer security as a client with a given certificate chain
+///
+/// When calling this function, the certificate chain to verify
+/// the host with has to be provided. Verification is always
+/// enabled when calling this function.
+///
+/// The certificate data can be provided in PEM or DER format.
+///
+/// See sfTcpSocket_setupTlsClient for details on the returned
+/// status codes.
+///
+/// \param socket               TCP socket object
+/// \param hostname             Hostname of the remote peer, encoded in UTF-8, used for verification
+/// \param certificateChainData Certificate chain data in PEM or DER encoding
+/// \param certificateChainSize Size of the certificate chain data
+///
+/// \return TLS status code
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfTlsStatus sfTcpSocket_setupTlsClientWithCertificate(
+    sfTcpSocket* socket,
+    const char*  hostname,
+    const void*  certificateChainData,
+    size_t       certificateChainSize);
+
+////////////////////////////////////////////////////////////
+/// \brief Set up transport layer security as a server
+///
+/// Once the TCP connection is connected, transport layer
+/// security can be set up.
+///
+/// As a server, a certificate chain as well as a private key
+/// must be provided. The certificate and private key data can
+/// be provided in PEM or DER format. If the private key is
+/// secured by a password, the password must be provided.
+///
+/// If sfTlsError is returned, something went wrong with TLS
+/// setup and the connection must be disconnected. The client
+/// must reconnect and reattempt TLS setup again.
+///
+/// See sfTcpSocket_setupTlsClient for details on the other
+/// returned status codes.
+///
+/// \param socket                 TCP socket object
+/// \param certificateChainData   Certificate chain data in PEM or DER encoding
+/// \param certificateChainSize   Size of the certificate chain data
+/// \param privateKeyData         Private key data in PEM or DER encoding
+/// \param privateKeySize         Size of the private key data
+/// \param privateKeyPasswordData Private key password data, can be NULL if there is no password
+/// \param privateKeyPasswordSize Size of the private key password data
+///
+/// \return TLS status code
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API sfTlsStatus sfTcpSocket_setupTlsServer(
+    sfTcpSocket* socket,
+    const void*  certificateChainData,
+    size_t       certificateChainSize,
+    const void*  privateKeyData,
+    size_t       privateKeySize,
+    const void*  privateKeyPasswordData,
+    size_t       privateKeyPasswordSize);
+
+////////////////////////////////////////////////////////////
+/// \brief Get the name of the TLS ciphersuite currently in use
+///
+/// The returned string stays valid until the next call to
+/// this function or until the socket is destroyed.
+///
+/// \param socket TCP socket object
+///
+/// \return TLS ciphersuite currently in use or NULL if TLS is not set up
+///
+////////////////////////////////////////////////////////////
+CSFML_NETWORK_API const char* sfTcpSocket_getCurrentCiphersuiteName(const sfTcpSocket* socket);

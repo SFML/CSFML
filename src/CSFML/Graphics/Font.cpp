@@ -26,7 +26,7 @@
 // Headers
 ////////////////////////////////////////////////////////////
 #include <CSFML/CallbackStream.hpp>
-#include <CSFML/Graphics/ConvertRect.hpp>
+#include <CSFML/Graphics/ConvertGlyph.hpp>
 #include <CSFML/Graphics/Font.h>
 #include <CSFML/Graphics/FontStruct.hpp>
 
@@ -88,14 +88,15 @@ sfGlyph sfFont_getGlyph(const sfFont* font, uint32_t codePoint, unsigned int cha
 {
     assert(font);
 
-    sf::Glyph sfmlGlyph = font->getGlyph(codePoint, characterSize, bold, outlineThickness);
+    return convertGlyph(font->getGlyph(codePoint, characterSize, bold, outlineThickness));
+}
 
-    sfGlyph glyph{};
-    glyph.advance     = sfmlGlyph.advance;
-    glyph.bounds      = convertRect(sfmlGlyph.bounds);
-    glyph.textureRect = convertRect(sfmlGlyph.textureRect);
 
-    return glyph;
+////////////////////////////////////////////////////////////
+sfGlyph sfFont_getGlyphById(const sfFont* font, uint32_t id, unsigned int characterSize, bool bold, float outlineThickness)
+{
+    assert(font);
+    return convertGlyph(font->getGlyphById(id, characterSize, bold, outlineThickness));
 }
 
 
@@ -111,7 +112,7 @@ bool sfFont_hasGlyph(const sfFont* font, uint32_t codePoint)
 float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     assert(font);
-    return font->getKerning(first, second, characterSize);
+    return font->getKerning(char32_t{first}, char32_t{second}, characterSize);
 }
 
 
@@ -119,7 +120,7 @@ float sfFont_getKerning(const sfFont* font, uint32_t first, uint32_t second, uns
 float sfFont_getBoldKerning(const sfFont* font, uint32_t first, uint32_t second, unsigned int characterSize)
 {
     assert(font);
-    return font->getKerning(first, second, characterSize, true);
+    return font->getKerning(char32_t{first}, char32_t{second}, characterSize, true);
 }
 
 
@@ -128,6 +129,22 @@ float sfFont_getLineSpacing(const sfFont* font, unsigned int characterSize)
 {
     assert(font);
     return font->getLineSpacing(characterSize);
+}
+
+
+////////////////////////////////////////////////////////////
+float sfFont_getAscent(const sfFont* font, unsigned int characterSize)
+{
+    assert(font);
+    return font->getAscent(characterSize);
+}
+
+
+////////////////////////////////////////////////////////////
+float sfFont_getDescent(const sfFont* font, unsigned int characterSize)
+{
+    assert(font);
+    return font->getDescent(characterSize);
 }
 
 
@@ -178,5 +195,6 @@ bool sfFont_isSmooth(const sfFont* font)
 sfFontInfo sfFont_getInfo(const sfFont* font)
 {
     assert(font);
-    return {font->getInfo().family.c_str()};
+    const sf::Font::Info& info = font->getInfo();
+    return {info.id, info.family.c_str(), info.hasKerning, info.hasVerticalMetrics};
 }
