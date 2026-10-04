@@ -26,7 +26,8 @@ jobs:
         platform:
         - { name: Windows VS2026 x86,  os: windows-2025-vs2026, flags: -AWin32 }
         - { name: Windows VS2026 x64,  os: windows-2025-vs2026, flags: -Ax64 }
-        - { name: Windows ClangCL,     os: windows-2025-vs2026, flags: -T ClangCL }
+        # ClangCL is disabled until we build against SFML 3.1, the FLAC version bundled with SFML 3.0 fails to compile with VS2026's ClangCL
+        # - { name: Windows ClangCL,     os: windows-2025-vs2026, flags: -T ClangCL }
         - { name: Windows Clang,       os: windows-2025-vs2026, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
         - { name: Linux GCC,           os: ubuntu-24.04, flags: -GNinja }
         - { name: Linux Clang,         os: ubuntu-24.04, flags: -GNinja -DCMAKE_C_COMPILER=clang -DCMAKE_CXX_COMPILER=clang++ }
@@ -124,8 +125,8 @@ jobs:
     - name: Install Dependencies
       run: |
         brew update
-        brew install llvm ninja
-        echo /opt/homebrew/opt/llvm/bin >> $GITHUB_PATH
+        brew install llvm@18 ninja
+        echo "$(brew --prefix llvm@18)/bin" >> $GITHUB_PATH
 
     - name: Checkout SFML
       uses: actions/checkout@v7
