@@ -59,15 +59,19 @@ jobs:
         path: SFML
 
     - name: Configure SFML CMake
+      env:
+        BUILD_TYPE: ${{ matrix.type.name }}
+        CMAKE_FLAGS: ${{ matrix.platform.flags }} ${{ matrix.config.flags }}
       run: |
         cmake -S SFML -B SFML/build \
-          -DCMAKE_BUILD_TYPE=${{matrix.type.name}} \
+          -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
           -DCMAKE_INSTALL_PREFIX=SFML/install \
-          ${{matrix.platform.flags}} \
-          ${{matrix.config.flags}}
+          $CMAKE_FLAGS
 
     - name: Build SFML
-      run: cmake --build SFML/build --config ${{matrix.type.name}} --target install
+      env:
+        BUILD_TYPE: ${{ matrix.type.name }}
+      run: cmake --build SFML/build --config "$BUILD_TYPE" --target install
 
     - name: Checkout CSFML
       uses: actions/checkout@v7
@@ -76,21 +80,26 @@ jobs:
         path: CSFML
 
     - name: Configure CSFML CMake
+      env:
+        BUILD_TYPE: ${{ matrix.type.name }}
+        CMAKE_FLAGS: ${{ matrix.platform.flags }} ${{ matrix.config.flags }} ${{ matrix.config.csfml_flags }}
       run: |
         cmake --preset dev -S CSFML -B CSFML/build \
-          -DCMAKE_BUILD_TYPE=${{matrix.type.name}} \
+          -DCMAKE_BUILD_TYPE="$BUILD_TYPE" \
           -DCMAKE_INSTALL_PREFIX=CSFML/install \
           -DSFML_ROOT=SFML/install \
           -DCMAKE_VERBOSE_MAKEFILE=ON \
-          ${{matrix.platform.flags}} \
-          ${{matrix.config.flags}} \
-          ${{matrix.config.csfml_flags}}
+          $CMAKE_FLAGS
 
     - name: Build CSFML
-      run: cmake --build CSFML/build --config ${{matrix.type.name}} --target install
+      env:
+        BUILD_TYPE: ${{ matrix.type.name }}
+      run: cmake --build CSFML/build --config "$BUILD_TYPE" --target install
 
     - name: Test
-      run: ctest --test-dir CSFML/build -C ${{matrix.type.name}} --output-on-failure
+      env:
+        BUILD_TYPE: ${{ matrix.type.name }}
+      run: ctest --test-dir CSFML/build -C "$BUILD_TYPE" --output-on-failure
 
   format:
     name: Formatting
