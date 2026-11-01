@@ -295,18 +295,17 @@ CSFML_GRAPHICS_API void sfShader_setMat4Uniform(sfShader* shader, const char* na
 /// uniform sampler2D the_texture; // this is the variable in the shader
 /// \endcode
 /// \code
-/// sfTexture texture;
+/// sfTexture* texture = sfTexture_createFromFile("texture.png", NULL);
 /// ...
-/// sfShader_setTextureUniform(shader, "the_texture", &texture);
+/// sfShader_setTextureUniform(shader, "the_texture", texture);
 /// \endcode
 /// It is important to note that \a texture must remain alive as long
 /// as the shader uses it, no copy is made internally.
 ///
 /// To use the texture of the object being drawn, which cannot be
-/// known in advance, you can pass the special value
-/// sf::Shader::CurrentTexture:
+/// known in advance, use sfShader_setCurrentTextureUniform:
 /// \code
-/// shader.setUniform("the_texture", sf::Shader::CurrentTexture).
+/// sfShader_setCurrentTextureUniform(shader, "the_texture");
 /// \endcode
 ///
 /// \param shader  Shader object
