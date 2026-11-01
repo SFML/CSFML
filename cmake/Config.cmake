@@ -12,9 +12,12 @@ else()
     return()
 endif()
 
+# account for CMAKE_INSTALL_LIBDIR potentially being an absolute path
+file(RELATIVE_PATH CSFML_RELATIVE_INSTALL_LIBDIR ${CMAKE_INSTALL_PREFIX} ${CMAKE_INSTALL_FULL_LIBDIR})
+
 # set pkgconfig install directory
 # this could be e.g. macports on mac or msys2 on windows etc.
-set(CSFML_PKGCONFIG_DIR "${CMAKE_INSTALL_LIBDIR}/pkgconfig")
+set(CSFML_PKGCONFIG_DIR "${CSFML_RELATIVE_INSTALL_LIBDIR}/pkgconfig")
 
 if(SFML_OS_FREEBSD OR SFML_OS_OPENBSD OR SFML_OS_NETBSD)
     set(CSFML_PKGCONFIG_DIR "libdata/pkgconfig")
