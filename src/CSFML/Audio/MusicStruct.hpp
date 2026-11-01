@@ -27,6 +27,7 @@
 ////////////////////////////////////////////////////////////
 // Headers
 ////////////////////////////////////////////////////////////
+#include <CSFML/Audio/Music.h>
 #include <CSFML/Audio/SoundChannel.h>
 #include <CSFML/CallbackStream.hpp>
 
@@ -42,4 +43,16 @@ struct sfMusic : sf::Music
 {
     mutable std::vector<sfSoundChannel> Channels;
     CallbackStream                      Stream;
+
+    sfMusicOnGetDataMixin OnGetDataMixin = nullptr;
+    static bool           onGetDataOriginal(sfMusic* music, sfSoundStreamChunk* data);
+    bool                  onGetData(Chunk& data) override;
+
+    sfMusicOnSeekMixin OnSeekMixin = nullptr;
+    static void        onSeekOriginal(sfMusic* music, sfTime timeOffset);
+    void               onSeek(sf::Time timeOffset) override;
+
+    sfMusicOnLoopMixin           OnLoopMixin = nullptr;
+    static bool                  onLoopOriginal(sfMusic* music, uint64_t* position);
+    std::optional<std::uint64_t> onLoop() override;
 };

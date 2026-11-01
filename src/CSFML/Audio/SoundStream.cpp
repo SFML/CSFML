@@ -34,6 +34,13 @@
 
 
 ////////////////////////////////////////////////////////////
+void sfSoundStream_setOnLoop(sfSoundStream* soundStream, sfSoundStreamOnLoopMixin mixin)
+{
+    soundStream->OnLoopMixin = mixin;
+}
+
+
+////////////////////////////////////////////////////////////
 sfSoundStream* sfSoundStream_create(
     sfSoundStreamGetDataCallback onGetData,
     sfSoundStreamSeekCallback    onSeek,

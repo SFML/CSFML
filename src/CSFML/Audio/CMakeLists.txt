@@ -10,6 +10,7 @@ set(SRC
     ${INCROOT}/Listener.h
     ${SRCROOT}/Music.cpp
     ${SRCROOT}/MusicStruct.hpp
+    ${SRCROOT}/MusicStruct.cpp
     ${INCROOT}/Music.h
     ${SRCROOT}/PlaybackDevice.cpp
     ${INCROOT}/PlaybackDevice.h
@@ -29,6 +30,7 @@ set(SRC
     ${INCROOT}/SoundSourceCone.h
     ${INCROOT}/SoundStatus.h
     ${SRCROOT}/SoundStream.cpp
+    ${SRCROOT}/SoundStreamStruct.cpp
     ${SRCROOT}/SoundStreamStruct.hpp
     ${INCROOT}/SoundStream.h
     ${INCROOT}/Types.h
