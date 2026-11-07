@@ -46,12 +46,13 @@
 ////////////////////////////////////////////////////////////
 typedef struct
 {
-    int16_t*     samples;     ///< Pointer to the audio samples
-    unsigned int sampleCount; ///< Number of samples pointed by Samples
+    const int16_t* samples;     ///< Pointer to the audio samples
+    size_t         sampleCount; ///< Number of samples pointed by Samples
 } sfSoundStreamChunk;
 
 typedef bool (*sfSoundStreamGetDataCallback)(sfSoundStreamChunk*, void*); ///< Type of the callback used to get a sound stream data
-typedef void (*sfSoundStreamSeekCallback)(sfTime, void*); ///< Type of the callback used to seek in a sound stream
+typedef void (*sfSoundStreamSeekCallback)(sfTime, void*);    ///< Type of the callback used to seek in a sound stream
+typedef bool (*sfSoundStreamLoopCallback)(uint64_t*, void*); ///< Type of the callback used to loop a sound stream
 
 
 ////////////////////////////////////////////////////////////
@@ -59,6 +60,11 @@ typedef void (*sfSoundStreamSeekCallback)(sfTime, void*); ///< Type of the callb
 ///
 /// \param onGetData      Function called when the stream needs more data (can't be NULL)
 /// \param onSeek         Function called when the stream seeks (can't be NULL)
+/// \param onLoop         Function called when a looping stream reaches its end, it sets the sample
+///                       position to continue from and returns true. If it returns false, the
+///                       stream seeks back to the beginning through onSeek. To stop the stream,
+///                       disable looping instead. If NULL, the stream seeks to the beginning and
+///                       continues from sample 0.
 /// \param channelCount   Number of channels to use (1 = mono, 2 = stereo)
 /// \param sampleRate     Sample rate of the sound (44100 = CD quality)
 /// \param channelMapData Pointer to the array of channel map data
@@ -71,6 +77,7 @@ typedef void (*sfSoundStreamSeekCallback)(sfTime, void*); ///< Type of the callb
 CSFML_AUDIO_API sfSoundStream* sfSoundStream_create(
     sfSoundStreamGetDataCallback onGetData,
     sfSoundStreamSeekCallback    onSeek,
+    sfSoundStreamLoopCallback    onLoop,
     unsigned int                 channelCount,
     unsigned int                 sampleRate,
     sfSoundChannel*              channelMapData,

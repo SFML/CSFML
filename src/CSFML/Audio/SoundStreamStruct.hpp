@@ -31,6 +31,9 @@
 
 #include <SFML/Audio/SoundStream.hpp>
 
+#include <cstdint>
+#include <optional>
+
 
 ////////////////////////////////////////////////////////////
 // Internal structure of sfSoundStream
@@ -40,6 +43,7 @@ struct sfSoundStream : sf::SoundStream
 public:
     sfSoundStream(sfSoundStreamGetDataCallback onGetData,
                   sfSoundStreamSeekCallback    onSeek,
+                  sfSoundStreamLoopCallback    onLoop,
                   unsigned int                 channelCount,
                   unsigned int                 sampleRate,
                   sfSoundChannel*              channelMapData,
@@ -47,6 +51,7 @@ public:
                   void*                        userData) :
     myGetDataCallback(onGetData),
     mySeekCallback(onSeek),
+    myLoopCallback(onLoop),
     myUserData(userData)
     {
         std::vector<sf::SoundChannel> channelMap(channelMapSize);
@@ -78,7 +83,20 @@ private:
         }
     }
 
+    std::optional<std::uint64_t> onLoop() override
+    {
+        if (!myLoopCallback)
+            return sf::SoundStream::onLoop();
+
+        std::uint64_t position = 0;
+        if (!myLoopCallback(&position, myUserData))
+            return std::nullopt;
+
+        return position;
+    }
+
     sfSoundStreamGetDataCallback myGetDataCallback;
     sfSoundStreamSeekCallback    mySeekCallback;
+    sfSoundStreamLoopCallback    myLoopCallback;
     void*                        myUserData;
 };
