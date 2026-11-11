@@ -27,7 +27,7 @@
 ///     sfEvent event;
 ///
 ///     /* Create the main window */
-///     window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, NULL);
+///     window = sfRenderWindow_create(mode, "SFML window", sfResize | sfClose, sfWindowed, NULL);
 ///     if (!window)
 ///         return EXIT_FAILURE;
 ///
@@ -35,8 +35,7 @@
 ///     texture = sfTexture_createFromFile("cute_image.jpg", NULL);
 ///     if (!texture)
 ///         return EXIT_FAILURE;
-///     sprite = sfSprite_create();
-///     sfSprite_setTexture(sprite, texture, true);
+///     sprite = sfSprite_create(texture);
 ///
 ///     /* Create a graphical text to display */
 ///     font = sfFont_createFromFile("arial.ttf");
